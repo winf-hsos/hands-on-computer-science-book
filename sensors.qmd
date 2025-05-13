@@ -1,0 +1,15 @@
+# Sensoren {#sec-sensors}
+
+::: callout-note
+## Kommt bald
+
+Dieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.
+:::
+
+- Analog vs. digital
+- Baue einen Wasserstandssensor mit einem Widerstand und dem Analog-In-Bricklet.
+- Oder: Feuchtigkeitssensor in eine Pflanze stecken
+- Oder: Berührungssensor
+- Oder: Pulssensor (Farbsensor)
+- Integriere die RGB-LED irgendwie
+- Farbsensor

@@ -1,0 +1,50 @@
+# Vorwort {.unnumbered}
+
+Glückwunsch – du bist angekommen! Wie auch immer dein Weg hierher aussah, du hast es geschafft, dieses Buch zu öffnen. Vielleicht bist du Student oder Studentin an der Hochschule Osnabrück und wurdest (zu deinem Glück) gezwungen, oder du bist ganz bewusst hier gelandet und freust dich darauf, etwas Neues zu lernen – genau wie ich.
+
+Dieses Buch entstand ursprünglich, um meinen Veranstaltungen an der Hochschule Osnabrück eine verständliche und praxisnahe Grundlage zu geben. Es dient als Hauptlektüre für meine Vorlesungen, aber auch als Nachschlagewerk für alle, die vielleicht mal eine Sitzung verpasst haben oder Themen eigenständig vertiefen wollen. Besonders willkommen sind dabei Quereinsteiger, Wiederholer oder einfach neugierige Menschen, die bisher noch gar keinen Kontakt mit der [Hochschule Osnabrück](https://hs-osnabrueck.de/ "Link zur offiziellem Webseite der Hochschule Osnabrück") hatten.
+
+Hier bekommst du keine trockene Theorie präsentiert, sondern eine spannende, praxisnahe Einführung in die Grundlagen moderner Computer und unserer digitalen Welt. Das Fach, das sich dahinter verbirgt, heißt auf Deutsch Informatik, international auch bekannt als Computer Science. Der Titel Hands-On Computer Science verrät bereits: Hier wird es praktisch – und zwar von Anfang an.
+
+## Was macht dieses Buch besonders?
+
+Lehrbücher zur Informatik gibt es reichlich. Viele davon sind großartig, aber kaum eines passt perfekt zu dem, was ich mit meinen Studierenden vorhabe. Woran liegt das?
+
+Viele klassische Informatikbücher versuchen, das gesamte Fachgebiet möglichst umfassend abzubilden. Das ist sinnvoll für angehende Informatiker, aber meine Zielgruppe bist du: Studierende in Studiengängen wie *Management nachhaltiger Ernährungssysteme*, *Lebensmittelproduktion* oder *Agrarsystemtechnologien* – oder vielleicht bist du nicht mal Student oder Studentin, sondern einfach interessiert daran, endlich Zugang zur digitalen Welt zu finden.
+
+Kurz gesagt: Dieses Buch ist für jeden gedacht, der Lust hat, in die digitale Welt einzutauchen, ohne sich gleich mit komplizierten Details zu überfordern. Dafür brauchst du kein allumfassendes Nachschlagewerk, sondern einen klaren roten Faden, der dich Schritt für Schritt an die grundlegenden Konzepte heranführt.
+
+Viele Bücher versprechen Praxisnähe, doch oft endet diese in nüchternen Übungsaufgaben am Kapitelende. Genau hier setzt *Hands-On Computer Science* an und macht zwei Dinge anders:
+
+1. Du lernst informatische Konzepte direkt anhand spannender Projekte mit Hardware wie Microcontrollern, Sensoren, Buttons, LEDs und Displays kennen.
+
+2. Du arbeitest kontinuierlich am LiFi-Projekt, das dich durch alle Kapitel begleitet und dabei immer weiter wächst.
+
+3. Theorie und Praxis sind nicht getrennt, sondern eng miteinander verbunden – Programmieren und informatische Grundlagen lernst du gleichzeitig.
+
+Schon ab Kapitel 1 beginnst du zu programmieren und zwar nicht abstrakt, sondern konkret mit Bauteilen wie Buttons. Im Laufe des Buches lernst du Schritt für Schritt neue Hardware-Komponenten kennen, die immer direkt mit relevanten informatischen Konzepten verknüpft sind. So schließt du am Ende nicht nur das LiFi-Projekt erfolgreich ab, sondern verfügst fast nebenbei über ein solides Fundament in der Informatik. Wenn alles gut läuft, merkst du kaum, wie schnell du gelernt hast.
+
+## Tipps für die Lektüre
+
+Weil es in diesem Buch viel ums Programmieren geht, findest du natürlich viele Codeblöcke. Als Einstiegssprache verwenden wir Python. Warum ausgerechnet Python? Das erfährst du später genauer.
+
+Codeblöcke sind deutlich sichtbar vom übrigen Text abgehoben, meist grau hinterlegt und in einer Schreibmaschinenschrift dargestellt, etwa *Courier New* oder *Consolas*. Hier ein kleines Beispiel:
+
+```python
+led.set_rgb_value(0, 0, 0) # <1>
+led.set_rgb_value(255, 255, 255) # <2>
+
+print("Diese Zeile hat keine Annotation")
+
+# Lasse die LED blau aufleuchten # <3>
+led.set_rgb_value(0, 0, 255)
+```
+1. Schaltet die LED aus, weil der RGB-Code (0,0,0) schwarz erzeugt.
+2. Schaltet die LED auf weißes Licht, weil drei Mal die 255 die Farbe Weiß ergibt.
+3. Auch Kommentare sind für kurze Erläuterungen nützlich.
+
+Kommentare sind mit einer kleinen Zahl versehen. Wenn du die Online-Version nutzt und mit der Maus über diese Zahl fährst, erscheint ein Tooltip, der die Codezeile erklärt. Das funktioniert nur online, nicht in PDF oder Druckversion.
+
+Noch ein kleiner Tipp: Wenn du mit der Maus über den Codeblock fährst, siehst du rechts oben ein Clipboard-Symbol. Ein Klick darauf kopiert den Code direkt in deine Zwischenablage, und du kannst ihn problemlos in dein geöffnetes Visual Studio Code oder eine andere IDE einfügen und ausprobieren.
+
+Alle Codebeispiele findest du außerdem im [GitHub-Repository](https://github.com/winf-hsos/lifi-project "Link zum GitHub-Repository mit den Codebeispielen"), das zu diesem Buch gehört.

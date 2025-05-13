@@ -1,0 +1,90 @@
+# Signale
+
+::: callout-note
+## Kommt bald
+
+Dieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.
+:::
+
+Hast du dich schon einmal gefragt, wie dein Fitness-Tracker deinen Puls messen kann, obwohl du nur einen Finger auflegst? Diese Frage führt uns direkt zu einem spannenden Konzept: Signalen. Alles, was wir mit Sensoren messen, sind zunächst einmal beliebige Größen. Doch nicht alles, was wir messen, ist für uns relevant. Wir suchen nach Mustern in diesen Daten — eben genau diesen Mustern, die wir als Signale bezeichnen. Alles andere, was uns von diesen Signalen ablenkt, nennen wir Rauschen. Unser Ziel: Wir möchten herausfinden, wie wir Signale effektiv vom Rauschen unterscheiden können.
+
+## Pulsmesser: Dein Finger als Signalquelle
+
+Erinnerst du dich noch an den Farbsensor aus @sec-sensors? Er misst nicht nur die Intensität des RGB-Spektrums, sondern auch die allgemeine Lichtintensität, auch Illuminance genannt. Hier kommt die spannende Tatsache ins Spiel: Genau dieses Prinzip steckt hinter den Pulsmessern in Fitnesstrackern. Ja, genau der Sensor, der Licht misst, verrät dir, wie schnell dein Herz schlägt!
+
+Aber wie genau funktioniert das? Stell dir vor, du legst deinen Zeigefinger direkt auf den Sensor und schaltest die integrierte weiße LED an. Das Licht der LED trifft auf deinen Finger und wird reflektiert. Dein Finger sieht für dich immer gleich aus, aber tatsächlich sorgt dein Herzschlag dafür, dass dein Finger mal minimal heller und mal dunkler erscheint. Das liegt daran, dass Blut in rhythmischen Schüben durch die Gefäße gepumpt wird. Diese winzigen Veränderungen, die du mit bloßem Auge nicht sehen kannst, werden vom sensiblen Farbsensor deutlich wahrgenommen.
+
+Schauen wir uns das einmal genauer an: Wenn du dir die gemessene Lichtintensität über den Zeitverlauf im Brick Viewer ansiehst, kannst du deinen Pulsschlag tatsächlich erkennen—er wird sichtbar als kleine, regelmäßige Peaks. Faszinierend, oder? So kannst du beobachten, wie aus etwas so scheinbar Einfachem wie Licht ein Signal entsteht, das dir wichtige Informationen über deinen Körper liefert.
+
+![Dein Puls im Brick Viewer](images/pulse_brick_viewer.png){fig-align="center" width=100% #fig-pulse-brick-viewer .lightbox}
+
+## Vom Diagramm zur Zahl
+
+Auch wenn du das Signal im Liniendiagramm in @fig-pulse-brick-viewer bereits deutlich sehen kannst, bleibt eine spannende Herausforderung bestehen: Wie schreibst du ein Programm, das aus diesen Daten deinen Puls als konkrete Zahl, zum Beispiel "60 Schläge pro Minute", berechnet? Genau dafür sind wir ja hier – um herauszufinden, wie man solche kniffligen Aufgaben löst. Lass uns gemeinsam starten!
+
+Zunächst müssen wir den Farbsensor in unserem Python-Programm auslesen. Den notwendigen Code dafür haben wir im vorherigen @sec-sensors bereits kennengelernt.
+
+```{python}
+#| eval: false
+from tinkerforge.ip_connection import IPConnection
+from tinkerforge.bricklet_color_v2 import BrickletColorV2
+
+ip_con = IPConnection()
+ip_con.connect("localhost", 4223)
+
+color_sensor = BrickletColorV2("Wgn", ip_con) # <1>
+```
+1. Achtung: Vergiss nicht, hier deine eigene UID einzusetzen. Diese findest du im Brick Viewer.
+
+Jetzt haben wir Zugriff auf die Funktionen des Sensors und können etwa die Lichtintensität messen:
+
+```{python}
+#| eval: false
+color_sensor.set_light(True) # <1>
+color_sensor.set_configuration(1, 1) # <2>
+illuminance = color_sensor.get_illuminance()
+```
+1. Schaltet die integrierte LED des Sensors an.
+2. Stellt die Werte für *Gain* und *Integration Time* auf 4x und 24ms. Diese Einstellung scheinen gut zu funktionieren, um den Puls zu messen.
+
+Der zurückgegebene Wert hängt von zwei Einstellungen ab: *Gain* (Verstärkung) und *Integration Time* (Messzeit). Je länger die Messzeit, desto genauer die Werte – allerdings können dann weniger Messungen pro Sekunde durchgeführt werden. Laut Dokumentation können wir aus dem gemessenen Wert die Lichtintensität in Lux wie folgt berechnen:
+
+```{python}
+#| eval: false
+illuminance_lux = illuminance * 700 / 4 / 24 # <1>
+```
+1. Der Wert 4 beschreibt ein 4-fache Verstärkung (*Gain*) und die 24 steht für 24ms *Integration Time*
+
+Um deinen Puls zu berechnen, müssen wir jetzt mehrere Werte in kurzen Abständen messen. Warum? Weil wir die regelmäßigen Tief- und Hochpunkte erkennen wollen. Ein Tiefpunkt entsteht, wenn dein Finger am dunkelsten ist – hier ist also gerade besonders viel Blut im Finger. Die Hochpunkte markieren dagegen den Moment, in dem das Blut größtenteils wieder zurückgeflossen ist. Jeder Herzschlag erzeugt genau einen Tief- und einen Hochpunkt. Finden wir diese Punkte, können wir einfach die Zeitabstände messen und daraus die Pulsfrequenz berechnen.
+
+Beginnen wir damit, unsere Messungen in einer Schleife durchzuführen. Das ist eine praktische Methode, kontinuierlich Daten zu erfassen:
+
+```{python}
+#| eval: false
+while True:
+    illuminance = color_sensor.get_illuminance()
+    illuminance_lux = illuminance * 700 / 4 / 24
+    print(f"Lichtintensität in Lux: {illuminance_lux}")
+```
+
+Lass uns das Programm einmal ausprobieren. Es sieht aktuell so aus:
+
+```{python}
+#| eval: false
+from tinkerforge.ip_connection import IPConnection
+from tinkerforge.bricklet_color_v2 import BrickletColorV2
+
+ip_con = IPConnection()
+ip_con.connect("localhost", 4223)
+
+color_sensor = BrickletColorV2("Wgn", ip_con) # <1>
+color_sensor.set_light(True)
+color_sensor.set_configuration(1, 1)
+
+while True:
+    illuminance = color_sensor.get_illuminance()
+    illuminance_lux = illuminance * 700 / 4 / 24
+    print(f"Lichtintensität in Lux: {illuminance_lux:.2f}  ", end="\r") # <2>
+```
+1. Denke daran, die UID durch die deines Sensors zu ersetzen.
+2. Der Parameter `end="\r"` sorgt dafür, dass nicht jede Ausgabe in eine neue Zeile geschrieben wird. Stattdessen wird immer an den Anfang der selben Zeile gesprungen. Das `\r` ist das Symbol für *Carriage Return*.

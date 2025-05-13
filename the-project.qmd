@@ -1,0 +1,42 @@
+# Das LiFi-Projekt {.unnumbered}
+
+## Hands-On Programmieren lernen
+
+Hast du dich schon einmal gefragt, wie man Informationen über Licht übertragen kann? Das klingt vielleicht nach Science-Fiction, ist aber tatsächlich machbar – und genau das wollen wir im LiFi-Projekt herausfinden! Dabei werden wir mit insgesamt acht spannenden Geräten arbeiten, die dir unterschiedliche Facetten der digitalen Welt näherbringen und dir gleichzeitig ermöglichen, das Programmieren spielerisch zu erlernen.
+
+Hier ein Überblick über die Geräte, mit denen wir gemeinsam experimentieren werden. Zusammengefasst kosten alle Komponenten für das LiFi-Projekt 249 €. Aber keine Sorge: Wenn du das LiFi-Projekt im Rahmen meines Moduls „Digitalisierung und Programmierung“ an der Hochschule Osnabrück belegst, erhältst du für das gesamte Semester ein komplettes Hardware-Kit.
+
+| Was? | Bauteil | Anzahl | Preis pro Stück |
+|---------------------|-------------------|----------------|-----------------|
+| Bunte LED | [RGB LED Bricklet 2.0](https://www.tinkerforge.com/de/shop/rgb-led-v2-bricklet.html) | 1 | 8 € |
+| Button mit integrierter, bunter LED | [RGB LED Bricklet 2.0](https://www.tinkerforge.com/de/shop/rgb-led-v2-bricklet.html) | 1 | 15 € |
+| Licht- und Farbsensor | [Color Bricklet 2.0](https://www.tinkerforge.com/de/shop/color-v2-bricklet.html) | 1 | 17 € |
+| LCD Display | [LCD 128x64 Bricklet](https://www.tinkerforge.com/de/shop/lcd-128x64-bricklet.html) | 1 | 33 € |
+| Piezo Lautsprecher | [Piezo Speaker Bricklet 2.0](https://www.tinkerforge.com/de/shop/piezo-speaker-v2-bricklet.html) | 1 | 19 € |
+| Infrarot-Entfernungsmesser | [Distance IR 4-30cm Bricklet 2.0](https://www.tinkerforge.com/de/shop/distance-ir-4-30cm-v2-bricklet.html) | 1 | 20 € |
+| Analoger Spannungssensor | [Analog In Bricklet 3.0](https://www.tinkerforge.com/de/shop/analog-in-v3-bricklet.html) | 1 | 14 € |
+| Analoger Spannungserzeuger | [Analog Out Bricklet 3.0](https://www.tinkerforge.com/de/shop/analog-out-v3-bricklet.html) | 1 | 17 € |
+| Mikrocontroller | [Master Brick 3.2](https://www.tinkerforge.com/de/shop/master-brick.html) | 2 | 35 € |
+| Anschlusskabel 15 cm | [Bricklet Kabel 15cm (7p-7p)](https://www.tinkerforge.com/de/shop/accessories/cable/bricklet-cable-15cm-7p-7p.html) | 8 | 1 € |
+| USB-A- auf USB-C Kabel | [USB-A auf USB-C Kabel 100 cm](https://www.tinkerforge.com/de/shop/accessories/cable/usb-a-to-usb-c-cable-100cm.html) | 1 | 6 € |
+| Montageplatte | [Montageplatte 22x22 (12x12cm)](https://www.tinkerforge.com/de/shop/mounting-plate-22x22-with-cable-lead-through.html) | 2 | 7 € |
+| Schrauben, Abstandshalter und Muttern | [Befestigungskit 12mm](https://www.tinkerforge.com/de/shop/accessories/mounting/mounting-kit-12mm.html) | 4 | 2 € |
+
+
+
+
+## Unser gemeinsames Ziel: Kommunikation über Licht
+
+Wie schafft man es eigentlich, dass zwei Geräte miteinander kommunizieren – ganz ohne WLAN, Bluetooth oder Kabel, sondern einfach nur mit Licht? Eine spannende Frage, auf die wir im LiFi-Projekt gemeinsam Antworten finden werden. Die Grundlage dafür bilden vor allem die bunte LED und der Licht- und Farbsensor. Schritt für Schritt – und Kapitel für Kapitel – werden wir an unserem gemeinsamen Ziel arbeiten, ein funktionierendes Prototypen-System aufzubauen. Dabei lernst du nicht nur, wie man Hardware-Komponenten miteinander verbindet, sondern vor allem auch, wie man Computer – diese universellen Problemlösungsmaschinen – für eigene Ideen programmieren kann.
+
+## Frust ist dein Freund – zumindest ein bisschen
+
+Eins möchte ich gleich vorwegnehmen: Beim Programmierenlernen ist eine gewisse Portion Frust unvermeidbar. Klingt unangenehm? Ist es auch! Aber es ist zugleich Teil eines enorm wertvollen Lernprozesses. Jeder Fehler, den du machst, ist eine Gelegenheit, um zu verstehen, wie Computer wirklich funktionieren – nämlich absolut präzise und ohne jede Toleranz für Fehler.
+
+Computer sind gnadenlose Lehrer. Sie zeigen dir sofort und unerbittlich, wenn etwas nicht stimmt – sei es ein vergessener Punkt, ein falscher Buchstabe oder ein simpler Zahlendreher. Das kann frustrieren, aber genau dieses direkte und sofortige Feedback hilft dir auch, schnell und effektiv zu lernen. Sobald du verstehst, wie du aus Fehlermeldungen sinnvolle Schlüsse ziehst und deine Programme entsprechend korrigierst, wirst du belohnt – mit Erfolgserlebnissen und einer steilen Lernkurve.
+
+Also, wenn mal etwas nicht klappt: Nimm es nicht persönlich, sondern sieh es als Herausforderung. Atme tief durch, mach dir klar, dass Fehler unvermeidbar und sogar wichtig sind, und probier es noch einmal. Ich verspreche dir: Es lohnt sich!
+
+## Some Assembly Required
+
+Das LiFi-Projekt beginnt mit dem Zusammenbau der Komponenten. Dazu bekommst du im [folgenden Kapitel](assembly.qmd) eine detaillierte Anleitung. Also, Schraubendreher in die Hand und auf geht's.

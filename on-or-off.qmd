@@ -1,0 +1,60 @@
+# An oder Aus
+
+::: callout-note
+## Kommt bald
+
+Dieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.
+:::
+
+Wie versprochen starten wir direkt mit unserem ersten kleinen Python-Programm:
+
+```python
+from tinkerforge.ip_connection import IPConnection # <1>
+from tinkerforge.bricklet_dual_button import DualButton # <2>
+
+ipcon = IPConnection() # <3>
+ipcon.connect("localhost", 4223) # <4>
+btn = DualButton("vSY", ipcon) # <5>
+```
+1. Importieren des Objekts zum Herstellen einer Verbindung mit dem Master Brick.
+2. Importieren des Objekts zur Darstellung des Dual Buttons als Python-Objekt.
+3. Eine neue Instanz einer IP-Verbindung erstellen.
+4. Eine Verbindung zu angeschlossenen Master Brick herstellen.
+5. Eine virtuelle Instanz des Dual Button Bricklets in unserem Programm erzeugen.
+
+- Das Binärsystem
+- Bits, Bytes etc.
+
+
+The concept of a switch with its two states is very important to the field of computer science. That's why introduce it early in this book.
+
+- Introduce the dual button
+- Introduce the boilerplate code necessary to connect to the button
+- As as side note, introduce programs and how to write and run them with VS code
+- Show how we can either press the button or not and how to read its current state from our first simple program
+- Leave the chapter with some intriguing questions about the meaning of 0 and 1 in computer science
+
+
+🎮 Mini Reaction Game
+
+Theme: "Are you faster than a computer?"
+
+**Setup:**
+
+- Flash an LED randomly after a delay, and students must press the correct button as fast as possible.
+- Wrong button or slow response → “fail” message.
+- Display or rank response times.
+
+Teachable moment: Real-time input processing, event handling, and how computers handle asynchronous input.
+
+🧠 Bonus Concept: Binary Memory Challenge
+
+Theme: "Simon Says: Binary Edition"
+
+**Setup:**
+
+- System shows a sequence of binary numbers via LED flashes (e.g., 01 → left off, right on).
+- Students must repeat the sequence by pressing the buttons.
+- Each round adds another number.
+
+Teachable moment: Binary perception, memory, encoding sequences, and reinforcing input logic.

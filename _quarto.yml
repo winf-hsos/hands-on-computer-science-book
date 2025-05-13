@@ -1,0 +1,62 @@
+project:
+  type: book
+  execute-dir: project
+
+editor:
+  render-on-save: true
+
+lang: de
+execute: 
+  enabled: true
+  eval: false
+
+book:
+  title: "Hands-On Computer Science"
+  author: "Nicolas Meseth"
+  cover-image: cover.png
+  date: today
+  date-format: long
+  search: true
+  output-file: "Hands-On-Computer-Science-Book"
+  downloads: [pdf]
+  
+  chapters:
+    - index.qmd
+    - the-project.qmd
+    - assembly.qmd    
+    - on-or-off.qmd
+    - colors.qmd
+    - text.qmd
+    - images.qmd
+    - information.qmd
+    - sensors.qmd
+    - signals.qmd
+    - protocols.qmd
+    - encryption.qmd
+    - algorithms.qmd
+    - compression.qmd
+    - computer.qmd
+    - problems.qmd
+    - references.qmd
+
+bibliography: references.bib
+nocite: |
+  @*
+
+format:
+  html:
+    theme: cosmo
+    highlight: pygments
+    toc-depth: 3
+    number-sections: true
+    code-annotations: hover
+    code-line-numbers: true
+  pdf:
+    documentclass: scrreprt
+    include-in-header: 
+      text: |
+        \usepackage{makeidx}
+        \makeindex
+    include-after-body: 
+      text: |
+        \printindex

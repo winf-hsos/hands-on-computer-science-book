@@ -1,0 +1,11 @@
+# Bilder
+
+::: callout-note
+## Kommt bald
+
+Dieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.
+:::
+
+- Einführung in die Idee einer Pixelmatrix aus Farbwerten als Bild
+- Verwendung des LCD-Displays zur Veranschaulichung, auch wenn nur schwarz/weiß
+- Verwendung von Zeichen auf dem LCD, um Pixel-Bitmaps für Schriftarten hervorzuheben

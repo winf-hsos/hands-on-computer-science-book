@@ -1,0 +1,41 @@
+# Farben {#sec-colors}
+
+::: callout-note
+## Kommt bald
+
+Dieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.
+:::
+
+```python
+from tinkerforge.ip_connection import IPConnection # <1>
+from tinkerforge.bricklet_rgb_led_v2 import BrickletRGBLEDV2 # <2>
+
+ipcon = IPConnection() # <3>
+ipcon.connect("localhost", 4223) # <4>
+btn = BrickletRGBLEDV2("abC", ipcon) # <5>
+```
+1. Importieren des Objekts zum Herstellen einer Verbindung mit dem Master Brick.
+2. Importieren des Objekts zur Darstellung der RGB LED als Python-Objekt.
+3. Eine neue Instanz einer IP-Verbindung erstellen.
+4. Eine Verbindung zu angeschlossenen Master Brick herstellen.
+5. Eine virtuelle Instanz des RGB LED Bricklets in unserem Programm erzeugen.
+
+Denke daran, wie Ampeln Farben verwenden, um wichtige Informationen zu vermitteln – Rot bedeutet Stopp, Grün bedeutet Los, und Gelb bedeutet Vorsicht. Genauso werden auf deinem Computer oder Smartphone überall Farben eingesetzt: Schaltflächen werden blau, wenn du mit der Maus darüber fährst, Benachrichtigungen erscheinen vielleicht in Rot, und Apps nutzen verschiedene Farben, um dir die Navigation zu erleichtern. All diese Farben werden mit Systemen wie RGB erzeugt und gesteuert.
+
+Farben sind auch in Bildern und Videos unverzichtbar. Jedes Foto, das du auf deinem Bildschirm siehst, besteht aus winzigen Punkten, den sogenannten Pixeln, und die Farbe jedes Pixels wird mit dem RGB-System festgelegt. Wenn du ein Video anschaust, zeigt dein Gerät schnell hintereinander eine Folge von Bildern, die jeweils aus Millionen farbiger Pixel bestehen, um eine Bewegung vorzutäuschen. Durch das Mischen unterschiedlicher Mengen von Rot, Grün und Blau für jedes Pixel können Computer realistische Fotos, lebendige Animationen und naturgetreue Videos darstellen.
+
+Das RGB-System steht für Rot, Grün und Blau – die Grundfarben des Lichts. Durch das Kombinieren dieser drei Farben in unterschiedlichen Intensitäten können wir ein breites Farbspektrum erzeugen. Dieses System wird auf Computerbildschirmen, in digitaler Kunst und beim Programmieren verwendet, um Farben zu definieren und zu steuern.
+
+Zum Beispiel ermöglicht uns das RGB-System beim Programmieren, die Farbe einer LED oder einer Grafik festzulegen, indem wir angeben, wie viel Rot, Grün und Blau gemischt werden sollen. Jede Farbkomponente – Rot, Grün und Blau – erhält einen Wert von 0 (keine Intensität) bis 255 (volle Intensität). Durch die Auswahl verschiedener Werte für jede Komponente können wir jede beliebige Farbe erzeugen.
+
+- Einführung RGB-LED
+- Einführung: Sie kann auf jede beliebige Farbe eingestellt werden
+- Einführung des RGB-Systems als DAS Codesystem zur Darstellung von Farben im Computer (ohne zu sehr auf Binärzahlen einzugehen)
+
+Programmierkonzepte:
+
+- Funktionsparameter (`set_rgb_value(r, g, b)`)
+
+```python
+led.set_rgb_value(255, 255, 255)
+```

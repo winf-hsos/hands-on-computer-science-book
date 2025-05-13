@@ -1,0 +1,40 @@
+# Computer
+
+::: callout-note
+## Kommt bald
+
+Dieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.
+:::
+
+## Logik und Arithmetik
+
+-   Logikgatter
+-   8-Bit-Additionsmaschine
+-   Subtraktion, Division, Multiplikation
+
+## Die von-Neumann-Architektur
+
+## Der Arbeitsspeicher oder das Kurzzeitgedächtnis des Computers
+
+```{python}
+#| eval: true
+x = 10
+print(f"Adresse im Speicher der Variable 'x': {hex(id(x))}")
+x= 20
+print(f"Neue Adresse im Speicher der Variable 'x': {hex(id(x))}")
+```
+
+```{python}
+#| eval: true
+names = ["Max", "Kim", "Hildegard"]
+print(f"Adresse im Speicher der Variable 'names': {hex(id(names))}")
+names.append("Heinrich")
+print(f"Die Adresse im Speicher der Variable 'names' bleibt identisch: {hex(id(names))}")
+
+```
+
+::: callout-tip
+## Leseempfehlung
+
+Um tiefer in die Themen dieses Kapitels einzusteigen, empfehle ich euch @petzold_code_2022 zu lesen . Es lohnt sich, das Buch von Vorne nach Hinten zu verschlingen.
+:::
