@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>4&nbsp; Bilder – Hands-On Computer Science</title>
+<title>7&nbsp; Signale – Hands-On Computer Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 /* CSS for citations */
 div.csl-bib-body { }
@@ -50,8 +85,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./information.html" rel="next">
-<link href="./text.html" rel="prev">
+<link href="./protocols.html" rel="next">
+<link href="./sensors.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -62,6 +97,9 @@ div.csl-indent {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-364982630eef5352dd1537128a8ed5cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -102,7 +140,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./images.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Bilder</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./signals.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Signale</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
@@ -168,7 +206,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./images.html" class="sidebar-item-text sidebar-link active">
+  <a href="./images.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Bilder</span></span></a>
   </div>
 </li>
@@ -186,7 +224,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./signals.html" class="sidebar-item-text sidebar-link">
+  <a href="./signals.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Signale</span></span></a>
   </div>
 </li>
@@ -237,15 +275,22 @@ div.csl-indent {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+  <li><a href="#pulsmesser-dein-finger-als-signalquelle" id="toc-pulsmesser-dein-finger-als-signalquelle" class="nav-link active" data-scroll-target="#pulsmesser-dein-finger-als-signalquelle"><span class="header-section-number">7.1</span> Pulsmesser: Dein Finger als Signalquelle</a></li>
+  <li><a href="#vom-diagramm-zur-zahl" id="toc-vom-diagramm-zur-zahl" class="nav-link" data-scroll-target="#vom-diagramm-zur-zahl"><span class="header-section-number">7.2</span> Vom Diagramm zur Zahl</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Bilder</span></h1>
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Signale</span></h1>
 </div>
 
 
@@ -262,11 +307,124 @@ div.csl-indent {
 </header>
 
 
-<ul>
-<li>Introduce the idea of a pixel matrix of color codes as image</li>
-<li>Use the OLED to ilustrate, although only b/w</li>
-<li>Use characters on the OLED to highlight pixel bitmaps for fonts</li>
-</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Kommt bald
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Dieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.</p>
+</div>
+</div>
+<p>Hast du dich schon einmal gefragt, wie dein Fitness-Tracker deinen Puls messen kann, obwohl du nur einen Finger auflegst? Diese Frage führt uns direkt zu einem spannenden Konzept: Signalen. Alles, was wir mit Sensoren messen, sind zunächst einmal beliebige Größen. Doch nicht alles, was wir messen, ist für uns relevant. Wir suchen nach Mustern in diesen Daten — eben genau diesen Mustern, die wir als Signale bezeichnen. Alles andere, was uns von diesen Signalen ablenkt, nennen wir Rauschen. Unser Ziel: Wir möchten herausfinden, wie wir Signale effektiv vom Rauschen unterscheiden können.</p>
+<section id="pulsmesser-dein-finger-als-signalquelle" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="pulsmesser-dein-finger-als-signalquelle"><span class="header-section-number">7.1</span> Pulsmesser: Dein Finger als Signalquelle</h2>
+<p>Erinnerst du dich noch an den Farbsensor aus <a href="sensors.html" class="quarto-xref"><span>Kapitel 6</span></a>? Er misst nicht nur die Intensität des RGB-Spektrums, sondern auch die allgemeine Lichtintensität, auch Illuminance genannt. Hier kommt die spannende Tatsache ins Spiel: Genau dieses Prinzip steckt hinter den Pulsmessern in Fitnesstrackern. Ja, genau der Sensor, der Licht misst, verrät dir, wie schnell dein Herz schlägt!</p>
+<p>Aber wie genau funktioniert das? Stell dir vor, du legst deinen Zeigefinger direkt auf den Sensor und schaltest die integrierte weiße LED an. Das Licht der LED trifft auf deinen Finger und wird reflektiert. Dein Finger sieht für dich immer gleich aus, aber tatsächlich sorgt dein Herzschlag dafür, dass dein Finger mal minimal heller und mal dunkler erscheint. Das liegt daran, dass Blut in rhythmischen Schüben durch die Gefäße gepumpt wird. Diese winzigen Veränderungen, die du mit bloßem Auge nicht sehen kannst, werden vom sensiblen Farbsensor deutlich wahrgenommen.</p>
+<p>Schauen wir uns das einmal genauer an: Wenn du dir die gemessene Lichtintensität über den Zeitverlauf im Brick Viewer ansiehst, kannst du deinen Pulsschlag tatsächlich erkennen—er wird sichtbar als kleine, regelmäßige Peaks. Faszinierend, oder? So kannst du beobachten, wie aus etwas so scheinbar Einfachem wie Licht ein Signal entsteht, das dir wichtige Informationen über deinen Körper liefert.</p>
+<div id="fig-pulse-brick-viewer" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pulse-brick-viewer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/pulse_brick_viewer.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Abbildung&nbsp;7.1: Dein Puls im Brick Viewer"><img src="images/pulse_brick_viewer.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pulse-brick-viewer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;7.1: Dein Puls im Brick Viewer
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="vom-diagramm-zur-zahl" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="vom-diagramm-zur-zahl"><span class="header-section-number">7.2</span> Vom Diagramm zur Zahl</h2>
+<p>Auch wenn du das Signal im Liniendiagramm in <a href="#fig-pulse-brick-viewer" class="quarto-xref">Abbildung&nbsp;<span>7.1</span></a> bereits deutlich sehen kannst, bleibt eine spannende Herausforderung bestehen: Wie schreibst du ein Programm, das aus diesen Daten deinen Puls als konkrete Zahl, zum Beispiel “60 Schläge pro Minute”, berechnet? Genau dafür sind wir ja hier – um herauszufinden, wie man solche kniffligen Aufgaben löst. Lass uns gemeinsam starten!</p>
+<p>Zunächst müssen wir den Farbsensor in unserem Python-Programm auslesen. Den notwendigen Code dafür haben wir im vorherigen <a href="sensors.html" class="quarto-xref"><span>Kapitel 6</span></a> bereits kennengelernt.</p>
+<div id="577db48a" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
+<span id="annotated-cell-1-2"><a href="#annotated-cell-1-2"></a><span class="im">from</span> tinkerforge.bricklet_color_v2 <span class="im">import</span> BrickletColorV2</span>
+<span id="annotated-cell-1-3"><a href="#annotated-cell-1-3"></a></span>
+<span id="annotated-cell-1-4"><a href="#annotated-cell-1-4"></a>ip_con <span class="op">=</span> IPConnection()</span>
+<span id="annotated-cell-1-5"><a href="#annotated-cell-1-5"></a>ip_con.<span class="ex">connect</span>(<span class="st">"localhost"</span>, <span class="dv">4223</span>)</span>
+<span id="annotated-cell-1-6"><a href="#annotated-cell-1-6"></a></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1">1</button><span id="annotated-cell-1-7" class="code-annotation-target"><a href="#annotated-cell-1-7"></a>color_sensor <span class="op">=</span> BrickletColorV2(<span class="st">"Wgn"</span>, ip_con)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="7" data-code-annotation="1">Achtung: Vergiss nicht, hier deine eigene UID einzusetzen. Diese findest du im Brick Viewer.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Jetzt haben wir Zugriff auf die Funktionen des Sensors und können etwa die Lichtintensität messen:</p>
+<div id="c006d3cf" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1">1</button><span id="annotated-cell-2-1" class="code-annotation-target"><a href="#annotated-cell-2-1"></a>color_sensor.set_light(<span class="va">True</span>)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="2">2</button><span id="annotated-cell-2-2" class="code-annotation-target"><a href="#annotated-cell-2-2"></a>color_sensor.set_configuration(<span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="annotated-cell-2-3"><a href="#annotated-cell-2-3"></a>illuminance <span class="op">=</span> color_sensor.get_illuminance()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="1" data-code-annotation="1">Schaltet die integrierte LED des Sensors an.</span>
+</dd>
+<dt data-target-cell="annotated-cell-2" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="2" data-code-annotation="2">Stellt die Werte für <em>Gain</em> und <em>Integration Time</em> auf 4x und 24ms. Diese Einstellung scheinen gut zu funktionieren, um den Puls zu messen.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Der zurückgegebene Wert hängt von zwei Einstellungen ab: <em>Gain</em> (Verstärkung) und <em>Integration Time</em> (Messzeit). Je länger die Messzeit, desto genauer die Werte – allerdings können dann weniger Messungen pro Sekunde durchgeführt werden. Laut Dokumentation können wir aus dem gemessenen Wert die Lichtintensität in Lux wie folgt berechnen:</p>
+<div id="b23e935c" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><button class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1">1</button><span id="annotated-cell-3-1" class="code-annotation-target"><a href="#annotated-cell-3-1"></a>illuminance_lux <span class="op">=</span> illuminance <span class="op">*</span> <span class="dv">700</span> <span class="op">/</span> <span class="dv">4</span> <span class="op">/</span> <span class="dv">24</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-3" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-3" data-code-lines="1" data-code-annotation="1">Der Wert 4 beschreibt ein 4-fache Verstärkung (<em>Gain</em>) und die 24 steht für 24ms <em>Integration Time</em></span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Um deinen Puls zu berechnen, müssen wir jetzt mehrere Werte in kurzen Abständen messen. Warum? Weil wir die regelmäßigen Tief- und Hochpunkte erkennen wollen. Ein Tiefpunkt entsteht, wenn dein Finger am dunkelsten ist – hier ist also gerade besonders viel Blut im Finger. Die Hochpunkte markieren dagegen den Moment, in dem das Blut größtenteils wieder zurückgeflossen ist. Jeder Herzschlag erzeugt genau einen Tief- und einen Hochpunkt. Finden wir diese Punkte, können wir einfach die Zeitabstände messen und daraus die Pulsfrequenz berechnen.</p>
+<p>Beginnen wir damit, unsere Messungen in einer Schleife durchzuführen. Das ist eine praktische Methode, kontinuierlich Daten zu erfassen:</p>
+<div id="7dff07d3" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb1-2"><a href="#cb1-2"></a>    illuminance <span class="op">=</span> color_sensor.get_illuminance()</span>
+<span id="cb1-3"><a href="#cb1-3"></a>    illuminance_lux <span class="op">=</span> illuminance <span class="op">*</span> <span class="dv">700</span> <span class="op">/</span> <span class="dv">4</span> <span class="op">/</span> <span class="dv">24</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>    <span class="bu">print</span>(<span class="ss">f"Lichtintensität in Lux: </span><span class="sc">{</span>illuminance_lux<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Lass uns das Programm einmal ausprobieren. Es sieht aktuell so aus:</p>
+<div id="f1c793cc" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="annotated-cell-5"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-5-1"><a href="#annotated-cell-5-1"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
+<span id="annotated-cell-5-2"><a href="#annotated-cell-5-2"></a><span class="im">from</span> tinkerforge.bricklet_color_v2 <span class="im">import</span> BrickletColorV2</span>
+<span id="annotated-cell-5-3"><a href="#annotated-cell-5-3"></a></span>
+<span id="annotated-cell-5-4"><a href="#annotated-cell-5-4"></a>ip_con <span class="op">=</span> IPConnection()</span>
+<span id="annotated-cell-5-5"><a href="#annotated-cell-5-5"></a>ip_con.<span class="ex">connect</span>(<span class="st">"localhost"</span>, <span class="dv">4223</span>)</span>
+<span id="annotated-cell-5-6"><a href="#annotated-cell-5-6"></a></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="1">1</button><span id="annotated-cell-5-7" class="code-annotation-target"><a href="#annotated-cell-5-7"></a>color_sensor <span class="op">=</span> BrickletColorV2(<span class="st">"Wgn"</span>, ip_con)</span>
+<span id="annotated-cell-5-8"><a href="#annotated-cell-5-8"></a>color_sensor.set_light(<span class="va">True</span>)</span>
+<span id="annotated-cell-5-9"><a href="#annotated-cell-5-9"></a>color_sensor.set_configuration(<span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="annotated-cell-5-10"><a href="#annotated-cell-5-10"></a></span>
+<span id="annotated-cell-5-11"><a href="#annotated-cell-5-11"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="annotated-cell-5-12"><a href="#annotated-cell-5-12"></a>    illuminance <span class="op">=</span> color_sensor.get_illuminance()</span>
+<span id="annotated-cell-5-13"><a href="#annotated-cell-5-13"></a>    illuminance_lux <span class="op">=</span> illuminance <span class="op">*</span> <span class="dv">700</span> <span class="op">/</span> <span class="dv">4</span> <span class="op">/</span> <span class="dv">24</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-5" data-target-annotation="2">2</button><span id="annotated-cell-5-14" class="code-annotation-target"><a href="#annotated-cell-5-14"></a>    <span class="bu">print</span>(<span class="ss">f"Lichtintensität in Lux: </span><span class="sc">{</span>illuminance_lux<span class="sc">:.2f}</span><span class="ss">  "</span>, end<span class="op">=</span><span class="st">"</span><span class="ch">\r</span><span class="st">"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-5" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="7" data-code-annotation="1">Denke daran, die UID durch die deines Sensors zu ersetzen.</span>
+</dd>
+<dt data-target-cell="annotated-cell-5" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-5" data-code-lines="14" data-code-annotation="2">Der Parameter <code>end="\r"</code> sorgt dafür, dass nicht jede Ausgabe in eine neue Zeile geschrieben wird. Stattdessen wird immer an den Anfang der selben Zeile gesprungen. Das <code>\r</code> ist das Symbol für <em>Carriage Return</em>.</span>
+</dd>
+</dl>
+</div>
+</div>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
@@ -286,6 +444,7 @@ Pólya, George, und John Horton Conway. 2004. <em>How to solve it: a new aspect 
 Scott, John C. 2009. <em>But how do it know?: the basic principles of computers for everyone</em>. Oldsmar, FL: John C. Scott.
 </div>
 </div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -728,17 +887,49 @@ Scott, John C. 2009. <em>But how do it know?: the basic principles of computers 
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./text.html" class="pagination-link" aria-label="Texte">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Texte</span></span>
+      <a href="./sensors.html" class="pagination-link" aria-label="Sensoren">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Sensoren</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./information.html" class="pagination-link" aria-label="Information">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Information</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./protocols.html" class="pagination-link" aria-label="Protokolle">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Protokolle</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

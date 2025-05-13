@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>12&nbsp; Computer – Hands-On Computer Science</title>
+<title>6&nbsp; Sensoren – Hands-On Computer Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,41 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 /* CSS for citations */
 div.csl-bib-body { }
@@ -85,8 +50,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./problems.html" rel="next">
-<link href="./compression.html" rel="prev">
+<link href="./signals.html" rel="next">
+<link href="./information.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -137,7 +102,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./computer.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Computer</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./sensors.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Sensoren</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
@@ -215,7 +180,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./sensors.html" class="sidebar-item-text sidebar-link">
+  <a href="./sensors.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Sensoren</span></span></a>
   </div>
 </li>
@@ -251,7 +216,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./computer.html" class="sidebar-item-text sidebar-link active">
+  <a href="./computer.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Computer</span></span></a>
   </div>
 </li>
@@ -272,23 +237,15 @@ div.csl-indent {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Inhaltsverzeichnis</h2>
-   
-  <ul>
-  <li><a href="#logik-und-arithmetik" id="toc-logik-und-arithmetik" class="nav-link active" data-scroll-target="#logik-und-arithmetik"><span class="header-section-number">12.1</span> Logik und Arithmetik</a></li>
-  <li><a href="#die-von-neumann-architektur" id="toc-die-von-neumann-architektur" class="nav-link" data-scroll-target="#die-von-neumann-architektur"><span class="header-section-number">12.2</span> Die von-Neumann-Architektur</a></li>
-  <li><a href="#der-arbeitsspeicher-oder-das-kurzzeitgedächtnis-des-computers" id="toc-der-arbeitsspeicher-oder-das-kurzzeitgedächtnis-des-computers" class="nav-link" data-scroll-target="#der-arbeitsspeicher-oder-das-kurzzeitgedächtnis-des-computers"><span class="header-section-number">12.3</span> Der Arbeitsspeicher oder das Kurzzeitgedächtnis des Computers</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Computer</span></h1>
+<h1 class="title"><span id="sec-sensors" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Sensoren</span></span></h1>
 </div>
 
 
@@ -318,52 +275,15 @@ Kommt bald
 <p>Dieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.</p>
 </div>
 </div>
-<section id="logik-und-arithmetik" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="logik-und-arithmetik"><span class="header-section-number">12.1</span> Logik und Arithmetik</h2>
 <ul>
-<li>Logikgatter</li>
-<li>8-Bit-Additionsmaschine</li>
-<li>Subtraktion, Division, Multiplikation</li>
+<li>Analog vs.&nbsp;digital</li>
+<li>Baue einen Wasserstandssensor mit einem Widerstand und dem Analog-In-Bricklet.</li>
+<li>Oder: Feuchtigkeitssensor in eine Pflanze stecken</li>
+<li>Oder: Berührungssensor</li>
+<li>Oder: Pulssensor (Farbsensor)</li>
+<li>Integriere die RGB-LED irgendwie</li>
+<li>Farbsensor</li>
 </ul>
-</section>
-<section id="die-von-neumann-architektur" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="die-von-neumann-architektur"><span class="header-section-number">12.2</span> Die von-Neumann-Architektur</h2>
-</section>
-<section id="der-arbeitsspeicher-oder-das-kurzzeitgedächtnis-des-computers" class="level2" data-number="12.3">
-<h2 data-number="12.3" class="anchored" data-anchor-id="der-arbeitsspeicher-oder-das-kurzzeitgedächtnis-des-computers"><span class="header-section-number">12.3</span> Der Arbeitsspeicher oder das Kurzzeitgedächtnis des Computers</h2>
-<div id="fe136956" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a>x <span class="op">=</span> <span class="dv">10</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="bu">print</span>(<span class="ss">f"Adresse im Speicher der Variable 'x': </span><span class="sc">{</span><span class="bu">hex</span>(<span class="bu">id</span>(x))<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3"></a>x<span class="op">=</span> <span class="dv">20</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="bu">print</span>(<span class="ss">f"Neue Adresse im Speicher der Variable 'x': </span><span class="sc">{</span><span class="bu">hex</span>(<span class="bu">id</span>(x))<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Adresse im Speicher der Variable 'x': 0x7ffbb6ab7448
-Neue Adresse im Speicher der Variable 'x': 0x7ffbb6ab7588</code></pre>
-</div>
-</div>
-<div id="6edcacbb" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>names <span class="op">=</span> [<span class="st">"Max"</span>, <span class="st">"Kim"</span>, <span class="st">"Hildegard"</span>]</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="bu">print</span>(<span class="ss">f"Adresse im Speicher der Variable 'names': </span><span class="sc">{</span><span class="bu">hex</span>(<span class="bu">id</span>(names))<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb3-3"><a href="#cb3-3"></a>names.append(<span class="st">"Heinrich"</span>)</span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="bu">print</span>(<span class="ss">f"Die Adresse im Speicher der Variable 'names' bleibt identisch: </span><span class="sc">{</span><span class="bu">hex</span>(<span class="bu">id</span>(names))<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Adresse im Speicher der Variable 'names': 0x2249fb6dc80
-Die Adresse im Speicher der Variable 'names' bleibt identisch: 0x2249fb6dc80</code></pre>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Leseempfehlung
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Um tiefer in die Themen dieses Kapitels einzusteigen, empfehle ich euch <span class="citation" data-cites="petzold_code_2022">Petzold (<a href="references.html#ref-petzold_code_2022" role="doc-biblioref">2022</a>)</span> zu lesen . Es lohnt sich, das Buch von Vorne nach Hinten zu verschlingen.</p>
-</div>
-</div>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
@@ -383,7 +303,6 @@ Pólya, George, und John Horton Conway. 2004. <em>How to solve it: a new aspect 
 Scott, John C. 2009. <em>But how do it know?: the basic principles of computers for everyone</em>. Oldsmar, FL: John C. Scott.
 </div>
 </div>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -826,13 +745,13 @@ Scott, John C. 2009. <em>But how do it know?: the basic principles of computers 
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./compression.html" class="pagination-link" aria-label="Kompression">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Kompression</span></span>
+      <a href="./information.html" class="pagination-link" aria-label="Information">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Information</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./problems.html" class="pagination-link" aria-label="Probleme">
-        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Probleme</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./signals.html" class="pagination-link" aria-label="Signale">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Signale</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

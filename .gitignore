@@ -4,3 +4,5 @@ env
 python
 .prompt.txt
 _environment
+/env/
+/.quarto/
