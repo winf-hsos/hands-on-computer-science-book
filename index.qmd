@@ -10,7 +10,7 @@ Hier bekommst du keine trockene Theorie präsentiert, sondern eine spannende, pr
 
 Lehrbücher zur Informatik gibt es reichlich. Viele davon sind großartig, aber kaum eines passt perfekt zu dem, was ich mit meinen Studierenden vorhabe. Woran liegt das?
 
-Viele klassische Informatikbücher versuchen, das gesamte Fachgebiet möglichst umfassend abzubilden. Das ist sinnvoll für angehende Informatiker, aber meine Zielgruppe bist du: Studierende in Studiengängen wie *Management nachhaltiger Ernährungssysteme*, *Lebensmittelproduktion* oder *Agrarsystemtechnologien* – oder vielleicht bist du nicht mal Student oder Studentin, sondern einfach interessiert daran, endlich Zugang zur digitalen Welt zu finden.
+Viele klassische Informatikbücher versuchen, das gesamte Fachgebiet möglichst umfassend abzubilden. Das ist sinnvoll für angehende Informatiker, aber meine Zielgruppe bist du: Studierende in Studiengängen wie [Management nachhaltiger Ernährungssysteme](https://hs-osnabrueck.de/bne), [Lebensmittelproduktion](https://www.hs-osnabrueck.de/blp) oder k[Agrarsystemtechnologien](https://www.hs-osnabrueck.de/agr0arsystemtechnologien-bsc/) – oder vielleicht bist du nicht mal Student oder Studentin, sondern einfach interessiert daran, endlich Zugang zur digitalen Welt zu finden.
 
 Kurz gesagt: Dieses Buch ist für jeden gedacht, der Lust hat, in die digitale Welt einzutauchen, ohne sich gleich mit komplizierten Details zu überfordern. Dafür brauchst du kein allumfassendes Nachschlagewerk, sondern einen klaren roten Faden, der dich Schritt für Schritt an die grundlegenden Konzepte heranführt.
 

@@ -6,6 +6,14 @@
 Dieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.
 :::
 
+::: callout-tip
+## Experiment
+
+Programmieren der LED, die in verschiedenen Farben aufleuchten soll. Jeder Farbe ist eine Taste auf der Tastatur zugeordnet, die der Spieler so schnell wie möglich drücken muss, nachdem die LED in der jeweiligen Farbe aufleuchtet.
+
+Das Programm kann zunächst linear ablaufen - also zunächst nur eine Runde, dann zwei kopiert hintereinander, bis zur Einführung einer Schleife.
+:::
+
 ```python
 from tinkerforge.ip_connection import IPConnection # <1>
 from tinkerforge.bricklet_rgb_led_v2 import BrickletRGBLEDV2 # <2>

@@ -6,6 +6,11 @@
 Dieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.
 :::
 
+::: callout-tip
+## Experiment
 - Einführung in die Idee einer Pixelmatrix aus Farbwerten als Bild
 - Verwendung des LCD-Displays zur Veranschaulichung, auch wenn nur schwarz/weiß
 - Verwendung von Zeichen auf dem LCD, um Pixel-Bitmaps für Schriftarten hervorzuheben
+- Studierende nutzen Bitmap-Sheet, um ein eigenes Logo zu entwerfen und auf dem LCD anzuzeigen
+:::
+

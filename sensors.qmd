@@ -13,3 +13,9 @@ Dieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.
 - Oder: Pulssensor (Farbsensor)
 - Integriere die RGB-LED irgendwie
 - Farbsensor
+
+
+
+## Aufgaben
+
+- Programmiere einen Batteriedoktor mithilfe des Analog In Sensors

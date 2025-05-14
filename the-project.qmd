@@ -4,26 +4,25 @@
 
 Hast du dich schon einmal gefragt, wie man Informationen über Licht übertragen kann? Das klingt vielleicht nach Science-Fiction, ist aber tatsächlich machbar – und genau das wollen wir im LiFi-Projekt herausfinden! Dabei werden wir mit insgesamt acht spannenden Geräten arbeiten, die dir unterschiedliche Facetten der digitalen Welt näherbringen und dir gleichzeitig ermöglichen, das Programmieren spielerisch zu erlernen.
 
+![Foto eines LiFi-Prototypen](images/lifi_setup_top.jpg){#fig-lifi-photo-top .lightbox fig-align="center" width="100%"}
+
 Hier ein Überblick über die Geräte, mit denen wir gemeinsam experimentieren werden. Zusammengefasst kosten alle Komponenten für das LiFi-Projekt 249 €. Aber keine Sorge: Wenn du das LiFi-Projekt im Rahmen meines Moduls „Digitalisierung und Programmierung“ an der Hochschule Osnabrück belegst, erhältst du für das gesamte Semester ein komplettes Hardware-Kit.
 
 | Was? | Bauteil | Anzahl | Preis pro Stück |
-|---------------------|-------------------|----------------|-----------------|
+|--------------------|------------------|-----------------|-----------------|
 | Bunte LED | [RGB LED Bricklet 2.0](https://www.tinkerforge.com/de/shop/rgb-led-v2-bricklet.html) | 1 | 8 € |
 | Button mit integrierter, bunter LED | [RGB LED Bricklet 2.0](https://www.tinkerforge.com/de/shop/rgb-led-v2-bricklet.html) | 1 | 15 € |
 | Licht- und Farbsensor | [Color Bricklet 2.0](https://www.tinkerforge.com/de/shop/color-v2-bricklet.html) | 1 | 17 € |
-| LCD Display | [LCD 128x64 Bricklet](https://www.tinkerforge.com/de/shop/lcd-128x64-bricklet.html) | 1 | 33 € |
+| LCD Touchdisplay | [LCD 128x64 Bricklet](https://www.tinkerforge.com/de/shop/lcd-128x64-bricklet.html) | 1 | 33 € |
 | Piezo Lautsprecher | [Piezo Speaker Bricklet 2.0](https://www.tinkerforge.com/de/shop/piezo-speaker-v2-bricklet.html) | 1 | 19 € |
 | Infrarot-Entfernungsmesser | [Distance IR 4-30cm Bricklet 2.0](https://www.tinkerforge.com/de/shop/distance-ir-4-30cm-v2-bricklet.html) | 1 | 20 € |
 | Analoger Spannungssensor | [Analog In Bricklet 3.0](https://www.tinkerforge.com/de/shop/analog-in-v3-bricklet.html) | 1 | 14 € |
-| Analoger Spannungserzeuger | [Analog Out Bricklet 3.0](https://www.tinkerforge.com/de/shop/analog-out-v3-bricklet.html) | 1 | 17 € |
+| Schalldruckpegelsenor | [Sound Pressure Level Bricklet](https://www.tinkerforge.com/de/shop/sound-pressure-level-bricklet-679.html) | 1 | 35 € |
 | Mikrocontroller | [Master Brick 3.2](https://www.tinkerforge.com/de/shop/master-brick.html) | 2 | 35 € |
 | Anschlusskabel 15 cm | [Bricklet Kabel 15cm (7p-7p)](https://www.tinkerforge.com/de/shop/accessories/cable/bricklet-cable-15cm-7p-7p.html) | 8 | 1 € |
 | USB-A- auf USB-C Kabel | [USB-A auf USB-C Kabel 100 cm](https://www.tinkerforge.com/de/shop/accessories/cable/usb-a-to-usb-c-cable-100cm.html) | 1 | 6 € |
 | Montageplatte | [Montageplatte 22x22 (12x12cm)](https://www.tinkerforge.com/de/shop/mounting-plate-22x22-with-cable-lead-through.html) | 2 | 7 € |
 | Schrauben, Abstandshalter und Muttern | [Befestigungskit 12mm](https://www.tinkerforge.com/de/shop/accessories/mounting/mounting-kit-12mm.html) | 4 | 2 € |
-
-
-
 
 ## Unser gemeinsames Ziel: Kommunikation über Licht
 

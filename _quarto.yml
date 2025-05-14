@@ -29,6 +29,7 @@ book:
     - colors.qmd
     - text.qmd
     - images.qmd
+    - codes.qmd
     - information.qmd
     - sensors.qmd
     - signals.qmd
