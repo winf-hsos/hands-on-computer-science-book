@@ -1,5 +1,9 @@
 # Farben {#sec-colors}
 
+## Setup {.unnumbered}
+
+Für dieses Kapitel benötigen wir zusätzlich zum Button mit integrierter LED ([RGB LED Button 2.0](https://www.tinkerforge.com/de/shop/bricklets/rgb-led-button-bricklet.html)) noch die separate LED ([RGB LED Bricklet 2.0](https://www.tinkerforge.com/de/shop/rgb-led-v2-bricklet.html)), die wir ebenfalls an den Mikrocontroller ([Master Brick 3.2](https://www.tinkerforge.com/de/shop/master-brick.html)) anschließen. Alle Geräte fixieren wir auf einer Montageplatte, wie in der Abbildung gezeigt.
+
 ::: callout-note
 ## Kommt bald
 

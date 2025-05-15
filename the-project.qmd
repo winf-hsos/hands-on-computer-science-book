@@ -11,7 +11,7 @@ Hier ein Überblick über die Geräte, mit denen wir gemeinsam experimentieren w
 | Was? | Bauteil | Anzahl | Preis pro Stück |
 |--------------------|------------------|-----------------|-----------------|
 | Bunte LED | [RGB LED Bricklet 2.0](https://www.tinkerforge.com/de/shop/rgb-led-v2-bricklet.html) | 1 | 8 € |
-| Button mit integrierter, bunter LED | [RGB LED Bricklet 2.0](https://www.tinkerforge.com/de/shop/rgb-led-v2-bricklet.html) | 1 | 15 € |
+| Button mit integrierter, bunter LED | [RGB LED Button Bricklet](https://www.tinkerforge.com/de/shop/bricklets/rgb-led-button-bricklet.html) | 1 | 15 € |
 | Licht- und Farbsensor | [Color Bricklet 2.0](https://www.tinkerforge.com/de/shop/color-v2-bricklet.html) | 1 | 17 € |
 | LCD Touchdisplay | [LCD 128x64 Bricklet](https://www.tinkerforge.com/de/shop/lcd-128x64-bricklet.html) | 1 | 33 € |
 | Piezo Lautsprecher | [Piezo Speaker Bricklet 2.0](https://www.tinkerforge.com/de/shop/piezo-speaker-v2-bricklet.html) | 1 | 19 € |

@@ -1,0 +1,11 @@
+# Umwandlung
+
+::: callout-tip
+## Experiment
+Mit 4 Kippschaltern und 4 Widerständen bauen wir einen Digital-To-Analog-Converter (DAC). Dazu kommt ein Breadboard und diveser Überbrückungskabel zum Einsatz. Außerdem brauchen wir den Analog In 3.0 von Tinkerforge. 
+:::
+
+## Der Weg in den Computer
+
+
+## Aus der digitalen in die analoge Welt

@@ -16,6 +16,6 @@ Dieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.
 
 
 
-## Aufgaben
+## Aufgaben {.unnumbered}
 
 - Programmiere einen Batteriedoktor mithilfe des Analog In Sensors

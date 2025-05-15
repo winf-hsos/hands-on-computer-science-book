@@ -44,7 +44,7 @@
     "href": "the-project.html#hands-on-programmieren-lernen",
     "title": "Das LiFi-Projekt",
     "section": "",
-    "text": "Abbildung 1: Foto eines LiFi-Prototypen\n\n\n\n\n\n\n\nWas?\nBauteil\nAnzahl\nPreis pro Stück\n\n\n\n\nBunte LED\nRGB LED Bricklet 2.0\n1\n8 €\n\n\nButton mit integrierter, bunter LED\nRGB LED Bricklet 2.0\n1\n15 €\n\n\nLicht- und Farbsensor\nColor Bricklet 2.0\n1\n17 €\n\n\nLCD Touchdisplay\nLCD 128x64 Bricklet\n1\n33 €\n\n\nPiezo Lautsprecher\nPiezo Speaker Bricklet 2.0\n1\n19 €\n\n\nInfrarot-Entfernungsmesser\nDistance IR 4-30cm Bricklet 2.0\n1\n20 €\n\n\nAnaloger Spannungssensor\nAnalog In Bricklet 3.0\n1\n14 €\n\n\nSchalldruckpegelsenor\nSound Pressure Level Bricklet\n1\n35 €\n\n\nMikrocontroller\nMaster Brick 3.2\n2\n35 €\n\n\nAnschlusskabel 15 cm\nBricklet Kabel 15cm (7p-7p)\n8\n1 €\n\n\nUSB-A- auf USB-C Kabel\nUSB-A auf USB-C Kabel 100 cm\n1\n6 €\n\n\nMontageplatte\nMontageplatte 22x22 (12x12cm)\n2\n7 €\n\n\nSchrauben, Abstandshalter und Muttern\nBefestigungskit 12mm\n4\n2 €",
+    "text": "Abbildung 1: Foto eines LiFi-Prototypen\n\n\n\n\n\n\n\nWas?\nBauteil\nAnzahl\nPreis pro Stück\n\n\n\n\nBunte LED\nRGB LED Bricklet 2.0\n1\n8 €\n\n\nButton mit integrierter, bunter LED\nRGB LED Button Bricklet\n1\n15 €\n\n\nLicht- und Farbsensor\nColor Bricklet 2.0\n1\n17 €\n\n\nLCD Touchdisplay\nLCD 128x64 Bricklet\n1\n33 €\n\n\nPiezo Lautsprecher\nPiezo Speaker Bricklet 2.0\n1\n19 €\n\n\nInfrarot-Entfernungsmesser\nDistance IR 4-30cm Bricklet 2.0\n1\n20 €\n\n\nAnaloger Spannungssensor\nAnalog In Bricklet 3.0\n1\n14 €\n\n\nSchalldruckpegelsenor\nSound Pressure Level Bricklet\n1\n35 €\n\n\nMikrocontroller\nMaster Brick 3.2\n2\n35 €\n\n\nAnschlusskabel 15 cm\nBricklet Kabel 15cm (7p-7p)\n8\n1 €\n\n\nUSB-A- auf USB-C Kabel\nUSB-A auf USB-C Kabel 100 cm\n1\n6 €\n\n\nMontageplatte\nMontageplatte 22x22 (12x12cm)\n2\n7 €\n\n\nSchrauben, Abstandshalter und Muttern\nBefestigungskit 12mm\n4\n2 €",
     "crumbs": [
       "Das LiFi-Projekt"
     ]
@@ -94,7 +94,27 @@
     "href": "on-or-off.html",
     "title": "1  An oder Aus",
     "section": "",
-    "text": "Kommt bald\n\n\n\nDieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.\n\n\nWie versprochen starten wir direkt mit unserem ersten kleinen Python-Programm:\n1from tinkerforge.ip_connection import IPConnection\n2from tinkerforge.bricklet_dual_button import DualButton\n\n3ipcon = IPConnection()\n4ipcon.connect(\"localhost\", 4223)\n5btn = DualButton(\"vSY\", ipcon)\n\n1\n\nImportieren des Objekts zum Herstellen einer Verbindung mit dem Master Brick.\n\n2\n\nImportieren des Objekts zur Darstellung des Dual Buttons als Python-Objekt.\n\n3\n\nEine neue Instanz einer IP-Verbindung erstellen.\n\n4\n\nEine Verbindung zu angeschlossenen Master Brick herstellen.\n\n5\n\nEine virtuelle Instanz des Dual Button Bricklets in unserem Programm erzeugen.\n\n\n\nDas Binärsystem\nBits, Bytes etc.\n\nThe concept of a switch with its two states is very important to the field of computer science. That’s why introduce it early in this book.\n\nIntroduce the dual button\nIntroduce the boilerplate code necessary to connect to the button\nAs as side note, introduce programs and how to write and run them with VS code\nShow how we can either press the button or not and how to read its current state from our first simple program\nLeave the chapter with some intriguing questions about the meaning of 0 and 1 in computer science\n\n🎮 Mini Reaction Game\nTheme: “Are you faster than a computer?”\nSetup:\n\nFlash an LED randomly after a delay, and students must press the correct button as fast as possible.\nWrong button or slow response → “fail” message.\nDisplay or rank response times.\n\nTeachable moment: Real-time input processing, event handling, and how computers handle asynchronous input.\n🧠 Bonus Concept: Binary Memory Challenge\nTheme: “Simon Says: Binary Edition”\nSetup:\n\nSystem shows a sequence of binary numbers via LED flashes (e.g., 01 → left off, right on).\nStudents must repeat the sequence by pressing the buttons.\nEach round adds another number.\n\nTeachable moment: Binary perception, memory, encoding sequences, and reinforcing input logic.\n\n\n\n\nAdami, Christoph. 2016. „What is Information?“ Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences 374 (2063): 20150230. https://doi.org/10.1098/rsta.2015.0230.\n\n\nBrookshear, J. Glenn, und Dennis Brylow. 2020. Computer science: an overview. 13th edition, global edition. NY, NY: Pearson.\n\n\nPetzold, Charles. 2022. Code: the hidden language of computer hardware and software. 2. Aufl. Hoboken: Microsoft Press.\n\n\nPólya, George, und John Horton Conway. 2004. How to solve it: a new aspect of mathematical method. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.\n\n\nScott, John C. 2009. But how do it know?: the basic principles of computers for everyone. Oldsmar, FL: John C. Scott.",
+    "text": "Setup\nFür dieses Kapitel benötigen wir den Button mit der integrierten LED (RGB LED Button 2.0), den wir an den Mikrocontroller (Master Brick 3.2) anschließen. Beides fixieren wir auf einer Montageplatte, wie in der Abbildung gezeigt.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>An oder Aus</span>"
+    ]
+  },
+  {
+    "objectID": "on-or-off.html#setup",
+    "href": "on-or-off.html#setup",
+    "title": "1  An oder Aus",
+    "section": "",
+    "text": "Kommt bald\n\n\n\nDieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>An oder Aus</span>"
+    ]
+  },
+  {
+    "objectID": "on-or-off.html#einfacher-geht-es-nicht",
+    "href": "on-or-off.html#einfacher-geht-es-nicht",
+    "title": "1  An oder Aus",
+    "section": "1.1 Einfacher geht es nicht",
+    "text": "1.1 Einfacher geht es nicht\nWie versprochen starten wir direkt mit unserem ersten kleinen Python-Programm:\n1from tinkerforge.ip_connection import IPConnection\n2from tinkerforge.bricklet_dual_button import DualButton\n\n3ipcon = IPConnection()\n4ipcon.connect(\"localhost\", 4223)\n5btn = DualButton(\"vSY\", ipcon)\n\n1\n\nImportieren des Objekts zum Herstellen einer Verbindung mit dem Master Brick.\n\n2\n\nImportieren des Objekts zur Darstellung des Dual Buttons als Python-Objekt.\n\n3\n\nEine neue Instanz einer IP-Verbindung erstellen.\n\n4\n\nEine Verbindung zu angeschlossenen Master Brick herstellen.\n\n5\n\nEine virtuelle Instanz des Dual Button Bricklets in unserem Programm erzeugen.\n\n\n\nDas Binärsystem\nBits, Bytes etc.\n\nThe concept of a switch with its two states is very important to the field of computer science. That’s why introduce it early in this book.\n\nIntroduce the dual button\nIntroduce the boilerplate code necessary to connect to the button\nAs as side note, introduce programs and how to write and run them with VS code\nShow how we can either press the button or not and how to read its current state from our first simple program\nLeave the chapter with some intriguing questions about the meaning of 0 and 1 in computer science\n\n🎮 Mini Reaction Game\nTheme: “Are you faster than a computer?”\nSetup:\n\nFlash an LED randomly after a delay, and students must press the correct button as fast as possible.\nWrong button or slow response → “fail” message.\nDisplay or rank response times.\n\nTeachable moment: Real-time input processing, event handling, and how computers handle asynchronous input.\n🧠 Bonus Concept: Binary Memory Challenge\nTheme: “Simon Says: Binary Edition”\nSetup:\n\nSystem shows a sequence of binary numbers via LED flashes (e.g., 01 → left off, right on).\nStudents must repeat the sequence by pressing the buttons.\nEach round adds another number.\n\nTeachable moment: Binary perception, memory, encoding sequences, and reinforcing input logic.\n\n\n\n\nAdami, Christoph. 2016. „What is Information?“ Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences 374 (2063): 20150230. https://doi.org/10.1098/rsta.2015.0230.\n\n\nBrookshear, J. Glenn, und Dennis Brylow. 2020. Computer science: an overview. 13th edition, global edition. NY, NY: Pearson.\n\n\nPetzold, Charles. 2022. Code: the hidden language of computer hardware and software. 2. Aufl. Hoboken: Microsoft Press.\n\n\nPólya, George, und John Horton Conway. 2004. How to solve it: a new aspect of mathematical method. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.\n\n\nScott, John C. 2009. But how do it know?: the basic principles of computers for everyone. Oldsmar, FL: John C. Scott.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>An oder Aus</span>"
     ]
@@ -104,7 +124,17 @@
     "href": "colors.html",
     "title": "2  Farben",
     "section": "",
-    "text": "Kommt bald\n\n\n\nDieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.\n\n\n\n\n\n\n\n\nExperiment\n\n\n\nProgrammieren der LED, die in verschiedenen Farben aufleuchten soll. Jeder Farbe ist eine Taste auf der Tastatur zugeordnet, die der Spieler so schnell wie möglich drücken muss, nachdem die LED in der jeweiligen Farbe aufleuchtet.\nDas Programm kann zunächst linear ablaufen - also zunächst nur eine Runde, dann zwei kopiert hintereinander, bis zur Einführung einer Schleife.\n\n\n1from tinkerforge.ip_connection import IPConnection\n2from tinkerforge.bricklet_rgb_led_v2 import BrickletRGBLEDV2\n\n3ipcon = IPConnection()\n4ipcon.connect(\"localhost\", 4223)\n5btn = BrickletRGBLEDV2(\"abC\", ipcon)\n\n1\n\nImportieren des Objekts zum Herstellen einer Verbindung mit dem Master Brick.\n\n2\n\nImportieren des Objekts zur Darstellung der RGB LED als Python-Objekt.\n\n3\n\nEine neue Instanz einer IP-Verbindung erstellen.\n\n4\n\nEine Verbindung zu angeschlossenen Master Brick herstellen.\n\n5\n\nEine virtuelle Instanz des RGB LED Bricklets in unserem Programm erzeugen.\n\n\nDenke daran, wie Ampeln Farben verwenden, um wichtige Informationen zu vermitteln – Rot bedeutet Stopp, Grün bedeutet Los, und Gelb bedeutet Vorsicht. Genauso werden auf deinem Computer oder Smartphone überall Farben eingesetzt: Schaltflächen werden blau, wenn du mit der Maus darüber fährst, Benachrichtigungen erscheinen vielleicht in Rot, und Apps nutzen verschiedene Farben, um dir die Navigation zu erleichtern. All diese Farben werden mit Systemen wie RGB erzeugt und gesteuert.\nFarben sind auch in Bildern und Videos unverzichtbar. Jedes Foto, das du auf deinem Bildschirm siehst, besteht aus winzigen Punkten, den sogenannten Pixeln, und die Farbe jedes Pixels wird mit dem RGB-System festgelegt. Wenn du ein Video anschaust, zeigt dein Gerät schnell hintereinander eine Folge von Bildern, die jeweils aus Millionen farbiger Pixel bestehen, um eine Bewegung vorzutäuschen. Durch das Mischen unterschiedlicher Mengen von Rot, Grün und Blau für jedes Pixel können Computer realistische Fotos, lebendige Animationen und naturgetreue Videos darstellen.\nDas RGB-System steht für Rot, Grün und Blau – die Grundfarben des Lichts. Durch das Kombinieren dieser drei Farben in unterschiedlichen Intensitäten können wir ein breites Farbspektrum erzeugen. Dieses System wird auf Computerbildschirmen, in digitaler Kunst und beim Programmieren verwendet, um Farben zu definieren und zu steuern.\nZum Beispiel ermöglicht uns das RGB-System beim Programmieren, die Farbe einer LED oder einer Grafik festzulegen, indem wir angeben, wie viel Rot, Grün und Blau gemischt werden sollen. Jede Farbkomponente – Rot, Grün und Blau – erhält einen Wert von 0 (keine Intensität) bis 255 (volle Intensität). Durch die Auswahl verschiedener Werte für jede Komponente können wir jede beliebige Farbe erzeugen.\n\nEinführung RGB-LED\nEinführung: Sie kann auf jede beliebige Farbe eingestellt werden\nEinführung des RGB-Systems als DAS Codesystem zur Darstellung von Farben im Computer (ohne zu sehr auf Binärzahlen einzugehen)\n\nProgrammierkonzepte:\n\nFunktionsparameter (set_rgb_value(r, g, b))\n\nled.set_rgb_value(255, 255, 255)\n\n\n\n\nAdami, Christoph. 2016. „What is Information?“ Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences 374 (2063): 20150230. https://doi.org/10.1098/rsta.2015.0230.\n\n\nBrookshear, J. Glenn, und Dennis Brylow. 2020. Computer science: an overview. 13th edition, global edition. NY, NY: Pearson.\n\n\nPetzold, Charles. 2022. Code: the hidden language of computer hardware and software. 2. Aufl. Hoboken: Microsoft Press.\n\n\nPólya, George, und John Horton Conway. 2004. How to solve it: a new aspect of mathematical method. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.\n\n\nScott, John C. 2009. But how do it know?: the basic principles of computers for everyone. Oldsmar, FL: John C. Scott.",
+    "text": "Setup\nFür dieses Kapitel benötigen wir zusätzlich zum Button mit integrierter LED (RGB LED Button 2.0) noch die separate LED (RGB LED Bricklet 2.0), die wir ebenfalls an den Mikrocontroller (Master Brick 3.2) anschließen. Alle Geräte fixieren wir auf einer Montageplatte, wie in der Abbildung gezeigt.\nDenke daran, wie Ampeln Farben verwenden, um wichtige Informationen zu vermitteln – Rot bedeutet Stopp, Grün bedeutet Los, und Gelb bedeutet Vorsicht. Genauso werden auf deinem Computer oder Smartphone überall Farben eingesetzt: Schaltflächen werden blau, wenn du mit der Maus darüber fährst, Benachrichtigungen erscheinen vielleicht in Rot, und Apps nutzen verschiedene Farben, um dir die Navigation zu erleichtern. All diese Farben werden mit Systemen wie RGB erzeugt und gesteuert.\nFarben sind auch in Bildern und Videos unverzichtbar. Jedes Foto, das du auf deinem Bildschirm siehst, besteht aus winzigen Punkten, den sogenannten Pixeln, und die Farbe jedes Pixels wird mit dem RGB-System festgelegt. Wenn du ein Video anschaust, zeigt dein Gerät schnell hintereinander eine Folge von Bildern, die jeweils aus Millionen farbiger Pixel bestehen, um eine Bewegung vorzutäuschen. Durch das Mischen unterschiedlicher Mengen von Rot, Grün und Blau für jedes Pixel können Computer realistische Fotos, lebendige Animationen und naturgetreue Videos darstellen.\nDas RGB-System steht für Rot, Grün und Blau – die Grundfarben des Lichts. Durch das Kombinieren dieser drei Farben in unterschiedlichen Intensitäten können wir ein breites Farbspektrum erzeugen. Dieses System wird auf Computerbildschirmen, in digitaler Kunst und beim Programmieren verwendet, um Farben zu definieren und zu steuern.\nZum Beispiel ermöglicht uns das RGB-System beim Programmieren, die Farbe einer LED oder einer Grafik festzulegen, indem wir angeben, wie viel Rot, Grün und Blau gemischt werden sollen. Jede Farbkomponente – Rot, Grün und Blau – erhält einen Wert von 0 (keine Intensität) bis 255 (volle Intensität). Durch die Auswahl verschiedener Werte für jede Komponente können wir jede beliebige Farbe erzeugen.\nProgrammierkonzepte:",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Farben</span>"
+    ]
+  },
+  {
+    "objectID": "colors.html#setup",
+    "href": "colors.html#setup",
+    "title": "2  Farben",
+    "section": "",
+    "text": "Kommt bald\n\n\n\nDieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.\n\n\n\n\n\n\n\n\nExperiment\n\n\n\nProgrammieren der LED, die in verschiedenen Farben aufleuchten soll. Jeder Farbe ist eine Taste auf der Tastatur zugeordnet, die der Spieler so schnell wie möglich drücken muss, nachdem die LED in der jeweiligen Farbe aufleuchtet.\nDas Programm kann zunächst linear ablaufen - also zunächst nur eine Runde, dann zwei kopiert hintereinander, bis zur Einführung einer Schleife.\n\n\n1from tinkerforge.ip_connection import IPConnection\n2from tinkerforge.bricklet_rgb_led_v2 import BrickletRGBLEDV2\n\n3ipcon = IPConnection()\n4ipcon.connect(\"localhost\", 4223)\n5btn = BrickletRGBLEDV2(\"abC\", ipcon)\n\n1\n\nImportieren des Objekts zum Herstellen einer Verbindung mit dem Master Brick.\n\n2\n\nImportieren des Objekts zur Darstellung der RGB LED als Python-Objekt.\n\n3\n\nEine neue Instanz einer IP-Verbindung erstellen.\n\n4\n\nEine Verbindung zu angeschlossenen Master Brick herstellen.\n\n5\n\nEine virtuelle Instanz des RGB LED Bricklets in unserem Programm erzeugen.\n\n\n\n\n\n\n\nEinführung RGB-LED\nEinführung: Sie kann auf jede beliebige Farbe eingestellt werden\nEinführung des RGB-Systems als DAS Codesystem zur Darstellung von Farben im Computer (ohne zu sehr auf Binärzahlen einzugehen)\n\n\n\nFunktionsparameter (set_rgb_value(r, g, b))\n\nled.set_rgb_value(255, 255, 255)\n\n\n\n\nAdami, Christoph. 2016. „What is Information?“ Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences 374 (2063): 20150230. https://doi.org/10.1098/rsta.2015.0230.\n\n\nBrookshear, J. Glenn, und Dennis Brylow. 2020. Computer science: an overview. 13th edition, global edition. NY, NY: Pearson.\n\n\nPetzold, Charles. 2022. Code: the hidden language of computer hardware and software. 2. Aufl. Hoboken: Microsoft Press.\n\n\nPólya, George, und John Horton Conway. 2004. How to solve it: a new aspect of mathematical method. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.\n\n\nScott, John C. 2009. But how do it know?: the basic principles of computers for everyone. Oldsmar, FL: John C. Scott.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Farben</span>"
     ]
@@ -114,7 +144,27 @@
     "href": "text.html",
     "title": "3  Texte",
     "section": "",
-    "text": "3.1 Texte – ganz ohne Tastatur?\nWir nutzen Computer ständig für Texte – sei es für eine WhatsApp-Nachnachricht, eine E-Mail, die Einladung zur Hochzeitsfeier oder vielleicht sogar für deine Bachelorarbeit. Ständig tippen wir etwas in unser Smartphone, Tablet oder den Computer ein. Aber hast du dich schon einmal gefragt, wie das eigentlich genau funktioniert?\nJa, ich gebe zu: Eine Tastatur ist schon richtig praktisch. Schnell tippen wir damit Buchstaben, Zahlen, Satz- und Sonderzeichen (wie neue Zeilen und Leerzeichen) ein. Aber stell dir mal vor: Wie könnte ich eigentlich dieses Buch schreiben, wenn ich keine Tastatur hätte?\nTatsächlich gibt es spannende Alternativen! Hast du schon mal versucht, Texte zu diktieren? Google Docs oder Microsoft Word bieten mittlerweile ziemlich gute Möglichkeiten dafür. Anfangs fühlt sich das ungewohnt an, aber ich kenne Menschen, die darauf schwören und damit sogar produktiver sind.\nHeute wollen wir aber bewusst einmal einen Schritt zurückgehen und das Tippen absichtlich erschweren. Klingt komisch? Macht aber Sinn! Denn wenn wir das Eingeben von Texten schwieriger gestalten, lernen wir einerseits, unsere Tastaturen wieder richtig zu schätzen. Andererseits verstehen wir dann besser, wie Texte im Hintergrund verarbeitet und gespeichert werden.\nWie wäre es also mit einer Tastatur, die auf Handgesten basiert? Klingt verrückt? Perfekt – genau das machen wir!",
+    "text": "Setup\nFür dieses Kapitel benötigen wir die LED (RGB LED Bricklet 2.0) und den Infrarot-Entfernungsmesser Distance IR 4-30cm Bricklet 2.0. Beide Geräte schließen wir an den Mikrocontroller (Master Brick 3.2) and und fixieren alle drei auf einer Montageplatte. Wie in der Abbildung gezeigt, soll der Entfernungsmesser dabei nach oben zeigen.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Texte</span>"
+    ]
+  },
+  {
+    "objectID": "text.html#setup",
+    "href": "text.html#setup",
+    "title": "3  Texte",
+    "section": "",
+    "text": "Kommt bald\n\n\n\nDieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Texte</span>"
+    ]
+  },
+  {
+    "objectID": "text.html#texte-ganz-ohne-tastatur",
+    "href": "text.html#texte-ganz-ohne-tastatur",
+    "title": "3  Texte",
+    "section": "3.1 Texte – ganz ohne Tastatur?",
+    "text": "3.1 Texte – ganz ohne Tastatur?\nJa, ich gebe zu: Eine Tastatur ist schon richtig praktisch. Schnell tippen wir damit Buchstaben, Zahlen, Satz- und Sonderzeichen (wie neue Zeilen und Leerzeichen) ein. Aber stell dir mal vor: Wie könnte ich eigentlich dieses Buch schreiben, wenn ich keine Tastatur hätte?\nTatsächlich gibt es spannende Alternativen! Hast du schon mal versucht, Texte zu diktieren? Google Docs oder Microsoft Word bieten mittlerweile ziemlich gute Möglichkeiten dafür. Anfangs fühlt sich das ungewohnt an, aber ich kenne Menschen, die darauf schwören und damit sogar produktiver sind.\nHeute wollen wir aber bewusst einmal einen Schritt zurückgehen und das Tippen absichtlich erschweren. Klingt komisch? Macht aber Sinn! Denn wenn wir das Eingeben von Texten schwieriger gestalten, lernen wir einerseits, unsere Tastaturen wieder richtig zu schätzen. Andererseits verstehen wir dann besser, wie Texte im Hintergrund verarbeitet und gespeichert werden.\nWie wäre es also mit einer Tastatur, die auf Handgesten basiert? Klingt verrückt? Perfekt – genau das machen wir!",
     "crumbs": [
       "<span class='chapter-number'>3</span>  <span class='chapter-title'>Texte</span>"
     ]
@@ -150,153 +200,173 @@
     ]
   },
   {
+    "objectID": "conversion.html",
+    "href": "conversion.html",
+    "title": "6  Umwandlung",
+    "section": "",
+    "text": "6.1 Der Weg in den Computer",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Umwandlung</span>"
+    ]
+  },
+  {
+    "objectID": "conversion.html#aus-der-digitalen-in-die-analoge-welt",
+    "href": "conversion.html#aus-der-digitalen-in-die-analoge-welt",
+    "title": "6  Umwandlung",
+    "section": "6.2 Aus der digitalen in die analoge Welt",
+    "text": "6.2 Aus der digitalen in die analoge Welt\n\n\n\n\nAdami, Christoph. 2016. „What is Information?“ Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences 374 (2063): 20150230. https://doi.org/10.1098/rsta.2015.0230.\n\n\nBrookshear, J. Glenn, und Dennis Brylow. 2020. Computer science: an overview. 13th edition, global edition. NY, NY: Pearson.\n\n\nPetzold, Charles. 2022. Code: the hidden language of computer hardware and software. 2. Aufl. Hoboken: Microsoft Press.\n\n\nPólya, George, und John Horton Conway. 2004. How to solve it: a new aspect of mathematical method. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.\n\n\nScott, John C. 2009. But how do it know?: the basic principles of computers for everyone. Oldsmar, FL: John C. Scott.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Umwandlung</span>"
+    ]
+  },
+  {
     "objectID": "information.html",
     "href": "information.html",
-    "title": "6  Information",
+    "title": "7  Information",
     "section": "",
     "text": "Kommt bald\n\n\n\nDieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.\n\n\n\n\n\n\nAdami, Christoph. 2016. „What is Information?“ Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences 374 (2063): 20150230. https://doi.org/10.1098/rsta.2015.0230.\n\n\nBrookshear, J. Glenn, und Dennis Brylow. 2020. Computer science: an overview. 13th edition, global edition. NY, NY: Pearson.\n\n\nPetzold, Charles. 2022. Code: the hidden language of computer hardware and software. 2. Aufl. Hoboken: Microsoft Press.\n\n\nPólya, George, und John Horton Conway. 2004. How to solve it: a new aspect of mathematical method. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.\n\n\nScott, John C. 2009. But how do it know?: the basic principles of computers for everyone. Oldsmar, FL: John C. Scott.",
     "crumbs": [
-      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Information</span>"
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Information</span>"
     ]
   },
   {
     "objectID": "sensors.html",
     "href": "sensors.html",
-    "title": "7  Sensoren",
+    "title": "8  Sensoren",
     "section": "",
-    "text": "7.1 Aufgaben",
+    "text": "Aufgaben",
     "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Sensoren</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Sensoren</span>"
     ]
   },
   {
     "objectID": "sensors.html#aufgaben",
     "href": "sensors.html#aufgaben",
-    "title": "7  Sensoren",
+    "title": "8  Sensoren",
     "section": "",
     "text": "Programmiere einen Batteriedoktor mithilfe des Analog In Sensors\n\n\n\n\n\nAdami, Christoph. 2016. „What is Information?“ Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences 374 (2063): 20150230. https://doi.org/10.1098/rsta.2015.0230.\n\n\nBrookshear, J. Glenn, und Dennis Brylow. 2020. Computer science: an overview. 13th edition, global edition. NY, NY: Pearson.\n\n\nPetzold, Charles. 2022. Code: the hidden language of computer hardware and software. 2. Aufl. Hoboken: Microsoft Press.\n\n\nPólya, George, und John Horton Conway. 2004. How to solve it: a new aspect of mathematical method. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.\n\n\nScott, John C. 2009. But how do it know?: the basic principles of computers for everyone. Oldsmar, FL: John C. Scott.",
     "crumbs": [
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Sensoren</span>"
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Sensoren</span>"
     ]
   },
   {
     "objectID": "signals.html",
     "href": "signals.html",
-    "title": "8  Signale",
+    "title": "9  Signale",
     "section": "",
-    "text": "8.1 Pulsmesser: Dein Finger als Signalquelle\nHast du dich schon einmal gefragt, wie dein Fitness-Tracker deinen Puls messen kann, obwohl du nur einen Finger auflegst? Diese Frage führt uns direkt zu einem spannenden Konzept: Signalen. Alles, was wir mit Sensoren messen, sind zunächst einmal beliebige Größen. Doch nicht alles, was wir messen, ist für uns relevant. Wir suchen nach Mustern in diesen Daten — eben genau diesen Mustern, die wir als Signale bezeichnen. Alles andere, was uns von diesen Signalen ablenkt, nennen wir Rauschen. Unser Ziel: Wir möchten herausfinden, wie wir Signale effektiv vom Rauschen unterscheiden können.\nErinnerst du dich noch an den Farbsensor aus Kapitel 7? Er misst nicht nur die Intensität des RGB-Spektrums, sondern auch die allgemeine Lichtintensität, auch Illuminance genannt. Hier kommt die spannende Tatsache ins Spiel: Genau dieses Prinzip steckt hinter den Pulsmessern in Fitnesstrackern. Ja, genau der Sensor, der Licht misst, verrät dir, wie schnell dein Herz schlägt!\nAber wie genau funktioniert das? Stell dir vor, du legst deinen Zeigefinger direkt auf den Sensor und schaltest die integrierte weiße LED an. Das Licht der LED trifft auf deinen Finger und wird reflektiert. Dein Finger sieht für dich immer gleich aus, aber tatsächlich sorgt dein Herzschlag dafür, dass dein Finger mal minimal heller und mal dunkler erscheint. Das liegt daran, dass Blut in rhythmischen Schüben durch die Gefäße gepumpt wird. Diese winzigen Veränderungen, die du mit bloßem Auge nicht sehen kannst, werden vom sensiblen Farbsensor deutlich wahrgenommen.\nSchauen wir uns das einmal genauer an: Wenn du dir die gemessene Lichtintensität über den Zeitverlauf im Brick Viewer ansiehst, kannst du deinen Pulsschlag tatsächlich erkennen—er wird sichtbar als kleine, regelmäßige Ausschläge oder Peaks. Faszinierend, oder? So kannst du beobachten, wie aus etwas so scheinbar Einfachem wie Licht ein Signal entsteht, das dir Informationen über deinen Körper liefert.",
+    "text": "9.1 Pulsmesser: Dein Finger als Signalquelle\nHast du dich schon einmal gefragt, wie dein Fitness-Tracker deinen Puls messen kann, obwohl du nur einen Finger auflegst? Diese Frage führt uns direkt zu einem spannenden Konzept: Signalen. Alles, was wir mit Sensoren messen, sind zunächst einmal beliebige Größen. Doch nicht alles, was wir messen, ist für uns relevant. Wir suchen nach Mustern in diesen Daten — eben genau diesen Mustern, die wir als Signale bezeichnen. Alles andere, was uns von diesen Signalen ablenkt, nennen wir Rauschen. Unser Ziel: Wir möchten herausfinden, wie wir Signale effektiv vom Rauschen unterscheiden können.\nErinnerst du dich noch an den Farbsensor aus Kapitel 8? Er misst nicht nur die Intensität des RGB-Spektrums, sondern auch die allgemeine Lichtintensität, auch Illuminance genannt. Hier kommt die spannende Tatsache ins Spiel: Genau dieses Prinzip steckt hinter den Pulsmessern in Fitnesstrackern. Ja, genau der Sensor, der Licht misst, verrät dir, wie schnell dein Herz schlägt!\nAber wie genau funktioniert das? Stell dir vor, du legst deinen Zeigefinger direkt auf den Sensor und schaltest die integrierte weiße LED an. Das Licht der LED trifft auf deinen Finger und wird reflektiert. Dein Finger sieht für dich immer gleich aus, aber tatsächlich sorgt dein Herzschlag dafür, dass dein Finger mal minimal heller und mal dunkler erscheint. Das liegt daran, dass Blut in rhythmischen Schüben durch die Gefäße gepumpt wird. Diese winzigen Veränderungen, die du mit bloßem Auge nicht sehen kannst, werden vom sensiblen Farbsensor deutlich wahrgenommen.\nSchauen wir uns das einmal genauer an: Wenn du dir die gemessene Lichtintensität über den Zeitverlauf im Brick Viewer ansiehst, kannst du deinen Pulsschlag tatsächlich erkennen—er wird sichtbar als kleine, regelmäßige Ausschläge oder Peaks. Faszinierend, oder? So kannst du beobachten, wie aus etwas so scheinbar Einfachem wie Licht ein Signal entsteht, das dir Informationen über deinen Körper liefert.",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Signale</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Signale</span>"
     ]
   },
   {
     "objectID": "signals.html#pulsmesser-dein-finger-als-signalquelle",
     "href": "signals.html#pulsmesser-dein-finger-als-signalquelle",
-    "title": "8  Signale",
+    "title": "9  Signale",
     "section": "",
-    "text": "Abbildung 8.1: Dein Puls im Brick Viewer",
+    "text": "Abbildung 9.1: Dein Puls im Brick Viewer",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Signale</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Signale</span>"
     ]
   },
   {
     "objectID": "signals.html#vom-diagramm-zur-zahl",
     "href": "signals.html#vom-diagramm-zur-zahl",
-    "title": "8  Signale",
-    "section": "8.2 Vom Diagramm zur Zahl",
-    "text": "8.2 Vom Diagramm zur Zahl\nAuch wenn du das Signal im Liniendiagramm in Abbildung 8.1 bereits deutlich sehen kannst, bleibt eine spannende Herausforderung bestehen: Wie schreibst du ein Programm, das aus diesen Daten deinen Puls als konkrete Zahl, zum Beispiel “60 Schläge pro Minute”, berechnet? Genau dafür sind wir ja hier – um herauszufinden, wie man solche kniffligen Aufgaben löst. Lass uns gemeinsam starten!\nZunächst müssen wir den Farbsensor in unserem Python-Programm auslesen. Den notwendigen Code dafür haben wir im vorherigen Kapitel 7 bereits kennengelernt.\n\nfrom tinkerforge.ip_connection import IPConnection\nfrom tinkerforge.bricklet_color_v2 import BrickletColorV2\n\nip_con = IPConnection()\nip_con.connect(\"localhost\", 4223)\n\n1color_sensor = BrickletColorV2(\"Wgn\", ip_con)\n\n\n1\n\nAchtung: Vergiss nicht, hier deine eigene UID einzusetzen. Diese findest du im Brick Viewer.\n\n\n\n\nJetzt haben wir Zugriff auf die Funktionen des Sensors und können etwa die Lichtintensität messen:\n\n1color_sensor.set_light(True)\n2color_sensor.set_configuration(1, 1)\nilluminance = color_sensor.get_illuminance()\n\n\n1\n\nSchaltet die integrierte LED des Sensors an.\n\n2\n\nStellt die Werte für Gain und Integration Time auf 4x und 24ms. Diese Einstellung scheinen gut zu funktionieren, um den Puls zu messen.\n\n\n\n\nDer zurückgegebene Wert hängt von zwei Einstellungen ab: Gain (Verstärkung) und Integration Time (Messzeit). Je länger die Messzeit, desto genauer die Werte – allerdings können dann weniger Messungen pro Sekunde durchgeführt werden. Laut Dokumentation können wir aus dem gemessenen Wert die Lichtintensität in Lux wie folgt berechnen:\n\n1illuminance_lux = illuminance * 700 / 4 / 24\n\n\n1\n\nDer Wert 4 beschreibt ein 4-fache Verstärkung (Gain) und die 24 steht für 24ms Integration Time\n\n\n\n\nUm deinen Puls zu berechnen, müssen wir jetzt mehrere Werte in kurzen Abständen messen. Warum? Weil wir die regelmäßigen Tief- und Hochpunkte erkennen wollen. Ein Tiefpunkt entsteht, wenn dein Finger am dunkelsten ist – hier ist also gerade besonders viel Blut im Finger. Die Hochpunkte markieren dagegen den Moment, in dem das Blut größtenteils wieder zurückgeflossen ist. Jeder Herzschlag erzeugt genau einen Tief- und einen Hochpunkt. Finden wir diese Punkte, können wir einfach die Zeitabstände messen und daraus die Pulsfrequenz berechnen.\nBeginnen wir damit, unsere Messungen in einer Schleife durchzuführen. Das ist eine praktische Methode, kontinuierlich Daten zu erfassen:\n\nwhile True:\n    illuminance = color_sensor.get_illuminance()\n    illuminance_lux = illuminance * 700 / 4 / 24\n    print(f\"Lichtintensität in Lux: {illuminance_lux}\")\n\nLass uns das Programm einmal ausprobieren. Es sieht aktuell so aus:\n\nfrom tinkerforge.ip_connection import IPConnection\nfrom tinkerforge.bricklet_color_v2 import BrickletColorV2\n\nip_con = IPConnection()\nip_con.connect(\"localhost\", 4223)\n\n1color_sensor = BrickletColorV2(\"Wgn\", ip_con)\ncolor_sensor.set_light(True)\ncolor_sensor.set_configuration(1, 1)\n\nwhile True:\n    illuminance = color_sensor.get_illuminance()\n    illuminance_lux = illuminance * 700 / 4 / 24\n2    print(f\"Lichtintensität in Lux: {illuminance_lux:.2f}  \", end=\"\\r\")\n\n\n1\n\nDenke daran, die UID durch die deines Sensors zu ersetzen.\n\n2\n\nDer Parameter end=\"\\r\" sorgt dafür, dass nicht jede Ausgabe in eine neue Zeile geschrieben wird. Stattdessen wird immer an den Anfang der selben Zeile gesprungen. Das \\r ist das Symbol für Carriage Return.\n\n\n\n\n\n\n\n\nAdami, Christoph. 2016. „What is Information?“ Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences 374 (2063): 20150230. https://doi.org/10.1098/rsta.2015.0230.\n\n\nBrookshear, J. Glenn, und Dennis Brylow. 2020. Computer science: an overview. 13th edition, global edition. NY, NY: Pearson.\n\n\nPetzold, Charles. 2022. Code: the hidden language of computer hardware and software. 2. Aufl. Hoboken: Microsoft Press.\n\n\nPólya, George, und John Horton Conway. 2004. How to solve it: a new aspect of mathematical method. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.\n\n\nScott, John C. 2009. But how do it know?: the basic principles of computers for everyone. Oldsmar, FL: John C. Scott.",
+    "title": "9  Signale",
+    "section": "9.2 Vom Diagramm zur Zahl",
+    "text": "9.2 Vom Diagramm zur Zahl\nAuch wenn du das Signal im Liniendiagramm in Abbildung 9.1 bereits deutlich sehen kannst, bleibt eine spannende Herausforderung bestehen: Wie schreibst du ein Programm, das aus diesen Daten deinen Puls als konkrete Zahl, zum Beispiel “60 Schläge pro Minute”, berechnet? Genau dafür sind wir ja hier – um herauszufinden, wie man solche kniffligen Aufgaben löst. Lass uns gemeinsam starten!\nZunächst müssen wir den Farbsensor in unserem Python-Programm auslesen. Den notwendigen Code dafür haben wir im vorherigen Kapitel 8 bereits kennengelernt.\n\nfrom tinkerforge.ip_connection import IPConnection\nfrom tinkerforge.bricklet_color_v2 import BrickletColorV2\n\nip_con = IPConnection()\nip_con.connect(\"localhost\", 4223)\n\n1color_sensor = BrickletColorV2(\"Wgn\", ip_con)\n\n\n1\n\nAchtung: Vergiss nicht, hier deine eigene UID einzusetzen. Diese findest du im Brick Viewer.\n\n\n\n\nJetzt haben wir Zugriff auf die Funktionen des Sensors und können etwa die Lichtintensität messen:\n\n1color_sensor.set_light(True)\n2color_sensor.set_configuration(1, 1)\nilluminance = color_sensor.get_illuminance()\n\n\n1\n\nSchaltet die integrierte LED des Sensors an.\n\n2\n\nStellt die Werte für Gain und Integration Time auf 4x und 24ms. Diese Einstellung scheinen gut zu funktionieren, um den Puls zu messen.\n\n\n\n\nDer zurückgegebene Wert hängt von zwei Einstellungen ab: Gain (Verstärkung) und Integration Time (Messzeit). Je länger die Messzeit, desto genauer die Werte – allerdings können dann weniger Messungen pro Sekunde durchgeführt werden. Laut Dokumentation können wir aus dem gemessenen Wert die Lichtintensität in Lux wie folgt berechnen:\n\n1illuminance_lux = illuminance * 700 / 4 / 24\n\n\n1\n\nDer Wert 4 beschreibt ein 4-fache Verstärkung (Gain) und die 24 steht für 24ms Integration Time\n\n\n\n\nUm deinen Puls zu berechnen, müssen wir jetzt mehrere Werte in kurzen Abständen messen. Warum? Weil wir die regelmäßigen Tief- und Hochpunkte erkennen wollen. Ein Tiefpunkt entsteht, wenn dein Finger am dunkelsten ist – hier ist also gerade besonders viel Blut im Finger. Die Hochpunkte markieren dagegen den Moment, in dem das Blut größtenteils wieder zurückgeflossen ist. Jeder Herzschlag erzeugt genau einen Tief- und einen Hochpunkt. Finden wir diese Punkte, können wir einfach die Zeitabstände messen und daraus die Pulsfrequenz berechnen.\nBeginnen wir damit, unsere Messungen in einer Schleife durchzuführen. Das ist eine praktische Methode, kontinuierlich Daten zu erfassen:\n\nwhile True:\n    illuminance = color_sensor.get_illuminance()\n    illuminance_lux = illuminance * 700 / 4 / 24\n    print(f\"Lichtintensität in Lux: {illuminance_lux}\")\n\nLass uns das Programm einmal ausprobieren. Es sieht aktuell so aus:\n\nfrom tinkerforge.ip_connection import IPConnection\nfrom tinkerforge.bricklet_color_v2 import BrickletColorV2\n\nip_con = IPConnection()\nip_con.connect(\"localhost\", 4223)\n\n1color_sensor = BrickletColorV2(\"Wgn\", ip_con)\ncolor_sensor.set_light(True)\ncolor_sensor.set_configuration(1, 1)\n\nwhile True:\n    illuminance = color_sensor.get_illuminance()\n    illuminance_lux = illuminance * 700 / 4 / 24\n2    print(f\"Lichtintensität in Lux: {illuminance_lux:.2f}  \", end=\"\\r\")\n\n\n1\n\nDenke daran, die UID durch die deines Sensors zu ersetzen.\n\n2\n\nDer Parameter end=\"\\r\" sorgt dafür, dass nicht jede Ausgabe in eine neue Zeile geschrieben wird. Stattdessen wird immer an den Anfang der selben Zeile gesprungen. Das \\r ist das Symbol für Carriage Return.\n\n\n\n\n\n\n\n\nAdami, Christoph. 2016. „What is Information?“ Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences 374 (2063): 20150230. https://doi.org/10.1098/rsta.2015.0230.\n\n\nBrookshear, J. Glenn, und Dennis Brylow. 2020. Computer science: an overview. 13th edition, global edition. NY, NY: Pearson.\n\n\nPetzold, Charles. 2022. Code: the hidden language of computer hardware and software. 2. Aufl. Hoboken: Microsoft Press.\n\n\nPólya, George, und John Horton Conway. 2004. How to solve it: a new aspect of mathematical method. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.\n\n\nScott, John C. 2009. But how do it know?: the basic principles of computers for everyone. Oldsmar, FL: John C. Scott.",
     "crumbs": [
-      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Signale</span>"
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Signale</span>"
     ]
   },
   {
     "objectID": "protocols.html",
     "href": "protocols.html",
-    "title": "9  Protokolle",
+    "title": "10  Protokolle",
     "section": "",
     "text": "Kommt bald\n\n\n\nDieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.\n\n\n\n\n\n\nAdami, Christoph. 2016. „What is Information?“ Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences 374 (2063): 20150230. https://doi.org/10.1098/rsta.2015.0230.\n\n\nBrookshear, J. Glenn, und Dennis Brylow. 2020. Computer science: an overview. 13th edition, global edition. NY, NY: Pearson.\n\n\nPetzold, Charles. 2022. Code: the hidden language of computer hardware and software. 2. Aufl. Hoboken: Microsoft Press.\n\n\nPólya, George, und John Horton Conway. 2004. How to solve it: a new aspect of mathematical method. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.\n\n\nScott, John C. 2009. But how do it know?: the basic principles of computers for everyone. Oldsmar, FL: John C. Scott.",
     "crumbs": [
-      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Protokolle</span>"
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Protokolle</span>"
     ]
   },
   {
     "objectID": "encryption.html",
     "href": "encryption.html",
-    "title": "10  Verschlüsselung",
+    "title": "11  Verschlüsselung",
     "section": "",
     "text": "Kommt bald\n\n\n\nDieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.\n\n\n\n\n\n\nAdami, Christoph. 2016. „What is Information?“ Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences 374 (2063): 20150230. https://doi.org/10.1098/rsta.2015.0230.\n\n\nBrookshear, J. Glenn, und Dennis Brylow. 2020. Computer science: an overview. 13th edition, global edition. NY, NY: Pearson.\n\n\nPetzold, Charles. 2022. Code: the hidden language of computer hardware and software. 2. Aufl. Hoboken: Microsoft Press.\n\n\nPólya, George, und John Horton Conway. 2004. How to solve it: a new aspect of mathematical method. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.\n\n\nScott, John C. 2009. But how do it know?: the basic principles of computers for everyone. Oldsmar, FL: John C. Scott.",
     "crumbs": [
-      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Verschlüsselung</span>"
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Verschlüsselung</span>"
     ]
   },
   {
     "objectID": "algorithms.html",
     "href": "algorithms.html",
-    "title": "11  Algorithmen",
+    "title": "12  Algorithmen",
     "section": "",
     "text": "Kommt bald\n\n\n\nDieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.\n\n\n\n\n\n\nAdami, Christoph. 2016. „What is Information?“ Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences 374 (2063): 20150230. https://doi.org/10.1098/rsta.2015.0230.\n\n\nBrookshear, J. Glenn, und Dennis Brylow. 2020. Computer science: an overview. 13th edition, global edition. NY, NY: Pearson.\n\n\nPetzold, Charles. 2022. Code: the hidden language of computer hardware and software. 2. Aufl. Hoboken: Microsoft Press.\n\n\nPólya, George, und John Horton Conway. 2004. How to solve it: a new aspect of mathematical method. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.\n\n\nScott, John C. 2009. But how do it know?: the basic principles of computers for everyone. Oldsmar, FL: John C. Scott.",
     "crumbs": [
-      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Algorithmen</span>"
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Algorithmen</span>"
     ]
   },
   {
     "objectID": "compression.html",
     "href": "compression.html",
-    "title": "12  Kompression",
+    "title": "13  Kompression",
     "section": "",
     "text": "Kommt bald\n\n\n\nDieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.\n\n\n\n\n\n\nAdami, Christoph. 2016. „What is Information?“ Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences 374 (2063): 20150230. https://doi.org/10.1098/rsta.2015.0230.\n\n\nBrookshear, J. Glenn, und Dennis Brylow. 2020. Computer science: an overview. 13th edition, global edition. NY, NY: Pearson.\n\n\nPetzold, Charles. 2022. Code: the hidden language of computer hardware and software. 2. Aufl. Hoboken: Microsoft Press.\n\n\nPólya, George, und John Horton Conway. 2004. How to solve it: a new aspect of mathematical method. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.\n\n\nScott, John C. 2009. But how do it know?: the basic principles of computers for everyone. Oldsmar, FL: John C. Scott.",
     "crumbs": [
-      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Kompression</span>"
+      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Kompression</span>"
     ]
   },
   {
     "objectID": "computer.html",
     "href": "computer.html",
-    "title": "13  Computer",
+    "title": "14  Computer",
     "section": "",
-    "text": "13.1 Logik und Arithmetik",
+    "text": "14.1 Logik und Arithmetik",
     "crumbs": [
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Computer</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Computer</span>"
     ]
   },
   {
     "objectID": "computer.html#logik-und-arithmetik",
     "href": "computer.html#logik-und-arithmetik",
-    "title": "13  Computer",
+    "title": "14  Computer",
     "section": "",
     "text": "Logikgatter\n8-Bit-Additionsmaschine\nSubtraktion, Division, Multiplikation",
     "crumbs": [
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Computer</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Computer</span>"
     ]
   },
   {
     "objectID": "computer.html#die-von-neumann-architektur",
     "href": "computer.html#die-von-neumann-architektur",
-    "title": "13  Computer",
-    "section": "13.2 Die von-Neumann-Architektur",
-    "text": "13.2 Die von-Neumann-Architektur",
+    "title": "14  Computer",
+    "section": "14.2 Die von-Neumann-Architektur",
+    "text": "14.2 Die von-Neumann-Architektur",
     "crumbs": [
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Computer</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Computer</span>"
     ]
   },
   {
     "objectID": "computer.html#der-arbeitsspeicher-oder-das-kurzzeitgedächtnis-des-computers",
     "href": "computer.html#der-arbeitsspeicher-oder-das-kurzzeitgedächtnis-des-computers",
-    "title": "13  Computer",
-    "section": "13.3 Der Arbeitsspeicher oder das Kurzzeitgedächtnis des Computers",
-    "text": "13.3 Der Arbeitsspeicher oder das Kurzzeitgedächtnis des Computers\n\nx = 10\nprint(f\"Adresse im Speicher der Variable 'x': {hex(id(x))}\")\nx= 20\nprint(f\"Neue Adresse im Speicher der Variable 'x': {hex(id(x))}\")\n\nAdresse im Speicher der Variable 'x': 0x7ffbb7a27448\nNeue Adresse im Speicher der Variable 'x': 0x7ffbb7a27588\n\n\n\nnames = [\"Max\", \"Kim\", \"Hildegard\"]\nprint(f\"Adresse im Speicher der Variable 'names': {hex(id(names))}\")\nnames.append(\"Heinrich\")\nprint(f\"Die Adresse im Speicher der Variable 'names' bleibt identisch: {hex(id(names))}\")\n\nAdresse im Speicher der Variable 'names': 0x24d41f41000\nDie Adresse im Speicher der Variable 'names' bleibt identisch: 0x24d41f41000\n\n\n\n\n\n\n\n\nLeseempfehlung\n\n\n\nUm tiefer in die Themen dieses Kapitels einzusteigen, empfehle ich euch Petzold (2022) zu lesen . Es lohnt sich, das Buch von Vorne nach Hinten zu verschlingen.\n\n\n\n\n\n\nAdami, Christoph. 2016. „What is Information?“ Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences 374 (2063): 20150230. https://doi.org/10.1098/rsta.2015.0230.\n\n\nBrookshear, J. Glenn, und Dennis Brylow. 2020. Computer science: an overview. 13th edition, global edition. NY, NY: Pearson.\n\n\nPetzold, Charles. 2022. Code: the hidden language of computer hardware and software. 2. Aufl. Hoboken: Microsoft Press.\n\n\nPólya, George, und John Horton Conway. 2004. How to solve it: a new aspect of mathematical method. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.\n\n\nScott, John C. 2009. But how do it know?: the basic principles of computers for everyone. Oldsmar, FL: John C. Scott.",
+    "title": "14  Computer",
+    "section": "14.3 Der Arbeitsspeicher oder das Kurzzeitgedächtnis des Computers",
+    "text": "14.3 Der Arbeitsspeicher oder das Kurzzeitgedächtnis des Computers\n\nx = 10\nprint(f\"Adresse im Speicher der Variable 'x': {hex(id(x))}\")\nx= 20\nprint(f\"Neue Adresse im Speicher der Variable 'x': {hex(id(x))}\")\n\nAdresse im Speicher der Variable 'x': 0x7ff833b37448\nNeue Adresse im Speicher der Variable 'x': 0x7ff833b37588\n\n\n\nnames = [\"Max\", \"Kim\", \"Hildegard\"]\nprint(f\"Adresse im Speicher der Variable 'names': {hex(id(names))}\")\nnames.append(\"Heinrich\")\nprint(f\"Die Adresse im Speicher der Variable 'names' bleibt identisch: {hex(id(names))}\")\n\nAdresse im Speicher der Variable 'names': 0x1e5b60f0080\nDie Adresse im Speicher der Variable 'names' bleibt identisch: 0x1e5b60f0080\n\n\n\n\n\n\n\n\nLeseempfehlung\n\n\n\nUm tiefer in die Themen dieses Kapitels einzusteigen, empfehle ich euch Petzold (2022) zu lesen . Es lohnt sich, das Buch von Vorne nach Hinten zu verschlingen.\n\n\n\n\n\n\nAdami, Christoph. 2016. „What is Information?“ Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences 374 (2063): 20150230. https://doi.org/10.1098/rsta.2015.0230.\n\n\nBrookshear, J. Glenn, und Dennis Brylow. 2020. Computer science: an overview. 13th edition, global edition. NY, NY: Pearson.\n\n\nPetzold, Charles. 2022. Code: the hidden language of computer hardware and software. 2. Aufl. Hoboken: Microsoft Press.\n\n\nPólya, George, und John Horton Conway. 2004. How to solve it: a new aspect of mathematical method. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.\n\n\nScott, John C. 2009. But how do it know?: the basic principles of computers for everyone. Oldsmar, FL: John C. Scott.",
     "crumbs": [
-      "<span class='chapter-number'>13</span>  <span class='chapter-title'>Computer</span>"
+      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Computer</span>"
     ]
   },
   {
     "objectID": "problems.html",
     "href": "problems.html",
-    "title": "14  Probleme",
+    "title": "15  Probleme",
     "section": "",
     "text": "Kommt bald\n\n\n\nDieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.\n\n\n\n\n\n\nAdami, Christoph. 2016. „What is Information?“ Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences 374 (2063): 20150230. https://doi.org/10.1098/rsta.2015.0230.\n\n\nBrookshear, J. Glenn, und Dennis Brylow. 2020. Computer science: an overview. 13th edition, global edition. NY, NY: Pearson.\n\n\nPetzold, Charles. 2022. Code: the hidden language of computer hardware and software. 2. Aufl. Hoboken: Microsoft Press.\n\n\nPólya, George, und John Horton Conway. 2004. How to solve it: a new aspect of mathematical method. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.\n\n\nScott, John C. 2009. But how do it know?: the basic principles of computers for everyone. Oldsmar, FL: John C. Scott.",
     "crumbs": [
-      "<span class='chapter-number'>14</span>  <span class='chapter-title'>Probleme</span>"
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Probleme</span>"
     ]
   },
   {

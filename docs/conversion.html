@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>12&nbsp; Algorithmen – Hands-On Computer Science</title>
+<title>6&nbsp; Umwandlung – Hands-On Computer Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -50,8 +50,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./compression.html" rel="next">
-<link href="./encryption.html" rel="prev">
+<link href="./information.html" rel="next">
+<link href="./codes.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -102,7 +102,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./algorithms.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Algorithmen</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./conversion.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Umwandlung</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
@@ -180,7 +180,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./conversion.html" class="sidebar-item-text sidebar-link">
+  <a href="./conversion.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Umwandlung</span></span></a>
   </div>
 </li>
@@ -216,7 +216,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./algorithms.html" class="sidebar-item-text sidebar-link active">
+  <a href="./algorithms.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Algorithmen</span></span></a>
   </div>
 </li>
@@ -249,15 +249,22 @@ div.csl-indent {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+  <li><a href="#der-weg-in-den-computer" id="toc-der-weg-in-den-computer" class="nav-link active" data-scroll-target="#der-weg-in-den-computer"><span class="header-section-number">6.1</span> Der Weg in den Computer</a></li>
+  <li><a href="#aus-der-digitalen-in-die-analoge-welt" id="toc-aus-der-digitalen-in-die-analoge-welt" class="nav-link" data-scroll-target="#aus-der-digitalen-in-die-analoge-welt"><span class="header-section-number">6.2</span> Aus der digitalen in die analoge Welt</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Algorithmen</span></h1>
+<h1 class="title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Umwandlung</span></h1>
 </div>
 
 
@@ -274,19 +281,24 @@ div.csl-indent {
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Kommt bald
+Experiment
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Dieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.</p>
+<p>Mit 4 Kippschaltern und 4 Widerständen bauen wir einen Digital-To-Analog-Converter (DAC). Dazu kommt ein Breadboard und diveser Überbrückungskabel zum Einsatz. Außerdem brauchen wir den Analog In 3.0 von Tinkerforge.</p>
 </div>
 </div>
+<section id="der-weg-in-den-computer" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="der-weg-in-den-computer"><span class="header-section-number">6.1</span> Der Weg in den Computer</h2>
+</section>
+<section id="aus-der-digitalen-in-die-analoge-welt" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="aus-der-digitalen-in-die-analoge-welt"><span class="header-section-number">6.2</span> Aus der digitalen in die analoge Welt</h2>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
@@ -306,6 +318,7 @@ Pólya, George, und John Horton Conway. 2004. <em>How to solve it: a new aspect 
 Scott, John C. 2009. <em>But how do it know?: the basic principles of computers for everyone</em>. Oldsmar, FL: John C. Scott.
 </div>
 </div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -748,13 +761,13 @@ Scott, John C. 2009. <em>But how do it know?: the basic principles of computers 
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./encryption.html" class="pagination-link" aria-label="Verschlüsselung">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Verschlüsselung</span></span>
+      <a href="./codes.html" class="pagination-link" aria-label="Codes">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Codes</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./compression.html" class="pagination-link" aria-label="Kompression">
-        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Kompression</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./information.html" class="pagination-link" aria-label="Information">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Information</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

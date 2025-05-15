@@ -1,11 +1,16 @@
 # An oder Aus
 
+## Setup {.unnumbered}
+
+Für dieses Kapitel benötigen wir den Button mit der integrierten LED ([RGB LED Button 2.0](https://www.tinkerforge.com/de/shop/bricklets/rgb-led-button-bricklet.html)), den wir an den Mikrocontroller ([Master Brick 3.2](https://www.tinkerforge.com/de/shop/master-brick.html)) anschließen. Beides fixieren wir auf einer Montageplatte, wie in der Abbildung gezeigt.
+
 ::: callout-note
 ## Kommt bald
 
 Dieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.
 :::
 
+## Einfacher geht es nicht
 
 Wie versprochen starten wir direkt mit unserem ersten kleinen Python-Programm:
 

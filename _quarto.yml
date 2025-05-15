@@ -30,6 +30,7 @@ book:
     - text.qmd
     - images.qmd
     - codes.qmd
+    - conversion.qmd
     - information.qmd
     - sensors.qmd
     - signals.qmd
