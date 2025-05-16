@@ -1,16 +1,32 @@
+---
+abstract: |
+    Wir starten direkt mit dem ersten Experiment und lernen, wie wir einen einfachen Button programmieren können. Vielleicht schaffen wir es sogar, ein einfaches Spiel zu erstellen?
+abstract-title: ""
+---
+
 # An oder Aus
 
-## Setup {.unnumbered}
+## Experimentaufbau
 
-Für dieses Kapitel benötigen wir den Button mit der integrierten LED ([RGB LED Button 2.0](https://www.tinkerforge.com/de/shop/bricklets/rgb-led-button-bricklet.html)), den wir an den Mikrocontroller ([Master Brick 3.2](https://www.tinkerforge.com/de/shop/master-brick.html)) anschließen. Beides fixieren wir auf einer Montageplatte, wie in der Abbildung gezeigt.
+Für unser Experiment in diesem Kapitel benötigen wir den Button mit der integrierten LED ([RGB LED Button 2.0](https://www.tinkerforge.com/de/shop/bricklets/rgb-led-button-bricklet.html)), den wir an den Mikrocontroller ([Master Brick 3.2](https://www.tinkerforge.com/de/shop/master-brick.html)) anschließen. Beides fixieren wir auf Abstandshaltern auf einer Montageplatte, wie in @fig-setup-rgb-led-button gezeigt. Damit es schneller geht, verwenden wir lediglich zwei Fixierungen pro Gerät, was eine ausreichende Stabilität gewährleistet. Vergiss nicht die weißen Unterlegscheiben aus Kunsstoff, um die Platinen zu schonen.
 
-::: callout-note
-## Kommt bald
-
-Dieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.
-:::
+![Einfaches Setup mit Mikrocontroller und Button mit integrierter LED.](images/setup_rgb_led_button.jpg){#fig-setup-rgb-led-button .lightbox fig-align="center" width="100%"}
 
 ## Einfacher geht es nicht
+
+Ein Button ist ein denkbar einfaches Gerät: Es kennt nur zwei Zustände, entweder ist der Button gedrückt oder nicht. Wenn du den Master Brick über das USB-Kabel an deinen Computer angeschlossen hast, kannst du die Funktion des Buttons einfach über den Brick Viewer kennenlernen. Öffne dazu den Brick Viewer und klicke auf den Connect-Button.
+
+![Über den Connect-Button verbindet sich der Brick Viewer mit dem angeschlossenen Master Brick.](images/brick_viewer_connect.png){#fig-brick-viewer-connect .lightbox fig-align="center" width="100%"}
+
+Nachdem du verbunden bist sollte der angeschlossene Master Brick mit seinen Komponenten, die Bricklets genannt werden, im Brick Viewer sichtbar sein. In @fig-brick-viewer-after-connect siehst du wie das in meinem Fall aussieht. Für jedes Gerät wird ein eigener Tab angezeigt, in dem wir die Details zu diesem Gerät sehen und die jeweiligen Funktionen ausprobieren können. Gleichzeitig bekommen wir in der Mitte des Brick Viewers eine übersichtliche Liste mit allen gefundenen Geräten angezeigt. Durch die hierarchische Darstellung erkennst du, welches Bricklet an welchem Mikrocontroller (Master Brick) hängt. Wie wir später im Buch noch sehen werden können auch mehrer Master Bricks miteinander verbunden werden und somit die möglichen angeschlossenen Bricklets um vier erweitert werden.
+
+![Der Brick Viewer nachdem ihr mit dem Master Brick verbunden seid.](images/brick_viewer_after_connect.png){#fig-brick-viewer-after-connect .lightbox}
+
+Wechseln wir in den Tab für den Button, in dem wir sämtliche Funktionen des Bricklets einsehen und interaktive ausprobieren können.
+
+![Die Ansicht für den RGB LED Button im Brick Viewer, in der alle Funktionen per Klick im Zugriff sind.](images/brick_viewer_rgb_led_button.png){#fig-brick-viewer-rgb-led-button .lightbox}
+
+## Das Ganze jetzt in Python
 
 Wie versprochen starten wir direkt mit unserem ersten kleinen Python-Programm:
 

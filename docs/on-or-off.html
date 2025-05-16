@@ -97,6 +97,9 @@ div.csl-indent {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-364982630eef5352dd1537128a8ed5cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -289,8 +292,9 @@ div.csl-indent {
     <h2 id="toc-title">Inhaltsverzeichnis</h2>
    
   <ul>
-  <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a></li>
-  <li><a href="#einfacher-geht-es-nicht" id="toc-einfacher-geht-es-nicht" class="nav-link" data-scroll-target="#einfacher-geht-es-nicht"><span class="header-section-number">1.1</span> Einfacher geht es nicht</a></li>
+  <li><a href="#experimentaufbau" id="toc-experimentaufbau" class="nav-link active" data-scroll-target="#experimentaufbau"><span class="header-section-number">1.1</span> Experimentaufbau</a></li>
+  <li><a href="#einfacher-geht-es-nicht" id="toc-einfacher-geht-es-nicht" class="nav-link" data-scroll-target="#einfacher-geht-es-nicht"><span class="header-section-number">1.2</span> Einfacher geht es nicht</a></li>
+  <li><a href="#das-ganze-jetzt-in-python" id="toc-das-ganze-jetzt-in-python" class="nav-link" data-scroll-target="#das-ganze-jetzt-in-python"><span class="header-section-number">1.3</span> Das Ganze jetzt in Python</a></li>
   </ul>
 </nav>
     </div>
@@ -311,30 +315,69 @@ div.csl-indent {
     
   </div>
   
+<div>
+  <div class="abstract">
+    <div class="block-title"></div>
+    <p>Wir starten direkt mit dem ersten Experiment und lernen, wie wir einen einfachen Button programmieren können. Vielleicht schaffen wir es sogar, ein einfaches Spiel zu erstellen?</p>
+  </div>
+</div>
 
 
 </header>
 
 
-<section id="setup" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="setup">Setup</h2>
-<p>Für dieses Kapitel benötigen wir den Button mit der integrierten LED (<a href="https://www.tinkerforge.com/de/shop/bricklets/rgb-led-button-bricklet.html">RGB LED Button 2.0</a>), den wir an den Mikrocontroller (<a href="https://www.tinkerforge.com/de/shop/master-brick.html">Master Brick 3.2</a>) anschließen. Beides fixieren wir auf einer Montageplatte, wie in der Abbildung gezeigt.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<section id="experimentaufbau" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="experimentaufbau"><span class="header-section-number">1.1</span> Experimentaufbau</h2>
+<p>Für unser Experiment in diesem Kapitel benötigen wir den Button mit der integrierten LED (<a href="https://www.tinkerforge.com/de/shop/bricklets/rgb-led-button-bricklet.html">RGB LED Button 2.0</a>), den wir an den Mikrocontroller (<a href="https://www.tinkerforge.com/de/shop/master-brick.html">Master Brick 3.2</a>) anschließen. Beides fixieren wir auf Abstandshaltern auf einer Montageplatte, wie in <a href="#fig-setup-rgb-led-button" class="quarto-xref">Abbildung&nbsp;<span>1.1</span></a> gezeigt. Damit es schneller geht, verwenden wir lediglich zwei Fixierungen pro Gerät, was eine ausreichende Stabilität gewährleistet. Vergiss nicht die weißen Unterlegscheiben aus Kunsstoff, um die Platinen zu schonen.</p>
+<div id="fig-setup-rgb-led-button" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-setup-rgb-led-button-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/setup_rgb_led_button.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Abbildung&nbsp;1.1: Einfaches Setup mit Mikrocontroller und Button mit integrierter LED."><img src="images/setup_rgb_led_button.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></a>
 </div>
-<div class="callout-title-container flex-fill">
-Kommt bald
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Dieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.</p>
-</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-setup-rgb-led-button-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;1.1: Einfaches Setup mit Mikrocontroller und Button mit integrierter LED.
+</figcaption>
+</figure>
 </div>
 </section>
-<section id="einfacher-geht-es-nicht" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="einfacher-geht-es-nicht"><span class="header-section-number">1.1</span> Einfacher geht es nicht</h2>
+<section id="einfacher-geht-es-nicht" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="einfacher-geht-es-nicht"><span class="header-section-number">1.2</span> Einfacher geht es nicht</h2>
+<p>Ein Button ist ein denkbar einfaches Gerät: Es kennt nur zwei Zustände, entweder ist der Button gedrückt oder nicht. Wenn du den Master Brick über das USB-Kabel an deinen Computer angeschlossen hast, kannst du die Funktion des Buttons einfach über den Brick Viewer kennenlernen. Öffne dazu den Brick Viewer und klicke auf den Connect-Button.</p>
+<div id="fig-brick-viewer-connect" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-brick-viewer-connect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/brick_viewer_connect.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Abbildung&nbsp;1.2: Über den Connect-Button verbindet sich der Brick Viewer mit dem angeschlossenen Master Brick."><img src="images/brick_viewer_connect.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-brick-viewer-connect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;1.2: Über den Connect-Button verbindet sich der Brick Viewer mit dem angeschlossenen Master Brick.
+</figcaption>
+</figure>
+</div>
+<p>Nachdem du verbunden bist sollte der angeschlossene Master Brick mit seinen Komponenten, die Bricklets genannt werden, im Brick Viewer sichtbar sein. In <a href="#fig-brick-viewer-after-connect" class="quarto-xref">Abbildung&nbsp;<span>1.3</span></a> siehst du wie das in meinem Fall aussieht. Für jedes Gerät wird ein eigener Tab angezeigt, in dem wir die Details zu diesem Gerät sehen und die jeweiligen Funktionen ausprobieren können. Gleichzeitig bekommen wir in der Mitte des Brick Viewers eine übersichtliche Liste mit allen gefundenen Geräten angezeigt. Durch die hierarchische Darstellung erkennst du, welches Bricklet an welchem Mikrocontroller (Master Brick) hängt. Wie wir später im Buch noch sehen werden können auch mehrer Master Bricks miteinander verbunden werden und somit die möglichen angeschlossenen Bricklets um vier erweitert werden.</p>
+<div id="fig-brick-viewer-after-connect" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-brick-viewer-after-connect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/brick_viewer_after_connect.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Abbildung&nbsp;1.3: Der Brick Viewer nachdem ihr mit dem Master Brick verbunden seid."><img src="images/brick_viewer_after_connect.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-brick-viewer-after-connect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;1.3: Der Brick Viewer nachdem ihr mit dem Master Brick verbunden seid.
+</figcaption>
+</figure>
+</div>
+<p>Wechseln wir in den Tab für den Button, in dem wir sämtliche Funktionen des Bricklets einsehen und interaktive ausprobieren können.</p>
+<div id="fig-brick-viewer-rgb-led-button" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-brick-viewer-rgb-led-button-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/brick_viewer_rgb_led_button.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Abbildung&nbsp;1.4: Die Ansicht für den RGB LED Button im Brick Viewer, in der alle Funktionen per Klick im Zugriff sind."><img src="images/brick_viewer_rgb_led_button.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-brick-viewer-rgb-led-button-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;1.4: Die Ansicht für den RGB LED Button im Brick Viewer, in der alle Funktionen per Klick im Zugriff sind.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="das-ganze-jetzt-in-python" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="das-ganze-jetzt-in-python"><span class="header-section-number">1.3</span> Das Ganze jetzt in Python</h2>
 <p>Wie versprochen starten wir direkt mit unserem ersten kleinen Python-Programm:</p>
 <div class="sourceCode" id="annotated-cell-1"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1">1</button><span id="annotated-cell-1-1" class="code-annotation-target"><a href="#annotated-cell-1-1"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2">2</button><span id="annotated-cell-1-2" class="code-annotation-target"><a href="#annotated-cell-1-2"></a><span class="im">from</span> tinkerforge.bricklet_dual_button <span class="im">import</span> DualButton</span>
@@ -867,6 +910,38 @@ Scott, John C. 2009. <em>But how do it know?: the basic principles of computers 
   </div>
 </nav>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
