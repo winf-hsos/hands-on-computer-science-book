@@ -28,25 +28,28 @@ Wechseln wir in den Tab für den Button, in dem wir sämtliche Funktionen des Br
 
 ## Das Ganze jetzt in Python
 
+### Der virtuelle Button im Code
+
 Wie versprochen starten wir direkt mit unserem ersten kleinen Python-Programm:
 
-``` python
+```{python}
 from tinkerforge.ip_connection import IPConnection # <1>
-from tinkerforge.bricklet_dual_button import DualButton # <2>
+from tinkerforge.bricklet_rgb_led_button import BrickletRGBLEDButton # <2>
 
 ipcon = IPConnection() # <3>
 ipcon.connect("localhost", 4223) # <4>
-btn = DualButton("vSY", ipcon) # <5>
+btn = BrickletRGBLEDButton("Ds3", ipcon) # <5>
 ```
 
 1.  Importieren des Objekts zum Herstellen einer Verbindung mit dem Master Brick.
-2.  Importieren des Objekts zur Darstellung des Dual Buttons als Python-Objekt.
+2.  Importieren des Objekts zur Darstellung des Buttons als Python-Objekt.
 3.  Eine neue Instanz einer IP-Verbindung erstellen.
 4.  Eine Verbindung zu angeschlossenen Master Brick herstellen.
-5.  Eine virtuelle Instanz des Dual Button Bricklets in unserem Programm erzeugen.
+5.  Eine virtuelle Instanz des RGB LED Button Bricklets in unserem Programm erzeugen.
 
--   Das Binärsystem
--   Bits, Bytes etc.
+### Bibliotheken
+
+Den Codeauschnitt oben wird uns im Verlauf dieses Buches immer wieder begegnen. Ganz oben, in den ersten beiden Zeilen, importieren wir die für unser Programm benötigten Objekte aus der Tinkerforge-Bibliothek. Eine Bibliothek\index{Bibliothek} in einer Programmiersprache ist die Bündelung und Bereitstellung von Funktionen, Klassen oder Konstanten, damit andere sie in ihren Programmen nutzen können. Da Tinkerforge Interesse daran hat, dass ihre Bauteile von möglichst vielen Menschen möglichst einfach genutzt werden können, stellen sie neben vielen anderen Programmiersprachen auch eine Python-Version ihrer Bibliothek zur Verfügung. Im Codeausschnitt oben laden wir zuerst das Objekt für die Verbindung zum angeschlossenen Mikrocontroller, die über eine IP-Verbindung hergestellt wird. Was das genau ist? Später mehr dazu. Zusätzlich zur `IPConnection` laden wir anschließend noch die benötigen Klassen für die Geräte, die wir in unserem aktuellen Setup verwenden wollen. In diesem Kapitel ist das nur der Button mit integrierter LED.
 
 The concept of a switch with its two states is very important to the field of computer science. That's why introduce it early in this book.
 

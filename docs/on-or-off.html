@@ -294,7 +294,11 @@ div.csl-indent {
   <ul>
   <li><a href="#experimentaufbau" id="toc-experimentaufbau" class="nav-link active" data-scroll-target="#experimentaufbau"><span class="header-section-number">1.1</span> Experimentaufbau</a></li>
   <li><a href="#einfacher-geht-es-nicht" id="toc-einfacher-geht-es-nicht" class="nav-link" data-scroll-target="#einfacher-geht-es-nicht"><span class="header-section-number">1.2</span> Einfacher geht es nicht</a></li>
-  <li><a href="#das-ganze-jetzt-in-python" id="toc-das-ganze-jetzt-in-python" class="nav-link" data-scroll-target="#das-ganze-jetzt-in-python"><span class="header-section-number">1.3</span> Das Ganze jetzt in Python</a></li>
+  <li><a href="#das-ganze-jetzt-in-python" id="toc-das-ganze-jetzt-in-python" class="nav-link" data-scroll-target="#das-ganze-jetzt-in-python"><span class="header-section-number">1.3</span> Das Ganze jetzt in Python</a>
+  <ul class="collapse">
+  <li><a href="#der-virtuelle-button-im-code" id="toc-der-virtuelle-button-im-code" class="nav-link" data-scroll-target="#der-virtuelle-button-im-code"><span class="header-section-number">1.3.1</span> Der virtuelle Button im Code</a></li>
+  <li><a href="#bibliotheken" id="toc-bibliotheken" class="nav-link" data-scroll-target="#bibliotheken"><span class="header-section-number">1.3.2</span> Bibliotheken</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -378,13 +382,17 @@ Abbildung&nbsp;1.4: Die Ansicht für den RGB LED Button im Brick Viewer, in der 
 </section>
 <section id="das-ganze-jetzt-in-python" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="das-ganze-jetzt-in-python"><span class="header-section-number">1.3</span> Das Ganze jetzt in Python</h2>
+<section id="der-virtuelle-button-im-code" class="level3" data-number="1.3.1">
+<h3 data-number="1.3.1" class="anchored" data-anchor-id="der-virtuelle-button-im-code"><span class="header-section-number">1.3.1</span> Der virtuelle Button im Code</h3>
 <p>Wie versprochen starten wir direkt mit unserem ersten kleinen Python-Programm:</p>
-<div class="sourceCode" id="annotated-cell-1"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1">1</button><span id="annotated-cell-1-1" class="code-annotation-target"><a href="#annotated-cell-1-1"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2">2</button><span id="annotated-cell-1-2" class="code-annotation-target"><a href="#annotated-cell-1-2"></a><span class="im">from</span> tinkerforge.bricklet_dual_button <span class="im">import</span> DualButton</span>
+<div id="5a71ae3a" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1">1</button><span id="annotated-cell-1-1" class="code-annotation-target"><a href="#annotated-cell-1-1"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2">2</button><span id="annotated-cell-1-2" class="code-annotation-target"><a href="#annotated-cell-1-2"></a><span class="im">from</span> tinkerforge.bricklet_rgb_led_button <span class="im">import</span> BrickletRGBLEDButton</span>
 <span id="annotated-cell-1-3"><a href="#annotated-cell-1-3"></a></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="3">3</button><span id="annotated-cell-1-4" class="code-annotation-target"><a href="#annotated-cell-1-4"></a>ipcon <span class="op">=</span> IPConnection()</span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="4">4</button><span id="annotated-cell-1-5" class="code-annotation-target"><a href="#annotated-cell-1-5"></a>ipcon.<span class="ex">connect</span>(<span class="st">"localhost"</span>, <span class="dv">4223</span>)</span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="5">5</button><span id="annotated-cell-1-6" class="code-annotation-target"><a href="#annotated-cell-1-6"></a>btn <span class="op">=</span> DualButton(<span class="st">"vSY"</span>, ipcon)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="5">5</button><span id="annotated-cell-1-6" class="code-annotation-target"><a href="#annotated-cell-1-6"></a>btn <span class="op">=</span> BrickletRGBLEDButton(<span class="st">"Ds3"</span>, ipcon)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
 <dd>
@@ -392,7 +400,7 @@ Abbildung&nbsp;1.4: Die Ansicht für den RGB LED Button im Brick Viewer, in der 
 </dd>
 <dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-1" data-code-lines="2" data-code-annotation="2">Importieren des Objekts zur Darstellung des Dual Buttons als Python-Objekt.</span>
+<span data-code-cell="annotated-cell-1" data-code-lines="2" data-code-annotation="2">Importieren des Objekts zur Darstellung des Buttons als Python-Objekt.</span>
 </dd>
 <dt data-target-cell="annotated-cell-1" data-target-annotation="3">3</dt>
 <dd>
@@ -404,13 +412,15 @@ Abbildung&nbsp;1.4: Die Ansicht für den RGB LED Button im Brick Viewer, in der 
 </dd>
 <dt data-target-cell="annotated-cell-1" data-target-annotation="5">5</dt>
 <dd>
-<span data-code-cell="annotated-cell-1" data-code-lines="6" data-code-annotation="5">Eine virtuelle Instanz des Dual Button Bricklets in unserem Programm erzeugen.</span>
+<span data-code-cell="annotated-cell-1" data-code-lines="6" data-code-annotation="5">Eine virtuelle Instanz des RGB LED Button Bricklets in unserem Programm erzeugen.</span>
 </dd>
 </dl>
-<ul>
-<li>Das Binärsystem</li>
-<li>Bits, Bytes etc.</li>
-</ul>
+</div>
+</div>
+</section>
+<section id="bibliotheken" class="level3" data-number="1.3.2">
+<h3 data-number="1.3.2" class="anchored" data-anchor-id="bibliotheken"><span class="header-section-number">1.3.2</span> Bibliotheken</h3>
+<p>Den Codeauschnitt oben wird uns im Verlauf dieses Buches immer wieder begegnen. Ganz oben, in den ersten beiden Zeilen, importieren wir die für unser Programm benötigten Objekte aus der Tinkerforge-Bibliothek. Eine Bibliothek in einer Programmiersprache ist die Bündelung und Bereitstellung von Funktionen, Klassen oder Konstanten, damit andere sie in ihren Programmen nutzen können. Da Tinkerforge Interesse daran hat, dass ihre Bauteile von möglichst vielen Menschen möglichst einfach genutzt werden können, stellen sie neben vielen anderen Programmiersprachen auch eine Python-Version ihrer Bibliothek zur Verfügung. Im Codeausschnitt oben laden wir zuerst das Objekt für die Verbindung zum angeschlossenen Mikrocontroller, die über eine IP-Verbindung hergestellt wird. Was das genau ist? Später mehr dazu. Zusätzlich zur <code>IPConnection</code> laden wir anschließend noch die benötigen Klassen für die Geräte, die wir in unserem aktuellen Setup verwenden wollen. In diesem Kapitel ist das nur der Button mit integrierter LED.</p>
 <p>The concept of a switch with its two states is very important to the field of computer science. That’s why introduce it early in this book.</p>
 <ul>
 <li>Introduce the dual button</li>
@@ -456,6 +466,7 @@ Pólya, George, und John Horton Conway. 2004. <em>How to solve it: a new aspect 
 Scott, John C. 2009. <em>But how do it know?: the basic principles of computers for everyone</em>. Oldsmar, FL: John C. Scott.
 </div>
 </div>
+</section>
 </section>
 
 </main> <!-- /main -->
