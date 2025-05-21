@@ -3,7 +3,7 @@ abstract: |
     Wir nutzen Computer ständig für Texte – sei es für eine WhatsApp-Nachnachricht, eine E-Mail, die Einladung zur Hochzeitsfeier oder vielleicht sogar für deine Bachelorarbeit. Ständig tippen wir etwas in unser Smartphone, Tablet oder den Computer ein. Aber hast du dich schon einmal gefragt, wie das eigentlich genau funktioniert? Um das zu verstehen, wollen wir einen kleinen Umweg gehen.
 abstract-title: ""
 ---
-# Texte
+# Texte {#sec-texts}
 
 ## Setup {.unnumbered}
 

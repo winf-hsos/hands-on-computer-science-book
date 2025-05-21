@@ -1,4 +1,5 @@
-# Signale
+# Signale {#sec-signals}
+## Setup {.unnumbered}
 
 ::: callout-note
 ## Kommt bald

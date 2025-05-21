@@ -86,7 +86,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./colors.html" rel="next">
-<link href="./assembly.html" rel="prev">
+<link href="./experiments.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -176,14 +176,8 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./the-project.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Das LiFi-Projekt</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./assembly.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Bastelanleitung</span></a>
+  <a href="./experiments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Experimente</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -307,7 +301,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">An oder Aus</span></h1>
+<h1 class="title"><span id="sec-on-or-off" class="quarto-section-identifier"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">An oder Aus</span></span></h1>
 </div>
 
 
@@ -333,24 +327,30 @@ div.csl-indent {
 <section id="experimentaufbau" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="experimentaufbau"><span class="header-section-number">1.1</span> Experimentaufbau</h2>
 <p>Für unser Experiment in diesem Kapitel benötigen wir den Button mit der integrierten LED (<a href="https://www.tinkerforge.com/de/shop/bricklets/rgb-led-button-bricklet.html">RGB LED Button 2.0</a>), den wir an den Mikrocontroller (<a href="https://www.tinkerforge.com/de/shop/master-brick.html">Master Brick 3.2</a>) anschließen. Beides fixieren wir auf Abstandshaltern auf einer Montageplatte, wie in <a href="#fig-setup-rgb-led-button" class="quarto-xref">Abbildung&nbsp;<span>1.1</span></a> gezeigt. Damit es schneller geht, verwenden wir lediglich zwei Fixierungen pro Gerät, was eine ausreichende Stabilität gewährleistet. Vergiss nicht die weißen Unterlegscheiben aus Kunsstoff, um die Platinen zu schonen.</p>
-<div id="fig-setup-rgb-led-button" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div class="quarto-layout-panel" data-layout="[[1]]">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-setup-rgb-led-button" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-setup-rgb-led-button-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/setup_rgb_led_button.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Abbildung&nbsp;1.1: Einfaches Setup mit Mikrocontroller und Button mit integrierter LED."><img src="images/setup_rgb_led_button.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></a>
+<img src="images/setup_rgb_led_button.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-setup-rgb-led-button-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Abbildung&nbsp;1.1: Einfaches Setup mit Mikrocontroller und Button mit integrierter LED.
 </figcaption>
 </figure>
 </div>
+</div>
+</div>
+</div>
 </section>
 <section id="einfacher-geht-es-nicht" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="einfacher-geht-es-nicht"><span class="header-section-number">1.2</span> Einfacher geht es nicht</h2>
 <p>Ein Button ist ein denkbar einfaches Gerät: Es kennt nur zwei Zustände, entweder ist der Button gedrückt oder nicht. Wenn du den Master Brick über das USB-Kabel an deinen Computer angeschlossen hast, kannst du die Funktion des Buttons einfach über den Brick Viewer kennenlernen. Öffne dazu den Brick Viewer und klicke auf den Connect-Button.</p>
-<div id="fig-brick-viewer-connect" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<div id="fig-brick-viewer-connect" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-group="brick-viewer">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-brick-viewer-connect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/brick_viewer_connect.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Abbildung&nbsp;1.2: Über den Connect-Button verbindet sich der Brick Viewer mit dem angeschlossenen Master Brick."><img src="images/brick_viewer_connect.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></a>
+<a href="images/brick_viewer_connect.png" class="lightbox" data-gallery="brick-viewer" title="Abbildung&nbsp;1.2: Über den Connect-Button verbindet sich der Brick Viewer mit dem angeschlossenen Master Brick."><img src="images/brick_viewer_connect.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-brick-viewer-connect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Abbildung&nbsp;1.2: Über den Connect-Button verbindet sich der Brick Viewer mit dem angeschlossenen Master Brick.
@@ -358,10 +358,10 @@ Abbildung&nbsp;1.2: Über den Connect-Button verbindet sich der Brick Viewer mit
 </figure>
 </div>
 <p>Nachdem du verbunden bist sollte der angeschlossene Master Brick mit seinen Komponenten, die Bricklets genannt werden, im Brick Viewer sichtbar sein. In <a href="#fig-brick-viewer-after-connect" class="quarto-xref">Abbildung&nbsp;<span>1.3</span></a> siehst du wie das in meinem Fall aussieht. Für jedes Gerät wird ein eigener Tab angezeigt, in dem wir die Details zu diesem Gerät sehen und die jeweiligen Funktionen ausprobieren können. Gleichzeitig bekommen wir in der Mitte des Brick Viewers eine übersichtliche Liste mit allen gefundenen Geräten angezeigt. Durch die hierarchische Darstellung erkennst du, welches Bricklet an welchem Mikrocontroller (Master Brick) hängt. Wie wir später im Buch noch sehen werden können auch mehrer Master Bricks miteinander verbunden werden und somit die möglichen angeschlossenen Bricklets um vier erweitert werden.</p>
-<div id="fig-brick-viewer-after-connect" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-brick-viewer-after-connect" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="brick-viewer">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-brick-viewer-after-connect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/brick_viewer_after_connect.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Abbildung&nbsp;1.3: Der Brick Viewer nachdem ihr mit dem Master Brick verbunden seid."><img src="images/brick_viewer_after_connect.png" class="img-fluid figure-img"></a>
+<a href="images/brick_viewer_after_connect.png" class="lightbox" data-gallery="brick-viewer" title="Abbildung&nbsp;1.3: Der Brick Viewer nachdem ihr mit dem Master Brick verbunden seid."><img src="images/brick_viewer_after_connect.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-brick-viewer-after-connect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Abbildung&nbsp;1.3: Der Brick Viewer nachdem ihr mit dem Master Brick verbunden seid.
@@ -369,10 +369,10 @@ Abbildung&nbsp;1.3: Der Brick Viewer nachdem ihr mit dem Master Brick verbunden 
 </figure>
 </div>
 <p>Wechseln wir in den Tab für den Button, in dem wir sämtliche Funktionen des Bricklets einsehen und interaktive ausprobieren können.</p>
-<div id="fig-brick-viewer-rgb-led-button" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<div id="fig-brick-viewer-rgb-led-button" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="brick-viewer">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-brick-viewer-rgb-led-button-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/brick_viewer_rgb_led_button.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Abbildung&nbsp;1.4: Die Ansicht für den RGB LED Button im Brick Viewer, in der alle Funktionen per Klick im Zugriff sind."><img src="images/brick_viewer_rgb_led_button.png" class="img-fluid figure-img"></a>
+<a href="images/brick_viewer_rgb_led_button.png" class="lightbox" data-gallery="brick-viewer" title="Abbildung&nbsp;1.4: Die Ansicht für den RGB LED Button im Brick Viewer, in der alle Funktionen per Klick im Zugriff sind."><img src="images/brick_viewer_rgb_led_button.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-brick-viewer-rgb-led-button-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Abbildung&nbsp;1.4: Die Ansicht für den RGB LED Button im Brick Viewer, in der alle Funktionen per Klick im Zugriff sind.
@@ -385,7 +385,7 @@ Abbildung&nbsp;1.4: Die Ansicht für den RGB LED Button im Brick Viewer, in der 
 <section id="der-virtuelle-button-im-code" class="level3" data-number="1.3.1">
 <h3 data-number="1.3.1" class="anchored" data-anchor-id="der-virtuelle-button-im-code"><span class="header-section-number">1.3.1</span> Der virtuelle Button im Code</h3>
 <p>Wie versprochen starten wir direkt mit unserem ersten kleinen Python-Programm:</p>
-<div id="5a71ae3a" class="cell" data-execution_count="1">
+<div id="c3048720" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1">1</button><span id="annotated-cell-1-1" class="code-annotation-target"><a href="#annotated-cell-1-1"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2">2</button><span id="annotated-cell-1-2" class="code-annotation-target"><a href="#annotated-cell-1-2"></a><span class="im">from</span> tinkerforge.bricklet_rgb_led_button <span class="im">import</span> BrickletRGBLEDButton</span>
 <span id="annotated-cell-1-3"><a href="#annotated-cell-1-3"></a></span>
@@ -447,6 +447,16 @@ Abbildung&nbsp;1.4: Die Ansicht für den RGB LED Button im Brick Viewer, in der 
 <li>Each round adds another number.</li>
 </ul>
 <p>Teachable moment: Binary perception, memory, encoding sequences, and reinforcing input logic.</p>
+<div id="fig-chimp-buzzer" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-chimp-buzzer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/chimp_buzzer.jpg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chimp-buzzer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;1.5: Ein Schimpanse der gleich auf den Buzzer haut
+</figcaption>
+</figure>
+</div>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
@@ -910,8 +920,8 @@ Scott, John C. 2009. <em>But how do it know?: the basic principles of computers 
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./assembly.html" class="pagination-link" aria-label="Bastelanleitung">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Bastelanleitung</span>
+      <a href="./experiments.html" class="pagination-link" aria-label="Experimente">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Experimente</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

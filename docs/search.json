@@ -30,63 +30,43 @@
     ]
   },
   {
-    "objectID": "the-project.html",
-    "href": "the-project.html",
-    "title": "Das LiFi-Projekt",
+    "objectID": "experiments.html",
+    "href": "experiments.html",
+    "title": "Experimente",
     "section": "",
-    "text": "Hands-On Programmieren lernen\nHast du dich schon einmal gefragt, wie man Informationen über Licht übertragen kann? Das klingt vielleicht nach Science-Fiction, ist aber tatsächlich machbar – und genau das wollen wir im LiFi-Projekt herausfinden! Dabei werden wir mit insgesamt acht spannenden Geräten arbeiten, die dir unterschiedliche Facetten der digitalen Welt näherbringen und dir gleichzeitig ermöglichen, das Programmieren spielerisch zu erlernen.\nHier ein Überblick über die Geräte, mit denen wir gemeinsam experimentieren werden. Zusammengefasst kosten alle Komponenten für das LiFi-Projekt 249 €. Aber keine Sorge: Wenn du das LiFi-Projekt im Rahmen meines Moduls „Digitalisierung und Programmierung“ an der Hochschule Osnabrück belegst, erhältst du für das gesamte Semester ein komplettes Hardware-Kit.",
+    "text": "Hands-On Programmieren lernen\nHast du dich schon einmal gefragt, wie man Informationen über Licht übertragen kann? Oder wie man mit Licht den Puls messen kann? Oder wie man mit zwei einfachen Kabeln einen Wasserstandssensor baut? Das alles klingt vielleicht weit hergeholt, ist aber tatsächlich machbar – und wie genau, das wollen wir in diesem Buch herausfinden! Dabei werden wir nicht nur die digitale Welt der Computer und Programmierung kennenlernen, sondern auch mit spannenden Geräten in der analogen Welt arbeiten. In jedem Kapitel arbeiten wir mit anderen Geräten, die dir unterschiedliche Facetten der digitalen Welt näherbringen und gleichzeitig ermöglichen, das Programmieren spielerisch zu erlernen.\nHier ein Überblick über die Geräte, mit denen wir gemeinsam experimentieren werden. Zusammengefasst kosten alle Komponenten 249 €. Aber keine Sorge: Wenn du das Buch im Rahmen meines Moduls „Digitalisierung und Programmierung“ an der Hochschule Osnabrück liest, erhältst du für das gesamte Semester ein komplettes Hardware-Kit.",
     "crumbs": [
-      "Das LiFi-Projekt"
+      "Experimente"
     ]
   },
   {
-    "objectID": "the-project.html#hands-on-programmieren-lernen",
-    "href": "the-project.html#hands-on-programmieren-lernen",
-    "title": "Das LiFi-Projekt",
+    "objectID": "experiments.html#hands-on-programmieren-lernen",
+    "href": "experiments.html#hands-on-programmieren-lernen",
+    "title": "Experimente",
     "section": "",
-    "text": "Abbildung 1: Foto eines LiFi-Prototypen\n\n\n\n\n\n\n\nWas?\nBauteil\nAnzahl\nPreis pro Stück\n\n\n\n\nBunte LED\nRGB LED Bricklet 2.0\n1\n8 €\n\n\nButton mit integrierter, bunter LED\nRGB LED Button Bricklet\n1\n15 €\n\n\nLicht- und Farbsensor\nColor Bricklet 2.0\n1\n17 €\n\n\nLCD Touchdisplay\nLCD 128x64 Bricklet\n1\n33 €\n\n\nPiezo Lautsprecher\nPiezo Speaker Bricklet 2.0\n1\n19 €\n\n\nInfrarot-Entfernungsmesser\nDistance IR 4-30cm Bricklet 2.0\n1\n20 €\n\n\nAnaloger Spannungssensor\nAnalog In Bricklet 3.0\n1\n14 €\n\n\nSchalldruckpegelsenor\nSound Pressure Level Bricklet\n1\n35 €\n\n\nMikrocontroller\nMaster Brick 3.2\n2\n35 €\n\n\nAnschlusskabel 15 cm\nBricklet Kabel 15cm (7p-7p)\n8\n1 €\n\n\nUSB-A- auf USB-C Kabel\nUSB-A auf USB-C Kabel 100 cm\n1\n6 €\n\n\nMontageplatte\nMontageplatte 22x22 (12x12cm)\n2\n7 €\n\n\nSchrauben, Abstandshalter und Muttern\nBefestigungskit 12mm\n4\n2 €",
+    "text": "Abbildung 1: Tinkerforge Workbench mit vielen Geräten\n\n\n\n\n\n\n\nWas?\nBauteil\nAnzahl\nPreis pro Stück\n\n\n\n\nBunte LED\nRGB LED Bricklet 2.0\n1\n8 €\n\n\nButton mit integrierter, bunter LED\nRGB LED Button Bricklet\n1\n15 €\n\n\nLicht- und Farbsensor\nColor Bricklet 2.0\n1\n17 €\n\n\nLCD Touchdisplay\nLCD 128x64 Bricklet\n1\n33 €\n\n\nPiezo Lautsprecher\nPiezo Speaker Bricklet 2.0\n1\n19 €\n\n\nInfrarot-Entfernungsmesser\nDistance IR 4-30cm Bricklet 2.0\n1\n20 €\n\n\nAnaloger Spannungssensor\nAnalog In Bricklet 3.0\n1\n14 €\n\n\nSchalldruckpegelsenor\nSound Pressure Level Bricklet\n1\n35 €\n\n\nMikrocontroller\nMaster Brick 3.2\n2\n35 €\n\n\nAnschlusskabel 15 cm\nBricklet Kabel 15cm (7p-7p)\n8\n1 €\n\n\nUSB-A- auf USB-C Kabel\nUSB-A auf USB-C Kabel 100 cm\n1\n6 €\n\n\nMontageplatte\nMontageplatte 22x22 (12x12cm)\n2\n7 €\n\n\nSchrauben, Abstandshalter und Muttern\nBefestigungskit 12mm\n4\n2 €",
     "crumbs": [
-      "Das LiFi-Projekt"
+      "Experimente"
     ]
   },
   {
-    "objectID": "the-project.html#unser-gemeinsames-ziel-kommunikation-über-licht",
-    "href": "the-project.html#unser-gemeinsames-ziel-kommunikation-über-licht",
-    "title": "Das LiFi-Projekt",
-    "section": "Unser gemeinsames Ziel: Kommunikation über Licht",
-    "text": "Unser gemeinsames Ziel: Kommunikation über Licht\nWie schafft man es eigentlich, dass zwei Geräte miteinander kommunizieren – ganz ohne WLAN, Bluetooth oder Kabel, sondern einfach nur mit Licht? Eine spannende Frage, auf die wir im LiFi-Projekt gemeinsam Antworten finden werden. Die Grundlage dafür bilden vor allem die bunte LED und der Licht- und Farbsensor. Schritt für Schritt – und Kapitel für Kapitel – werden wir an unserem gemeinsamen Ziel arbeiten, ein funktionierendes Prototypen-System aufzubauen. Dabei lernst du nicht nur, wie man Hardware-Komponenten miteinander verbindet, sondern vor allem auch, wie man Computer – diese universellen Problemlösungsmaschinen – für eigene Ideen programmieren kann.",
+    "objectID": "experiments.html#spannende-experimente",
+    "href": "experiments.html#spannende-experimente",
+    "title": "Experimente",
+    "section": "Spannende Experimente",
+    "text": "Spannende Experimente\nKapitel für Kapitel werden wir an unterschiedlichen Experimenten arbeiten. Dabei lernst du nicht nur, wie man Hardware-Komponenten miteinander verbindet, sondern vor allem auch, wie man Computer – diese universellen Problemlösungsmaschinen – für eigene Ideen und Lösungen programmieren kann. Hier ist der Überblick, was dich in diesem Buch erwartet:\n\n1  An oder Aus: Wir schreiben unser erstes Spiel: Wer drückt den Button am schnellsten?\n2  Farben: Wir bleiben in der Spielwelt und schreiben ein kleines Farb-Memory mit der LED.\n3  Texte: Wir lernen, wie man Texte umständlich eingeben kann – über Handgesten und ohne Tastatur!\n4  Bilder: Wir verbinden Tabellenkalkulation mit Bildern und Touchdisplays 🤯\n5  Codes: Wir lernen Morse-Code und wie wir diesen über einen Lautsprecher ausgeben können.\n6  Umwandlung: Wir verwenden einfache Kippschalter, um analoge Werte in digitale Werte umzuwandeln.\n7  Information: …\n8  Sensoren: Wir bauen einen Wasserstandssensor mit einem analogen Spannungssensor.\n9  Signale: Wir bauen einen Pulsmesser mit einem Farbsensor.\n10  Protokolle: Wir transferieren Nachrichten über Lichtsignale.\n11  Verschlüsselung: Wir entwickeln unsere eigene Sprache.",
     "crumbs": [
-      "Das LiFi-Projekt"
+      "Experimente"
     ]
   },
   {
-    "objectID": "the-project.html#frust-ist-dein-freund-zumindest-ein-bisschen",
-    "href": "the-project.html#frust-ist-dein-freund-zumindest-ein-bisschen",
-    "title": "Das LiFi-Projekt",
+    "objectID": "experiments.html#frust-ist-dein-freund-zumindest-ein-bisschen",
+    "href": "experiments.html#frust-ist-dein-freund-zumindest-ein-bisschen",
+    "title": "Experimente",
     "section": "Frust ist dein Freund – zumindest ein bisschen",
-    "text": "Frust ist dein Freund – zumindest ein bisschen\nEins möchte ich gleich vorwegnehmen: Beim Programmierenlernen ist eine gewisse Portion Frust unvermeidbar. Klingt unangenehm? Ist es auch! Aber es ist zugleich Teil eines enorm wertvollen Lernprozesses. Jeder Fehler, den du machst, ist eine Gelegenheit, um zu verstehen, wie Computer wirklich funktionieren – nämlich absolut präzise und ohne jede Toleranz für Fehler.\nComputer sind gnadenlose Lehrer. Sie zeigen dir sofort und unerbittlich, wenn etwas nicht stimmt – sei es ein vergessener Punkt, ein falscher Buchstabe oder ein simpler Zahlendreher. Das kann frustrieren, aber genau dieses direkte und sofortige Feedback hilft dir auch, schnell und effektiv zu lernen. Sobald du verstehst, wie du aus Fehlermeldungen sinnvolle Schlüsse ziehst und deine Programme entsprechend korrigierst, wirst du belohnt – mit Erfolgserlebnissen und einer steilen Lernkurve.\nAlso, wenn mal etwas nicht klappt: Nimm es nicht persönlich, sondern sieh es als Herausforderung. Atme tief durch, mach dir klar, dass Fehler unvermeidbar und sogar wichtig sind, und probier es noch einmal. Ich verspreche dir: Es lohnt sich!",
+    "text": "Frust ist dein Freund – zumindest ein bisschen\nEins möchte ich gleich vorwegnehmen: Beim Programmierenlernen ist eine gewisse Portion Frust unvermeidbar. Klingt unangenehm? Ist es auch! Aber es ist zugleich Teil eines enorm wertvollen Lernprozesses. Jeder Fehler, den du machst, ist eine Gelegenheit, um zu verstehen, wie Computer wirklich funktionieren – nämlich absolut präzise und ohne jede Toleranz für Fehler.\nComputer sind gnadenlose Lehrer. Sie zeigen dir sofort und unerbittlich, wenn etwas nicht stimmt – sei es ein vergessener Punkt, ein falscher Buchstabe oder ein simpler Zahlendreher. Das kann frustrieren, aber genau dieses direkte und sofortige Feedback hilft dir auch, schnell und effektiv zu lernen. Sobald du verstehst, wie du aus Fehlermeldungen sinnvolle Schlüsse ziehst und deine Programme entsprechend korrigierst, wirst du belohnt – mit Erfolgserlebnissen und einer steilen Lernkurve.\n\n\n\n\n\n\nAbbildung 2: Ein frustrierter Schimpanse\n\n\n\nAlso, wenn mal etwas nicht klappt: Nimm es nicht persönlich, sondern sieh es als Herausforderung. Atme tief durch, mach dir klar, dass Fehler unvermeidbar und sogar wichtig sind, und probier es noch einmal. Ich verspreche dir: Es lohnt sich!\n\n\n\n\nAdami, Christoph. 2016. „What is Information?“ Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences 374 (2063): 20150230. https://doi.org/10.1098/rsta.2015.0230.\n\n\nBrookshear, J. Glenn, und Dennis Brylow. 2020. Computer science: an overview. 13th edition, global edition. NY, NY: Pearson.\n\n\nPetzold, Charles. 2022. Code: the hidden language of computer hardware and software. 2. Aufl. Hoboken: Microsoft Press.\n\n\nPólya, George, und John Horton Conway. 2004. How to solve it: a new aspect of mathematical method. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.\n\n\nScott, John C. 2009. But how do it know?: the basic principles of computers for everyone. Oldsmar, FL: John C. Scott.",
     "crumbs": [
-      "Das LiFi-Projekt"
-    ]
-  },
-  {
-    "objectID": "the-project.html#some-assembly-required",
-    "href": "the-project.html#some-assembly-required",
-    "title": "Das LiFi-Projekt",
-    "section": "Some Assembly Required",
-    "text": "Some Assembly Required\nDas LiFi-Projekt beginnt mit dem Zusammenbau der Komponenten. Dazu bekommst du im folgenden Kapitel eine detaillierte Anleitung. Also, Schraubendreher in die Hand und auf geht’s.\n\n\n\n\nAdami, Christoph. 2016. „What is Information?“ Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences 374 (2063): 20150230. https://doi.org/10.1098/rsta.2015.0230.\n\n\nBrookshear, J. Glenn, und Dennis Brylow. 2020. Computer science: an overview. 13th edition, global edition. NY, NY: Pearson.\n\n\nPetzold, Charles. 2022. Code: the hidden language of computer hardware and software. 2. Aufl. Hoboken: Microsoft Press.\n\n\nPólya, George, und John Horton Conway. 2004. How to solve it: a new aspect of mathematical method. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.\n\n\nScott, John C. 2009. But how do it know?: the basic principles of computers for everyone. Oldsmar, FL: John C. Scott.",
-    "crumbs": [
-      "Das LiFi-Projekt"
-    ]
-  },
-  {
-    "objectID": "assembly.html",
-    "href": "assembly.html",
-    "title": "Bastelanleitung",
-    "section": "",
-    "text": "Kommt bald\n\n\n\nDieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.\n\n\n\n\n\n\nAdami, Christoph. 2016. „What is Information?“ Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences 374 (2063): 20150230. https://doi.org/10.1098/rsta.2015.0230.\n\n\nBrookshear, J. Glenn, und Dennis Brylow. 2020. Computer science: an overview. 13th edition, global edition. NY, NY: Pearson.\n\n\nPetzold, Charles. 2022. Code: the hidden language of computer hardware and software. 2. Aufl. Hoboken: Microsoft Press.\n\n\nPólya, George, und John Horton Conway. 2004. How to solve it: a new aspect of mathematical method. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.\n\n\nScott, John C. 2009. But how do it know?: the basic principles of computers for everyone. Oldsmar, FL: John C. Scott.",
-    "crumbs": [
-      "Bastelanleitung"
+      "Experimente"
     ]
   },
   {
@@ -124,7 +104,7 @@
     "href": "on-or-off.html#das-ganze-jetzt-in-python",
     "title": "1  An oder Aus",
     "section": "1.3 Das Ganze jetzt in Python",
-    "text": "1.3 Das Ganze jetzt in Python\n\n1.3.1 Der virtuelle Button im Code\nWie versprochen starten wir direkt mit unserem ersten kleinen Python-Programm:\n\n1from tinkerforge.ip_connection import IPConnection\n2from tinkerforge.bricklet_rgb_led_button import BrickletRGBLEDButton\n\n3ipcon = IPConnection()\n4ipcon.connect(\"localhost\", 4223)\n5btn = BrickletRGBLEDButton(\"Ds3\", ipcon)\n\n\n1\n\nImportieren des Objekts zum Herstellen einer Verbindung mit dem Master Brick.\n\n2\n\nImportieren des Objekts zur Darstellung des Buttons als Python-Objekt.\n\n3\n\nEine neue Instanz einer IP-Verbindung erstellen.\n\n4\n\nEine Verbindung zu angeschlossenen Master Brick herstellen.\n\n5\n\nEine virtuelle Instanz des RGB LED Button Bricklets in unserem Programm erzeugen.\n\n\n\n\n\n\n1.3.2 Bibliotheken\nDen Codeauschnitt oben wird uns im Verlauf dieses Buches immer wieder begegnen. Ganz oben, in den ersten beiden Zeilen, importieren wir die für unser Programm benötigten Objekte aus der Tinkerforge-Bibliothek. Eine Bibliothek in einer Programmiersprache ist die Bündelung und Bereitstellung von Funktionen, Klassen oder Konstanten, damit andere sie in ihren Programmen nutzen können. Da Tinkerforge Interesse daran hat, dass ihre Bauteile von möglichst vielen Menschen möglichst einfach genutzt werden können, stellen sie neben vielen anderen Programmiersprachen auch eine Python-Version ihrer Bibliothek zur Verfügung. Im Codeausschnitt oben laden wir zuerst das Objekt für die Verbindung zum angeschlossenen Mikrocontroller, die über eine IP-Verbindung hergestellt wird. Was das genau ist? Später mehr dazu. Zusätzlich zur IPConnection laden wir anschließend noch die benötigen Klassen für die Geräte, die wir in unserem aktuellen Setup verwenden wollen. In diesem Kapitel ist das nur der Button mit integrierter LED.\nThe concept of a switch with its two states is very important to the field of computer science. That’s why introduce it early in this book.\n\nIntroduce the dual button\nIntroduce the boilerplate code necessary to connect to the button\nAs as side note, introduce programs and how to write and run them with VS code\nShow how we can either press the button or not and how to read its current state from our first simple program\nLeave the chapter with some intriguing questions about the meaning of 0 and 1 in computer science\n\n🎮 Mini Reaction Game\nTheme: “Are you faster than a computer?”\nSetup:\n\nFlash an LED randomly after a delay, and students must press the correct button as fast as possible.\nWrong button or slow response → “fail” message.\nDisplay or rank response times.\n\nTeachable moment: Real-time input processing, event handling, and how computers handle asynchronous input.\n🧠 Bonus Concept: Binary Memory Challenge\nTheme: “Simon Says: Binary Edition”\nSetup:\n\nSystem shows a sequence of binary numbers via LED flashes (e.g., 01 → left off, right on).\nStudents must repeat the sequence by pressing the buttons.\nEach round adds another number.\n\nTeachable moment: Binary perception, memory, encoding sequences, and reinforcing input logic.\n\n\n\n\nAdami, Christoph. 2016. „What is Information?“ Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences 374 (2063): 20150230. https://doi.org/10.1098/rsta.2015.0230.\n\n\nBrookshear, J. Glenn, und Dennis Brylow. 2020. Computer science: an overview. 13th edition, global edition. NY, NY: Pearson.\n\n\nPetzold, Charles. 2022. Code: the hidden language of computer hardware and software. 2. Aufl. Hoboken: Microsoft Press.\n\n\nPólya, George, und John Horton Conway. 2004. How to solve it: a new aspect of mathematical method. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.\n\n\nScott, John C. 2009. But how do it know?: the basic principles of computers for everyone. Oldsmar, FL: John C. Scott.",
+    "text": "1.3 Das Ganze jetzt in Python\n\n1.3.1 Der virtuelle Button im Code\nWie versprochen starten wir direkt mit unserem ersten kleinen Python-Programm:\n\n1from tinkerforge.ip_connection import IPConnection\n2from tinkerforge.bricklet_rgb_led_button import BrickletRGBLEDButton\n\n3ipcon = IPConnection()\n4ipcon.connect(\"localhost\", 4223)\n5btn = BrickletRGBLEDButton(\"Ds3\", ipcon)\n\n\n1\n\nImportieren des Objekts zum Herstellen einer Verbindung mit dem Master Brick.\n\n2\n\nImportieren des Objekts zur Darstellung des Buttons als Python-Objekt.\n\n3\n\nEine neue Instanz einer IP-Verbindung erstellen.\n\n4\n\nEine Verbindung zu angeschlossenen Master Brick herstellen.\n\n5\n\nEine virtuelle Instanz des RGB LED Button Bricklets in unserem Programm erzeugen.\n\n\n\n\n\n\n1.3.2 Bibliotheken\nDen Codeauschnitt oben wird uns im Verlauf dieses Buches immer wieder begegnen. Ganz oben, in den ersten beiden Zeilen, importieren wir die für unser Programm benötigten Objekte aus der Tinkerforge-Bibliothek. Eine Bibliothek in einer Programmiersprache ist die Bündelung und Bereitstellung von Funktionen, Klassen oder Konstanten, damit andere sie in ihren Programmen nutzen können. Da Tinkerforge Interesse daran hat, dass ihre Bauteile von möglichst vielen Menschen möglichst einfach genutzt werden können, stellen sie neben vielen anderen Programmiersprachen auch eine Python-Version ihrer Bibliothek zur Verfügung. Im Codeausschnitt oben laden wir zuerst das Objekt für die Verbindung zum angeschlossenen Mikrocontroller, die über eine IP-Verbindung hergestellt wird. Was das genau ist? Später mehr dazu. Zusätzlich zur IPConnection laden wir anschließend noch die benötigen Klassen für die Geräte, die wir in unserem aktuellen Setup verwenden wollen. In diesem Kapitel ist das nur der Button mit integrierter LED.\nThe concept of a switch with its two states is very important to the field of computer science. That’s why introduce it early in this book.\n\nIntroduce the dual button\nIntroduce the boilerplate code necessary to connect to the button\nAs as side note, introduce programs and how to write and run them with VS code\nShow how we can either press the button or not and how to read its current state from our first simple program\nLeave the chapter with some intriguing questions about the meaning of 0 and 1 in computer science\n\n🎮 Mini Reaction Game\nTheme: “Are you faster than a computer?”\nSetup:\n\nFlash an LED randomly after a delay, and students must press the correct button as fast as possible.\nWrong button or slow response → “fail” message.\nDisplay or rank response times.\n\nTeachable moment: Real-time input processing, event handling, and how computers handle asynchronous input.\n🧠 Bonus Concept: Binary Memory Challenge\nTheme: “Simon Says: Binary Edition”\nSetup:\n\nSystem shows a sequence of binary numbers via LED flashes (e.g., 01 → left off, right on).\nStudents must repeat the sequence by pressing the buttons.\nEach round adds another number.\n\nTeachable moment: Binary perception, memory, encoding sequences, and reinforcing input logic.\n\n\n\n\n\n\nAbbildung 1.5: Ein Schimpanse der gleich auf den Buzzer haut\n\n\n\n\n\n\n\nAdami, Christoph. 2016. „What is Information?“ Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences 374 (2063): 20150230. https://doi.org/10.1098/rsta.2015.0230.\n\n\nBrookshear, J. Glenn, und Dennis Brylow. 2020. Computer science: an overview. 13th edition, global edition. NY, NY: Pearson.\n\n\nPetzold, Charles. 2022. Code: the hidden language of computer hardware and software. 2. Aufl. Hoboken: Microsoft Press.\n\n\nPólya, George, und John Horton Conway. 2004. How to solve it: a new aspect of mathematical method. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.\n\n\nScott, John C. 2009. But how do it know?: the basic principles of computers for everyone. Oldsmar, FL: John C. Scott.",
     "crumbs": [
       "<span class='chapter-number'>1</span>  <span class='chapter-title'>An oder Aus</span>"
     ]
@@ -214,17 +194,37 @@
     "href": "conversion.html",
     "title": "6  Umwandlung",
     "section": "",
-    "text": "6.1 Der Weg in den Computer",
+    "text": "Setup",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Umwandlung</span>"
     ]
   },
   {
-    "objectID": "conversion.html#aus-der-digitalen-in-die-analoge-welt",
-    "href": "conversion.html#aus-der-digitalen-in-die-analoge-welt",
+    "objectID": "conversion.html#setup",
+    "href": "conversion.html#setup",
     "title": "6  Umwandlung",
-    "section": "6.2 Aus der digitalen in die analoge Welt",
-    "text": "6.2 Aus der digitalen in die analoge Welt\n\n\n\n\nAdami, Christoph. 2016. „What is Information?“ Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences 374 (2063): 20150230. https://doi.org/10.1098/rsta.2015.0230.\n\n\nBrookshear, J. Glenn, und Dennis Brylow. 2020. Computer science: an overview. 13th edition, global edition. NY, NY: Pearson.\n\n\nPetzold, Charles. 2022. Code: the hidden language of computer hardware and software. 2. Aufl. Hoboken: Microsoft Press.\n\n\nPólya, George, und John Horton Conway. 2004. How to solve it: a new aspect of mathematical method. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.\n\n\nScott, John C. 2009. But how do it know?: the basic principles of computers for everyone. Oldsmar, FL: John C. Scott.",
+    "section": "",
+    "text": "Experiment\n\n\n\nMit 4 Kippschaltern und 4 Widerständen bauen wir einen Digital-To-Analog-Converter (DAC). Dazu kommt ein Breadboard und diveser Überbrückungskabel zum Einsatz. Außerdem brauchen wir den Analog In 3.0 von Tinkerforge.",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Umwandlung</span>"
+    ]
+  },
+  {
+    "objectID": "conversion.html#der-weg-in-den-computer-hinein",
+    "href": "conversion.html#der-weg-in-den-computer-hinein",
+    "title": "6  Umwandlung",
+    "section": "6.1 Der Weg in den Computer hinein",
+    "text": "6.1 Der Weg in den Computer hinein",
+    "crumbs": [
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Umwandlung</span>"
+    ]
+  },
+  {
+    "objectID": "conversion.html#der-weg-aus-dem-computer-heraus",
+    "href": "conversion.html#der-weg-aus-dem-computer-heraus",
+    "title": "6  Umwandlung",
+    "section": "6.2 Der Weg aus dem Computer heraus",
+    "text": "6.2 Der Weg aus dem Computer heraus\n\n\n\n\nAdami, Christoph. 2016. „What is Information?“ Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences 374 (2063): 20150230. https://doi.org/10.1098/rsta.2015.0230.\n\n\nBrookshear, J. Glenn, und Dennis Brylow. 2020. Computer science: an overview. 13th edition, global edition. NY, NY: Pearson.\n\n\nPetzold, Charles. 2022. Code: the hidden language of computer hardware and software. 2. Aufl. Hoboken: Microsoft Press.\n\n\nPólya, George, und John Horton Conway. 2004. How to solve it: a new aspect of mathematical method. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.\n\n\nScott, John C. 2009. But how do it know?: the basic principles of computers for everyone. Oldsmar, FL: John C. Scott.",
     "crumbs": [
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Umwandlung</span>"
     ]
@@ -232,6 +232,16 @@
   {
     "objectID": "information.html",
     "href": "information.html",
+    "title": "7  Information",
+    "section": "",
+    "text": "Setup",
+    "crumbs": [
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Information</span>"
+    ]
+  },
+  {
+    "objectID": "information.html#setup",
+    "href": "information.html#setup",
     "title": "7  Information",
     "section": "",
     "text": "Kommt bald\n\n\n\nDieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.\n\n\n\n\n\n\nAdami, Christoph. 2016. „What is Information?“ Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences 374 (2063): 20150230. https://doi.org/10.1098/rsta.2015.0230.\n\n\nBrookshear, J. Glenn, und Dennis Brylow. 2020. Computer science: an overview. 13th edition, global edition. NY, NY: Pearson.\n\n\nPetzold, Charles. 2022. Code: the hidden language of computer hardware and software. 2. Aufl. Hoboken: Microsoft Press.\n\n\nPólya, George, und John Horton Conway. 2004. How to solve it: a new aspect of mathematical method. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.\n\n\nScott, John C. 2009. But how do it know?: the basic principles of computers for everyone. Oldsmar, FL: John C. Scott.",
@@ -244,7 +254,17 @@
     "href": "sensors.html",
     "title": "8  Sensoren",
     "section": "",
-    "text": "Aufgaben",
+    "text": "Setup",
+    "crumbs": [
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Sensoren</span>"
+    ]
+  },
+  {
+    "objectID": "sensors.html#setup",
+    "href": "sensors.html#setup",
+    "title": "8  Sensoren",
+    "section": "",
+    "text": "Kommt bald\n\n\n\nDieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.\n\n\n\nAnalog vs. digital\nBaue einen Wasserstandssensor mit einem Widerstand und dem Analog-In-Bricklet.\nOder: Feuchtigkeitssensor in eine Pflanze stecken\nOder: Berührungssensor\nOder: Pulssensor (Farbsensor)\nIntegriere die RGB-LED irgendwie\nFarbsensor",
     "crumbs": [
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Sensoren</span>"
     ]
@@ -253,8 +273,8 @@
     "objectID": "sensors.html#aufgaben",
     "href": "sensors.html#aufgaben",
     "title": "8  Sensoren",
-    "section": "",
-    "text": "Programmiere einen Batteriedoktor mithilfe des Analog In Sensors\n\n\n\n\n\nAdami, Christoph. 2016. „What is Information?“ Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences 374 (2063): 20150230. https://doi.org/10.1098/rsta.2015.0230.\n\n\nBrookshear, J. Glenn, und Dennis Brylow. 2020. Computer science: an overview. 13th edition, global edition. NY, NY: Pearson.\n\n\nPetzold, Charles. 2022. Code: the hidden language of computer hardware and software. 2. Aufl. Hoboken: Microsoft Press.\n\n\nPólya, George, und John Horton Conway. 2004. How to solve it: a new aspect of mathematical method. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.\n\n\nScott, John C. 2009. But how do it know?: the basic principles of computers for everyone. Oldsmar, FL: John C. Scott.",
+    "section": "Aufgaben",
+    "text": "Aufgaben\n\nProgrammiere einen Batteriedoktor mithilfe des Analog In Sensors\n\n\n\n\n\nAdami, Christoph. 2016. „What is Information?“ Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences 374 (2063): 20150230. https://doi.org/10.1098/rsta.2015.0230.\n\n\nBrookshear, J. Glenn, und Dennis Brylow. 2020. Computer science: an overview. 13th edition, global edition. NY, NY: Pearson.\n\n\nPetzold, Charles. 2022. Code: the hidden language of computer hardware and software. 2. Aufl. Hoboken: Microsoft Press.\n\n\nPólya, George, und John Horton Conway. 2004. How to solve it: a new aspect of mathematical method. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.\n\n\nScott, John C. 2009. But how do it know?: the basic principles of computers for everyone. Oldsmar, FL: John C. Scott.",
     "crumbs": [
       "<span class='chapter-number'>8</span>  <span class='chapter-title'>Sensoren</span>"
     ]
@@ -264,7 +284,17 @@
     "href": "signals.html",
     "title": "9  Signale",
     "section": "",
-    "text": "9.1 Pulsmesser: Dein Finger als Signalquelle\nHast du dich schon einmal gefragt, wie dein Fitness-Tracker deinen Puls messen kann, obwohl du nur einen Finger auflegst? Diese Frage führt uns direkt zu einem spannenden Konzept: Signalen. Alles, was wir mit Sensoren messen, sind zunächst einmal beliebige Größen. Doch nicht alles, was wir messen, ist für uns relevant. Wir suchen nach Mustern in diesen Daten — eben genau diesen Mustern, die wir als Signale bezeichnen. Alles andere, was uns von diesen Signalen ablenkt, nennen wir Rauschen. Unser Ziel: Wir möchten herausfinden, wie wir Signale effektiv vom Rauschen unterscheiden können.\nErinnerst du dich noch an den Farbsensor aus Kapitel 8? Er misst nicht nur die Intensität des RGB-Spektrums, sondern auch die allgemeine Lichtintensität, auch Illuminance genannt. Hier kommt die spannende Tatsache ins Spiel: Genau dieses Prinzip steckt hinter den Pulsmessern in Fitnesstrackern. Ja, genau der Sensor, der Licht misst, verrät dir, wie schnell dein Herz schlägt!\nAber wie genau funktioniert das? Stell dir vor, du legst deinen Zeigefinger direkt auf den Sensor und schaltest die integrierte weiße LED an. Das Licht der LED trifft auf deinen Finger und wird reflektiert. Dein Finger sieht für dich immer gleich aus, aber tatsächlich sorgt dein Herzschlag dafür, dass dein Finger mal minimal heller und mal dunkler erscheint. Das liegt daran, dass Blut in rhythmischen Schüben durch die Gefäße gepumpt wird. Diese winzigen Veränderungen, die du mit bloßem Auge nicht sehen kannst, werden vom sensiblen Farbsensor deutlich wahrgenommen.\nSchauen wir uns das einmal genauer an: Wenn du dir die gemessene Lichtintensität über den Zeitverlauf im Brick Viewer ansiehst, kannst du deinen Pulsschlag tatsächlich erkennen—er wird sichtbar als kleine, regelmäßige Ausschläge oder Peaks. Faszinierend, oder? So kannst du beobachten, wie aus etwas so scheinbar Einfachem wie Licht ein Signal entsteht, das dir Informationen über deinen Körper liefert.",
+    "text": "Setup\nHast du dich schon einmal gefragt, wie dein Fitness-Tracker deinen Puls messen kann, obwohl du nur einen Finger auflegst? Diese Frage führt uns direkt zu einem spannenden Konzept: Signalen. Alles, was wir mit Sensoren messen, sind zunächst einmal beliebige Größen. Doch nicht alles, was wir messen, ist für uns relevant. Wir suchen nach Mustern in diesen Daten — eben genau diesen Mustern, die wir als Signale bezeichnen. Alles andere, was uns von diesen Signalen ablenkt, nennen wir Rauschen. Unser Ziel: Wir möchten herausfinden, wie wir Signale effektiv vom Rauschen unterscheiden können.",
+    "crumbs": [
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Signale</span>"
+    ]
+  },
+  {
+    "objectID": "signals.html#setup",
+    "href": "signals.html#setup",
+    "title": "9  Signale",
+    "section": "",
+    "text": "Kommt bald\n\n\n\nDieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.\n\n\n\n\n\n\n\n\nExperiment\n\n\n\nMithilfe des Farbsensors bauen wir einen Pulsmesser.",
     "crumbs": [
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Signale</span>"
     ]
@@ -273,8 +303,8 @@
     "objectID": "signals.html#pulsmesser-dein-finger-als-signalquelle",
     "href": "signals.html#pulsmesser-dein-finger-als-signalquelle",
     "title": "9  Signale",
-    "section": "",
-    "text": "Abbildung 9.1: Dein Puls im Brick Viewer",
+    "section": "9.1 Pulsmesser: Dein Finger als Signalquelle",
+    "text": "9.1 Pulsmesser: Dein Finger als Signalquelle\nErinnerst du dich noch an den Farbsensor aus Kapitel 8? Er misst nicht nur die Intensität des RGB-Spektrums, sondern auch die allgemeine Lichtintensität, auch Illuminance genannt. Hier kommt die spannende Tatsache ins Spiel: Genau dieses Prinzip steckt hinter den Pulsmessern in Fitnesstrackern. Ja, genau der Sensor, der Licht misst, verrät dir, wie schnell dein Herz schlägt!\nAber wie genau funktioniert das? Stell dir vor, du legst deinen Zeigefinger direkt auf den Sensor und schaltest die integrierte weiße LED an. Das Licht der LED trifft auf deinen Finger und wird reflektiert. Dein Finger sieht für dich immer gleich aus, aber tatsächlich sorgt dein Herzschlag dafür, dass dein Finger mal minimal heller und mal dunkler erscheint. Das liegt daran, dass Blut in rhythmischen Schüben durch die Gefäße gepumpt wird. Diese winzigen Veränderungen, die du mit bloßem Auge nicht sehen kannst, werden vom sensiblen Farbsensor deutlich wahrgenommen.\nSchauen wir uns das einmal genauer an: Wenn du dir die gemessene Lichtintensität über den Zeitverlauf im Brick Viewer ansiehst, kannst du deinen Pulsschlag tatsächlich erkennen—er wird sichtbar als kleine, regelmäßige Ausschläge oder Peaks. Faszinierend, oder? So kannst du beobachten, wie aus etwas so scheinbar Einfachem wie Licht ein Signal entsteht, das dir Informationen über deinen Körper liefert.\n\n\n\n\n\n\nAbbildung 9.1: Dein Puls im Brick Viewer",
     "crumbs": [
       "<span class='chapter-number'>9</span>  <span class='chapter-title'>Signale</span>"
     ]
@@ -294,6 +324,16 @@
     "href": "protocols.html",
     "title": "10  Protokolle",
     "section": "",
+    "text": "Setup",
+    "crumbs": [
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Protokolle</span>"
+    ]
+  },
+  {
+    "objectID": "protocols.html#setup",
+    "href": "protocols.html#setup",
+    "title": "10  Protokolle",
+    "section": "",
     "text": "Kommt bald\n\n\n\nDieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.\n\n\n\n\n\n\nAdami, Christoph. 2016. „What is Information?“ Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences 374 (2063): 20150230. https://doi.org/10.1098/rsta.2015.0230.\n\n\nBrookshear, J. Glenn, und Dennis Brylow. 2020. Computer science: an overview. 13th edition, global edition. NY, NY: Pearson.\n\n\nPetzold, Charles. 2022. Code: the hidden language of computer hardware and software. 2. Aufl. Hoboken: Microsoft Press.\n\n\nPólya, George, und John Horton Conway. 2004. How to solve it: a new aspect of mathematical method. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.\n\n\nScott, John C. 2009. But how do it know?: the basic principles of computers for everyone. Oldsmar, FL: John C. Scott.",
     "crumbs": [
       "<span class='chapter-number'>10</span>  <span class='chapter-title'>Protokolle</span>"
@@ -302,6 +342,16 @@
   {
     "objectID": "encryption.html",
     "href": "encryption.html",
+    "title": "11  Verschlüsselung",
+    "section": "",
+    "text": "Setup",
+    "crumbs": [
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Verschlüsselung</span>"
+    ]
+  },
+  {
+    "objectID": "encryption.html#setup",
+    "href": "encryption.html#setup",
     "title": "11  Verschlüsselung",
     "section": "",
     "text": "Kommt bald\n\n\n\nDieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.\n\n\n\n\n\n\nAdami, Christoph. 2016. „What is Information?“ Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences 374 (2063): 20150230. https://doi.org/10.1098/rsta.2015.0230.\n\n\nBrookshear, J. Glenn, und Dennis Brylow. 2020. Computer science: an overview. 13th edition, global edition. NY, NY: Pearson.\n\n\nPetzold, Charles. 2022. Code: the hidden language of computer hardware and software. 2. Aufl. Hoboken: Microsoft Press.\n\n\nPólya, George, und John Horton Conway. 2004. How to solve it: a new aspect of mathematical method. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.\n\n\nScott, John C. 2009. But how do it know?: the basic principles of computers for everyone. Oldsmar, FL: John C. Scott.",
@@ -364,7 +414,7 @@
     "href": "computer.html#der-arbeitsspeicher-oder-das-kurzzeitgedächtnis-des-computers",
     "title": "14  Computer",
     "section": "14.3 Der Arbeitsspeicher oder das Kurzzeitgedächtnis des Computers",
-    "text": "14.3 Der Arbeitsspeicher oder das Kurzzeitgedächtnis des Computers\n\nx = 10\nprint(f\"Adresse im Speicher der Variable 'x': {hex(id(x))}\")\nx= 20\nprint(f\"Neue Adresse im Speicher der Variable 'x': {hex(id(x))}\")\n\nAdresse im Speicher der Variable 'x': 0x7ffc2ec47448\nNeue Adresse im Speicher der Variable 'x': 0x7ffc2ec47588\n\n\n\nnames = [\"Max\", \"Kim\", \"Hildegard\"]\nprint(f\"Adresse im Speicher der Variable 'names': {hex(id(names))}\")\nnames.append(\"Heinrich\")\nprint(f\"Die Adresse im Speicher der Variable 'names' bleibt identisch: {hex(id(names))}\")\n\nAdresse im Speicher der Variable 'names': 0x21d51661100\nDie Adresse im Speicher der Variable 'names' bleibt identisch: 0x21d51661100\n\n\n\n\n\n\n\n\nLeseempfehlung\n\n\n\nUm tiefer in die Themen dieses Kapitels einzusteigen, empfehle ich euch Petzold (2022) zu lesen . Es lohnt sich, das Buch von Vorne nach Hinten zu verschlingen.\n\n\n\n\n\n\nAdami, Christoph. 2016. „What is Information?“ Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences 374 (2063): 20150230. https://doi.org/10.1098/rsta.2015.0230.\n\n\nBrookshear, J. Glenn, und Dennis Brylow. 2020. Computer science: an overview. 13th edition, global edition. NY, NY: Pearson.\n\n\nPetzold, Charles. 2022. Code: the hidden language of computer hardware and software. 2. Aufl. Hoboken: Microsoft Press.\n\n\nPólya, George, und John Horton Conway. 2004. How to solve it: a new aspect of mathematical method. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.\n\n\nScott, John C. 2009. But how do it know?: the basic principles of computers for everyone. Oldsmar, FL: John C. Scott.",
+    "text": "14.3 Der Arbeitsspeicher oder das Kurzzeitgedächtnis des Computers\n\nx = 10\nprint(f\"Adresse im Speicher der Variable 'x': {hex(id(x))}\")\nx= 20\nprint(f\"Neue Adresse im Speicher der Variable 'x': {hex(id(x))}\")\n\nAdresse im Speicher der Variable 'x': 0x7ffb86de7448\nNeue Adresse im Speicher der Variable 'x': 0x7ffb86de7588\n\n\n\nnames = [\"Max\", \"Kim\", \"Hildegard\"]\nprint(f\"Adresse im Speicher der Variable 'names': {hex(id(names))}\")\nnames.append(\"Heinrich\")\nprint(f\"Die Adresse im Speicher der Variable 'names' bleibt identisch: {hex(id(names))}\")\n\nAdresse im Speicher der Variable 'names': 0x1bdf87e1340\nDie Adresse im Speicher der Variable 'names' bleibt identisch: 0x1bdf87e1340\n\n\n\n\n\n\n\n\nLeseempfehlung\n\n\n\nUm tiefer in die Themen dieses Kapitels einzusteigen, empfehle ich euch Petzold (2022) zu lesen . Es lohnt sich, das Buch von Vorne nach Hinten zu verschlingen.\n\n\n\n\n\n\nAdami, Christoph. 2016. „What is Information?“ Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences 374 (2063): 20150230. https://doi.org/10.1098/rsta.2015.0230.\n\n\nBrookshear, J. Glenn, und Dennis Brylow. 2020. Computer science: an overview. 13th edition, global edition. NY, NY: Pearson.\n\n\nPetzold, Charles. 2022. Code: the hidden language of computer hardware and software. 2. Aufl. Hoboken: Microsoft Press.\n\n\nPólya, George, und John Horton Conway. 2004. How to solve it: a new aspect of mathematical method. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.\n\n\nScott, John C. 2009. But how do it know?: the basic principles of computers for everyone. Oldsmar, FL: John C. Scott.",
     "crumbs": [
       "<span class='chapter-number'>14</span>  <span class='chapter-title'>Computer</span>"
     ]

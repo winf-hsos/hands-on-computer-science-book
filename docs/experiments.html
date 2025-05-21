@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Bastelanleitung – Hands-On Computer Science</title>
+<title>Experimente – Hands-On Computer Science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -51,7 +51,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./on-or-off.html" rel="next">
-<link href="./the-project.html" rel="prev">
+<link href="./index.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -62,6 +62,9 @@ div.csl-indent {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-364982630eef5352dd1537128a8ed5cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -102,7 +105,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./assembly.html">Bastelanleitung</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./experiments.html">Experimente</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
@@ -138,14 +141,8 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./the-project.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Das LiFi-Projekt</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./assembly.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Bastelanleitung</span></a>
+  <a href="./experiments.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Experimente</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -249,15 +246,23 @@ div.csl-indent {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+  <li><a href="#hands-on-programmieren-lernen" id="toc-hands-on-programmieren-lernen" class="nav-link active" data-scroll-target="#hands-on-programmieren-lernen">Hands-On Programmieren lernen</a></li>
+  <li><a href="#spannende-experimente" id="toc-spannende-experimente" class="nav-link" data-scroll-target="#spannende-experimente">Spannende Experimente</a></li>
+  <li><a href="#frust-ist-dein-freund-zumindest-ein-bisschen" id="toc-frust-ist-dein-freund-zumindest-ein-bisschen" class="nav-link" data-scroll-target="#frust-ist-dein-freund-zumindest-ein-bisschen">Frust ist dein Freund – zumindest ein bisschen</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Bastelanleitung</h1>
+<h1 class="title">Experimente</h1>
 </div>
 
 
@@ -274,19 +279,143 @@ div.csl-indent {
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<section id="hands-on-programmieren-lernen" class="level2">
+<h2 class="anchored" data-anchor-id="hands-on-programmieren-lernen">Hands-On Programmieren lernen</h2>
+<p>Hast du dich schon einmal gefragt, wie man Informationen über Licht übertragen kann? Oder wie man mit Licht den Puls messen kann? Oder wie man mit zwei einfachen Kabeln einen Wasserstandssensor baut? Das alles klingt vielleicht weit hergeholt, ist aber tatsächlich machbar – und wie genau, das wollen wir in diesem Buch herausfinden! Dabei werden wir nicht nur die digitale Welt der Computer und Programmierung kennenlernen, sondern auch mit spannenden Geräten in der analogen Welt arbeiten. In jedem Kapitel arbeiten wir mit anderen Geräten, die dir unterschiedliche Facetten der digitalen Welt näherbringen und gleichzeitig ermöglichen, das Programmieren spielerisch zu erlernen.</p>
+<div id="fig-lifi-photo-top" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-lifi-photo-top-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/lifi_setup_top.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Abbildung&nbsp;1: Tinkerforge Workbench mit vielen Geräten"><img src="images/lifi_setup_top.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></a>
 </div>
-<div class="callout-title-container flex-fill">
-Kommt bald
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-lifi-photo-top-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;1: Tinkerforge Workbench mit vielen Geräten
+</figcaption>
+</figure>
 </div>
+<p>Hier ein Überblick über die Geräte, mit denen wir gemeinsam experimentieren werden. Zusammengefasst kosten alle Komponenten 249 €. Aber keine Sorge: Wenn du das Buch im Rahmen meines Moduls „Digitalisierung und Programmierung“ an der Hochschule Osnabrück liest, erhältst du für das gesamte Semester ein komplettes Hardware-Kit.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Was?</th>
+<th>Bauteil</th>
+<th>Anzahl</th>
+<th>Preis pro Stück</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Bunte LED</td>
+<td><a href="https://www.tinkerforge.com/de/shop/rgb-led-v2-bricklet.html">RGB LED Bricklet 2.0</a></td>
+<td>1</td>
+<td>8 €</td>
+</tr>
+<tr class="even">
+<td>Button mit integrierter, bunter LED</td>
+<td><a href="https://www.tinkerforge.com/de/shop/bricklets/rgb-led-button-bricklet.html">RGB LED Button Bricklet</a></td>
+<td>1</td>
+<td>15 €</td>
+</tr>
+<tr class="odd">
+<td>Licht- und Farbsensor</td>
+<td><a href="https://www.tinkerforge.com/de/shop/color-v2-bricklet.html">Color Bricklet 2.0</a></td>
+<td>1</td>
+<td>17 €</td>
+</tr>
+<tr class="even">
+<td>LCD Touchdisplay</td>
+<td><a href="https://www.tinkerforge.com/de/shop/lcd-128x64-bricklet.html">LCD 128x64 Bricklet</a></td>
+<td>1</td>
+<td>33 €</td>
+</tr>
+<tr class="odd">
+<td>Piezo Lautsprecher</td>
+<td><a href="https://www.tinkerforge.com/de/shop/piezo-speaker-v2-bricklet.html">Piezo Speaker Bricklet 2.0</a></td>
+<td>1</td>
+<td>19 €</td>
+</tr>
+<tr class="even">
+<td>Infrarot-Entfernungsmesser</td>
+<td><a href="https://www.tinkerforge.com/de/shop/distance-ir-4-30cm-v2-bricklet.html">Distance IR 4-30cm Bricklet 2.0</a></td>
+<td>1</td>
+<td>20 €</td>
+</tr>
+<tr class="odd">
+<td>Analoger Spannungssensor</td>
+<td><a href="https://www.tinkerforge.com/de/shop/analog-in-v3-bricklet.html">Analog In Bricklet 3.0</a></td>
+<td>1</td>
+<td>14 €</td>
+</tr>
+<tr class="even">
+<td>Schalldruckpegelsenor</td>
+<td><a href="https://www.tinkerforge.com/de/shop/sound-pressure-level-bricklet-679.html">Sound Pressure Level Bricklet</a></td>
+<td>1</td>
+<td>35 €</td>
+</tr>
+<tr class="odd">
+<td>Mikrocontroller</td>
+<td><a href="https://www.tinkerforge.com/de/shop/master-brick.html">Master Brick 3.2</a></td>
+<td>2</td>
+<td>35 €</td>
+</tr>
+<tr class="even">
+<td>Anschlusskabel 15 cm</td>
+<td><a href="https://www.tinkerforge.com/de/shop/accessories/cable/bricklet-cable-15cm-7p-7p.html">Bricklet Kabel 15cm (7p-7p)</a></td>
+<td>8</td>
+<td>1 €</td>
+</tr>
+<tr class="odd">
+<td>USB-A- auf USB-C Kabel</td>
+<td><a href="https://www.tinkerforge.com/de/shop/accessories/cable/usb-a-to-usb-c-cable-100cm.html">USB-A auf USB-C Kabel 100 cm</a></td>
+<td>1</td>
+<td>6 €</td>
+</tr>
+<tr class="even">
+<td>Montageplatte</td>
+<td><a href="https://www.tinkerforge.com/de/shop/mounting-plate-22x22-with-cable-lead-through.html">Montageplatte 22x22 (12x12cm)</a></td>
+<td>2</td>
+<td>7 €</td>
+</tr>
+<tr class="odd">
+<td>Schrauben, Abstandshalter und Muttern</td>
+<td><a href="https://www.tinkerforge.com/de/shop/accessories/mounting/mounting-kit-12mm.html">Befestigungskit 12mm</a></td>
+<td>4</td>
+<td>2 €</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="spannende-experimente" class="level2">
+<h2 class="anchored" data-anchor-id="spannende-experimente">Spannende Experimente</h2>
+<p>Kapitel für Kapitel werden wir an unterschiedlichen Experimenten arbeiten. Dabei lernst du nicht nur, wie man Hardware-Komponenten miteinander verbindet, sondern vor allem auch, wie man Computer – diese universellen Problemlösungsmaschinen – für eigene Ideen und Lösungen programmieren kann. Hier ist der Überblick, was dich in diesem Buch erwartet:</p>
+<ul>
+<li><a href="on-or-off.html" class="quarto-xref"><span>1&nbsp; An oder Aus</span></a>: Wir schreiben unser erstes Spiel: Wer drückt den Button am schnellsten?</li>
+<li><a href="colors.html" class="quarto-xref"><span>2&nbsp; Farben</span></a>: Wir bleiben in der Spielwelt und schreiben ein kleines Farb-Memory mit der LED.</li>
+<li><a href="text.html" class="quarto-xref"><span>3&nbsp; Texte</span></a>: Wir lernen, wie man Texte umständlich eingeben kann – über Handgesten und ohne Tastatur!</li>
+<li><a href="images.html" class="quarto-xref"><span>4&nbsp; Bilder</span></a>: Wir verbinden Tabellenkalkulation mit Bildern und Touchdisplays 🤯</li>
+<li><a href="codes.html" class="quarto-xref"><span>5&nbsp; Codes</span></a>: Wir lernen Morse-Code und wie wir diesen über einen Lautsprecher ausgeben können.</li>
+<li><a href="conversion.html" class="quarto-xref"><span>6&nbsp; Umwandlung</span></a>: Wir verwenden einfache Kippschalter, um analoge Werte in digitale Werte umzuwandeln.</li>
+<li><a href="information.html" class="quarto-xref"><span>7&nbsp; Information</span></a>: …</li>
+<li><a href="sensors.html" class="quarto-xref"><span>8&nbsp; Sensoren</span></a>: Wir bauen einen Wasserstandssensor mit einem analogen Spannungssensor.</li>
+<li><a href="signals.html" class="quarto-xref"><span>9&nbsp; Signale</span></a>: Wir bauen einen Pulsmesser mit einem Farbsensor.</li>
+<li><a href="protocols.html" class="quarto-xref"><span>10&nbsp; Protokolle</span></a>: Wir transferieren Nachrichten über Lichtsignale.</li>
+<li><a href="encryption.html" class="quarto-xref"><span>11&nbsp; Verschlüsselung</span></a>: Wir entwickeln unsere eigene Sprache.</li>
+</ul>
+</section>
+<section id="frust-ist-dein-freund-zumindest-ein-bisschen" class="level2">
+<h2 class="anchored" data-anchor-id="frust-ist-dein-freund-zumindest-ein-bisschen">Frust ist dein Freund – zumindest ein bisschen</h2>
+<p>Eins möchte ich gleich vorwegnehmen: Beim Programmierenlernen ist eine gewisse Portion Frust unvermeidbar. Klingt unangenehm? Ist es auch! Aber es ist zugleich Teil eines enorm wertvollen Lernprozesses. Jeder Fehler, den du machst, ist eine Gelegenheit, um zu verstehen, wie Computer wirklich funktionieren – nämlich absolut präzise und ohne jede Toleranz für Fehler.</p>
+<p>Computer sind gnadenlose Lehrer. Sie zeigen dir sofort und unerbittlich, wenn etwas nicht stimmt – sei es ein vergessener Punkt, ein falscher Buchstabe oder ein simpler Zahlendreher. Das kann frustrieren, aber genau dieses direkte und sofortige Feedback hilft dir auch, schnell und effektiv zu lernen. Sobald du verstehst, wie du aus Fehlermeldungen sinnvolle Schlüsse ziehst und deine Programme entsprechend korrigierst, wirst du belohnt – mit Erfolgserlebnissen und einer steilen Lernkurve.</p>
+<div id="fig-chimp-frustrated" class="quarto-float quarto-figure quarto-figure-left anchored" data-fig-align="left">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-chimp-frustrated-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/chimp_frustrated.jpg" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:40.0%">
 </div>
-<div class="callout-body-container callout-body">
-<p>Dieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.</p>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chimp-frustrated-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;2: Ein frustrierter Schimpanse
+</figcaption>
+</figure>
 </div>
-</div>
+<p>Also, wenn mal etwas nicht klappt: Nimm es nicht persönlich, sondern sieh es als Herausforderung. Atme tief durch, mach dir klar, dass Fehler unvermeidbar und sogar wichtig sind, und probier es noch einmal. Ich verspreche dir: Es lohnt sich!</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
@@ -306,6 +435,7 @@ Pólya, George, und John Horton Conway. 2004. <em>How to solve it: a new aspect 
 Scott, John C. 2009. <em>But how do it know?: the basic principles of computers for everyone</em>. Oldsmar, FL: John C. Scott.
 </div>
 </div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -748,8 +878,8 @@ Scott, John C. 2009. <em>But how do it know?: the basic principles of computers 
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./the-project.html" class="pagination-link" aria-label="Das LiFi-Projekt">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Das LiFi-Projekt</span>
+      <a href="./index.html" class="pagination-link" aria-label="Vorwort">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Vorwort</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
@@ -759,6 +889,38 @@ Scott, John C. 2009. <em>But how do it know?: the basic principles of computers 
   </div>
 </nav>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

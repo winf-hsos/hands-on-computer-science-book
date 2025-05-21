@@ -1,12 +1,12 @@
-# Das LiFi-Projekt {.unnumbered}
+# Experimente {.unnumbered}
 
 ## Hands-On Programmieren lernen
 
-Hast du dich schon einmal gefragt, wie man Informationen über Licht übertragen kann? Das klingt vielleicht nach Science-Fiction, ist aber tatsächlich machbar – und genau das wollen wir im LiFi-Projekt herausfinden! Dabei werden wir mit insgesamt acht spannenden Geräten arbeiten, die dir unterschiedliche Facetten der digitalen Welt näherbringen und dir gleichzeitig ermöglichen, das Programmieren spielerisch zu erlernen.
+Hast du dich schon einmal gefragt, wie man Informationen über Licht übertragen kann? Oder wie man mit Licht den Puls messen kann? Oder wie man mit zwei einfachen Kabeln einen Wasserstandssensor baut? Das alles klingt vielleicht weit hergeholt, ist aber tatsächlich machbar – und wie genau, das wollen wir in diesem Buch herausfinden! Dabei werden wir nicht nur die digitale Welt der Computer und Programmierung kennenlernen, sondern auch mit spannenden Geräten in der analogen Welt arbeiten. In jedem Kapitel arbeiten wir mit anderen Geräten, die dir unterschiedliche Facetten der digitalen Welt näherbringen und gleichzeitig ermöglichen, das Programmieren spielerisch zu erlernen.
 
-![Foto eines LiFi-Prototypen](images/lifi_setup_top.jpg){#fig-lifi-photo-top .lightbox fig-align="center" width="100%"}
+![Tinkerforge Workbench mit vielen Geräten](images/lifi_setup_top.jpg){#fig-lifi-photo-top .lightbox fig-align="center" width="100%"}
 
-Hier ein Überblick über die Geräte, mit denen wir gemeinsam experimentieren werden. Zusammengefasst kosten alle Komponenten für das LiFi-Projekt 249 €. Aber keine Sorge: Wenn du das LiFi-Projekt im Rahmen meines Moduls „Digitalisierung und Programmierung“ an der Hochschule Osnabrück belegst, erhältst du für das gesamte Semester ein komplettes Hardware-Kit.
+Hier ein Überblick über die Geräte, mit denen wir gemeinsam experimentieren werden. Zusammengefasst kosten alle Komponenten 249 €. Aber keine Sorge: Wenn du das Buch im Rahmen meines Moduls „Digitalisierung und Programmierung“ an der Hochschule Osnabrück liest, erhältst du für das gesamte Semester ein komplettes Hardware-Kit.
 
 | Was? | Bauteil | Anzahl | Preis pro Stück |
 |--------------------|------------------|-----------------|-----------------|
@@ -24,9 +24,21 @@ Hier ein Überblick über die Geräte, mit denen wir gemeinsam experimentieren w
 | Montageplatte | [Montageplatte 22x22 (12x12cm)](https://www.tinkerforge.com/de/shop/mounting-plate-22x22-with-cable-lead-through.html) | 2 | 7 € |
 | Schrauben, Abstandshalter und Muttern | [Befestigungskit 12mm](https://www.tinkerforge.com/de/shop/accessories/mounting/mounting-kit-12mm.html) | 4 | 2 € |
 
-## Unser gemeinsames Ziel: Kommunikation über Licht
+## Spannende Experimente
 
-Wie schafft man es eigentlich, dass zwei Geräte miteinander kommunizieren – ganz ohne WLAN, Bluetooth oder Kabel, sondern einfach nur mit Licht? Eine spannende Frage, auf die wir im LiFi-Projekt gemeinsam Antworten finden werden. Die Grundlage dafür bilden vor allem die bunte LED und der Licht- und Farbsensor. Schritt für Schritt – und Kapitel für Kapitel – werden wir an unserem gemeinsamen Ziel arbeiten, ein funktionierendes Prototypen-System aufzubauen. Dabei lernst du nicht nur, wie man Hardware-Komponenten miteinander verbindet, sondern vor allem auch, wie man Computer – diese universellen Problemlösungsmaschinen – für eigene Ideen programmieren kann.
+Kapitel für Kapitel werden wir an unterschiedlichen Experimenten arbeiten. Dabei lernst du nicht nur, wie man Hardware-Komponenten miteinander verbindet, sondern vor allem auch, wie man Computer – diese universellen Problemlösungsmaschinen – für eigene Ideen und Lösungen programmieren kann. Hier ist der Überblick, was dich in diesem Buch erwartet:
+
+- @sec-on-or-off: Wir schreiben unser erstes Spiel: Wer drückt den Button am schnellsten?
+- @sec-colors: Wir bleiben in der Spielwelt und schreiben ein kleines Farb-Memory mit der LED.
+- @sec-texts: Wir lernen, wie  man Texte umständlich eingeben kann – über Handgesten und ohne Tastatur!
+- @sec-images: Wir verbinden Tabellenkalkulation mit Bildern und Touchdisplays 🤯
+- @sec-codes: Wir lernen Morse-Code und wie wir diesen über einen Lautsprecher ausgeben können.
+- @sec-conversion: Wir verwenden einfache Kippschalter, um analoge Werte in digitale Werte umzuwandeln.
+- @sec-information: ...
+- @sec-sensors: Wir bauen einen Wasserstandssensor mit einem analogen Spannungssensor.
+- @sec-signals: Wir bauen einen Pulsmesser mit einem Farbsensor.
+- @sec-protocols: Wir transferieren Nachrichten über Lichtsignale.
+- @sec-encryption: Wir entwickeln unsere eigene Sprache.
 
 ## Frust ist dein Freund – zumindest ein bisschen
 
@@ -34,8 +46,6 @@ Eins möchte ich gleich vorwegnehmen: Beim Programmierenlernen ist eine gewisse 
 
 Computer sind gnadenlose Lehrer. Sie zeigen dir sofort und unerbittlich, wenn etwas nicht stimmt – sei es ein vergessener Punkt, ein falscher Buchstabe oder ein simpler Zahlendreher. Das kann frustrieren, aber genau dieses direkte und sofortige Feedback hilft dir auch, schnell und effektiv zu lernen. Sobald du verstehst, wie du aus Fehlermeldungen sinnvolle Schlüsse ziehst und deine Programme entsprechend korrigierst, wirst du belohnt – mit Erfolgserlebnissen und einer steilen Lernkurve.
 
+![Ein frustrierter Schimpanse](images/chimp_frustrated.jpg){#fig-chimp-frustrated fig-align="left" width="40%"}
+
 Also, wenn mal etwas nicht klappt: Nimm es nicht persönlich, sondern sieh es als Herausforderung. Atme tief durch, mach dir klar, dass Fehler unvermeidbar und sogar wichtig sind, und probier es noch einmal. Ich verspreche dir: Es lohnt sich!
-
-## Some Assembly Required
-
-Das LiFi-Projekt beginnt mit dem Zusammenbau der Komponenten. Dazu bekommst du im [folgenden Kapitel](assembly.qmd) eine detaillierte Anleitung. Also, Schraubendreher in die Hand und auf geht's.

@@ -1,7 +1,0 @@
-# Bastelanleitung {.unnumbered}
-
-::: callout-note
-## Kommt bald
-
-Dieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.
-:::

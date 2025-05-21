@@ -1,4 +1,5 @@
-# Information
+# Information {#sec-information}
+## Setup {.unnumbered}
 
 ::: callout-note
 ## Kommt bald
