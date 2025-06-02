@@ -9,7 +9,7 @@ Hast du dich schon einmal gefragt, wie man Informationen über Licht übertragen
 Hier ein Überblick über die Geräte, mit denen wir gemeinsam experimentieren werden. Zusammengefasst kosten alle Komponenten 249 €. Aber keine Sorge: Wenn du das Buch im Rahmen meines Moduls „Digitalisierung und Programmierung“ an der Hochschule Osnabrück liest, erhältst du für das gesamte Semester ein komplettes Hardware-Kit.
 
 | Was? | Bauteil | Anzahl | Preis pro Stück |
-|--------------------|------------------|-----------------|-----------------|
+|--------------------|------------------|------------------|------------------|
 | Bunte LED | [RGB LED Bricklet 2.0](https://www.tinkerforge.com/de/shop/rgb-led-v2-bricklet.html) | 1 | 8 € |
 | Button mit integrierter, bunter LED | [RGB LED Button Bricklet](https://www.tinkerforge.com/de/shop/bricklets/rgb-led-button-bricklet.html) | 1 | 15 € |
 | Licht- und Farbsensor | [Color Bricklet 2.0](https://www.tinkerforge.com/de/shop/color-v2-bricklet.html) | 1 | 17 € |
@@ -28,17 +28,23 @@ Hier ein Überblick über die Geräte, mit denen wir gemeinsam experimentieren w
 
 Kapitel für Kapitel werden wir an unterschiedlichen Experimenten arbeiten. Dabei lernst du nicht nur, wie man Hardware-Komponenten miteinander verbindet, sondern vor allem auch, wie man Computer – diese universellen Problemlösungsmaschinen – für eigene Ideen und Lösungen programmieren kann. Hier ist der Überblick, was dich in diesem Buch erwartet:
 
-- @sec-on-or-off: Wir schreiben unser erstes Spiel: Wer drückt den Button am schnellsten?
-- @sec-colors: Wir bleiben in der Spielwelt und schreiben ein kleines Farb-Memory mit der LED.
-- @sec-texts: Wir lernen, wie  man Texte umständlich eingeben kann – über Handgesten und ohne Tastatur!
-- @sec-images: Wir verbinden Tabellenkalkulation mit Bildern und Touchdisplays 🤯
-- @sec-codes: Wir lernen Morse-Code und wie wir diesen über einen Lautsprecher ausgeben können.
-- @sec-conversion: Wir verwenden einfache Kippschalter, um analoge Werte in digitale Werte umzuwandeln.
-- @sec-information: ...
-- @sec-sensors: Wir bauen einen Wasserstandssensor mit einem analogen Spannungssensor.
-- @sec-signals: Wir bauen einen Pulsmesser mit einem Farbsensor.
-- @sec-protocols: Wir transferieren Nachrichten über Lichtsignale.
-- @sec-encryption: Wir entwickeln unsere eigene Sprache.
+| Kapitel | Experiment(e) |
+|----------------|--------------------------------------------------------|
+| @sec-on-or-off | Wir schreiben unser erstes Spiel: Wer drückt den Button am schnellsten? |
+| @sec-colors | Wir bleiben in der Spielwelt und schreiben ein kleines Farb-Memory mit der LED. |
+| @sec-texts | Wir lernen, wie man Texte umständlich und ohne Tastatur eingeben kann – über Handgesten. |
+| @sec-images | Wir verbinden Tabellenkalkulation mit Bildern und Touchdisplays 🤯 |
+| @sec-codes | Wir lernen Morse-Code und wie wir diesen über einen Lautsprecher ausgeben können. |
+| @sec-conversion | Wir verwenden einfache Kippschalter, um analoge Werte in digitale Werte umzuwandeln. |
+| @sec-information |  |
+| @sec-sensors | Wir bauen einen Wasserstandssensor mit einem analogen Spannungssensor. |
+| @sec-signals | Wir basteln einen Pulsmesser aus einem Farbsensor 💓 |
+| @sec-protocols | Wir übertragen Nachrichten über Lichtsignale 🔦 |
+| @sec-encryption | Wir verstecken geheime Botschaften in harmlosen Nachrichten 🕵️‍♀️ |
+| @sec-algorithms |  |
+| @sec-compression | Wir entwickeln ein Verfahren, um Information zu komprimieren. |
+| @sec-computer | Wir entwickeln eine Rechenmaschine, die zwei Bytes addieren kann, mit nur einem einem Bauteil. |
+| @sec-problems |  |
 
 ## Frust ist dein Freund – zumindest ein bisschen
 
@@ -46,6 +52,6 @@ Eins möchte ich gleich vorwegnehmen: Beim Programmierenlernen ist eine gewisse 
 
 Computer sind gnadenlose Lehrer. Sie zeigen dir sofort und unerbittlich, wenn etwas nicht stimmt – sei es ein vergessener Punkt, ein falscher Buchstabe oder ein simpler Zahlendreher. Das kann frustrieren, aber genau dieses direkte und sofortige Feedback hilft dir auch, schnell und effektiv zu lernen. Sobald du verstehst, wie du aus Fehlermeldungen sinnvolle Schlüsse ziehst und deine Programme entsprechend korrigierst, wirst du belohnt – mit Erfolgserlebnissen und einer steilen Lernkurve.
 
-![Ein frustrierter Schimpanse](images/chimp_frustrated.jpg){#fig-chimp-frustrated fig-align="left" width="40%"}
+![Ein frustrierter Frosch](images/longbite_frustrated.png){#fig-chimp-frustrated fig-align="left" width="60%"}
 
 Also, wenn mal etwas nicht klappt: Nimm es nicht persönlich, sondern sieh es als Herausforderung. Atme tief durch, mach dir klar, dass Fehler unvermeidbar und sogar wichtig sind, und probier es noch einmal. Ich verspreche dir: Es lohnt sich!

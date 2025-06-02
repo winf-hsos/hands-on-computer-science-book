@@ -1,4 +1,6 @@
-# Kompression
+# Kompression {#sec-compression}
+
+## Setup {.unnumbered}
 
 ::: callout-note
 ## Kommt bald

@@ -6,37 +6,40 @@ abstract-title: ""
 
 # An oder Aus {#sec-on-or-off}
 
-## Experimentaufbau
+## Setup {.unnumbered}
 
 Für unser Experiment in diesem Kapitel benötigen wir den Button mit der integrierten LED ([RGB LED Button 2.0](https://www.tinkerforge.com/de/shop/bricklets/rgb-led-button-bricklet.html)), den wir an den Mikrocontroller ([Master Brick 3.2](https://www.tinkerforge.com/de/shop/master-brick.html)) anschließen. Beides fixieren wir auf Abstandshaltern auf einer Montageplatte, wie in @fig-setup-rgb-led-button gezeigt. Damit es schneller geht, verwenden wir lediglich zwei Fixierungen pro Gerät, was eine ausreichende Stabilität gewährleistet. Vergiss nicht die weißen Unterlegscheiben aus Kunsstoff, um die Platinen zu schonen.
 
 ::: {layout="[[1]]"}
-
 ![Einfaches Setup mit Mikrocontroller und Button mit integrierter LED.](images/setup_rgb_led_button.jpg){#fig-setup-rgb-led-button}
-
 :::
 
-## Einfacher geht es nicht
+## Testfahrt mit dem Brick Viewer
 
 Ein Button ist ein denkbar einfaches Gerät: Es kennt nur zwei Zustände, entweder ist der Button gedrückt oder nicht. Wenn du den Master Brick über das USB-Kabel an deinen Computer angeschlossen hast, kannst du die Funktion des Buttons einfach über den Brick Viewer kennenlernen. Öffne dazu den Brick Viewer und klicke auf den Connect-Button.
 
 ![Über den Connect-Button verbindet sich der Brick Viewer mit dem angeschlossenen Master Brick.](images/brick_viewer_connect.png){#fig-brick-viewer-connect .lightbox fig-align="center" width="100%" group="brick-viewer"}
 
-Nachdem du verbunden bist sollte der angeschlossene Master Brick mit seinen Komponenten, die Bricklets genannt werden, im Brick Viewer sichtbar sein. In @fig-brick-viewer-after-connect siehst du wie das in meinem Fall aussieht. Für jedes Gerät wird ein eigener Tab angezeigt, in dem wir die Details zu diesem Gerät sehen und die jeweiligen Funktionen ausprobieren können. Gleichzeitig bekommen wir in der Mitte des Brick Viewers eine übersichtliche Liste mit allen gefundenen Geräten angezeigt. Durch die hierarchische Darstellung erkennst du, welches Bricklet an welchem Mikrocontroller (Master Brick) hängt. Wie wir später im Buch noch sehen werden können auch mehrer Master Bricks miteinander verbunden werden und somit die möglichen angeschlossenen Bricklets um vier erweitert werden.
+Nachdem du verbunden bist, sollte der angeschlossene Master Brick mit seinen Komponenten, die *Bricklets*\index{Bricklet} genannt werden, im Brick Viewer sichtbar sein. In @fig-brick-viewer-after-connect siehst du, wie das in meinem Fall aussieht. Für jedes Gerät wird ein eigener Tab angezeigt, in dem wir die Details zu diesem Gerät sehen und die jeweiligen Funktionen ausprobieren können. Gleichzeitig bekommen wir in der Mitte des Brick Viewers eine übersichtliche Liste mit allen gefundenen Geräten angezeigt. Durch die hierarchische Darstellung erkennst du, welches Bricklet an welchem Mikrocontroller (Master Brick) hängt. Wie wir später im Buch noch sehen werden können auch mehrer Master Bricks miteinander verbunden werden und somit die möglichen angeschlossenen Bricklets um vier erweitert werden.
 
 ![Der Brick Viewer nachdem ihr mit dem Master Brick verbunden seid.](images/brick_viewer_after_connect.png){#fig-brick-viewer-after-connect .lightbox group="brick-viewer"}
 
-Wechseln wir in den Tab für den Button, in dem wir sämtliche Funktionen des Bricklets einsehen und interaktive ausprobieren können.
+Wechseln wir in den Tab für den Button, in dem wir sämtliche Funktionen des Bricklets einsehen und ausprobieren können. Wie du siehst können wir für den Button die Farbe einstellen sowie den aktuellen Status des Buttons einsehen. Aktuell ist er "released", wie der Wert neben "Button State" verrät. Probiert es mal aus und drückt den Button; der Status sollte sich ändern.
+
+Interessant anzumerken ist schon jetzt, dass wir die Farbe der LED sehr fein justieren können. Über die oberen drei Schieberegler lassen sich die Farbintensitäten der drei Farben Rot, Grün und Blau in einem Wertebereich zwischen 0 und 255 festlegen. Warum genau dieser Wertebereich? Das schauen wir uns in Kapitel @sec-colors genauer an.
 
 ![Die Ansicht für den RGB LED Button im Brick Viewer, in der alle Funktionen per Klick im Zugriff sind.](images/brick_viewer_rgb_led_button.png){#fig-brick-viewer-rgb-led-button .lightbox group="brick-viewer"}
 
-## Das Ganze jetzt in Python
+Der Brick Viewer bietet uns jederzeit die Möglichkeit, mit den an den Master Brick angeschlossenen Geräte über eine benutzerfreundliche grafische Oberfläche zu interagieren. So können wir schnell ein Verständnis für die unterschiedlichen Geräte bekommen. Um aber Lösungen mit den Bauteilen zu entwickeln, die automatisch funktionieren oder über eine individuelle grafische Oberfläche gesteuert werden sollen, benötigen wir die Möglichkeit, die Bauteile aus einem Programm heraus anzusprechen.
 
-### Der virtuelle Button im Code
+## Unser erstes Programm
 
-Wie versprochen starten wir direkt mit unserem ersten kleinen Python-Programm:
+Das 5-zeilige Programm unten stellt eine Verbindung zu unserem Button her. Es handelt sich um unser erstes Programm und es steht stellvertretend für viele der Programme, die noch folgen. Denn der Programmcode für die Verbindung mit unseren angeschlossenen Geräten sieht immer sehr ähnlich aus. Schauen wir ihn uns Zeile für Zeile an.
 
 ```{python}
+#| lst-label: lst-boilerplate-code
+#| lst-cap: Der Boilerplate Code für die Verbindung mit den Geräten am Beispiel des Buttons.
+
 from tinkerforge.ip_connection import IPConnection # <1>
 from tinkerforge.bricklet_rgb_led_button import BrickletRGBLEDButton # <2>
 
@@ -45,23 +48,74 @@ ipcon.connect("localhost", 4223) # <4>
 btn = BrickletRGBLEDButton("Ds3", ipcon) # <5>
 ```
 
-1.  Importieren des Objekts zum Herstellen einer Verbindung mit dem Master Brick.
-2.  Importieren des Objekts zur Darstellung des Buttons als Python-Objekt.
-3.  Eine neue Instanz einer IP-Verbindung erstellen.
-4.  Eine Verbindung zu angeschlossenen Master Brick herstellen.
-5.  Eine virtuelle Instanz des RGB LED Button Bricklets in unserem Programm erzeugen.
+1.  Hier importieren wir ein Objekt aus einer Bibliothek zum Herstellen einer Verbindung mit dem Master Brick.
+2.  Hier importieren wir ein weietres Objekt, das wir zur Darstellung des Buttons als Python-Objekt benötigen.
+3.  Die Verbindung erfolgt über eine sogenannte IP-Verbindung, die wir hier als Objekt erstellen.
+4.  Mit `connect` stellen wir eine Verbindung zum angeschlossenen Master Brick her.
+5.  Schließlich holen wir uns eine virtuelle Instanz des RGB LED Button Bricklets, indem wir die UID nennen und sagen, welche Verbindung (`ipcon`) genutzt werden soll.
+
+### Boilerplate Code
+
+Der Codeauschnitt in @lst-boilerplate-code wird uns im Verlauf dieses Buches immer wieder begegnen. Wir benötigen ihn, um uns am Anfang des Programms mit den Geräten zu verbinden. In der Informatik nennen wir solchen Code, den wir häufig in der gleichen Form benötigen und fast eins zu eins kopieren können, auch *Boilerplate Code*. Wundert euch also nicht, wenn ich diesen Begriff ab und an mal verwende. Jetzt wisst ihr, was gemeint ist.
 
 ### Bibliotheken
 
-Den Codeauschnitt oben wird uns im Verlauf dieses Buches immer wieder begegnen. Ganz oben, in den ersten beiden Zeilen, importieren wir die für unser Programm benötigten Objekte aus der Tinkerforge-Bibliothek. Eine Bibliothek\index{Bibliothek} in einer Programmiersprache ist die Bündelung und Bereitstellung von Funktionen, Klassen oder Konstanten, damit andere sie in ihren Programmen nutzen können. Da Tinkerforge Interesse daran hat, dass ihre Bauteile von möglichst vielen Menschen möglichst einfach genutzt werden können, stellen sie neben vielen anderen Programmiersprachen auch eine Python-Version ihrer Bibliothek zur Verfügung. Im Codeausschnitt oben laden wir zuerst das Objekt für die Verbindung zum angeschlossenen Mikrocontroller, die über eine IP-Verbindung hergestellt wird. Was das genau ist? Später mehr dazu. Zusätzlich zur `IPConnection` laden wir anschließend noch die benötigen Klassen für die Geräte, die wir in unserem aktuellen Setup verwenden wollen. In diesem Kapitel ist das nur der Button mit integrierter LED.
+Beginnen wir in den ersten beiden Zeilen. Hier seht ihr zwei sehr ähnliche Befehle, die mit dem Schlüsselwort `from` beginnen. Nach dem Schlüsselwort `from` folgt der Name einer Bibliothek, aus der wir ein für unser Programm benötigtes Objekte importieren. Die Kombination der Schlüsselwörter `from ...import` lässt sich also wörtlich übersetzen: "Aus der Bibliothek X importiere das Objekt Y".
 
-The concept of a switch with its two states is very important to the field of computer science. That's why introduce it early in this book.
+Eine *Bibliothek*\index{Bibliothek} in einer Programmiersprache ist die Bündelung und Bereitstellung von Funktionen, Klassen oder Konstanten. Das machen wir, damit andere diese Dinge in ihren Programmen nutzen können und das Rad nicht selbst oder neu erfinden müssen. Da Tinkerforge Interesse daran hat, dass ihre Bauteile von möglichst vielen Menschen ohne große Hürden verwendet werden können, stellen sie neben vielen anderen Programmiersprachen auch eine Python-Version ihrer Bibliothek zur Verfügung.
 
--   Introduce the dual button
--   Introduce the boilerplate code necessary to connect to the button
--   As as side note, introduce programs and how to write and run them with VS code
--   Show how we can either press the button or not and how to read its current state from our first simple program
--   Leave the chapter with some intriguing questions about the meaning of 0 and 1 in computer science
+### Schlüsselwörter
+
+Soeben haben wir unsere ersten beiden Schlüsselwörter in Python kennengelernt! Aber was bedeutet das genau? Ein Schlüsselwort, das wir im Englischen auch *keyword* oder *reserved keyword* nennen, ist ein Begriff, der in der jeweiligen Programmiersprache eine feste Bedeutung hat und deshalb nicht anderweitig verwendet werden darf. Wir werden gleich noch sehen, dass wir bei der Programmierung auch häufig Namen vergeben müssen, etwa für Variablen oder Funktionen. Diese Namen dürfen nicht wie ein Schlüsselwort lauten, ansonsten funktioniert unser Programm nicht wie gewünscht. Welche Schlüsselwörter es in Python gibt, könnt ihr [hier](https://docs.python.org/3/reference/lexical_analysis.html#keywords "Reservierte Schlüsselwörter in Python") nachschauen.
+
+Im Codeausschnitt oben laden wir zuerst das Objekt für die Verbindung zum angeschlossenen Mikrocontroller, die über eine IP-Verbindung hergestellt wird. Was das genau ist? Später mehr dazu. Zusätzlich zur `IPConnection` laden wir anschließend noch die benötigen Klassen für die Geräte, die wir in unserem aktuellen Setup verwenden wollen. In diesem Kapitel ist das nur der Button mit integrierter LED.
+
+### Klassen und Objekte
+
+Mit `from ... import` importieren wir also etwas aus einer Bibliothek. Soweit so gut. Aber was bedeutet das genau? Mit *importieren* ist konkret gemeint, dass wir dem Programm mitteilen, dass wir vorhaben, die genannten Dinge in unserem Programm zu verwenden, und dass sie deshalb am besten schon einmal geladen werden sollten. Ob wir diese Dinge später wirklich nutzen steht auf einem anderen Blatt.
+
+In dem Fall der ersten beiden Zeilen unseres Programms von oben sind es zwei *Klassen*\index{Klasse}, deren Verwendung wir ankündigen. Die erste Klasse heisst `IPConnection`\index{`IPConnection`} und die zweite `BrickletRGBLEDButton`\index{`BrickletRGBLEDButton`}. Der Begriff *Klasse* ist hier verstehen analog zum Begriff *Kategorie*. Wir können zu einer Klasse gehörige *Objekte*\index{Objekt} erzeugen, und alle Objekte der selben Klasse verhalten sich gleich und haben die gleichen Funktionen. Das verstehen wir am besten an einem einfachen Beispiel.
+
+Stellt euch vor, ihr habt eine Klasse namens `Auto`. Diese Klasse beschreibt alle Eigenschaften und Funktionen, die ein Auto haben kann, wie etwa `fahren()`, `bremsen()` oder `tanken()`. Diese Dinge sollen für jedes Auto gleich ablaufen. Jedes konkrete Auto in der Welt ist ein Objekt dieser Klasse. Du kannst also sagen: "Mein Auto ist ein Objekt der Klasse `Auto`." Jedes `Auto` hat die gleichen Eigenschaften wie Farbe, Marke und Modell. Aber jedes Auto kann andere Werte für diese Eigenschaftan haben.
+
+Genauso verhält es sich mit den Klassen, die Tinkerforge für uns bereitgestellt hat. Die Klasse `IPConnection` beschreibt, wie wir eine Verbindung zu einem Mikrocontroller herstellen können, und die Klasse `BrickletRGBLEDButton` beschreibt, wie wir mit dem Button interagieren können. Wenn wir ein Objekt dieser Klasse erstellen, können wir die Funktionen nutzen, die in der Klasse definiert sind. Ein Button muss nicht fahren oder bremsen wie ein Auto. Dafür hat er andere Funktionen, wie etwa `get_button_state()` oder `set_color()`, die uns erlauben, den Status des Buttons abzufragen oder die Farbe der integrierten LED zu ändern. Eine Eigenschaft jedes Buttons ist seine UID, die eindeutig ist und uns hilft, ihn im System zu identifizieren.
+
+### Objekte erzeugen
+
+In @lst-boilerplate-code in Zeile 4 erzeugen wir ein Objekt der Klasse `IPConnection`. Die fertige Instanz\index{Objektinstanz} - so nennen wir ein Objekt, das aus einer Klasse erzeugt wurde - speichern wir auf einer Variable mit dem Namen `ipcon`. Diesen Namen haben wir uns selbst ausgedacht, damit wir später darauf zugreifen können. Eine Variable ist also ein Platzhalter für einen Wert, den wir später im Programm verwenden wollen. In diesem Fall ist `ipcon` der Platzhalter für die Verbindung zu unserem Mikrocontroller. Was eine Variable genau ist, lernen wir später noch genauer kennen.
+
+### Methoden und Funktionen
+
+Über das Objekt `ipcon` können wir nun eine Verbindung zu unserem Mikrocontroller herstellen. Das geschieht in Zeile 5 mit der Methode `connect()`. Eine *Methode*\index{Methode} ist eine Funktion, die zu einem Objekt gehört. Wie etwa `fahren()` oder `bremsen()` in unserem Auto-Beispiel.
+
+Wir können Methoden aufrufen, um eine bestimmte Aktion auszuführen. In diesem Fall stellen wir eine Verbindung zum Mikrocontroller her, indem wir die Adresse und den Port angeben, über den die Verbindung hergestellt werden soll. In unserem Fall ist das "localhost", was für die lokale Maschine steht, und Port 4223, der durch den Brick Daemon standarmäßig so konfiguriert ist. Der Aufruf einer Methode erfolgt immer mit dem Punkt `.` nach dem Objekt, gefolgt vom Namen der Methode und den Klammern `()`, in denen wir eventuell benötigte Parameter angeben.
+
+### Ein Objekt für den Button
+
+In Zeile 6 erzeugen wir schließlich ein Objekt der Klasse `BrickletRGBLEDButton`. Dieses Objekt repräsentiert unseren Button und ermöglicht es uns, mit ihm zu interagieren. Wir nennen das Objekt `btn`, was für Button steht. Auch hier haben wir uns den Namen selbst ausgedacht, um später darauf zugreifen zu können. Auch wenn wir grundsätzlich Variablennamen frei wählen können, sollten sie immer so gewählt werden, dass sie den Inhalt der Variable beschreiben. Das macht es später einfacher, den Code zu verstehen. Gleichzeitig gibt es in Python einige Regeln, die wir bei der Benennung von Variablen beachten müssen. Dazu gehören etwa, dass Variablennamen nicht mit einer Zahl beginnen dürfen und keine Leerzeichen enthalten dürfen. Eine ausführliche Liste der Regeln findest du [hier](https://docs.python.org/3/reference/lexical_analysis.html#identifiers "Regeln für Variablennamen in Python").
+
+Damit haben wir unser erstes Programm von oben nach unten erläutert und dabei schon viele wichtige Konzepte der Programmierung kennengelernt:
+
+|  |  |
+|----------------------|--------------------------------------------------|
+| **Importieren von Bibliotheken** | Wir nutzen Funktionen und Klassen aus einer Bibliothek, um das Rad nicht neu erfinden zu müssen. |
+| **Boilerplate Code** | Code, der immer fast gleich aussieht und den wir häufig kopieren können. |
+| **Schlüsselwörter** | Begriffe, die in der Programmiersprache eine feste Bedeutung haben und nicht anderweitig verwendet werden dürfen. |
+| **Klassen und Objekte** | Wir erstellen Objekte aus Klassen, die uns bestimmte Funktionen und Eigenschaften bieten. |
+| **Methoden und Funktionen** | Wir rufen Methoden auf, um Aktionen auszuführen, die zu einem Objekt gehören. |
+| **Variablen** | Wir speichern Werte in Variablen, um später darauf zugreifen zu können. |
+
+## An und Aus
+
+Jetzt, das wir mit dem Button verbunden sind, können wir über das Objekt `btn` auf die Funktionen des Buttons zugreifen. So können wir beispielsweise die Farbe der LED auf Grün ändern:
+
+```{python}
+btn.set_color(0, 255, 0) # <1>
+```
+1. Hier setzen wir die Farbe der LED auf grün, indem wir die RGB-Werte für Rot, Grün und Blau angeben. In diesem Fall ist Rot auf 0, Grün auf 255 und Blau auf 0 gesetzt.
+
+
+---
 
 🎮 Mini Reaction Game
 
@@ -86,5 +140,3 @@ Theme: "Simon Says: Binary Edition"
 -   Each round adds another number.
 
 Teachable moment: Binary perception, memory, encoding sequences, and reinforcing input logic.
-
-![Ein Schimpanse der gleich auf den Buzzer haut](images/chimp_buzzer.jpg){#fig-chimp-buzzer}

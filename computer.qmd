@@ -1,10 +1,13 @@
-# Computer
+# Computer {#sec-computer}
 
 ::: callout-note
 ## Kommt bald
 
 Dieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.
 :::
+
+## Setup {.unnumbered}
+
 
 ## Logik und Arithmetik
 

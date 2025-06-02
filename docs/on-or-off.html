@@ -286,13 +286,19 @@ div.csl-indent {
     <h2 id="toc-title">Inhaltsverzeichnis</h2>
    
   <ul>
-  <li><a href="#experimentaufbau" id="toc-experimentaufbau" class="nav-link active" data-scroll-target="#experimentaufbau"><span class="header-section-number">1.1</span> Experimentaufbau</a></li>
-  <li><a href="#einfacher-geht-es-nicht" id="toc-einfacher-geht-es-nicht" class="nav-link" data-scroll-target="#einfacher-geht-es-nicht"><span class="header-section-number">1.2</span> Einfacher geht es nicht</a></li>
-  <li><a href="#das-ganze-jetzt-in-python" id="toc-das-ganze-jetzt-in-python" class="nav-link" data-scroll-target="#das-ganze-jetzt-in-python"><span class="header-section-number">1.3</span> Das Ganze jetzt in Python</a>
+  <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a></li>
+  <li><a href="#testfahrt-mit-dem-brick-viewer" id="toc-testfahrt-mit-dem-brick-viewer" class="nav-link" data-scroll-target="#testfahrt-mit-dem-brick-viewer"><span class="header-section-number">1.1</span> Testfahrt mit dem Brick Viewer</a></li>
+  <li><a href="#unser-erstes-programm" id="toc-unser-erstes-programm" class="nav-link" data-scroll-target="#unser-erstes-programm"><span class="header-section-number">1.2</span> Unser erstes Programm</a>
   <ul class="collapse">
-  <li><a href="#der-virtuelle-button-im-code" id="toc-der-virtuelle-button-im-code" class="nav-link" data-scroll-target="#der-virtuelle-button-im-code"><span class="header-section-number">1.3.1</span> Der virtuelle Button im Code</a></li>
-  <li><a href="#bibliotheken" id="toc-bibliotheken" class="nav-link" data-scroll-target="#bibliotheken"><span class="header-section-number">1.3.2</span> Bibliotheken</a></li>
+  <li><a href="#boilerplate-code" id="toc-boilerplate-code" class="nav-link" data-scroll-target="#boilerplate-code"><span class="header-section-number">1.2.1</span> Boilerplate Code</a></li>
+  <li><a href="#bibliotheken" id="toc-bibliotheken" class="nav-link" data-scroll-target="#bibliotheken"><span class="header-section-number">1.2.2</span> Bibliotheken</a></li>
+  <li><a href="#schlüsselwörter" id="toc-schlüsselwörter" class="nav-link" data-scroll-target="#schlüsselwörter"><span class="header-section-number">1.2.3</span> Schlüsselwörter</a></li>
+  <li><a href="#klassen-und-objekte" id="toc-klassen-und-objekte" class="nav-link" data-scroll-target="#klassen-und-objekte"><span class="header-section-number">1.2.4</span> Klassen und Objekte</a></li>
+  <li><a href="#objekte-erzeugen" id="toc-objekte-erzeugen" class="nav-link" data-scroll-target="#objekte-erzeugen"><span class="header-section-number">1.2.5</span> Objekte erzeugen</a></li>
+  <li><a href="#methoden-und-funktionen" id="toc-methoden-und-funktionen" class="nav-link" data-scroll-target="#methoden-und-funktionen"><span class="header-section-number">1.2.6</span> Methoden und Funktionen</a></li>
+  <li><a href="#ein-objekt-für-den-button" id="toc-ein-objekt-für-den-button" class="nav-link" data-scroll-target="#ein-objekt-für-den-button"><span class="header-section-number">1.2.7</span> Ein Objekt für den Button</a></li>
   </ul></li>
+  <li><a href="#an-und-aus" id="toc-an-und-aus" class="nav-link" data-scroll-target="#an-und-aus"><span class="header-section-number">1.3</span> An und Aus</a></li>
   </ul>
 </nav>
     </div>
@@ -324,8 +330,8 @@ div.csl-indent {
 </header>
 
 
-<section id="experimentaufbau" class="level2" data-number="1.1">
-<h2 data-number="1.1" class="anchored" data-anchor-id="experimentaufbau"><span class="header-section-number">1.1</span> Experimentaufbau</h2>
+<section id="setup" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="setup">Setup</h2>
 <p>Für unser Experiment in diesem Kapitel benötigen wir den Button mit der integrierten LED (<a href="https://www.tinkerforge.com/de/shop/bricklets/rgb-led-button-bricklet.html">RGB LED Button 2.0</a>), den wir an den Mikrocontroller (<a href="https://www.tinkerforge.com/de/shop/master-brick.html">Master Brick 3.2</a>) anschließen. Beides fixieren wir auf Abstandshaltern auf einer Montageplatte, wie in <a href="#fig-setup-rgb-led-button" class="quarto-xref">Abbildung&nbsp;<span>1.1</span></a> gezeigt. Damit es schneller geht, verwenden wir lediglich zwei Fixierungen pro Gerät, was eine ausreichende Stabilität gewährleistet. Vergiss nicht die weißen Unterlegscheiben aus Kunsstoff, um die Platinen zu schonen.</p>
 <div class="quarto-layout-panel" data-layout="[[1]]">
 <div class="quarto-layout-row">
@@ -344,8 +350,8 @@ Abbildung&nbsp;1.1: Einfaches Setup mit Mikrocontroller und Button mit integrier
 </div>
 </div>
 </section>
-<section id="einfacher-geht-es-nicht" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="einfacher-geht-es-nicht"><span class="header-section-number">1.2</span> Einfacher geht es nicht</h2>
+<section id="testfahrt-mit-dem-brick-viewer" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="testfahrt-mit-dem-brick-viewer"><span class="header-section-number">1.1</span> Testfahrt mit dem Brick Viewer</h2>
 <p>Ein Button ist ein denkbar einfaches Gerät: Es kennt nur zwei Zustände, entweder ist der Button gedrückt oder nicht. Wenn du den Master Brick über das USB-Kabel an deinen Computer angeschlossen hast, kannst du die Funktion des Buttons einfach über den Brick Viewer kennenlernen. Öffne dazu den Brick Viewer und klicke auf den Connect-Button.</p>
 <div id="fig-brick-viewer-connect" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-group="brick-viewer">
 <figure class="quarto-float quarto-float-fig figure">
@@ -357,7 +363,7 @@ Abbildung&nbsp;1.2: Über den Connect-Button verbindet sich der Brick Viewer mit
 </figcaption>
 </figure>
 </div>
-<p>Nachdem du verbunden bist sollte der angeschlossene Master Brick mit seinen Komponenten, die Bricklets genannt werden, im Brick Viewer sichtbar sein. In <a href="#fig-brick-viewer-after-connect" class="quarto-xref">Abbildung&nbsp;<span>1.3</span></a> siehst du wie das in meinem Fall aussieht. Für jedes Gerät wird ein eigener Tab angezeigt, in dem wir die Details zu diesem Gerät sehen und die jeweiligen Funktionen ausprobieren können. Gleichzeitig bekommen wir in der Mitte des Brick Viewers eine übersichtliche Liste mit allen gefundenen Geräten angezeigt. Durch die hierarchische Darstellung erkennst du, welches Bricklet an welchem Mikrocontroller (Master Brick) hängt. Wie wir später im Buch noch sehen werden können auch mehrer Master Bricks miteinander verbunden werden und somit die möglichen angeschlossenen Bricklets um vier erweitert werden.</p>
+<p>Nachdem du verbunden bist, sollte der angeschlossene Master Brick mit seinen Komponenten, die <em>Bricklets</em> genannt werden, im Brick Viewer sichtbar sein. In <a href="#fig-brick-viewer-after-connect" class="quarto-xref">Abbildung&nbsp;<span>1.3</span></a> siehst du, wie das in meinem Fall aussieht. Für jedes Gerät wird ein eigener Tab angezeigt, in dem wir die Details zu diesem Gerät sehen und die jeweiligen Funktionen ausprobieren können. Gleichzeitig bekommen wir in der Mitte des Brick Viewers eine übersichtliche Liste mit allen gefundenen Geräten angezeigt. Durch die hierarchische Darstellung erkennst du, welches Bricklet an welchem Mikrocontroller (Master Brick) hängt. Wie wir später im Buch noch sehen werden können auch mehrer Master Bricks miteinander verbunden werden und somit die möglichen angeschlossenen Bricklets um vier erweitert werden.</p>
 <div id="fig-brick-viewer-after-connect" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="brick-viewer">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-brick-viewer-after-connect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -368,7 +374,8 @@ Abbildung&nbsp;1.3: Der Brick Viewer nachdem ihr mit dem Master Brick verbunden 
 </figcaption>
 </figure>
 </div>
-<p>Wechseln wir in den Tab für den Button, in dem wir sämtliche Funktionen des Bricklets einsehen und interaktive ausprobieren können.</p>
+<p>Wechseln wir in den Tab für den Button, in dem wir sämtliche Funktionen des Bricklets einsehen und ausprobieren können. Wie du siehst können wir für den Button die Farbe einstellen sowie den aktuellen Status des Buttons einsehen. Aktuell ist er “released”, wie der Wert neben “Button State” verrät. Probiert es mal aus und drückt den Button; der Status sollte sich ändern.</p>
+<p>Interessant anzumerken ist schon jetzt, dass wir die Farbe der LED sehr fein justieren können. Über die oberen drei Schieberegler lassen sich die Farbintensitäten der drei Farben Rot, Grün und Blau in einem Wertebereich zwischen 0 und 255 festlegen. Warum genau dieser Wertebereich? Das schauen wir uns in Kapitel <a href="colors.html" class="quarto-xref"><span>Kapitel 2</span></a> genauer an.</p>
 <div id="fig-brick-viewer-rgb-led-button" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="brick-viewer">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-brick-viewer-rgb-led-button-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -379,56 +386,135 @@ Abbildung&nbsp;1.4: Die Ansicht für den RGB LED Button im Brick Viewer, in der 
 </figcaption>
 </figure>
 </div>
+<p>Der Brick Viewer bietet uns jederzeit die Möglichkeit, mit den an den Master Brick angeschlossenen Geräte über eine benutzerfreundliche grafische Oberfläche zu interagieren. So können wir schnell ein Verständnis für die unterschiedlichen Geräte bekommen. Um aber Lösungen mit den Bauteilen zu entwickeln, die automatisch funktionieren oder über eine individuelle grafische Oberfläche gesteuert werden sollen, benötigen wir die Möglichkeit, die Bauteile aus einem Programm heraus anzusprechen.</p>
 </section>
-<section id="das-ganze-jetzt-in-python" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="das-ganze-jetzt-in-python"><span class="header-section-number">1.3</span> Das Ganze jetzt in Python</h2>
-<section id="der-virtuelle-button-im-code" class="level3" data-number="1.3.1">
-<h3 data-number="1.3.1" class="anchored" data-anchor-id="der-virtuelle-button-im-code"><span class="header-section-number">1.3.1</span> Der virtuelle Button im Code</h3>
-<p>Wie versprochen starten wir direkt mit unserem ersten kleinen Python-Programm:</p>
-<div id="c3048720" class="cell" data-execution_count="1">
+<section id="unser-erstes-programm" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="unser-erstes-programm"><span class="header-section-number">1.2</span> Unser erstes Programm</h2>
+<p>Das 5-zeilige Programm unten stellt eine Verbindung zu unserem Button her. Es handelt sich um unser erstes Programm und es steht stellvertretend für viele der Programme, die noch folgen. Denn der Programmcode für die Verbindung mit unseren angeschlossenen Geräten sieht immer sehr ähnlich aus. Schauen wir ihn uns Zeile für Zeile an.</p>
+<div id="9c365b53" class="cell" data-execution_count="1">
+<div id="lst-boilerplate-code" class="python cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-boilerplate-code-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Listing&nbsp;1.1: Der Boilerplate Code für die Verbindung mit den Geräten am Beispiel des Buttons.
+</figcaption>
+<div aria-describedby="lst-boilerplate-code-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1">1</button><span id="annotated-cell-1-1" class="code-annotation-target"><a href="#annotated-cell-1-1"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2">2</button><span id="annotated-cell-1-2" class="code-annotation-target"><a href="#annotated-cell-1-2"></a><span class="im">from</span> tinkerforge.bricklet_rgb_led_button <span class="im">import</span> BrickletRGBLEDButton</span>
 <span id="annotated-cell-1-3"><a href="#annotated-cell-1-3"></a></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="3">3</button><span id="annotated-cell-1-4" class="code-annotation-target"><a href="#annotated-cell-1-4"></a>ipcon <span class="op">=</span> IPConnection()</span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="4">4</button><span id="annotated-cell-1-5" class="code-annotation-target"><a href="#annotated-cell-1-5"></a>ipcon.<span class="ex">connect</span>(<span class="st">"localhost"</span>, <span class="dv">4223</span>)</span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="5">5</button><span id="annotated-cell-1-6" class="code-annotation-target"><a href="#annotated-cell-1-6"></a>btn <span class="op">=</span> BrickletRGBLEDButton(<span class="st">"Ds3"</span>, ipcon)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</figure>
+</div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-1" data-code-lines="1" data-code-annotation="1">Importieren des Objekts zum Herstellen einer Verbindung mit dem Master Brick.</span>
+<span data-code-cell="annotated-cell-1" data-code-lines="1" data-code-annotation="1">Hier importieren wir ein Objekt aus einer Bibliothek zum Herstellen einer Verbindung mit dem Master Brick.</span>
 </dd>
 <dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-1" data-code-lines="2" data-code-annotation="2">Importieren des Objekts zur Darstellung des Buttons als Python-Objekt.</span>
+<span data-code-cell="annotated-cell-1" data-code-lines="2" data-code-annotation="2">Hier importieren wir ein weietres Objekt, das wir zur Darstellung des Buttons als Python-Objekt benötigen.</span>
 </dd>
 <dt data-target-cell="annotated-cell-1" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-1" data-code-lines="4" data-code-annotation="3">Eine neue Instanz einer IP-Verbindung erstellen.</span>
+<span data-code-cell="annotated-cell-1" data-code-lines="4" data-code-annotation="3">Die Verbindung erfolgt über eine sogenannte IP-Verbindung, die wir hier als Objekt erstellen.</span>
 </dd>
 <dt data-target-cell="annotated-cell-1" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-cell="annotated-cell-1" data-code-lines="5" data-code-annotation="4">Eine Verbindung zu angeschlossenen Master Brick herstellen.</span>
+<span data-code-cell="annotated-cell-1" data-code-lines="5" data-code-annotation="4">Mit <code>connect</code> stellen wir eine Verbindung zum angeschlossenen Master Brick her.</span>
 </dd>
 <dt data-target-cell="annotated-cell-1" data-target-annotation="5">5</dt>
 <dd>
-<span data-code-cell="annotated-cell-1" data-code-lines="6" data-code-annotation="5">Eine virtuelle Instanz des RGB LED Button Bricklets in unserem Programm erzeugen.</span>
+<span data-code-cell="annotated-cell-1" data-code-lines="6" data-code-annotation="5">Schließlich holen wir uns eine virtuelle Instanz des RGB LED Button Bricklets, indem wir die UID nennen und sagen, welche Verbindung (<code>ipcon</code>) genutzt werden soll.</span>
 </dd>
 </dl>
 </div>
 </div>
+<section id="boilerplate-code" class="level3" data-number="1.2.1">
+<h3 data-number="1.2.1" class="anchored" data-anchor-id="boilerplate-code"><span class="header-section-number">1.2.1</span> Boilerplate Code</h3>
+<p>Der Codeauschnitt in <a href="#lst-boilerplate-code" class="quarto-xref">Listing&nbsp;<span>1.1</span></a> wird uns im Verlauf dieses Buches immer wieder begegnen. Wir benötigen ihn, um uns am Anfang des Programms mit den Geräten zu verbinden. In der Informatik nennen wir solchen Code, den wir häufig in der gleichen Form benötigen und fast eins zu eins kopieren können, auch <em>Boilerplate Code</em>. Wundert euch also nicht, wenn ich diesen Begriff ab und an mal verwende. Jetzt wisst ihr, was gemeint ist.</p>
 </section>
-<section id="bibliotheken" class="level3" data-number="1.3.2">
-<h3 data-number="1.3.2" class="anchored" data-anchor-id="bibliotheken"><span class="header-section-number">1.3.2</span> Bibliotheken</h3>
-<p>Den Codeauschnitt oben wird uns im Verlauf dieses Buches immer wieder begegnen. Ganz oben, in den ersten beiden Zeilen, importieren wir die für unser Programm benötigten Objekte aus der Tinkerforge-Bibliothek. Eine Bibliothek in einer Programmiersprache ist die Bündelung und Bereitstellung von Funktionen, Klassen oder Konstanten, damit andere sie in ihren Programmen nutzen können. Da Tinkerforge Interesse daran hat, dass ihre Bauteile von möglichst vielen Menschen möglichst einfach genutzt werden können, stellen sie neben vielen anderen Programmiersprachen auch eine Python-Version ihrer Bibliothek zur Verfügung. Im Codeausschnitt oben laden wir zuerst das Objekt für die Verbindung zum angeschlossenen Mikrocontroller, die über eine IP-Verbindung hergestellt wird. Was das genau ist? Später mehr dazu. Zusätzlich zur <code>IPConnection</code> laden wir anschließend noch die benötigen Klassen für die Geräte, die wir in unserem aktuellen Setup verwenden wollen. In diesem Kapitel ist das nur der Button mit integrierter LED.</p>
-<p>The concept of a switch with its two states is very important to the field of computer science. That’s why introduce it early in this book.</p>
-<ul>
-<li>Introduce the dual button</li>
-<li>Introduce the boilerplate code necessary to connect to the button</li>
-<li>As as side note, introduce programs and how to write and run them with VS code</li>
-<li>Show how we can either press the button or not and how to read its current state from our first simple program</li>
-<li>Leave the chapter with some intriguing questions about the meaning of 0 and 1 in computer science</li>
-</ul>
+<section id="bibliotheken" class="level3" data-number="1.2.2">
+<h3 data-number="1.2.2" class="anchored" data-anchor-id="bibliotheken"><span class="header-section-number">1.2.2</span> Bibliotheken</h3>
+<p>Beginnen wir in den ersten beiden Zeilen. Hier seht ihr zwei sehr ähnliche Befehle, die mit dem Schlüsselwort <code>from</code> beginnen. Nach dem Schlüsselwort <code>from</code> folgt der Name einer Bibliothek, aus der wir ein für unser Programm benötigtes Objekte importieren. Die Kombination der Schlüsselwörter <code>from ...import</code> lässt sich also wörtlich übersetzen: “Aus der Bibliothek X importiere das Objekt Y”.</p>
+<p>Eine <em>Bibliothek</em> in einer Programmiersprache ist die Bündelung und Bereitstellung von Funktionen, Klassen oder Konstanten. Das machen wir, damit andere diese Dinge in ihren Programmen nutzen können und das Rad nicht selbst oder neu erfinden müssen. Da Tinkerforge Interesse daran hat, dass ihre Bauteile von möglichst vielen Menschen ohne große Hürden verwendet werden können, stellen sie neben vielen anderen Programmiersprachen auch eine Python-Version ihrer Bibliothek zur Verfügung.</p>
+</section>
+<section id="schlüsselwörter" class="level3" data-number="1.2.3">
+<h3 data-number="1.2.3" class="anchored" data-anchor-id="schlüsselwörter"><span class="header-section-number">1.2.3</span> Schlüsselwörter</h3>
+<p>Soeben haben wir unsere ersten beiden Schlüsselwörter in Python kennengelernt! Aber was bedeutet das genau? Ein Schlüsselwort, das wir im Englischen auch <em>keyword</em> oder <em>reserved keyword</em> nennen, ist ein Begriff, der in der jeweiligen Programmiersprache eine feste Bedeutung hat und deshalb nicht anderweitig verwendet werden darf. Wir werden gleich noch sehen, dass wir bei der Programmierung auch häufig Namen vergeben müssen, etwa für Variablen oder Funktionen. Diese Namen dürfen nicht wie ein Schlüsselwort lauten, ansonsten funktioniert unser Programm nicht wie gewünscht. Welche Schlüsselwörter es in Python gibt, könnt ihr <a href="https://docs.python.org/3/reference/lexical_analysis.html#keywords" title="Reservierte Schlüsselwörter in Python">hier</a> nachschauen.</p>
+<p>Im Codeausschnitt oben laden wir zuerst das Objekt für die Verbindung zum angeschlossenen Mikrocontroller, die über eine IP-Verbindung hergestellt wird. Was das genau ist? Später mehr dazu. Zusätzlich zur <code>IPConnection</code> laden wir anschließend noch die benötigen Klassen für die Geräte, die wir in unserem aktuellen Setup verwenden wollen. In diesem Kapitel ist das nur der Button mit integrierter LED.</p>
+</section>
+<section id="klassen-und-objekte" class="level3" data-number="1.2.4">
+<h3 data-number="1.2.4" class="anchored" data-anchor-id="klassen-und-objekte"><span class="header-section-number">1.2.4</span> Klassen und Objekte</h3>
+<p>Mit <code>from ... import</code> importieren wir also etwas aus einer Bibliothek. Soweit so gut. Aber was bedeutet das genau? Mit <em>importieren</em> ist konkret gemeint, dass wir dem Programm mitteilen, dass wir vorhaben, die genannten Dinge in unserem Programm zu verwenden, und dass sie deshalb am besten schon einmal geladen werden sollten. Ob wir diese Dinge später wirklich nutzen steht auf einem anderen Blatt.</p>
+<p>In dem Fall der ersten beiden Zeilen unseres Programms von oben sind es zwei <em>Klassen</em>, deren Verwendung wir ankündigen. Die erste Klasse heisst <code>IPConnection</code> und die zweite <code>BrickletRGBLEDButton</code>. Der Begriff <em>Klasse</em> ist hier verstehen analog zum Begriff <em>Kategorie</em>. Wir können zu einer Klasse gehörige <em>Objekte</em> erzeugen, und alle Objekte der selben Klasse verhalten sich gleich und haben die gleichen Funktionen. Das verstehen wir am besten an einem einfachen Beispiel.</p>
+<p>Stellt euch vor, ihr habt eine Klasse namens <code>Auto</code>. Diese Klasse beschreibt alle Eigenschaften und Funktionen, die ein Auto haben kann, wie etwa <code>fahren()</code>, <code>bremsen()</code> oder <code>tanken()</code>. Diese Dinge sollen für jedes Auto gleich ablaufen. Jedes konkrete Auto in der Welt ist ein Objekt dieser Klasse. Du kannst also sagen: “Mein Auto ist ein Objekt der Klasse <code>Auto</code>.” Jedes <code>Auto</code> hat die gleichen Eigenschaften wie Farbe, Marke und Modell. Aber jedes Auto kann andere Werte für diese Eigenschaftan haben.</p>
+<p>Genauso verhält es sich mit den Klassen, die Tinkerforge für uns bereitgestellt hat. Die Klasse <code>IPConnection</code> beschreibt, wie wir eine Verbindung zu einem Mikrocontroller herstellen können, und die Klasse <code>BrickletRGBLEDButton</code> beschreibt, wie wir mit dem Button interagieren können. Wenn wir ein Objekt dieser Klasse erstellen, können wir die Funktionen nutzen, die in der Klasse definiert sind. Ein Button muss nicht fahren oder bremsen wie ein Auto. Dafür hat er andere Funktionen, wie etwa <code>get_button_state()</code> oder <code>set_color()</code>, die uns erlauben, den Status des Buttons abzufragen oder die Farbe der integrierten LED zu ändern. Eine Eigenschaft jedes Buttons ist seine UID, die eindeutig ist und uns hilft, ihn im System zu identifizieren.</p>
+</section>
+<section id="objekte-erzeugen" class="level3" data-number="1.2.5">
+<h3 data-number="1.2.5" class="anchored" data-anchor-id="objekte-erzeugen"><span class="header-section-number">1.2.5</span> Objekte erzeugen</h3>
+<p>In <a href="#lst-boilerplate-code" class="quarto-xref">Listing&nbsp;<span>1.1</span></a> in Zeile 4 erzeugen wir ein Objekt der Klasse <code>IPConnection</code>. Die fertige Instanz - so nennen wir ein Objekt, das aus einer Klasse erzeugt wurde - speichern wir auf einer Variable mit dem Namen <code>ipcon</code>. Diesen Namen haben wir uns selbst ausgedacht, damit wir später darauf zugreifen können. Eine Variable ist also ein Platzhalter für einen Wert, den wir später im Programm verwenden wollen. In diesem Fall ist <code>ipcon</code> der Platzhalter für die Verbindung zu unserem Mikrocontroller. Was eine Variable genau ist, lernen wir später noch genauer kennen.</p>
+</section>
+<section id="methoden-und-funktionen" class="level3" data-number="1.2.6">
+<h3 data-number="1.2.6" class="anchored" data-anchor-id="methoden-und-funktionen"><span class="header-section-number">1.2.6</span> Methoden und Funktionen</h3>
+<p>Über das Objekt <code>ipcon</code> können wir nun eine Verbindung zu unserem Mikrocontroller herstellen. Das geschieht in Zeile 5 mit der Methode <code>connect()</code>. Eine <em>Methode</em> ist eine Funktion, die zu einem Objekt gehört. Wie etwa <code>fahren()</code> oder <code>bremsen()</code> in unserem Auto-Beispiel.</p>
+<p>Wir können Methoden aufrufen, um eine bestimmte Aktion auszuführen. In diesem Fall stellen wir eine Verbindung zum Mikrocontroller her, indem wir die Adresse und den Port angeben, über den die Verbindung hergestellt werden soll. In unserem Fall ist das “localhost”, was für die lokale Maschine steht, und Port 4223, der durch den Brick Daemon standarmäßig so konfiguriert ist. Der Aufruf einer Methode erfolgt immer mit dem Punkt <code>.</code> nach dem Objekt, gefolgt vom Namen der Methode und den Klammern <code>()</code>, in denen wir eventuell benötigte Parameter angeben.</p>
+</section>
+<section id="ein-objekt-für-den-button" class="level3" data-number="1.2.7">
+<h3 data-number="1.2.7" class="anchored" data-anchor-id="ein-objekt-für-den-button"><span class="header-section-number">1.2.7</span> Ein Objekt für den Button</h3>
+<p>In Zeile 6 erzeugen wir schließlich ein Objekt der Klasse <code>BrickletRGBLEDButton</code>. Dieses Objekt repräsentiert unseren Button und ermöglicht es uns, mit ihm zu interagieren. Wir nennen das Objekt <code>btn</code>, was für Button steht. Auch hier haben wir uns den Namen selbst ausgedacht, um später darauf zugreifen zu können. Auch wenn wir grundsätzlich Variablennamen frei wählen können, sollten sie immer so gewählt werden, dass sie den Inhalt der Variable beschreiben. Das macht es später einfacher, den Code zu verstehen. Gleichzeitig gibt es in Python einige Regeln, die wir bei der Benennung von Variablen beachten müssen. Dazu gehören etwa, dass Variablennamen nicht mit einer Zahl beginnen dürfen und keine Leerzeichen enthalten dürfen. Eine ausführliche Liste der Regeln findest du <a href="https://docs.python.org/3/reference/lexical_analysis.html#identifiers" title="Regeln für Variablennamen in Python">hier</a>.</p>
+<p>Damit haben wir unser erstes Programm von oben nach unten erläutert und dabei schon viele wichtige Konzepte der Programmierung kennengelernt:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 69%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Importieren von Bibliotheken</strong></td>
+<td>Wir nutzen Funktionen und Klassen aus einer Bibliothek, um das Rad nicht neu erfinden zu müssen.</td>
+</tr>
+<tr class="even">
+<td><strong>Boilerplate Code</strong></td>
+<td>Code, der immer fast gleich aussieht und den wir häufig kopieren können.</td>
+</tr>
+<tr class="odd">
+<td><strong>Schlüsselwörter</strong></td>
+<td>Begriffe, die in der Programmiersprache eine feste Bedeutung haben und nicht anderweitig verwendet werden dürfen.</td>
+</tr>
+<tr class="even">
+<td><strong>Klassen und Objekte</strong></td>
+<td>Wir erstellen Objekte aus Klassen, die uns bestimmte Funktionen und Eigenschaften bieten.</td>
+</tr>
+<tr class="odd">
+<td><strong>Methoden und Funktionen</strong></td>
+<td>Wir rufen Methoden auf, um Aktionen auszuführen, die zu einem Objekt gehören.</td>
+</tr>
+<tr class="even">
+<td><strong>Variablen</strong></td>
+<td>Wir speichern Werte in Variablen, um später darauf zugreifen zu können.</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="an-und-aus" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="an-und-aus"><span class="header-section-number">1.3</span> An und Aus</h2>
+<p>Jetzt, das wir mit dem Button verbunden sind, können wir über das Objekt <code>btn</code> auf die Funktionen des Buttons zugreifen. So können wir beispielsweise die Farbe der LED auf Grün ändern:</p>
+<div id="bb6230dd" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1">1</button><span id="annotated-cell-2-1" class="code-annotation-target"><a href="#annotated-cell-2-1"></a>btn.set_color(<span class="dv">0</span>, <span class="dv">255</span>, <span class="dv">0</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-2" data-code-lines="1" data-code-annotation="1">Hier setzen wir die Farbe der LED auf grün, indem wir die RGB-Werte für Rot, Grün und Blau angeben. In diesem Fall ist Rot auf 0, Grün auf 255 und Blau auf 0 gesetzt.</span>
+</dd>
+</dl>
+</div>
+</div>
+<hr>
 <p>🎮 Mini Reaction Game</p>
 <p>Theme: “Are you faster than a computer?”</p>
 <p><strong>Setup:</strong></p>
@@ -447,16 +533,6 @@ Abbildung&nbsp;1.4: Die Ansicht für den RGB LED Button im Brick Viewer, in der 
 <li>Each round adds another number.</li>
 </ul>
 <p>Teachable moment: Binary perception, memory, encoding sequences, and reinforcing input logic.</p>
-<div id="fig-chimp-buzzer" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-chimp-buzzer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="images/chimp_buzzer.jpg" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chimp-buzzer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;1.5: Ein Schimpanse der gleich auf den Buzzer haut
-</figcaption>
-</figure>
-</div>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
@@ -476,7 +552,6 @@ Pólya, George, und John Horton Conway. 2004. <em>How to solve it: a new aspect 
 Scott, John C. 2009. <em>But how do it know?: the basic principles of computers for everyone</em>. Oldsmar, FL: John C. Scott.
 </div>
 </div>
-</section>
 </section>
 
 </main> <!-- /main -->

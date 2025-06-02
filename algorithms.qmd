@@ -1,4 +1,5 @@
-# Algorithmen
+# Algorithmen {#sec-algorithms}
+## Setup {.unnumbered}
 
 ::: callout-note
 ## Kommt bald
