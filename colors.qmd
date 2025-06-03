@@ -1,53 +1,210 @@
+---
+abstract: |
+    Das erste Kapitel hat es gleich in sich: Wir lernen etwas über Farben und wie sie im Computer funktionieren. Gleichzeitig steigen wir in die Programmierung ein und schreiben unser erstes Programm. Dabei nutzen wir einen Button mit integrierter LED, um einen Regenbogenfarbverlauf zu erzeugen.
+abstract-title: ""
+---
+
 # Farben {#sec-colors}
 
 ## Setup {.unnumbered}
 
-Für dieses Kapitel benötigen wir zusätzlich zum Button mit integrierter LED ([RGB LED Button 2.0](https://www.tinkerforge.com/de/shop/bricklets/rgb-led-button-bricklet.html)) noch die separate LED ([RGB LED Bricklet 2.0](https://www.tinkerforge.com/de/shop/rgb-led-v2-bricklet.html)), die wir ebenfalls an den Mikrocontroller ([Master Brick 3.2](https://www.tinkerforge.com/de/shop/master-brick.html)) anschließen. Alle Geräte fixieren wir auf einer Montageplatte, wie in der Abbildung gezeigt.
+Für unser Experiment brauchen wir einen Button mit integrierter LED ([RGB LED Button 2.0](https://www.tinkerforge.com/de/shop/bricklets/rgb-led-button-bricklet.html)) sowie den Mikrocontroller ([Master Brick 3.2](https://www.tinkerforge.com/de/shop/master-brick.html)). Befestige beide Geräte mit den Abstandshaltern auf einer Montageplatte, wie in @fig-setup-rgb-led-button dargestellt. Zwei Fixierungen pro Gerät reichen dabei völlig aus. Vergiss nicht die kleinen weißen Kunststoff-Unterlegscheiben, um die Platinen nicht zu beschädigen.
 
-::: callout-note
-## Kommt bald
 
-Dieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.
+::: {#fig-setup-rgb-led-button layout="[[1], [1,1]]"}
+
+![Montageplatte mit allen Komponenten](images/setup_rgb_led_button.jpg){#fig-setup-rgb-led-button-a .lightbox group="setup-rgb-led-button"}
+
+![Nahaufnahme des Buttons](images/setup_rgb_led_button_closeup_1.jpg){#fig-setup-rgb-led-button-b .lightbox group="setup-rgb-led-button"}
+
+![Nahaufnahme des Master Bricks.](images/setup_rgb_led_button_closeup_2.jpg){#fig-setup-rgb-led-button-c .lightbox group="setup-rgb-led-button"}
+
+Einfaches Setup mit Mikrocontroller und Button mit integrierter LED.
+
 :::
 
-::: callout-tip
-## Experiment
+## Erste Schritte mit dem Brick Viewer
 
-Programmieren der LED, die in verschiedenen Farben aufleuchten soll. Jeder Farbe ist eine Taste auf der Tastatur zugeordnet, die der Spieler so schnell wie möglich drücken muss, nachdem die LED in der jeweiligen Farbe aufleuchtet.
+Im Fokus unseres Hardwaresetups steht der Button. Er kann zwei Zustände unterscheiden, nämlich gedrückt oder losgelassen. Und er kann zusätzlich leuchten, und zwar in einer beliebigen Farbe. Schauen wir uns an, wie du diese Funktionen ganz leicht mit dem Brick Viewer testen kannst.
 
-Das Programm kann zunächst linear ablaufen - also zunächst nur eine Runde, dann zwei kopiert hintereinander, bis zur Einführung einer Schleife.
-:::
+Schließe zuerst den Master Brick über das USB-Kabel an deinen Computer an und öffne den Brick Viewer. Klicke dann auf den Connect-Button.
 
-```python
+![Über den Connect-Button verbindet sich der Brick Viewer mit dem angeschlossenen Master Brick.](images/brick_viewer_connect.png){#fig-brick-viewer-connect .lightbox fig-align="center" width="100%" group="brick-viewer"}
+
+Sobald die Verbindung steht, siehst du alle angeschlossenen Geräte übersichtlich dargestellt. Wie genau das aussieht, zeigt @fig-brick-viewer-after-connect. Jedes Gerät bekommt einen eigenen Tab, in dem du sämtliche Funktionen testen kannst.
+
+![Der Brick Viewer nachdem ihr mit dem Master Brick verbunden seid.](images/brick_viewer_after_connect.png){#fig-brick-viewer-after-connect .lightbox group="brick-viewer"}
+
+Wechsle nun zum Tab des RGB LED Buttons. Hier kannst du sowohl die Farbe der LED einstellen als auch den aktuellen Zustand des Buttons sehen. Im Moment steht da vermutlich „released“, was so viel bedeutet wie „nicht gedrückt“. Probier es direkt aus: Drück den Button und beobachte, wie sich der Status verändert!
+
+Übrigens kannst du die Farbe der LED mit den drei Schiebereglern sehr genau einstellen. Jeder Regler bestimmt die Intensität der Grundfarben Rot, Grün und Blau und kann Werte zwischen 0 und 255 annehmen. Warum genau dieser Wertebereich? Diese spannende Frage klären wir ausführlich im Kapitel @sec-colors.
+
+![Die Ansicht für den RGB LED Button im Brick Viewer, in der alle Funktionen per Klick im Zugriff sind.](images/brick_viewer_rgb_led_button.png){#fig-brick-viewer-rgb-led-button .lightbox group="brick-viewer"}
+
+Der Brick Viewer ist ideal, um die Geräte kennenzulernen. Aber wenn du eigene Programme oder Spiele entwickeln möchtest, musst du die Geräte über Code ansprechen können. Wie das funktioniert, schauen wir uns jetzt gemeinsam an.
+
+## Unser erstes Programm
+
+Wie verbindet man sich eigentlich über ein Programm mit dem Button? Die Antwort darauf findest du im folgenden kurzen Codebeispiel.
+
+```{python}
+#| lst-label: lst-boilerplate-code
+#| lst-cap: Der Boilerplate Code für die Verbindung mit den Geräten am Beispiel des Buttons.
+
 from tinkerforge.ip_connection import IPConnection # <1>
-from tinkerforge.bricklet_rgb_led_v2 import BrickletRGBLEDV2 # <2>
+from tinkerforge.bricklet_rgb_led_button import BrickletRGBLEDButton # <2>
 
 ipcon = IPConnection() # <3>
 ipcon.connect("localhost", 4223) # <4>
-btn = BrickletRGBLEDV2("abC", ipcon) # <5>
+btn = BrickletRGBLEDButton("Ds3", ipcon) # <5>
 ```
-1. Importieren des Objekts zum Herstellen einer Verbindung mit dem Master Brick.
-2. Importieren des Objekts zur Darstellung der RGB LED als Python-Objekt.
-3. Eine neue Instanz einer IP-Verbindung erstellen.
-4. Eine Verbindung zu angeschlossenen Master Brick herstellen.
-5. Eine virtuelle Instanz des RGB LED Bricklets in unserem Programm erzeugen.
 
-Denke daran, wie Ampeln Farben verwenden, um wichtige Informationen zu vermitteln – Rot bedeutet Stopp, Grün bedeutet Los, und Gelb bedeutet Vorsicht. Genauso werden auf deinem Computer oder Smartphone überall Farben eingesetzt: Schaltflächen werden blau, wenn du mit der Maus darüber fährst, Benachrichtigungen erscheinen vielleicht in Rot, und Apps nutzen verschiedene Farben, um dir die Navigation zu erleichtern. All diese Farben werden mit Systemen wie RGB erzeugt und gesteuert.
+1.  Hier importieren wir ein Objekt aus einer Bibliothek zum Herstellen einer Verbindung mit dem Master Brick.
+2.  Hier importieren wir ein weietres Objekt, das wir zur Darstellung des Buttons als Python-Objekt benötigen.
+3.  Die Verbindung erfolgt über eine sogenannte IP-Verbindung, die wir hier als Objekt erstellen.
+4.  Mit `connect` stellen wir eine Verbindung zum angeschlossenen Master Brick her.
+5.  Schließlich holen wir uns eine virtuelle Instanz des RGB LED Button Bricklets, indem wir die UID nennen und sagen, welche Verbindung (`ipcon`) genutzt werden soll.
 
-Farben sind auch in Bildern und Videos unverzichtbar. Jedes Foto, das du auf deinem Bildschirm siehst, besteht aus winzigen Punkten, den sogenannten Pixeln, und die Farbe jedes Pixels wird mit dem RGB-System festgelegt. Wenn du ein Video anschaust, zeigt dein Gerät schnell hintereinander eine Folge von Bildern, die jeweils aus Millionen farbiger Pixel bestehen, um eine Bewegung vorzutäuschen. Durch das Mischen unterschiedlicher Mengen von Rot, Grün und Blau für jedes Pixel können Computer realistische Fotos, lebendige Animationen und naturgetreue Videos darstellen.
+### Programme
 
-Das RGB-System steht für Rot, Grün und Blau – die Grundfarben des Lichts. Durch das Kombinieren dieser drei Farben in unterschiedlichen Intensitäten können wir ein breites Farbspektrum erzeugen. Dieses System wird auf Computerbildschirmen, in digitaler Kunst und beim Programmieren verwendet, um Farben zu definieren und zu steuern.
+Zunächst einmal klären wir den Begriff *Programm*\index{Programm}. Ein Programm ist eine Abfolge von Anweisungen, die ein Computer ausführt, um eine bestimmte Aufgabe zu erledigen. In unserem Fall ist das Programm später dafür zuständig, mit dem Button zu interagieren und die LED in verschiedenen Farben leuchten zu lassen. Programme werden in Programmiersprachen geschrieben, die es uns ermöglichen, dem Computer präzise Anweisungen zu geben. Wir verwenden in diesem Buch die Programmiersprache Python, die sich besonders gut für Einsteiger eignet und gleichzeitig mächtig genug ist, um komplexe Aufgaben zu lösen.
 
-Zum Beispiel ermöglicht uns das RGB-System beim Programmieren, die Farbe einer LED oder einer Grafik festzulegen, indem wir angeben, wie viel Rot, Grün und Blau gemischt werden sollen. Jede Farbkomponente – Rot, Grün und Blau – erhält einen Wert von 0 (keine Intensität) bis 255 (volle Intensität). Durch die Auswahl verschiedener Werte für jede Komponente können wir jede beliebige Farbe erzeugen.
+Wenn wir ein Programm ausführen, arbeitet der Computer die Anweisungen Schritt für Schritt von oben nach unten ab. Es gibt Befehle, die den Computer von dieser linearen Abfolge abweichen lassen, etwa Schleifen oder Verzweigungen. Diese lernen wir später kennen.
 
-- Einführung RGB-LED
-- Einführung: Sie kann auf jede beliebige Farbe eingestellt werden
-- Einführung des RGB-Systems als DAS Codesystem zur Darstellung von Farben im Computer (ohne zu sehr auf Binärzahlen einzugehen)
+### Boilerplate Code
 
-Programmierkonzepte:
+Der Codeauschnitt in @lst-boilerplate-code wird uns im Verlauf dieses Buches immer wieder begegnen. Wir benötigen ihn, um uns am Anfang des Programms mit den Geräten zu verbinden. In der Informatik nennen wir solchen Code, den wir häufig in der gleichen Form benötigen und fast eins zu eins kopieren können, auch *Boilerplate Code*. Wundert euch also nicht, wenn ich diesen Begriff ab und an mal verwende. Jetzt wisst ihr, was gemeint ist.
 
-- Funktionsparameter (`set_rgb_value(r, g, b)`)
+### Bibliotheken
 
-```python
-led.set_rgb_value(255, 255, 255)
+Beginnen wir in den ersten beiden Zeilen. Hier seht ihr zwei sehr ähnliche Befehle, die mit dem Schlüsselwort `from` beginnen. Nach dem Schlüsselwort `from` folgt der Name einer Bibliothek, aus der wir ein für unser Programm benötigtes Objekte importieren. Die Kombination der Schlüsselwörter `from ...import` lässt sich also wörtlich übersetzen: "Aus der Bibliothek X importiere das Objekt Y".
+
+Eine *Bibliothek*\index{Bibliothek} in einer Programmiersprache ist die Bündelung und Bereitstellung von Funktionen, Klassen oder Konstanten. Eine Bibliothek kannst du dir vorstellen wie einen Werkzeugkasten: Sie enthält fertige Werkzeuge (Funktionen und Klassen), damit du nicht alles von Grund auf selbst schreiben musst. Tinkerforge stellt uns genau solche Werkzeuge bereit, damit wir schnell und unkompliziert mit den Geräten loslegen können.
+
+### Klassen und Objekte
+
+Mit `from ... import` importieren wir also etwas aus einer Bibliothek. Soweit so gut. Aber was bedeutet das genau? Mit *importieren* ist konkret gemeint, dass wir dem Programm mitteilen, dass wir vorhaben, die genannten Dinge in unserem Programm zu verwenden, und dass sie deshalb am besten schon einmal geladen werden sollten. Ob wir diese Dinge später wirklich nutzen steht auf einem anderen Blatt.
+
+In dem Fall der ersten beiden Zeilen unseres Programms von oben sind es zwei *Klassen*\index{Klasse}, deren Verwendung wir ankündigen. Die erste Klasse heisst `IPConnection`\index{`IPConnection`} und die zweite `BrickletRGBLEDButton`\index{`BrickletRGBLEDButton`}. Der Begriff *Klasse* ist hier verstehen analog zum Begriff *Kategorie*. Wir können zu einer Klasse gehörige *Objekte*\index{Objekt} erzeugen, und alle Objekte der selben Klasse verhalten sich gleich und haben die gleichen Funktionen. Das verstehen wir am besten an einem einfachen Beispiel.
+
+Stellt euch vor, ihr habt eine Klasse namens `Auto`. Diese Klasse beschreibt alle Eigenschaften und Funktionen, die ein Auto haben kann, wie etwa `fahren()`, `bremsen()` oder `tanken()`. Diese Dinge sollen für jedes Auto gleich ablaufen. Jedes konkrete Auto in der Welt ist ein Objekt dieser Klasse. Du kannst also sagen: "Mein Auto ist ein Objekt der Klasse `Auto`." Jedes `Auto` hat die gleichen Eigenschaften wie Farbe, Marke und Modell. Aber jedes Auto kann andere Werte für diese Eigenschaftan haben.
+
+Genauso verhält es sich mit den Klassen, die Tinkerforge für uns bereitgestellt hat. Die Klasse `IPConnection` beschreibt, wie wir eine Verbindung zu einem Mikrocontroller herstellen können, und die Klasse `BrickletRGBLEDButton` beschreibt, wie wir mit dem Button interagieren können. Wenn wir ein Objekt dieser Klasse erstellen, können wir die Funktionen nutzen, die in der Klasse definiert sind. Ein Button muss nicht fahren oder bremsen wie ein Auto. Dafür hat er andere Funktionen, wie etwa `get_button_state()` oder `set_color()`, die uns erlauben, den Status des Buttons abzufragen oder die Farbe der integrierten LED zu ändern. Eine Eigenschaft jedes Buttons ist seine UID, die eindeutig ist und uns hilft, ihn im System zu identifizieren.
+
+
+### Schlüsselwörter
+
+Soeben haben wir mit `from` und `import` unsere ersten beiden Schlüsselwörter in Python kennengelernt! Aber was bedeutet das genau? Ein Schlüsselwort, das wir im Englischen auch *keyword* oder *reserved keyword* nennen, ist ein Begriff, der in der jeweiligen Programmiersprache eine feste Bedeutung hat und deshalb nicht anderweitig verwendet werden darf. Wir werden gleich noch sehen, dass wir bei der Programmierung auch häufig Namen vergeben müssen, etwa für Variablen oder Funktionen. Diese Namen dürfen nicht wie ein Schlüsselwort lauten, ansonsten funktioniert unser Programm nicht wie gewünscht. Welche Schlüsselwörter es in Python gibt, könnt ihr [hier](https://docs.python.org/3/reference/lexical_analysis.html#keywords "Reservierte Schlüsselwörter in Python") nachschauen.
+
+Im Codeausschnitt oben laden wir zuerst das Objekt für die Verbindung zum angeschlossenen Mikrocontroller, die über eine IP-Verbindung hergestellt wird. Was das genau ist? Später mehr dazu. Zusätzlich zur `IPConnection` laden wir anschließend noch die benötigen Klassen für die Geräte, die wir in unserem aktuellen Setup verwenden wollen. In diesem Kapitel ist das nur der Button mit integrierter LED.
+
+### Objekte erzeugen
+
+In @lst-boilerplate-code in Zeile 4 erzeugen wir ein Objekt der Klasse `IPConnection`. Die fertige Instanz\index{Objektinstanz} - so nennen wir ein Objekt, das aus einer Klasse erzeugt wurde - speichern wir auf einer *Variable* mit dem Namen `ipcon`. Diesen Namen haben wir uns selbst ausgedacht, damit wir später darauf zugreifen können. Eine Variable ist also ein Platzhalter für einen Wert, den wir später im Programm verwenden wollen. In diesem Fall ist `ipcon` der Platzhalter für die Verbindung zu unserem Mikrocontroller. Was eine Variable genau ist, lernen wir später noch genauer kennen.
+
+### Methoden
+
+Über das Objekt `ipcon` können wir nun eine Verbindung zu unserem Mikrocontroller herstellen. Das geschieht in Zeile 5 mit der Methode `connect()`. Eine *Methode*\index{Methode} ist eine Funktion, die zu einem Objekt gehört. Wie etwa `fahren()` oder `bremsen()` in unserem Auto-Beispiel.
+
+Wir können Methoden aufrufen, um eine bestimmte Aktion auszuführen. In diesem Fall stellen wir eine Verbindung zum Mikrocontroller her, indem wir die Adresse und den Port angeben, über den die Verbindung hergestellt werden soll. In unserem Fall ist das "localhost", was für die lokale Maschine steht, und Port 4223, der durch den Brick Daemon standarmäßig so konfiguriert ist. Der Aufruf einer Methode erfolgt immer mit dem Punkt `.` nach dem Objekt, gefolgt vom Namen der Methode und den Klammern `()`, in denen wir eventuell benötigte Parameter angeben.
+
+### Ein Objekt für den Button
+
+In Zeile 6 erzeugen wir schließlich ein Objekt der Klasse `BrickletRGBLEDButton`. Dieses Objekt repräsentiert unseren Button und ermöglicht es uns, mit ihm zu interagieren. Wir nennen das Objekt `btn`, was für Button steht. Auch hier haben wir uns den Namen selbst ausgedacht, um später darauf zugreifen zu können. Auch wenn wir grundsätzlich Variablennamen frei wählen können, sollten sie immer so gewählt werden, dass sie den Inhalt der Variable beschreiben. Das macht es später einfacher, den Code zu verstehen. Gleichzeitig gibt es in Python einige Regeln, die wir bei der Benennung von Variablen beachten müssen. Dazu gehören etwa, dass Variablennamen nicht mit einer Zahl beginnen dürfen und keine Leerzeichen enthalten dürfen. Eine ausführliche Liste der Regeln findest du [hier](https://docs.python.org/3/reference/lexical_analysis.html#identifiers "Regeln für Variablennamen in Python").
+
+### Zusammenfassung unseres ersten Programms
+
+Damit haben wir unser erstes Programm von oben nach unten erläutert und dabei schon viele wichtige Konzepte der Programmierung kennengelernt:
+
+|  |  |
+|----------------------|--------------------------------------------------|
+| **Programme** | Ein Programm ist eine Abfolge von Anweisungen, die der Computer von oben nach unten ausführt. |
+| **Boilerplate Code** | Code, der immer fast gleich aussieht und den wir häufig kopieren können. |
+| **Importieren von Bibliotheken** | Wir nutzen Funktionen und Klassen aus einer Bibliothek, um das Rad nicht neu erfinden zu müssen. |
+| **Schlüsselwörter** | Begriffe, die in der Programmiersprache eine feste Bedeutung haben und nicht anderweitig verwendet werden dürfen. |
+| **Klassen und Objekte** | Wir erstellen Objekte aus Klassen, die uns bestimmte Funktionen und Eigenschaften bieten. |
+| **Methoden und Funktionen** | Wir rufen Methoden auf, um Aktionen auszuführen, die zu einem Objekt gehören. |
+| **Variablen** | Wir speichern Werte in Variablen, um später darauf zugreifen zu können. |
+
+## An und Aus – endlich geht’s los!
+
+Jetzt, da alles eingerichtet ist, können wir über unser Objekt btn ganz einfach die Farbe der LED auf Grün setzen:
+
+```{python}
+btn.set_color(0, 255, 0) # <1>
 ```
+1. Hier setzen wir die Farbe der LED auf grün, indem wir die RGB-Werte für Rot, Grün und Blau angeben. In diesem Fall ist Rot auf 0, Grün auf 255 und Blau auf 0 gesetzt.
+
+Aber halt! Wo steht hier was von *grün*? Diese Frage ist berechtigt, denn wir haben die Farbe nicht mit einem Namen angegeben, sondern mit Zahlen. Das ist in der Informatik ganz normal und nennt sich *RGB-Farbkodierung*\index{RGB-Farbkodierung}. Dabei steht R für Rot, G für Grün und B für Blau. Jede Farbe wird durch drei Zahlen zwischen 0 und 255 dargestellt, die die Intensität der jeweiligen Grundfarbe angeben. Wenn alle drei Werte auf 0 stehen, ist die Farbe schwarz. Wenn alle drei Werte auf 255 stehen, ist es weiß. Und wenn nur eine Farbe auf 255 steht, leuchtet die LED in genau dieser Farbe.
+
+Warum aber ist das so? Warum kodieren wir in der Informatik jede Farbe mit drei Zahlen? Warum überhaupt mit Zahlen? Hier kommen wir zu einer zentralen Frage dieses Buches: Wie bilden Computer Informationen ab?
+
+
+## Das fertige Programm
+
+```{python}
+#| lst-label: lst-rainbow-program
+#| lst-cap: Das fertige Programm, das die LED in einem Regenbogenfarbverlauf leuchten lässt.
+
+import keyboard
+import time
+import colorsys
+from tinkerforge.ip_connection import IPConnection
+from tinkerforge.bricklet_rgb_led_button import RGBLEDButton
+
+ipcon = IPConnection()
+ipcon.connect('localhost', 4223) 
+button = RGBLEDButton('Ds3', ipcon)
+
+# Turn button of initially
+button.set_color(0, 0, 0)
+
+# Initialize the hue value
+hue = 1
+
+# Loop until user presses escape key
+while not keyboard.is_pressed('esc'):
+    btn_state = button.get_button_state()
+
+    if btn_state == 0:
+        hue = hue + 1
+
+    if hue > 360:
+        hue = 1
+
+    r, g, b = colorsys.hsv_to_rgb(hue / 360.0, 1.0, 1.0)
+    r = int(r * 255)
+    g = int(g * 255)
+    b = int(b * 255)
+
+    button.set_color(r, g, b)
+    time.sleep(0.005)
+```
+
+
+
+---
+
+🎮 Mini Reaction Game
+
+Theme: "Are you faster than a computer?"
+
+**Setup:**
+
+-   Flash an LED randomly after a delay, and students must press the correct button as fast as possible.
+-   Wrong button or slow response → “fail” message.
+-   Display or rank response times.
+
+Teachable moment: Real-time input processing, event handling, and how computers handle asynchronous input.
+
+🧠 Bonus Concept: Binary Memory Challenge
+
+Theme: "Simon Says: Binary Edition"
+
+**Setup:**
+
+-   System shows a sequence of binary numbers via LED flashes (e.g., 01 → left off, right on).
+-   Students must repeat the sequence by pressing the buttons.
+-   Each round adds another number.
+
+Teachable moment: Binary perception, memory, encoding sequences, and reinforcing input logic.

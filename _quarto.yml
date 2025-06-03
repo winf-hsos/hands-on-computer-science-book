@@ -24,7 +24,6 @@ book:
   chapters:
     - index.qmd
     - experiments.qmd
-    - on-or-off.qmd
     - colors.qmd
     - text.qmd
     - images.qmd

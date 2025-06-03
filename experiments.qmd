@@ -30,8 +30,7 @@ Kapitel für Kapitel werden wir an unterschiedlichen Experimenten arbeiten. Dabe
 
 | Kapitel | Experiment(e) |
 |----------------|--------------------------------------------------------|
-| @sec-on-or-off | Wir schreiben unser erstes Spiel: Wer drückt den Button am schnellsten? |
-| @sec-colors | Wir bleiben in der Spielwelt und schreiben ein kleines Farb-Memory mit der LED. |
+| @sec-colors | Wir lassen eine LED einen Regenbogenfarbverlauf über die Zeit erzeugen. |
 | @sec-texts | Wir lernen, wie man Texte umständlich und ohne Tastatur eingeben kann – über Handgesten. |
 | @sec-images | Wir verbinden Tabellenkalkulation mit Bildern und Touchdisplays 🤯 |
 | @sec-codes | Wir lernen Morse-Code und wie wir diesen über einen Lautsprecher ausgeben können. |
