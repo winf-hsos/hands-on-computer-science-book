@@ -329,7 +329,7 @@ div.csl-indent {
 
 <section id="setup" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="setup">Setup</h2>
-<p>Für unser Experiment brauchen wir einen Button mit integrierter LED (<a href="https://www.tinkerforge.com/de/shop/bricklets/rgb-led-button-bricklet.html">RGB LED Button 2.0</a>) sowie den Mikrocontroller (<a href="https://www.tinkerforge.com/de/shop/master-brick.html">Master Brick 3.2</a>). Befestige beide Geräte mit den Abstandshaltern auf einer Montageplatte, wie in <a href="#fig-setup-rgb-led-button" class="quarto-xref">Abbildung&nbsp;<span>1.1</span></a> dargestellt. Zwei Fixierungen pro Gerät reichen dabei völlig aus. Vergiss nicht die kleinen weißen Kunststoff-Unterlegscheiben, um die Platinen nicht zu beschädigen.</p>
+<p>Bereit für dein erstes Hardware-Experiment? Du brauchst dafür einen Button mit eingebauter LED (<a href="https://www.tinkerforge.com/de/shop/bricklets/rgb-led-button-bricklet.html">RGB LED Button 2.0</a>) und einen Mikrocontroller (<a href="https://www.tinkerforge.com/de/shop/master-brick.html">Master Brick 3.2</a>). Befestige beide Bauteile mit Abstandshaltern auf einer Montageplatte, wie in <a href="#fig-setup-rgb-led-button" class="quarto-xref">Abbildung&nbsp;<span>1.1</span></a> gezeigt. Zwei Halterungen pro Gerät reichen völlig. Denk an die kleinen, weißen Kunststoff-Unterlegscheiben – die schützen deine Platinen vor Druckstellen.</p>
 <div id="fig-setup-rgb-led-button" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-setup-rgb-led-button-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -338,10 +338,10 @@ div.csl-indent {
 <div id="fig-setup-rgb-led-button-a" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="setup-rgb-led-button">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-setup-rgb-led-button-a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/setup_rgb_led_button.jpg" class="lightbox" data-gallery="setup-rgb-led-button" title="Abbildung&nbsp;1.1&nbsp;(a): Montageplatte mit allen Komponenten"><img src="images/setup_rgb_led_button.jpg" class="img-fluid figure-img" data-ref-parent="fig-setup-rgb-led-button"></a>
+<a href="images/setup_rgb_led_button.jpg" class="lightbox" data-gallery="setup-rgb-led-button" title="Abbildung&nbsp;1.1&nbsp;(a): Montageplatte mit allen Komponenten."><img src="images/setup_rgb_led_button.jpg" class="img-fluid figure-img" data-ref-parent="fig-setup-rgb-led-button"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-setup-rgb-led-button-a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(a) Montageplatte mit allen Komponenten
+(a) Montageplatte mit allen Komponenten.
 </figcaption>
 </figure>
 </div>
@@ -352,10 +352,10 @@ div.csl-indent {
 <div id="fig-setup-rgb-led-button-b" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="setup-rgb-led-button">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-setup-rgb-led-button-b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/setup_rgb_led_button_closeup_1.jpg" class="lightbox" data-gallery="setup-rgb-led-button" title="Abbildung&nbsp;1.1&nbsp;(b): Nahaufnahme des Buttons"><img src="images/setup_rgb_led_button_closeup_1.jpg" class="img-fluid figure-img" data-ref-parent="fig-setup-rgb-led-button"></a>
+<a href="images/setup_rgb_led_button_closeup_1.jpg" class="lightbox" data-gallery="setup-rgb-led-button" title="Abbildung&nbsp;1.1&nbsp;(b): Nahaufnahme des Buttons."><img src="images/setup_rgb_led_button_closeup_1.jpg" class="img-fluid figure-img" data-ref-parent="fig-setup-rgb-led-button"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-setup-rgb-led-button-b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(b) Nahaufnahme des Buttons
+(b) Nahaufnahme des Buttons.
 </figcaption>
 </figure>
 </div>
@@ -382,7 +382,7 @@ Abbildung&nbsp;1.1: Einfaches Setup mit Mikrocontroller und Button mit integrier
 </section>
 <section id="erste-schritte-mit-dem-brick-viewer" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="erste-schritte-mit-dem-brick-viewer"><span class="header-section-number">1.1</span> Erste Schritte mit dem Brick Viewer</h2>
-<p>Im Fokus unseres Hardwaresetups steht der Button. Er kann zwei Zustände unterscheiden, nämlich gedrückt oder losgelassen. Und er kann zusätzlich leuchten, und zwar in einer beliebigen Farbe. Schauen wir uns an, wie du diese Funktionen ganz leicht mit dem Brick Viewer testen kannst.</p>
+<p>Der Button ist mehr als nur ein Knopf. Er hat zwei Tricks drauf: Er erkennt, ob er gedrückt wird, und er kann leuchten. In Farbe! Wie wir das testen? Das geht ganz leicht mit dem Brick Viewer.</p>
 <p>Schließe zuerst den Master Brick über das USB-Kabel an deinen Computer an und öffne den Brick Viewer. Klicke dann auf den Connect-Button.</p>
 <div id="fig-brick-viewer-connect" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="brick-viewer" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
@@ -394,7 +394,7 @@ Abbildung&nbsp;1.2: Über den Connect-Button verbindet sich der Brick Viewer mit
 </figcaption>
 </figure>
 </div>
-<p>Sobald die Verbindung steht, siehst du alle angeschlossenen Geräte übersichtlich dargestellt. Wie genau das aussieht, zeigt <a href="#fig-brick-viewer-after-connect" class="quarto-xref">Abbildung&nbsp;<span>1.3</span></a>. Jedes Gerät bekommt einen eigenen Tab, in dem du sämtliche Funktionen testen kannst.</p>
+<p>Wenn alles geklappt hat, zeigt dir der Brick Viewer alle angeschlossenen Geräte in Tabs an. Schau dir <a href="#fig-brick-viewer-after-connect" class="quarto-xref">Abbildung&nbsp;<span>1.3</span></a> an – so etwa sollte es aussehen.</p>
 <div id="fig-brick-viewer-after-connect" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="brick-viewer">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-brick-viewer-after-connect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -405,8 +405,8 @@ Abbildung&nbsp;1.3: Der Brick Viewer nachdem ihr mit dem Master Brick verbunden 
 </figcaption>
 </figure>
 </div>
-<p>Wechsle nun zum Tab des RGB LED Buttons. Hier kannst du sowohl die Farbe der LED einstellen als auch den aktuellen Zustand des Buttons sehen. Im Moment steht da vermutlich „released“, was so viel bedeutet wie „nicht gedrückt“. Probier es direkt aus: Drück den Button und beobachte, wie sich der Status verändert!</p>
-<p>Übrigens kannst du die Farbe der LED mit den drei Schiebereglern sehr genau einstellen. Jeder Regler bestimmt die Intensität der Grundfarben Rot, Grün und Blau und kann Werte zwischen 0 und 255 annehmen. Warum genau dieser Wertebereich? Diese spannende Frage klären wir ausführlich im Kapitel <a href="#sec-colors" class="quarto-xref"><span>Kapitel 1</span></a>.</p>
+<p>Wechsle nun zum Tab des RGB LED Buttons. Hier kannst du sowohl die Farbe der LED einstellen als auch den aktuellen Zustand des Buttons sehen. Im Moment steht da vermutlich „released“, was so viel bedeutet wie „nicht gedrückt“. Probier es direkt aus: Drück den Button! Schau, was passiert!</p>
+<p>Mit den drei Schiebereglern steuerst du die Farbe – Rot, Grün, Blau. Wertebereich: 0 bis 255. Warum gerade diese Zahlen? Gute Frage. Die Antwort kommt weiter unten.</p>
 <div id="fig-brick-viewer-rgb-led-button" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="brick-viewer">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-brick-viewer-rgb-led-button-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -417,12 +417,12 @@ Abbildung&nbsp;1.4: Die Ansicht für den RGB LED Button im Brick Viewer, in der 
 </figcaption>
 </figure>
 </div>
-<p>Der Brick Viewer ist ideal, um die Geräte kennenzulernen. Aber wenn du eigene Programme oder Spiele entwickeln möchtest, musst du die Geräte über Code ansprechen können. Wie das funktioniert, schauen wir uns jetzt gemeinsam an.</p>
+<p>Fazit: Der Brick Viewer ist top zum Rumprobieren. Aber wenn du echte Projekte umsetzen willst, musst du programmieren können. Also los!</p>
 </section>
 <section id="unser-erstes-programm" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="unser-erstes-programm"><span class="header-section-number">1.2</span> Unser erstes Programm</h2>
 <p>Wie verbindet man sich eigentlich über ein Programm mit dem Button? Die Antwort darauf findest du im folgenden kurzen Codebeispiel.</p>
-<div id="b8491c94" class="cell" data-execution_count="1">
+<div id="7bfc77a4" class="cell" data-execution_count="1">
 <div id="lst-boilerplate-code" class="python cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-boilerplate-code-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -513,31 +513,31 @@ Listing&nbsp;1.1: Der Boilerplate Code für die Verbindung mit den Geräten am B
 <tbody>
 <tr class="odd">
 <td><strong>Programme</strong></td>
-<td>Ein Programm ist eine Abfolge von Anweisungen, die der Computer von oben nach unten ausführt.</td>
+<td>Abfolge von Anweisungen, die nacheinander ausgeführt werden.</td>
 </tr>
 <tr class="even">
 <td><strong>Boilerplate Code</strong></td>
-<td>Code, der immer fast gleich aussieht und den wir häufig kopieren können.</td>
+<td>Standard-Code, den man immer wieder braucht.</td>
 </tr>
 <tr class="odd">
 <td><strong>Importieren von Bibliotheken</strong></td>
-<td>Wir nutzen Funktionen und Klassen aus einer Bibliothek, um das Rad nicht neu erfinden zu müssen.</td>
+<td>Sammlung von fertigen Code-Elementen.</td>
 </tr>
 <tr class="even">
 <td><strong>Schlüsselwörter</strong></td>
-<td>Begriffe, die in der Programmiersprache eine feste Bedeutung haben und nicht anderweitig verwendet werden dürfen.</td>
+<td>Reservierte Begriffe der Programmiersprache.</td>
 </tr>
 <tr class="odd">
 <td><strong>Klassen und Objekte</strong></td>
-<td>Wir erstellen Objekte aus Klassen, die uns bestimmte Funktionen und Eigenschaften bieten.</td>
+<td>Kategorien und deren konkrete Instanzen.</td>
 </tr>
 <tr class="even">
 <td><strong>Methoden und Funktionen</strong></td>
-<td>Wir rufen Methoden auf, um Aktionen auszuführen, die zu einem Objekt gehören.</td>
+<td>Funktionen, die zu einem Objekt gehören.</td>
 </tr>
 <tr class="odd">
 <td><strong>Variablen</strong></td>
-<td>Wir speichern Werte in Variablen, um später darauf zugreifen zu können.</td>
+<td>Platzhalter für Werte.</td>
 </tr>
 </tbody>
 </table>
@@ -545,24 +545,35 @@ Listing&nbsp;1.1: Der Boilerplate Code für die Verbindung mit den Geräten am B
 </section>
 <section id="an-und-aus-endlich-gehts-los" class="level2" data-number="1.3">
 <h2 data-number="1.3" class="anchored" data-anchor-id="an-und-aus-endlich-gehts-los"><span class="header-section-number">1.3</span> An und Aus – endlich geht’s los!</h2>
-<p>Jetzt, da alles eingerichtet ist, können wir über unser Objekt btn ganz einfach die Farbe der LED auf Grün setzen:</p>
-<div id="ad7c9a63" class="cell" data-execution_count="2">
+<p>Und jetzt? Jetzt bringen wir die LED zum Leuchten:</p>
+<div id="407d9856" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1">1</button><span id="annotated-cell-2-1" class="code-annotation-target"><a href="#annotated-cell-2-1"></a>btn.set_color(<span class="dv">0</span>, <span class="dv">255</span>, <span class="dv">0</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-2" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-2" data-code-lines="1" data-code-annotation="1">Hier setzen wir die Farbe der LED auf grün, indem wir die RGB-Werte für Rot, Grün und Blau angeben. In diesem Fall ist Rot auf 0, Grün auf 255 und Blau auf 0 gesetzt.</span>
+<span data-code-cell="annotated-cell-2" data-code-lines="1" data-code-annotation="1">Setzt die LED auf grün. R = 0, G = 255, B = 0. Logisch, oder?</span>
 </dd>
 </dl>
 </div>
 </div>
-<p>Aber halt! Wo steht hier was von <em>grün</em>? Diese Frage ist berechtigt, denn wir haben die Farbe nicht mit einem Namen angegeben, sondern mit Zahlen. Das ist in der Informatik ganz normal und nennt sich <em>RGB-Farbkodierung</em>. Dabei steht R für Rot, G für Grün und B für Blau. Jede Farbe wird durch drei Zahlen zwischen 0 und 255 dargestellt, die die Intensität der jeweiligen Grundfarbe angeben. Wenn alle drei Werte auf 0 stehen, ist die Farbe schwarz. Wenn alle drei Werte auf 255 stehen, ist es weiß. Und wenn nur eine Farbe auf 255 steht, leuchtet die LED in genau dieser Farbe.</p>
-<p>Warum aber ist das so? Warum kodieren wir in der Informatik jede Farbe mit drei Zahlen? Warum überhaupt mit Zahlen? Hier kommen wir zu einer zentralen Frage dieses Buches: Wie bilden Computer Informationen ab?</p>
+<p>Moment mal … Wo steht hier eigentlich <em>grün</em>? Steht da gar nicht. Stattdessen: Zahlen. Willkommen bei der <em>RGB-Farbkodierung</em>. Jede Farbe besteht aus drei Werten zwischen 0 und 255: Rot, Grün, Blau. Null ist nix. 255 ist volle Power. Alles 0? Schwarz. Alles 255? Weiß. Nur Grün auf 255? Na klar: grün.</p>
+<p>Aber warum machen wir das mit Zahlen? Weil Computer nun mal mit Zahlen arbeiten. Das ist einer der zentralen Gedanken dieses Buches: Wie übersetzen wir die Welt in etwas, das ein Computer versteht?</p>
+<p>Warum aber ist das so? Warum kodieren wir in der Informatik jede Farbe mit <em>drei</em> Zahlen? Warum überhaupt mit Zahlen? Hier kommen wir zu einer zentralen Frage dieses Buches: Wie bilden Computer Informationen ab?</p>
+<div id="fig-em-spectrum" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-em-spectrum-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/em_spectrum.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-em-spectrum-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;1.5: Das elektromagnetische Spektrum, wovon das sichtbare Licht ein Teil ist. (Quelle: <a href="https://en.wikipedia.org/wiki/File:EM_Spectrum_Properties_edit.svg">Wikipedia</a>)
+</figcaption>
+</figure>
+</div>
 </section>
 <section id="das-fertige-programm" class="level2" data-number="1.4">
 <h2 data-number="1.4" class="anchored" data-anchor-id="das-fertige-programm"><span class="header-section-number">1.4</span> Das fertige Programm</h2>
-<div id="4915cb6a" class="cell" data-execution_count="3">
+<div id="7954db05" class="cell" data-execution_count="3">
 <div id="lst-rainbow-program" class="python cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-rainbow-program-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">

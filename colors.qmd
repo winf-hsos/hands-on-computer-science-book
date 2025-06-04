@@ -8,14 +8,14 @@ abstract-title: ""
 
 ## Setup {.unnumbered}
 
-Für unser Experiment brauchen wir einen Button mit integrierter LED ([RGB LED Button 2.0](https://www.tinkerforge.com/de/shop/bricklets/rgb-led-button-bricklet.html)) sowie den Mikrocontroller ([Master Brick 3.2](https://www.tinkerforge.com/de/shop/master-brick.html)). Befestige beide Geräte mit den Abstandshaltern auf einer Montageplatte, wie in @fig-setup-rgb-led-button dargestellt. Zwei Fixierungen pro Gerät reichen dabei völlig aus. Vergiss nicht die kleinen weißen Kunststoff-Unterlegscheiben, um die Platinen nicht zu beschädigen.
+Bereit für dein erstes Hardware-Experiment? Du brauchst dafür einen Button mit eingebauter LED ([RGB LED Button 2.0](https://www.tinkerforge.com/de/shop/bricklets/rgb-led-button-bricklet.html)) und einen Mikrocontroller ([Master Brick 3.2](https://www.tinkerforge.com/de/shop/master-brick.html)). Befestige beide Bauteile mit Abstandshaltern auf einer Montageplatte, wie in @fig-setup-rgb-led-button gezeigt. Zwei Halterungen pro Gerät reichen völlig. Denk an die kleinen, weißen Kunststoff-Unterlegscheiben – die schützen deine Platinen vor Druckstellen.
 
 
 ::: {#fig-setup-rgb-led-button layout="[[1], [1,1]]"}
 
-![Montageplatte mit allen Komponenten](images/setup_rgb_led_button.jpg){#fig-setup-rgb-led-button-a .lightbox group="setup-rgb-led-button"}
+![Montageplatte mit allen Komponenten.](images/setup_rgb_led_button.jpg){#fig-setup-rgb-led-button-a .lightbox group="setup-rgb-led-button"}
 
-![Nahaufnahme des Buttons](images/setup_rgb_led_button_closeup_1.jpg){#fig-setup-rgb-led-button-b .lightbox group="setup-rgb-led-button"}
+![Nahaufnahme des Buttons.](images/setup_rgb_led_button_closeup_1.jpg){#fig-setup-rgb-led-button-b .lightbox group="setup-rgb-led-button"}
 
 ![Nahaufnahme des Master Bricks.](images/setup_rgb_led_button_closeup_2.jpg){#fig-setup-rgb-led-button-c .lightbox group="setup-rgb-led-button"}
 
@@ -25,23 +25,23 @@ Einfaches Setup mit Mikrocontroller und Button mit integrierter LED.
 
 ## Erste Schritte mit dem Brick Viewer
 
-Im Fokus unseres Hardwaresetups steht der Button. Er kann zwei Zustände unterscheiden, nämlich gedrückt oder losgelassen. Und er kann zusätzlich leuchten, und zwar in einer beliebigen Farbe. Schauen wir uns an, wie du diese Funktionen ganz leicht mit dem Brick Viewer testen kannst.
+Der Button ist mehr als nur ein Knopf. Er hat zwei Tricks drauf: Er erkennt, ob er gedrückt wird, und er kann leuchten. In Farbe! Wie wir das testen? Das geht ganz leicht mit dem Brick Viewer.
 
 Schließe zuerst den Master Brick über das USB-Kabel an deinen Computer an und öffne den Brick Viewer. Klicke dann auf den Connect-Button.
 
 ![Über den Connect-Button verbindet sich der Brick Viewer mit dem angeschlossenen Master Brick.](images/brick_viewer_connect.png){#fig-brick-viewer-connect .lightbox fig-align="center" width="100%" group="brick-viewer"}
 
-Sobald die Verbindung steht, siehst du alle angeschlossenen Geräte übersichtlich dargestellt. Wie genau das aussieht, zeigt @fig-brick-viewer-after-connect. Jedes Gerät bekommt einen eigenen Tab, in dem du sämtliche Funktionen testen kannst.
+Wenn alles geklappt hat, zeigt dir der Brick Viewer alle angeschlossenen Geräte in Tabs an. Schau dir @fig-brick-viewer-after-connect an – so etwa sollte es aussehen.
 
 ![Der Brick Viewer nachdem ihr mit dem Master Brick verbunden seid.](images/brick_viewer_after_connect.png){#fig-brick-viewer-after-connect .lightbox group="brick-viewer"}
 
-Wechsle nun zum Tab des RGB LED Buttons. Hier kannst du sowohl die Farbe der LED einstellen als auch den aktuellen Zustand des Buttons sehen. Im Moment steht da vermutlich „released“, was so viel bedeutet wie „nicht gedrückt“. Probier es direkt aus: Drück den Button und beobachte, wie sich der Status verändert!
+Wechsle nun zum Tab des RGB LED Buttons. Hier kannst du sowohl die Farbe der LED einstellen als auch den aktuellen Zustand des Buttons sehen. Im Moment steht da vermutlich „released“, was so viel bedeutet wie „nicht gedrückt“. Probier es direkt aus: Drück den Button! Schau, was passiert!
 
-Übrigens kannst du die Farbe der LED mit den drei Schiebereglern sehr genau einstellen. Jeder Regler bestimmt die Intensität der Grundfarben Rot, Grün und Blau und kann Werte zwischen 0 und 255 annehmen. Warum genau dieser Wertebereich? Diese spannende Frage klären wir ausführlich im Kapitel @sec-colors.
+Mit den drei Schiebereglern steuerst du die Farbe – Rot, Grün, Blau. Wertebereich: 0 bis 255. Warum gerade diese Zahlen? Gute Frage. Die Antwort kommt weiter unten.
 
 ![Die Ansicht für den RGB LED Button im Brick Viewer, in der alle Funktionen per Klick im Zugriff sind.](images/brick_viewer_rgb_led_button.png){#fig-brick-viewer-rgb-led-button .lightbox group="brick-viewer"}
 
-Der Brick Viewer ist ideal, um die Geräte kennenzulernen. Aber wenn du eigene Programme oder Spiele entwickeln möchtest, musst du die Geräte über Code ansprechen können. Wie das funktioniert, schauen wir uns jetzt gemeinsam an.
+Fazit: Der Brick Viewer ist top zum Rumprobieren. Aber wenn du echte Projekte umsetzen willst, musst du programmieren können. Also los!
 
 ## Unser erstes Programm
 
@@ -118,27 +118,30 @@ Damit haben wir unser erstes Programm von oben nach unten erläutert und dabei s
 
 |  |  |
 |----------------------|--------------------------------------------------|
-| **Programme** | Ein Programm ist eine Abfolge von Anweisungen, die der Computer von oben nach unten ausführt. |
-| **Boilerplate Code** | Code, der immer fast gleich aussieht und den wir häufig kopieren können. |
-| **Importieren von Bibliotheken** | Wir nutzen Funktionen und Klassen aus einer Bibliothek, um das Rad nicht neu erfinden zu müssen. |
-| **Schlüsselwörter** | Begriffe, die in der Programmiersprache eine feste Bedeutung haben und nicht anderweitig verwendet werden dürfen. |
-| **Klassen und Objekte** | Wir erstellen Objekte aus Klassen, die uns bestimmte Funktionen und Eigenschaften bieten. |
-| **Methoden und Funktionen** | Wir rufen Methoden auf, um Aktionen auszuführen, die zu einem Objekt gehören. |
-| **Variablen** | Wir speichern Werte in Variablen, um später darauf zugreifen zu können. |
+| **Programme** | Abfolge von Anweisungen, die nacheinander ausgeführt werden. |
+| **Boilerplate Code** | Standard-Code, den man immer wieder braucht. |
+| **Importieren von Bibliotheken** | Sammlung von fertigen Code-Elementen. |
+| **Schlüsselwörter** | Reservierte Begriffe der Programmiersprache. |
+| **Klassen und Objekte** | Kategorien und deren konkrete Instanzen. |
+| **Methoden und Funktionen** | Funktionen, die zu einem Objekt gehören. |
+| **Variablen** | Platzhalter für Werte. |
 
 ## An und Aus – endlich geht’s los!
 
-Jetzt, da alles eingerichtet ist, können wir über unser Objekt btn ganz einfach die Farbe der LED auf Grün setzen:
+Und jetzt? Jetzt bringen wir die LED zum Leuchten:
 
 ```{python}
 btn.set_color(0, 255, 0) # <1>
 ```
-1. Hier setzen wir die Farbe der LED auf grün, indem wir die RGB-Werte für Rot, Grün und Blau angeben. In diesem Fall ist Rot auf 0, Grün auf 255 und Blau auf 0 gesetzt.
+1. Setzt die LED auf grün. R = 0, G = 255, B = 0. Logisch, oder?
 
-Aber halt! Wo steht hier was von *grün*? Diese Frage ist berechtigt, denn wir haben die Farbe nicht mit einem Namen angegeben, sondern mit Zahlen. Das ist in der Informatik ganz normal und nennt sich *RGB-Farbkodierung*\index{RGB-Farbkodierung}. Dabei steht R für Rot, G für Grün und B für Blau. Jede Farbe wird durch drei Zahlen zwischen 0 und 255 dargestellt, die die Intensität der jeweiligen Grundfarbe angeben. Wenn alle drei Werte auf 0 stehen, ist die Farbe schwarz. Wenn alle drei Werte auf 255 stehen, ist es weiß. Und wenn nur eine Farbe auf 255 steht, leuchtet die LED in genau dieser Farbe.
+Moment mal … Wo steht hier eigentlich *grün*? Steht da gar nicht. Stattdessen: Zahlen. Willkommen bei der *RGB-Farbkodierung*\index{RGB-Farbkodierung}. Jede Farbe besteht aus drei Werten zwischen 0 und 255: Rot, Grün, Blau. Null ist nix. 255 ist volle Power. Alles 0? Schwarz. Alles 255? Weiß. Nur Grün auf 255? Na klar: grün.
 
-Warum aber ist das so? Warum kodieren wir in der Informatik jede Farbe mit drei Zahlen? Warum überhaupt mit Zahlen? Hier kommen wir zu einer zentralen Frage dieses Buches: Wie bilden Computer Informationen ab?
+Aber warum machen wir das mit Zahlen? Weil Computer nun mal mit Zahlen arbeiten. Das ist einer der zentralen Gedanken dieses Buches: Wie übersetzen wir die Welt in etwas, das ein Computer versteht?
 
+Warum aber ist das so? Warum kodieren wir in der Informatik jede Farbe mit *drei* Zahlen? Warum überhaupt mit Zahlen? Hier kommen wir zu einer zentralen Frage dieses Buches: Wie bilden Computer Informationen ab?
+
+![Das elektromagnetische Spektrum, wovon das sichtbare Licht ein Teil ist. (Quelle: [Wikipedia](https://en.wikipedia.org/wiki/File:EM_Spectrum_Properties_edit.svg))](images/em_spectrum.png){#fig-em-spectrum fig-align="center" width="100%"}
 
 ## Das fertige Programm
 
