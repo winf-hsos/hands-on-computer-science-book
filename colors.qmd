@@ -1,6 +1,6 @@
 ---
 abstract: |
-    Das erste Kapitel hat es gleich in sich: Wir lernen etwas über Farben und wie sie im Computer funktionieren. Gleichzeitig steigen wir in die Programmierung ein und schreiben unser erstes Programm. Dabei nutzen wir einen Button mit integrierter LED, um einen Regenbogenfarbverlauf zu erzeugen.
+    Das erste Kapitel hat es gleich in sich: Wir lernen etwas über Farben und wie sie im Computer funktionieren. Gleichzeitig steigen wir in die Programmierung ein und schreiben unser erstes Programm. Dabei nutzen wir eine LED und erzeugen einen Regenbogenfarbverlauf.
 abstract-title: ""
 ---
 
@@ -8,7 +8,7 @@ abstract-title: ""
 
 ## Setup {.unnumbered}
 
-Bereit für dein erstes Hardware-Experiment? Du brauchst dafür einen Button mit eingebauter LED ([RGB LED Button 2.0](https://www.tinkerforge.com/de/shop/bricklets/rgb-led-button-bricklet.html)) und einen Mikrocontroller ([Master Brick 3.2](https://www.tinkerforge.com/de/shop/master-brick.html)). Befestige beide Bauteile mit Abstandshaltern auf einer Montageplatte, wie in @fig-setup-rgb-led-button gezeigt. Zwei Halterungen pro Gerät reichen völlig. Denk an die kleinen, weißen Kunststoff-Unterlegscheiben – die schützen deine Platinen vor Druckstellen.
+Bereit für dein erstes Hardware-Experiment? Du brauchst dafür eine LED ([RGB LED Bricklet 2.0](https://www.tinkerforge.com/en/doc/Hardware/Bricklets/RGB_LED_V2.html)) und einen Mikrocontroller ([Master Brick 3.2](https://www.tinkerforge.com/de/shop/master-brick.html)). Befestige beide Bauteile mit Abstandshaltern auf einer Montageplatte, wie in @fig-setup-rgb-led-button gezeigt. Zwei Halterungen pro Gerät reichen völlig. Denk an die kleinen, weißen Kunststoff-Unterlegscheiben – die schützen deine Platinen vor Druckstellen.
 
 
 ::: {#fig-setup-rgb-led-button layout="[[1], [1,1]]"}
@@ -126,9 +126,9 @@ Damit haben wir unser erstes Programm von oben nach unten erläutert und dabei s
 | **Methoden und Funktionen** | Funktionen, die zu einem Objekt gehören. |
 | **Variablen** | Platzhalter für Werte. |
 
-## An und Aus – endlich geht’s los!
+### Und jetzt?
 
-Und jetzt? Jetzt bringen wir die LED zum Leuchten:
+Wir haben nun eine virtuelle, digitale Repräsentation unseres Buttons im Python. Damit können wir die LED des Buttons zum Leuchten bringen. Dazu verwenden wir eine Methode der Klasse `BrickletRGBLEDButton`, die `set_color()` heißt. Diese Methode erwartet drei Parameter: Rot, Grün und Blau. Mit diesen Parametern können wir die Farbe der LED einstellen.
 
 ```{python}
 btn.set_color(0, 255, 0) # <1>
@@ -141,7 +141,107 @@ Aber warum machen wir das mit Zahlen? Weil Computer nun mal mit Zahlen arbeiten.
 
 Warum aber ist das so? Warum kodieren wir in der Informatik jede Farbe mit *drei* Zahlen? Warum überhaupt mit Zahlen? Hier kommen wir zu einer zentralen Frage dieses Buches: Wie bilden Computer Informationen ab?
 
+## Farben und Licht
+
+Pyhsik ist vielleicht schon eine Weile her und wir halten es hier auch kurz. Erinnern wir uns kurz, was Licht und damit Farben sind. Licht ist eine Form von *elektromagnetischer Strahlung*\index{elektromagnetische Strahlung}. Das bedeutet, dass es sich um Wellen handelt, die sich durch den Raum bewegen. Diese Wellen haben unterschiedliche Frequenzen und Wellenlängen. Das sichtbare Licht ist nur ein kleiner Teil des gesamten elektromagnetischen Spektrums, das von Radiowellen über Infrarotstrahlung bis hin zu Röntgenstrahlen und Gammastrahlen reicht.
+
+Bei Wellen unterscheiden wir zwischen der Frequenz (wie oft die Welle pro Sekunde schwingt) und der Wellenlänge (der Abstand zwischen zwei aufeinanderfolgenden Wellenbergen). Die Frequenz und die Wellenlänge sind umgekehrt proportional: Je höher die Frequenz, desto kürzer die Wellenlänge und umgekehrt.
+
+Frequenzen messen wir in Hertz (Hz), wobei 1 Hz einer Schwingung pro Sekunde entspricht. Das sichtbare Licht hat Frequenzen im Bereich von etwa 430 THz (Terahertz) bis 750 THz. Die Wellenlängen des sichtbaren Lichts liegen zwischen etwa 400 nm (Nanometer) für violettes Licht und etwa 700 nm für rotes Licht. Um sich das vorzustellen: Ein Nanometer ist ein Milliardstel Meter. Zum Vergleich: Ein menschliches Haar hat einen Durchmesser von etwa 80.000 bis 100.000 Nanometern. Die Abstände zwischen den Wellenlängen des sichtbaren Lichts sind also extrem klein.
+
+Was bedeutet das nun für eine LED? Eine LED (Light Emitting Diode) ist ein Halbleiterbauelement, das Licht erzeugt, wenn elektrischer Strom hindurchfließt. Die Farbe des Lichts hängt von Eigenschaften des Halbleitermaterials ab, aus dem die LED besteht. Verschiedene Materialien emittieren Licht bei unterschiedlichen Wellenlängen, was zu verschiedenen Farben führt. Zum Beispiel emittiert eine rote LED Licht mit einer Wellenlänge von etwa 620-750 nm, während eine grüne LED Licht mit einer Wellenlänge von etwa 495-570 nm emittiert.
+
 ![Das elektromagnetische Spektrum, wovon das sichtbare Licht ein Teil ist. (Quelle: [Wikipedia](https://en.wikipedia.org/wiki/File:EM_Spectrum_Properties_edit.svg))](images/em_spectrum.png){#fig-em-spectrum fig-align="center" width="100%"}
+
+
+Die RGB LEDs, die in unserem Button verbaut ist, besteht in Wirklichkeit aus drei einzelnen LEDs: einer roten, einer grünen und einer blauen. Jede dieser LEDs kann unabhängig voneinander angesteuert werden, um verschiedene Farben zu erzeugen. Mehr Spannung bedeutet mehr Intensität der jeweiligen Farbe. Durch die Kombination der drei Grundfarben Rot, Grün und Blau in unterschiedlichen Intensitäten können wir eine Vielzahl von Farben mischen. Das ist das Prinzip der additiven Farbmischung: Wenn wir alle drei Farben mit voller Intensität leuchten lassen, erhalten wir Weiß. Wenn wir keine Farbe leuchten lassen, erhalten wir Schwarz. Klar, die LED sind dann alle aus.
+
+## Farben im Computer
+
+Nun wissen wir, warum die Methode `set_color()` drei Parameter erwartet: Rot, Grün und Blau. Diese Parameter sind die Intensitäten der jeweiligen Farbe, die wir in unserem Programm angeben. Mit den Werten 0 bis 255 können wir jede Farbe im sichtbaren Spektrum erzeugen.
+
+Wie kommt es aber zu der merkwürdigen Zahl 255? Warum nicht einfach 0 bis 100? Das liegt daran, wie ein Computer grundsätzlich Werte speichert und wie dieser Speicher organisiert ist. Kurz gesagt: Der Wertebereich 0 bis 255 passt genau in ein sogenanntes *Byte*\index{Byte}. Ein Byte ist eine Speichereinheit, die aus 8 Bits besteht. Ein Bit kann entweder 0 oder 1 sein. Mit 8 Bits können wir also $2^8 = 256$ verschiedene Werte darstellen, von 0 bis 255. Das ist genau der Bereich, den wir für die RGB-Farbkodierung verwenden. Dazu lernen wir später noch mehr.
+
+Wir halten also fest, dass sich ein Farbwert im Computer aus drei Zahlen zusammensetzt, die jeweils zwischen 0 und 255 liegen. Das gilt für unsere LED, aber beispielsweise auch für Pixel in Bildern oder auf eurem Bildschirm. Das beleuchten wir später auch noch genauer.
+
+## Farben mischen
+
+Klingt alles theoretisch ja sehr gut. Aber wie sieht es mit der Praxis aus? Probieren wir es aus!
+
+```{python}
+btn.set_color(255, 255, 0)
+```
+
+Was macht der Befehl? Welche Farbe kommt dabei heraus? Probiert es einfach mal aus!
+
+### Additive Farbmischung
+
+Ihr solltet alle euren Button in Gelb aufleuchten sehen. In der *additiven Farbmischung* mischen wir Rot und Grün und erhalten dadurch Gelb. Gelb ist heller als die beiden Farben Rot und Grün, was kein Zufall ist. Das ist das Prinzip der additiven Farbmischung: Wenn wir zwei Farben mit voller Intensität leuchten lassen, erhalten wir eine neue Farbe, die stest heller ist als die Ursprungsfarben. Wir fügen mehr Licht hinzu. Wenn wir alle drei Farben mit voller Intensität mischen erhalten wir schließlich Weiß. 
+
+```{python}
+btn.set_color(255, 255, 255)
+```
+
+### Subtraktive Farbmischung
+
+Die *subtraktive Farbmischung* funktioniert anders, nämlich genau umgekehrt. Statt beim Mischen Licht hinzuzufügen, nehmen wir Licht weg.
+
+Erinnert ihr euch an euren Farbkasten aus der Grundschule? Dort habt ihr auch Farben gemischt, um neue Farben zu erzeugen, die euer Farbkasten nicht direkt mitgeliefert hat. Was hat im Farbenkasten die Mischung aus Rot und Grün ergeben? Sicher nicht gelb - eher braun. Eind unklere Farbe. Das liegt daran, dass wir hier nicht von additiver, sondern von subtraktiver Farbmischung sprechen. Bei der subtraktiven Farbmischung mischen wir Pigmente, die Licht *absorbieren* und *reflektieren*. Das Mischen von Farben fungiert hier wie ein Filter: Bestimmte Teile des Lichtsprektrums werden nicht mehr refklektiert, sondern absorbiert und sind damit nicht mehr sichtbar. 
+
+Was passiert mit dem absorbierten Licht? Es wird in eine andere Form der Energie umgewandelt, nämlich Wärme. Deshalb wird eine schwarze Oberfläche auch besonders heiß, wenn die Sonne darauf knallt. Sie absorbiert das gesamte Lichtspekturm und wandelt es in Wäre um. Dagegen wirken weiße Oberflächen fast wie Klimaanlagen. Es ist kein Zuall, dass wir in sonnigen Erdteilen viele weiße Fassaden sehen.
+
+Wenn wir alle Farben mischen ergibt die subtraktive Farbmischung Schwarz, weil kein Licht mehr reflektiert wird. Alles Licht wird aufgesogen und nichts kommt mehr zurück. Das ist ein anderes Prinzip als bei der additiven Farbmischung, bei der wir Lichtquellen *kombinieren*, um neue Farben zu erhalten.
+
+::: {#fig-color-mixing layout="[[1,1]]"}
+
+![Additive Farbmischung](images/additive_color_mixing.png){#fig-additive-color-mixing .lightbox}
+
+![Subtraktive Farbmischung](images/subtractive_color_mixing.png){#fig-subtractive-color-mixing .lightbox}
+
+Additive und subtraktive Farbmischung.
+
+:::
+
+Die Grundfarben, die wir bei der subtraktiven Variante benötigen, um daraus alle weiteren Farben zu erhalten sind Cyan, Magenta sowie Gelb. Im Englischen ist die Abkürzung CMY, wo das "Y" für *Yellow* steht. In der additiven Farbmischung sind es Rot, Grün und Blau. Wenn ihr @fig-subtractive-color-mixing betrachtet dann erkennt ihr, dass genau diese drei Farben durch das Mischen jeweils zweier Grundfarben in der subtraktiven Farbmischung entstehen. Und umgekehrt gilt das gleiche Prinzip! Ob das Zufall ist?
+
+Das war natürlich eine rethorische Frage. Wenn wir in der additiven Farbmischung Grün und Rot mischen, um Gelb zu erhalten, muss es im Umkehrschluss bedeuten, dass
+
+Damit können wir auch erklären, warum Farbdrucker vier unterschiedliche Kartuschen benötigen (@fig-toner-cmy). Mit den Grundfarben der subtraktiven Farbmischung Cyan, Magenta und Gelb können wir jede beliebige Farbe mischen. Zusätzlich haben Drucker eine Kartusche für Schwarz, um erstens ein sattes Schwarz drucken zu können und zweitens die Farbkartuschen zu schonen. Denn schließlich müssen alle drei Farben gemmischt werden, um Schwarz zu erhalten. Und weil viele Drucksachen schwarz enthalten (oder sogar ausschließlich) ist eine schwarze Kartusche einfach effizienter.
+
+![Ein typisches Set mit CMY-Druckerkartuschen inklusive Schwarz.](images/toner-cmy.png){#fig-toner-cmy .lightbox}
+
+Farben spielen eine so wichtige Rolle für uns und die Arbeit mit Computern. Deshalb lohnt es sich, ein wenig über die Hintergründe von Farben und deren Mischung zu verstehen. Wir werden später noch lernen, wie Bildschirme Farben darstellen. Spätestens dann wird uns das Thema der Farbmischung wieder begegnen.
+
+## Der RGB-Code
+
+Wir wollen jetzt weiter mit unserer LED experimentieren und den RGB-Code, mit dem Computer Farben abbilden, besser verstehen. Bisher haben wir gelernt, dass wir die Farbe der LED über die Methode `set_color()` verändern können, wenn wir wissen, welcher RGB-Code die Farbe repräsentiert, die wir uns wünschen. Da wir jetzt mehr über die Farbmischung wissen, können wir die LED also ganz einfach in der Farbe Magenta leuchten lassen:
+
+```{python}
+btn.set_color(255, 0, 255)
+```
+
+Gemäß der Theorie der additiven Farbmischung müsste Rot und Blau Magenta ergeben. Probiert es aus!
+
+## Schleifen
+
+Das Ziel unseres ersten Experiments ist es, einen Regenbogebenfarbverlauf zu erzeugen. Dazu müssen wir die Farbe der LED kontinuierlich ändern, sodass sie von Rot über Gelb, Grün, Cyan, Blau und Violett wieder zurück zu Rot wechselt. Das erreichen wir mit einer *Schleife*\index{Schleife}. Eine Schleife ist ein Konstrukt in der Programmierung, das es uns ermöglicht, einen bestimmten Codeabschnitt mehrfach auszuführen, ohne ihn jedes Mal neu schreiben zu müssen. Das spart Zeit und macht den Code übersichtlicher.
+
+### Abzählbare Wiederholung
+
+Wir beginnen wie immer einfach. Wir nähern uns dem Regenbogen schrittweise an. Zunächst wäre es cool, wenn wir die LED einfach Rot pulsieren lassen könnten. Dazu müssen wir nämlich nur den Rot-Kanal und nicht alle drei Kanäle der LED ansteuern.
+
+Aber was bedeutet es, die LED pulsieren zu lassen? Und was müssen wir dafür tun? Pulsieren bedeutet, dass die LED langsam immer heller wird, kurz in der vollen Helligkeit verweilt, aber dann sofort wieder kontinuierlich dunklert wird. Sobald sie schwarz ist fängt der Zyklus von Vorne an.
+
+```{python}
+
+```
+
+
+
+### Bedingte Wiederholung
+
+
+- `if .. elif .. else`
 
 ## Das fertige Programm
 
@@ -153,61 +253,40 @@ import keyboard
 import time
 import colorsys
 from tinkerforge.ip_connection import IPConnection
-from tinkerforge.bricklet_rgb_led_button import RGBLEDButton
+from tinkerforge.bricklet_rgb_led_v2 import BrickletRGBLEDV2
 
 ipcon = IPConnection()
 ipcon.connect('localhost', 4223) 
-button = RGBLEDButton('Ds3', ipcon)
+led = BrickletRGBLEDV2('ZEP', ipcon)
 
 # Turn button of initially
-button.set_color(0, 0, 0)
+led.set_rgb_value(0, 0, 0)
 
 # Initialize the hue value
 hue = 1
 
+# Set the duration for one rainbow cycle
+duration_seconds = 4
+duration_seconds_per_step = duration_seconds / 360
+
 # Loop until user presses escape key
 while not keyboard.is_pressed('esc'):
-    btn_state = button.get_button_state()
 
-    if btn_state == 0:
-        hue = hue + 1
-
-    if hue > 360:
-        hue = 1
-
+    # Calculate RGB from hue
     r, g, b = colorsys.hsv_to_rgb(hue / 360.0, 1.0, 1.0)
     r = int(r * 255)
     g = int(g * 255)
     b = int(b * 255)
 
-    button.set_color(r, g, b)
-    time.sleep(0.005)
+    led.set_rgb_value(r, g, b)
+    
+    # Wait a bit
+    time.sleep(duration_seconds_per_step)
+
+    hue = hue + 1
+    if hue > 360:
+        hue = 1
+
+led.set_rgb_value(0, 0, 0)
 ```
 
-
-
----
-
-🎮 Mini Reaction Game
-
-Theme: "Are you faster than a computer?"
-
-**Setup:**
-
--   Flash an LED randomly after a delay, and students must press the correct button as fast as possible.
--   Wrong button or slow response → “fail” message.
--   Display or rank response times.
-
-Teachable moment: Real-time input processing, event handling, and how computers handle asynchronous input.
-
-🧠 Bonus Concept: Binary Memory Challenge
-
-Theme: "Simon Says: Binary Edition"
-
-**Setup:**
-
--   System shows a sequence of binary numbers via LED flashes (e.g., 01 → left off, right on).
--   Students must repeat the sequence by pressing the buttons.
--   Each round adds another number.
-
-Teachable moment: Binary perception, memory, encoding sequences, and reinforcing input logic.

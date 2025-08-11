@@ -25,6 +25,7 @@ book:
     - index.qmd
     - experiments.qmd
     - colors.qmd
+    - human_input.qmd
     - text.qmd
     - images.qmd
     - codes.qmd

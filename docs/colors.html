@@ -85,7 +85,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./text.html" rel="next">
+<link href="./human_input.html" rel="next">
 <link href="./experiments.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -128,6 +128,35 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -188,80 +217,86 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./human_input.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Eingaben</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./text.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Texte</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Texte</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./images.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Bilder</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Bilder</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./codes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Codes</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Codes</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./conversion.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Umwandlung</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Umwandlung</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./information.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Information</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Information</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./sensors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Sensoren</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Sensoren</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./signals.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Signale</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Signale</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./protocols.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Protokolle</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Protokolle</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./encryption.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Verschlüsselung</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Verschlüsselung</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./algorithms.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Algorithmen</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Algorithmen</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./compression.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Kompression</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Kompression</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./computer.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Computer</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Computer</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./problems.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Probleme</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Probleme</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -293,9 +328,22 @@ div.csl-indent {
   <li><a href="#methoden" id="toc-methoden" class="nav-link" data-scroll-target="#methoden"><span class="header-section-number">1.2.7</span> Methoden</a></li>
   <li><a href="#ein-objekt-für-den-button" id="toc-ein-objekt-für-den-button" class="nav-link" data-scroll-target="#ein-objekt-für-den-button"><span class="header-section-number">1.2.8</span> Ein Objekt für den Button</a></li>
   <li><a href="#zusammenfassung-unseres-ersten-programms" id="toc-zusammenfassung-unseres-ersten-programms" class="nav-link" data-scroll-target="#zusammenfassung-unseres-ersten-programms"><span class="header-section-number">1.2.9</span> Zusammenfassung unseres ersten Programms</a></li>
+  <li><a href="#und-jetzt" id="toc-und-jetzt" class="nav-link" data-scroll-target="#und-jetzt"><span class="header-section-number">1.2.10</span> Und jetzt?</a></li>
   </ul></li>
-  <li><a href="#an-und-aus-endlich-gehts-los" id="toc-an-und-aus-endlich-gehts-los" class="nav-link" data-scroll-target="#an-und-aus-endlich-gehts-los"><span class="header-section-number">1.3</span> An und Aus – endlich geht’s los!</a></li>
-  <li><a href="#das-fertige-programm" id="toc-das-fertige-programm" class="nav-link" data-scroll-target="#das-fertige-programm"><span class="header-section-number">1.4</span> Das fertige Programm</a></li>
+  <li><a href="#farben-und-licht" id="toc-farben-und-licht" class="nav-link" data-scroll-target="#farben-und-licht"><span class="header-section-number">1.3</span> Farben und Licht</a></li>
+  <li><a href="#farben-im-computer" id="toc-farben-im-computer" class="nav-link" data-scroll-target="#farben-im-computer"><span class="header-section-number">1.4</span> Farben im Computer</a></li>
+  <li><a href="#farben-mischen" id="toc-farben-mischen" class="nav-link" data-scroll-target="#farben-mischen"><span class="header-section-number">1.5</span> Farben mischen</a>
+  <ul class="collapse">
+  <li><a href="#additive-farbmischung" id="toc-additive-farbmischung" class="nav-link" data-scroll-target="#additive-farbmischung"><span class="header-section-number">1.5.1</span> Additive Farbmischung</a></li>
+  <li><a href="#subtraktive-farbmischung" id="toc-subtraktive-farbmischung" class="nav-link" data-scroll-target="#subtraktive-farbmischung"><span class="header-section-number">1.5.2</span> Subtraktive Farbmischung</a></li>
+  </ul></li>
+  <li><a href="#der-rgb-code" id="toc-der-rgb-code" class="nav-link" data-scroll-target="#der-rgb-code"><span class="header-section-number">1.6</span> Der RGB-Code</a></li>
+  <li><a href="#schleifen" id="toc-schleifen" class="nav-link" data-scroll-target="#schleifen"><span class="header-section-number">1.7</span> Schleifen</a>
+  <ul class="collapse">
+  <li><a href="#abzählbare-wiederholung" id="toc-abzählbare-wiederholung" class="nav-link" data-scroll-target="#abzählbare-wiederholung"><span class="header-section-number">1.7.1</span> Abzählbare Wiederholung</a></li>
+  <li><a href="#bedingte-wiederholung" id="toc-bedingte-wiederholung" class="nav-link" data-scroll-target="#bedingte-wiederholung"><span class="header-section-number">1.7.2</span> Bedingte Wiederholung</a></li>
+  </ul></li>
+  <li><a href="#das-fertige-programm" id="toc-das-fertige-programm" class="nav-link" data-scroll-target="#das-fertige-programm"><span class="header-section-number">1.8</span> Das fertige Programm</a></li>
   </ul>
 </nav>
     </div>
@@ -319,7 +367,7 @@ div.csl-indent {
 <div>
   <div class="abstract">
     <div class="block-title"></div>
-    <p>Das erste Kapitel hat es gleich in sich: Wir lernen etwas über Farben und wie sie im Computer funktionieren. Gleichzeitig steigen wir in die Programmierung ein und schreiben unser erstes Programm. Dabei nutzen wir einen Button mit integrierter LED, um einen Regenbogenfarbverlauf zu erzeugen.</p>
+    <p>Das erste Kapitel hat es gleich in sich: Wir lernen etwas über Farben und wie sie im Computer funktionieren. Gleichzeitig steigen wir in die Programmierung ein und schreiben unser erstes Programm. Dabei nutzen wir eine LED und erzeugen einen Regenbogenfarbverlauf.</p>
   </div>
 </div>
 
@@ -329,7 +377,7 @@ div.csl-indent {
 
 <section id="setup" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="setup">Setup</h2>
-<p>Bereit für dein erstes Hardware-Experiment? Du brauchst dafür einen Button mit eingebauter LED (<a href="https://www.tinkerforge.com/de/shop/bricklets/rgb-led-button-bricklet.html">RGB LED Button 2.0</a>) und einen Mikrocontroller (<a href="https://www.tinkerforge.com/de/shop/master-brick.html">Master Brick 3.2</a>). Befestige beide Bauteile mit Abstandshaltern auf einer Montageplatte, wie in <a href="#fig-setup-rgb-led-button" class="quarto-xref">Abbildung&nbsp;<span>1.1</span></a> gezeigt. Zwei Halterungen pro Gerät reichen völlig. Denk an die kleinen, weißen Kunststoff-Unterlegscheiben – die schützen deine Platinen vor Druckstellen.</p>
+<p>Bereit für dein erstes Hardware-Experiment? Du brauchst dafür eine LED (<a href="https://www.tinkerforge.com/en/doc/Hardware/Bricklets/RGB_LED_V2.html">RGB LED Bricklet 2.0</a>) und einen Mikrocontroller (<a href="https://www.tinkerforge.com/de/shop/master-brick.html">Master Brick 3.2</a>). Befestige beide Bauteile mit Abstandshaltern auf einer Montageplatte, wie in <a href="#fig-setup-rgb-led-button" class="quarto-xref">Abbildung&nbsp;<span>1.1</span></a> gezeigt. Zwei Halterungen pro Gerät reichen völlig. Denk an die kleinen, weißen Kunststoff-Unterlegscheiben – die schützen deine Platinen vor Druckstellen.</p>
 <div id="fig-setup-rgb-led-button" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-setup-rgb-led-button-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -384,7 +432,7 @@ Abbildung&nbsp;1.1: Einfaches Setup mit Mikrocontroller und Button mit integrier
 <h2 data-number="1.1" class="anchored" data-anchor-id="erste-schritte-mit-dem-brick-viewer"><span class="header-section-number">1.1</span> Erste Schritte mit dem Brick Viewer</h2>
 <p>Der Button ist mehr als nur ein Knopf. Er hat zwei Tricks drauf: Er erkennt, ob er gedrückt wird, und er kann leuchten. In Farbe! Wie wir das testen? Das geht ganz leicht mit dem Brick Viewer.</p>
 <p>Schließe zuerst den Master Brick über das USB-Kabel an deinen Computer an und öffne den Brick Viewer. Klicke dann auf den Connect-Button.</p>
-<div id="fig-brick-viewer-connect" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="brick-viewer" data-fig-align="center">
+<div id="fig-brick-viewer-connect" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center" data-group="brick-viewer">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-brick-viewer-connect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="images/brick_viewer_connect.png" class="lightbox" data-gallery="brick-viewer" title="Abbildung&nbsp;1.2: Über den Connect-Button verbindet sich der Brick Viewer mit dem angeschlossenen Master Brick."><img src="images/brick_viewer_connect.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></a>
@@ -422,7 +470,7 @@ Abbildung&nbsp;1.4: Die Ansicht für den RGB LED Button im Brick Viewer, in der 
 <section id="unser-erstes-programm" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="unser-erstes-programm"><span class="header-section-number">1.2</span> Unser erstes Programm</h2>
 <p>Wie verbindet man sich eigentlich über ein Programm mit dem Button? Die Antwort darauf findest du im folgenden kurzen Codebeispiel.</p>
-<div id="7bfc77a4" class="cell" data-execution_count="1">
+<div id="6ba8f751" class="cell" data-execution_count="1">
 <div id="lst-boilerplate-code" class="python cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-boilerplate-code-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -542,11 +590,10 @@ Listing&nbsp;1.1: Der Boilerplate Code für die Verbindung mit den Geräten am B
 </tbody>
 </table>
 </section>
-</section>
-<section id="an-und-aus-endlich-gehts-los" class="level2" data-number="1.3">
-<h2 data-number="1.3" class="anchored" data-anchor-id="an-und-aus-endlich-gehts-los"><span class="header-section-number">1.3</span> An und Aus – endlich geht’s los!</h2>
-<p>Und jetzt? Jetzt bringen wir die LED zum Leuchten:</p>
-<div id="407d9856" class="cell" data-execution_count="2">
+<section id="und-jetzt" class="level3" data-number="1.2.10">
+<h3 data-number="1.2.10" class="anchored" data-anchor-id="und-jetzt"><span class="header-section-number">1.2.10</span> Und jetzt?</h3>
+<p>Wir haben nun eine virtuelle, digitale Repräsentation unseres Buttons im Python. Damit können wir die LED des Buttons zum Leuchten bringen. Dazu verwenden wir eine Methode der Klasse <code>BrickletRGBLEDButton</code>, die <code>set_color()</code> heißt. Diese Methode erwartet drei Parameter: Rot, Grün und Blau. Mit diesen Parametern können wir die Farbe der LED einstellen.</p>
+<div id="0f948673" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1">1</button><span id="annotated-cell-2-1" class="code-annotation-target"><a href="#annotated-cell-2-1"></a>btn.set_color(<span class="dv">0</span>, <span class="dv">255</span>, <span class="dv">0</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
@@ -560,6 +607,14 @@ Listing&nbsp;1.1: Der Boilerplate Code für die Verbindung mit den Geräten am B
 <p>Moment mal … Wo steht hier eigentlich <em>grün</em>? Steht da gar nicht. Stattdessen: Zahlen. Willkommen bei der <em>RGB-Farbkodierung</em>. Jede Farbe besteht aus drei Werten zwischen 0 und 255: Rot, Grün, Blau. Null ist nix. 255 ist volle Power. Alles 0? Schwarz. Alles 255? Weiß. Nur Grün auf 255? Na klar: grün.</p>
 <p>Aber warum machen wir das mit Zahlen? Weil Computer nun mal mit Zahlen arbeiten. Das ist einer der zentralen Gedanken dieses Buches: Wie übersetzen wir die Welt in etwas, das ein Computer versteht?</p>
 <p>Warum aber ist das so? Warum kodieren wir in der Informatik jede Farbe mit <em>drei</em> Zahlen? Warum überhaupt mit Zahlen? Hier kommen wir zu einer zentralen Frage dieses Buches: Wie bilden Computer Informationen ab?</p>
+</section>
+</section>
+<section id="farben-und-licht" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="farben-und-licht"><span class="header-section-number">1.3</span> Farben und Licht</h2>
+<p>Pyhsik ist vielleicht schon eine Weile her und wir halten es hier auch kurz. Erinnern wir uns kurz, was Licht und damit Farben sind. Licht ist eine Form von <em>elektromagnetischer Strahlung</em>. Das bedeutet, dass es sich um Wellen handelt, die sich durch den Raum bewegen. Diese Wellen haben unterschiedliche Frequenzen und Wellenlängen. Das sichtbare Licht ist nur ein kleiner Teil des gesamten elektromagnetischen Spektrums, das von Radiowellen über Infrarotstrahlung bis hin zu Röntgenstrahlen und Gammastrahlen reicht.</p>
+<p>Bei Wellen unterscheiden wir zwischen der Frequenz (wie oft die Welle pro Sekunde schwingt) und der Wellenlänge (der Abstand zwischen zwei aufeinanderfolgenden Wellenbergen). Die Frequenz und die Wellenlänge sind umgekehrt proportional: Je höher die Frequenz, desto kürzer die Wellenlänge und umgekehrt.</p>
+<p>Frequenzen messen wir in Hertz (Hz), wobei 1 Hz einer Schwingung pro Sekunde entspricht. Das sichtbare Licht hat Frequenzen im Bereich von etwa 430 THz (Terahertz) bis 750 THz. Die Wellenlängen des sichtbaren Lichts liegen zwischen etwa 400 nm (Nanometer) für violettes Licht und etwa 700 nm für rotes Licht. Um sich das vorzustellen: Ein Nanometer ist ein Milliardstel Meter. Zum Vergleich: Ein menschliches Haar hat einen Durchmesser von etwa 80.000 bis 100.000 Nanometern. Die Abstände zwischen den Wellenlängen des sichtbaren Lichts sind also extrem klein.</p>
+<p>Was bedeutet das nun für eine LED? Eine LED (Light Emitting Diode) ist ein Halbleiterbauelement, das Licht erzeugt, wenn elektrischer Strom hindurchfließt. Die Farbe des Lichts hängt von Eigenschaften des Halbleitermaterials ab, aus dem die LED besteht. Verschiedene Materialien emittieren Licht bei unterschiedlichen Wellenlängen, was zu verschiedenen Farben führt. Zum Beispiel emittiert eine rote LED Licht mit einer Wellenlänge von etwa 620-750 nm, während eine grüne LED Licht mit einer Wellenlänge von etwa 495-570 nm emittiert.</p>
 <div id="fig-em-spectrum" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-em-spectrum-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -570,72 +625,160 @@ Abbildung&nbsp;1.5: Das elektromagnetische Spektrum, wovon das sichtbare Licht e
 </figcaption>
 </figure>
 </div>
+<p>Die RGB LEDs, die in unserem Button verbaut ist, besteht in Wirklichkeit aus drei einzelnen LEDs: einer roten, einer grünen und einer blauen. Jede dieser LEDs kann unabhängig voneinander angesteuert werden, um verschiedene Farben zu erzeugen. Mehr Spannung bedeutet mehr Intensität der jeweiligen Farbe. Durch die Kombination der drei Grundfarben Rot, Grün und Blau in unterschiedlichen Intensitäten können wir eine Vielzahl von Farben mischen. Das ist das Prinzip der additiven Farbmischung: Wenn wir alle drei Farben mit voller Intensität leuchten lassen, erhalten wir Weiß. Wenn wir keine Farbe leuchten lassen, erhalten wir Schwarz. Klar, die LED sind dann alle aus.</p>
 </section>
-<section id="das-fertige-programm" class="level2" data-number="1.4">
-<h2 data-number="1.4" class="anchored" data-anchor-id="das-fertige-programm"><span class="header-section-number">1.4</span> Das fertige Programm</h2>
-<div id="7954db05" class="cell" data-execution_count="3">
+<section id="farben-im-computer" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="farben-im-computer"><span class="header-section-number">1.4</span> Farben im Computer</h2>
+<p>Nun wissen wir, warum die Methode <code>set_color()</code> drei Parameter erwartet: Rot, Grün und Blau. Diese Parameter sind die Intensitäten der jeweiligen Farbe, die wir in unserem Programm angeben. Mit den Werten 0 bis 255 können wir jede Farbe im sichtbaren Spektrum erzeugen.</p>
+<p>Wie kommt es aber zu der merkwürdigen Zahl 255? Warum nicht einfach 0 bis 100? Das liegt daran, wie ein Computer grundsätzlich Werte speichert und wie dieser Speicher organisiert ist. Kurz gesagt: Der Wertebereich 0 bis 255 passt genau in ein sogenanntes <em>Byte</em>. Ein Byte ist eine Speichereinheit, die aus 8 Bits besteht. Ein Bit kann entweder 0 oder 1 sein. Mit 8 Bits können wir also <span class="math inline">\(2^8 = 256\)</span> verschiedene Werte darstellen, von 0 bis 255. Das ist genau der Bereich, den wir für die RGB-Farbkodierung verwenden. Dazu lernen wir später noch mehr.</p>
+<p>Wir halten also fest, dass sich ein Farbwert im Computer aus drei Zahlen zusammensetzt, die jeweils zwischen 0 und 255 liegen. Das gilt für unsere LED, aber beispielsweise auch für Pixel in Bildern oder auf eurem Bildschirm. Das beleuchten wir später auch noch genauer.</p>
+</section>
+<section id="farben-mischen" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="farben-mischen"><span class="header-section-number">1.5</span> Farben mischen</h2>
+<p>Klingt alles theoretisch ja sehr gut. Aber wie sieht es mit der Praxis aus? Probieren wir es aus!</p>
+<div id="e74cd175" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a>btn.set_color(<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">0</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Was macht der Befehl? Welche Farbe kommt dabei heraus? Probiert es einfach mal aus!</p>
+<section id="additive-farbmischung" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="additive-farbmischung"><span class="header-section-number">1.5.1</span> Additive Farbmischung</h3>
+<p>Ihr solltet alle euren Button in Gelb aufleuchten sehen. In der <em>additiven Farbmischung</em> mischen wir Rot und Grün und erhalten dadurch Gelb. Gelb ist heller als die beiden Farben Rot und Grün, was kein Zufall ist. Das ist das Prinzip der additiven Farbmischung: Wenn wir zwei Farben mit voller Intensität leuchten lassen, erhalten wir eine neue Farbe, die stest heller ist als die Ursprungsfarben. Wir fügen mehr Licht hinzu. Wenn wir alle drei Farben mit voller Intensität mischen erhalten wir schließlich Weiß.</p>
+<div id="ed6aeada" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>btn.set_color(<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">255</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="subtraktive-farbmischung" class="level3" data-number="1.5.2">
+<h3 data-number="1.5.2" class="anchored" data-anchor-id="subtraktive-farbmischung"><span class="header-section-number">1.5.2</span> Subtraktive Farbmischung</h3>
+<p>Die <em>subtraktive Farbmischung</em> funktioniert anders, nämlich genau umgekehrt. Statt beim Mischen Licht hinzuzufügen, nehmen wir Licht weg.</p>
+<p>Erinnert ihr euch an euren Farbkasten aus der Grundschule? Dort habt ihr auch Farben gemischt, um neue Farben zu erzeugen, die euer Farbkasten nicht direkt mitgeliefert hat. Was hat im Farbenkasten die Mischung aus Rot und Grün ergeben? Sicher nicht gelb - eher braun. Eind unklere Farbe. Das liegt daran, dass wir hier nicht von additiver, sondern von subtraktiver Farbmischung sprechen. Bei der subtraktiven Farbmischung mischen wir Pigmente, die Licht <em>absorbieren</em> und <em>reflektieren</em>. Das Mischen von Farben fungiert hier wie ein Filter: Bestimmte Teile des Lichtsprektrums werden nicht mehr refklektiert, sondern absorbiert und sind damit nicht mehr sichtbar.</p>
+<p>Was passiert mit dem absorbierten Licht? Es wird in eine andere Form der Energie umgewandelt, nämlich Wärme. Deshalb wird eine schwarze Oberfläche auch besonders heiß, wenn die Sonne darauf knallt. Sie absorbiert das gesamte Lichtspekturm und wandelt es in Wäre um. Dagegen wirken weiße Oberflächen fast wie Klimaanlagen. Es ist kein Zuall, dass wir in sonnigen Erdteilen viele weiße Fassaden sehen.</p>
+<p>Wenn wir alle Farben mischen ergibt die subtraktive Farbmischung Schwarz, weil kein Licht mehr reflektiert wird. Alles Licht wird aufgesogen und nichts kommt mehr zurück. Das ist ein anderes Prinzip als bei der additiven Farbmischung, bei der wir Lichtquellen <em>kombinieren</em>, um neue Farben zu erhalten.</p>
+<div id="fig-color-mixing" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-color-mixing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-color-mixing" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-additive-color-mixing" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-additive-color-mixing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/additive_color_mixing.png" class="lightbox" data-gallery="fig-color-mixing" title="Abbildung&nbsp;1.6&nbsp;(a): Additive Farbmischung"><img src="images/additive_color_mixing.png" class="img-fluid figure-img" data-ref-parent="fig-color-mixing"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-additive-color-mixing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Additive Farbmischung
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-color-mixing" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-subtractive-color-mixing" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-subtractive-color-mixing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/subtractive_color_mixing.png" class="lightbox" data-gallery="fig-color-mixing" title="Abbildung&nbsp;1.6&nbsp;(b): Subtraktive Farbmischung"><img src="images/subtractive_color_mixing.png" class="img-fluid figure-img" data-ref-parent="fig-color-mixing"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-subtractive-color-mixing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Subtraktive Farbmischung
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-color-mixing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;1.6: Additive und subtraktive Farbmischung.
+</figcaption>
+</figure>
+</div>
+<p>Die Grundfarben, die wir bei der subtraktiven Variante benötigen, um daraus alle weiteren Farben zu erhalten sind Cyan, Magenta sowie Gelb. Im Englischen ist die Abkürzung CMY, wo das “Y” für <em>Yellow</em> steht. In der additiven Farbmischung sind es Rot, Grün und Blau. Wenn ihr <a href="#fig-subtractive-color-mixing" class="quarto-xref">Abbildung&nbsp;<span>1.6 (b)</span></a> betrachtet dann erkennt ihr, dass genau diese drei Farben durch das Mischen jeweils zweier Grundfarben in der subtraktiven Farbmischung entstehen. Und umgekehrt gilt das gleiche Prinzip! Ob das Zufall ist?</p>
+<p>Das war natürlich eine rethorische Frage. Wenn wir in der additiven Farbmischung Grün und Rot mischen, um Gelb zu erhalten, muss es im Umkehrschluss bedeuten, dass</p>
+<p>Damit können wir auch erklären, warum Farbdrucker vier unterschiedliche Kartuschen benötigen (<a href="#fig-toner-cmy" class="quarto-xref">Abbildung&nbsp;<span>1.7</span></a>). Mit den Grundfarben der subtraktiven Farbmischung Cyan, Magenta und Gelb können wir jede beliebige Farbe mischen. Zusätzlich haben Drucker eine Kartusche für Schwarz, um erstens ein sattes Schwarz drucken zu können und zweitens die Farbkartuschen zu schonen. Denn schließlich müssen alle drei Farben gemmischt werden, um Schwarz zu erhalten. Und weil viele Drucksachen schwarz enthalten (oder sogar ausschließlich) ist eine schwarze Kartusche einfach effizienter.</p>
+<div id="fig-toner-cmy" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-toner-cmy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/toner-cmy.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Abbildung&nbsp;1.7: Ein typisches Set mit CMY-Druckerkartuschen inklusive Schwarz."><img src="images/toner-cmy.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-toner-cmy-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;1.7: Ein typisches Set mit CMY-Druckerkartuschen inklusive Schwarz.
+</figcaption>
+</figure>
+</div>
+<p>Farben spielen eine so wichtige Rolle für uns und die Arbeit mit Computern. Deshalb lohnt es sich, ein wenig über die Hintergründe von Farben und deren Mischung zu verstehen. Wir werden später noch lernen, wie Bildschirme Farben darstellen. Spätestens dann wird uns das Thema der Farbmischung wieder begegnen.</p>
+</section>
+</section>
+<section id="der-rgb-code" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="der-rgb-code"><span class="header-section-number">1.6</span> Der RGB-Code</h2>
+<p>Wir wollen jetzt weiter mit unserer LED experimentieren und den RGB-Code, mit dem Computer Farben abbilden, besser verstehen. Bisher haben wir gelernt, dass wir die Farbe der LED über die Methode <code>set_color()</code> verändern können, wenn wir wissen, welcher RGB-Code die Farbe repräsentiert, die wir uns wünschen. Da wir jetzt mehr über die Farbmischung wissen, können wir die LED also ganz einfach in der Farbe Magenta leuchten lassen:</p>
+<div id="b913aa69" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a>btn.set_color(<span class="dv">255</span>, <span class="dv">0</span>, <span class="dv">255</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Gemäß der Theorie der additiven Farbmischung müsste Rot und Blau Magenta ergeben. Probiert es aus!</p>
+</section>
+<section id="schleifen" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="schleifen"><span class="header-section-number">1.7</span> Schleifen</h2>
+<p>Das Ziel unseres ersten Experiments ist es, einen Regenbogebenfarbverlauf zu erzeugen. Dazu müssen wir die Farbe der LED kontinuierlich ändern, sodass sie von Rot über Gelb, Grün, Cyan, Blau und Violett wieder zurück zu Rot wechselt. Das erreichen wir mit einer <em>Schleife</em>. Eine Schleife ist ein Konstrukt in der Programmierung, das es uns ermöglicht, einen bestimmten Codeabschnitt mehrfach auszuführen, ohne ihn jedes Mal neu schreiben zu müssen. Das spart Zeit und macht den Code übersichtlicher.</p>
+<section id="abzählbare-wiederholung" class="level3" data-number="1.7.1">
+<h3 data-number="1.7.1" class="anchored" data-anchor-id="abzählbare-wiederholung"><span class="header-section-number">1.7.1</span> Abzählbare Wiederholung</h3>
+<p>Wir beginnen wie immer einfach. Wir nähern uns dem Regenbogen schrittweise an. Zunächst wäre es cool, wenn wir die LED einfach Rot pulsieren lassen könnten. Dazu müssen wir nämlich nur den Rot-Kanal und nicht alle drei Kanäle der LED ansteuern.</p>
+<p>Aber was bedeutet es, die LED pulsieren zu lassen? Und was müssen wir dafür tun? Pulsieren bedeutet, dass die LED langsam immer heller wird, kurz in der vollen Helligkeit verweilt, aber dann sofort wieder kontinuierlich dunklert wird. Sobald sie schwarz ist fängt der Zyklus von Vorne an.</p>
+</section>
+<section id="bedingte-wiederholung" class="level3" data-number="1.7.2">
+<h3 data-number="1.7.2" class="anchored" data-anchor-id="bedingte-wiederholung"><span class="header-section-number">1.7.2</span> Bedingte Wiederholung</h3>
+<ul>
+<li><code>if .. elif .. else</code></li>
+</ul>
+</section>
+</section>
+<section id="das-fertige-programm" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="das-fertige-programm"><span class="header-section-number">1.8</span> Das fertige Programm</h2>
+<div id="fe391c55" class="cell" data-execution_count="6">
 <div id="lst-rainbow-program" class="python cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-rainbow-program-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Listing&nbsp;1.2: Das fertige Programm, das die LED in einem Regenbogenfarbverlauf leuchten lässt.
 </figcaption>
 <div aria-describedby="lst-rainbow-program-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> keyboard</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> time</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> colorsys</span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="im">from</span> tinkerforge.bricklet_rgb_led_button <span class="im">import</span> RGBLEDButton</span>
-<span id="cb1-6"><a href="#cb1-6"></a></span>
-<span id="cb1-7"><a href="#cb1-7"></a>ipcon <span class="op">=</span> IPConnection()</span>
-<span id="cb1-8"><a href="#cb1-8"></a>ipcon.<span class="ex">connect</span>(<span class="st">'localhost'</span>, <span class="dv">4223</span>) </span>
-<span id="cb1-9"><a href="#cb1-9"></a>button <span class="op">=</span> RGBLEDButton(<span class="st">'Ds3'</span>, ipcon)</span>
-<span id="cb1-10"><a href="#cb1-10"></a></span>
-<span id="cb1-11"><a href="#cb1-11"></a><span class="co"># Turn button of initially</span></span>
-<span id="cb1-12"><a href="#cb1-12"></a>button.set_color(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
-<span id="cb1-13"><a href="#cb1-13"></a></span>
-<span id="cb1-14"><a href="#cb1-14"></a><span class="co"># Initialize the hue value</span></span>
-<span id="cb1-15"><a href="#cb1-15"></a>hue <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb1-16"><a href="#cb1-16"></a></span>
-<span id="cb1-17"><a href="#cb1-17"></a><span class="co"># Loop until user presses escape key</span></span>
-<span id="cb1-18"><a href="#cb1-18"></a><span class="cf">while</span> <span class="kw">not</span> keyboard.is_pressed(<span class="st">'esc'</span>):</span>
-<span id="cb1-19"><a href="#cb1-19"></a>    btn_state <span class="op">=</span> button.get_button_state()</span>
-<span id="cb1-20"><a href="#cb1-20"></a></span>
-<span id="cb1-21"><a href="#cb1-21"></a>    <span class="cf">if</span> btn_state <span class="op">==</span> <span class="dv">0</span>:</span>
-<span id="cb1-22"><a href="#cb1-22"></a>        hue <span class="op">=</span> hue <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb1-23"><a href="#cb1-23"></a></span>
-<span id="cb1-24"><a href="#cb1-24"></a>    <span class="cf">if</span> hue <span class="op">&gt;</span> <span class="dv">360</span>:</span>
-<span id="cb1-25"><a href="#cb1-25"></a>        hue <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb1-26"><a href="#cb1-26"></a></span>
-<span id="cb1-27"><a href="#cb1-27"></a>    r, g, b <span class="op">=</span> colorsys.hsv_to_rgb(hue <span class="op">/</span> <span class="fl">360.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>)</span>
-<span id="cb1-28"><a href="#cb1-28"></a>    r <span class="op">=</span> <span class="bu">int</span>(r <span class="op">*</span> <span class="dv">255</span>)</span>
-<span id="cb1-29"><a href="#cb1-29"></a>    g <span class="op">=</span> <span class="bu">int</span>(g <span class="op">*</span> <span class="dv">255</span>)</span>
-<span id="cb1-30"><a href="#cb1-30"></a>    b <span class="op">=</span> <span class="bu">int</span>(b <span class="op">*</span> <span class="dv">255</span>)</span>
-<span id="cb1-31"><a href="#cb1-31"></a></span>
-<span id="cb1-32"><a href="#cb1-32"></a>    button.set_color(r, g, b)</span>
-<span id="cb1-33"><a href="#cb1-33"></a>    time.sleep(<span class="fl">0.005</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">import</span> keyboard</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="im">import</span> time</span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="im">import</span> colorsys</span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="im">from</span> tinkerforge.bricklet_rgb_led_v2 <span class="im">import</span> BrickletRGBLEDV2</span>
+<span id="cb4-6"><a href="#cb4-6"></a></span>
+<span id="cb4-7"><a href="#cb4-7"></a>ipcon <span class="op">=</span> IPConnection()</span>
+<span id="cb4-8"><a href="#cb4-8"></a>ipcon.<span class="ex">connect</span>(<span class="st">'localhost'</span>, <span class="dv">4223</span>) </span>
+<span id="cb4-9"><a href="#cb4-9"></a>led <span class="op">=</span> BrickletRGBLEDV2(<span class="st">'ZEP'</span>, ipcon)</span>
+<span id="cb4-10"><a href="#cb4-10"></a></span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="co"># Turn button of initially</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a>led.set_rgb_value(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb4-13"><a href="#cb4-13"></a></span>
+<span id="cb4-14"><a href="#cb4-14"></a><span class="co"># Initialize the hue value</span></span>
+<span id="cb4-15"><a href="#cb4-15"></a>hue <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb4-16"><a href="#cb4-16"></a></span>
+<span id="cb4-17"><a href="#cb4-17"></a><span class="co"># Set the duration for one rainbow cycle</span></span>
+<span id="cb4-18"><a href="#cb4-18"></a>duration_seconds <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb4-19"><a href="#cb4-19"></a>duration_seconds_per_step <span class="op">=</span> duration_seconds <span class="op">/</span> <span class="dv">360</span></span>
+<span id="cb4-20"><a href="#cb4-20"></a></span>
+<span id="cb4-21"><a href="#cb4-21"></a><span class="co"># Loop until user presses escape key</span></span>
+<span id="cb4-22"><a href="#cb4-22"></a><span class="cf">while</span> <span class="kw">not</span> keyboard.is_pressed(<span class="st">'esc'</span>):</span>
+<span id="cb4-23"><a href="#cb4-23"></a></span>
+<span id="cb4-24"><a href="#cb4-24"></a>    <span class="co"># Calculate RGB from hue</span></span>
+<span id="cb4-25"><a href="#cb4-25"></a>    r, g, b <span class="op">=</span> colorsys.hsv_to_rgb(hue <span class="op">/</span> <span class="fl">360.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>)</span>
+<span id="cb4-26"><a href="#cb4-26"></a>    r <span class="op">=</span> <span class="bu">int</span>(r <span class="op">*</span> <span class="dv">255</span>)</span>
+<span id="cb4-27"><a href="#cb4-27"></a>    g <span class="op">=</span> <span class="bu">int</span>(g <span class="op">*</span> <span class="dv">255</span>)</span>
+<span id="cb4-28"><a href="#cb4-28"></a>    b <span class="op">=</span> <span class="bu">int</span>(b <span class="op">*</span> <span class="dv">255</span>)</span>
+<span id="cb4-29"><a href="#cb4-29"></a></span>
+<span id="cb4-30"><a href="#cb4-30"></a>    led.set_rgb_value(r, g, b)</span>
+<span id="cb4-31"><a href="#cb4-31"></a>    </span>
+<span id="cb4-32"><a href="#cb4-32"></a>    <span class="co"># Wait a bit</span></span>
+<span id="cb4-33"><a href="#cb4-33"></a>    time.sleep(duration_seconds_per_step)</span>
+<span id="cb4-34"><a href="#cb4-34"></a></span>
+<span id="cb4-35"><a href="#cb4-35"></a>    hue <span class="op">=</span> hue <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb4-36"><a href="#cb4-36"></a>    <span class="cf">if</span> hue <span class="op">&gt;</span> <span class="dv">360</span>:</span>
+<span id="cb4-37"><a href="#cb4-37"></a>        hue <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb4-38"><a href="#cb4-38"></a></span>
+<span id="cb4-39"><a href="#cb4-39"></a>led.set_rgb_value(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </figure>
 </div>
 </div>
-<hr>
-<p>🎮 Mini Reaction Game</p>
-<p>Theme: “Are you faster than a computer?”</p>
-<p><strong>Setup:</strong></p>
-<ul>
-<li>Flash an LED randomly after a delay, and students must press the correct button as fast as possible.</li>
-<li>Wrong button or slow response → “fail” message.</li>
-<li>Display or rank response times.</li>
-</ul>
-<p>Teachable moment: Real-time input processing, event handling, and how computers handle asynchronous input.</p>
-<p>🧠 Bonus Concept: Binary Memory Challenge</p>
-<p>Theme: “Simon Says: Binary Edition”</p>
-<p><strong>Setup:</strong></p>
-<ul>
-<li>System shows a sequence of binary numbers via LED flashes (e.g., 01 → left off, right on).</li>
-<li>Students must repeat the sequence by pressing the buttons.</li>
-<li>Each round adds another number.</li>
-</ul>
-<p>Teachable moment: Binary perception, memory, encoding sequences, and reinforcing input logic.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
@@ -1103,8 +1246,8 @@ Scott, John C. 2009. <em>But how do it know?: the basic principles of computers 
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./text.html" class="pagination-link" aria-label="Texte">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Texte</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./human_input.html" class="pagination-link" aria-label="Eingaben">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Eingaben</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
