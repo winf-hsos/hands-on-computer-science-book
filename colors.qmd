@@ -226,17 +226,102 @@ Gemäß der Theorie der additiven Farbmischung müsste Rot und Blau Magenta erge
 
 Das Ziel unseres ersten Experiments ist es, einen Regenbogebenfarbverlauf zu erzeugen. Dazu müssen wir die Farbe der LED kontinuierlich ändern, sodass sie von Rot über Gelb, Grün, Cyan, Blau und Violett wieder zurück zu Rot wechselt. Das erreichen wir mit einer *Schleife*\index{Schleife}. Eine Schleife ist ein Konstrukt in der Programmierung, das es uns ermöglicht, einen bestimmten Codeabschnitt mehrfach auszuführen, ohne ihn jedes Mal neu schreiben zu müssen. Das spart Zeit und macht den Code übersichtlicher.
 
-### Abzählbare Wiederholung
+### Abzählbare Wiederholungen
 
 Wir beginnen wie immer einfach. Wir nähern uns dem Regenbogen schrittweise an. Zunächst wäre es cool, wenn wir die LED einfach Rot pulsieren lassen könnten. Dazu müssen wir nämlich nur den Rot-Kanal und nicht alle drei Kanäle der LED ansteuern.
 
 Aber was bedeutet es, die LED pulsieren zu lassen? Und was müssen wir dafür tun? Pulsieren bedeutet, dass die LED langsam immer heller wird, kurz in der vollen Helligkeit verweilt, aber dann sofort wieder kontinuierlich dunklert wird. Sobald sie schwarz ist fängt der Zyklus von Vorne an.
 
-```{python}
+Den Ausdruck *immer heller werden* können wir bezogen auf die LED so übersetzen, dass wir den Anteil des Rot-Kanals schrittweise erhöhen. Wenn die LED zu Beginn aus ist, also alle Kanäle auf 0 stehen, können wir den Rot-Kanal von 0 auf 255 erhöhen und so die LED immer heller in Rot aufleuchten lassen.
 
+Wir beginnen also mit einer schwarzen LED:
+
+```{python}
+#| code-line-numbers: false
+btn.set_color(0, 0, 0)
 ```
 
+Anschließend setzen wir den Wert für Rot auf 1:
 
+```{python}
+#| code-line-numbers: false
+btn.set_color(1, 0, 0)
+```
+
+Und erhöhen ihn schrittweise:
+
+```{python}
+#| code-line-numbers: false
+btn.set_color(2, 0, 0)
+btn.set_color(3, 0, 0)
+btn.set_color(4, 0, 0)
+# ...
+```
+
+Wenn wir nach diesem Muster fortfahren, hätten wir bis zum vollen Rot 255 Zeilen Code geschrieben, eine für Zeile jeden Erhöhungschritt. Und anschließend das gleiche nochmal rückwärts, damit wir wieder zu Schwarz kommen. Mit 510 Zeilen Code hätten wir dann eine Pulsierungszykls durchlaufen. Wollen wir die LED öfters pulsieren lassen vervielfacht sich unser Code entsprechend. Das kann nicht die Lösung sein.
+
+Und tatsächlich gibt es in der Programmierung eine einfache Möglichkeit, um sich wiederholende Abläufe zu vereinfachen: die Schleife. In einem Fall, bei dem wir genau wissen, wie oft wir etwas wiederholen wollen, bietet sich eine Zählerschleife an:
+
+```{python}
+#| code-line-numbers: false
+for r in range(256):
+    btn.set_color(r, 0, 0)
+```
+
+Voilá! Unsere 510 Zeilen Code können wir mit einer Schleife auf zwei Zeilen reduzieren! Dazu müssen wir im Kopf der Schleife `for ... in ... :` festlegen, wie oft der eingerückte Codeblock nach dem Doppelpunkt ausgeführt werden soll. In Python funktioniert das über die Angabe eine Menge, für die jedes Element einmal durchlaufen wird. Das aktuelle Element ist in der Schleife als `r` verfügbar. Und `r` nimmt nacheinander jeden Wert der Menge an, die nach dem Schlüsselwort `in` folgt. Diese Menge erzeugt die Funktion `range(256)`, die, wie der Name preisgibt, eine *Zahlenspanne* von 0 bis zum angegebenen Wert minus eins erzeugt. In unserem Fall also von 0 bis 255.
+
+Um das besser nachvollziehen zu können, geben wir den Wert für `r` einfach mal aus:
+
+```{python}
+#| code-line-numbers: false
+for r in range(256):
+    btn.set_color(r, 0, 0)
+    print(r)
+```
+
+Jetzt wird es deutlich - mit jedem Durchlauf der Schleife wird ein neuer Wert für `r` gesetzt und ausgegeben. Und zwar jeweils um eins erhöht.
+
+Rückwärts erreichen wir das gleiche Ergebnis mit einer weiteren Schleife, deren Menge wir umkehren, so dass sie von 255 bis 0 geht:
+
+```{python}
+for r in range(255, -1, -1):
+    btn.set_color(r, 0, 0)
+```
+
+Warum hat `range()` auf einmal drei Argumente? Ganz einfach: Standardmäßig erstellt die Funktion eine Menge von 0 bis zur angegebenen Zahl minus eins. Wir können die Menge aber beeinflussen, indem wir einen Startwert und einen Schrittwert angeben. In unserem Fall oben beginnen wir bei 255 (erster Parameter) und gehen bis -1 (zweiter Parameter), wobei wir in jedem Schritt um -1 verringern (dritter Parameter). Warum zählen wir bis -1, wo wir doch eigentlich die 0 als kleinste Zahl benötigen? Das liegt daran, dass die Menge von `range()` immer bis zum zweiten Parameter minus eins geht. Wenn wir also 0 als kleinste Zahl benötigen, müssen wir bis -1 zählen.
+
+```{python}
+#| lst-label: lst-pulse-program
+#| lst-cap: Das fertige Programm, das die LED rot pulsieren lässt.
+import time
+from tinkerforge.ip_connection import IPConnection
+from tinkerforge.bricklet_rgb_led_v2 import BrickletRGBLEDV2
+
+ipcon = IPConnection()
+ipcon.connect('localhost', 4223) 
+led = BrickletRGBLEDV2('ZEP', ipcon)
+
+# Turn LED off initially
+led.set_rgb_value(0, 0, 0)
+
+while True:
+
+    # Slowly light up
+    for r in range(255):
+        led.set_rgb_value(r, 0, 0)
+        time.sleep(0.001)
+
+    # Keep full brightness for a quarter of a second
+    time.sleep(0.25)
+
+    # Slowly darken
+    for r in range(255, 0, -1):
+        led.set_rgb_value(r, 0, 0)
+        time.sleep(0.001)
+
+    # Keep dark for a quarter second
+    time.sleep(0.25)
+```
 
 ### Bedingte Wiederholung
 
