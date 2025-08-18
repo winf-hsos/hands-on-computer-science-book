@@ -4,30 +4,32 @@ abstract: |
 abstract-title: ""
 ---
 
-# Farben {#sec-colors}
+# Farben 🌈 {#sec-colors}
 
 ## Setup {.unnumbered}
 
-Bereit für dein erstes Hardware-Experiment? Du brauchst dafür eine LED ([RGB LED Bricklet 2.0](https://www.tinkerforge.com/en/doc/Hardware/Bricklets/RGB_LED_V2.html)) und einen Mikrocontroller ([Master Brick 3.2](https://www.tinkerforge.com/de/shop/master-brick.html)). Befestige beide Bauteile mit Abstandshaltern auf einer Montageplatte, wie in @fig-setup-rgb-led-button gezeigt. Zwei Halterungen pro Gerät reichen völlig. Denk an die kleinen, weißen Kunststoff-Unterlegscheiben – die schützen deine Platinen vor Druckstellen.
+Bereit für dein erstes Hardware-Experiment? Perfekt! Du brauchst dafür eine LED ([RGB LED Bricklet 2.0](https://www.tinkerforge.com/en/doc/Hardware/Bricklets/RGB_LED_V2.html)) und einen Mikrocontroller ([Master Brick 3.2](https://www.tinkerforge.com/de/shop/master-brick.html)). Befestige beide Bauteile mit Abstandshaltern auf einer Montageplatte, wie in @fig-setup-rgb-led-button gezeigt. Zwei Schrauben pro Gerät reichen völlig. Denk an die kleinen, weißen Unterlegscheiben aus Kunststoff. Sie schützen deine Platinen vor Druckstellen.
 
 
-::: {#fig-setup-rgb-led-button layout="[[1], [1,1]]"}
+::: {#fig-setup-rgb-led-button layout="[[1], [1,1], [1,1]]"}
 
-![Montageplatte mit allen Komponenten.](images/setup_rgb_led_button.jpg){#fig-setup-rgb-led-button-a .lightbox group="setup-rgb-led-button"}
+![Seitenansicht.](images/master_brick_with_led_01.jpg){#fig-setup-rgb-led-a .lightbox group="setup-rgb-led"}
 
-![Nahaufnahme des Buttons.](images/setup_rgb_led_button_closeup_1.jpg){#fig-setup-rgb-led-button-b .lightbox group="setup-rgb-led-button"}
+![Nahaufnahme der LED.](images/master_brick_with_led_02.jpg){#fig-setup-rgb-led-b .lightbox group="setup-rgb-led"}
 
-![Nahaufnahme des Master Bricks.](images/setup_rgb_led_button_closeup_2.jpg){#fig-setup-rgb-led-button-c .lightbox group="setup-rgb-led-button"}
+![Montageplatte mit allen Komponenten.](images/master_brick_with_led_03.jpg){#fig-setup-rgb-led-c .lightbox group="setup-rgb-led"}
 
-Einfaches Setup mit Mikrocontroller und Button mit integrierter LED.
+![Untenansicht.](images/master_brick_with_led_04.jpg){#fig-setup-rgb-led-d .lightbox group="setup-rgb-led"}
+
+![Ansicht der vier Steckplätze.](images/master_brick_with_led_06.jpg){#fig-setup-rgb-led-e .lightbox group="setup-rgb-led"}
+
+Einfaches Setup mit einem Mikrocontroller und einer LED.
 
 :::
 
 ## Erste Schritte mit dem Brick Viewer
 
-Der Button ist mehr als nur ein Knopf. Er hat zwei Tricks drauf: Er erkennt, ob er gedrückt wird, und er kann leuchten. In Farbe! Wie wir das testen? Das geht ganz leicht mit dem Brick Viewer.
-
-Schließe zuerst den Master Brick über das USB-Kabel an deinen Computer an und öffne den Brick Viewer. Klicke dann auf den Connect-Button.
+Im ersten Schritt wollen wir die LED und ihre Funktionen testen! Das geht ganz leicht mit dem Brick Viewer. Schließe zuerst den Master Brick über das USB-Kabel an deinen Computer an und öffne den Brick Viewer. Klicke dann auf den Connect-Button.
 
 ![Über den Connect-Button verbindet sich der Brick Viewer mit dem angeschlossenen Master Brick.](images/brick_viewer_connect.png){#fig-brick-viewer-connect .lightbox fig-align="center" width="100%" group="brick-viewer"}
 
@@ -35,72 +37,73 @@ Wenn alles geklappt hat, zeigt dir der Brick Viewer alle angeschlossenen Geräte
 
 ![Der Brick Viewer nachdem ihr mit dem Master Brick verbunden seid.](images/brick_viewer_after_connect.png){#fig-brick-viewer-after-connect .lightbox group="brick-viewer"}
 
-Wechsle nun zum Tab des RGB LED Buttons. Hier kannst du sowohl die Farbe der LED einstellen als auch den aktuellen Zustand des Buttons sehen. Im Moment steht da vermutlich „released“, was so viel bedeutet wie „nicht gedrückt“. Probier es direkt aus: Drück den Button! Schau, was passiert!
+Wechsle nun zum Tab der RGB LED. Hier kannst du über unterschiedliche Wege die Farbe der LED einstellen. Mehr kann eine LED nicht!
 
-Mit den drei Schiebereglern steuerst du die Farbe – Rot, Grün, Blau. Wertebereich: 0 bis 255. Warum gerade diese Zahlen? Gute Frage. Die Antwort kommt weiter unten.
+Mit den drei Schiebereglern steuerst du die einzelnen Farbkanäle – Rot, Grün, Blau. Der Wertebereich: 0 bis 255. Warum gerade diese die Farben und Zahlen? Gute Frage. Die Antwort kommt weiter unten.
 
 ![Die Ansicht für den RGB LED Button im Brick Viewer, in der alle Funktionen per Klick im Zugriff sind.](images/brick_viewer_rgb_led_button.png){#fig-brick-viewer-rgb-led-button .lightbox group="brick-viewer"}
 
-Fazit: Der Brick Viewer ist top zum Rumprobieren. Aber wenn du echte Projekte umsetzen willst, musst du programmieren können. Also los!
+Fazit: Der Brick Viewer ist top zum Rumprobieren. Aber wenn du echte Projekte umsetzen willst, musst du programmieren lernen. Also los!
 
 ## Unser erstes Programm
 
-Wie verbindet man sich eigentlich über ein Programm mit dem Button? Die Antwort darauf findest du im folgenden kurzen Codebeispiel.
+Wie verbinden wir uns über Programm mit der LED und setzen ihre Farbe? Die Antwort darauf findest du im folgenden kurzen Codebeispiel.
 
 ```{python}
 #| lst-label: lst-boilerplate-code
-#| lst-cap: Der Boilerplate Code für die Verbindung mit den Geräten am Beispiel des Buttons.
+#| lst-cap: Der Boilerplate-Code für die Verbindung mit den Geräten am Beispiel des Buttons.
 
 from tinkerforge.ip_connection import IPConnection # <1>
-from tinkerforge.bricklet_rgb_led_button import BrickletRGBLEDButton # <2>
+from tinkerforge.bricklet_rgb_led_v2 import BrickletRGBLEDV2 # <2>
 
 ipcon = IPConnection() # <3>
 ipcon.connect("localhost", 4223) # <4>
-btn = BrickletRGBLEDButton("Ds3", ipcon) # <5>
+led = BrickletRGBLEDV2("ZEP", ipcon) # <5>
 ```
 
 1.  Hier importieren wir ein Objekt aus einer Bibliothek zum Herstellen einer Verbindung mit dem Master Brick.
-2.  Hier importieren wir ein weietres Objekt, das wir zur Darstellung des Buttons als Python-Objekt benötigen.
+2.  Hier importieren wir ein weietres Objekt, das wir zur Darstellung der LED als Python-Objekt benötigen.
 3.  Die Verbindung erfolgt über eine sogenannte IP-Verbindung, die wir hier als Objekt erstellen.
 4.  Mit `connect` stellen wir eine Verbindung zum angeschlossenen Master Brick her.
-5.  Schließlich holen wir uns eine virtuelle Instanz des RGB LED Button Bricklets, indem wir die UID nennen und sagen, welche Verbindung (`ipcon`) genutzt werden soll.
+5.  Schließlich holen wir uns eine virtuelle Instanz des RGB LED Bricklets, indem wir die UID nennen und sagen, welche Verbindung (`ipcon`) genutzt werden soll.
 
 ### Programme
 
-Zunächst einmal klären wir den Begriff *Programm*\index{Programm}. Ein Programm ist eine Abfolge von Anweisungen, die ein Computer ausführt, um eine bestimmte Aufgabe zu erledigen. In unserem Fall ist das Programm später dafür zuständig, mit dem Button zu interagieren und die LED in verschiedenen Farben leuchten zu lassen. Programme werden in Programmiersprachen geschrieben, die es uns ermöglichen, dem Computer präzise Anweisungen zu geben. Wir verwenden in diesem Buch die Programmiersprache Python, die sich besonders gut für Einsteiger eignet und gleichzeitig mächtig genug ist, um komplexe Aufgaben zu lösen.
+Zunächst klären wir den Begriff *Programm*\index{Programm}. Ein Programm ist eine Abfolge von Anweisungen, die ein Computer ausführt, um eine bestimmte Aufgabe zu erledigen. In unserem Fall ist das Programm später dafür zuständig, mit der LED zu interagieren und sie in verschiedenen Farben leuchten zu lassen. Programme werden in Programmiersprachen geschrieben, die es uns ermöglichen, dem Computer präzise Anweisungen zu geben. Wir verwenden in diesem Buch die Programmiersprache Python, die sich besonders gut für Einsteiger eignet und gleichzeitig mächtig genug ist, um komplexe Aufgaben zu lösen.
 
-Wenn wir ein Programm ausführen, arbeitet der Computer die Anweisungen Schritt für Schritt von oben nach unten ab. Es gibt Befehle, die den Computer von dieser linearen Abfolge abweichen lassen, etwa Schleifen oder Verzweigungen. Diese lernen wir später kennen.
+Wenn wir ein Programm ausführen, arbeitet der Computer die Anweisungen Schritt für Schritt von oben nach unten ab. Die Nummerierung der Zeilen verdeutlicht das sehr schön. Der Computer beginnt bei Zeile 1 und arbeitet die Befehle Zeile für Zeile bis nach unten ab. 
+
+Es gibt Befehle, die den Computer von dieser linearen Abfolge abweichen lassen, etwa Schleifen oder Verzweigungen. Diese lernen wir später kennen.
 
 ### Boilerplate Code
 
-Der Codeauschnitt in @lst-boilerplate-code wird uns im Verlauf dieses Buches immer wieder begegnen. Wir benötigen ihn, um uns am Anfang des Programms mit den Geräten zu verbinden. In der Informatik nennen wir solchen Code, den wir häufig in der gleichen Form benötigen und fast eins zu eins kopieren können, auch *Boilerplate Code*. Wundert euch also nicht, wenn ich diesen Begriff ab und an mal verwende. Jetzt wisst ihr, was gemeint ist.
+Der Codeauschnitt in @lst-boilerplate-code wird uns im Verlauf dieses Buches immer wieder begegnen. Wir benötigen ihn, um uns am Anfang des Programms mit den Geräten zu verbinden, die wir für unsere Anwendung benötigen. In der Informatik nennen wir solchen Code, den wir häufig in der gleichen Form benötigen und fast eins zu eins kopieren können, auch *Boilerplate-Code*. Wundert euch also nicht, wenn ich diesen Begriff ab und an mal verwende. Jetzt wisst ihr, was gemeint ist.
 
 ### Bibliotheken
 
 Beginnen wir in den ersten beiden Zeilen. Hier seht ihr zwei sehr ähnliche Befehle, die mit dem Schlüsselwort `from` beginnen. Nach dem Schlüsselwort `from` folgt der Name einer Bibliothek, aus der wir ein für unser Programm benötigtes Objekte importieren. Die Kombination der Schlüsselwörter `from ...import` lässt sich also wörtlich übersetzen: "Aus der Bibliothek X importiere das Objekt Y".
 
-Eine *Bibliothek*\index{Bibliothek} in einer Programmiersprache ist die Bündelung und Bereitstellung von Funktionen, Klassen oder Konstanten. Eine Bibliothek kannst du dir vorstellen wie einen Werkzeugkasten: Sie enthält fertige Werkzeuge (Funktionen und Klassen), damit du nicht alles von Grund auf selbst schreiben musst. Tinkerforge stellt uns genau solche Werkzeuge bereit, damit wir schnell und unkompliziert mit den Geräten loslegen können.
+Eine *Bibliothek*\index{Bibliothek} in einer Programmiersprache ist die Bündelung und Bereitstellung von Funktionen, Klassen oder Konstanten. Eine Bibliothek kannst du dir vorstellen wie einen Werkzeugkasten: Sie enthält fertige Werkzeuge (Funktionen und Klassen), damit du nicht alles von Grund auf selbst programmiern musst. Tinkerforge stellt uns genau solche Werkzeuge bereit, damit wir schnell und unkompliziert mit den Geräten loslegen können. Für jedes Gerät gibt es in der Tinkerforge-Bibliothek eine eigene Klasse, über die wir auf die Funktionen jedes Geräts zugreifen können.
 
 ### Klassen und Objekte
 
 Mit `from ... import` importieren wir also etwas aus einer Bibliothek. Soweit so gut. Aber was bedeutet das genau? Mit *importieren* ist konkret gemeint, dass wir dem Programm mitteilen, dass wir vorhaben, die genannten Dinge in unserem Programm zu verwenden, und dass sie deshalb am besten schon einmal geladen werden sollten. Ob wir diese Dinge später wirklich nutzen steht auf einem anderen Blatt.
 
-In dem Fall der ersten beiden Zeilen unseres Programms von oben sind es zwei *Klassen*\index{Klasse}, deren Verwendung wir ankündigen. Die erste Klasse heisst `IPConnection`\index{`IPConnection`} und die zweite `BrickletRGBLEDButton`\index{`BrickletRGBLEDButton`}. Der Begriff *Klasse* ist hier verstehen analog zum Begriff *Kategorie*. Wir können zu einer Klasse gehörige *Objekte*\index{Objekt} erzeugen, und alle Objekte der selben Klasse verhalten sich gleich und haben die gleichen Funktionen. Das verstehen wir am besten an einem einfachen Beispiel.
+In dem Fall der ersten beiden Zeilen unseres Programms von oben sind es zwei *Klassen*\index{Klasse}, deren Verwendung wir ankündigen. Die erste Klasse heisst `IPConnection`\index{`IPConnection`} und die zweite `BrickletRGBLEDButton`\index{`BrickletRGBLEDV2`}. Der Begriff *Klasse* ist hier analog zum Begriff *Kategorie* zu verstehen. Wir können zu einer Klasse gehörige *Objekte*\index{Objekt} erzeugen, und alle Objekte der selben Klasse verhalten sich gleich und haben die gleichen Funktionen. Das verstehen wir am besten an einem einfachen Beispiel.
 
-Stellt euch vor, ihr habt eine Klasse namens `Auto`. Diese Klasse beschreibt alle Eigenschaften und Funktionen, die ein Auto haben kann, wie etwa `fahren()`, `bremsen()` oder `tanken()`. Diese Dinge sollen für jedes Auto gleich ablaufen. Jedes konkrete Auto in der Welt ist ein Objekt dieser Klasse. Du kannst also sagen: "Mein Auto ist ein Objekt der Klasse `Auto`." Jedes `Auto` hat die gleichen Eigenschaften wie Farbe, Marke und Modell. Aber jedes Auto kann andere Werte für diese Eigenschaftan haben.
+Stellt euch vor, ihr habt eine Klasse namens `Auto`. Diese Klasse beschreibt alle Eigenschaften und Funktionen, die ein Auto haben kann, wie etwa `fahren()`, `bremsen()` oder `tanken()`. Diese Dinge sollen für jedes Auto gleich ablaufen. Jedes konkrete Auto in der Welt ist ein Objekt dieser Klasse. Du kannst also sagen: "Mein Auto ist ein Objekt der Klasse `Auto`." Jedes `Auto` hat neben den Funktionen die gleichen Eigenschaften wie Farbe, Marke und Modell. Aber jedes Auto kann andere Werte für diese Eigenschaftan haben.
 
-Genauso verhält es sich mit den Klassen, die Tinkerforge für uns bereitgestellt hat. Die Klasse `IPConnection` beschreibt, wie wir eine Verbindung zu einem Mikrocontroller herstellen können, und die Klasse `BrickletRGBLEDButton` beschreibt, wie wir mit dem Button interagieren können. Wenn wir ein Objekt dieser Klasse erstellen, können wir die Funktionen nutzen, die in der Klasse definiert sind. Ein Button muss nicht fahren oder bremsen wie ein Auto. Dafür hat er andere Funktionen, wie etwa `get_button_state()` oder `set_color()`, die uns erlauben, den Status des Buttons abzufragen oder die Farbe der integrierten LED zu ändern. Eine Eigenschaft jedes Buttons ist seine UID, die eindeutig ist und uns hilft, ihn im System zu identifizieren.
-
+Genauso verhält es sich mit den Klassen, die Tinkerforge für uns bereitgestellt hat. Die Klasse `IPConnection` beschreibt, wie wir eine Verbindung zu einem Mikrocontroller herstellen können, und die Klasse `BrickletRGBLEDV2` beschreibt, wie wir mit der LED interagieren können. Wenn wir ein Objekt dieser Klasse erstellen, können wir alle Funktionen nutzen, die in der Klasse definiert sind. Eine LED muss nicht fahren oder bremsen wie ein Auto. Dafür hat sie andere Funktionen, wie etwa `set_color()`, die uns erlaubt, die Farbe der LED zu ändern. Eine Eigenschaft jeder LED ist ihre UID, die eindeutig ist und uns hilft, sie im System zu identifizieren.
 
 ### Schlüsselwörter
 
-Soeben haben wir mit `from` und `import` unsere ersten beiden Schlüsselwörter in Python kennengelernt! Aber was bedeutet das genau? Ein Schlüsselwort, das wir im Englischen auch *keyword* oder *reserved keyword* nennen, ist ein Begriff, der in der jeweiligen Programmiersprache eine feste Bedeutung hat und deshalb nicht anderweitig verwendet werden darf. Wir werden gleich noch sehen, dass wir bei der Programmierung auch häufig Namen vergeben müssen, etwa für Variablen oder Funktionen. Diese Namen dürfen nicht wie ein Schlüsselwort lauten, ansonsten funktioniert unser Programm nicht wie gewünscht. Welche Schlüsselwörter es in Python gibt, könnt ihr [hier](https://docs.python.org/3/reference/lexical_analysis.html#keywords "Reservierte Schlüsselwörter in Python") nachschauen.
+Soeben haben wir mit `from` und `import` unsere ersten beiden Schlüsselwörter\index{Schlüsselwort} in Python kennengelernt! Aber was bedeutet das genau? Ein Schlüsselwort, das wir im Englischen auch *keyword* oder *reserved keyword* nennen, ist ein Begriff, der in der jeweiligen Programmiersprache eine feste Bedeutung hat und deshalb nicht anderweitig verwendet werden darf. Wir werden gleich noch sehen, dass wir bei der Programmierung auch häufig Namen vergeben müssen, etwa für Variablen oder Funktionen. Diese Namen dürfen nicht wie ein Schlüsselwort lauten, ansonsten funktioniert unser Programm nicht wie gewünscht. Welche Schlüsselwörter es in Python gibt, könnt ihr [hier](https://docs.python.org/3/reference/lexical_analysis.html#keywords "Reservierte Schlüsselwörter in Python") nachschauen.
 
-Im Codeausschnitt oben laden wir zuerst das Objekt für die Verbindung zum angeschlossenen Mikrocontroller, die über eine IP-Verbindung hergestellt wird. Was das genau ist? Später mehr dazu. Zusätzlich zur `IPConnection` laden wir anschließend noch die benötigen Klassen für die Geräte, die wir in unserem aktuellen Setup verwenden wollen. In diesem Kapitel ist das nur der Button mit integrierter LED.
+Im Codeausschnitt oben laden wir zuerst das Objekt für die Verbindung zum angeschlossenen Mikrocontroller, die über eine IP-Verbindung hergestellt wird. Was das genau ist? Später mehr dazu. Zusätzlich zur `IPConnection` laden wir anschließend noch die benötigen Klassen für die Geräte, die wir in unserem aktuellen Setup verwenden wollen. In diesem Kapitel ist das nur die LED, in späteren Experimenten werden es auch mal mehrere Geräte sein.
 
 ### Objekte erzeugen
 
-In @lst-boilerplate-code in Zeile 4 erzeugen wir ein Objekt der Klasse `IPConnection`. Die fertige Instanz\index{Objektinstanz} - so nennen wir ein Objekt, das aus einer Klasse erzeugt wurde - speichern wir auf einer *Variable* mit dem Namen `ipcon`. Diesen Namen haben wir uns selbst ausgedacht, damit wir später darauf zugreifen können. Eine Variable ist also ein Platzhalter für einen Wert, den wir später im Programm verwenden wollen. In diesem Fall ist `ipcon` der Platzhalter für die Verbindung zu unserem Mikrocontroller. Was eine Variable genau ist, lernen wir später noch genauer kennen.
+In @lst-boilerplate-code in Zeile 4 erzeugen wir ein Objekt\index{Objekt} der Klasse `IPConnection`. Die fertige Instanz\index{Objektinstanz} - so nennen wir ein Objekt, das aus einer Klasse erzeugt wurde - speichern wir auf einer *Variable* mit dem Namen `ipcon`. Diesen Namen haben wir uns selbst ausgedacht, damit wir später darauf zugreifen können. Wir hätten auch einen anderen Namen wählen können.Eine Variable ist also ein Platzhalter für einen Wert, den wir später im Programm verwenden wollen. In diesem Fall ist `ipcon` der Platzhalter für die Verbindung zu unserem Mikrocontroller. Was eine Variable technisch ist, lernen wir später noch genauer kennen.
 
 ### Methoden
 
@@ -108,9 +111,11 @@ In @lst-boilerplate-code in Zeile 4 erzeugen wir ein Objekt der Klasse `IPConnec
 
 Wir können Methoden aufrufen, um eine bestimmte Aktion auszuführen. In diesem Fall stellen wir eine Verbindung zum Mikrocontroller her, indem wir die Adresse und den Port angeben, über den die Verbindung hergestellt werden soll. In unserem Fall ist das "localhost", was für die lokale Maschine steht, und Port 4223, der durch den Brick Daemon standarmäßig so konfiguriert ist. Der Aufruf einer Methode erfolgt immer mit dem Punkt `.` nach dem Objekt, gefolgt vom Namen der Methode und den Klammern `()`, in denen wir eventuell benötigte Parameter angeben.
 
-### Ein Objekt für den Button
+Eine Methode ist letztlich eine Funktion, die zu einem Objekt gehört. Zu einem späteren Zeitpunkt schreiben wir unsere eigenen Funktionen und lernen dann noch viel mehr darüber.
 
-In Zeile 6 erzeugen wir schließlich ein Objekt der Klasse `BrickletRGBLEDButton`. Dieses Objekt repräsentiert unseren Button und ermöglicht es uns, mit ihm zu interagieren. Wir nennen das Objekt `btn`, was für Button steht. Auch hier haben wir uns den Namen selbst ausgedacht, um später darauf zugreifen zu können. Auch wenn wir grundsätzlich Variablennamen frei wählen können, sollten sie immer so gewählt werden, dass sie den Inhalt der Variable beschreiben. Das macht es später einfacher, den Code zu verstehen. Gleichzeitig gibt es in Python einige Regeln, die wir bei der Benennung von Variablen beachten müssen. Dazu gehören etwa, dass Variablennamen nicht mit einer Zahl beginnen dürfen und keine Leerzeichen enthalten dürfen. Eine ausführliche Liste der Regeln findest du [hier](https://docs.python.org/3/reference/lexical_analysis.html#identifiers "Regeln für Variablennamen in Python").
+### Ein Objekt für die LED
+
+In Zeile 6 erzeugen wir schließlich ein Objekt der Klasse `BrickletRGBLEDV2`. Dieses Objekt repräsentiert unsere LED und ermöglicht es uns, mit ihr zu interagieren. Wir nennen das Objekt `led`, was kurz und klar ist. Auch hier haben wir uns den Namen selbst ausgedacht, um später darauf zugreifen zu können. Auch wenn wir grundsätzlich Variablennamen frei wählen können, sollten sie immer so gewählt werden, dass sie den Inhalt der Variable beschreiben. Das macht es später einfacher, den Code zu verstehen. Gleichzeitig gibt es in Python einige Regeln, die wir bei der Benennung von Variablen beachten müssen. Dazu gehören etwa, dass Variablennamen nicht mit einer Zahl beginnen dürfen und keine Leerzeichen enthalten dürfen. Eine ausführliche Liste der Regeln findest du [hier](https://docs.python.org/3/reference/lexical_analysis.html#identifiers "Regeln für Variablennamen in Python").
 
 ### Zusammenfassung unseres ersten Programms
 
@@ -128,22 +133,24 @@ Damit haben wir unser erstes Programm von oben nach unten erläutert und dabei s
 
 ### Und jetzt?
 
-Wir haben nun eine virtuelle, digitale Repräsentation unseres Buttons im Python. Damit können wir die LED des Buttons zum Leuchten bringen. Dazu verwenden wir eine Methode der Klasse `BrickletRGBLEDButton`, die `set_color()` heißt. Diese Methode erwartet drei Parameter: Rot, Grün und Blau. Mit diesen Parametern können wir die Farbe der LED einstellen.
+Wir haben nun eine digitale Repräsentation unserer LED in Python. Wir können die LED jetzt zum Leuchten bringen, indem wir eine Methode der Klasse `BrickletRGBLEDV2`, die `set_color()` heißt, verwenden. Diese Methode erwartet drei Parameter: Rot, Grün und Blau. Mit diesen Parametern können wir die Farbe der LED einstellen.
 
 ```{python}
-btn.set_color(0, 255, 0) # <1>
+led.set_color(0, 255, 0) # <1>
 ```
 1. Setzt die LED auf grün. R = 0, G = 255, B = 0. Logisch, oder?
 
-Moment mal … Wo steht hier eigentlich *grün*? Steht da gar nicht. Stattdessen: Zahlen. Willkommen bei der *RGB-Farbkodierung*\index{RGB-Farbkodierung}. Jede Farbe besteht aus drei Werten zwischen 0 und 255: Rot, Grün, Blau. Null ist nix. 255 ist volle Power. Alles 0? Schwarz. Alles 255? Weiß. Nur Grün auf 255? Na klar: grün.
+Moment mal … Wo steht hier eigentlich *grün*? Steht da gar nicht. Stattdessen drei Zahlen. Willkommen bei der *RGB-Farbkodierung*\index{RGB-Farbkodierung}. Jede Farbe besteht aus drei Werten zwischen 0 und 255: Rot, Grün, Blau. Null ist nix. 255 ist volle Power. Alles 0? Schwarz. Alles 255? Weiß. Nur Grün auf 255? Na klar: grün.
 
 Aber warum machen wir das mit Zahlen? Weil Computer nun mal mit Zahlen arbeiten. Das ist einer der zentralen Gedanken dieses Buches: Wie übersetzen wir die Welt in etwas, das ein Computer versteht?
 
 Warum aber ist das so? Warum kodieren wir in der Informatik jede Farbe mit *drei* Zahlen? Warum überhaupt mit Zahlen? Hier kommen wir zu einer zentralen Frage dieses Buches: Wie bilden Computer Informationen ab?
 
+Vorher müssen wir aber kurz zurück in die Schule.
+
 ## Farben und Licht
 
-Pyhsik ist vielleicht schon eine Weile her und wir halten es hier auch kurz. Erinnern wir uns kurz, was Licht und damit Farben sind. Licht ist eine Form von *elektromagnetischer Strahlung*\index{elektromagnetische Strahlung}. Das bedeutet, dass es sich um Wellen handelt, die sich durch den Raum bewegen. Diese Wellen haben unterschiedliche Frequenzen und Wellenlängen. Das sichtbare Licht ist nur ein kleiner Teil des gesamten elektromagnetischen Spektrums, das von Radiowellen über Infrarotstrahlung bis hin zu Röntgenstrahlen und Gammastrahlen reicht.
+Physik ist vielleicht schon eine Weile her. Erinnern wir uns dennoch kurz, was Licht ist und wie Farben damit zusammenhängen. Licht ist *elektromagnetische Strahlung*\index{elektromagnetische Strahlung}. Das bedeutet, es handelt sich um gekoppelte Schwingungen elektrischer und magnetischer Felder, die sich mit Lichtgeschwindigkeit ausbreiten. Vereinfacht können wir uns Licht als Wellen vorstellen, die sich durch den Raum bewegen. Diese Wellen haben unterschiedliche Frequenzen und Wellenlängen. Das sichtbare Licht ist nur ein kleiner Teil des gesamten elektromagnetischen Spektrums, das von Radiowellen über Infrarotstrahlung bis hin zu Röntgenstrahlen und Gammastrahlen reicht.
 
 Bei Wellen unterscheiden wir zwischen der Frequenz (wie oft die Welle pro Sekunde schwingt) und der Wellenlänge (der Abstand zwischen zwei aufeinanderfolgenden Wellenbergen). Die Frequenz und die Wellenlänge sind umgekehrt proportional: Je höher die Frequenz, desto kürzer die Wellenlänge und umgekehrt.
 
@@ -151,7 +158,7 @@ Frequenzen messen wir in Hertz (Hz), wobei 1 Hz einer Schwingung pro Sekunde ent
 
 Was bedeutet das nun für eine LED? Eine LED (Light Emitting Diode) ist ein Halbleiterbauelement, das Licht erzeugt, wenn elektrischer Strom hindurchfließt. Die Farbe des Lichts hängt von Eigenschaften des Halbleitermaterials ab, aus dem die LED besteht. Verschiedene Materialien emittieren Licht bei unterschiedlichen Wellenlängen, was zu verschiedenen Farben führt. Zum Beispiel emittiert eine rote LED Licht mit einer Wellenlänge von etwa 620-750 nm, während eine grüne LED Licht mit einer Wellenlänge von etwa 495-570 nm emittiert.
 
-![Das elektromagnetische Spektrum, wovon das sichtbare Licht ein Teil ist. (Quelle: [Wikipedia](https://en.wikipedia.org/wiki/File:EM_Spectrum_Properties_edit.svg))](images/em_spectrum.png){#fig-em-spectrum fig-align="center" width="100%"}
+![Das elektromagnetische Spektrum, wovon das sichtbare Licht ein kleiner Teil ist. (Quelle: [Wikipedia](https://en.wikipedia.org/wiki/File:EM_Spectrum_Properties_edit.svg))](images/em_spectrum.png){#fig-em-spectrum fig-align="center" width="100%"}
 
 
 Die RGB LEDs, die in unserem Button verbaut ist, besteht in Wirklichkeit aus drei einzelnen LEDs: einer roten, einer grünen und einer blauen. Jede dieser LEDs kann unabhängig voneinander angesteuert werden, um verschiedene Farben zu erzeugen. Mehr Spannung bedeutet mehr Intensität der jeweiligen Farbe. Durch die Kombination der drei Grundfarben Rot, Grün und Blau in unterschiedlichen Intensitäten können wir eine Vielzahl von Farben mischen. Das ist das Prinzip der additiven Farbmischung: Wenn wir alle drei Farben mit voller Intensität leuchten lassen, erhalten wir Weiß. Wenn wir keine Farbe leuchten lassen, erhalten wir Schwarz. Klar, die LED sind dann alle aus.
@@ -162,11 +169,11 @@ Nun wissen wir, warum die Methode `set_color()` drei Parameter erwartet: Rot, Gr
 
 Wie kommt es aber zu der merkwürdigen Zahl 255? Warum nicht einfach 0 bis 100? Das liegt daran, wie ein Computer grundsätzlich Werte speichert und wie dieser Speicher organisiert ist. Kurz gesagt: Der Wertebereich 0 bis 255 passt genau in ein sogenanntes *Byte*\index{Byte}. Ein Byte ist eine Speichereinheit, die aus 8 Bits besteht. Ein Bit kann entweder 0 oder 1 sein. Mit 8 Bits können wir also $2^8 = 256$ verschiedene Werte darstellen, von 0 bis 255. Das ist genau der Bereich, den wir für die RGB-Farbkodierung verwenden. Dazu lernen wir später noch mehr.
 
-Wir halten also fest, dass sich ein Farbwert im Computer aus drei Zahlen zusammensetzt, die jeweils zwischen 0 und 255 liegen. Das gilt für unsere LED, aber beispielsweise auch für Pixel in Bildern oder auf eurem Bildschirm. Das beleuchten wir später auch noch genauer.
+Wir halten also fest, dass sich ein Farbwert im Computer aus drei Zahlen zusammensetzt, die jeweils zwischen 0 und 255 liegen. Das gilt für unsere LED, aber auch für Pixel in TVs, Smartphones, digitalen Foto oder Monitoren. All diese Dinge beleuchten wir später noch genauer.
 
 ## Farben mischen
 
-Klingt alles theoretisch ja sehr gut. Aber wie sieht es mit der Praxis aus? Probieren wir es aus!
+Klingt alles theoretisch sehr gut. Aber wie sieht es mit der Praxis aus? Probieren wir es aus und mischen zwei Farben mit voller Intensität!
 
 ```{python}
 btn.set_color(255, 255, 0)
@@ -179,16 +186,22 @@ Was macht der Befehl? Welche Farbe kommt dabei heraus? Probiert es einfach mal a
 Ihr solltet alle euren Button in Gelb aufleuchten sehen. In der *additiven Farbmischung* mischen wir Rot und Grün und erhalten dadurch Gelb. Gelb ist heller als die beiden Farben Rot und Grün, was kein Zufall ist. Das ist das Prinzip der additiven Farbmischung: Wenn wir zwei Farben mit voller Intensität leuchten lassen, erhalten wir eine neue Farbe, die stest heller ist als die Ursprungsfarben. Wir fügen mehr Licht hinzu. Wenn wir alle drei Farben mit voller Intensität mischen erhalten wir schließlich Weiß. 
 
 ```{python}
-btn.set_color(255, 255, 255)
+led.set_color(255, 255, 255)
+```
+
+Am anderen Ende des Spektrums erzeugen drei Nullen die Farbe Schwarz:
+
+```{python}
+led.set_color(0, 0, 0)
 ```
 
 ### Subtraktive Farbmischung
 
-Die *subtraktive Farbmischung* funktioniert anders, nämlich genau umgekehrt. Statt beim Mischen Licht hinzuzufügen, nehmen wir Licht weg.
+Ihr könnt euch merken, dass wir im Kontext von Computern oft von *additiver Farbmischung* sprechen, weil Bildschirme Licht erzeugen. Durch das Mischen der drei Farbkanäle entstehen neue Farben gemäß der additiven Farbmischung, also stets heller als ihre Grundfarben. Daneben gibt es aber noch die subtraktive Farbmischung. Sie funktioniert anders, nämlich genau umgekehrt. Statt beim Mischen Licht hinzuzufügen, nehmen wir Licht weg.
 
-Erinnert ihr euch an euren Farbkasten aus der Grundschule? Dort habt ihr auch Farben gemischt, um neue Farben zu erzeugen, die euer Farbkasten nicht direkt mitgeliefert hat. Was hat im Farbenkasten die Mischung aus Rot und Grün ergeben? Sicher nicht gelb - eher braun. Eind unklere Farbe. Das liegt daran, dass wir hier nicht von additiver, sondern von subtraktiver Farbmischung sprechen. Bei der subtraktiven Farbmischung mischen wir Pigmente, die Licht *absorbieren* und *reflektieren*. Das Mischen von Farben fungiert hier wie ein Filter: Bestimmte Teile des Lichtsprektrums werden nicht mehr refklektiert, sondern absorbiert und sind damit nicht mehr sichtbar. 
+Erinnert ihr euch an euren Farbkasten aus der Grundschule? Dort habt ihr auch Farben gemischt, um neue Farben zu erzeugen, die euer Farbkasten nicht direkt mitgeliefert hat. Was hat im Farbenkasten die Mischung aus Rot und Grün ergeben? Sicher nicht Gelb - eher Braun. Eine dunklere Farbe. Das liegt daran, dass wir es hier nicht mit additiver, sondern mit subtraktiver Farbmischung zu tun haben. Bei der subtraktiven Farbmischung mischen wir Pigmente, die Licht *absorbieren* und *reflektieren*. Das Mischen von Farben fungiert hier wie ein Filter: Bestimmte Teile des Lichtsprektrums werden nicht mehr refklektiert, sondern absorbiert und sind damit nicht mehr sichtbar. Das Ergebnis einer Mischung zweier Farben ergibt in der subtraktiven Farbmischung also stets eine dunklere Farbe. Genau umgekehrt zur additiven Farbmischung.
 
-Was passiert mit dem absorbierten Licht? Es wird in eine andere Form der Energie umgewandelt, nämlich Wärme. Deshalb wird eine schwarze Oberfläche auch besonders heiß, wenn die Sonne darauf knallt. Sie absorbiert das gesamte Lichtspekturm und wandelt es in Wäre um. Dagegen wirken weiße Oberflächen fast wie Klimaanlagen. Es ist kein Zuall, dass wir in sonnigen Erdteilen viele weiße Fassaden sehen.
+Was passiert mit dem absorbierten Licht? Es wird in eine andere Form der Energie umgewandelt, nämlich Wärme. Deshalb wird eine schwarze Oberfläche auch besonders heiß, wenn die Sonne darauf knallt. Sie absorbiert das gesamte Lichtspekturm und wandelt es in Wäre um. Dagegen wirken weiße Oberflächen fast wie Klimaanlagen. Es ist kein Zufall, dass wir in sonnigen Erdteilen viele weiße Fassaden sehen.
 
 Wenn wir alle Farben mischen ergibt die subtraktive Farbmischung Schwarz, weil kein Licht mehr reflektiert wird. Alles Licht wird aufgesogen und nichts kommt mehr zurück. Das ist ein anderes Prinzip als bei der additiven Farbmischung, bei der wir Lichtquellen *kombinieren*, um neue Farben zu erhalten.
 
@@ -202,35 +215,33 @@ Additive und subtraktive Farbmischung.
 
 :::
 
-Die Grundfarben, die wir bei der subtraktiven Variante benötigen, um daraus alle weiteren Farben zu erhalten sind Cyan, Magenta sowie Gelb. Im Englischen ist die Abkürzung CMY, wo das "Y" für *Yellow* steht. In der additiven Farbmischung sind es Rot, Grün und Blau. Wenn ihr @fig-subtractive-color-mixing betrachtet dann erkennt ihr, dass genau diese drei Farben durch das Mischen jeweils zweier Grundfarben in der subtraktiven Farbmischung entstehen. Und umgekehrt gilt das gleiche Prinzip! Ob das Zufall ist?
+In @fig-color-mixing sehen wir die beiden Farbmischungsarten im Vergleich. In @fig-subtractive-color-mixing sehen wir die drei Grundfarben, die wir bei der subtraktiven Variante benötigen, um daraus alle weiteren Farben zu erhalten. Das sind Cyan, Magenta sowie Gelb. Im Englischen ist die Abkürzung CMY, wo das "Y" für *Yellow* steht. In der additiven Farbmischung sind es, wie oben schon gesehen, Rot, Grün und Blau. Wenn ihr @fig-additive-color-mixing betrachtet dann erkennt ihr, dass genau diese drei Farben durch das Mischen jeweils zweier Grundfarben in der additiven Farbmischung entstehen. Und umgekehrt gilt das gleiche Prinzip! Ob das Zufall ist?
 
-Das war natürlich eine rethorische Frage. Wenn wir in der additiven Farbmischung Grün und Rot mischen, um Gelb zu erhalten, muss es im Umkehrschluss bedeuten, dass
+In der additiven Farbmischung entsteht Gelb durch das Mischen von Rot und Grün, wobei Blau fehlt. Im Umkehrschluss bedeutet das: Gelbes Licht enthält keine blaue Komponente, es reflektiert also kein Blau. In der subtraktiven Farbmischung (wie beim Farbkasten) wird Gelb erzeugt, indem Blau aus weißem Licht herausgefiltert wird – Gelb reflektiert also kein Blau, sondern absorbiert es. Gelb kann also auch als Blaufilter gesehen werden. Das erklärt, warum ein gelber Gegenstand unter blauem Licht dunkel erscheint: Er kann das blaue Licht nicht reflektieren.
 
-Damit können wir auch erklären, warum Farbdrucker vier unterschiedliche Kartuschen benötigen (@fig-toner-cmy). Mit den Grundfarben der subtraktiven Farbmischung Cyan, Magenta und Gelb können wir jede beliebige Farbe mischen. Zusätzlich haben Drucker eine Kartusche für Schwarz, um erstens ein sattes Schwarz drucken zu können und zweitens die Farbkartuschen zu schonen. Denn schließlich müssen alle drei Farben gemmischt werden, um Schwarz zu erhalten. Und weil viele Drucksachen schwarz enthalten (oder sogar ausschließlich) ist eine schwarze Kartusche einfach effizienter.
+Jetzt können wir auch erklären, warum Farbdrucker vier unterschiedliche Kartuschen benötigen (@fig-toner-cmy). Mit den Grundfarben der subtraktiven Farbmischung Cyan, Magenta und Gelb können wir jede beliebige Farbe mischen. Zusätzlich haben Drucker eine Kartusche für Schwarz, um erstens ein sattes Schwarz drucken zu können und zweitens die Farbkartuschen zu schonen. Denn schließlich müssen alle drei Farben gemmischt werden, um Schwarz zu erhalten. Und weil viele Drucksachen schwarz enthalten (oder sogar ausschließlich) ist eine schwarze Kartusche einfach effizienter. Die Farbe Schwarz wird bei Druckerkartuschen als Key bezeichnet und mit "K" abgekürzt. Wir sprechen daher auch von CMYK.
 
 ![Ein typisches Set mit CMY-Druckerkartuschen inklusive Schwarz.](images/toner-cmy.png){#fig-toner-cmy .lightbox}
 
-Farben spielen eine so wichtige Rolle für uns und die Arbeit mit Computern. Deshalb lohnt es sich, ein wenig über die Hintergründe von Farben und deren Mischung zu verstehen. Wir werden später noch lernen, wie Bildschirme Farben darstellen. Spätestens dann wird uns das Thema der Farbmischung wieder begegnen.
+Farben spielen eine so wichtige Rolle bei der Arbeit mit Computern. Deshalb lohnt es sich, ein wenig über die Hintergründe von Farben und deren Mischung zu verstehen. Wir werden später noch lernen, wie Bildschirme Farben darstellen. Spätestens dann wird uns das Thema der Farbmischung wieder begegnen.
 
-## Der RGB-Code
-
-Wir wollen jetzt weiter mit unserer LED experimentieren und den RGB-Code, mit dem Computer Farben abbilden, besser verstehen. Bisher haben wir gelernt, dass wir die Farbe der LED über die Methode `set_color()` verändern können, wenn wir wissen, welcher RGB-Code die Farbe repräsentiert, die wir uns wünschen. Da wir jetzt mehr über die Farbmischung wissen, können wir die LED also ganz einfach in der Farbe Magenta leuchten lassen:
+Ab jetzt wollen wir weiter mit unserer LED experimentieren und den RGB-Code, mit dem Computer Farben abbilden, praxisnah verstehen. Bisher haben wir gelernt, dass wir die Farbe der LED über die Methode `set_color()` verändern können, wenn wir wissen, welcher RGB-Code unsere gewünschte Farbe repräsentier. Da wir jetzt mehr über die Farbmischung wissen, können wir die LED also ganz einfach in der Farbe Magenta leuchten lassen:
 
 ```{python}
 btn.set_color(255, 0, 255)
 ```
 
-Gemäß der Theorie der additiven Farbmischung müsste Rot und Blau Magenta ergeben. Probiert es aus!
+Gemäß der Theorie der additiven Farbmischung (@fig-additive-color-mixing) müsste Rot und Blau Magenta ergeben. Probiert es aus!
 
 ## Schleifen
 
-Das Ziel unseres ersten Experiments ist es, einen Regenbogebenfarbverlauf zu erzeugen. Dazu müssen wir die Farbe der LED kontinuierlich ändern, sodass sie von Rot über Gelb, Grün, Cyan, Blau und Violett wieder zurück zu Rot wechselt. Das erreichen wir mit einer *Schleife*\index{Schleife}. Eine Schleife ist ein Konstrukt in der Programmierung, das es uns ermöglicht, einen bestimmten Codeabschnitt mehrfach auszuführen, ohne ihn jedes Mal neu schreiben zu müssen. Das spart Zeit und macht den Code übersichtlicher.
+Das deklarierte Ziel unseres ersten Experiments ist es, einen Regenbogebenfarbverlauf zu erzeugen. Dazu müssen wir die Farbe der LED kontinuierlich ändern, sodass sie von Rot über Gelb, Grün, Cyan, Blau und Violett wieder zurück zu Rot wechselt. Das erreichen wir mit einer *Schleife*\index{Schleife}. Eine Schleife ist ein Konstrukt in der Programmierung, das es uns ermöglicht, einen bestimmten Codeabschnitt mehrfach auszuführen, ohne ihn jedes Mal neu schreiben zu müssen. Das spart Zeit und macht den Code übersichtlicher.
 
 ### Abzählbare Wiederholungen
 
-Wir beginnen wie immer einfach. Wir nähern uns dem Regenbogen schrittweise an. Zunächst wäre es cool, wenn wir die LED einfach Rot pulsieren lassen könnten. Dazu müssen wir nämlich nur den Rot-Kanal und nicht alle drei Kanäle der LED ansteuern.
+Wir beginnen wie immer einfach und nähern uns dem Regenbogen schrittweise an. Zunächst wäre es schön, wenn wir die LED einfach Rot pulsieren lassen könnten. Dazu müssen wir nämlich nur den Rot-Kanal und nicht alle drei Kanäle der LED ansteuern. Gleichzeitig lernen wir schon hier ein Problem kennen, das mit Schleifen gelöst werden kann.
 
-Aber was bedeutet es, die LED pulsieren zu lassen? Und was müssen wir dafür tun? Pulsieren bedeutet, dass die LED langsam immer heller wird, kurz in der vollen Helligkeit verweilt, aber dann sofort wieder kontinuierlich dunklert wird. Sobald sie schwarz ist fängt der Zyklus von Vorne an.
+Was bedeutet es, die LED pulsieren zu lassen? Und was müssen wir dafür tun? Pulsieren bedeutet, dass die LED langsam immer heller wird, kurz in der vollen Helligkeit verweilt, aber dann sofort wieder kontinuierlich dunklert wird. Sobald sie schwarz ist fängt der Zyklus von Vorne an.
 
 Den Ausdruck *immer heller werden* können wir bezogen auf die LED so übersetzen, dass wir den Anteil des Rot-Kanals schrittweise erhöhen. Wenn die LED zu Beginn aus ist, also alle Kanäle auf 0 stehen, können wir den Rot-Kanal von 0 auf 255 erhöhen und so die LED immer heller in Rot aufleuchten lassen.
 
@@ -258,9 +269,9 @@ btn.set_color(4, 0, 0)
 # ...
 ```
 
-Wenn wir nach diesem Muster fortfahren, hätten wir bis zum vollen Rot 255 Zeilen Code geschrieben, eine für Zeile jeden Erhöhungschritt. Und anschließend das gleiche nochmal rückwärts, damit wir wieder zu Schwarz kommen. Mit 510 Zeilen Code hätten wir dann eine Pulsierungszykls durchlaufen. Wollen wir die LED öfters pulsieren lassen vervielfacht sich unser Code entsprechend. Das kann nicht die Lösung sein.
+Wenn wir nach diesem Muster fortfahren, hätten wir bis zum vollen Rot 255 Zeilen Code geschrieben, eine für Zeile jeden Erhöhungschritt. Und anschließend das gleiche nochmal rückwärts, damit wir wieder zu Schwarz kommen. Mit 510 Zeilen Code hätten wir dann eine Pulsierungszykls durchlaufen. Wollen wir die LED öfters pulsieren lassen vervielfacht sich unser Code entsprechend. Das kann doch nicht die Lösung für ein so einfaches Problem sein.
 
-Und tatsächlich gibt es in der Programmierung eine einfache Möglichkeit, um sich wiederholende Abläufe zu vereinfachen: die Schleife. In einem Fall, bei dem wir genau wissen, wie oft wir etwas wiederholen wollen, bietet sich eine Zählerschleife an:
+Und tatsächlich gibt es in der Programmierung eine bessere Möglichkeit, um sich wiederholende Abläufe abzubilden: die Schleife. In einem Fall, bei dem wir genau wissen, wie oft wir etwas wiederholen wollen, bietet sich eine Zählerschleife an:
 
 ```{python}
 #| code-line-numbers: false
@@ -268,7 +279,7 @@ for r in range(256):
     btn.set_color(r, 0, 0)
 ```
 
-Voilá! Unsere 510 Zeilen Code können wir mit einer Schleife auf zwei Zeilen reduzieren! Dazu müssen wir im Kopf der Schleife `for ... in ... :` festlegen, wie oft der eingerückte Codeblock nach dem Doppelpunkt ausgeführt werden soll. In Python funktioniert das über die Angabe eine Menge, für die jedes Element einmal durchlaufen wird. Das aktuelle Element ist in der Schleife als `r` verfügbar. Und `r` nimmt nacheinander jeden Wert der Menge an, die nach dem Schlüsselwort `in` folgt. Diese Menge erzeugt die Funktion `range(256)`, die, wie der Name preisgibt, eine *Zahlenspanne* von 0 bis zum angegebenen Wert minus eins erzeugt. In unserem Fall also von 0 bis 255.
+Voilá! Unsere 510 Zeilen Code können wir mit einer Schleife auf zwei Zeilen reduzieren! Dazu müssen wir im Kopf der Schleife (`for ... in ...`) festlegen, wie oft der eingerückte Codeblock nach dem Doppelpunkt ausgeführt werden soll. In Python funktioniert das über die Angabe einer Menge, für die jedes Element einmal durchlaufen wird. Das aktuelle Element ist in der Schleife als `r` verfügbar. Und `r` nimmt nacheinander jeden Wert der Menge an, die nach dem Schlüsselwort `in` folgt. Diese Menge erzeugt hier die Funktion `range(256)`, die, wie der Name preisgibt, eine *Zahlenspanne* von 0 bis zum angegebenen Wert minus eins erzeugt. In unserem Fall also von 0 bis 255.
 
 Um das besser nachvollziehen zu können, geben wir den Wert für `r` einfach mal aus:
 
@@ -276,10 +287,18 @@ Um das besser nachvollziehen zu können, geben wir den Wert für `r` einfach mal
 #| code-line-numbers: false
 for r in range(256):
     btn.set_color(r, 0, 0)
-    print(r)
+    print(r) # <1> 
 ```
+1. Mit `print()` geben wir einen Wert auf der Konsole aus. 
 
-Jetzt wird es deutlich - mit jedem Durchlauf der Schleife wird ein neuer Wert für `r` gesetzt und ausgegeben. Und zwar jeweils um eins erhöht.
+Jetzt wird es deutlich: mit jedem Durchlauf der Schleife wird ein neuer Wert für `r` gesetzt und ausgegeben. Und zwar jeweils um eins erhöht. Die Funktion `range(256)` erzeugt genau gesagt eine sortierte Reihe mit den Zahlen von 0 b is 255. Das sieht in Python dann so aus:
+
+```{python}
+#| eval: true
+list_of_numbers = range(256)
+print(list(list_of_numbers)) # <1>
+```
+1. Mit der `list()`-Funktion wandeln wir die von `range()` erzeugte Menge in eine Liste um, die wir dann ausgeben können.
 
 Rückwärts erreichen wir das gleiche Ergebnis mit einer weiteren Schleife, deren Menge wir umkehren, so dass sie von 255 bis 0 geht:
 
@@ -289,6 +308,92 @@ for r in range(255, -1, -1):
 ```
 
 Warum hat `range()` auf einmal drei Argumente? Ganz einfach: Standardmäßig erstellt die Funktion eine Menge von 0 bis zur angegebenen Zahl minus eins. Wir können die Menge aber beeinflussen, indem wir einen Startwert und einen Schrittwert angeben. In unserem Fall oben beginnen wir bei 255 (erster Parameter) und gehen bis -1 (zweiter Parameter), wobei wir in jedem Schritt um -1 verringern (dritter Parameter). Warum zählen wir bis -1, wo wir doch eigentlich die 0 als kleinste Zahl benötigen? Das liegt daran, dass die Menge von `range()` immer bis zum zweiten Parameter minus eins geht. Wenn wir also 0 als kleinste Zahl benötigen, müssen wir bis -1 zählen.
+
+Fassen wir unsere Erkenntnis zusammen und lassen die LED pulsieren:
+
+```{python}
+import time
+
+# Increase red step by step
+for r in range(256):
+    btn.set_color(r, 0, 0)
+    time.sleep(0.001)
+
+# Stay at full brightness for a bit
+time.sleep(0.25)
+
+# Decrease red step by step
+for r in range(255, -1, -1):
+    btn.set_color(r, 0, 0)
+    time.sleep(0.001)
+```
+
+Soweit bekannt? Fast, eine kleine Neuerung habe ich gerade eingebaut, nämlich mit der Funktion `time.sleep()`. Diese Funktion pausiert das Programm für die angegebene Zeit in Sekunden. In unserem Fall pausieren wir für 0,001 Sekunden, also 1 Millisekunde. Dadurch wird die LED langsamer heller und dunkler, was den Pulsationseffekt verstärkt. Ohne diese Pause würde die LED so schnell aufleuchten, dass es für das menschliche Auge nicht mehr wahrnehmbar wäre. Tatsächlich würden wir auch die Hardware überfordern, weil die LED gar nicht so schnell dei Farbe wechseln kann. Das Programm würde abstürzen.
+
+Auf dem Höhepunkt warten wir erneut, dieses Mal eine Viertelsekunde, bevor wir die LED langsam ausgehen lassen und den Rotanteil schrittweise wieder auf Null setzen. Dann endet unser Programm, leider viel zu früh. Die LED soll doch eigentlich weiter pulsieren, bis... ja bis wann überhaupt?
+
+### Bedingte Wiederholungen
+
+Beim Lösen von Problemen stoßen wir häufig auf Situationen, in denen wir bestimmte Schritte wiederholt ausführen möchten, aber nur unter bestimmten Bedingungen. Hier kommen bedingte Wiederholungen ins Spiel, die es uns ermöglichen, Schleifen zu erstellen, die nur dann fortgesetzt werden, wenn eine bestimmte Bedingung noch erfüllt ist.
+
+Das können wir auf unsere pulsierende LED anwenden. Sie soll ihren Pulsierzyklus Dunkel-Hell-Dunkel wiederholen, solange der Benutzer nicht unterbricht. Das ist zumindest ein pragmatisches Abbruchkriterium für unseren Fall. Wir definieren also hier keine feste Anzahl Widerholungen, wie bei der `for ... in`-Schleife, sondern wir wollen festlegen, unter welcher *Bedingung* die Schleife fortgesetzt wird. Wir könnten also sagen: *solange* die Bedingung X erfüllt ist, wiederhole die aufgeführten Schritte. Und weil Programmiersprachen für Menschen gemacht sind, klingt es im echten Programm auch so ähnlich:
+
+```{python}
+while 1==1:
+    print("The condition is always true")
+    time.sleep(1)
+```
+
+Das Schlüsselwort `while` führt eine bedingte Schleife ein, gefolgt von der Bedingung, die die Schleife steuert. Die Bedingung wird vor jedem neuen Schleifendurchlauf geprüft (auch vor dem ersten) und sollte sie falsch (`false`) sein, wird die Schleife beendet. 
+
+Wann wird die Schleife oben also beendet? Richtig - niemals. Die Bedingung `1==1` ist immer wahr, die Schleife läuft somit endlos. Wir sprechen auch von einer Endlosschleife, die wir in der Programmierung unbedingt vermeiden wollen, es sei denn, sie ist explizit gewollt und nicht versehentlich entstanden. Das kurze Programm oben schreibt also in Abständen von einer Sekunde den Text "The condition is always true" auf die Konsole.
+
+Eine Bedingung ist in Python und anderen Programmiersprache ein wichtiges Konzept, das es uns ermöglicht, Entscheidungen zu treffen und den Programmfluss zu steuern. In unserem Fall könnte die Bedingung lauten: *solange der Benutzer nicht stoppt, wiederhole den Pulsierzyklus*. Eine Bedingung hat die Eigenschaft, dass sie jederzeit evaluiert werden kann und entweder den Wert wahr (true) oder falsch (false) annimt. Wie aber drücken wir das in Python aus?
+
+```{python}
+import keyboard
+
+while not keyboard.is_pressed('esc'):
+    print("Nobody pressed ESC yet")
+    time.sleep(1)
+```
+
+Für Ereignisse, die die Tastatur betreffen, können wir uns der Bibliothek `keyboard` bedienen, die es uns ermöglicht, Tasteneingaben einfach zu überwachen. Der Ausdruck oder die Bedingung `not keyboard.is_pressed('esc')` prüft, ob die ESC-Taste gedrückt ist. Wegen des `not` wird die Schleife fortgesetzt, solange die ESC-Taste *nicht* gedrückt ist. Das Schlüsselwort verneint das Ergebnis einer Bedingung. Aus `True` wird `False`, und umgekehrt.
+
+Die [Bibliothek](#bibliotheken) `keyboard` ist eine so genannte externe Bibliothek und muss vor der Vewendung installiert werden. Das könnt ihr über den Paketmanager `pip` bewerkstelligen, der mit jeder Python-Installation mitgeliefert wird. Gebt auf der Kommandozeile dazu den folgenden Befehl ein:
+
+```bash
+pip install keyboard
+```
+
+Anschließend ist die Bibliothek in eurer Python-Umgebung vorhanden und sollte mit dem `import`-Befehl erfolgreich geladen werden können.
+
+Wenn wir jetzt unseren für einen Pulsierzyklus von Oben in die neue bedingte Schleife einfügen, sind wir schon am Ziel. Der Pulsierzyklus wird wiederholt, solange der Benutzer nicht die Taste Escape drückt.
+
+```{python}
+import keyboard
+
+while not keyboard.is_pressed('esc'):
+
+    # Increase red step by step
+    for r in range(256):
+        btn.set_color(r, 0, 0)
+        time.sleep(0.001)
+
+    # Stay at full brightness for a bit
+    time.sleep(0.25)
+
+    # Decrease red step by step
+    for r in range(255, -1, -1):
+        btn.set_color(r, 0, 0)
+        time.sleep(0.001)
+
+    # Stay at full dark for a bit
+    time.sleep(0.25)
+```
+
+Für die Vollständigkeit das Ganze inklusive des [Boilerplate-Codes](#boilerplate-code) für die Verbindung zu den Tinkerforge-Geräten:
+
 
 ```{python}
 #| lst-label: lst-pulse-program
@@ -304,31 +409,31 @@ led = BrickletRGBLEDV2('ZEP', ipcon)
 # Turn LED off initially
 led.set_rgb_value(0, 0, 0)
 
-while True:
+while not keyboard.is_pressed('esc'):
 
-    # Slowly light up
+    # Increase red step by step
     for r in range(255):
         led.set_rgb_value(r, 0, 0)
         time.sleep(0.001)
 
-    # Keep full brightness for a quarter of a second
+    # Stay at full brightness for a bit
     time.sleep(0.25)
 
-    # Slowly darken
+    # Decrease red step by step
     for r in range(255, 0, -1):
         led.set_rgb_value(r, 0, 0)
         time.sleep(0.001)
 
-    # Keep dark for a quarter second
+    # Stay at full dark for a bit
     time.sleep(0.25)
 ```
 
-### Bedingte Wiederholung
 
+## Kontrollstrukturen
 
 - `if .. elif .. else`
 
-## Das fertige Programm
+## Hue
 
 ```{python}
 #| lst-label: lst-rainbow-program
