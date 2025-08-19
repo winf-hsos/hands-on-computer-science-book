@@ -8,10 +8,12 @@ abstract-title: ""
 
 ## Setup {.unnumbered}
 
-Bereit für dein erstes Hardware-Experiment? Perfekt! Du brauchst dafür eine LED ([RGB LED Bricklet 2.0](https://www.tinkerforge.com/en/doc/Hardware/Bricklets/RGB_LED_V2.html)) und einen Mikrocontroller ([Master Brick 3.2](https://www.tinkerforge.com/de/shop/master-brick.html)). Befestige beide Bauteile mit Abstandshaltern auf einer Montageplatte, wie in @fig-setup-rgb-led-button gezeigt. Zwei Schrauben pro Gerät reichen völlig. Denk an die kleinen, weißen Unterlegscheiben aus Kunststoff. Sie schützen deine Platinen vor Druckstellen.
+Bereit für euer erstes Hardware-Experiment? Perfekt! Ihr braucht dafür eine LED ([RGB LED Bricklet 2.0](https://www.tinkerforge.com/en/doc/Hardware/Bricklets/RGB_LED_V2.html)) und einen Mikrocontroller ([Master Brick 3.2](https://www.tinkerforge.com/de/shop/master-brick.html)). Befestigt beide Bauteile mit Abstandshaltern auf einer Montageplatte, wie in @fig-setup-rgb-led gezeigt. Zwei Schrauben pro Gerät reichen völlig. Denkt an die kleinen, weißen Unterlegscheiben aus Kunststoff. Sie schützen eure Platinen vor Druckstellen.
+
+Neben der Hardware benötigt ihr auch die passende Software. Diese solltet ihr bereits installiert haben. Falls nicht, schaut im [Abschnitt zu den Voraussetzungen](prerequisites.qmd) vorbei vorbei. Dort ist alles genau beschrieben. Im Folgenden gehe ich davon aus, dass ihr alles am Laufen habt.
 
 
-::: {#fig-setup-rgb-led-button layout="[[1], [1,1], [1,1]]"}
+::: {#fig-setup-rgb-led layout="[[1], [1,1], [1,1]]"}
 
 ![Seitenansicht.](images/master_brick_with_led_01.jpg){#fig-setup-rgb-led-a .lightbox group="setup-rgb-led"}
 
@@ -27,31 +29,31 @@ Einfaches Setup mit einem Mikrocontroller und einer LED.
 
 :::
 
-## Erste Schritte mit dem Brick Viewer
+## Erste Schritte mit der LED
 
-Im ersten Schritt wollen wir die LED und ihre Funktionen testen! Das geht ganz leicht mit dem Brick Viewer. Schließe zuerst den Master Brick über das USB-Kabel an deinen Computer an und öffne den Brick Viewer. Klicke dann auf den Connect-Button.
+Im ersten Schritt wollen wir die LED und ihre Funktionen testen! Das geht ganz leicht mit dem Brick Viewer. Schließt zuerst den Master Brick über das USB-Kabel an euren Computer an und öffnet den Brick Viewer. Klickt dann auf den Connect-Button.
 
-![Über den Connect-Button verbindet sich der Brick Viewer mit dem angeschlossenen Master Brick.](images/brick_viewer_connect.png){#fig-brick-viewer-connect .lightbox fig-align="center" width="100%" group="brick-viewer"}
+![Über den Connect-Button verbindet ihr den Brick Viewer mit dem angeschlossenen Master Brick.](images/brick_viewer_connect.png){#fig-brick-viewer-connect .lightbox fig-align="center" width="100%" group="brick-viewer"}
 
-Wenn alles geklappt hat, zeigt dir der Brick Viewer alle angeschlossenen Geräte in Tabs an. Schau dir @fig-brick-viewer-after-connect an – so etwa sollte es aussehen.
+Wenn alles geklappt hat, zeigt euch der Brick Viewer alle angeschlossenen Geräte in Tabs an. Schaut euch @fig-brick-viewer-after-connect an – so etwa sollte es aussehen.
 
 ![Der Brick Viewer nachdem ihr mit dem Master Brick verbunden seid.](images/brick_viewer_after_connect.png){#fig-brick-viewer-after-connect .lightbox group="brick-viewer"}
 
-Wechsle nun zum Tab der RGB LED. Hier kannst du über unterschiedliche Wege die Farbe der LED einstellen. Mehr kann eine LED nicht!
+Wechselt nun zum Tab der RGB LED. Hier könnt ihr über unterschiedliche Wege die Farbe der LED einstellen. Mehr kann eine LED nicht!
 
-Mit den drei Schiebereglern steuerst du die einzelnen Farbkanäle – Rot, Grün, Blau. Der Wertebereich: 0 bis 255. Warum gerade diese die Farben und Zahlen? Gute Frage. Die Antwort kommt weiter unten.
+Mit den drei Schiebereglern steuert ihr die einzelnen Farbkanäle – Rot, Grün, Blau. Der Wertebereich: 0 bis 255. Warum gerade diese die Farben und Zahlen? Gute Frage. Die Antwort kommt weiter unten.
 
-![Die Ansicht für den RGB LED Button im Brick Viewer, in der alle Funktionen per Klick im Zugriff sind.](images/brick_viewer_rgb_led_button.png){#fig-brick-viewer-rgb-led-button .lightbox group="brick-viewer"}
+![Die Ansicht für die RGB LED im Brick Viewer, in der ihr alle Funktionen per Klick im Zugriff habt.](images/brick_viewer_rgb_led_button.png){#fig-brick-viewer-rgb-led .lightbox group="brick-viewer"}
 
-Fazit: Der Brick Viewer ist top zum Rumprobieren. Aber wenn du echte Projekte umsetzen willst, musst du programmieren lernen. Also los!
+Fazit: Der Brick Viewer ist top zum Rumprobieren. Aber wenn ihr echte Projekte umsetzen wollt, müsst ihr programmieren lernen. Also los!
 
 ## Unser erstes Programm
 
-Wie verbinden wir uns über Programm mit der LED und setzen ihre Farbe? Die Antwort darauf findest du im folgenden kurzen Codebeispiel.
+Wie verbinden wir uns über Programm mit der LED und setzen ihre Farbe? Die Antwort darauf findet ihr im folgenden kurzen Codebeispiel.
 
 ```{python}
 #| lst-label: lst-boilerplate-code
-#| lst-cap: Der Boilerplate-Code für die Verbindung mit den Geräten am Beispiel des Buttons.
+#| lst-cap: Der Boilerplate-Code für die Verbindung mit den Geräten am Beispiel der RGB LED.
 
 from tinkerforge.ip_connection import IPConnection # <1>
 from tinkerforge.bricklet_rgb_led_v2 import BrickletRGBLEDV2 # <2>
@@ -62,7 +64,7 @@ led = BrickletRGBLEDV2("ZEP", ipcon) # <5>
 ```
 
 1.  Hier importieren wir ein Objekt aus einer Bibliothek zum Herstellen einer Verbindung mit dem Master Brick.
-2.  Hier importieren wir ein weietres Objekt, das wir zur Darstellung der LED als Python-Objekt benötigen.
+2.  Hier importieren wir ein weiteres Objekt, das wir zur Darstellung der LED als Python-Objekt benötigen.
 3.  Die Verbindung erfolgt über eine sogenannte IP-Verbindung, die wir hier als Objekt erstellen.
 4.  Mit `connect` stellen wir eine Verbindung zum angeschlossenen Master Brick her.
 5.  Schließlich holen wir uns eine virtuelle Instanz des RGB LED Bricklets, indem wir die UID nennen und sagen, welche Verbindung (`ipcon`) genutzt werden soll.
@@ -83,15 +85,15 @@ Der Codeauschnitt in @lst-boilerplate-code wird uns im Verlauf dieses Buches imm
 
 Beginnen wir in den ersten beiden Zeilen. Hier seht ihr zwei sehr ähnliche Befehle, die mit dem Schlüsselwort `from` beginnen. Nach dem Schlüsselwort `from` folgt der Name einer Bibliothek, aus der wir ein für unser Programm benötigtes Objekte importieren. Die Kombination der Schlüsselwörter `from ...import` lässt sich also wörtlich übersetzen: "Aus der Bibliothek X importiere das Objekt Y".
 
-Eine *Bibliothek*\index{Bibliothek} in einer Programmiersprache ist die Bündelung und Bereitstellung von Funktionen, Klassen oder Konstanten. Eine Bibliothek kannst du dir vorstellen wie einen Werkzeugkasten: Sie enthält fertige Werkzeuge (Funktionen und Klassen), damit du nicht alles von Grund auf selbst programmiern musst. Tinkerforge stellt uns genau solche Werkzeuge bereit, damit wir schnell und unkompliziert mit den Geräten loslegen können. Für jedes Gerät gibt es in der Tinkerforge-Bibliothek eine eigene Klasse, über die wir auf die Funktionen jedes Geräts zugreifen können.
+Eine *Bibliothek*\index{Bibliothek} in einer Programmiersprache ist die Bündelung und Bereitstellung von Funktionen, Klassen oder Konstanten. Eine Bibliothek kannst du dir vorstellen wie einen Werkzeugkasten: Sie enthält fertige Werkzeuge (Funktionen und Klassen), damit du nicht alles von Grund auf selbst programmieren musst. Tinkerforge stellt uns genau solche Werkzeuge bereit, damit wir schnell und unkompliziert mit den Geräten loslegen können. Für jedes Gerät gibt es in der Tinkerforge-Bibliothek eine eigene Klasse, über die wir auf die Funktionen jedes Geräts zugreifen können.
 
 ### Klassen und Objekte
 
 Mit `from ... import` importieren wir also etwas aus einer Bibliothek. Soweit so gut. Aber was bedeutet das genau? Mit *importieren* ist konkret gemeint, dass wir dem Programm mitteilen, dass wir vorhaben, die genannten Dinge in unserem Programm zu verwenden, und dass sie deshalb am besten schon einmal geladen werden sollten. Ob wir diese Dinge später wirklich nutzen steht auf einem anderen Blatt.
 
-In dem Fall der ersten beiden Zeilen unseres Programms von oben sind es zwei *Klassen*\index{Klasse}, deren Verwendung wir ankündigen. Die erste Klasse heisst `IPConnection`\index{`IPConnection`} und die zweite `BrickletRGBLEDButton`\index{`BrickletRGBLEDV2`}. Der Begriff *Klasse* ist hier analog zum Begriff *Kategorie* zu verstehen. Wir können zu einer Klasse gehörige *Objekte*\index{Objekt} erzeugen, und alle Objekte der selben Klasse verhalten sich gleich und haben die gleichen Funktionen. Das verstehen wir am besten an einem einfachen Beispiel.
+In dem Fall der ersten beiden Zeilen unseres Programms von oben sind es zwei *Klassen*\index{Klasse}, deren Verwendung wir ankündigen. Die erste Klasse heisst `IPConnection`\index{`IPConnection`} und die zweite `BrickletRGBLEDV2`\index{`BrickletRGBLEDV2`}. Der Begriff *Klasse* ist hier analog zum Begriff *Kategorie* zu verstehen. Wir können zu einer Klasse gehörige *Objekte*\index{Objekt} erzeugen, und alle Objekte der selben Klasse verhalten sich gleich und haben die gleichen Funktionen. Das verstehen wir am besten an einem einfachen Beispiel.
 
-Stellt euch vor, ihr habt eine Klasse namens `Auto`. Diese Klasse beschreibt alle Eigenschaften und Funktionen, die ein Auto haben kann, wie etwa `fahren()`, `bremsen()` oder `tanken()`. Diese Dinge sollen für jedes Auto gleich ablaufen. Jedes konkrete Auto in der Welt ist ein Objekt dieser Klasse. Du kannst also sagen: "Mein Auto ist ein Objekt der Klasse `Auto`." Jedes `Auto` hat neben den Funktionen die gleichen Eigenschaften wie Farbe, Marke und Modell. Aber jedes Auto kann andere Werte für diese Eigenschaftan haben.
+Stellt euch vor, ihr habt eine Klasse namens `Auto`. Diese Klasse beschreibt alle Eigenschaften und Funktionen, die ein Auto haben kann, wie etwa `fahren()`, `bremsen()` oder `tanken()`. Diese Dinge sollen für jedes Auto gleich ablaufen. Jedes konkrete Auto in der Welt ist ein Objekt dieser Klasse. Du kannst also sagen: "Mein Auto ist ein Objekt der Klasse `Auto`." Jedes `Auto` hat neben den Funktionen die gleichen Eigenschaften wie Farbe, Marke und Modell. Aber jedes Auto kann andere Werte für diese Eigenschaften haben.
 
 Genauso verhält es sich mit den Klassen, die Tinkerforge für uns bereitgestellt hat. Die Klasse `IPConnection` beschreibt, wie wir eine Verbindung zu einem Mikrocontroller herstellen können, und die Klasse `BrickletRGBLEDV2` beschreibt, wie wir mit der LED interagieren können. Wenn wir ein Objekt dieser Klasse erstellen, können wir alle Funktionen nutzen, die in der Klasse definiert sind. Eine LED muss nicht fahren oder bremsen wie ein Auto. Dafür hat sie andere Funktionen, wie etwa `set_rgb_value()`, die uns erlaubt, die Farbe der LED zu ändern. Eine Eigenschaft jeder LED ist ihre UID, die eindeutig ist und uns hilft, sie im System zu identifizieren.
 
@@ -109,7 +111,7 @@ In @lst-boilerplate-code in Zeile 4 erzeugen wir ein Objekt\index{Objekt} der Kl
 
 Über das Objekt `ipcon` können wir nun eine Verbindung zu unserem Mikrocontroller herstellen. Das geschieht in Zeile 5 mit der Methode `connect()`. Eine *Methode*\index{Methode} ist eine Funktion, die zu einem Objekt gehört. Wie etwa `fahren()` oder `bremsen()` in unserem Auto-Beispiel.
 
-Wir können Methoden aufrufen, um eine bestimmte Aktion auszuführen. In diesem Fall stellen wir eine Verbindung zum Mikrocontroller her, indem wir die Adresse und den Port angeben, über den die Verbindung hergestellt werden soll. In unserem Fall ist das "localhost", was für die lokale Maschine steht, und Port 4223, der durch den Brick Daemon standarmäßig so konfiguriert ist. Der Aufruf einer Methode erfolgt immer mit dem Punkt `.` nach dem Objekt, gefolgt vom Namen der Methode und den Klammern `()`, in denen wir eventuell benötigte Parameter angeben.
+Wir können Methoden aufrufen, um eine bestimmte Aktion auszuführen. In diesem Fall stellen wir eine Verbindung zum Mikrocontroller her, indem wir die Adresse und den Port angeben, über den die Verbindung hergestellt werden soll. In unserem Fall ist das "localhost", was für die lokale Maschine steht, und Port 4223, der durch den Brick Daemon standardmäßig so konfiguriert ist. Der Aufruf einer Methode erfolgt immer mit dem Punkt `.` nach dem Objekt, gefolgt vom Namen der Methode und den Klammern `()`, in denen wir eventuell benötigte Parameter angeben.
 
 Eine Methode ist letztlich eine Funktion, die zu einem Objekt gehört. Zu einem späteren Zeitpunkt schreiben wir unsere eigenen Funktionen und lernen dann noch viel mehr darüber.
 
@@ -161,7 +163,7 @@ Was bedeutet das nun für eine LED? Eine LED (Light Emitting Diode) ist ein Halb
 ![Das elektromagnetische Spektrum, wovon das sichtbare Licht ein kleiner Teil ist. (Quelle: [Wikipedia](https://en.wikipedia.org/wiki/File:EM_Spectrum_Properties_edit.svg))](images/em_spectrum.png){#fig-em-spectrum fig-align="center" width="100%"}
 
 
-Die RGB LEDs, die in unserem Button verbaut ist, besteht in Wirklichkeit aus drei einzelnen LEDs: einer roten, einer grünen und einer blauen. Jede dieser LEDs kann unabhängig voneinander angesteuert werden, um verschiedene Farben zu erzeugen. Mehr Spannung bedeutet mehr Intensität der jeweiligen Farbe. Durch die Kombination der drei Grundfarben Rot, Grün und Blau in unterschiedlichen Intensitäten können wir eine Vielzahl von Farben mischen. Das ist das Prinzip der additiven Farbmischung: Wenn wir alle drei Farben mit voller Intensität leuchten lassen, erhalten wir Weiß. Wenn wir keine Farbe leuchten lassen, erhalten wir Schwarz. Klar, die LED sind dann alle aus.
+Die RGB LED besteht in Wirklichkeit aus drei einzelnen LEDs: einer roten, einer grünen und einer blauen. Jede dieser LEDs kann unabhängig voneinander angesteuert werden, um verschiedene Farben zu erzeugen. Mehr Spannung bedeutet mehr Intensität der jeweiligen Farbe. Durch die Kombination der drei Grundfarben Rot, Grün und Blau in unterschiedlichen Intensitäten können wir eine Vielzahl von Farben mischen. Das ist das Prinzip der additiven Farbmischung: Wenn wir alle drei Farben mit voller Intensität leuchten lassen, erhalten wir Weiß. Wenn wir keine Farbe leuchten lassen, erhalten wir Schwarz. Klar, die LED sind dann alle aus.
 
 ## Farben im Computer
 
@@ -183,7 +185,7 @@ Was macht der Befehl? Welche Farbe kommt dabei heraus? Probiert es einfach mal a
 
 ### Additive Farbmischung
 
-Ihr solltet alle euren Button in Gelb aufleuchten sehen. In der *additiven Farbmischung* mischen wir Rot und Grün und erhalten dadurch Gelb. Gelb ist heller als die beiden Farben Rot und Grün, was kein Zufall ist. Das ist das Prinzip der additiven Farbmischung: Wenn wir zwei Farben mit voller Intensität leuchten lassen, erhalten wir eine neue Farbe, die stest heller ist als die Ursprungsfarben. Wir fügen mehr Licht hinzu. Wenn wir alle drei Farben mit voller Intensität mischen erhalten wir schließlich Weiß. 
+Ihr solltet alle eure LEDs in Gelb aufleuchten sehen. In der *additiven Farbmischung* mischen wir Rot und Grün und erhalten dadurch Gelb. Gelb ist heller als die beiden Farben Rot und Grün, was kein Zufall ist. Das ist das Prinzip der additiven Farbmischung: Wenn wir zwei Farben mit voller Intensität leuchten lassen, erhalten wir eine neue Farbe, die stest heller ist als die Ursprungsfarben. Wir fügen mehr Licht hinzu. Wenn wir alle drei Farben mit voller Intensität mischen erhalten wir schließlich Weiß.
 
 ```{python}
 led.set_rgb_value(255, 255, 255)
@@ -201,7 +203,7 @@ Ihr könnt euch merken, dass wir im Kontext von Computern oft von *additiver Far
 
 Erinnert ihr euch an euren Farbkasten aus der Grundschule? Dort habt ihr auch Farben gemischt, um neue Farben zu erzeugen, die euer Farbkasten nicht direkt mitgeliefert hat. Was hat im Farbenkasten die Mischung aus Rot und Grün ergeben? Sicher nicht Gelb - eher Braun. Eine dunklere Farbe. Das liegt daran, dass wir es hier nicht mit additiver, sondern mit subtraktiver Farbmischung zu tun haben. Bei der subtraktiven Farbmischung mischen wir Pigmente, die Licht *absorbieren* und *reflektieren*. Das Mischen von Farben fungiert hier wie ein Filter: Bestimmte Teile des Lichtsprektrums werden nicht mehr refklektiert, sondern absorbiert und sind damit nicht mehr sichtbar. Das Ergebnis einer Mischung zweier Farben ergibt in der subtraktiven Farbmischung also stets eine dunklere Farbe. Genau umgekehrt zur additiven Farbmischung.
 
-Was passiert mit dem absorbierten Licht? Es wird in eine andere Form der Energie umgewandelt, nämlich Wärme. Deshalb wird eine schwarze Oberfläche auch besonders heiß, wenn die Sonne darauf knallt. Sie absorbiert das gesamte Lichtspekturm und wandelt es in Wäre um. Dagegen wirken weiße Oberflächen fast wie Klimaanlagen. Es ist kein Zufall, dass wir in sonnigen Erdteilen viele weiße Fassaden sehen.
+Was passiert mit dem absorbierten Licht? Es wird in eine andere Form der Energie umgewandelt, nämlich Wärme. Deshalb wird eine schwarze Oberfläche auch besonders heiß, wenn die Sonne darauf knallt. Sie absorbiert das gesamte Lichtspektrum und wandelt es in Wärme um. Dagegen wirken weiße Oberflächen fast wie Klimaanlagen. Es ist kein Zufall, dass wir in sonnigen Erdteilen viele weiße Fassaden sehen.
 
 Wenn wir alle Farben mischen ergibt die subtraktive Farbmischung Schwarz, weil kein Licht mehr reflektiert wird. Alles Licht wird aufgesogen und nichts kommt mehr zurück. Das ist ein anderes Prinzip als bei der additiven Farbmischung, bei der wir Lichtquellen *kombinieren*, um neue Farben zu erhalten.
 
@@ -219,13 +221,13 @@ In @fig-color-mixing sehen wir die beiden Farbmischungsarten im Vergleich. In @f
 
 In der additiven Farbmischung entsteht Gelb durch das Mischen von Rot und Grün, wobei Blau fehlt. Im Umkehrschluss bedeutet das: Gelbes Licht enthält keine blaue Komponente, es reflektiert also kein Blau. In der subtraktiven Farbmischung (wie beim Farbkasten) wird Gelb erzeugt, indem Blau aus weißem Licht herausgefiltert wird – Gelb reflektiert also kein Blau, sondern absorbiert es. Gelb kann also auch als Blaufilter gesehen werden. Das erklärt, warum ein gelber Gegenstand unter blauem Licht dunkel erscheint: Er kann das blaue Licht nicht reflektieren.
 
-Jetzt können wir auch erklären, warum Farbdrucker vier unterschiedliche Kartuschen benötigen (@fig-toner-cmy). Mit den Grundfarben der subtraktiven Farbmischung Cyan, Magenta und Gelb können wir jede beliebige Farbe mischen. Zusätzlich haben Drucker eine Kartusche für Schwarz, um erstens ein sattes Schwarz drucken zu können und zweitens die Farbkartuschen zu schonen. Denn schließlich müssen alle drei Farben gemmischt werden, um Schwarz zu erhalten. Und weil viele Drucksachen schwarz enthalten (oder sogar ausschließlich) ist eine schwarze Kartusche einfach effizienter. Die Farbe Schwarz wird bei Druckerkartuschen als Key bezeichnet und mit "K" abgekürzt. Wir sprechen daher auch von CMYK.
+Jetzt können wir auch erklären, warum Farbdrucker vier unterschiedliche Kartuschen benötigen (@fig-toner-cmy). Mit den Grundfarben der subtraktiven Farbmischung Cyan, Magenta und Gelb können wir jede beliebige Farbe mischen. Zusätzlich haben Drucker eine Kartusche für Schwarz, um erstens ein sattes Schwarz drucken zu können und zweitens die Farbkartuschen zu schonen. Denn schließlich müssen alle drei Farben gemischt werden, um Schwarz zu erhalten. Und weil viele Drucksachen schwarz enthalten (oder sogar ausschließlich) ist eine schwarze Kartusche einfach effizienter. Die Farbe Schwarz wird bei Druckerkartuschen als Key bezeichnet und mit "K" abgekürzt. Wir sprechen daher auch von CMYK.
 
 ![Ein typisches Set mit CMY-Druckerkartuschen inklusive Schwarz.](images/toner-cmy.png){#fig-toner-cmy .lightbox}
 
 Farben spielen eine so wichtige Rolle bei der Arbeit mit Computern. Deshalb lohnt es sich, ein wenig über die Hintergründe von Farben und deren Mischung zu verstehen. Wir werden später noch lernen, wie Bildschirme Farben darstellen. Spätestens dann wird uns das Thema der Farbmischung wieder begegnen.
 
-Ab jetzt wollen wir weiter mit unserer LED experimentieren und den RGB-Code, mit dem Computer Farben abbilden, praxisnah verstehen. Bisher haben wir gelernt, dass wir die Farbe der LED über die Methode `set_rgb_value()` verändern können, wenn wir wissen, welcher RGB-Code unsere gewünschte Farbe repräsentier. Da wir jetzt mehr über die Farbmischung wissen, können wir die LED also ganz einfach in der Farbe Magenta leuchten lassen:
+Ab jetzt wollen wir weiter mit unserer LED experimentieren und den RGB-Code, mit dem Computer Farben abbilden, praxisnah verstehen. Bisher haben wir gelernt, dass wir die Farbe der LED über die Methode `set_rgb_value()` verändern können, wenn wir wissen, welcher RGB-Code unsere gewünschte Farbe repräsentiert. Da wir jetzt mehr über die Farbmischung wissen, können wir die LED also ganz einfach in der Farbe Magenta leuchten lassen:
 
 ```{python}
 led.set_rgb_value(255, 0, 255)
@@ -235,13 +237,13 @@ Gemäß der Theorie der additiven Farbmischung (@fig-additive-color-mixing) müs
 
 ## Schleifen
 
-Das deklarierte Ziel unseres ersten Experiments ist es, einen Regenbogebenfarbverlauf zu erzeugen. Dazu müssen wir die Farbe der LED kontinuierlich ändern, sodass sie von Rot über Gelb, Grün, Cyan, Blau und Violett wieder zurück zu Rot wechselt. Das erreichen wir mit einer *Schleife*\index{Schleife}. Eine Schleife ist ein Konstrukt in der Programmierung, das es uns ermöglicht, einen bestimmten Codeabschnitt mehrfach auszuführen, ohne ihn jedes Mal neu schreiben zu müssen. Das spart Zeit und macht den Code übersichtlicher.
+Das deklarierte Ziel unseres ersten Experiments ist es, einen Regenbogenfarbverlauf zu erzeugen. Dazu müssen wir die Farbe der LED kontinuierlich ändern, sodass sie von Rot über Gelb, Grün, Cyan, Blau und Violett wieder zurück zu Rot wechselt. Das erreichen wir mit einer *Schleife*\index{Schleife}. Eine Schleife ist ein Konstrukt in der Programmierung, das es uns ermöglicht, einen bestimmten Codeabschnitt mehrfach auszuführen, ohne ihn jedes Mal neu schreiben zu müssen. Das spart Zeit und macht den Code übersichtlicher.
 
 ### Abzählbare Wiederholungen
 
 Wir beginnen wie immer einfach und nähern uns dem Regenbogen schrittweise an. Zunächst wäre es schön, wenn wir die LED einfach Rot pulsieren lassen könnten. Dazu müssen wir nämlich nur den Rot-Kanal und nicht alle drei Kanäle der LED ansteuern. Gleichzeitig lernen wir schon hier ein Problem kennen, das mit Schleifen gelöst werden kann.
 
-Was bedeutet es, die LED pulsieren zu lassen? Und was müssen wir dafür tun? Pulsieren bedeutet, dass die LED langsam immer heller wird, kurz in der vollen Helligkeit verweilt, aber dann sofort wieder kontinuierlich dunklert wird. Sobald sie schwarz ist fängt der Zyklus von Vorne an.
+Was bedeutet es, die LED pulsieren zu lassen? Und was müssen wir dafür tun? Pulsieren bedeutet, dass die LED langsam immer heller wird, kurz in der vollen Helligkeit verweilt, aber dann sofort wieder kontinuierlich dunkler wird. Sobald sie schwarz ist fängt der Zyklus von Vorne an.
 
 Den Ausdruck *immer heller werden* können wir bezogen auf die LED so übersetzen, dass wir den Anteil des Rot-Kanals schrittweise erhöhen. Wenn die LED zu Beginn aus ist, also alle Kanäle auf 0 stehen, können wir den Rot-Kanal von 0 auf 255 erhöhen und so die LED immer heller in Rot aufleuchten lassen.
 
@@ -269,7 +271,7 @@ led.set_rgb_value(4, 0, 0)
 # ...
 ```
 
-Wenn wir nach diesem Muster fortfahren, hätten wir bis zum vollen Rot 255 Zeilen Code geschrieben, eine für Zeile jeden Erhöhungschritt. Und anschließend das gleiche nochmal rückwärts, damit wir wieder zu Schwarz kommen. Mit 510 Zeilen Code hätten wir dann eine Pulsierungszykls durchlaufen. Wollen wir die LED öfters pulsieren lassen vervielfacht sich unser Code entsprechend. Das kann doch nicht die Lösung für ein so einfaches Problem sein.
+Wenn wir nach diesem Muster fortfahren, hätten wir bis zum vollen Rot 255 Zeilen Code geschrieben, eine für Zeile jeden Erhöhungschritt. Und anschließend das gleiche nochmal rückwärts, damit wir wieder zu Schwarz kommen. Mit 510 Zeilen Code hätten wir dann eine Pulsierungszyklus durchlaufen. Wollen wir die LED öfters pulsieren lassen vervielfacht sich unser Code entsprechend. Das kann doch nicht die Lösung für ein so einfaches Problem sein.
 
 Und tatsächlich gibt es in der Programmierung eine bessere Möglichkeit, um sich wiederholende Abläufe abzubilden: die Schleife. In einem Fall, bei dem wir genau wissen, wie oft wir etwas wiederholen wollen, bietet sich eine Zählerschleife an:
 
@@ -279,7 +281,7 @@ for r in range(256):
     led.set_rgb_value(r, 0, 0)
 ```
 
-Voilá! Unsere 510 Zeilen Code können wir mit einer Schleife auf zwei Zeilen reduzieren! Dazu müssen wir im Kopf der Schleife (`for ... in ...`) festlegen, wie oft der eingerückte Codeblock nach dem Doppelpunkt ausgeführt werden soll. In Python funktioniert das über die Angabe einer Menge, für die jedes Element einmal durchlaufen wird. Das aktuelle Element ist in der Schleife als `r` verfügbar. Und `r` nimmt nacheinander jeden Wert der Menge an, die nach dem Schlüsselwort `in` folgt. Diese Menge erzeugt hier die Funktion `range(256)`, die, wie der Name preisgibt, eine *Zahlenspanne* von 0 bis zum angegebenen Wert minus eins erzeugt. In unserem Fall also von 0 bis 255.
+Voilá! Unsere 510 Zeilen Code können wir mit einer Schleife auf zwei Zeilen reduzieren! Dazu müssen wir im Kopf der Schleife (`for ... in ...`) festlegen, wie oft der eingerückte Codeblock nach dem Doppelpunkt ausgeführt werden soll. In Python funktioniert das über die Angabe einer Menge, für die jedes Element einmal durchlaufen wird. Das aktuelle Element ist in der Schleife als `r` verfügbar. Und `r` nimmt nacheinander jeden Wert der Menge an, die nach dem Schlüsselwort `in` folgt. Diese Menge erzeugt hier die Funktion `range(256)`, die, wie der Name preisgibt, eine *Zahlensequenz* von 0 bis zum angegebenen Wert minus eins erzeugt. In unserem Fall also von 0 bis 255.
 
 Um das besser nachvollziehen zu können, geben wir den Wert für `r` einfach mal aus:
 
@@ -291,7 +293,7 @@ for r in range(256):
 ```
 1. Mit `print()` geben wir einen Wert auf der Konsole aus. 
 
-Jetzt wird es deutlich: mit jedem Durchlauf der Schleife wird ein neuer Wert für `r` gesetzt und ausgegeben. Und zwar jeweils um eins erhöht. Die Funktion `range(256)` erzeugt genau gesagt eine sortierte Reihe mit den Zahlen von 0 b is 255. Das sieht in Python dann so aus:
+Jetzt wird es deutlich: mit jedem Durchlauf der Schleife wird ein neuer Wert für `r` gesetzt und ausgegeben. Und zwar jeweils um eins erhöht. Die Funktion `range(256)` erzeugt genau gesagt eine sortierte Reihe mit den Zahlen von 0 bis 255. Das sieht in Python dann so aus:
 
 ```{python}
 #| eval: true
@@ -328,7 +330,7 @@ for r in range(255, -1, -1):
     time.sleep(0.001)
 ```
 
-Soweit bekannt? Fast, eine kleine Neuerung habe ich gerade eingebaut, nämlich mit der Funktion `time.sleep()`. Diese Funktion pausiert das Programm für die angegebene Zeit in Sekunden. In unserem Fall pausieren wir für 0,001 Sekunden, also 1 Millisekunde. Dadurch wird die LED langsamer heller und dunkler, was den Pulsationseffekt verstärkt. Ohne diese Pause würde die LED so schnell aufleuchten, dass es für das menschliche Auge nicht mehr wahrnehmbar wäre. Tatsächlich würden wir auch die Hardware überfordern, weil die LED gar nicht so schnell dei Farbe wechseln kann. Das Programm würde abstürzen.
+Soweit bekannt? Fast, eine kleine Neuerung habe ich gerade eingebaut, nämlich mit der Funktion `time.sleep()`. Diese Funktion pausiert das Programm für die angegebene Zeit in Sekunden. In unserem Fall pausieren wir für 0,001 Sekunden, also 1 Millisekunde. Dadurch wird die LED langsamer heller und dunkler, was den Pulsationseffekt verstärkt. Ohne diese Pause würde die LED so schnell aufleuchten, dass es für das menschliche Auge nicht mehr wahrnehmbar wäre. Tatsächlich würden wir auch die Hardware überfordern, weil die LED gar nicht so schnell die Farbe wechseln kann. Das Programm würde abstürzen.
 
 Auf dem Höhepunkt warten wir erneut, dieses Mal eine Viertelsekunde, bevor wir die LED langsam ausgehen lassen und den Rotanteil schrittweise wieder auf Null setzen. Dann endet unser Programm, leider viel zu früh. Die LED soll doch eigentlich weiter pulsieren, bis... ja bis wann überhaupt?
 
@@ -336,7 +338,7 @@ Auf dem Höhepunkt warten wir erneut, dieses Mal eine Viertelsekunde, bevor wir 
 
 Beim Lösen von Problemen stoßen wir häufig auf Situationen, in denen wir bestimmte Schritte wiederholt ausführen möchten, aber nur unter bestimmten Bedingungen. Hier kommen bedingte Wiederholungen ins Spiel, die es uns ermöglichen, Schleifen zu erstellen, die nur dann fortgesetzt werden, wenn eine bestimmte Bedingung noch erfüllt ist.
 
-Das können wir auf unsere pulsierende LED anwenden. Sie soll ihren Pulsierzyklus Dunkel-Hell-Dunkel wiederholen, solange der Benutzer nicht unterbricht. Das ist zumindest ein pragmatisches Abbruchkriterium für unseren Fall. Wir definieren also hier keine feste Anzahl Widerholungen, wie bei der `for ... in`-Schleife, sondern wir wollen festlegen, unter welcher *Bedingung* die Schleife fortgesetzt wird. Wir könnten also sagen: *solange* die Bedingung X erfüllt ist, wiederhole die aufgeführten Schritte. Und weil Programmiersprachen für Menschen gemacht sind, klingt es im echten Programm auch so ähnlich:
+Das können wir auf unsere pulsierende LED anwenden. Sie soll ihren Pulsierzyklus Dunkel-Hell-Dunkel wiederholen, solange der Benutzer nicht unterbricht. Das ist zumindest ein pragmatisches Abbruchkriterium für unseren Fall. Wir definieren also hier keine feste Anzahl Wiederholungen, wie bei der `for ... in`-Schleife, sondern wir wollen festlegen, unter welcher *Bedingung* die Schleife fortgesetzt wird. Wir könnten also sagen: *solange* die Bedingung X erfüllt ist, wiederhole die aufgeführten Schritte. Und weil Programmiersprachen für Menschen gemacht sind, klingt es im echten Programm auch so ähnlich:
 
 ```{python}
 while 1==1:
@@ -348,7 +350,7 @@ Das Schlüsselwort `while` führt eine bedingte Schleife ein, gefolgt von der Be
 
 Wann wird die Schleife oben also beendet? Richtig - niemals. Die Bedingung `1==1` ist immer wahr, die Schleife läuft somit endlos. Wir sprechen auch von einer Endlosschleife, die wir in der Programmierung unbedingt vermeiden wollen, es sei denn, sie ist explizit gewollt und nicht versehentlich entstanden. Das kurze Programm oben schreibt also in Abständen von einer Sekunde den Text "The condition is always true" auf die Konsole.
 
-Eine Bedingung ist in Python und anderen Programmiersprache ein wichtiges Konzept, das es uns ermöglicht, Entscheidungen zu treffen und den Programmfluss zu steuern. In unserem Fall könnte die Bedingung lauten: *solange der Benutzer nicht stoppt, wiederhole den Pulsierzyklus*. Eine Bedingung hat die Eigenschaft, dass sie jederzeit evaluiert werden kann und entweder den Wert wahr (true) oder falsch (false) annimt. Wie aber drücken wir das in Python aus?
+Eine Bedingung ist in Python und anderen Programmiersprache ein wichtiges Konzept, das es uns ermöglicht, Entscheidungen zu treffen und den Programmfluss zu steuern. In unserem Fall könnte die Bedingung lauten: *solange der Benutzer nicht stoppt, wiederhole den Pulsierzyklus*. Eine Bedingung hat die Eigenschaft, dass sie jederzeit evaluiert werden kann und entweder den Wert wahr (true) oder falsch (false) annimmt. Wie aber drücken wir das in Python aus?
 
 ```{python}
 import keyboard
@@ -360,7 +362,7 @@ while not keyboard.is_pressed('esc'):
 
 Für Ereignisse, die die Tastatur betreffen, können wir uns der Bibliothek `keyboard` bedienen, die es uns ermöglicht, Tasteneingaben einfach zu überwachen. Der Ausdruck oder die Bedingung `not keyboard.is_pressed('esc')` prüft, ob die ESC-Taste gedrückt ist. Wegen des `not` wird die Schleife fortgesetzt, solange die ESC-Taste *nicht* gedrückt ist. Das Schlüsselwort verneint das Ergebnis einer Bedingung. Aus `True` wird `False`, und umgekehrt.
 
-Die [Bibliothek](#bibliotheken) `keyboard` ist eine so genannte externe Bibliothek und muss vor der Vewendung installiert werden. Das könnt ihr über den Paketmanager `pip` bewerkstelligen, der mit jeder Python-Installation mitgeliefert wird. Gebt auf der Kommandozeile dazu den folgenden Befehl ein:
+Die [Bibliothek](#bibliotheken) `keyboard` ist eine so genannte externe Bibliothek und muss vor der Verwendung installiert werden. Das könnt ihr über den Paketmanager `pip` bewerkstelligen, der mit jeder Python-Installation mitgeliefert wird. Gebt auf der Kommandozeile dazu den folgenden Befehl ein:
 
 ```bash
 pip install keyboard
@@ -394,7 +396,6 @@ while not keyboard.is_pressed('esc'):
 
 Für die Vollständigkeit das Ganze inklusive des [Boilerplate-Codes](#boilerplate-code) für die Verbindung zu den Tinkerforge-Geräten:
 
-
 ```{python}
 #| lst-label: lst-pulse-program
 #| lst-cap: Das fertige Programm, das die LED rot pulsieren lässt.
@@ -420,7 +421,7 @@ while not keyboard.is_pressed('esc'):
     time.sleep(0.25)
 
     # Decrease red step by step
-    for r in range(255, 0, -1):
+    for r in range(255, -1, -1):
         led.set_rgb_value(r, 0, 0)
         time.sleep(0.001)
 
@@ -428,20 +429,196 @@ while not keyboard.is_pressed('esc'):
     time.sleep(0.25)
 ```
 
+## Farbkreise
 
-## Kontrollstrukturen
+Das RGB-Farbschema ist für Computer optimal, weil sich damit mit nur drei Zahlen jede beliebige Farbe kodieren lässt. Zahlen sind schließlich die Sprache, mit der Computer am besten umgehen können. Für uns Menschen ist dieses Schema jedoch weniger intuitiv. Oder könntest du auf Anhieb sagen, welche Farbe hinter der Kombination (67, 201, 182) steckt?
 
-- `if .. elif .. else`
+Um Farben für uns leichter wählbar zu machen, wurde der sogenannte Hue-Farbkreis entwickelt. Er ordnet die Farben auf einer Skala von 0 bis 360 Grad an – ähnlich wie die Winkel auf einem Kreis. Neben dem Farbton (Hue) lassen sich zusätzlich die Sättigung und die Helligkeit einstellen: Der Farbton bestimmt die eigentliche Farbe, die Sättigung, wie kräftig oder blass sie wirkt, und die Helligkeit, wie hell oder dunkel sie erscheint.
 
-## Hue
+::: {.content-visible when-format="html"}
+
+![Die Farbauswahl in Google Slides funktioniert über den Hue-Farbkreis.](images/hue_color_picker.gif){#fig-hue-color-picker .lightbox fig-align="center" width="33%"}
+
+:::
+
+::: {.content-visible when-format="pdf"}
+
+![Die Farbauswahl in Google Slides funktioniert über den Hue-Farbkreis.](images/hue_color_picker_still.png){#fig-hue-color-picker .lightbox fig-align="center" width="33%"}
+
+:::
+
+In @fig-hue-color-picker siehst du, wie die Farbauswahl in Google Slides funktioniert. Mit dem Slider in der Mitte bestimmst du den Farbton. Hast du einen passenden Ton gefunden, kannst du im Rechteck darüber durch Verschieben des kleinen Kreises die Sättigung und Helligkeit anpassen.
+
+Beobachtest du dabei die RGB-Werte, erkennst du die Systematik der Farbton-Skala: Ausgehend von reinem Rot wird Schritt für Schritt Grün hinzugefügt – so entstehen Orange und Gelb. Danach nimmt der Rotanteil ab, während Blau hinzukommt. Über Cyan gelangen wir zu reinem Blau. Schließlich wird wieder Rot beigemischt, wodurch Violett bis Pink entstehen. Auf diese Weise bildet der Kreis den gesamten Regenbogen ab.
+
+Da die Skala am Ende wieder bei Rot ankommt, lässt sich der Farbverlauf nahtlos wiederholen – ohne harte Übergänge. Genau deshalb wird der Hue-Verlauf meist als Kreis dargestellt.
+
+![Der Hue-Farbkreis mit HSV-Werten.](images/hue_color_circle_hsv.png){#fig-hue-color-circle .lightbox fig-align="center" width="50%"}
+
+@fig-hue-color-circle zeigt den Hue-Farbkreis im HSV-Modell\index{HSV-Modell}. HSV steht für Hue, Saturation, Value (Farbton, Sättigung, Helligkeit). Der Wert Value gibt die Helligkeit auf einer Skala von 0 bis 100 % an. Im Bild ist die Helligkeit konstant bei 100 %, während die Sättigung von innen nach außen zunimmt. In der Mitte sehen wir deshalb Weiß, während am äußeren Rand die Farben ihre volle Intensität haben.
+
+Wenn wir ein Programm schreiben, das die gesamte Hue-Farbskala durchläuft und die LED jeweils in der passenden Farbe aufleuchten lässt, erhalten wir unser Regenbogenprogramm. Da die LED RGB-Werte benötigt, müssen wir den Verlauf des Hue-Farbkreises in RGB umsetzen. Ein Blick auf die Animation in @fig-hue-color-picker hilft: Der Farbverlauf lässt sich in sechs Phasen unterteilen, wie @fig-hue-rgb-diagram zeigt:
+
+1. Rot = 255, Blau = 0, Grün steigt linear
+2. Rot sinkt linear, Grün = 255, Blau = 0
+3. Rot = 0, Grün = 255, Blau steigt linear
+4. Rot = 0, Grün sinkt linear, Blau = 255
+5. Rot steigt linear, Grün = 0, Blau = 255
+6. Rot = 255, Grün = 0, Blau sinkt linear
+
+Dann beginnt der Zyklus von vorn.
+
+![Der Hue-Farbverlauf mit den Veränderungen der RGB-Werte (Quelle: [Ronja's Tutorials](https://www.ronja-tutorials.com/post/041-hsv-colorspace/)).](images/hue_rgb_diagram.png){#fig-hue-rgb-diagram .lightbox fig-align="center" width="75%"}
+
+### Farbkreis als Programm
+
+Beginnen wir mit der ersten Phase und schreiben dafür ein Python-Programm:
 
 ```{python}
-#| lst-label: lst-rainbow-program
-#| lst-cap: Das fertige Programm, das die LED in einem Regenbogenfarbverlauf leuchten lässt.
+for green in range(256):
+    led.set_rgb_value(255, green, 0)
+    time.sleep(0.01)
+```
 
+Weil wir genau wissen, wie oft wir die Schleife durchlaufen wollen, verwenden wir eine `for`-Schleife. Innerhalb der Schleife erhöhen wir die Variable `green` jeweils um 1, was effektiv den Grünanteil unseres RGB-Wertes erhöht. Mit jedem Durchlauf fügen wir somit mehr Grün hinzu, während Rot und Blau konstant bleiben. Phase 1 ist damit abgeschlossen - machen wir weiter mit Phase 2:
+
+```{python}
+for red in range(255, -1, -1):
+    led.set_rgb_value(red, 255, 0)
+    time.sleep(0.01)
+```
+
+Wie wir mit einer `for`-Schleife rückwärts zählen, haben wir schon weiter oben kennengelernt. In Phase zwei verringern wir schrittweise den Rotanteil, während die anderen beiden Farben konstant bleiben. Damit kommen wir zu Phase 3:
+
+```{python}
+for blue in range(256):
+    led.set_rgb_value(0, 255, blue)
+    time.sleep(0.01)
+```
+
+Ich glaube, ihr habt das Prinzip verstanden. Indem wir die sechs Phasen jeweils in einer eigenen Schleife abarbeiten, erhalten wir das vollständige Regenbogenprogramm:
+
+```{python}
+# phase 1
+for green in range(256):
+    led.set_rgb_value(255, green, 0)
+    time.sleep(0.01)
+
+# phase 2
+for red in range(255, -1, -1):
+    led.set_rgb_value(red, 255, 0)
+    time.sleep(0.01)
+
+# phase 3
+for blue in range(256):
+    led.set_rgb_value(0, 255, blue)
+    time.sleep(0.01)
+
+# phase 4
+for green in range(255, -1, -1):
+    led.set_rgb_value(0, green, 255)
+    time.sleep(0.01)
+
+# phase 5
+for red in range(256):
+    led.set_rgb_value(red, 0, 255)
+    time.sleep(0.01)
+
+# phase 6
+for blue in range(255, -1, -1):
+    led.set_rgb_value(255, 0, blue)
+    time.sleep(0.01)
+
+```
+
+Wie schön 🌈 Eine Sache fehlt aber noch. 
+
+### Der Zyklus wiederholt sich
+
+Der Regenbogen soll am Ende wieder von Vorne beginnen. Wie schon beim Pulsieren der Farben können wir auch hier eine `while`-Schleife verwenden und  die Phasen kontinuierlich abspielen. Solange bis der Benutzer die Escape-Taste drückt:
+
+```{python}
+while not keyboard.is_pressed('esc'):
+
+    # phase 1
+    for green in range(256):
+        led.set_rgb_value(255, green, 0)
+        time.sleep(0.01)
+
+    # phase 2
+    for red in range(255, -1, -1):
+        led.set_rgb_value(red, 255, 0)
+        time.sleep(0.01)
+
+    # phase 3
+    for blue in range(256):
+        led.set_rgb_value(0, 255, blue)
+        time.sleep(0.01)
+
+    # phase 4
+    for green in range(255, -1, -1):
+        led.set_rgb_value(0, green, 255)
+        time.sleep(0.01)
+
+    # phase 5
+    for red in range(256):
+        led.set_rgb_value(red, 0, 255)
+        time.sleep(0.01)
+
+    # phase 6
+    for blue in range(255, -1, -1):
+        led.set_rgb_value(255, 0, blue)
+        time.sleep(0.01)
+
+```
+
+Wir haben es fast geschafft! Eine Kleinigkeit wollen wir an unserem Programm noch verbessern. 
+
+### Zeitsteuerung
+
+Vielleicht habt ihr gemerkt, dass die Geschwindigkeit, mit der unsere LED den gesamten Regenbogen einmal durchläuft, nicht sehr hoch ist. Ich würde das gerne beschleunigen. Die Zeit steuern wir über die `time.sleep()`-Funktion, sodass wir einfach den Wert in jedem Funktionsaufruf verringern könnten. Das wäre aber nicht sehr effizient, weil wir ihn an sechs Stellen anpassen müssen. Wenn wir danach merken, dass es zu schnell ist, müsstem wir den Wert erneut überall editieren. Das geht einfacher!
+
+Der Trick liegt darin, den Wert für die Wartedauer als Variable zu definieren und nur einer an einer Stelle zu ändern.
+
+```{python}
+pause_duration = 0.01
+while not keyboard.is_pressed('esc'):
+
+    # phase 1
+    for green in range(256):
+        led.set_rgb_value(255, green, 0)
+        time.sleep(pause_duration)
+
+    # etc.
+```
+
+Schon besser! Wir gehen aber noch einen Schritt weiter. Statt dieses kleinteiligen Wertes einer Pause zwischen einer kleinen Farbveränderung, möchte ich gerne die Gesamtdauer für den Durchlauf eine Regenbogens angeben. Der Wert `pause_duration` soll dann auf dieser Basis errechnet werden. Dazu müssen wir nur die Anzahl der Pausen ingesamt kennen, was in jeder der sechs Phasen 256 sind. Macht also:
+
+$$
+6 \times 256 = 1536
+$$
+
+In unserem Programm teilen wir also die Gesamtdauer in Sekunden geteilt durch 1536:
+
+```{python}
+rainbow_duration = 5
+pause_duration = rainbow_duration / 1536
+
+while not keyboard.is_pressed('esc'):
+
+    # phase 1
+    for green in range(256):
+        led.set_rgb_value(255, green, 0)
+        time.sleep(pause_duration)
+
+    # etc.
+```
+
+Und schon können wir unseren Regenbogen beliebig zeitlich steuern. Damit sind wir am Ende des Kapitels angekommen. Wir schließen wir es mit dem vollständigen Code für unseren Regenbogenverlauf ab. Vergesst nicht den Wert für die UID eurer LED anzupassen, damit es auch bei euch funktioniert:
+
+```{python}
 import keyboard
 import time
-import colorsys
 from tinkerforge.ip_connection import IPConnection
 from tinkerforge.bricklet_rgb_led_v2 import BrickletRGBLEDV2
 
@@ -449,34 +626,46 @@ ipcon = IPConnection()
 ipcon.connect('localhost', 4223) 
 led = BrickletRGBLEDV2('ZEP', ipcon)
 
-# Turn button of initially
+# Turn LED off initially
 led.set_rgb_value(0, 0, 0)
 
-# Initialize the hue value
-hue = 1
-
-# Set the duration for one rainbow cycle
-duration_seconds = 4
-duration_seconds_per_step = duration_seconds / 360
+rainbow_duration = 5
+pause_duration = rainbow_duration / 1536
 
 # Loop until user presses escape key
 while not keyboard.is_pressed('esc'):
 
-    # Calculate RGB from hue
-    r, g, b = colorsys.hsv_to_rgb(hue / 360.0, 1.0, 1.0)
-    r = int(r * 255)
-    g = int(g * 255)
-    b = int(b * 255)
+    # phase 1
+    for green in range(256):
+        led.set_rgb_value(255, green, 0)
+        time.sleep(0.01)
 
-    led.set_rgb_value(r, g, b)
-    
-    # Wait a bit
-    time.sleep(duration_seconds_per_step)
+    # phase 2
+    for red in range(255, -1, -1):
+        led.set_rgb_value(red, 255, 0)
+        time.sleep(0.01)
 
-    hue = hue + 1
-    if hue > 360:
-        hue = 1
+    # phase 3
+    for blue in range(256):
+        led.set_rgb_value(0, 255, blue)
+        time.sleep(0.01)
 
+    # phase 4
+    for green in range(255, -1, -1):
+        led.set_rgb_value(0, green, 255)
+        time.sleep(0.01)
+
+    # phase 5
+    for red in range(256):
+        led.set_rgb_value(red, 0, 255)
+        time.sleep(0.01)
+
+    # phase 6
+    for blue in range(255, -1, -1):
+        led.set_rgb_value(255, 0, blue)
+        time.sleep(0.01)
+
+# Turn LED off
 led.set_rgb_value(0, 0, 0)
 ```
 

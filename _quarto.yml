@@ -24,8 +24,9 @@ book:
   chapters:
     - index.qmd
     - experiments.qmd
+    - prerequisites.qmd
     - colors.qmd
-    - human_input.qmd
+    - numbers.qmd
     - text.qmd
     - images.qmd
     - codes.qmd

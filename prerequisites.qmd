@@ -1,0 +1,22 @@
+# Voraussetzungen {.unnumbered}
+
+Um die Experimente in diesem Buch durchführen zu können, benötigt ihr die folgende Software auf eurem Computer:
+
+## Visual Studio Code
+
+Eine beliebte Entwicklungsumgebung, die ihr kostenlos herunterladen könnt. [Hier geht's zur Download-Seite](https://code.visualstudio.com/).
+
+
+## Python 
+Eine Programmiersprache, die für die Experimente verwendet wird. Ihr könnt Python von der offiziellen Website herunterladen: [Python Download](https://www.python.org/downloads/).
+
+## Software von Tinkerforge
+
+### Tinkerforge-Bibliothek für Python
+Eine Sammlung von Funktionen, die die Programmierung der Tinkerforge-Hardware erleichtern. Ihr könnt die Bibliothek mit dem folgenden Befehl installieren: `pip install tinkerforge`.
+
+### Brick Daemon
+Ein Hintergrundprozess, der die Kommunikation mit der Tinkerforge-Hardware ermöglicht. Ihr könnt den Brick Daemon von der Tinkerforge-Website herunterladen: [Brick Daemon Download](https://www.tinkerforge.com/en/doc/Software/Brickd.html).
+
+### Brick Viewer
+Ein Tool, das eine grafische Benutzeroberfläche für die Interaktion mit der Tinkerforge-Hardware bietet. Ihr könnt den Brick Viewer von der Tinkerforge-Website herunterladen: [Brick Viewer Download](https://www.tinkerforge.com/en/doc/Software/BrickViewer.html).
