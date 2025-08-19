@@ -6,16 +6,52 @@ abstract-title: ""
 
 # Zahlen 🔢 {#sec-numbers}
 
-## Setup {.unnumbered}
+## Lernziele {.unnumbered}
 
-Wir erweitern unser Setup aus @sec-colors und fügen ein Eingabegerät hinzu: Einen einfachen Drehknopf ([Rotary Encoder Bricklet 2.0](https://www.tinkerforge.com/en/doc/Hardware/Bricklets/Rotary_Encoder_V2.html)). Den schraubt ihr neben die LED, wie auf der Abbildung zu sehen ist.
+## Experimentaufbau {.unnumbered}
 
-::: callout-tip
-## Experiment
+Das erste Experiment hatte es in sich! In diesem Kapitel erweitern unsere Hardware aus @sec-colors und fügen ein Eingabegerät hinzu: Einen einfachen Drehknopf ([Rotary Encoder Bricklet 2.0](https://www.tinkerforge.com/en/doc/Hardware/Bricklets/Rotary_Encoder_V2.html)). Den schraubt ihr neben die LED, wie auf der Abbildung zu sehen ist.
 
-- RGB LED Button als Eingabegerät
-- Einführung in andere Eingabegeräte
-:::
+## Erste Schritte mit dem Drehknopf
+
+Wie schon bei der LED wollen wir uns im ersten Schritt den neuen Drehknopf im Brick Viewer genauer anschauen und seine Funktion kennenlernen. Schließt eueren Master Brick über das USB-Kabel an euren Rechner an, öffnet den Brick Viewer und drückt den Connect-Button.
+
+![Der Brick Viewer nach dem Connect.](images/brick_viewer_after_connect.png){#fig-brick-viewer-after-connect .lightbox group="brick-viewer"}
+
+...
+
+## Hoch- und Runterzählen
+
+Der Drehknopf ist vergleichbar mit einem Drehknopf für die Lautstärke wie man ihn beispielsweie an einer Stereoanlage wie in @fig-hifi-system findet, um die Musik lauter und leiser zu stellen. Dreht ihr nach rechts wird es lauter, in die andere Richtung leiser. 
+
+![Die gute alte Stereoanlage mit Drehknopf! Wer kennt sie nicht mehr? (Quelle: [Wikimedia](https://commons.wikimedia.org/wiki/File:Sony_XO-D20S_Midi_HiFi_system_%28white_bg%29.jpg))](images/hifi_system.jpg){#fig-hifi-system .lightbox}
+
+Im Hintergrund verändert sich der Wert, den der Drehknopf sendet, entweder er erhöht oder verringert sich. Welchen Wert der konkret sendet hängt vom Ausgangszustand ab. Im Brick Viewer haben wir das schon gesehehen. Testen wir es einmal in einem Programm. Der Code unten verbindet sich mit dem Drehknopf, liest den aktuellen Wert aus und schreibt ihn auf die Konsole. Denkt daran, dass ihr eure UID statt meiner eintragen müsst:
+
+```{python}
+from tinkerforge.ip_connection import IPConnection
+from tinkerforge.bricklet_rotary_encoder_v2 import BrickletRotaryEncoderV2
+
+ipcon = IPConnection()
+ipcon.connect('localhost', 4223)
+knob = BrickletRotaryEncoderV2('XYZ', ipcon) # <1>
+count = knob.get_count() # <2>
+print(count)
+```
+1. Wir erstellen eine virtuelle Repräsentation des Drehknopfs in unserem Programm, um seine Funktionen verwenden zu können.
+2. Über die virtuelle Repräsentation des Drehknopfs können wir mittels `get_count()` den aktuellen Wert abfragen.
+
+Die Ausgabe sollte sich mit dem Wert decken, den ihr auch im Brick Viewer seht. Schließlich verwendet der Brick Viewer die gleiche Programmierschnittstelle wie unser Programm. Wenn alles funktioniert habt ihr soeben die erste Funktion des Drehknopfs erfolgreich aus einem Python-Programm heraus getestet.
+
+Wenn wir jetzt an dem Knopf drehen und das Programm erneut ausführen wird uns ein anderer Wert angezeigt. Logisch! Unser Ziel ist es aber, dass wir dafür nicht jedes Mal das Programm neu starten müssen. Die Lösung für dieses Problem habt ihr bereits in @sec-colors kennengelernt: Wir verwenden eine Schleife, die das Programm immer wiederholt, bis wir es beenden:
+
+```{python}
+while True:
+    count = knob.get_count()
+    print(count, end='\r')
+```
+
+Kurze Erinnerung: Mit `while True` erstellen wir eine Endlosschleife. Eigentlich etwas, das wir vermeiden wollen. Allerdings nicht, wenn wir es explizit so wollen. Eine Endlosschleife kann nützlich sein, um kontinuierlich Daten zu lesen oder auf Ereignisse zu warten. Und wir können sie jederzeit beenden, indem wir das Programm mit *Strg+C* abbrechen.
 
 ## Das fertige Programm
 

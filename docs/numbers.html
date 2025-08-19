@@ -97,6 +97,9 @@ div.csl-indent {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-364982630eef5352dd1537128a8ed5cb.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -289,8 +292,11 @@ div.csl-indent {
     <h2 id="toc-title">Inhaltsverzeichnis</h2>
    
   <ul>
-  <li><a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a></li>
-  <li><a href="#das-fertige-programm" id="toc-das-fertige-programm" class="nav-link" data-scroll-target="#das-fertige-programm"><span class="header-section-number">2.1</span> Das fertige Programm</a></li>
+  <li><a href="#lernziele" id="toc-lernziele" class="nav-link active" data-scroll-target="#lernziele">Lernziele</a></li>
+  <li><a href="#experimentaufbau" id="toc-experimentaufbau" class="nav-link" data-scroll-target="#experimentaufbau">Experimentaufbau</a></li>
+  <li><a href="#erste-schritte-mit-dem-drehknopf" id="toc-erste-schritte-mit-dem-drehknopf" class="nav-link" data-scroll-target="#erste-schritte-mit-dem-drehknopf"><span class="header-section-number">2.1</span> Erste Schritte mit dem Drehknopf</a></li>
+  <li><a href="#hoch--und-runterzählen" id="toc-hoch--und-runterzählen" class="nav-link" data-scroll-target="#hoch--und-runterzählen"><span class="header-section-number">2.2</span> Hoch- und Runterzählen</a></li>
+  <li><a href="#das-fertige-programm" id="toc-das-fertige-programm" class="nav-link" data-scroll-target="#das-fertige-programm"><span class="header-section-number">2.3</span> Das fertige Programm</a></li>
   </ul>
 </nav>
     </div>
@@ -322,68 +328,115 @@ div.csl-indent {
 </header>
 
 
-<section id="setup" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="setup">Setup</h2>
-<p>Wir erweitern unser Setup aus <a href="colors.html" class="quarto-xref"><span>Kapitel 1</span></a> und fügen ein Eingabegerät hinzu: Einen einfachen Drehknopf (<a href="https://www.tinkerforge.com/en/doc/Hardware/Bricklets/Rotary_Encoder_V2.html">Rotary Encoder Bricklet 2.0</a>). Den schraubt ihr neben die LED, wie auf der Abbildung zu sehen ist.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Experiment
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ul>
-<li>RGB LED Button als Eingabegerät</li>
-<li>Einführung in andere Eingabegeräte</li>
-</ul>
-</div>
-</div>
+<section id="lernziele" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="lernziele">Lernziele</h2>
 </section>
-<section id="das-fertige-programm" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="das-fertige-programm"><span class="header-section-number">2.1</span> Das fertige Programm</h2>
-<div id="04b859ca" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> keyboard</span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="im">import</span> time</span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="im">import</span> colorsys</span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="im">from</span> tinkerforge.bricklet_rgb_led_v2 <span class="im">import</span> BrickletRGBLEDV2</span>
-<span id="cb1-6"><a href="#cb1-6"></a></span>
-<span id="cb1-7"><a href="#cb1-7"></a>ipcon <span class="op">=</span> IPConnection()</span>
-<span id="cb1-8"><a href="#cb1-8"></a>ipcon.<span class="ex">connect</span>(<span class="st">'localhost'</span>, <span class="dv">4223</span>) </span>
-<span id="cb1-9"><a href="#cb1-9"></a>led <span class="op">=</span> BrickletRGBLEDV2(<span class="st">'ZEP'</span>, ipcon)</span>
-<span id="cb1-10"><a href="#cb1-10"></a></span>
-<span id="cb1-11"><a href="#cb1-11"></a><span class="co"># Turn button of initially</span></span>
-<span id="cb1-12"><a href="#cb1-12"></a>led.set_rgb_value(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
-<span id="cb1-13"><a href="#cb1-13"></a></span>
-<span id="cb1-14"><a href="#cb1-14"></a><span class="co"># Initialize the hue value</span></span>
-<span id="cb1-15"><a href="#cb1-15"></a>hue <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb1-16"><a href="#cb1-16"></a></span>
-<span id="cb1-17"><a href="#cb1-17"></a><span class="co"># Set the duration for one rainbow cycle</span></span>
-<span id="cb1-18"><a href="#cb1-18"></a>duration_seconds <span class="op">=</span> <span class="dv">4</span></span>
-<span id="cb1-19"><a href="#cb1-19"></a>duration_seconds_per_step <span class="op">=</span> duration_seconds <span class="op">/</span> <span class="dv">360</span></span>
-<span id="cb1-20"><a href="#cb1-20"></a></span>
-<span id="cb1-21"><a href="#cb1-21"></a><span class="co"># Loop until user presses escape key</span></span>
-<span id="cb1-22"><a href="#cb1-22"></a><span class="cf">while</span> <span class="kw">not</span> keyboard.is_pressed(<span class="st">'esc'</span>):</span>
-<span id="cb1-23"><a href="#cb1-23"></a></span>
-<span id="cb1-24"><a href="#cb1-24"></a>    <span class="co"># Calculate RGB from hue</span></span>
-<span id="cb1-25"><a href="#cb1-25"></a>    r, g, b <span class="op">=</span> colorsys.hsv_to_rgb(hue <span class="op">/</span> <span class="fl">360.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>)</span>
-<span id="cb1-26"><a href="#cb1-26"></a>    r <span class="op">=</span> <span class="bu">int</span>(r <span class="op">*</span> <span class="dv">255</span>)</span>
-<span id="cb1-27"><a href="#cb1-27"></a>    g <span class="op">=</span> <span class="bu">int</span>(g <span class="op">*</span> <span class="dv">255</span>)</span>
-<span id="cb1-28"><a href="#cb1-28"></a>    b <span class="op">=</span> <span class="bu">int</span>(b <span class="op">*</span> <span class="dv">255</span>)</span>
-<span id="cb1-29"><a href="#cb1-29"></a></span>
-<span id="cb1-30"><a href="#cb1-30"></a>    led.set_rgb_value(r, g, b)</span>
-<span id="cb1-31"><a href="#cb1-31"></a>    </span>
-<span id="cb1-32"><a href="#cb1-32"></a>    <span class="co"># Wait a bit</span></span>
-<span id="cb1-33"><a href="#cb1-33"></a>    time.sleep(duration_seconds_per_step)</span>
-<span id="cb1-34"><a href="#cb1-34"></a></span>
-<span id="cb1-35"><a href="#cb1-35"></a>    hue <span class="op">=</span> hue <span class="op">+</span> <span class="dv">1</span></span>
-<span id="cb1-36"><a href="#cb1-36"></a>    <span class="cf">if</span> hue <span class="op">&gt;</span> <span class="dv">360</span>:</span>
-<span id="cb1-37"><a href="#cb1-37"></a>        hue <span class="op">=</span> <span class="dv">1</span></span>
-<span id="cb1-38"><a href="#cb1-38"></a></span>
-<span id="cb1-39"><a href="#cb1-39"></a>led.set_rgb_value(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="experimentaufbau" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="experimentaufbau">Experimentaufbau</h2>
+<p>Das erste Experiment hatte es in sich! In diesem Kapitel erweitern unsere Hardware aus <a href="colors.html" class="quarto-xref"><span>Kapitel 1</span></a> und fügen ein Eingabegerät hinzu: Einen einfachen Drehknopf (<a href="https://www.tinkerforge.com/en/doc/Hardware/Bricklets/Rotary_Encoder_V2.html">Rotary Encoder Bricklet 2.0</a>). Den schraubt ihr neben die LED, wie auf der Abbildung zu sehen ist.</p>
+</section>
+<section id="erste-schritte-mit-dem-drehknopf" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="erste-schritte-mit-dem-drehknopf"><span class="header-section-number">2.1</span> Erste Schritte mit dem Drehknopf</h2>
+<p>Wie schon bei der LED wollen wir uns im ersten Schritt den neuen Drehknopf im Brick Viewer genauer anschauen und seine Funktion kennenlernen. Schließt eueren Master Brick über das USB-Kabel an euren Rechner an, öffnet den Brick Viewer und drückt den Connect-Button.</p>
+<div id="fig-brick-viewer-after-connect" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="brick-viewer">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-brick-viewer-after-connect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/brick_viewer_after_connect.png" class="lightbox" data-gallery="brick-viewer" title="Abbildung&nbsp;2.1: Der Brick Viewer nach dem Connect."><img src="images/brick_viewer_after_connect.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-brick-viewer-after-connect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;2.1: Der Brick Viewer nach dem Connect.
+</figcaption>
+</figure>
+</div>
+<p>…</p>
+</section>
+<section id="hoch--und-runterzählen" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="hoch--und-runterzählen"><span class="header-section-number">2.2</span> Hoch- und Runterzählen</h2>
+<p>Der Drehknopf ist vergleichbar mit einem Drehknopf für die Lautstärke wie man ihn beispielsweie an einer Stereoanlage wie in <a href="#fig-hifi-system" class="quarto-xref">Abbildung&nbsp;<span>2.2</span></a> findet, um die Musik lauter und leiser zu stellen. Dreht ihr nach rechts wird es lauter, in die andere Richtung leiser.</p>
+<div id="fig-hifi-system" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hifi-system-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/hifi_system.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Abbildung&nbsp;2.2: Die gute alte Stereoanlage mit Drehknopf! Wer kennt sie nicht mehr? (Quelle: Wikimedia)"><img src="images/hifi_system.jpg" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hifi-system-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;2.2: Die gute alte Stereoanlage mit Drehknopf! Wer kennt sie nicht mehr? (Quelle: <a href="https://commons.wikimedia.org/wiki/File:Sony_XO-D20S_Midi_HiFi_system_%28white_bg%29.jpg">Wikimedia</a>)
+</figcaption>
+</figure>
+</div>
+<p>Im Hintergrund verändert sich der Wert, den der Drehknopf sendet, entweder er erhöht oder verringert sich. Welchen Wert der konkret sendet hängt vom Ausgangszustand ab. Im Brick Viewer haben wir das schon gesehehen. Testen wir es einmal in einem Programm. Der Code unten verbindet sich mit dem Drehknopf, liest den aktuellen Wert aus und schreibt ihn auf die Konsole. Denkt daran, dass ihr eure UID statt meiner eintragen müsst:</p>
+<div id="9c474990" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
+<span id="annotated-cell-1-2"><a href="#annotated-cell-1-2"></a><span class="im">from</span> tinkerforge.bricklet_rotary_encoder_v2 <span class="im">import</span> BrickletRotaryEncoderV2</span>
+<span id="annotated-cell-1-3"><a href="#annotated-cell-1-3"></a></span>
+<span id="annotated-cell-1-4"><a href="#annotated-cell-1-4"></a>ipcon <span class="op">=</span> IPConnection()</span>
+<span id="annotated-cell-1-5"><a href="#annotated-cell-1-5"></a>ipcon.<span class="ex">connect</span>(<span class="st">'localhost'</span>, <span class="dv">4223</span>)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1">1</button><span id="annotated-cell-1-6" class="code-annotation-target"><a href="#annotated-cell-1-6"></a>knob <span class="op">=</span> BrickletRotaryEncoderV2(<span class="st">'XYZ'</span>, ipcon)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2">2</button><span id="annotated-cell-1-7" class="code-annotation-target"><a href="#annotated-cell-1-7"></a>count <span class="op">=</span> knob.get_count()</span>
+<span id="annotated-cell-1-8"><a href="#annotated-cell-1-8"></a><span class="bu">print</span>(count)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="6" data-code-annotation="1">Wir erstellen eine virtuelle Repräsentation des Drehknopfs in unserem Programm, um seine Funktionen verwenden zu können.</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="7" data-code-annotation="2">Über die virtuelle Repräsentation des Drehknopfs können wir mittels <code>get_count()</code> den aktuellen Wert abfragen.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Die Ausgabe sollte sich mit dem Wert decken, den ihr auch im Brick Viewer seht. Schließlich verwendet der Brick Viewer die gleiche Programmierschnittstelle wie unser Programm. Wenn alles funktioniert habt ihr soeben die erste Funktion des Drehknopfs erfolgreich aus einem Python-Programm heraus getestet.</p>
+<p>Wenn wir jetzt an dem Knopf drehen und das Programm erneut ausführen wird uns ein anderer Wert angezeigt. Logisch! Unser Ziel ist es aber, dass wir dafür nicht jedes Mal das Programm neu starten müssen. Die Lösung für dieses Problem habt ihr bereits in <a href="colors.html" class="quarto-xref"><span>Kapitel 1</span></a> kennengelernt: Wir verwenden eine Schleife, die das Programm immer wiederholt, bis wir es beenden:</p>
+<div id="1cb24d24" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb1-2"><a href="#cb1-2"></a>    count <span class="op">=</span> knob.get_count()</span>
+<span id="cb1-3"><a href="#cb1-3"></a>    <span class="bu">print</span>(count, end<span class="op">=</span><span class="st">'</span><span class="ch">\r</span><span class="st">'</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Kurze Erinnerung: Mit <code>while True</code> erstellen wir eine Endlosschleife. Eigentlich etwas, das wir vermeiden wollen. Allerdings nicht, wenn wir es explizit so wollen. Eine Endlosschleife kann nützlich sein, um kontinuierlich Daten zu lesen oder auf Ereignisse zu warten. Und wir können sie jederzeit beenden, indem wir das Programm mit <em>Strg+C</em> abbrechen.</p>
+</section>
+<section id="das-fertige-programm" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="das-fertige-programm"><span class="header-section-number">2.3</span> Das fertige Programm</h2>
+<div id="03ac0b6e" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">import</span> keyboard</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="im">import</span> time</span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="im">import</span> colorsys</span>
+<span id="cb2-4"><a href="#cb2-4"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
+<span id="cb2-5"><a href="#cb2-5"></a><span class="im">from</span> tinkerforge.bricklet_rgb_led_v2 <span class="im">import</span> BrickletRGBLEDV2</span>
+<span id="cb2-6"><a href="#cb2-6"></a></span>
+<span id="cb2-7"><a href="#cb2-7"></a>ipcon <span class="op">=</span> IPConnection()</span>
+<span id="cb2-8"><a href="#cb2-8"></a>ipcon.<span class="ex">connect</span>(<span class="st">'localhost'</span>, <span class="dv">4223</span>) </span>
+<span id="cb2-9"><a href="#cb2-9"></a>led <span class="op">=</span> BrickletRGBLEDV2(<span class="st">'ZEP'</span>, ipcon)</span>
+<span id="cb2-10"><a href="#cb2-10"></a></span>
+<span id="cb2-11"><a href="#cb2-11"></a><span class="co"># Turn button of initially</span></span>
+<span id="cb2-12"><a href="#cb2-12"></a>led.set_rgb_value(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb2-13"><a href="#cb2-13"></a></span>
+<span id="cb2-14"><a href="#cb2-14"></a><span class="co"># Initialize the hue value</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a>hue <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a></span>
+<span id="cb2-17"><a href="#cb2-17"></a><span class="co"># Set the duration for one rainbow cycle</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a>duration_seconds <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a>duration_seconds_per_step <span class="op">=</span> duration_seconds <span class="op">/</span> <span class="dv">360</span></span>
+<span id="cb2-20"><a href="#cb2-20"></a></span>
+<span id="cb2-21"><a href="#cb2-21"></a><span class="co"># Loop until user presses escape key</span></span>
+<span id="cb2-22"><a href="#cb2-22"></a><span class="cf">while</span> <span class="kw">not</span> keyboard.is_pressed(<span class="st">'esc'</span>):</span>
+<span id="cb2-23"><a href="#cb2-23"></a></span>
+<span id="cb2-24"><a href="#cb2-24"></a>    <span class="co"># Calculate RGB from hue</span></span>
+<span id="cb2-25"><a href="#cb2-25"></a>    r, g, b <span class="op">=</span> colorsys.hsv_to_rgb(hue <span class="op">/</span> <span class="fl">360.0</span>, <span class="fl">1.0</span>, <span class="fl">1.0</span>)</span>
+<span id="cb2-26"><a href="#cb2-26"></a>    r <span class="op">=</span> <span class="bu">int</span>(r <span class="op">*</span> <span class="dv">255</span>)</span>
+<span id="cb2-27"><a href="#cb2-27"></a>    g <span class="op">=</span> <span class="bu">int</span>(g <span class="op">*</span> <span class="dv">255</span>)</span>
+<span id="cb2-28"><a href="#cb2-28"></a>    b <span class="op">=</span> <span class="bu">int</span>(b <span class="op">*</span> <span class="dv">255</span>)</span>
+<span id="cb2-29"><a href="#cb2-29"></a></span>
+<span id="cb2-30"><a href="#cb2-30"></a>    led.set_rgb_value(r, g, b)</span>
+<span id="cb2-31"><a href="#cb2-31"></a>    </span>
+<span id="cb2-32"><a href="#cb2-32"></a>    <span class="co"># Wait a bit</span></span>
+<span id="cb2-33"><a href="#cb2-33"></a>    time.sleep(duration_seconds_per_step)</span>
+<span id="cb2-34"><a href="#cb2-34"></a></span>
+<span id="cb2-35"><a href="#cb2-35"></a>    hue <span class="op">=</span> hue <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb2-36"><a href="#cb2-36"></a>    <span class="cf">if</span> hue <span class="op">&gt;</span> <span class="dv">360</span>:</span>
+<span id="cb2-37"><a href="#cb2-37"></a>        hue <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb2-38"><a href="#cb2-38"></a></span>
+<span id="cb2-39"><a href="#cb2-39"></a>led.set_rgb_value(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 
@@ -858,6 +911,38 @@ Scott, John C. 2009. <em>But how do it know?: the basic principles of computers 
   </div>
 </nav>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 
