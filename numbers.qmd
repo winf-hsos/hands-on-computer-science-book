@@ -1,6 +1,6 @@
 ---
 abstract: |
-    Im zweiten Kapitel knüpfen wir an den Regenbogen an und lernen, wie wir den Computer über unsere Eingabe steuern können.
+    Unser Regenbogen aus dem ersten Kapitel war nur der Anfang. Doch wie speichert der Computer eigentlich die vielen RGB-Werte für all diese Farben? Das führt uns zum Binärsystem: Mit nur Einsen und Nullen und in kleinen Päckchen, den Bytes – kann er jeden Farbton unseres Regenbogens abbilden. Und noch viel mehr.
 abstract-title: ""
 ---
 
@@ -8,25 +8,69 @@ abstract-title: ""
 
 ## Lernziele {.unnumbered}
 
+Unsere wichtigsten Lernziele in diesem Kapitel sind:
+
+- Wir lernen Kontrollstrukturen kennen, mit denen wir unsere Programm steuern können.
+- Wir verstehen das Binärsystem und wissen, wie der Computer Zahlen speichert.
+- Wir führen das Byte als zentrale Einheit für Informationen in Computern ein. 
+
 ## Experimentaufbau {.unnumbered}
 
-Das erste Experiment hatte es in sich! In diesem Kapitel erweitern unsere Hardware aus @sec-colors und fügen ein Eingabegerät hinzu: Einen einfachen Drehknopf ([Rotary Encoder Bricklet 2.0](https://www.tinkerforge.com/en/doc/Hardware/Bricklets/Rotary_Encoder_V2.html)). Den schraubt ihr neben die LED, wie auf der Abbildung zu sehen ist.
+Das erste Experiment in @sec-colors war schon ein ordentlicher Einstieg! In diesem Kapitel legen wir noch eine Schippe drauf: Unsere Hardware bekommt ein neues Teil – einen Drehknopf ([Rotary Encoder Bricklet 2.0](https://www.tinkerforge.com/en/doc/Hardware/Bricklets/Rotary_Encoder_V2.html)). Den schraubt ihr einfach neben die LED, wie in @fig-setup-rgb-led-rotary-encoder gezeigt.
+
+::: {#fig-setup-rgb-led-rotary-encoder layout="[[1], [1,1], [1,1]]"}
+
+![Seitenansicht.](images/master_brick_with_led_and_rotary_01.jpg){#fig-setup-rgb-led-a .lightbox group="setup-rgb-led"}
+
+![Draufsicht.](images/master_brick_with_led_and_rotary_02.jpg){#fig-setup-rgb-led-b .lightbox group="setup-rgb-led"}
+
+![Nahaufnahme des Rotary Encoders.](images/master_brick_with_led_and_rotary_03.jpg){#fig-setup-rgb-led-c .lightbox group="setup-rgb-led"}
+
+![Seitenansicht.](images/master_brick_with_led_and_rotary_04.jpg){#fig-setup-rgb-led-d .lightbox group="setup-rgb-led"}
+
+![Untenansicht.](images/master_brick_with_led_and_rotary_05.jpg){#fig-setup-rgb-led-e .lightbox group="setup-rgb-led"}
+
+Einfaches Setup mit einem Mikrocontroller, der LED und einem Drehknopf.
+
+:::
 
 ## Erste Schritte mit dem Drehknopf
 
-Wie schon bei der LED wollen wir uns im ersten Schritt den neuen Drehknopf im Brick Viewer genauer anschauen und seine Funktion kennenlernen. Schließt eueren Master Brick über das USB-Kabel an euren Rechner an, öffnet den Brick Viewer und drückt den Connect-Button.
+Wie bei der LED werfen wir zuerst einen Blick auf den neuen Drehknopf im Brick Viewer. Schließt dazu euren Master Brick per USB an, startet den Brick Viewer und klickt auf *Connect*. Im Setup-Tab sollte nun neben der LED auch der Rotary Encoder auftauchen. Denkt daran: Dort findet ihr auch die UID eurer Geräte – die braucht ihr gleich für euer Programm.
 
-![Der Brick Viewer nach dem Connect.](images/brick_viewer_after_connect.png){#fig-brick-viewer-after-connect .lightbox group="brick-viewer"}
+![Der Brick Viewer nach dem Connect.](images/exp_2_brick_viewer_after_connect.png){#fig-exp-2-brick-viewer-after-connect .lightbox group="brick-viewer-rotary"}
 
-...
+Wechselt nun in den Tab für den Drehknopf, wo ihr ihn direkt testen könnt: Ihr seht den aktuellen Zählwert, der kann positiv oder negativ sein, je nachdem, wie oft und in welche Richtung ihr gedreht habt. Daneben zeigt ein Diagramm die zeitliche Entwicklung.
+
+Doch der Knopf kann mehr als nur zählen: Ihr könnt ihn auch drücken. Achtet mal auf den kleinen Kreis im Brick Viewer. Wird er gedrückt, leuchtet er rot. Noch löst das Drücken keine Aktion aus, aber wir überlegen später, welche Funktion wir damit verbinden wollen.
+
+Und zuletzt: Der Button Reset Count. Damit setzt ihr den Zähler zurück, eine praktische Funktion, die wir später ebenfalls ins Programm einbauen können.
+
+::: {#fig-brick-viewer-rotary-encoder layout="[[1,1]]"}
+
+![Das Diagramm zeigt den aktuellen Wert an.](images/brick_viewer_rotary_encoder.png){#fig-brick-viewer-rotary-encoder .lightbox group="brick-viewer-rotary"}
+
+![Der Button wir rot, wenn er gedrückt ist.](images/brick_viewer_rotary_encoder_pressed.png){#fig-brick-viewer-rotary-encoder-pressed .lightbox group="brick-viewer-rotary"}
+
+Die Funktionen des Rotary Encoders im Brick Viewer.
+
+:::
+
+Fassen wir zusammen, was unser Drehknopf (Rotary Encoder) draufhat:
+
+1. Er zählt – vorwärts und rückwärts
+2. Er merkt, wenn ihr ihn drückt
+3. Er kann seinen Zähler zurücksetzen
+
+Zeit also, das Ganze in Python auszuprobieren und zu sehen, welche coolen Anwendungen wir damit bauen können.
 
 ## Hoch- und Runterzählen
 
-Der Drehknopf ist vergleichbar mit einem Drehknopf für die Lautstärke wie man ihn beispielsweie an einer Stereoanlage wie in @fig-hifi-system findet, um die Musik lauter und leiser zu stellen. Dreht ihr nach rechts wird es lauter, in die andere Richtung leiser. 
+Der Drehknopf funktioniert ähnlich wie der Lautstärkeregler einer Stereoanlage (siehe @fig-hifi-system): Dreht ihr nach rechts, wird es lauter – nach links, leiser.
 
 ![Die gute alte Stereoanlage mit Drehknopf! Wer kennt sie nicht mehr? (Quelle: [Wikimedia](https://commons.wikimedia.org/wiki/File:Sony_XO-D20S_Midi_HiFi_system_%28white_bg%29.jpg))](images/hifi_system.jpg){#fig-hifi-system .lightbox}
 
-Im Hintergrund verändert sich der Wert, den der Drehknopf sendet, entweder er erhöht oder verringert sich. Welchen Wert der konkret sendet hängt vom Ausgangszustand ab. Im Brick Viewer haben wir das schon gesehehen. Testen wir es einmal in einem Programm. Der Code unten verbindet sich mit dem Drehknopf, liest den aktuellen Wert aus und schreibt ihn auf die Konsole. Denkt daran, dass ihr eure UID statt meiner eintragen müsst:
+Im Hintergrund verändert sich bei jeder Drehung der Wert, den der Knopf sendet – mal höher, mal niedriger, je nach Ausgangszustand. Im Brick Viewer habt ihr das schon gesehen. Probieren wir es jetzt in einem Programm aus: Der folgende Code verbindet sich mit dem Drehknopf, liest den aktuellen Wert und gibt ihn in der Konsole aus. Denkt daran, eure eigene UID einzutragen:
 
 ```{python}
 from tinkerforge.ip_connection import IPConnection
@@ -34,65 +78,158 @@ from tinkerforge.bricklet_rotary_encoder_v2 import BrickletRotaryEncoderV2
 
 ipcon = IPConnection()
 ipcon.connect('localhost', 4223)
-knob = BrickletRotaryEncoderV2('XYZ', ipcon) # <1>
-count = knob.get_count() # <2>
+knob = BrickletRotaryEncoderV2('WZd', ipcon) # <1>
+count = knob.get_count(reset=False) # <2>
 print(count)
 ```
 1. Wir erstellen eine virtuelle Repräsentation des Drehknopfs in unserem Programm, um seine Funktionen verwenden zu können.
-2. Über die virtuelle Repräsentation des Drehknopfs können wir mittels `get_count()` den aktuellen Wert abfragen.
+2. Über die virtuelle Repräsentation des Drehknopfs können wir mittels `get_count()` den aktuellen Wert abfragen. Der Parameter `reset` bestimmt, ob der Zähler nach dem Auslesen zurückgesetzt werden soll oder nicht.
 
-Die Ausgabe sollte sich mit dem Wert decken, den ihr auch im Brick Viewer seht. Schließlich verwendet der Brick Viewer die gleiche Programmierschnittstelle wie unser Programm. Wenn alles funktioniert habt ihr soeben die erste Funktion des Drehknopfs erfolgreich aus einem Python-Programm heraus getestet.
+Die Ausgabe sollte mit dem Wert übereinstimmen, den ihr auch im Brick Viewer seht – kein Wunder, beide nutzen dieselbe Programmierschnittstelle. Damit habt ihr die erste Funktion des Drehknopfs erfolgreich aus Python getestet.
 
-Wenn wir jetzt an dem Knopf drehen und das Programm erneut ausführen wird uns ein anderer Wert angezeigt. Logisch! Unser Ziel ist es aber, dass wir dafür nicht jedes Mal das Programm neu starten müssen. Die Lösung für dieses Problem habt ihr bereits in @sec-colors kennengelernt: Wir verwenden eine Schleife, die das Programm immer wiederholt, bis wir es beenden:
+Dreht ihr den Knopf und startet das Programm erneut, erscheint natürlich ein anderer Wert. Klar! Aber jedes Mal neu starten? Das geht besser. Die Lösung kennt ihr schon aus @sec-colors: eine Schleife, die das Programm so lange wiederholt, bis wir es beenden:
 
 ```{python}
 while True:
-    count = knob.get_count()
-    print(count, end='\r')
+    count = knob.get_count(reset=False)
+    print(count)
 ```
 
-Kurze Erinnerung: Mit `while True` erstellen wir eine Endlosschleife. Eigentlich etwas, das wir vermeiden wollen. Allerdings nicht, wenn wir es explizit so wollen. Eine Endlosschleife kann nützlich sein, um kontinuierlich Daten zu lesen oder auf Ereignisse zu warten. Und wir können sie jederzeit beenden, indem wir das Programm mit *Strg+C* abbrechen.
+Zur Erinnerung: `while True` erzeugt eine Endlosschleife. Normalerweise wollen wir so etwas vermeiden – außer, wir brauchen es genau dafür. Endlosschleifen sind praktisch, wenn wir kontinuierlich Daten lesen oder auf Ereignisse warten. Und keine Sorge: Mit Strg+C könnt ihr das Programm jederzeit beenden.
+
+Wenn ihr das Programm ausführt, werdet ihr direkt ein Problem erkennen. Die Schleife rennt förmlich und gibt nacheinander immer wieder den selben Wert aus. Nur wenn wir am Knopf drehen ändert sich der Wert, wird aber von der Schleife X-Male auf die Konsole geschrieben. Wie könnten wir das verbessern?
+
+## Kontrollstrukturen
+
+Wie wäre es hiermit?
+
+```{python}
+last_count = None
+while True:
+    new_count = knob.get_count(reset=False)
+
+    if new_count != last_count:
+        last_count = new_count
+        print(last_count)
+```
+
+Gehen wir durch, was hier passiert: Zuerst setzen weisen wir der Variable `last_count` den Wert `None` zu, und zwar vor dem ersten Schleifendurchlauf. Anschließend wird in der Schleife in jedem Durchlauf der aktuelle Zählerwert ausgelesen und auf der zweiten Variable `new_count` gespeichert. Danach prüfen wir, ob sich der neue Wert im Vergleich zum alten Wert verändert hat. Da auf dem alten Wert `last_count` im ersten Durchlauf `None` ist, wird die Bedingung in Zeile 5 im ersten Durchlauf immer `True` sein. Somit geben wir den Wert zu Beginn auf jeden Fall aus, was im Sinne der Anwendung ist.
+
+Anschließend wird in den darauffolgenden Schleifendurchläufen aber nur etwas ausgegeben, wenn der Wert sich verändert hat, also der Benutzer tatsächlich am Drehknopf gedreht hat. Ansonsten bleibt die Ausgabe unverändert.
+
+Die Prüfung, ob der aktuelle Wert, den wir auf der zweiten Variable `new_count` speichern, sich vom alten Wert unterscheidet, erfolgt in Zeile 5. Hier lernen wir auch neues Konzept der Programmierung kennen, die Kontrollstruktur mit `if`, gefolgt von einer Bedingung.
+
+Neu ist hier die Kontrollstruktur `if`. Sie prüft eine Bedingung, die, wie ihr schon aus @sec-colors kennt, nur `True` oder `False` sein kann. Ist sie wahr (`True`), läuft der eingerückte Code darunter. Ist sie falsch (`False`), passiert nichts. 
+
+Übertragen auf unser Programm heißt das: `print(count)` läuft nur dann, wenn sich der Wert tatsächlich verändert hat. In diesem Fall merken wir uns den neuen Wert und aktualisieren count. Beim nächsten Schleifendurchlauf prüfen wir wieder, ob sich etwas getan hat. Meistens ist das nicht so – und genau deshalb sehen wir nur dann eine Ausgabe, wenn wir wirklich am Knopf drehen. Ziemlich effizient, oder?
+
+## Ein LED-Dimmer
+
+Wenden wir das Gelernte an und bauen einen praktischen LED-Dimmer. Dafür holen wir unsere LED aus Kapitel 1 mit dazu und kombinieren sie mit dem Drehknopf.
+
+Die Idee ist simpel: Der Zähler des Knopfs steuert die Helligkeit der LED. Dreht ihr nach rechts, wird sie heller, nach links, dunkler. Wie bei der Stereoanlage in @fig-hifi-system.
+
+Bevor wir uns an die eigentliche Anwendungslogik machen, brauchen wir Zugriff auf beide Geräte – LED und Drehknopf. Dazu erweitern wir den bekannten Boilerplate-Code und speichern die Geräte in eigenen Variablen:
+
+```{python}
+from tinkerforge.ip_connection import IPConnection
+from tinkerforge.bricklet_rotary_encoder_v2 import BrickletRotaryEncoderV2
+from tinkerforge.bricklet_rgb_led_v2 import BrickletRGBLEDV2
+
+ipcon = IPConnection()
+ipcon.connect('localhost', 4223)
+knob = BrickletRotaryEncoderV2('WZd', ipcon) 
+led = BrickletRGBLEDV2('ZG1', ipcon)
+```
+
+Dieser Teil muss immer am Anfang unseres Programms stehen, damit alles funktioniert. In den kommenden Beispielen setzen wir ihn als gegeben voraus und wiederholen ihn nicht jedes Mal.
+
+## 0 bis 255
+
+Als Startpunkt nehmen wir den Code von oben, der den Zählerwert auf der Konsole ausgibt. Schließlich brauchen wir genau diese Information – wann sich der Wert ändert und wie er aktuell steht – auch, um die LED zu steuern.
+
+Damit wir die LED von aus bis volle Helligkeit dimmen können, legen wir uns zuerst auf eine Farbe fest. Ich bin zwar kein Fan von weißem LED-Licht, aber für dieses Kapitel ist es am einfachsten: voll aufgedreht leuchtet die LED weiß, ausgedreht ist sie schwarz – klar! Später kümmern wir uns darum, wie wir das Licht wärmer machen können.
+
+Erinnern wir uns also: Was bedeuten die Zustände An und Aus im RGB-Farbraum?
+
+```{python}
+#| code-line-numbers: false
+# White
+led.set_rgb_value(255, 255, 255)
+
+# Black (off)
+led.set_rgb_value(0, 0, 0)
+```
+
+Damit haben wir die beiden Extremzustände festgelegt. Doch was passiert dazwischen, wenn die LED gedimmt ist? Ganz einfach: Wir lassen die drei RGB-Werte gemeinsam von 1 bis 254 hoch- oder runterlaufen. Höhere Werte ergeben ein helleres Weiß, niedrigere ein dunkleres.
+
+Setzen wir diese Erkenntnisse in Programmcode um und weisen den Zählerwert den RGB-Werten der LED zu. Spoiler-Alert: Das ist etwas naiv, aber lasst uns mal schauen, was passiert und wo möglicherweise Probleme auftreten:
+
+```{python}
+last_count = None
+while True:
+    new_count = knob.get_count(reset=False)
+
+    if new_count != last_count:
+        last_count = new_count
+        print(last_count)
+
+        # Set RGB values zu counter value
+        led.set_rgb_value(last_count, last_count, last_count)
+```
+
+Lasst mal laufen und dreht voll auf oder runter! Beobachtet dabei den Wert für `last_count`. Was passiert, wenn er kleiner als Null wird? Oder wenn er größer als 255 wird? Bumm! Das Programm stürzt ab!
+
+Warum? Auf der Kommandzeile bekommen wir eine lange Fehlermeldung mit der folgenden Aussage ganz am Ende:
+
+```{bash}
+#| code-line-numbers: false
+struct.error: ubyte format requires 0 <= number <= 255
+```
+
+Wenn man die Fehlermeldung googelt oder ChatGPT befragt bekommt man Hilfe. Offensichtlich wird für einen RGB-Wert, den wir der Funktion `set_rgb_value()` übergeben ein bestimmter Datentyp erwartet, der `ubyte` heisst. Das steht für "unsigned byte" und bedeutet, dass der Wert zwischen 0 und 255 liegen muss.
+
+Moment 🧐 - was hat jetzt Byte mit 0 bis 255 zu tun? Bisher dachten wir doch, das wäre wegen des RGB-Codes? Stimmt auch, aber der RGB-Code liegt nicht zufällig im Wertebereich von 0 bis 255. 
+
+Um das zu verstehen, müssen wir das Binärsystem kennen.
+
+## Das Binärsystem
+
+...
 
 ## Das fertige Programm
 
 ```{python}
-import keyboard
-import time
-import colorsys
 from tinkerforge.ip_connection import IPConnection
+from tinkerforge.bricklet_rotary_encoder_v2 import BrickletRotaryEncoderV2
 from tinkerforge.bricklet_rgb_led_v2 import BrickletRGBLEDV2
+import math
 
 ipcon = IPConnection()
-ipcon.connect('localhost', 4223) 
-led = BrickletRGBLEDV2('ZEP', ipcon)
+ipcon.connect('localhost', 4223)
+knob = BrickletRotaryEncoderV2('WZd', ipcon) 
+led = BrickletRGBLEDV2('ZG1', ipcon)
+led.set_rgb_value(0, 0, 0)  # Set initial color to off
 
-# Turn button of initially
-led.set_rgb_value(0, 0, 0)
+count = math.inf
+STEP = 10
 
-# Initialize the hue value
-hue = 1
+last_count = knob.get_count(reset=True)
+brightness = 0
 
-# Set the duration for one rainbow cycle
-duration_seconds = 4
-duration_seconds_per_step = duration_seconds / 360
+while True:
+    new_count = knob.get_count(reset=False)
 
-# Loop until user presses escape key
-while not keyboard.is_pressed('esc'):
+    # Only do something if the counter changed
+    if new_count != last_count:
+        diff = new_count - last_count
+        last_count = new_count
 
-    # Calculate RGB from hue
-    r, g, b = colorsys.hsv_to_rgb(hue / 360.0, 1.0, 1.0)
-    r = int(r * 255)
-    g = int(g * 255)
-    b = int(b * 255)
+        # Adjust brightness
+        brightness += diff * STEP
+        brightness = max(0, min(255, brightness))
 
-    led.set_rgb_value(r, g, b)
-    
-    # Wait a bit
-    time.sleep(duration_seconds_per_step)
-
-    hue = hue + 1
-    if hue > 360:
-        hue = 1
-
-led.set_rgb_value(0, 0, 0)
+        # Print brightness for debugging purposes
+        print(brightness)
+        led.set_rgb_value(brightness, brightness, brightness)
 ```

@@ -145,6 +145,7 @@ Damit haben wir unser erstes Programm von oben nach unten erläutert und dabei s
 Wir haben nun eine digitale Repräsentation unserer LED in Python. Wir können die LED jetzt zum Leuchten bringen, indem wir eine Methode der Klasse `BrickletRGBLEDV2`, die `set_rgb_value()` heißt, verwenden. Diese Methode erwartet drei Parameter: Rot, Grün und Blau. Mit diesen Parametern können wir die Farbe der LED einstellen.
 
 ```{python}
+#| code-line-numbers: false
 led.set_rgb_value(0, 255, 0) # <1>
 ```
 1. Setzt die LED auf grün. R = 0, G = 255, B = 0. Logisch, oder?
@@ -185,6 +186,7 @@ Wir halten also fest, dass sich ein Farbwert im Computer aus drei Zahlen zusamme
 Klingt alles theoretisch sehr gut. Aber wie sieht es mit der Praxis aus? Probieren wir es aus und mischen zwei Farben mit voller Intensität!
 
 ```{python}
+#| code-line-numbers: false
 led.set_rgb_value(255, 255, 0)
 ```
 
@@ -195,12 +197,14 @@ Was macht der Befehl? Welche Farbe kommt dabei heraus? Probiert es einfach mal a
 Ihr solltet alle eure LEDs in Gelb aufleuchten sehen. In der *additiven Farbmischung* mischen wir Rot und Grün und erhalten dadurch Gelb. Gelb ist heller als die beiden Farben Rot und Grün, was kein Zufall ist. Das ist das Prinzip der additiven Farbmischung: Wenn wir zwei Farben mit voller Intensität leuchten lassen, erhalten wir eine neue Farbe, die stest heller ist als die Ursprungsfarben. Wir fügen mehr Licht hinzu. Wenn wir alle drei Farben mit voller Intensität mischen erhalten wir schließlich Weiß.
 
 ```{python}
+#| code-line-numbers: false
 led.set_rgb_value(255, 255, 255)
 ```
 
 Am anderen Ende des Spektrums erzeugen drei Nullen die Farbe Schwarz:
 
 ```{python}
+#| code-line-numbers: false
 led.set_rgb_value(0, 0, 0)
 ```
 
@@ -237,6 +241,7 @@ Farben spielen eine so wichtige Rolle bei der Arbeit mit Computern. Deshalb lohn
 Ab jetzt wollen wir weiter mit unserer LED experimentieren und den RGB-Code, mit dem Computer Farben abbilden, praxisnah verstehen. Bisher haben wir gelernt, dass wir die Farbe der LED über die Methode `set_rgb_value()` verändern können, wenn wir wissen, welcher RGB-Code unsere gewünschte Farbe repräsentiert. Da wir jetzt mehr über die Farbmischung wissen, können wir die LED also ganz einfach in der Farbe Magenta leuchten lassen:
 
 ```{python}
+#| code-line-numbers: false
 led.set_rgb_value(255, 0, 255)
 ```
 
