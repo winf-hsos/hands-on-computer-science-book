@@ -4,15 +4,15 @@ abstract: |
 abstract-title: ""
 ---
 
-# Farben 🌈 {#sec-colors}
+# Farben {#sec-colors}
 
 ## Lernziele {.unnumbered}
 
 Unsere wichtigsten Lernziele in diesem Kapitel sind:
 
-1. Wir verstehen, wie Farben im Computer funktionieren.
-2. Wir schreiben unser erstes Programm am Beispiel einer LED-Steuerung.
-3. Wir lernen Schleifen in der Programmierung kennen.
+1.  Wir verstehen, wie Farben im Computer funktionieren.
+2.  Wir schreiben unser erstes Programm am Beispiel einer LED-Steuerung.
+3.  Wir lernen Schleifen in der Programmierung kennen.
 
 ## Experimentaufbau {.unnumbered}
 
@@ -21,7 +21,6 @@ Bereit für euer erstes Hardware-Experiment? Perfekt! Ihr braucht dafür eine LE
 Neben der Hardware benötigt ihr auch die passende Software. Diese solltet ihr bereits installiert haben. Falls nicht, schaut im [Abschnitt zu den Voraussetzungen](prerequisites.qmd) vorbei. Dort ist alles genau beschrieben. Im Folgenden gehe ich davon aus, dass ihr alles am Laufen habt.
 
 ::: {#fig-setup-rgb-led layout="[[1], [1,1], [1,1]]"}
-
 ![Seitenansicht.](images/master_brick_with_led_01.jpg){#fig-setup-rgb-led-a .lightbox group="setup-rgb-led"}
 
 ![Nahaufnahme der LED.](images/master_brick_with_led_02.jpg){#fig-setup-rgb-led-b .lightbox group="setup-rgb-led"}
@@ -33,7 +32,6 @@ Neben der Hardware benötigt ihr auch die passende Software. Diese solltet ihr b
 ![Ansicht der vier Steckplätze.](images/master_brick_with_led_06.jpg){#fig-setup-rgb-led-e .lightbox group="setup-rgb-led"}
 
 Einfaches Setup mit einem Mikrocontroller und einer LED.
-
 :::
 
 ## Erste Schritte mit der LED
@@ -80,15 +78,15 @@ led = BrickletRGBLEDV2("ZEP", ipcon) # <5>
 
 Zunächst klären wir den Begriff *Programm*\index{Programm}. Ein Programm ist eine Abfolge von Anweisungen, die ein Computer ausführt, um eine bestimmte Aufgabe zu erledigen. In unserem Fall ist das Programm später dafür zuständig, mit der LED zu interagieren und sie in verschiedenen Farben leuchten zu lassen. Programme werden in Programmiersprachen geschrieben, die es uns ermöglichen, dem Computer präzise Anweisungen zu geben. Wir verwenden in diesem Buch die Programmiersprache Python, die sich besonders gut für Einsteiger eignet und gleichzeitig mächtig genug ist, um komplexe Aufgaben zu lösen.
 
-Wenn wir ein Programm ausführen, arbeitet der Computer die Anweisungen Schritt für Schritt von oben nach unten ab. Die Nummerierung der Zeilen verdeutlicht das sehr schön. Der Computer beginnt bei Zeile 1 und arbeitet die Befehle Zeile für Zeile bis nach unten ab. 
+Wenn wir ein Programm ausführen, arbeitet der Computer die Anweisungen Schritt für Schritt von oben nach unten ab. Die Nummerierung der Zeilen verdeutlicht das sehr schön. Der Computer beginnt bei Zeile 1 und arbeitet die Befehle Zeile für Zeile bis nach unten ab.
 
 Es gibt Befehle, die den Computer von dieser linearen Abfolge abweichen lassen, etwa Schleifen oder Verzweigungen. Diese lernen wir später kennen.
 
-### Boilerplate Code
+### Boilerplate Code {#boilerplate-code}
 
 Der Codeausschnitt in @lst-boilerplate-code wird uns im Verlauf dieses Buches immer wieder begegnen. Wir benötigen ihn, um uns am Anfang des Programms mit den Geräten zu verbinden, die wir für unsere Anwendung benötigen. In der Informatik nennen wir solchen Code, den wir häufig in der gleichen Form benötigen und fast eins zu eins kopieren können, auch *Boilerplate-Code*. Wundert euch also nicht, wenn ich diesen Begriff ab und an mal verwende. Jetzt wisst ihr, was gemeint ist.
 
-### Bibliotheken
+### Bibliotheken {#bibliotheken}
 
 Beginnen wir in den ersten beiden Zeilen. Hier seht ihr zwei sehr ähnliche Befehle, die mit dem Schlüsselwort `from` beginnen. Nach dem Schlüsselwort `from` folgt der Name einer Bibliothek, aus der wir ein für unser Programm benötigtes Objekte importieren. Die Kombination der Schlüsselwörter `from ...import` lässt sich also wörtlich übersetzen: "Aus der Bibliothek X importiere das Objekt Y".
 
@@ -131,7 +129,7 @@ In Zeile 6 erzeugen wir schließlich ein Objekt der Klasse `BrickletRGBLEDV2`. D
 Damit haben wir unser erstes Programm von oben nach unten erläutert und dabei schon viele wichtige Konzepte der Programmierung kennengelernt:
 
 |  |  |
-|----------------------|--------------------------------------------------|
+|-----------------------|-------------------------------------------------|
 | **Programme** | Abfolge von Anweisungen, die nacheinander ausgeführt werden. |
 | **Boilerplate Code** | Standard-Code, den man immer wieder braucht. |
 | **Importieren von Bibliotheken** | Sammlung von fertigen Code-Elementen. |
@@ -148,7 +146,8 @@ Wir haben nun eine digitale Repräsentation unserer LED in Python. Wir können d
 #| code-line-numbers: false
 led.set_rgb_value(0, 255, 0) # <1>
 ```
-1. Setzt die LED auf grün. R = 0, G = 255, B = 0. Logisch, oder?
+
+1.  Setzt die LED auf grün. R = 0, G = 255, B = 0. Logisch, oder?
 
 Moment mal … Wo steht hier eigentlich *grün*? Steht da gar nicht. Stattdessen drei Zahlen. Willkommen bei der *RGB-Farbkodierung*\index{RGB-Farbkodierung}. Jede Farbe besteht aus drei Werten zwischen 0 und 255: Rot, Grün, Blau. Null ist nix. 255 ist volle Power. Alles 0? Schwarz. Alles 255? Weiß. Nur Grün auf 255? Na klar: grün.
 
@@ -169,7 +168,6 @@ Frequenzen messen wir in Hertz (Hz), wobei 1 Hz einer Schwingung pro Sekunde ent
 Was bedeutet das nun für eine LED? Eine LED (Light Emitting Diode) ist ein Halbleiterbauelement, das Licht erzeugt, wenn elektrischer Strom hindurchfließt. Die Farbe des Lichts hängt von Eigenschaften des Halbleitermaterials ab, aus dem die LED besteht. Verschiedene Materialien emittieren Licht bei unterschiedlichen Wellenlängen, was zu verschiedenen Farben führt. Zum Beispiel emittiert eine rote LED Licht mit einer Wellenlänge von etwa 620-750 nm, während eine grüne LED Licht mit einer Wellenlänge von etwa 495-570 nm emittiert.
 
 ![Das elektromagnetische Spektrum, wovon das sichtbare Licht ein kleiner Teil ist. (Quelle: [Wikipedia](https://en.wikipedia.org/wiki/File:EM_Spectrum_Properties_edit.svg))](images/em_spectrum.png){#fig-em-spectrum fig-align="center" width="100%"}
-
 
 Die RGB LED besteht in Wirklichkeit aus drei einzelnen LEDs: einer roten, einer grünen und einer blauen. Jede dieser LEDs kann unabhängig voneinander angesteuert werden, um verschiedene Farben zu erzeugen. Mehr Stromstärke bedeutet mehr Intensität der jeweiligen Farbe. Durch die Kombination der drei Grundfarben Rot, Grün und Blau in unterschiedlichen Intensitäten können wir eine Vielzahl von Farben mischen. Das ist das Prinzip der additiven Farbmischung: Wenn wir alle drei Farben mit voller Intensität leuchten lassen, erhalten wir Weiß. Wenn wir keine Farbe leuchten lassen, erhalten wir Schwarz. Klar, die LED sind dann alle aus.
 
@@ -219,13 +217,11 @@ Was passiert mit dem absorbierten Licht? Es wird in eine andere Form der Energie
 Wenn wir alle Farben mischen ergibt die subtraktive Farbmischung Schwarz, weil kein Licht mehr reflektiert wird. Alles Licht wird aufgesogen und nichts kommt mehr zurück. Das ist ein anderes Prinzip als bei der additiven Farbmischung, bei der wir Lichtquellen *kombinieren*, um neue Farben zu erhalten.
 
 ::: {#fig-color-mixing layout="[[1,1]]"}
-
 ![Additive Farbmischung](images/additive_color_mixing.png){#fig-additive-color-mixing .lightbox}
 
 ![Subtraktive Farbmischung](images/subtractive_color_mixing.png){#fig-subtractive-color-mixing .lightbox}
 
 Additive und subtraktive Farbmischung.
-
 :::
 
 In @fig-color-mixing sehen wir die beiden Farbmischungsarten im Vergleich. In @fig-subtractive-color-mixing sehen wir die drei Grundfarben, die wir bei der subtraktiven Variante benötigen, um daraus alle weiteren Farben zu erhalten. Das sind Cyan, Magenta sowie Gelb. Im Englischen ist die Abkürzung CMY, wo das "Y" für *Yellow* steht. In der additiven Farbmischung sind es, wie oben schon gesehen, Rot, Grün und Blau. Wenn ihr @fig-additive-color-mixing betrachtet dann erkennt ihr, dass genau diese drei Farben durch das Mischen jeweils zweier Grundfarben in der additiven Farbmischung entstehen. Und umgekehrt gilt das gleiche Prinzip! Ob das Zufall ist?
@@ -303,7 +299,8 @@ for r in range(256):
     led.set_rgb_value(r, 0, 0)
     print(r) # <1> 
 ```
-1. Mit `print()` geben wir einen Wert auf der Konsole aus. 
+
+1.  Mit `print()` geben wir einen Wert auf der Konsole aus.
 
 Jetzt wird es deutlich: mit jedem Durchlauf der Schleife wird ein neuer Wert für `r` gesetzt und ausgegeben. Und zwar jeweils um eins erhöht. Die Funktion `range(256)` erzeugt genau gesagt eine sortierte Reihe mit den Zahlen von 0 bis 255. Das sieht in Python dann so aus:
 
@@ -312,7 +309,8 @@ Jetzt wird es deutlich: mit jedem Durchlauf der Schleife wird ein neuer Wert fü
 list_of_numbers = range(256)
 print(list(list_of_numbers)) # <1>
 ```
-1. Mit der `list()`-Funktion wandeln wir die von `range()` erzeugte Menge in eine Liste um, die wir dann ausgeben können.
+
+1.  Mit der `list()`-Funktion wandeln wir die von `range()` erzeugte Menge in eine Liste um, die wir dann ausgeben können.
 
 Rückwärts erreichen wir das gleiche Ergebnis mit einer weiteren Schleife, deren Menge wir umkehren, so dass sie von 255 bis 0 geht:
 
@@ -358,7 +356,7 @@ while 1==1:
     time.sleep(1)
 ```
 
-Das Schlüsselwort `while` führt eine bedingte Schleife ein, gefolgt von der Bedingung, die die Schleife steuert. Die Bedingung wird vor jedem neuen Schleifendurchlauf geprüft (auch vor dem ersten) und sollte sie falsch (`false`) sein, wird die Schleife beendet. 
+Das Schlüsselwort `while` führt eine bedingte Schleife ein, gefolgt von der Bedingung, die die Schleife steuert. Die Bedingung wird vor jedem neuen Schleifendurchlauf geprüft (auch vor dem ersten) und sollte sie falsch (`false`) sein, wird die Schleife beendet.
 
 Wann wird die Schleife oben also beendet? Richtig - niemals. Die Bedingung `1==1` ist immer wahr, die Schleife läuft somit endlos. Wir sprechen auch von einer Endlosschleife, die wir in der Programmierung unbedingt vermeiden wollen, es sei denn, sie ist explizit gewollt und nicht versehentlich entstanden. Das kurze Programm oben schreibt also in Abständen von einer Sekunde den Text "The condition is always true" auf die Konsole.
 
@@ -376,7 +374,7 @@ Für Ereignisse, die die Tastatur betreffen, können wir uns der Bibliothek `key
 
 Die [Bibliothek](#bibliotheken) `keyboard` ist eine so genannte externe Bibliothek und muss vor der Verwendung installiert werden. Das könnt ihr über den Paketmanager `pip` bewerkstelligen, der mit jeder Python-Installation mitgeliefert wird. Gebt auf der Kommandozeile dazu den folgenden Befehl ein:
 
-```bash
+``` bash
 pip install keyboard
 ```
 
@@ -448,15 +446,11 @@ Das RGB-Farbschema ist für Computer optimal, weil sich damit mit nur drei Zahle
 Um Farben für uns leichter wählbar zu machen, wurde der sogenannte Hue-Farbkreis entwickelt. Er ordnet die Farben auf einer Skala von 0 bis 360 Grad an – ähnlich wie die Winkel auf einem Kreis. Neben dem Farbton (Hue) lassen sich zusätzlich die Sättigung und die Helligkeit einstellen: Der Farbton bestimmt die eigentliche Farbe, die Sättigung, wie kräftig oder blass sie wirkt, und die Helligkeit, wie hell oder dunkel sie erscheint.
 
 ::: {.content-visible when-format="html"}
-
 ![Die Farbauswahl in Google Slides funktioniert über den Hue-Farbkreis.](images/hue_color_picker.gif){#fig-hue-color-picker .lightbox fig-align="center" width="33%"}
-
 :::
 
-::: {.content-visible when-format="pdf"}
-
-![Die Farbauswahl in Google Slides funktioniert über den Hue-Farbkreis.](images/hue_color_picker_still.png){#fig-hue-color-picker .lightbox fig-align="center" width="33%"}
-
+::: {.content-hidden when-format="html"}
+![Die Farbauswahl in Google Slides funktioniert über den Hue-Farbkreis.](images/hue_color_picker_still.png){.lightbox fig-align="center" width="33%"}
 :::
 
 In @fig-hue-color-picker seht ihr, wie die Farbauswahl in Google Slides funktioniert. Mit dem Slider in der Mitte bestimmt ihr den Farbton. Habt ihr einen passenden Ton gefunden, könnt ihr im Rechteck darüber durch Verschieben des kleinen Kreises die Sättigung und Helligkeit anpassen.
@@ -471,12 +465,12 @@ Da die Skala am Ende wieder bei Rot ankommt, lässt sich der Farbverlauf nahtlos
 
 Wenn wir ein Programm schreiben, das die gesamte Hue-Farbskala durchläuft und die LED jeweils in der passenden Farbe aufleuchten lässt, erhalten wir unser Regenbogenprogramm. Da die LED RGB-Werte benötigt, müssen wir den Verlauf des Hue-Farbkreises in RGB umsetzen. Ein Blick auf die Animation in @fig-hue-color-picker hilft: Der Farbverlauf lässt sich in sechs Phasen unterteilen, wie @fig-hue-rgb-diagram zeigt:
 
-1. Rot = 255, Blau = 0, Grün steigt linear
-2. Rot sinkt linear, Grün = 255, Blau = 0
-3. Rot = 0, Grün = 255, Blau steigt linear
-4. Rot = 0, Grün sinkt linear, Blau = 255
-5. Rot steigt linear, Grün = 0, Blau = 255
-6. Rot = 255, Grün = 0, Blau sinkt linear
+1.  Rot = 255, Blau = 0, Grün steigt linear
+2.  Rot sinkt linear, Grün = 255, Blau = 0
+3.  Rot = 0, Grün = 255, Blau steigt linear
+4.  Rot = 0, Grün sinkt linear, Blau = 255
+5.  Rot steigt linear, Grün = 0, Blau = 255
+6.  Rot = 255, Grün = 0, Blau sinkt linear
 
 Dann beginnt der Zyklus von vorn.
 
@@ -543,11 +537,11 @@ for blue in range(255, -1, -1):
 
 ```
 
-Wie schön 🌈 Eine Sache fehlt aber noch. 
+Wie schön 🌈 Eine Sache fehlt aber noch.
 
 ### Der Zyklus wiederholt sich
 
-Der Regenbogen soll am Ende wieder von Vorne beginnen. Wie schon beim Pulsieren der Farben können wir auch hier eine `while`-Schleife verwenden und  die Phasen kontinuierlich abspielen. Solange bis der Benutzer die Escape-Taste drückt:
+Der Regenbogen soll am Ende wieder von Vorne beginnen. Wie schon beim Pulsieren der Farben können wir auch hier eine `while`-Schleife verwenden und die Phasen kontinuierlich abspielen. Solange bis der Benutzer die Escape-Taste drückt:
 
 ```{python}
 while not keyboard.is_pressed('esc'):
@@ -584,7 +578,7 @@ while not keyboard.is_pressed('esc'):
 
 ```
 
-Wir haben es fast geschafft! Eine Kleinigkeit wollen wir an unserem Programm noch verbessern. 
+Wir haben es fast geschafft! Eine Kleinigkeit wollen wir an unserem Programm noch verbessern.
 
 ### Zeitsteuerung
 

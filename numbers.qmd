@@ -1,10 +1,10 @@
 ---
 abstract: |
-    Unser Regenbogen aus dem ersten Kapitel war nur der Anfang. Doch wie speichert der Computer eigentlich die vielen RGB-Werte für all diese Farben? Das führt uns zum Binärsystem: Mit nur Einsen und Nullen und in kleinen Päckchen, den Bytes – kann er jeden Farbton unseres Regenbogens abbilden. Und noch viel mehr.
+    Unser Regenbogen aus dem ersten Kapitel war nur der Anfang. Doch wie speichert der Computer eigentlich die RGB-Werte für all diese Farben? Das führt uns zum Binärsystem: Mit nur Einsen und Nullen und in kleinen Päckchen, den Bytes – kann er jeden Farbton unseres Regenbogens abbilden. Und noch viel mehr.
 abstract-title: ""
 ---
 
-# Zahlen 🔢 {#sec-numbers}
+# Zahlen {#sec-numbers}
 
 ## Lernziele {.unnumbered}
 
@@ -144,8 +144,6 @@ led = BrickletRGBLEDV2('ZG1', ipcon)
 
 Dieser Teil muss immer am Anfang unseres Programms stehen, damit alles funktioniert. In den kommenden Beispielen setzen wir ihn als gegeben voraus und wiederholen ihn nicht jedes Mal.
 
-## 0 bis 255
-
 Als Startpunkt nehmen wir den Code von oben, der den Zählerwert auf der Konsole ausgibt. Schließlich brauchen wir genau diese Information – wann sich der Wert ändert und wie er aktuell steht – auch, um die LED zu steuern.
 
 Damit wir die LED von aus bis volle Helligkeit dimmen können, legen wir uns zuerst auf eine Farbe fest. Ich bin zwar kein Fan von weißem LED-Licht, aber für dieses Kapitel ist es am einfachsten: voll aufgedreht leuchtet die LED weiß, ausgedreht ist sie schwarz – klar! Später kümmern wir uns darum, wie wir das Licht wärmer machen können.
@@ -191,9 +189,36 @@ Wenn man die Fehlermeldung googelt oder ChatGPT befragt bekommt man Hilfe. Offen
 
 Moment 🧐 - was hat jetzt Byte mit 0 bis 255 zu tun? Bisher dachten wir doch, das wäre wegen des RGB-Codes? Stimmt auch, aber der RGB-Code liegt nicht zufällig im Wertebereich von 0 bis 255. 
 
-Um das zu verstehen, müssen wir das Binärsystem kennen.
+Um das zu verstehen, müssten wir das Binärsystem kennen. Also los!
 
 ## Das Binärsystem
+
+Eigentlich ist es schnell erklärt. Das Binärsystem ist wie das Dezimalsystem, mit dem wir alltäglich unterwegs sind, nur statt der Basis 10, nutzt es die Basis 2. Einfach oder? Wenn nicht, lest weiter, das hier soll schließlich ein Einführungsbuch sein. 
+
+### Unser Dezimalsytem?
+
+![Unser bekanntes Dezimalsystem ist ein Stellenwertsystem.](images/drawings/chapter_02_decimal_system_123.png){#fig-decimal-system-123 .lightbox}
+
+![Jede Stelle im Dezimalsystem ist 10 Mal mehr Wert als die vorherige.](images/drawings/chapter_02_decimal_system_places.png){#fig-decimal-system-02 .lightbox}
+
+![Die nächste Stelle ist 10 Mal mehr wert.](images/drawings/chapter_02_decimal_system_4123.png){#fig-decimal-system-4123 .lightbox}
+
+![Jede Stelle im Dezimalsystem ist 10 Mal mehr wert als die vorherige, weil die Basis 10 ist.](images/drawings/chapter_02_decimal_system_base_exponent.png){#fig-decimal-system-03 .lightbox}
+
+
+![Durch einfaches Ausmultiplizieren gelangen wir zum Wert der Zahl.](images/drawings/chapter_02_decimal_system_2025_calculation.png){#fig-decimal-system-04 .lightbox}
+
+
+
+### Andere Zahlensysteme
+
+### Das Oktalsystem
+
+![Cartoon-Charaktere haben nur acht Finger. (Quelle: Erstellt mit ChatGPT)](images/drawings/cartoon_hand_octal.png){#fig-decimal-system-04 .lightbox}
+
+### Das Dualsystem
+
+Dual oder binär, beides bedeutet das gleiche. Ich persönlich verwende lieber den Begriff Binärsystem, aber Dualsystem ist genauso richtig,
 
 ...
 

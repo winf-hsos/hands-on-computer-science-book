@@ -63,3 +63,7 @@ format:
     include-after-body: 
       text: |
         \printindex
+  docx:
+    toc: true
+    number-sections: true
+    highlight-style: github
