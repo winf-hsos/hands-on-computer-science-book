@@ -128,6 +128,35 @@ div.csl-indent {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -297,15 +326,18 @@ div.csl-indent {
   <li><a href="#erste-schritte-mit-dem-drehknopf" id="toc-erste-schritte-mit-dem-drehknopf" class="nav-link" data-scroll-target="#erste-schritte-mit-dem-drehknopf"><span class="header-section-number">2.1</span> Erste Schritte mit dem Drehknopf</a></li>
   <li><a href="#hoch--und-runterzählen" id="toc-hoch--und-runterzählen" class="nav-link" data-scroll-target="#hoch--und-runterzählen"><span class="header-section-number">2.2</span> Hoch- und Runterzählen</a></li>
   <li><a href="#kontrollstrukturen" id="toc-kontrollstrukturen" class="nav-link" data-scroll-target="#kontrollstrukturen"><span class="header-section-number">2.3</span> Kontrollstrukturen</a></li>
-  <li><a href="#ein-led-dimmer" id="toc-ein-led-dimmer" class="nav-link" data-scroll-target="#ein-led-dimmer"><span class="header-section-number">2.4</span> Ein LED-Dimmer</a></li>
-  <li><a href="#das-binärsystem" id="toc-das-binärsystem" class="nav-link" data-scroll-target="#das-binärsystem"><span class="header-section-number">2.5</span> Das Binärsystem</a>
+  <li><a href="#ein-led-dimmer-teil-1" id="toc-ein-led-dimmer-teil-1" class="nav-link" data-scroll-target="#ein-led-dimmer-teil-1"><span class="header-section-number">2.4</span> Ein LED-Dimmer (Teil 1)</a></li>
+  <li><a href="#zahlensysteme" id="toc-zahlensysteme" class="nav-link" data-scroll-target="#zahlensysteme"><span class="header-section-number">2.5</span> Zahlensysteme</a>
   <ul class="collapse">
-  <li><a href="#unser-dezimalsytem" id="toc-unser-dezimalsytem" class="nav-link" data-scroll-target="#unser-dezimalsytem"><span class="header-section-number">2.5.1</span> Unser Dezimalsytem?</a></li>
+  <li><a href="#unser-dezimalsytem" id="toc-unser-dezimalsytem" class="nav-link" data-scroll-target="#unser-dezimalsytem"><span class="header-section-number">2.5.1</span> Unser Dezimalsytem</a></li>
   <li><a href="#andere-zahlensysteme" id="toc-andere-zahlensysteme" class="nav-link" data-scroll-target="#andere-zahlensysteme"><span class="header-section-number">2.5.2</span> Andere Zahlensysteme</a></li>
   <li><a href="#das-oktalsystem" id="toc-das-oktalsystem" class="nav-link" data-scroll-target="#das-oktalsystem"><span class="header-section-number">2.5.3</span> Das Oktalsystem</a></li>
-  <li><a href="#das-dualsystem" id="toc-das-dualsystem" class="nav-link" data-scroll-target="#das-dualsystem"><span class="header-section-number">2.5.4</span> Das Dualsystem</a></li>
+  <li><a href="#das-binärsystem" id="toc-das-binärsystem" class="nav-link" data-scroll-target="#das-binärsystem"><span class="header-section-number">2.5.4</span> Das Binärsystem</a></li>
   </ul></li>
-  <li><a href="#das-fertige-programm" id="toc-das-fertige-programm" class="nav-link" data-scroll-target="#das-fertige-programm"><span class="header-section-number">2.6</span> Das fertige Programm</a></li>
+  <li><a href="#bits-und-bytes" id="toc-bits-und-bytes" class="nav-link" data-scroll-target="#bits-und-bytes"><span class="header-section-number">2.6</span> Bits und Bytes</a></li>
+  <li><a href="#kilo-mega-giga" id="toc-kilo-mega-giga" class="nav-link" data-scroll-target="#kilo-mega-giga"><span class="header-section-number">2.7</span> Kilo, Mega, Giga</a></li>
+  <li><a href="#ein-led-dimmer-teil-2" id="toc-ein-led-dimmer-teil-2" class="nav-link" data-scroll-target="#ein-led-dimmer-teil-2"><span class="header-section-number">2.8</span> Ein LED-Dimmer (Teil 2)</a></li>
+  <li><a href="#das-fertige-programm" id="toc-das-fertige-programm" class="nav-link" data-scroll-target="#das-fertige-programm"><span class="header-section-number">2.9</span> Das fertige Programm</a></li>
   </ul>
 </nav>
     </div>
@@ -498,7 +530,7 @@ Abbildung&nbsp;2.4: Die gute alte Stereoanlage mit Drehknopf! Wer kennt sie nich
 </figure>
 </div>
 <p>Im Hintergrund verändert sich bei jeder Drehung der Wert, den der Knopf sendet – mal höher, mal niedriger, je nach Ausgangszustand. Im Brick Viewer habt ihr das schon gesehen. Probieren wir es jetzt in einem Programm aus: Der folgende Code verbindet sich mit dem Drehknopf, liest den aktuellen Wert und gibt ihn in der Konsole aus. Denkt daran, eure eigene UID einzutragen:</p>
-<div id="32170b57" class="cell" data-execution_count="1">
+<div id="a675da19" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
 <span id="annotated-cell-1-2"><a href="#annotated-cell-1-2"></a><span class="im">from</span> tinkerforge.bricklet_rotary_encoder_v2 <span class="im">import</span> BrickletRotaryEncoderV2</span>
 <span id="annotated-cell-1-3"><a href="#annotated-cell-1-3"></a></span>
@@ -522,7 +554,7 @@ Abbildung&nbsp;2.4: Die gute alte Stereoanlage mit Drehknopf! Wer kennt sie nich
 </div>
 <p>Die Ausgabe sollte mit dem Wert übereinstimmen, den ihr auch im Brick Viewer seht – kein Wunder, beide nutzen dieselbe Programmierschnittstelle. Damit habt ihr die erste Funktion des Drehknopfs erfolgreich aus Python getestet.</p>
 <p>Dreht ihr den Knopf und startet das Programm erneut, erscheint natürlich ein anderer Wert. Klar! Aber jedes Mal neu starten? Das geht besser. Die Lösung kennt ihr schon aus <a href="colors.html" class="quarto-xref"><span>Kapitel 1</span></a>: eine Schleife, die das Programm so lange wiederholt, bis wir es beenden:</p>
-<div id="a3eb8e94" class="cell" data-execution_count="2">
+<div id="60d41d8b" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
 <span id="cb1-2"><a href="#cb1-2"></a>    count <span class="op">=</span> knob.get_count(reset<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb1-3"><a href="#cb1-3"></a>    <span class="bu">print</span>(count)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -533,7 +565,7 @@ Abbildung&nbsp;2.4: Die gute alte Stereoanlage mit Drehknopf! Wer kennt sie nich
 <section id="kontrollstrukturen" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="kontrollstrukturen"><span class="header-section-number">2.3</span> Kontrollstrukturen</h2>
 <p>Wie wäre es hiermit?</p>
-<div id="ef2c14bb" class="cell" data-execution_count="3">
+<div id="a564ab1c" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>last_count <span class="op">=</span> <span class="va">None</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="cf">while</span> <span class="va">True</span>:</span>
 <span id="cb2-3"><a href="#cb2-3"></a>    new_count <span class="op">=</span> knob.get_count(reset<span class="op">=</span><span class="va">False</span>)</span>
@@ -548,12 +580,12 @@ Abbildung&nbsp;2.4: Die gute alte Stereoanlage mit Drehknopf! Wer kennt sie nich
 <p>Neu ist hier die Kontrollstruktur <code>if</code>. Sie prüft eine Bedingung, die, wie ihr schon aus <a href="colors.html" class="quarto-xref"><span>Kapitel 1</span></a> kennt, nur <code>True</code> oder <code>False</code> sein kann. Ist sie wahr (<code>True</code>), läuft der eingerückte Code darunter. Ist sie falsch (<code>False</code>), passiert nichts.</p>
 <p>Übertragen auf unser Programm heißt das: <code>print(count)</code> läuft nur dann, wenn sich der Wert tatsächlich verändert hat. In diesem Fall merken wir uns den neuen Wert und aktualisieren count. Beim nächsten Schleifendurchlauf prüfen wir wieder, ob sich etwas getan hat. Meistens ist das nicht so – und genau deshalb sehen wir nur dann eine Ausgabe, wenn wir wirklich am Knopf drehen. Ziemlich effizient, oder?</p>
 </section>
-<section id="ein-led-dimmer" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="ein-led-dimmer"><span class="header-section-number">2.4</span> Ein LED-Dimmer</h2>
+<section id="ein-led-dimmer-teil-1" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="ein-led-dimmer-teil-1"><span class="header-section-number">2.4</span> Ein LED-Dimmer (Teil 1)</h2>
 <p>Wenden wir das Gelernte an und bauen einen praktischen LED-Dimmer. Dafür holen wir unsere LED aus Kapitel 1 mit dazu und kombinieren sie mit dem Drehknopf.</p>
 <p>Die Idee ist simpel: Der Zähler des Knopfs steuert die Helligkeit der LED. Dreht ihr nach rechts, wird sie heller, nach links, dunkler. Wie bei der Stereoanlage in <a href="#fig-hifi-system" class="quarto-xref">Abbildung&nbsp;<span>2.4</span></a>.</p>
 <p>Bevor wir uns an die eigentliche Anwendungslogik machen, brauchen wir Zugriff auf beide Geräte – LED und Drehknopf. Dazu erweitern wir den bekannten Boilerplate-Code und speichern die Geräte in eigenen Variablen:</p>
-<div id="040e7c80" class="cell" data-execution_count="4">
+<div id="86b42d8a" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="im">from</span> tinkerforge.bricklet_rotary_encoder_v2 <span class="im">import</span> BrickletRotaryEncoderV2</span>
 <span id="cb3-3"><a href="#cb3-3"></a><span class="im">from</span> tinkerforge.bricklet_rgb_led_v2 <span class="im">import</span> BrickletRGBLEDV2</span>
@@ -567,7 +599,7 @@ Abbildung&nbsp;2.4: Die gute alte Stereoanlage mit Drehknopf! Wer kennt sie nich
 <p>Als Startpunkt nehmen wir den Code von oben, der den Zählerwert auf der Konsole ausgibt. Schließlich brauchen wir genau diese Information – wann sich der Wert ändert und wie er aktuell steht – auch, um die LED zu steuern.</p>
 <p>Damit wir die LED von aus bis volle Helligkeit dimmen können, legen wir uns zuerst auf eine Farbe fest. Ich bin zwar kein Fan von weißem LED-Licht, aber für dieses Kapitel ist es am einfachsten: voll aufgedreht leuchtet die LED weiß, ausgedreht ist sie schwarz – klar! Später kümmern wir uns darum, wie wir das Licht wärmer machen können.</p>
 <p>Erinnern wir uns also: Was bedeuten die Zustände An und Aus im RGB-Farbraum?</p>
-<div id="7df9bda3" class="cell" data-execution_count="5">
+<div id="718d2605" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># White</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>led.set_rgb_value(<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">255</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -576,7 +608,7 @@ Abbildung&nbsp;2.4: Die gute alte Stereoanlage mit Drehknopf! Wer kennt sie nich
 </div>
 <p>Damit haben wir die beiden Extremzustände festgelegt. Doch was passiert dazwischen, wenn die LED gedimmt ist? Ganz einfach: Wir lassen die drei RGB-Werte gemeinsam von 1 bis 254 hoch- oder runterlaufen. Höhere Werte ergeben ein helleres Weiß, niedrigere ein dunkleres.</p>
 <p>Setzen wir diese Erkenntnisse in Programmcode um und weisen den Zählerwert den RGB-Werten der LED zu. Spoiler-Alert: Das ist etwas naiv, aber lasst uns mal schauen, was passiert und wo möglicherweise Probleme auftreten:</p>
-<div id="dbea0929" class="cell" data-execution_count="6">
+<div id="69fb4c27" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>last_count <span class="op">=</span> <span class="va">None</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="cf">while</span> <span class="va">True</span>:</span>
 <span id="cb5-3"><a href="#cb5-3"></a>    new_count <span class="op">=</span> knob.get_count(reset<span class="op">=</span><span class="va">False</span>)</span>
@@ -596,87 +628,199 @@ Abbildung&nbsp;2.4: Die gute alte Stereoanlage mit Drehknopf! Wer kennt sie nich
 <p>Moment 🧐 - was hat jetzt Byte mit 0 bis 255 zu tun? Bisher dachten wir doch, das wäre wegen des RGB-Codes? Stimmt auch, aber der RGB-Code liegt nicht zufällig im Wertebereich von 0 bis 255.</p>
 <p>Um das zu verstehen, müssten wir das Binärsystem kennen. Also los!</p>
 </section>
-<section id="das-binärsystem" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="das-binärsystem"><span class="header-section-number">2.5</span> Das Binärsystem</h2>
+<section id="zahlensysteme" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="zahlensysteme"><span class="header-section-number">2.5</span> Zahlensysteme</h2>
 <p>Eigentlich ist es schnell erklärt. Das Binärsystem ist wie das Dezimalsystem, mit dem wir alltäglich unterwegs sind, nur statt der Basis 10, nutzt es die Basis 2. Einfach oder? Wenn nicht, lest weiter, das hier soll schließlich ein Einführungsbuch sein.</p>
 <section id="unser-dezimalsytem" class="level3" data-number="2.5.1">
-<h3 data-number="2.5.1" class="anchored" data-anchor-id="unser-dezimalsytem"><span class="header-section-number">2.5.1</span> Unser Dezimalsytem?</h3>
-<div id="fig-decimal-system-123" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="unser-dezimalsytem"><span class="header-section-number">2.5.1</span> Unser Dezimalsytem</h3>
+<p>Wir wenden das Dezimalsystem täglich intuitiv an. Es fragt sich wahrscheinlich niemand von euch, was die Systematik dahinter ist, oder? Und doch habt ihr es alle einmal in der Schule gelernt und wir müssen es an dieser Stelle etwas auffrischen. Solltet ihr mit Stellenwertsystemen noch 100 % vertraut sein, könnt ihr diesen Abschnitt getrost überspringen.</p>
+<p>Nehmen wir eine Zahl wie die 123 als Beispiel. Wir haben sofort ein Gefühl für die Zahl, wir wissen etwa wie groß sie ist. Und wenn wir es etwas genauer erklären müssen, können die meisten von euch sicher erläutern, wofür - also für welchen Wert - jede Zahl steht. Wir beginnen mit der kleinsten Wertigkeit, was die Ziffer ganz rechts ist: die 3. Sie steht für die Einserstelle, und davon haben wir 3. Die nächste Stelle steht für die Zehner, und weil dort eine 2 steht sind es zwanzig. Also <span class="math inline">\(3+20=23\)</span>. Schließen wir auch die dritte und letzte Ziffer in unsere Erläuterung ein: die 1 steht für die Hunderterstelle, also <span class="math inline">\(1*100=100\)</span>. Damit haben wir <span class="math inline">\(100+20+3=123\)</span>. Ganz einfach und intuitiv.</p>
+<div id="fig-decimal-123" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-decimal-system-123-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/drawings/chapter_02_decimal_system_123.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="Abbildung&nbsp;2.5: Unser bekanntes Dezimalsystem ist ein Stellenwertsystem."><img src="images/drawings/chapter_02_decimal_system_123.png" class="img-fluid figure-img"></a>
+<div aria-describedby="fig-decimal-123-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-decimal-123" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-decimal-system-calculation-123-a" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-decimal-system-calculation-123-a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/binary_system_decimal_calculation_123_a.png" class="lightbox" data-gallery="fig-decimal-123" title="Abbildung&nbsp;2.5&nbsp;(a): Im Dezimalsystem hat jede Stelle einen anderen Wert."><img src="https://winf-hsos.github.io/university-docs/images/binary_system_decimal_calculation_123_a.png" class="img-fluid figure-img" data-ref-parent="fig-decimal-123"></a>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-decimal-system-123-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;2.5: Unser bekanntes Dezimalsystem ist ein Stellenwertsystem.
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-decimal-system-calculation-123-a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Im Dezimalsystem hat jede Stelle einen anderen Wert.
 </figcaption>
 </figure>
 </div>
-<div id="fig-decimal-system-02" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-decimal-system-02-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/drawings/chapter_02_decimal_system_places.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11" title="Abbildung&nbsp;2.6: Jede Stelle im Dezimalsystem ist 10 Mal mehr Wert als die vorherige."><img src="images/drawings/chapter_02_decimal_system_places.png" class="img-fluid figure-img"></a>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-decimal-system-02-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;2.6: Jede Stelle im Dezimalsystem ist 10 Mal mehr Wert als die vorherige.
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-decimal-123" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-decimal-system-calculation-123-b" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-decimal-system-calculation-123-b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/binary_system_decimal_calculation_123_b.png" class="lightbox" data-gallery="fig-decimal-123" title="Abbildung&nbsp;2.5&nbsp;(b): Durch Ausmultiplizieren errechnen wir den Wert der Zahl."><img src="https://winf-hsos.github.io/university-docs/images/binary_system_decimal_calculation_123_b.png" class="img-fluid figure-img" data-ref-parent="fig-decimal-123"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-decimal-system-calculation-123-b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Durch Ausmultiplizieren errechnen wir den Wert der Zahl.
 </figcaption>
 </figure>
 </div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-decimal-123-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;2.5: Das Dezimalsystem ist ein Stellenwertsystem.
+</figcaption>
+</figure>
+</div>
+<p>Das Ganze können wir nicht nur mit 3-stelligen Zahlen, sondern prinzipiell mit beliebig langen Zahlen. Wir wissen, dass die nächste Ziffer, die wir links im Beispiel in <a href="#fig-decimal-system-4123" class="quarto-xref">Abbildung&nbsp;<span>2.6</span></a> sehen, für die Tausenderstelle steht. Die nächste Stelle würde für die Zehntausenderstelle stehen, und so weiter. Warum fällt es uns so leicht?</p>
+<p>Erstens, weil wir damit jeden Tag umgehen. Das Dezimalsystem ist das System, das wir am häufigsten verwenden, und wir haben es von klein auf gelernt. Es ist intuitiv und einfach zu verstehen. Zweitens aber auch, weil die Systematik des Systems kennen: Jede Stelle ist 10 Mal mehr wert als die vorherige.</p>
 <div id="fig-decimal-system-4123" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-decimal-system-4123-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/drawings/chapter_02_decimal_system_4123.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12" title="Abbildung&nbsp;2.7: Die nächste Stelle ist 10 Mal mehr wert."><img src="images/drawings/chapter_02_decimal_system_4123.png" class="img-fluid figure-img"></a>
+<a href="https://winf-hsos.github.io/university-docs/images/binary_system_decimal_calculation_4123.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12" title="Abbildung&nbsp;2.6: Jede Stelle steht für eine höhere Potenz der Basis 10."><img src="https://winf-hsos.github.io/university-docs/images/binary_system_decimal_calculation_4123.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-decimal-system-4123-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;2.7: Die nächste Stelle ist 10 Mal mehr wert.
-</figcaption>
-</figure>
-</div>
-<div id="fig-decimal-system-03" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-decimal-system-03-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/drawings/chapter_02_decimal_system_base_exponent.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13" title="Abbildung&nbsp;2.8: Jede Stelle im Dezimalsystem ist 10 Mal mehr wert als die vorherige, weil die Basis 10 ist."><img src="images/drawings/chapter_02_decimal_system_base_exponent.png" class="img-fluid figure-img"></a>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-decimal-system-03-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;2.8: Jede Stelle im Dezimalsystem ist 10 Mal mehr wert als die vorherige, weil die Basis 10 ist.
-</figcaption>
-</figure>
-</div>
-<div id="fig-decimal-system-04" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-decimal-system-04-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/drawings/chapter_02_decimal_system_2025_calculation.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14" title="Abbildung&nbsp;2.9: Durch einfaches Ausmultiplizieren gelangen wir zum Wert der Zahl."><img src="images/drawings/chapter_02_decimal_system_2025_calculation.png" class="img-fluid figure-img"></a>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-decimal-system-04-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;2.9: Durch einfaches Ausmultiplizieren gelangen wir zum Wert der Zahl.
+Abbildung&nbsp;2.6: Jede Stelle steht für eine höhere Potenz der Basis 10.
 </figcaption>
 </figure>
 </div>
 </section>
 <section id="andere-zahlensysteme" class="level3" data-number="2.5.2">
 <h3 data-number="2.5.2" class="anchored" data-anchor-id="andere-zahlensysteme"><span class="header-section-number">2.5.2</span> Andere Zahlensysteme</h3>
+<p>Wurde uns das Dezimalsystem von Gott gegeben? Vielleicht, wenn man an die Schöpfung glaubt<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> und dass Gott uns so geschaffen hat, wie wir sind, dann hat er implizit dafür gesorgt, dass wir dezimal denkende Wesen werden. Warum? Eine Theorie besagt, dass die menschliche Anatomie, insbesondere die Anzahl der Finger, einen Einfluss auf unser Zahlensystem hatte. Zählt einfach mal anhand eurer Finger durch.</p>
 </section>
 <section id="das-oktalsystem" class="level3" data-number="2.5.3">
 <h3 data-number="2.5.3" class="anchored" data-anchor-id="das-oktalsystem"><span class="header-section-number">2.5.3</span> Das Oktalsystem</h3>
-<div id="fig-decimal-system-04" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<p>Nun gibt es auch Wesen mit weniger als zehn Fingern (und auch mit mehr?). Nehmt mal einen Cartoon-Charakter wie Mickey Mouse als Beispiel. In <a href="#fig-cartoon-character" class="quarto-xref">Abbildung&nbsp;<span>2.7</span></a> seht ihr, wie hier wahrscheinlich gezählt wird. Hätte ein Volk von Mickey Mäusen sich auch für das Dezimalsystem entschieden?</p>
+<div id="fig-cartoon-character" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-decimal-system-04-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/drawings/cartoon_hand_octal.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15" title="Abbildung&nbsp;2.10: Cartoon-Charaktere haben nur acht Finger. (Quelle: Erstellt mit ChatGPT)"><img src="images/drawings/cartoon_hand_octal.png" class="img-fluid figure-img"></a>
+<div aria-describedby="fig-cartoon-character-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/binary_system_human_vs_cartoon.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13" title="Abbildung&nbsp;2.7: Cartoon-Charaktere haben nur acht Finger. Quelle: Erstellt mit ChatGPT nach @petzold_code_2022"><img src="https://winf-hsos.github.io/university-docs/images/binary_system_human_vs_cartoon.png" class="img-fluid figure-img"></a>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-decimal-system-04-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;2.10: Cartoon-Charaktere haben nur acht Finger. (Quelle: Erstellt mit ChatGPT)
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cartoon-character-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;2.7: Cartoon-Charaktere haben nur acht Finger. Quelle: Erstellt mit ChatGPT nach <span class="citation" data-cites="petzold_code_2022">Petzold (<a href="references.html#ref-petzold_code_2022" role="doc-biblioref">2022</a>)</span>
+</figcaption>
+</figure>
+</div>
+<p>Vermutlich nicht!</p>
+<div id="fig-octal-123" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-octal-123-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/binary_system_octal_123.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14" title="Abbildung&nbsp;2.8: Das Oktalsystem funktioniert wie das Dezimalsystem. Nur die Basis ist 8 statt 10."><img src="https://winf-hsos.github.io/university-docs/images/binary_system_octal_123.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-octal-123-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;2.8: Das Oktalsystem funktioniert wie das Dezimalsystem. Nur die Basis ist 8 statt 10.
 </figcaption>
 </figure>
 </div>
 </section>
-<section id="das-dualsystem" class="level3" data-number="2.5.4">
-<h3 data-number="2.5.4" class="anchored" data-anchor-id="das-dualsystem"><span class="header-section-number">2.5.4</span> Das Dualsystem</h3>
-<p>Dual oder binär, beides bedeutet das gleiche. Ich persönlich verwende lieber den Begriff Binärsystem, aber Dualsystem ist genauso richtig,</p>
-<p>…</p>
+<section id="das-binärsystem" class="level3" data-number="2.5.4">
+<h3 data-number="2.5.4" class="anchored" data-anchor-id="das-binärsystem"><span class="header-section-number">2.5.4</span> Das Binärsystem</h3>
+<p>Treiben wir es noch ein wenig weiter auf die Spitze und nehmen ein paar Finger weg. Sagen wir bis auf zwei, dann wären wir vielleicht bei einem Delphin mit zwei Flossen, wie ihr ihn in <a href="#fig-binary-system-dolphin" class="quarto-xref">Abbildung&nbsp;<span>2.9</span></a> seht. Delfine haben sich vermutlich auf ein System geeinigt, das auch für unsere heutigen Computer die Grundlage darstellt: das Binärsystem.</p>
+<div id="fig-binary-system-dolphin" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-binary-system-dolphin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/binary_system_dolphin.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15" title="Abbildung&nbsp;2.9: Delphine würden anders zählen. Eher wir Computer."><img src="https://winf-hsos.github.io/university-docs/images/binary_system_dolphin.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-binary-system-dolphin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;2.9: Delphine würden anders zählen. Eher wir Computer.
+</figcaption>
+</figure>
+</div>
+<p>Das Wort <em>binär</em> stammt aus dem Lateinischen und bedeutet <em>paarweise</em> oder <em>zu zweit</em>. Von diesem Wort stammt auch der Name des Stellenwertsystems mit der Basis 2 ab, und das nicht ohne Grund. Im Binärsystem gibt es für jedes Stelle genau zwei Möglichkeiten: 0 oder 1. Ein anderer Begriff ist übrigens Dualsystem, was genau das gleiche meint. Auch das Wort <em>dual</em> kommt von den Römern und heisst so viel wie “zwei enthaltend”.</p>
+<div id="fig-light-switch" class="lightbox align-center quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-light-switch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/binary_system_light_switch.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16" title="Abbildung&nbsp;2.10: Eine Binärziffer ist bergleichbar mit einem Lichtschalter, der An oder Aus sein kann."><img src="https://winf-hsos.github.io/university-docs/images/binary_system_light_switch.png" class="align-center img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-light-switch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;2.10: Eine Binärziffer ist bergleichbar mit einem Lichtschalter, der An oder Aus sein kann.
+</figcaption>
+</figure>
+</div>
+<div id="fig-binary-110" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-binary-110-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-binary-110" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-binary-110-b" class="quarto-float quarto-figure quarto-figure-center anchored" data-group="binary-system">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-binary-110-b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/binary_system_binary_110_b.png" class="lightbox" data-gallery="binary-system" title="Abbildung&nbsp;2.11&nbsp;(a): "><img src="https://winf-hsos.github.io/university-docs/images/binary_system_binary_110_b.png" id="fig-binary-110-b" class="img-fluid figure-img" data-ref-parent="fig-binary-110"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-binary-110-b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a)
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-binary-110" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-binary-110-c" class="quarto-float quarto-figure quarto-figure-center anchored" data-group="binary-system">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-binary-110-c-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/binary_system_binary_110_c.png" class="lightbox" data-gallery="binary-system" title="Abbildung&nbsp;2.11&nbsp;(b): "><img src="https://winf-hsos.github.io/university-docs/images/binary_system_binary_110_c.png" id="fig-binary-110-c" class="img-fluid figure-img" data-ref-parent="fig-binary-110"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-binary-110-c-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-binary-110-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;2.11: Das Binärsystem funktioniert wie alle anderen Stellenwertsysteme auch.
+</figcaption>
+</figure>
+</div>
+<p><img src="https://winf-hsos.github.io/university-docs/images/binary_system_place_value_systems.png" class="img-fluid"></p>
 </section>
 </section>
-<section id="das-fertige-programm" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="das-fertige-programm"><span class="header-section-number">2.6</span> Das fertige Programm</h2>
-<div id="2990a1fa" class="cell" data-execution_count="7">
+<section id="bits-und-bytes" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="bits-und-bytes"><span class="header-section-number">2.6</span> Bits und Bytes</h2>
+<p>Warum haben wir uns Zahlensysteme angeschaut, und was hat das mit Computern zu tun. Ganz einfach: Computer denken binär, das bedeutet sie kennen nur zwei Zustände. An oder aus, Null oder Eins.</p>
+<p>Wir kommen später noch einmal ausführlich darauf zurück, aber so viel schon vorweg. Eine Binärziffer nennen wir im Englischen <em>binary digit</em>, was mit <em>bit</em> abgekürzt wird. Jetzt klingelt es, oder?</p>
+<p>Ein Bit ist eine Informationseinheit. Nicht irgendeine, sondern die kleinste, die es gibt. Die Erklärung, warum das so ist, folgt später. Wir wollen uns an dieser Stelle die Frage stellen, was wir mit einem Bit alles anstellen können.</p>
+<p>Ein Bit ist alleine ziemlich einsam und eingeschränkt. Wenn sich ein Computer mit einem Bit lediglich merken kann, ob eine Lampe an oder aus ist, dann sind das genau zwei Möglichkeiten. Nicht besonders viel. Wir kamen aber von den Farben über Zahlensysteme zu den Bits - und unsere ursprüngliche Frage war, wie ein Computer mit seinen Mitteln - also Nullen und Einsen (oder eben Bits) - so viele unterschiedliche Farben abbilden und speichern kann. Zwei würde gerade einmal für Schwarz/Weiß ausreichen.</p>
+<p>Ihr ahnt vielleicht schon die Antwort. Wir gesellen zum ersten ein zweites Bit hinzu. Und schon können wir vier unterschiedliche Zustände abbilden: <code>00</code>, <code>01</code>, <code>10</code> und <code>11</code>. Damit könnten wir zum Beispiel die Farben Schwarz, Blau, Grün und Cyan darstellen. Etwas willkürlich (warum gerade diese Farben), aber denkbar.</p>
+<p>Was passiert, wenn wir ein drittes Bit hinzunehmen? Sind es nun sechs Zustände? Nein, es sind acht: <code>000</code>, <code>001</code>, <code>010</code>, <code>011</code>, <code>100</code>, <code>101</code>, <code>110</code> und <code>111</code>. Damit könnten wir die Farben Schwarz, Blau, Grün, Cyan, Rot, Magenta, Gelb und Weiß darstellen (oder jede andere Kombination die wir uns wünschen).</p>
+<p>Mit jedem zusätzlichen Bit können wir also nicht plus Zwei mehr Zustände abbilden, sondern wir verdoppeln unsere Möglichkeiten. Also müssen wir <em>mal</em> zwei - und nicht <em>plus</em> zwei - rechnen. Das ist eine gute Nachricht, denn die Anzahl der Farben, die wir mit jedem zusätzlichen Bit darstellen können, verdoppelt sich jedesmal.</p>
+<p>Das halten wir fest, aber schauen wir zurück auf unsere RGB-Farben und die Fehlermeldung, die wir zuletzt bekommen haben. Der Wert für eine Farbe aus dem RGB-Farbcode muss zwischen 0 und 255 liegen. Wir haben somit inklusive der Null 256 Möglichkeiten für jede der drei RGB-Grundfarben. Wie viele Bits benötigen wir dafür? Rechnen wir es aus:</p>
+<p><span class="math display">\[
+\begin{aligned}
+2^0 &amp;= 1 \\
+2^1 &amp;= 2 \\
+2^2 &amp;= 4 \\
+2^3 &amp;= 8 \\
+2^4 &amp;= 16 \\
+2^5 &amp;= 32 \\
+2^6 &amp;= 64 \\
+2^7 &amp;= 128 \\
+2^8 &amp;= 256 \\
+\end{aligned}
+\]</span></p>
+<p>Stop! <span class="math inline">\(2^8 = 256\)</span>, das genügt uns völlig. Mit 8 Bits können wir somit 256 Zustände abbilden - genau passend für zweihundertsechsundfünzig Rot, Grün, oder Blau-Anteile. Und das ist kein Zufall: 8 Bits sind für Computer eine besondere Hausnummer. Wir nennen eine Gruppe von 8 Bits ein Byte. Und jetzt dürfte es erneut klingeln.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://winf-hsos.github.io/university-docs/images/binary_system_byte_a.png" class="img-fluid figure-img"></p>
+<figcaption>Ein Byte könnt ihr euch vorstellen wie acht Glühbirnen nebeneinander.</figcaption>
+</figure>
+</div>
+</section>
+<section id="kilo-mega-giga" class="level2" data-number="2.7">
+<h2 data-number="2.7" class="anchored" data-anchor-id="kilo-mega-giga"><span class="header-section-number">2.7</span> Kilo, Mega, Giga</h2>
+<p>Ein Byte besteht aus 8 Bits. Wenn wir also von Bytes sprechen, reden wir oft auch von Kilobytes (KB), Megabytes (MB) und Gigabytes (GB). Diese Begriffe sind wichtig, um die Größe von Daten zu beschreiben.</p>
+<ul>
+<li>1 Kilobyte (KB) = 1024 Bytes</li>
+<li>1 Megabyte (MB) = 1024 Kilobytes = 1.048.576 Bytes</li>
+<li>1 Gigabyte (GB) = 1024 Megabytes = 1.073.741.824 Bytes</li>
+</ul>
+</section>
+<section id="ein-led-dimmer-teil-2" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="ein-led-dimmer-teil-2"><span class="header-section-number">2.8</span> Ein LED-Dimmer (Teil 2)</h2>
+<p>Zurück zu unserem eigentlichen Vorhaben. Wir waren gerade dabei, einen Dimmer für unsere LED zu basteln, als uns die Zahlensysteme dazwischen gekommen sind. Dafür haben wir jetzt ein besseres Verständnis dafür, wie ein Computer Farben sieht - nämlich als lange Sequenz aus Nullen und Einsen. Und zwar 24 davon, weil jede Grundfarbe ein Bit Speicher verwendet.</p>
+</section>
+<section id="das-fertige-programm" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="das-fertige-programm"><span class="header-section-number">2.9</span> Das fertige Programm</h2>
+<div id="8fcb2683" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
 <span id="cb7-2"><a href="#cb7-2"></a><span class="im">from</span> tinkerforge.bricklet_rotary_encoder_v2 <span class="im">import</span> BrickletRotaryEncoderV2</span>
 <span id="cb7-3"><a href="#cb7-3"></a><span class="im">from</span> tinkerforge.bricklet_rgb_led_v2 <span class="im">import</span> BrickletRGBLEDV2</span>
@@ -729,6 +873,12 @@ Pólya, George, und John Horton Conway. 2004. <em>How to solve it: a new aspect 
 Scott, John C. 2009. <em>But how do it know?: the basic principles of computers for everyone</em>. Oldsmar, FL: John C. Scott.
 </div>
 </div>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Hände hoch, wer daran noch glaubt!<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->
