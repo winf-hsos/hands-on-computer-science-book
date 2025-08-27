@@ -6,20 +6,19 @@ abstract-title: ""
 
 # Zahlen {#sec-numbers}
 
-## Lernziele {.unnumbered}
+## Zusammenfassung {.unnumbered}
 
 Unsere wichtigsten Lernziele in diesem Kapitel sind:
 
-- Wir lernen Kontrollstrukturen kennen, mit denen wir unsere Programm steuern können.
-- Wir verstehen das Binärsystem und wissen, wie der Computer Zahlen speichert.
-- Wir führen das Byte als zentrale Einheit für Informationen in Computern ein. 
+-   Wir lernen Kontrollstrukturen kennen, mit denen wir unsere Programm steuern können.
+-   Wir verstehen das Binärsystem und wissen, wie der Computer Zahlen speichert.
+-   Wir führen das Byte als zentrale Einheit für Informationen in Computern ein.
 
 ## Experimentaufbau {.unnumbered}
 
 Das erste Experiment in @sec-colors war schon ein ordentlicher Einstieg! In diesem Kapitel legen wir noch eine Schippe drauf: Unsere Hardware bekommt ein neues Teil – einen Drehknopf ([Rotary Encoder Bricklet 2.0](https://www.tinkerforge.com/en/doc/Hardware/Bricklets/Rotary_Encoder_V2.html)). Den schraubt ihr einfach neben die LED, wie in @fig-setup-rgb-led-rotary-encoder gezeigt.
 
 ::: {#fig-setup-rgb-led-rotary-encoder layout="[[1], [1,1], [1,1]]"}
-
 ![Seitenansicht.](images/master_brick_with_led_and_rotary_01.jpg){#fig-setup-rgb-led-a .lightbox group="setup-rgb-led"}
 
 ![Draufsicht.](images/master_brick_with_led_and_rotary_02.jpg){#fig-setup-rgb-led-b .lightbox group="setup-rgb-led"}
@@ -31,7 +30,6 @@ Das erste Experiment in @sec-colors war schon ein ordentlicher Einstieg! In dies
 ![Untenansicht.](images/master_brick_with_led_and_rotary_05.jpg){#fig-setup-rgb-led-e .lightbox group="setup-rgb-led"}
 
 Einfaches Setup mit einem Mikrocontroller, der LED und einem Drehknopf.
-
 :::
 
 ## Erste Schritte mit dem Drehknopf
@@ -47,20 +45,18 @@ Doch der Knopf kann mehr als nur zählen: Ihr könnt ihn auch drücken. Achtet m
 Und zuletzt: Der Button Reset Count. Damit setzt ihr den Zähler zurück, eine praktische Funktion, die wir später ebenfalls ins Programm einbauen können.
 
 ::: {#fig-brick-viewer-rotary-encoder layout="[[1,1]]"}
-
-![Das Diagramm zeigt den aktuellen Wert an.](images/brick_viewer_rotary_encoder.png){#fig-brick-viewer-rotary-encoder .lightbox group="brick-viewer-rotary"}
+![Das Diagramm zeigt den aktuellen Wert an.](images/brick_viewer_rotary_encoder.png){.lightbox group="brick-viewer-rotary"}
 
 ![Der Button wir rot, wenn er gedrückt ist.](images/brick_viewer_rotary_encoder_pressed.png){#fig-brick-viewer-rotary-encoder-pressed .lightbox group="brick-viewer-rotary"}
 
 Die Funktionen des Rotary Encoders im Brick Viewer.
-
 :::
 
 Fassen wir zusammen, was unser Drehknopf (Rotary Encoder) draufhat:
 
-1. Er zählt – vorwärts und rückwärts
-2. Er merkt, wenn ihr ihn drückt
-3. Er kann seinen Zähler zurücksetzen
+1.  Er zählt – vorwärts und rückwärts
+2.  Er merkt, wenn ihr ihn drückt
+3.  Er kann seinen Zähler zurücksetzen
 
 Zeit also, das Ganze in Python auszuprobieren und zu sehen, welche coolen Anwendungen wir damit bauen können.
 
@@ -82,8 +78,9 @@ knob = BrickletRotaryEncoderV2('WZd', ipcon) # <1>
 count = knob.get_count(reset=False) # <2>
 print(count)
 ```
-1. Wir erstellen eine virtuelle Repräsentation des Drehknopfs in unserem Programm, um seine Funktionen verwenden zu können.
-2. Über die virtuelle Repräsentation des Drehknopfs können wir mittels `get_count()` den aktuellen Wert abfragen. Der Parameter `reset` bestimmt, ob der Zähler nach dem Auslesen zurückgesetzt werden soll oder nicht.
+
+1.  Wir erstellen eine virtuelle Repräsentation des Drehknopfs in unserem Programm, um seine Funktionen verwenden zu können.
+2.  Über die virtuelle Repräsentation des Drehknopfs können wir mittels `get_count()` den aktuellen Wert abfragen. Der Parameter `reset` bestimmt, ob der Zähler nach dem Auslesen zurückgesetzt werden soll oder nicht.
 
 Die Ausgabe sollte mit dem Wert übereinstimmen, den ihr auch im Brick Viewer seht – kein Wunder, beide nutzen dieselbe Programmierschnittstelle. Damit habt ihr die erste Funktion des Drehknopfs erfolgreich aus Python getestet.
 
@@ -119,7 +116,7 @@ Anschließend wird in den darauffolgenden Schleifendurchläufen aber nur etwas a
 
 Die Prüfung, ob der aktuelle Wert, den wir auf der zweiten Variable `new_count` speichern, sich vom alten Wert unterscheidet, erfolgt in Zeile 5. Hier lernen wir auch neues Konzept der Programmierung kennen, die Kontrollstruktur mit `if`, gefolgt von einer Bedingung.
 
-Neu ist hier die Kontrollstruktur `if`. Sie prüft eine Bedingung, die, wie ihr schon aus @sec-colors kennt, nur `True` oder `False` sein kann. Ist sie wahr (`True`), läuft der eingerückte Code darunter. Ist sie falsch (`False`), passiert nichts. 
+Neu ist hier die Kontrollstruktur `if`. Sie prüft eine Bedingung, die, wie ihr schon aus @sec-colors kennt, nur `True` oder `False` sein kann. Ist sie wahr (`True`), läuft der eingerückte Code darunter. Ist sie falsch (`False`), passiert nichts.
 
 Übertragen auf unser Programm heißt das: `print(count)` läuft nur dann, wenn sich der Wert tatsächlich verändert hat. In diesem Fall merken wir uns den neuen Wert und aktualisieren count. Beim nächsten Schleifendurchlauf prüfen wir wieder, ob sich etwas getan hat. Meistens ist das nicht so – und genau deshalb sehen wir nur dann eine Ausgabe, wenn wir wirklich am Knopf drehen. Ziemlich effizient, oder?
 
@@ -164,7 +161,9 @@ Damit haben wir die beiden Extremzustände festgelegt. Doch was passiert dazwisc
 Setzen wir diese Erkenntnisse in Programmcode um und weisen den Zählerwert den RGB-Werten der LED zu. Spoiler-Alert: Das ist etwas naiv, aber lasst uns mal schauen, was passiert und wo möglicherweise Probleme auftreten:
 
 ```{python}
-last_count = None
+knob.reset()
+last_count = 0
+
 while True:
     new_count = knob.get_count(reset=False)
 
@@ -187,13 +186,13 @@ struct.error: ubyte format requires 0 <= number <= 255
 
 Wenn man die Fehlermeldung googelt oder ChatGPT befragt bekommt man Hilfe. Offensichtlich wird für einen RGB-Wert, den wir der Funktion `set_rgb_value()` übergeben ein bestimmter Datentyp erwartet, der `ubyte` heisst. Das steht für "unsigned byte" und bedeutet, dass der Wert zwischen 0 und 255 liegen muss.
 
-Moment 🧐 - was hat jetzt Byte mit 0 bis 255 zu tun? Bisher dachten wir doch, das wäre wegen des RGB-Codes? Stimmt auch, aber der RGB-Code liegt nicht zufällig im Wertebereich von 0 bis 255. 
+Moment 🧐 - was hat jetzt Byte mit 0 bis 255 zu tun? Bisher dachten wir doch, das wäre wegen des RGB-Codes? Stimmt auch, aber der RGB-Code liegt nicht zufällig im Wertebereich von 0 bis 255.
 
 Um das zu verstehen, müssten wir das Binärsystem kennen. Also los!
 
 ## Zahlensysteme
 
-Eigentlich ist es schnell erklärt. Das Binärsystem ist wie das Dezimalsystem, mit dem wir alltäglich unterwegs sind, nur statt der Basis 10, nutzt es die Basis 2. Einfach oder? Wenn nicht, lest weiter, das hier soll schließlich ein Einführungsbuch sein. 
+Eigentlich ist es schnell erklärt. Das Binärsystem ist wie das Dezimalsystem, mit dem wir alltäglich unterwegs sind, nur statt der Basis 10, nutzt es die Basis 2. Einfach oder? Wenn nicht, lest weiter, das hier soll schließlich ein Einführungsbuch sein.
 
 ### Unser Dezimalsytem
 
@@ -202,13 +201,11 @@ Wir wenden das Dezimalsystem täglich intuitiv an. Es fragt sich wahrscheinlich 
 Nehmen wir eine Zahl wie die 123 als Beispiel. Wir haben sofort ein Gefühl für die Zahl, wir wissen etwa wie groß sie ist. Und wenn wir es etwas genauer erklären müssen, können die meisten von euch sicher erläutern, wofür - also für welchen Wert - jede Zahl steht. Wir beginnen mit der kleinsten Wertigkeit, was die Ziffer ganz rechts ist: die 3. Sie steht für die Einserstelle, und davon haben wir 3. Die nächste Stelle steht für die Zehner, und weil dort eine 2 steht sind es zwanzig. Also $3+20=23$. Schließen wir auch die dritte und letzte Ziffer in unsere Erläuterung ein: die 1 steht für die Hunderterstelle, also $1*100=100$. Damit haben wir $100+20+3=123$. Ganz einfach und intuitiv.
 
 ::: {#fig-decimal-123 layout="[[1,1]]"}
-
 ![Im Dezimalsystem hat jede Stelle einen anderen Wert.](https://winf-hsos.github.io/university-docs/images/binary_system_decimal_calculation_123_a.png){#fig-decimal-system-calculation-123-a .lightbox}
 
 ![Durch Ausmultiplizieren errechnen wir den Wert der Zahl.](https://winf-hsos.github.io/university-docs/images/binary_system_decimal_calculation_123_b.png){#fig-decimal-system-calculation-123-b .lightbox}
 
 Das Dezimalsystem ist ein Stellenwertsystem.
-
 :::
 
 Das Ganze können wir nicht nur mit 3-stelligen Zahlen, sondern prinzipiell mit beliebig langen Zahlen. Wir wissen, dass die nächste Ziffer, die wir links im Beispiel in @fig-decimal-system-4123 sehen, für die Tausenderstelle steht. Die nächste Stelle würde für die Zehntausenderstelle stehen, und so weiter. Warum fällt es uns so leicht?
@@ -217,23 +214,21 @@ Erstens, weil wir damit jeden Tag umgehen. Das Dezimalsystem ist das System, das
 
 ![Jede Stelle steht für eine höhere Potenz der Basis 10.](https://winf-hsos.github.io/university-docs/images/binary_system_decimal_calculation_4123.png){#fig-decimal-system-4123 .lightbox}
 
- 
 ### Andere Zahlensysteme
 
-Wurde uns das Dezimalsystem von Gott gegeben? Vielleicht, wenn man an die Schöpfung glaubt[^1] und dass Gott uns so geschaffen hat, wie wir sind, dann hat er implizit dafür gesorgt, dass wir dezimal denkende Wesen werden. Warum? Eine Theorie besagt, dass die menschliche Anatomie, insbesondere die Anzahl der Finger, einen Einfluss auf unser Zahlensystem hatte. Zählt einfach mal anhand eurer Finger durch.
+Wurde uns das Dezimalsystem von Gott gegeben? Vielleicht, wenn man an die Schöpfung glaubt[^numbers-1] und dass Gott uns so geschaffen hat, wie wir sind, dann hat er implizit dafür gesorgt, dass wir dezimal denkende Wesen werden. Warum? Eine Theorie besagt, dass die menschliche Anatomie, insbesondere die Anzahl der Finger, einen Einfluss auf unser Zahlensystem hatte. Zählt einfach mal anhand eurer Finger durch.
 
-[^1]: Hände hoch, wer daran noch glaubt!
+[^numbers-1]: Hände hoch, wer daran noch glaubt!
 
 ### Das Oktalsystem
 
-Nun gibt es auch Wesen mit weniger als zehn Fingern (und auch  mit mehr?). Nehmt mal einen Cartoon-Charakter wie Mickey Mouse als Beispiel. In @fig-cartoon-character seht ihr, wie hier wahrscheinlich gezählt wird. Hätte ein Volk von Mickey Mäusen sich auch für das Dezimalsystem entschieden?
+Nun gibt es auch Wesen mit weniger als zehn Fingern (und auch mit mehr?). Nehmt mal einen Cartoon-Charakter wie Mickey Mouse als Beispiel. In @fig-cartoon-character seht ihr, wie hier wahrscheinlich gezählt wird. Hätte ein Volk von Mickey Mäusen sich auch für das Dezimalsystem entschieden?
 
 ![Cartoon-Charaktere haben nur acht Finger. Quelle: Erstellt mit ChatGPT nach @petzold_code_2022](https://winf-hsos.github.io/university-docs/images/binary_system_human_vs_cartoon.png){#fig-cartoon-character .lightbox}
 
-Vermutlich nicht! 
+Vermutlich nicht!
 
 ![Das Oktalsystem funktioniert wie das Dezimalsystem. Nur die Basis ist 8 statt 10.](https://winf-hsos.github.io/university-docs/images/binary_system_octal_123.png){#fig-octal-123 .lightbox}
-
 
 ### Das Binärsystem
 
@@ -241,19 +236,16 @@ Treiben wir es noch ein wenig weiter auf die Spitze und nehmen ein paar Finger w
 
 ![Delphine würden anders zählen. Eher wir Computer.](https://winf-hsos.github.io/university-docs/images/binary_system_dolphin.png){#fig-binary-system-dolphin .lightbox}
 
+Das Wort *binär*\index{binär} stammt aus dem Lateinischen und bedeutet *paarweise* oder *zu zweit*. Von diesem Wort stammt auch der Name des Stellenwertsystems mit der Basis 2 ab, und das nicht ohne Grund. Im Binärsystem gibt es für jedes Stelle genau zwei Möglichkeiten: 0 oder 1. Ein anderer Begriff ist übrigens Dualsystem, was genau das gleiche meint. Auch das Wort *dual* kommt von den Römern und heisst so viel wie "zwei enthaltend".
 
-Das Wort *binär*\index{binär}  stammt aus dem Lateinischen und bedeutet *paarweise* oder *zu zweit*. Von diesem Wort stammt auch der Name des Stellenwertsystems mit der Basis 2 ab, und das nicht ohne Grund. Im Binärsystem gibt es für jedes Stelle genau zwei Möglichkeiten: 0 oder 1. Ein anderer Begriff ist übrigens Dualsystem, was genau das gleiche meint. Auch das Wort *dual* kommt von den Römern und heisst so viel wie "zwei enthaltend".
-
-![Eine Binärziffer ist bergleichbar mit einem Lichtschalter, der An oder Aus sein kann.](https://winf-hsos.github.io/university-docs/images/binary_system_light_switch.png){#fig-light-switch  .lightbox .align-center}
+![Eine Binärziffer ist bergleichbar mit einem Lichtschalter, der An oder Aus sein kann.](https://winf-hsos.github.io/university-docs/images/binary_system_light_switch.png){#fig-light-switch .lightbox .align-center}
 
 ::: {#fig-binary-110 layout="[[1,1]]"}
-
 ![](https://winf-hsos.github.io/university-docs/images/binary_system_binary_110_b.png){#fig-binary-110-b .lightbox group="binary-system"}
 
 ![](https://winf-hsos.github.io/university-docs/images/binary_system_binary_110_c.png){#fig-binary-110-c .lightbox group="binary-system"}
 
 Das Binärsystem funktioniert wie alle anderen Stellenwertsysteme auch.
-
 :::
 
 ![](https://winf-hsos.github.io/university-docs/images/binary_system_place_value_systems.png)
@@ -292,55 +284,156 @@ $$
 
 Stop! $2^8 = 256$, das genügt uns völlig. Mit 8 Bits können wir somit 256 Zustände abbilden - genau passend für zweihundertsechsundfünzig Rot, Grün, oder Blau-Anteile. Und das ist kein Zufall: 8 Bits sind für Computer eine besondere Hausnummer. Wir nennen eine Gruppe von 8 Bits ein Byte\index{Byte}. Und jetzt dürfte es erneut klingeln.
 
-![Ein Byte könnt ihr euch vorstellen wie acht Glühbirnen nebeneinander.](https://winf-hsos.github.io/university-docs/images/binary_system_byte_a.png)
+![Ein Byte könnt ihr euch vorstellen wie acht Glühbirnen nebeneinander.](https://winf-hsos.github.io/university-docs/images/binary_system_byte_a.png){#fig-binary-system-byte-a .lightbox}
+
+In @fig-binary-system-byte-a ist ein Byte als Serie von acht Glühbirnen dargestellt. Ihr könnt euch vorstellen, dass Bits mit dem Wert 1 leuchten und Bits mit dem Wert 0 aus sind. Um den Wert zu ermitteln, den das Byte gerade darstellt, könnt ihr jeder Glühbirne von rechts nach links jeweils die Wertigkeiten der Stellen aus dem Binärsystem zuweisen und die Werte addieren. Stellen, an denen die Glühbirne an ist, werden addiert, die anderen werden ausgelassen (@fig-binary-system-byte-b). Das Byte im gezeigte Beispiel steht somit für:
+
+$$
+32 + 8 + 1 = 41
+$$
+
+Wofür steht das Byte, wenn alle Lampen leuchten? Oder anders gefragt: Was ist die größte Zahl, die wir einem Byte darstellen können?
+
+$$
+128+64+32+16+8+4+2+1 = 255
+$$
+
+Die Antwort überrascht uns nicht, denn schließlich haben wir es ja schon herausgefunden: ein Byte erlaubt uns, Werte zwischen 0 (alle Glühbirnen aus) und 255 (alle Glühbirnen an) darzustellen. Insgesamt also 256 Möglichkeiten. Somit können wir mit 8 Glühbirnen die Intensität einer der drei Grundfarben im RGB-Code darstellen.
+
+![Jede Glühbirne steht für eine Stelle aus dem Binärsystem.](https://winf-hsos.github.io/university-docs/images/binary_system_byte_b.png){#fig-binary-system-byte-b .lightbox}
+
+Das erklärt auch die Fehlermeldung von oben: ein Byte kann Werte zwischen 0 und 255 darstellen. Wir haben im Experiment den Drehknopf voll nach oben oder nach unten gedreht, wodurch der Wert entweder größer als 255 oder kleiner als 0 wurde. Und damit ist es kein gültiger Wert in Sinne eines Bytes mehr.
 
 ## Kilo, Mega, Giga
 
-Ein Byte besteht aus 8 Bits. Wenn wir also von Bytes sprechen, reden wir oft auch von Kilobytes (KB), Megabytes (MB) und Gigabytes (GB). Diese Begriffe sind wichtig, um die Größe von Daten zu beschreiben.
+Ein Byte besteht aus 8 Bits. Wenn wir also von Bytes sprechen, reden wir oft auch von Kilobytes, Megabytes, Gigabytes et cetera. Diese Begriffe sind wichtig, um die Größe von Daten zu beschreiben. In @tbl-data-sizes seht ihr eine Übersicht über die verschiedenen Größenordnungen.
 
-- 1 Kilobyte (KB) = 1024 Bytes
-- 1 Megabyte (MB) = 1024 Kilobytes = 1.048.576 Bytes
-- 1 Gigabyte (GB) = 1024 Megabytes = 1.073.741.824 Bytes
+| Potenz (Bytes) | Ausgeschrieben | Bezeichnung (Abkürzung) | Entspricht ca. |
+|------------|--------------|-----------------|------------------------------|
+| $10^3$ | Tausend | Kilobyte (KB) | kleine Textdatei |
+| $10^6$ | Millionen | Megabyte (MB) | Digitales Foto |
+| $10^9$ | Milliarde | Gigabyte (GB) | Film (DVD 4,7 GB) |
+| $10^{12}$ | Billion | Terabyte (TB) | Gängige Festplattenkapazität |
+| $10^{15}$ | Billiarde | Petabyte (PB) | Speichervolumen Rechenzentrum |
+| $10^{18}$ | Trillion | Exabyte (EB) | Internetverkehr pro Tag |
+| $10^{21}$ | Trilliarde | Zettabyte (ZB) | Datenbestand weltweit (\>100 ZB) |
+| $10^{24}$ | Quadrillion | Yottabyte (YB) | keine Entsprechung |
+
+: Verschiedene Mengeneinheiten für Bits und deren ungefähre Entsprechung. {#tbl-data-sizes}
+
+Jetzt da ihr wisst, was mit einem Byte gemeint ist, könnt ihr eine ungefähre Vorstellung für die Größenordnungen von Datenmengen entwickeln. Die ersten drei Zeilen aus @tbl-data-sizes könnt ihr selbst einmal nachvollziehen. Schaut euch dazu mal eine Textdatei an, notiert deren Größe, und rechnet aus, wie viele Glühbirnen für die Speicherung gebraucht werden. Denkt daran: ein Byte entspricht acht Glühbirnen. 
+
+Wir kommen in den späteren Kapiteln immer wieder auf die Bits und Bytes zurück, weil wir in Computern letztlich überall mit diesen Einheiten arbeiten. Es ist somit gut, wenn ihr schon an dieser Stelle ein grundlegendes Verständnis für diese Konzepte entwickelt.
 
 ## Ein LED-Dimmer (Teil 2)
 
-Zurück zu unserem eigentlichen Vorhaben. Wir waren gerade dabei, einen Dimmer für unsere LED zu basteln, als uns die Zahlensysteme dazwischen gekommen sind. Dafür haben wir jetzt ein besseres Verständnis dafür, wie ein Computer Farben sieht - nämlich als lange Sequenz aus Nullen und Einsen. Und zwar 24 davon, weil jede Grundfarbe ein Bit Speicher verwendet.
+Zurück zu unserem eigentlichen Vorhaben. Wir waren gerade dabei, einen Dimmer für unsere LED zu basteln, als uns die Zahlensysteme dazwischen gekommen sind. Dafür haben wir jetzt ein besseres Verständnis dafür, wie ein Computer Farben sieht - nämlich als lange Sequenz aus Nullen und Einsen. Und zwar 24 davon, weil jede Grundfarbe ein Byte an Speicher verwendet.
 
+### `min()` und `max()`
 
-## Das fertige Programm
-
+Was müssen wir also in unserem Programm verändern, jetzt da wir wissen, was das Problem zuvor war? Genau! Wir müssen sicherstellen, dass die Werte, die wir an die LED senden, im gültigen Bereich für ein Byte liegen. Und zwar zwischen 0 und 255.
 
 ```{python}
-from tinkerforge.ip_connection import IPConnection
-from tinkerforge.bricklet_rotary_encoder_v2 import BrickletRotaryEncoderV2
-from tinkerforge.bricklet_rgb_led_v2 import BrickletRGBLEDV2
-import math
-
-ipcon = IPConnection()
-ipcon.connect('localhost', 4223)
-knob = BrickletRotaryEncoderV2('WZd', ipcon) 
-led = BrickletRGBLEDV2('ZG1', ipcon)
-led.set_rgb_value(0, 0, 0)  # Set initial color to off
-
-count = math.inf
-STEP = 10
-
-last_count = knob.get_count(reset=True)
-brightness = 0
+knob.reset()
+last_count = 0
 
 while True:
     new_count = knob.get_count(reset=False)
 
-    # Only do something if the counter changed
+    if new_count != last_count:
+        last_count = new_count
+
+        # Clamp last_count to valid byte range
+        last_count = max(0, min(255, last_count)) #<1>
+
+        print(last_count)
+
+        # Set RGB values zu counter value
+        led.set_rgb_value(last_count, last_count, last_count)
+```
+
+1. Die Funktionen `min()` und `max()` sorgen dafür, dass der Wert von `last_count` immer zwischen 0 und 255 bleibt. Wenn `last_count` kleiner als 0 ist, wird es auf 0 gesetzt. Wenn es größer als 255 ist, wird es auf 255 gesetzt.
+
+Die neue Logik in Zeile 9 hilft uns dabei. Nachdem wir den neuen Wert des Zähler auf die Variable `last_count` gespeichert haben (Zeile 6), wenden wir eine geschickte Kombination der beiden Funktionen `max()` und `min()` an, um sicherzustellen, dass der Wert im gültigen Bereich bleibt. Wie funktioniert das genau? Dazu gehen wir die Zeile Schritt für Schritt durch.
+
+Zunächst einmal der Ausdruck `min(255, last_count)`. Die Funktion `min()` gibt einfach den kleineren der beiden Werte, die ihr übergeben wurden, zurück. Wenn `last_count` also größer als 255 ist, wird 255 zurückgegeben. Andernfalls wird `last_count` zurückgegeben. Das Ergebnis dieser Evaluation ist gleichzeitig der zweite Wert, den wir der Funktion `max()` übergeben.
+
+Die Funktion `max()` macht genau das Gegenteil. Sie gibt den größeren der beiden ihr übergebenen Werte zurück. Zur Auswahl stehen ihr der Wert 0 und das Ergebnis der `min()`-Funktion. Das bedeutet, dass `max()` sicherstellt, dass der endgültige Wert von `last_count` niemals kleiner als 0 ist.
+
+Und voilà! Nach Zeile 9 kann der Wert von `last_count` nur noch zwischen 0 und 255 liegen. Problem gelöst!
+
+Probiert es am besten direkt aus und dreht mal voll auf! Es sollte nun kein Fehler mehr auftreten.
+
+### Helligkeit entkoppeln
+
+Vielleicht habt ihr es auch bemerkt, aber so ganz toll funktioniert unser Dimmer immer noch nicht. Zwar erscheint keine Fehlermeldung mehr, wenn wir endlos aufdrehen. Jedoch wird die LED auch nicht gedimmt, wenn wir wieder in die andere Richtung drehen. Der Grund dafür ist einfach: Die Helligkeit der LED hängt in unserem Programm direkt vom Zählerstand des Drehknopfes ab. Wenn der über 255 kommt, wird die Helligkeit zwar auf 255 gedeckelt, der Zähler wird aber im Hintergrund trotzdem weiter hochgezählt. Wenn wir die LED wieder dimmen, also einen Helligkeitswert von weniger als 255 erreichen möchten, dann müssen wir zunächst mit dem Drehknopf wieder bis unter die 255 kommen.
+
+Viel schöner wäre es es, wenn wir zwar endlos überdrehen könnten, aber mit der ersten Drehung in die andere Richtung die Helligkeit der LED sofort verringern. Ein einfacher Weg wäre, für den Zählerstand des Drehknopfes analog zu `last_count` nur Werte zwischen 0 und 255 zu erlauben. Dazu könnten wir den Zähler genau wie `last_count` manuell auf 0 oder 255 setzen, je nachdem ob wir größer 255 oder kleiner Null waren. Leider bietet der Drehknopf keine solche Funktion über seine Programmierschnittstelle an. Wir können den Wert zwar auslesen, aber nicht programmatisch verändern.
+
+Wir müssen also einen Workaround entwickeln. Eine Möglichkeit wäre, die Helligkeit unabhängig vom Zählerstand zu verwalten und dafür eine eigene Variable `brightness` einzuführen. Wir könnten den Wert von `brightness` dann erhöhen oder verringern, wenn wir eine Drehung in die eine oder andere Richtung erkannt haben.
+
+Um zu erkennen, ob und in welche Richtung der Drehknopf gedreht wurde, können wir die Differenz zwischen dem aktuellen und dem letzten Zählerstand betrachten. Sie gibt uns direkt Aufschluss: ist die Differenz positiv, wurde der Knopf nach oben gedreht, ist sie negativ, wurde er nach unten gedreht.
+
+```{python}
+knob.reset()
+last_count = 0
+
+brightness = 0 # <1>
+led.set_rgb_value(brightness, brightness, brightness) 
+
+while True:
+    new_count = knob.get_count(reset=False)
+
+    if new_count != last_count:
+        diff = new_count - last_count # <2>
+        last_count = new_count
+
+        # Adjust brightness
+        brightness += diff # <3>
+        brightness = max(0, min(255, brightness))
+
+        # Set RGB values zu counter value
+        led.set_rgb_value(brightness, brightness, brightness)
+
+        print(f"Brightness / Counter: {brightness} / {new_count}") # <4>
+```
+
+1. Die  neue Variable `brightness` zu Beginn mit 0 initialisieren. Die LED soll aus sein.
+2. Hier ermitteln wir die Differenz zwischen dem aktuellen und dem letzten Zählerstand und speichern sie in der Variable `diff`.
+3. Wir passen die Helligkeit an, indem wir `brightness` um `diff` erhöhen oder verringern. Dabei stellen wir sicher, dass der Wert zwischen 0 und 255 bleibt.
+4. Zur Überprüfung geben wir beide Variablen aus. Wenn wir den Wertebereich 0-255 verlassen gehen die Werte der beiden Variablen auseinander.
+
+### Konstanten
+
+Das sieht schon sehr gut aus! Unser Dimmer ist fast fertig, die grundlegende Funktionalität läuft robust. Eine Kleinigkeit stört mich noch: der Dimmer reagiert nur sehr langsam und wir müssen scheinbar endlos drehen, um die LED auf die volle Helligkeit zu bekommen. Können wir das beschleunigen?
+
+```{python}
+knob.reset()
+brightness = 0
+STEP = 10 # <1>
+led.set_rgb_value(brightness, brightness, brightness) 
+
+last_count = 0
+while True:
+    new_count = knob.get_count(reset=False)
+
     if new_count != last_count:
         diff = new_count - last_count
         last_count = new_count
 
         # Adjust brightness
-        brightness += diff * STEP
+        brightness += diff * STEP # <2>
         brightness = max(0, min(255, brightness))
 
-        # Print brightness for debugging purposes
-        print(brightness)
+        # Set RGB values zu counter value
         led.set_rgb_value(brightness, brightness, brightness)
+
+        print(f"Brightness / Counter: {brightness} / {new_count}")
 ```
+
+1. Hier definieren wir eine Konstante `STEP` und weisen ihr den Wert 10 zu.
+2. Die Helligkeit wird nun um `diff * STEP` angepasst, was bedeutet, dass jede Drehung des Knopfes einen größeren Einfluss auf die Helligkeit hat.
+
+## Buttons
+
+Der Dreh*knopf (der Name gibt es schon her) hat neben dem Zähler noch eine Funktion, nämlich die eines einfachen Knopfes.

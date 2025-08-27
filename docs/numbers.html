@@ -321,7 +321,7 @@ window.Quarto = {
     <h2 id="toc-title">Inhaltsverzeichnis</h2>
    
   <ul>
-  <li><a href="#lernziele" id="toc-lernziele" class="nav-link active" data-scroll-target="#lernziele">Lernziele</a></li>
+  <li><a href="#zusammenfassung" id="toc-zusammenfassung" class="nav-link active" data-scroll-target="#zusammenfassung">Zusammenfassung</a></li>
   <li><a href="#experimentaufbau" id="toc-experimentaufbau" class="nav-link" data-scroll-target="#experimentaufbau">Experimentaufbau</a></li>
   <li><a href="#erste-schritte-mit-dem-drehknopf" id="toc-erste-schritte-mit-dem-drehknopf" class="nav-link" data-scroll-target="#erste-schritte-mit-dem-drehknopf"><span class="header-section-number">2.1</span> Erste Schritte mit dem Drehknopf</a></li>
   <li><a href="#hoch--und-runterzählen" id="toc-hoch--und-runterzählen" class="nav-link" data-scroll-target="#hoch--und-runterzählen"><span class="header-section-number">2.2</span> Hoch- und Runterzählen</a></li>
@@ -336,8 +336,13 @@ window.Quarto = {
   </ul></li>
   <li><a href="#bits-und-bytes" id="toc-bits-und-bytes" class="nav-link" data-scroll-target="#bits-und-bytes"><span class="header-section-number">2.6</span> Bits und Bytes</a></li>
   <li><a href="#kilo-mega-giga" id="toc-kilo-mega-giga" class="nav-link" data-scroll-target="#kilo-mega-giga"><span class="header-section-number">2.7</span> Kilo, Mega, Giga</a></li>
-  <li><a href="#ein-led-dimmer-teil-2" id="toc-ein-led-dimmer-teil-2" class="nav-link" data-scroll-target="#ein-led-dimmer-teil-2"><span class="header-section-number">2.8</span> Ein LED-Dimmer (Teil 2)</a></li>
-  <li><a href="#das-fertige-programm" id="toc-das-fertige-programm" class="nav-link" data-scroll-target="#das-fertige-programm"><span class="header-section-number">2.9</span> Das fertige Programm</a></li>
+  <li><a href="#ein-led-dimmer-teil-2" id="toc-ein-led-dimmer-teil-2" class="nav-link" data-scroll-target="#ein-led-dimmer-teil-2"><span class="header-section-number">2.8</span> Ein LED-Dimmer (Teil 2)</a>
+  <ul class="collapse">
+  <li><a href="#min-und-max" id="toc-min-und-max" class="nav-link" data-scroll-target="#min-und-max"><span class="header-section-number">2.8.1</span> <code>min()</code> und <code>max()</code></a></li>
+  <li><a href="#helligkeit-entkoppeln" id="toc-helligkeit-entkoppeln" class="nav-link" data-scroll-target="#helligkeit-entkoppeln"><span class="header-section-number">2.8.2</span> Helligkeit entkoppeln</a></li>
+  <li><a href="#konstanten" id="toc-konstanten" class="nav-link" data-scroll-target="#konstanten"><span class="header-section-number">2.8.3</span> Konstanten</a></li>
+  </ul></li>
+  <li><a href="#buttons" id="toc-buttons" class="nav-link" data-scroll-target="#buttons"><span class="header-section-number">2.9</span> Buttons</a></li>
   </ul>
 </nav>
     </div>
@@ -369,8 +374,8 @@ window.Quarto = {
 </header>
 
 
-<section id="lernziele" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="lernziele">Lernziele</h2>
+<section id="zusammenfassung" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="zusammenfassung">Zusammenfassung</h2>
 <p>Unsere wichtigsten Lernziele in diesem Kapitel sind:</p>
 <ul>
 <li>Wir lernen Kontrollstrukturen kennen, mit denen wir unsere Programm steuern können.</li>
@@ -477,15 +482,11 @@ Abbildung&nbsp;2.2: Der Brick Viewer nach dem Connect.
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-brick-viewer-rotary-encoder-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-layout-row">
-<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-brick-viewer-rotary-encoder" style="flex-basis: 50.0%;justify-content: flex-start;">
-<div id="fig-brick-viewer-rotary-encoder" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="brick-viewer-rotary">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-brick-viewer-rotary-encoder-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/brick_viewer_rotary_encoder.png" class="lightbox" data-gallery="brick-viewer-rotary" title="Abbildung&nbsp;2.3&nbsp;(a): Das Diagramm zeigt den aktuellen Wert an."><img src="images/brick_viewer_rotary_encoder.png" class="img-fluid figure-img" data-ref-parent="fig-brick-viewer-rotary-encoder"></a>
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-brick-viewer-rotary-encoder-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(a) Das Diagramm zeigt den aktuellen Wert an.
-</figcaption>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="images/brick_viewer_rotary_encoder.png" class="lightbox" data-gallery="brick-viewer-rotary" title="Das Diagramm zeigt den aktuellen Wert an."><img src="images/brick_viewer_rotary_encoder.png" class="img-fluid figure-img"></a></p>
+<figcaption>Das Diagramm zeigt den aktuellen Wert an.</figcaption>
 </figure>
 </div>
 </div>
@@ -493,10 +494,10 @@ Abbildung&nbsp;2.2: Der Brick Viewer nach dem Connect.
 <div id="fig-brick-viewer-rotary-encoder-pressed" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="brick-viewer-rotary">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-brick-viewer-rotary-encoder-pressed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/brick_viewer_rotary_encoder_pressed.png" class="lightbox" data-gallery="brick-viewer-rotary" title="Abbildung&nbsp;2.3&nbsp;(b): Der Button wir rot, wenn er gedrückt ist."><img src="images/brick_viewer_rotary_encoder_pressed.png" class="img-fluid figure-img" data-ref-parent="fig-brick-viewer-rotary-encoder"></a>
+<a href="images/brick_viewer_rotary_encoder_pressed.png" class="lightbox" data-gallery="brick-viewer-rotary" title="Abbildung&nbsp;2.3&nbsp;(a): Der Button wir rot, wenn er gedrückt ist."><img src="images/brick_viewer_rotary_encoder_pressed.png" class="img-fluid figure-img" data-ref-parent="fig-brick-viewer-rotary-encoder"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-brick-viewer-rotary-encoder-pressed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(b) Der Button wir rot, wenn er gedrückt ist.
+(a) Der Button wir rot, wenn er gedrückt ist.
 </figcaption>
 </figure>
 </div>
@@ -530,7 +531,7 @@ Abbildung&nbsp;2.4: Die gute alte Stereoanlage mit Drehknopf! Wer kennt sie nich
 </figure>
 </div>
 <p>Im Hintergrund verändert sich bei jeder Drehung der Wert, den der Knopf sendet – mal höher, mal niedriger, je nach Ausgangszustand. Im Brick Viewer habt ihr das schon gesehen. Probieren wir es jetzt in einem Programm aus: Der folgende Code verbindet sich mit dem Drehknopf, liest den aktuellen Wert und gibt ihn in der Konsole aus. Denkt daran, eure eigene UID einzutragen:</p>
-<div id="a675da19" class="cell" data-execution_count="1">
+<div id="bebb09c7" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
 <span id="annotated-cell-1-2"><a href="#annotated-cell-1-2"></a><span class="im">from</span> tinkerforge.bricklet_rotary_encoder_v2 <span class="im">import</span> BrickletRotaryEncoderV2</span>
 <span id="annotated-cell-1-3"><a href="#annotated-cell-1-3"></a></span>
@@ -554,7 +555,7 @@ Abbildung&nbsp;2.4: Die gute alte Stereoanlage mit Drehknopf! Wer kennt sie nich
 </div>
 <p>Die Ausgabe sollte mit dem Wert übereinstimmen, den ihr auch im Brick Viewer seht – kein Wunder, beide nutzen dieselbe Programmierschnittstelle. Damit habt ihr die erste Funktion des Drehknopfs erfolgreich aus Python getestet.</p>
 <p>Dreht ihr den Knopf und startet das Programm erneut, erscheint natürlich ein anderer Wert. Klar! Aber jedes Mal neu starten? Das geht besser. Die Lösung kennt ihr schon aus <a href="colors.html" class="quarto-xref"><span>Kapitel 1</span></a>: eine Schleife, die das Programm so lange wiederholt, bis wir es beenden:</p>
-<div id="60d41d8b" class="cell" data-execution_count="2">
+<div id="e7f8338c" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
 <span id="cb1-2"><a href="#cb1-2"></a>    count <span class="op">=</span> knob.get_count(reset<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb1-3"><a href="#cb1-3"></a>    <span class="bu">print</span>(count)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -565,7 +566,7 @@ Abbildung&nbsp;2.4: Die gute alte Stereoanlage mit Drehknopf! Wer kennt sie nich
 <section id="kontrollstrukturen" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="kontrollstrukturen"><span class="header-section-number">2.3</span> Kontrollstrukturen</h2>
 <p>Wie wäre es hiermit?</p>
-<div id="a564ab1c" class="cell" data-execution_count="3">
+<div id="fcb9927c" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>last_count <span class="op">=</span> <span class="va">None</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="cf">while</span> <span class="va">True</span>:</span>
 <span id="cb2-3"><a href="#cb2-3"></a>    new_count <span class="op">=</span> knob.get_count(reset<span class="op">=</span><span class="va">False</span>)</span>
@@ -585,7 +586,7 @@ Abbildung&nbsp;2.4: Die gute alte Stereoanlage mit Drehknopf! Wer kennt sie nich
 <p>Wenden wir das Gelernte an und bauen einen praktischen LED-Dimmer. Dafür holen wir unsere LED aus Kapitel 1 mit dazu und kombinieren sie mit dem Drehknopf.</p>
 <p>Die Idee ist simpel: Der Zähler des Knopfs steuert die Helligkeit der LED. Dreht ihr nach rechts, wird sie heller, nach links, dunkler. Wie bei der Stereoanlage in <a href="#fig-hifi-system" class="quarto-xref">Abbildung&nbsp;<span>2.4</span></a>.</p>
 <p>Bevor wir uns an die eigentliche Anwendungslogik machen, brauchen wir Zugriff auf beide Geräte – LED und Drehknopf. Dazu erweitern wir den bekannten Boilerplate-Code und speichern die Geräte in eigenen Variablen:</p>
-<div id="86b42d8a" class="cell" data-execution_count="4">
+<div id="fd2b8dec" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="im">from</span> tinkerforge.bricklet_rotary_encoder_v2 <span class="im">import</span> BrickletRotaryEncoderV2</span>
 <span id="cb3-3"><a href="#cb3-3"></a><span class="im">from</span> tinkerforge.bricklet_rgb_led_v2 <span class="im">import</span> BrickletRGBLEDV2</span>
@@ -599,7 +600,7 @@ Abbildung&nbsp;2.4: Die gute alte Stereoanlage mit Drehknopf! Wer kennt sie nich
 <p>Als Startpunkt nehmen wir den Code von oben, der den Zählerwert auf der Konsole ausgibt. Schließlich brauchen wir genau diese Information – wann sich der Wert ändert und wie er aktuell steht – auch, um die LED zu steuern.</p>
 <p>Damit wir die LED von aus bis volle Helligkeit dimmen können, legen wir uns zuerst auf eine Farbe fest. Ich bin zwar kein Fan von weißem LED-Licht, aber für dieses Kapitel ist es am einfachsten: voll aufgedreht leuchtet die LED weiß, ausgedreht ist sie schwarz – klar! Später kümmern wir uns darum, wie wir das Licht wärmer machen können.</p>
 <p>Erinnern wir uns also: Was bedeuten die Zustände An und Aus im RGB-Farbraum?</p>
-<div id="718d2605" class="cell" data-execution_count="5">
+<div id="818f03c8" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># White</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>led.set_rgb_value(<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">255</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -608,17 +609,19 @@ Abbildung&nbsp;2.4: Die gute alte Stereoanlage mit Drehknopf! Wer kennt sie nich
 </div>
 <p>Damit haben wir die beiden Extremzustände festgelegt. Doch was passiert dazwischen, wenn die LED gedimmt ist? Ganz einfach: Wir lassen die drei RGB-Werte gemeinsam von 1 bis 254 hoch- oder runterlaufen. Höhere Werte ergeben ein helleres Weiß, niedrigere ein dunkleres.</p>
 <p>Setzen wir diese Erkenntnisse in Programmcode um und weisen den Zählerwert den RGB-Werten der LED zu. Spoiler-Alert: Das ist etwas naiv, aber lasst uns mal schauen, was passiert und wo möglicherweise Probleme auftreten:</p>
-<div id="69fb4c27" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>last_count <span class="op">=</span> <span class="va">None</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb5-3"><a href="#cb5-3"></a>    new_count <span class="op">=</span> knob.get_count(reset<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb5-4"><a href="#cb5-4"></a></span>
-<span id="cb5-5"><a href="#cb5-5"></a>    <span class="cf">if</span> new_count <span class="op">!=</span> last_count:</span>
-<span id="cb5-6"><a href="#cb5-6"></a>        last_count <span class="op">=</span> new_count</span>
-<span id="cb5-7"><a href="#cb5-7"></a>        <span class="bu">print</span>(last_count)</span>
-<span id="cb5-8"><a href="#cb5-8"></a></span>
-<span id="cb5-9"><a href="#cb5-9"></a>        <span class="co"># Set RGB values zu counter value</span></span>
-<span id="cb5-10"><a href="#cb5-10"></a>        led.set_rgb_value(last_count, last_count, last_count)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="924b6c6e" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>knob.reset()</span>
+<span id="cb5-2"><a href="#cb5-2"></a>last_count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb5-5"><a href="#cb5-5"></a>    new_count <span class="op">=</span> knob.get_count(reset<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb5-6"><a href="#cb5-6"></a></span>
+<span id="cb5-7"><a href="#cb5-7"></a>    <span class="cf">if</span> new_count <span class="op">!=</span> last_count:</span>
+<span id="cb5-8"><a href="#cb5-8"></a>        last_count <span class="op">=</span> new_count</span>
+<span id="cb5-9"><a href="#cb5-9"></a>        <span class="bu">print</span>(last_count)</span>
+<span id="cb5-10"><a href="#cb5-10"></a></span>
+<span id="cb5-11"><a href="#cb5-11"></a>        <span class="co"># Set RGB values zu counter value</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a>        led.set_rgb_value(last_count, last_count, last_count)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Lasst mal laufen und dreht voll auf oder runter! Beobachtet dabei den Wert für <code>last_count</code>. Was passiert, wenn er kleiner als Null wird? Oder wenn er größer als 255 wird? Bumm! Das Programm stürzt ab!</p>
 <p>Warum? Auf der Kommandzeile bekommen wir eine lange Fehlermeldung mit der folgenden Aussage ganz am Ende:</p>
@@ -798,62 +801,249 @@ Abbildung&nbsp;2.11: Das Binärsystem funktioniert wie alle anderen Stellenwerts
 \end{aligned}
 \]</span></p>
 <p>Stop! <span class="math inline">\(2^8 = 256\)</span>, das genügt uns völlig. Mit 8 Bits können wir somit 256 Zustände abbilden - genau passend für zweihundertsechsundfünzig Rot, Grün, oder Blau-Anteile. Und das ist kein Zufall: 8 Bits sind für Computer eine besondere Hausnummer. Wir nennen eine Gruppe von 8 Bits ein Byte. Und jetzt dürfte es erneut klingeln.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="https://winf-hsos.github.io/university-docs/images/binary_system_byte_a.png" class="img-fluid figure-img"></p>
-<figcaption>Ein Byte könnt ihr euch vorstellen wie acht Glühbirnen nebeneinander.</figcaption>
+<div id="fig-binary-system-byte-a" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-binary-system-byte-a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/binary_system_byte_a.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19" title="Abbildung&nbsp;2.12: Ein Byte könnt ihr euch vorstellen wie acht Glühbirnen nebeneinander."><img src="https://winf-hsos.github.io/university-docs/images/binary_system_byte_a.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-binary-system-byte-a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;2.12: Ein Byte könnt ihr euch vorstellen wie acht Glühbirnen nebeneinander.
+</figcaption>
 </figure>
 </div>
+<p>In <a href="#fig-binary-system-byte-a" class="quarto-xref">Abbildung&nbsp;<span>2.12</span></a> ist ein Byte als Serie von acht Glühbirnen dargestellt. Ihr könnt euch vorstellen, dass Bits mit dem Wert 1 leuchten und Bits mit dem Wert 0 aus sind. Um den Wert zu ermitteln, den das Byte gerade darstellt, könnt ihr jeder Glühbirne von rechts nach links jeweils die Wertigkeiten der Stellen aus dem Binärsystem zuweisen und die Werte addieren. Stellen, an denen die Glühbirne an ist, werden addiert, die anderen werden ausgelassen (<a href="#fig-binary-system-byte-b" class="quarto-xref">Abbildung&nbsp;<span>2.13</span></a>). Das Byte im gezeigte Beispiel steht somit für:</p>
+<p><span class="math display">\[
+32 + 8 + 1 = 41
+\]</span></p>
+<p>Wofür steht das Byte, wenn alle Lampen leuchten? Oder anders gefragt: Was ist die größte Zahl, die wir einem Byte darstellen können?</p>
+<p><span class="math display">\[
+128+64+32+16+8+4+2+1 = 255
+\]</span></p>
+<p>Die Antwort überrascht uns nicht, denn schließlich haben wir es ja schon herausgefunden: ein Byte erlaubt uns, Werte zwischen 0 (alle Glühbirnen aus) und 255 (alle Glühbirnen an) darzustellen. Insgesamt also 256 Möglichkeiten. Somit können wir mit 8 Glühbirnen die Intensität einer der drei Grundfarben im RGB-Code darstellen.</p>
+<div id="fig-binary-system-byte-b" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-binary-system-byte-b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/binary_system_byte_b.png" class="lightbox" data-gallery="quarto-lightbox-gallery-20" title="Abbildung&nbsp;2.13: Jede Glühbirne steht für eine Stelle aus dem Binärsystem."><img src="https://winf-hsos.github.io/university-docs/images/binary_system_byte_b.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-binary-system-byte-b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;2.13: Jede Glühbirne steht für eine Stelle aus dem Binärsystem.
+</figcaption>
+</figure>
+</div>
+<p>Das erklärt auch die Fehlermeldung von oben: ein Byte kann Werte zwischen 0 und 255 darstellen. Wir haben im Experiment den Drehknopf voll nach oben oder nach unten gedreht, wodurch der Wert entweder größer als 255 oder kleiner als 0 wurde. Und damit ist es kein gültiger Wert in Sinne eines Bytes mehr.</p>
 </section>
 <section id="kilo-mega-giga" class="level2" data-number="2.7">
 <h2 data-number="2.7" class="anchored" data-anchor-id="kilo-mega-giga"><span class="header-section-number">2.7</span> Kilo, Mega, Giga</h2>
-<p>Ein Byte besteht aus 8 Bits. Wenn wir also von Bytes sprechen, reden wir oft auch von Kilobytes (KB), Megabytes (MB) und Gigabytes (GB). Diese Begriffe sind wichtig, um die Größe von Daten zu beschreiben.</p>
-<ul>
-<li>1 Kilobyte (KB) = 1024 Bytes</li>
-<li>1 Megabyte (MB) = 1024 Kilobytes = 1.048.576 Bytes</li>
-<li>1 Gigabyte (GB) = 1024 Megabytes = 1.073.741.824 Bytes</li>
-</ul>
+<p>Ein Byte besteht aus 8 Bits. Wenn wir also von Bytes sprechen, reden wir oft auch von Kilobytes, Megabytes, Gigabytes et cetera. Diese Begriffe sind wichtig, um die Größe von Daten zu beschreiben. In <a href="#tbl-data-sizes" class="quarto-xref">Tabelle&nbsp;<span>2.1</span></a> seht ihr eine Übersicht über die verschiedenen Größenordnungen.</p>
+<div id="tbl-data-sizes" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-data-sizes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabelle&nbsp;2.1: Verschiedene Mengeneinheiten für Bits und deren ungefähre Entsprechung.
+</figcaption>
+<div aria-describedby="tbl-data-sizes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 16%">
+<col style="width: 19%">
+<col style="width: 23%">
+<col style="width: 41%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Potenz (Bytes)</th>
+<th>Ausgeschrieben</th>
+<th>Bezeichnung (Abkürzung)</th>
+<th>Entspricht ca.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(10^3\)</span></td>
+<td>Tausend</td>
+<td>Kilobyte (KB)</td>
+<td>kleine Textdatei</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(10^6\)</span></td>
+<td>Millionen</td>
+<td>Megabyte (MB)</td>
+<td>Digitales Foto</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(10^9\)</span></td>
+<td>Milliarde</td>
+<td>Gigabyte (GB)</td>
+<td>Film (DVD 4,7 GB)</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(10^{12}\)</span></td>
+<td>Billion</td>
+<td>Terabyte (TB)</td>
+<td>Gängige Festplattenkapazität</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(10^{15}\)</span></td>
+<td>Billiarde</td>
+<td>Petabyte (PB)</td>
+<td>Speichervolumen Rechenzentrum</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(10^{18}\)</span></td>
+<td>Trillion</td>
+<td>Exabyte (EB)</td>
+<td>Internetverkehr pro Tag</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(10^{21}\)</span></td>
+<td>Trilliarde</td>
+<td>Zettabyte (ZB)</td>
+<td>Datenbestand weltweit (&gt;100 ZB)</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(10^{24}\)</span></td>
+<td>Quadrillion</td>
+<td>Yottabyte (YB)</td>
+<td>keine Entsprechung</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Jetzt da ihr wisst, was mit einem Byte gemeint ist, könnt ihr eine ungefähre Vorstellung für die Größenordnungen von Datenmengen entwickeln. Die ersten drei Zeilen aus <a href="#tbl-data-sizes" class="quarto-xref">Tabelle&nbsp;<span>2.1</span></a> könnt ihr selbst einmal nachvollziehen. Schaut euch dazu mal eine Textdatei an, notiert deren Größe, und rechnet aus, wie viele Glühbirnen für die Speicherung gebraucht werden. Denkt daran: ein Byte entspricht acht Glühbirnen.</p>
+<p>Wir kommen in den späteren Kapiteln immer wieder auf die Bits und Bytes zurück, weil wir in Computern letztlich überall mit diesen Einheiten arbeiten. Es ist somit gut, wenn ihr schon an dieser Stelle ein grundlegendes Verständnis für diese Konzepte entwickelt.</p>
 </section>
 <section id="ein-led-dimmer-teil-2" class="level2" data-number="2.8">
 <h2 data-number="2.8" class="anchored" data-anchor-id="ein-led-dimmer-teil-2"><span class="header-section-number">2.8</span> Ein LED-Dimmer (Teil 2)</h2>
-<p>Zurück zu unserem eigentlichen Vorhaben. Wir waren gerade dabei, einen Dimmer für unsere LED zu basteln, als uns die Zahlensysteme dazwischen gekommen sind. Dafür haben wir jetzt ein besseres Verständnis dafür, wie ein Computer Farben sieht - nämlich als lange Sequenz aus Nullen und Einsen. Und zwar 24 davon, weil jede Grundfarbe ein Bit Speicher verwendet.</p>
-</section>
-<section id="das-fertige-programm" class="level2" data-number="2.9">
-<h2 data-number="2.9" class="anchored" data-anchor-id="das-fertige-programm"><span class="header-section-number">2.9</span> Das fertige Programm</h2>
-<div id="8fcb2683" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="im">from</span> tinkerforge.bricklet_rotary_encoder_v2 <span class="im">import</span> BrickletRotaryEncoderV2</span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="im">from</span> tinkerforge.bricklet_rgb_led_v2 <span class="im">import</span> BrickletRGBLEDV2</span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="im">import</span> math</span>
-<span id="cb7-5"><a href="#cb7-5"></a></span>
-<span id="cb7-6"><a href="#cb7-6"></a>ipcon <span class="op">=</span> IPConnection()</span>
-<span id="cb7-7"><a href="#cb7-7"></a>ipcon.<span class="ex">connect</span>(<span class="st">'localhost'</span>, <span class="dv">4223</span>)</span>
-<span id="cb7-8"><a href="#cb7-8"></a>knob <span class="op">=</span> BrickletRotaryEncoderV2(<span class="st">'WZd'</span>, ipcon) </span>
-<span id="cb7-9"><a href="#cb7-9"></a>led <span class="op">=</span> BrickletRGBLEDV2(<span class="st">'ZG1'</span>, ipcon)</span>
-<span id="cb7-10"><a href="#cb7-10"></a>led.set_rgb_value(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)  <span class="co"># Set initial color to off</span></span>
-<span id="cb7-11"><a href="#cb7-11"></a></span>
-<span id="cb7-12"><a href="#cb7-12"></a>count <span class="op">=</span> math.inf</span>
-<span id="cb7-13"><a href="#cb7-13"></a>STEP <span class="op">=</span> <span class="dv">10</span></span>
-<span id="cb7-14"><a href="#cb7-14"></a></span>
-<span id="cb7-15"><a href="#cb7-15"></a>last_count <span class="op">=</span> knob.get_count(reset<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb7-16"><a href="#cb7-16"></a>brightness <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb7-17"><a href="#cb7-17"></a></span>
-<span id="cb7-18"><a href="#cb7-18"></a><span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="cb7-19"><a href="#cb7-19"></a>    new_count <span class="op">=</span> knob.get_count(reset<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb7-20"><a href="#cb7-20"></a></span>
-<span id="cb7-21"><a href="#cb7-21"></a>    <span class="co"># Only do something if the counter changed</span></span>
-<span id="cb7-22"><a href="#cb7-22"></a>    <span class="cf">if</span> new_count <span class="op">!=</span> last_count:</span>
-<span id="cb7-23"><a href="#cb7-23"></a>        diff <span class="op">=</span> new_count <span class="op">-</span> last_count</span>
-<span id="cb7-24"><a href="#cb7-24"></a>        last_count <span class="op">=</span> new_count</span>
-<span id="cb7-25"><a href="#cb7-25"></a></span>
-<span id="cb7-26"><a href="#cb7-26"></a>        <span class="co"># Adjust brightness</span></span>
-<span id="cb7-27"><a href="#cb7-27"></a>        brightness <span class="op">+=</span> diff <span class="op">*</span> STEP</span>
-<span id="cb7-28"><a href="#cb7-28"></a>        brightness <span class="op">=</span> <span class="bu">max</span>(<span class="dv">0</span>, <span class="bu">min</span>(<span class="dv">255</span>, brightness))</span>
-<span id="cb7-29"><a href="#cb7-29"></a></span>
-<span id="cb7-30"><a href="#cb7-30"></a>        <span class="co"># Print brightness for debugging purposes</span></span>
-<span id="cb7-31"><a href="#cb7-31"></a>        <span class="bu">print</span>(brightness)</span>
-<span id="cb7-32"><a href="#cb7-32"></a>        led.set_rgb_value(brightness, brightness, brightness)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Zurück zu unserem eigentlichen Vorhaben. Wir waren gerade dabei, einen Dimmer für unsere LED zu basteln, als uns die Zahlensysteme dazwischen gekommen sind. Dafür haben wir jetzt ein besseres Verständnis dafür, wie ein Computer Farben sieht - nämlich als lange Sequenz aus Nullen und Einsen. Und zwar 24 davon, weil jede Grundfarbe ein Byte an Speicher verwendet.</p>
+<section id="min-und-max" class="level3" data-number="2.8.1">
+<h3 data-number="2.8.1" class="anchored" data-anchor-id="min-und-max"><span class="header-section-number">2.8.1</span> <code>min()</code> und <code>max()</code></h3>
+<p>Was müssen wir also in unserem Programm verändern, jetzt da wir wissen, was das Problem zuvor war? Genau! Wir müssen sicherstellen, dass die Werte, die wir an die LED senden, im gültigen Bereich für ein Byte liegen. Und zwar zwischen 0 und 255.</p>
+<div id="9308e9b7" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="annotated-cell-8"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-8-1"><a href="#annotated-cell-8-1"></a>knob.reset()</span>
+<span id="annotated-cell-8-2"><a href="#annotated-cell-8-2"></a>last_count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="annotated-cell-8-3"><a href="#annotated-cell-8-3"></a></span>
+<span id="annotated-cell-8-4"><a href="#annotated-cell-8-4"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="annotated-cell-8-5"><a href="#annotated-cell-8-5"></a>    new_count <span class="op">=</span> knob.get_count(reset<span class="op">=</span><span class="va">False</span>)</span>
+<span id="annotated-cell-8-6"><a href="#annotated-cell-8-6"></a></span>
+<span id="annotated-cell-8-7"><a href="#annotated-cell-8-7"></a>    <span class="cf">if</span> new_count <span class="op">!=</span> last_count:</span>
+<span id="annotated-cell-8-8"><a href="#annotated-cell-8-8"></a>        last_count <span class="op">=</span> new_count</span>
+<span id="annotated-cell-8-9"><a href="#annotated-cell-8-9"></a></span>
+<span id="annotated-cell-8-10"><a href="#annotated-cell-8-10"></a>        <span class="co"># Clamp last_count to valid byte range</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="1">1</button><span id="annotated-cell-8-11" class="code-annotation-target"><a href="#annotated-cell-8-11"></a>        last_count <span class="op">=</span> <span class="bu">max</span>(<span class="dv">0</span>, <span class="bu">min</span>(<span class="dv">255</span>, last_count))</span>
+<span id="annotated-cell-8-12"><a href="#annotated-cell-8-12"></a></span>
+<span id="annotated-cell-8-13"><a href="#annotated-cell-8-13"></a>        <span class="bu">print</span>(last_count)</span>
+<span id="annotated-cell-8-14"><a href="#annotated-cell-8-14"></a></span>
+<span id="annotated-cell-8-15"><a href="#annotated-cell-8-15"></a>        <span class="co"># Set RGB values zu counter value</span></span>
+<span id="annotated-cell-8-16"><a href="#annotated-cell-8-16"></a>        led.set_rgb_value(last_count, last_count, last_count)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-8" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-8" data-code-lines="11" data-code-annotation="1">Die Funktionen <code>min()</code> und <code>max()</code> sorgen dafür, dass der Wert von <code>last_count</code> immer zwischen 0 und 255 bleibt. Wenn <code>last_count</code> kleiner als 0 ist, wird es auf 0 gesetzt. Wenn es größer als 255 ist, wird es auf 255 gesetzt.</span>
+</dd>
+</dl>
 </div>
+</div>
+<p>Die neue Logik in Zeile 9 hilft uns dabei. Nachdem wir den neuen Wert des Zähler auf die Variable <code>last_count</code> gespeichert haben (Zeile 6), wenden wir eine geschickte Kombination der beiden Funktionen <code>max()</code> und <code>min()</code> an, um sicherzustellen, dass der Wert im gültigen Bereich bleibt. Wie funktioniert das genau? Dazu gehen wir die Zeile Schritt für Schritt durch.</p>
+<p>Zunächst einmal der Ausdruck <code>min(255, last_count)</code>. Die Funktion <code>min()</code> gibt einfach den kleineren der beiden Werte, die ihr übergeben wurden, zurück. Wenn <code>last_count</code> also größer als 255 ist, wird 255 zurückgegeben. Andernfalls wird <code>last_count</code> zurückgegeben. Das Ergebnis dieser Evaluation ist gleichzeitig der zweite Wert, den wir der Funktion <code>max()</code> übergeben.</p>
+<p>Die Funktion <code>max()</code> macht genau das Gegenteil. Sie gibt den größeren der beiden ihr übergebenen Werte zurück. Zur Auswahl stehen ihr der Wert 0 und das Ergebnis der <code>min()</code>-Funktion. Das bedeutet, dass <code>max()</code> sicherstellt, dass der endgültige Wert von <code>last_count</code> niemals kleiner als 0 ist.</p>
+<p>Und voilà! Nach Zeile 9 kann der Wert von <code>last_count</code> nur noch zwischen 0 und 255 liegen. Problem gelöst!</p>
+<p>Probiert es am besten direkt aus und dreht mal voll auf! Es sollte nun kein Fehler mehr auftreten.</p>
+</section>
+<section id="helligkeit-entkoppeln" class="level3" data-number="2.8.2">
+<h3 data-number="2.8.2" class="anchored" data-anchor-id="helligkeit-entkoppeln"><span class="header-section-number">2.8.2</span> Helligkeit entkoppeln</h3>
+<p>Vielleicht habt ihr es auch bemerkt, aber so ganz toll funktioniert unser Dimmer immer noch nicht. Zwar erscheint keine Fehlermeldung mehr, wenn wir endlos aufdrehen. Jedoch wird die LED auch nicht gedimmt, wenn wir wieder in die andere Richtung drehen. Der Grund dafür ist einfach: Die Helligkeit der LED hängt in unserem Programm direkt vom Zählerstand des Drehknopfes ab. Wenn der über 255 kommt, wird die Helligkeit zwar auf 255 gedeckelt, der Zähler wird aber im Hintergrund trotzdem weiter hochgezählt. Wenn wir die LED wieder dimmen, also einen Helligkeitswert von weniger als 255 erreichen möchten, dann müssen wir zunächst mit dem Drehknopf wieder bis unter die 255 kommen.</p>
+<p>Viel schöner wäre es es, wenn wir zwar endlos überdrehen könnten, aber mit der ersten Drehung in die andere Richtung die Helligkeit der LED sofort verringern. Ein einfacher Weg wäre, für den Zählerstand des Drehknopfes analog zu <code>last_count</code> nur Werte zwischen 0 und 255 zu erlauben. Dazu könnten wir den Zähler genau wie <code>last_count</code> manuell auf 0 oder 255 setzen, je nachdem ob wir größer 255 oder kleiner Null waren. Leider bietet der Drehknopf keine solche Funktion über seine Programmierschnittstelle an. Wir können den Wert zwar auslesen, aber nicht programmatisch verändern.</p>
+<p>Wir müssen also einen Workaround entwickeln. Eine Möglichkeit wäre, die Helligkeit unabhängig vom Zählerstand zu verwalten und dafür eine eigene Variable <code>brightness</code> einzuführen. Wir könnten den Wert von <code>brightness</code> dann erhöhen oder verringern, wenn wir eine Drehung in die eine oder andere Richtung erkannt haben.</p>
+<p>Um zu erkennen, ob und in welche Richtung der Drehknopf gedreht wurde, können wir die Differenz zwischen dem aktuellen und dem letzten Zählerstand betrachten. Sie gibt uns direkt Aufschluss: ist die Differenz positiv, wurde der Knopf nach oben gedreht, ist sie negativ, wurde er nach unten gedreht.</p>
+<div id="cff01a85" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="annotated-cell-9"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-9-1"><a href="#annotated-cell-9-1"></a>knob.reset()</span>
+<span id="annotated-cell-9-2"><a href="#annotated-cell-9-2"></a>last_count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="annotated-cell-9-3"><a href="#annotated-cell-9-3"></a></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="1">1</button><span id="annotated-cell-9-4" class="code-annotation-target"><a href="#annotated-cell-9-4"></a>brightness <span class="op">=</span> <span class="dv">0</span></span>
+<span id="annotated-cell-9-5"><a href="#annotated-cell-9-5"></a>led.set_rgb_value(brightness, brightness, brightness) </span>
+<span id="annotated-cell-9-6"><a href="#annotated-cell-9-6"></a></span>
+<span id="annotated-cell-9-7"><a href="#annotated-cell-9-7"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="annotated-cell-9-8"><a href="#annotated-cell-9-8"></a>    new_count <span class="op">=</span> knob.get_count(reset<span class="op">=</span><span class="va">False</span>)</span>
+<span id="annotated-cell-9-9"><a href="#annotated-cell-9-9"></a></span>
+<span id="annotated-cell-9-10"><a href="#annotated-cell-9-10"></a>    <span class="cf">if</span> new_count <span class="op">!=</span> last_count:</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="2">2</button><span id="annotated-cell-9-11" class="code-annotation-target"><a href="#annotated-cell-9-11"></a>        diff <span class="op">=</span> new_count <span class="op">-</span> last_count</span>
+<span id="annotated-cell-9-12"><a href="#annotated-cell-9-12"></a>        last_count <span class="op">=</span> new_count</span>
+<span id="annotated-cell-9-13"><a href="#annotated-cell-9-13"></a></span>
+<span id="annotated-cell-9-14"><a href="#annotated-cell-9-14"></a>        <span class="co"># Adjust brightness</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="3">3</button><span id="annotated-cell-9-15" class="code-annotation-target"><a href="#annotated-cell-9-15"></a>        brightness <span class="op">+=</span> diff</span>
+<span id="annotated-cell-9-16"><a href="#annotated-cell-9-16"></a>        brightness <span class="op">=</span> <span class="bu">max</span>(<span class="dv">0</span>, <span class="bu">min</span>(<span class="dv">255</span>, brightness))</span>
+<span id="annotated-cell-9-17"><a href="#annotated-cell-9-17"></a></span>
+<span id="annotated-cell-9-18"><a href="#annotated-cell-9-18"></a>        <span class="co"># Set RGB values zu counter value</span></span>
+<span id="annotated-cell-9-19"><a href="#annotated-cell-9-19"></a>        led.set_rgb_value(brightness, brightness, brightness)</span>
+<span id="annotated-cell-9-20"><a href="#annotated-cell-9-20"></a></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="4">4</button><span id="annotated-cell-9-21" class="code-annotation-target"><a href="#annotated-cell-9-21"></a>        <span class="bu">print</span>(<span class="ss">f"Brightness / Counter: </span><span class="sc">{</span>brightness<span class="sc">}</span><span class="ss"> / </span><span class="sc">{</span>new_count<span class="sc">}</span><span class="ss">"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-9" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-9" data-code-lines="4" data-code-annotation="1">Die neue Variable <code>brightness</code> zu Beginn mit 0 initialisieren. Die LED soll aus sein.</span>
+</dd>
+<dt data-target-cell="annotated-cell-9" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-9" data-code-lines="11" data-code-annotation="2">Hier ermitteln wir die Differenz zwischen dem aktuellen und dem letzten Zählerstand und speichern sie in der Variable <code>diff</code>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-9" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-9" data-code-lines="15" data-code-annotation="3">Wir passen die Helligkeit an, indem wir <code>brightness</code> um <code>diff</code> erhöhen oder verringern. Dabei stellen wir sicher, dass der Wert zwischen 0 und 255 bleibt.</span>
+</dd>
+<dt data-target-cell="annotated-cell-9" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-9" data-code-lines="21" data-code-annotation="4">Zur Überprüfung geben wir beide Variablen aus. Wenn wir den Wertebereich 0-255 verlassen gehen die Werte der beiden Variablen auseinander.</span>
+</dd>
+</dl>
+</div>
+</div>
+</section>
+<section id="konstanten" class="level3" data-number="2.8.3">
+<h3 data-number="2.8.3" class="anchored" data-anchor-id="konstanten"><span class="header-section-number">2.8.3</span> Konstanten</h3>
+<p>Das sieht schon sehr gut aus! Unser Dimmer ist fast fertig, die grundlegende Funktionalität läuft robust. Eine Kleinigkeit stört mich noch: der Dimmer reagiert nur sehr langsam und wir müssen scheinbar endlos drehen, um die LED auf die volle Helligkeit zu bekommen. Können wir das beschleunigen?</p>
+<div id="395e0335" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="annotated-cell-10"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-10-1"><a href="#annotated-cell-10-1"></a>knob.reset()</span>
+<span id="annotated-cell-10-2"><a href="#annotated-cell-10-2"></a>brightness <span class="op">=</span> <span class="dv">0</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="1">1</button><span id="annotated-cell-10-3" class="code-annotation-target"><a href="#annotated-cell-10-3"></a>STEP <span class="op">=</span> <span class="dv">10</span></span>
+<span id="annotated-cell-10-4"><a href="#annotated-cell-10-4"></a>led.set_rgb_value(brightness, brightness, brightness) </span>
+<span id="annotated-cell-10-5"><a href="#annotated-cell-10-5"></a></span>
+<span id="annotated-cell-10-6"><a href="#annotated-cell-10-6"></a>last_count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="annotated-cell-10-7"><a href="#annotated-cell-10-7"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="annotated-cell-10-8"><a href="#annotated-cell-10-8"></a>    new_count <span class="op">=</span> knob.get_count(reset<span class="op">=</span><span class="va">False</span>)</span>
+<span id="annotated-cell-10-9"><a href="#annotated-cell-10-9"></a></span>
+<span id="annotated-cell-10-10"><a href="#annotated-cell-10-10"></a>    <span class="cf">if</span> new_count <span class="op">!=</span> last_count:</span>
+<span id="annotated-cell-10-11"><a href="#annotated-cell-10-11"></a>        diff <span class="op">=</span> new_count <span class="op">-</span> last_count</span>
+<span id="annotated-cell-10-12"><a href="#annotated-cell-10-12"></a>        last_count <span class="op">=</span> new_count</span>
+<span id="annotated-cell-10-13"><a href="#annotated-cell-10-13"></a></span>
+<span id="annotated-cell-10-14"><a href="#annotated-cell-10-14"></a>        <span class="co"># Adjust brightness</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="2">2</button><span id="annotated-cell-10-15" class="code-annotation-target"><a href="#annotated-cell-10-15"></a>        brightness <span class="op">+=</span> diff <span class="op">*</span> STEP</span>
+<span id="annotated-cell-10-16"><a href="#annotated-cell-10-16"></a>        brightness <span class="op">=</span> <span class="bu">max</span>(<span class="dv">0</span>, <span class="bu">min</span>(<span class="dv">255</span>, brightness))</span>
+<span id="annotated-cell-10-17"><a href="#annotated-cell-10-17"></a></span>
+<span id="annotated-cell-10-18"><a href="#annotated-cell-10-18"></a>        <span class="co"># Set RGB values zu counter value</span></span>
+<span id="annotated-cell-10-19"><a href="#annotated-cell-10-19"></a>        led.set_rgb_value(brightness, brightness, brightness)</span>
+<span id="annotated-cell-10-20"><a href="#annotated-cell-10-20"></a></span>
+<span id="annotated-cell-10-21"><a href="#annotated-cell-10-21"></a>        <span class="bu">print</span>(<span class="ss">f"Brightness / Counter: </span><span class="sc">{</span>brightness<span class="sc">}</span><span class="ss"> / </span><span class="sc">{</span>new_count<span class="sc">}</span><span class="ss">"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-10" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-10" data-code-lines="3" data-code-annotation="1">Hier definieren wir eine Konstante <code>STEP</code> und weisen ihr den Wert 10 zu.</span>
+</dd>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-10" data-code-lines="15" data-code-annotation="2">Die Helligkeit wird nun um <code>diff * STEP</code> angepasst, was bedeutet, dass jede Drehung des Knopfes einen größeren Einfluss auf die Helligkeit hat.</span>
+</dd>
+</dl>
+</div>
+</div>
+</section>
+</section>
+<section id="buttons" class="level2" data-number="2.9">
+<h2 data-number="2.9" class="anchored" data-anchor-id="buttons"><span class="header-section-number">2.9</span> Buttons</h2>
+<p>Der Dreh*knopf (der Name gibt es schon her) hat neben dem Zähler noch eine Funktion, nämlich die eines einfachen Knopfes.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">

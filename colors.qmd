@@ -6,7 +6,7 @@ abstract-title: ""
 
 # Farben {#sec-colors}
 
-## Lernziele {.unnumbered}
+## Zusammenfassung {.unnumbered}
 
 Unsere wichtigsten Lernziele in diesem Kapitel sind:
 
