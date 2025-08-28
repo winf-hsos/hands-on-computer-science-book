@@ -32,7 +32,7 @@ Das erste Experiment in @sec-colors war schon ein ordentlicher Einstieg! In dies
 Einfaches Setup mit einem Mikrocontroller, der LED und einem Drehknopf.
 :::
 
-## Erste Schritte mit dem Drehknopf
+## Erste Schritte mit dem Drehknopf {#sec-numbers-first-steps}
 
 Wie bei der LED werfen wir zuerst einen Blick auf den neuen Drehknopf im Brick Viewer. Schließt dazu euren Master Brick per USB an, startet den Brick Viewer und klickt auf *Connect*. Im Setup-Tab sollte nun neben der LED auch der Rotary Encoder auftauchen. Denkt daran: Dort findet ihr auch die UID eurer Geräte – die braucht ihr gleich für euer Programm.
 
@@ -96,7 +96,7 @@ Zur Erinnerung: `while True` erzeugt eine Endlosschleife. Normalerweise wollen w
 
 Wenn ihr das Programm ausführt, werdet ihr direkt ein Problem erkennen. Die Schleife rennt förmlich und gibt nacheinander immer wieder den selben Wert aus. Nur wenn wir am Knopf drehen ändert sich der Wert, wird aber von der Schleife X-Male auf die Konsole geschrieben. Wie könnten wir das verbessern?
 
-## Kontrollstrukturen
+## Kontrollstrukturen {#sec-numbers-control-structures}
 
 Wie wäre es hiermit?
 
@@ -407,7 +407,19 @@ while True:
 
 Das sieht schon sehr gut aus! Unser Dimmer ist fast fertig, die grundlegende Funktionalität läuft robust. Eine Kleinigkeit stört mich noch: der Dimmer reagiert nur sehr langsam und wir müssen scheinbar endlos drehen, um die LED auf die volle Helligkeit zu bekommen. Können wir das beschleunigen?
 
+Das ist natürlich eine rhetorische Frage, in der Programmierung können wir so gut wie alles umsetzen. Und in diesem Fall ist es sogar recht einfach. Damit die LED schneller hell oder dunkel wird wenn wir am Drehknopf drehen, können wir die Anpassung der Helligkeit einfach verstärken. Momentan wird die Variable `brightness` einfach um die Differenz des Zählerstands erhöht oder verringert. Wir könnten stattdessen einen festen, höheren Schrittwert definieren, um die Helligkeit schneller zu ändern.
+
+Dazu definieren wir eine neue Variable, die eine Besonderheit hat. Wir geben ihr den Namen `STEP`, der nur aus Großbuchstaben besteht (Zeile 3). Gemäß der [Regeln für die Bennung von Variablen in Python](https://docs.python.org/3/reference/lexical_analysis.html#identifiers "Regeln für Variablennamen in Python") eigentlich nicht erlaubt. Und tatsächlich ist `STEP` genau genommen auch keine Variable, sondern eine **Konstante**\index{Konstante}.
+
+Eine Konstante unterscheidet sich dadurch, dass ihr Wert einmal festgelegt wird und sich danach nicht mehr ändert. In unserem Fall wollen wir, dass `STEP` immer den Wert 10 hat. Konstanten definieren wir typischerweise zu Beginn eines Python-Programms, damit man einen schnellen Überblick über alle definierten Konstanten und ihre Werte bekommen kann.
+
+Es ist wichtig zu verstehen, dass der fixe Wert einer Konstante sich nur auf die Ausführung des Programms bezieht. Zwischen mehreren Ausführen den gleichen Programms kann der Wert einer Konstante geändert werden. Zum Beispiel könnten wir als Hersteller des LED-Dimmers für eine neue Version entscheiden, dass diese sich noch schneller Dimmen lassen soll und wir erhöhen den Wert für `STEP` auf 20. Oder der Benutzer könnte diesen Wert über die Einstellung der hypothetischen Dimmer-App anpassen.
+
+Wenn wir wie in Zeile 15 gezeigt die Differenz des Zähler mit der Schrittgröße multiplizieren, können wir die Anpassung der Helligkeit verstärken.
+
 ```{python}
+#| lst-label: lst-dim-led
+#| lst-cap: Der fertige LED-Dimmer (ohne Boilerplate-Code)
 knob.reset()
 brightness = 0
 STEP = 10 # <1>
@@ -434,6 +446,49 @@ while True:
 1. Hier definieren wir eine Konstante `STEP` und weisen ihr den Wert 10 zu.
 2. Die Helligkeit wird nun um `diff * STEP` angepasst, was bedeutet, dass jede Drehung des Knopfes einen größeren Einfluss auf die Helligkeit hat.
 
+Mit dem LED-Dimmer haben wir die zentrale Funktion des Drehknopfes zu Genüge kennengelernt. Das Gerät hat aber nich eine andere Funktion.
+
 ## Buttons
 
-Der Dreh*knopf (der Name gibt es schon her) hat neben dem Zähler noch eine Funktion, nämlich die eines einfachen Knopfes.
+Neben dem Zähler besitzt der Dreh*knopf* (der Name gibt es schon her) noch eine Funktion, nämlich die eines einfachen Druckknopfes. Wir haben es weiter oben in @sec-numbers-first-steps mit dem Brick Viewer schon ausprobiert, der Drehknopf löst sich drücken und erzeugt eine haptische Rückmeldung, ein leichtes Knacken. Im Brick Viewer wurde der kleine Kreis auf der rechten Seite dann rot eingefärbt.
+
+Selbstverständlich können wir den Zustand des Buttons auch aus einem Programm heraus abfragen. Dazu bietet uns der Drehknopf eine Methode `is_pressed()` an:
+
+```{python}
+while True:
+    if knob.is_pressed():
+        print("Button pressed")
+    else:
+        print("Button not pressed")
+```
+
+Die Funktion liefert `True` zurück, wenn der Button gerade gedrückt ist, und ansonsten `False`. Das können wir wunderbar nutzen und darüber eine Bedingung formulieren, um entweder "Button pressed" oder "Button not pressed" aus der Konsole auszugeben. Ihr erinnert euch bestimmt an das `if`-Statement aus @sec-numbers-control-structures. Das ist genau was wir jetzt brauchen!
+
+
+```{python}
+button_pressed_before = False # <1>
+while True:
+
+    button_pressed_after = knob.is_pressed()
+    
+    if button_pressed_before != button_pressed_after: # <2>
+        print(f"Button state changed: {button_pressed_after}") # <3>
+    
+    button_pressed_before = button_pressed_after # <4>
+```
+
+1. Wir initialisieren eine Variable `button_pressed_before`, die den vorherigen Zustand des Buttons speichert. Am Anfang gehen wir  mal davon aus, dass er nicht gedrückt ist.
+2. Mit dem `if`-Statement überprüfen wir, ob sich der Zustand des Buttons geändert hat, indem wir den aktuellen Zustand `button_pressed_after` mit dem vorherigen Zustand `button_pressed_before` vergleichen.
+3. Wenn sich der Zustand geändert hat, geben wir eine entsprechende Information auf der Konsole aus.
+4. Am Ende der Schleife aktualisieren wir den vorherigen Zustand `button_pressed_before`, damit er den aktuellen Zustand für die nächste Iteration speichert.
+
+Das reicht fürs Erste, der Button kann tatsächlich nicht mehr als das. Reicht aber auch, damit können wir unseren Dimmer schon einen zusätzlichen Mehrwert verleihen. Schließlich kann unsere LED nicht nur weiß leuchten.
+
+## Stimmungslicht
+
+Wäre es nicht praktisch, wenn wir das Licht der LED nicht nur dimmen, sondern auch den Farbton verändern könnten? Weißes Licht ist am Abend bekanntlich nicht empfehlenswert, und grünes Licht soll beruhigend wirken.
+
+Lasst uns unseren Dimmer so erweitern, dass per Knopfdruck der Farbton gewechselt werden kann. Fürs Erst wollen wir die Farben weiß, gelb und grün anbieten. Das lässt sich später beliebig erweitern.
+
+Der Ausgangspunkt für unser dimmbares Stimmungslicht ist der Dimmer aus @lst-dim-led. Von hier aus fügen wir Schritt für Schritt die Logik für den Farbwechsel per Button ein.
+

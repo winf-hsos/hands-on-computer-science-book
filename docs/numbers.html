@@ -323,9 +323,9 @@ window.Quarto = {
   <ul>
   <li><a href="#zusammenfassung" id="toc-zusammenfassung" class="nav-link active" data-scroll-target="#zusammenfassung">Zusammenfassung</a></li>
   <li><a href="#experimentaufbau" id="toc-experimentaufbau" class="nav-link" data-scroll-target="#experimentaufbau">Experimentaufbau</a></li>
-  <li><a href="#erste-schritte-mit-dem-drehknopf" id="toc-erste-schritte-mit-dem-drehknopf" class="nav-link" data-scroll-target="#erste-schritte-mit-dem-drehknopf"><span class="header-section-number">2.1</span> Erste Schritte mit dem Drehknopf</a></li>
+  <li><a href="#sec-numbers-first-steps" id="toc-sec-numbers-first-steps" class="nav-link" data-scroll-target="#sec-numbers-first-steps"><span class="header-section-number">2.1</span> Erste Schritte mit dem Drehknopf</a></li>
   <li><a href="#hoch--und-runterzählen" id="toc-hoch--und-runterzählen" class="nav-link" data-scroll-target="#hoch--und-runterzählen"><span class="header-section-number">2.2</span> Hoch- und Runterzählen</a></li>
-  <li><a href="#kontrollstrukturen" id="toc-kontrollstrukturen" class="nav-link" data-scroll-target="#kontrollstrukturen"><span class="header-section-number">2.3</span> Kontrollstrukturen</a></li>
+  <li><a href="#sec-numbers-control-structures" id="toc-sec-numbers-control-structures" class="nav-link" data-scroll-target="#sec-numbers-control-structures"><span class="header-section-number">2.3</span> Kontrollstrukturen</a></li>
   <li><a href="#ein-led-dimmer-teil-1" id="toc-ein-led-dimmer-teil-1" class="nav-link" data-scroll-target="#ein-led-dimmer-teil-1"><span class="header-section-number">2.4</span> Ein LED-Dimmer (Teil 1)</a></li>
   <li><a href="#zahlensysteme" id="toc-zahlensysteme" class="nav-link" data-scroll-target="#zahlensysteme"><span class="header-section-number">2.5</span> Zahlensysteme</a>
   <ul class="collapse">
@@ -343,6 +343,7 @@ window.Quarto = {
   <li><a href="#konstanten" id="toc-konstanten" class="nav-link" data-scroll-target="#konstanten"><span class="header-section-number">2.8.3</span> Konstanten</a></li>
   </ul></li>
   <li><a href="#buttons" id="toc-buttons" class="nav-link" data-scroll-target="#buttons"><span class="header-section-number">2.9</span> Buttons</a></li>
+  <li><a href="#stimmungslicht" id="toc-stimmungslicht" class="nav-link" data-scroll-target="#stimmungslicht"><span class="header-section-number">2.10</span> Stimmungslicht</a></li>
   </ul>
 </nav>
     </div>
@@ -462,8 +463,8 @@ Abbildung&nbsp;2.1: Einfaches Setup mit einem Mikrocontroller, der LED und einem
 </figure>
 </div>
 </section>
-<section id="erste-schritte-mit-dem-drehknopf" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="erste-schritte-mit-dem-drehknopf"><span class="header-section-number">2.1</span> Erste Schritte mit dem Drehknopf</h2>
+<section id="sec-numbers-first-steps" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="sec-numbers-first-steps"><span class="header-section-number">2.1</span> Erste Schritte mit dem Drehknopf</h2>
 <p>Wie bei der LED werfen wir zuerst einen Blick auf den neuen Drehknopf im Brick Viewer. Schließt dazu euren Master Brick per USB an, startet den Brick Viewer und klickt auf <em>Connect</em>. Im Setup-Tab sollte nun neben der LED auch der Rotary Encoder auftauchen. Denkt daran: Dort findet ihr auch die UID eurer Geräte – die braucht ihr gleich für euer Programm.</p>
 <div id="fig-exp-2-brick-viewer-after-connect" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="brick-viewer-rotary">
 <figure class="quarto-float quarto-float-fig figure">
@@ -531,7 +532,7 @@ Abbildung&nbsp;2.4: Die gute alte Stereoanlage mit Drehknopf! Wer kennt sie nich
 </figure>
 </div>
 <p>Im Hintergrund verändert sich bei jeder Drehung der Wert, den der Knopf sendet – mal höher, mal niedriger, je nach Ausgangszustand. Im Brick Viewer habt ihr das schon gesehen. Probieren wir es jetzt in einem Programm aus: Der folgende Code verbindet sich mit dem Drehknopf, liest den aktuellen Wert und gibt ihn in der Konsole aus. Denkt daran, eure eigene UID einzutragen:</p>
-<div id="bebb09c7" class="cell" data-execution_count="1">
+<div id="6b1947b3" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
 <span id="annotated-cell-1-2"><a href="#annotated-cell-1-2"></a><span class="im">from</span> tinkerforge.bricklet_rotary_encoder_v2 <span class="im">import</span> BrickletRotaryEncoderV2</span>
 <span id="annotated-cell-1-3"><a href="#annotated-cell-1-3"></a></span>
@@ -555,7 +556,7 @@ Abbildung&nbsp;2.4: Die gute alte Stereoanlage mit Drehknopf! Wer kennt sie nich
 </div>
 <p>Die Ausgabe sollte mit dem Wert übereinstimmen, den ihr auch im Brick Viewer seht – kein Wunder, beide nutzen dieselbe Programmierschnittstelle. Damit habt ihr die erste Funktion des Drehknopfs erfolgreich aus Python getestet.</p>
 <p>Dreht ihr den Knopf und startet das Programm erneut, erscheint natürlich ein anderer Wert. Klar! Aber jedes Mal neu starten? Das geht besser. Die Lösung kennt ihr schon aus <a href="colors.html" class="quarto-xref"><span>Kapitel 1</span></a>: eine Schleife, die das Programm so lange wiederholt, bis wir es beenden:</p>
-<div id="e7f8338c" class="cell" data-execution_count="2">
+<div id="e3d50d70" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
 <span id="cb1-2"><a href="#cb1-2"></a>    count <span class="op">=</span> knob.get_count(reset<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb1-3"><a href="#cb1-3"></a>    <span class="bu">print</span>(count)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -563,10 +564,10 @@ Abbildung&nbsp;2.4: Die gute alte Stereoanlage mit Drehknopf! Wer kennt sie nich
 <p>Zur Erinnerung: <code>while True</code> erzeugt eine Endlosschleife. Normalerweise wollen wir so etwas vermeiden – außer, wir brauchen es genau dafür. Endlosschleifen sind praktisch, wenn wir kontinuierlich Daten lesen oder auf Ereignisse warten. Und keine Sorge: Mit Strg+C könnt ihr das Programm jederzeit beenden.</p>
 <p>Wenn ihr das Programm ausführt, werdet ihr direkt ein Problem erkennen. Die Schleife rennt förmlich und gibt nacheinander immer wieder den selben Wert aus. Nur wenn wir am Knopf drehen ändert sich der Wert, wird aber von der Schleife X-Male auf die Konsole geschrieben. Wie könnten wir das verbessern?</p>
 </section>
-<section id="kontrollstrukturen" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="kontrollstrukturen"><span class="header-section-number">2.3</span> Kontrollstrukturen</h2>
+<section id="sec-numbers-control-structures" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="sec-numbers-control-structures"><span class="header-section-number">2.3</span> Kontrollstrukturen</h2>
 <p>Wie wäre es hiermit?</p>
-<div id="fcb9927c" class="cell" data-execution_count="3">
+<div id="9439091d" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>last_count <span class="op">=</span> <span class="va">None</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="cf">while</span> <span class="va">True</span>:</span>
 <span id="cb2-3"><a href="#cb2-3"></a>    new_count <span class="op">=</span> knob.get_count(reset<span class="op">=</span><span class="va">False</span>)</span>
@@ -586,7 +587,7 @@ Abbildung&nbsp;2.4: Die gute alte Stereoanlage mit Drehknopf! Wer kennt sie nich
 <p>Wenden wir das Gelernte an und bauen einen praktischen LED-Dimmer. Dafür holen wir unsere LED aus Kapitel 1 mit dazu und kombinieren sie mit dem Drehknopf.</p>
 <p>Die Idee ist simpel: Der Zähler des Knopfs steuert die Helligkeit der LED. Dreht ihr nach rechts, wird sie heller, nach links, dunkler. Wie bei der Stereoanlage in <a href="#fig-hifi-system" class="quarto-xref">Abbildung&nbsp;<span>2.4</span></a>.</p>
 <p>Bevor wir uns an die eigentliche Anwendungslogik machen, brauchen wir Zugriff auf beide Geräte – LED und Drehknopf. Dazu erweitern wir den bekannten Boilerplate-Code und speichern die Geräte in eigenen Variablen:</p>
-<div id="fd2b8dec" class="cell" data-execution_count="4">
+<div id="68d5e0b5" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="im">from</span> tinkerforge.bricklet_rotary_encoder_v2 <span class="im">import</span> BrickletRotaryEncoderV2</span>
 <span id="cb3-3"><a href="#cb3-3"></a><span class="im">from</span> tinkerforge.bricklet_rgb_led_v2 <span class="im">import</span> BrickletRGBLEDV2</span>
@@ -600,7 +601,7 @@ Abbildung&nbsp;2.4: Die gute alte Stereoanlage mit Drehknopf! Wer kennt sie nich
 <p>Als Startpunkt nehmen wir den Code von oben, der den Zählerwert auf der Konsole ausgibt. Schließlich brauchen wir genau diese Information – wann sich der Wert ändert und wie er aktuell steht – auch, um die LED zu steuern.</p>
 <p>Damit wir die LED von aus bis volle Helligkeit dimmen können, legen wir uns zuerst auf eine Farbe fest. Ich bin zwar kein Fan von weißem LED-Licht, aber für dieses Kapitel ist es am einfachsten: voll aufgedreht leuchtet die LED weiß, ausgedreht ist sie schwarz – klar! Später kümmern wir uns darum, wie wir das Licht wärmer machen können.</p>
 <p>Erinnern wir uns also: Was bedeuten die Zustände An und Aus im RGB-Farbraum?</p>
-<div id="818f03c8" class="cell" data-execution_count="5">
+<div id="36486ee7" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># White</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>led.set_rgb_value(<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">255</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -609,7 +610,7 @@ Abbildung&nbsp;2.4: Die gute alte Stereoanlage mit Drehknopf! Wer kennt sie nich
 </div>
 <p>Damit haben wir die beiden Extremzustände festgelegt. Doch was passiert dazwischen, wenn die LED gedimmt ist? Ganz einfach: Wir lassen die drei RGB-Werte gemeinsam von 1 bis 254 hoch- oder runterlaufen. Höhere Werte ergeben ein helleres Weiß, niedrigere ein dunkleres.</p>
 <p>Setzen wir diese Erkenntnisse in Programmcode um und weisen den Zählerwert den RGB-Werten der LED zu. Spoiler-Alert: Das ist etwas naiv, aber lasst uns mal schauen, was passiert und wo möglicherweise Probleme auftreten:</p>
-<div id="924b6c6e" class="cell" data-execution_count="6">
+<div id="97fdccd2" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>knob.reset()</span>
 <span id="cb5-2"><a href="#cb5-2"></a>last_count <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb5-3"><a href="#cb5-3"></a></span>
@@ -919,7 +920,7 @@ Tabelle&nbsp;2.1: Verschiedene Mengeneinheiten für Bits und deren ungefähre En
 <section id="min-und-max" class="level3" data-number="2.8.1">
 <h3 data-number="2.8.1" class="anchored" data-anchor-id="min-und-max"><span class="header-section-number">2.8.1</span> <code>min()</code> und <code>max()</code></h3>
 <p>Was müssen wir also in unserem Programm verändern, jetzt da wir wissen, was das Problem zuvor war? Genau! Wir müssen sicherstellen, dass die Werte, die wir an die LED senden, im gültigen Bereich für ein Byte liegen. Und zwar zwischen 0 und 255.</p>
-<div id="9308e9b7" class="cell" data-execution_count="7">
+<div id="08175c65" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="annotated-cell-8"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-8-1"><a href="#annotated-cell-8-1"></a>knob.reset()</span>
 <span id="annotated-cell-8-2"><a href="#annotated-cell-8-2"></a>last_count <span class="op">=</span> <span class="dv">0</span></span>
 <span id="annotated-cell-8-3"><a href="#annotated-cell-8-3"></a></span>
@@ -957,7 +958,7 @@ Tabelle&nbsp;2.1: Verschiedene Mengeneinheiten für Bits und deren ungefähre En
 <p>Viel schöner wäre es es, wenn wir zwar endlos überdrehen könnten, aber mit der ersten Drehung in die andere Richtung die Helligkeit der LED sofort verringern. Ein einfacher Weg wäre, für den Zählerstand des Drehknopfes analog zu <code>last_count</code> nur Werte zwischen 0 und 255 zu erlauben. Dazu könnten wir den Zähler genau wie <code>last_count</code> manuell auf 0 oder 255 setzen, je nachdem ob wir größer 255 oder kleiner Null waren. Leider bietet der Drehknopf keine solche Funktion über seine Programmierschnittstelle an. Wir können den Wert zwar auslesen, aber nicht programmatisch verändern.</p>
 <p>Wir müssen also einen Workaround entwickeln. Eine Möglichkeit wäre, die Helligkeit unabhängig vom Zählerstand zu verwalten und dafür eine eigene Variable <code>brightness</code> einzuführen. Wir könnten den Wert von <code>brightness</code> dann erhöhen oder verringern, wenn wir eine Drehung in die eine oder andere Richtung erkannt haben.</p>
 <p>Um zu erkennen, ob und in welche Richtung der Drehknopf gedreht wurde, können wir die Differenz zwischen dem aktuellen und dem letzten Zählerstand betrachten. Sie gibt uns direkt Aufschluss: ist die Differenz positiv, wurde der Knopf nach oben gedreht, ist sie negativ, wurde er nach unten gedreht.</p>
-<div id="cff01a85" class="cell" data-execution_count="8">
+<div id="8da4ac13" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="annotated-cell-9"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-9-1"><a href="#annotated-cell-9-1"></a>knob.reset()</span>
 <span id="annotated-cell-9-2"><a href="#annotated-cell-9-2"></a>last_count <span class="op">=</span> <span class="dv">0</span></span>
 <span id="annotated-cell-9-3"><a href="#annotated-cell-9-3"></a></span>
@@ -1004,7 +1005,18 @@ Tabelle&nbsp;2.1: Verschiedene Mengeneinheiten für Bits und deren ungefähre En
 <section id="konstanten" class="level3" data-number="2.8.3">
 <h3 data-number="2.8.3" class="anchored" data-anchor-id="konstanten"><span class="header-section-number">2.8.3</span> Konstanten</h3>
 <p>Das sieht schon sehr gut aus! Unser Dimmer ist fast fertig, die grundlegende Funktionalität läuft robust. Eine Kleinigkeit stört mich noch: der Dimmer reagiert nur sehr langsam und wir müssen scheinbar endlos drehen, um die LED auf die volle Helligkeit zu bekommen. Können wir das beschleunigen?</p>
-<div id="395e0335" class="cell" data-execution_count="9">
+<p>Das ist natürlich eine rhetorische Frage, in der Programmierung können wir so gut wie alles umsetzen. Und in diesem Fall ist es sogar recht einfach. Damit die LED schneller hell oder dunkel wird wenn wir am Drehknopf drehen, können wir die Anpassung der Helligkeit einfach verstärken. Momentan wird die Variable <code>brightness</code> einfach um die Differenz des Zählerstands erhöht oder verringert. Wir könnten stattdessen einen festen, höheren Schrittwert definieren, um die Helligkeit schneller zu ändern.</p>
+<p>Dazu definieren wir eine neue Variable, die eine Besonderheit hat. Wir geben ihr den Namen <code>STEP</code>, der nur aus Großbuchstaben besteht (Zeile 3). Gemäß der <a href="https://docs.python.org/3/reference/lexical_analysis.html#identifiers" title="Regeln für Variablennamen in Python">Regeln für die Bennung von Variablen in Python</a> eigentlich nicht erlaubt. Und tatsächlich ist <code>STEP</code> genau genommen auch keine Variable, sondern eine <strong>Konstante</strong>.</p>
+<p>Eine Konstante unterscheidet sich dadurch, dass ihr Wert einmal festgelegt wird und sich danach nicht mehr ändert. In unserem Fall wollen wir, dass <code>STEP</code> immer den Wert 10 hat. Konstanten definieren wir typischerweise zu Beginn eines Python-Programms, damit man einen schnellen Überblick über alle definierten Konstanten und ihre Werte bekommen kann.</p>
+<p>Es ist wichtig zu verstehen, dass der fixe Wert einer Konstante sich nur auf die Ausführung des Programms bezieht. Zwischen mehreren Ausführen den gleichen Programms kann der Wert einer Konstante geändert werden. Zum Beispiel könnten wir als Hersteller des LED-Dimmers für eine neue Version entscheiden, dass diese sich noch schneller Dimmen lassen soll und wir erhöhen den Wert für <code>STEP</code> auf 20. Oder der Benutzer könnte diesen Wert über die Einstellung der hypothetischen Dimmer-App anpassen.</p>
+<p>Wenn wir wie in Zeile 15 gezeigt die Differenz des Zähler mit der Schrittgröße multiplizieren, können wir die Anpassung der Helligkeit verstärken.</p>
+<div id="0140cfc8" class="cell" data-execution_count="9">
+<div id="lst-dim-led" class="python cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-dim-led-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Listing&nbsp;2.1: Der fertige LED-Dimmer (ohne Boilerplate-Code)
+</figcaption>
+<div aria-describedby="lst-dim-led-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode cell-code" id="annotated-cell-10"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-10-1"><a href="#annotated-cell-10-1"></a>knob.reset()</span>
 <span id="annotated-cell-10-2"><a href="#annotated-cell-10-2"></a>brightness <span class="op">=</span> <span class="dv">0</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="1">1</button><span id="annotated-cell-10-3" class="code-annotation-target"><a href="#annotated-cell-10-3"></a>STEP <span class="op">=</span> <span class="dv">10</span></span>
@@ -1026,6 +1038,9 @@ Tabelle&nbsp;2.1: Verschiedene Mengeneinheiten für Bits und deren ungefähre En
 <span id="annotated-cell-10-19"><a href="#annotated-cell-10-19"></a>        led.set_rgb_value(brightness, brightness, brightness)</span>
 <span id="annotated-cell-10-20"><a href="#annotated-cell-10-20"></a></span>
 <span id="annotated-cell-10-21"><a href="#annotated-cell-10-21"></a>        <span class="bu">print</span>(<span class="ss">f"Brightness / Counter: </span><span class="sc">{</span>brightness<span class="sc">}</span><span class="ss"> / </span><span class="sc">{</span>new_count<span class="sc">}</span><span class="ss">"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</figure>
+</div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-10" data-target-annotation="1">1</dt>
@@ -1039,11 +1054,59 @@ Tabelle&nbsp;2.1: Verschiedene Mengeneinheiten für Bits und deren ungefähre En
 </dl>
 </div>
 </div>
+<p>Mit dem LED-Dimmer haben wir die zentrale Funktion des Drehknopfes zu Genüge kennengelernt. Das Gerät hat aber nich eine andere Funktion.</p>
 </section>
 </section>
 <section id="buttons" class="level2" data-number="2.9">
 <h2 data-number="2.9" class="anchored" data-anchor-id="buttons"><span class="header-section-number">2.9</span> Buttons</h2>
-<p>Der Dreh*knopf (der Name gibt es schon her) hat neben dem Zähler noch eine Funktion, nämlich die eines einfachen Knopfes.</p>
+<p>Neben dem Zähler besitzt der Dreh<em>knopf</em> (der Name gibt es schon her) noch eine Funktion, nämlich die eines einfachen Druckknopfes. Wir haben es weiter oben in <a href="#sec-numbers-first-steps" class="quarto-xref"><span>Abschnitt 2.1</span></a> mit dem Brick Viewer schon ausprobiert, der Drehknopf löst sich drücken und erzeugt eine haptische Rückmeldung, ein leichtes Knacken. Im Brick Viewer wurde der kleine Kreis auf der rechten Seite dann rot eingefärbt.</p>
+<p>Selbstverständlich können wir den Zustand des Buttons auch aus einem Programm heraus abfragen. Dazu bietet uns der Drehknopf eine Methode <code>is_pressed()</code> an:</p>
+<div id="dc7e2f57" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb7-2"><a href="#cb7-2"></a>    <span class="cf">if</span> knob.is_pressed():</span>
+<span id="cb7-3"><a href="#cb7-3"></a>        <span class="bu">print</span>(<span class="st">"Button pressed"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4"></a>    <span class="cf">else</span>:</span>
+<span id="cb7-5"><a href="#cb7-5"></a>        <span class="bu">print</span>(<span class="st">"Button not pressed"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Die Funktion liefert <code>True</code> zurück, wenn der Button gerade gedrückt ist, und ansonsten <code>False</code>. Das können wir wunderbar nutzen und darüber eine Bedingung formulieren, um entweder “Button pressed” oder “Button not pressed” aus der Konsole auszugeben. Ihr erinnert euch bestimmt an das <code>if</code>-Statement aus <a href="#sec-numbers-control-structures" class="quarto-xref"><span>Abschnitt 2.3</span></a>. Das ist genau was wir jetzt brauchen!</p>
+<div id="39c01f4b" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="annotated-cell-12"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><button class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="1">1</button><span id="annotated-cell-12-1" class="code-annotation-target"><a href="#annotated-cell-12-1"></a>button_pressed_before <span class="op">=</span> <span class="va">False</span></span>
+<span id="annotated-cell-12-2"><a href="#annotated-cell-12-2"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="annotated-cell-12-3"><a href="#annotated-cell-12-3"></a></span>
+<span id="annotated-cell-12-4"><a href="#annotated-cell-12-4"></a>    button_pressed_after <span class="op">=</span> knob.is_pressed()</span>
+<span id="annotated-cell-12-5"><a href="#annotated-cell-12-5"></a>    </span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="2">2</button><span id="annotated-cell-12-6" class="code-annotation-target"><a href="#annotated-cell-12-6"></a>    <span class="cf">if</span> button_pressed_before <span class="op">!=</span> button_pressed_after:</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="3">3</button><span id="annotated-cell-12-7" class="code-annotation-target"><a href="#annotated-cell-12-7"></a>        <span class="bu">print</span>(<span class="ss">f"Button state changed: </span><span class="sc">{</span>button_pressed_after<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="annotated-cell-12-8"><a href="#annotated-cell-12-8"></a>    </span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="4">4</button><span id="annotated-cell-12-9" class="code-annotation-target"><a href="#annotated-cell-12-9"></a>    button_pressed_before <span class="op">=</span> button_pressed_after</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-12" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-12" data-code-lines="1" data-code-annotation="1">Wir initialisieren eine Variable <code>button_pressed_before</code>, die den vorherigen Zustand des Buttons speichert. Am Anfang gehen wir mal davon aus, dass er nicht gedrückt ist.</span>
+</dd>
+<dt data-target-cell="annotated-cell-12" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-12" data-code-lines="6" data-code-annotation="2">Mit dem <code>if</code>-Statement überprüfen wir, ob sich der Zustand des Buttons geändert hat, indem wir den aktuellen Zustand <code>button_pressed_after</code> mit dem vorherigen Zustand <code>button_pressed_before</code> vergleichen.</span>
+</dd>
+<dt data-target-cell="annotated-cell-12" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-12" data-code-lines="7" data-code-annotation="3">Wenn sich der Zustand geändert hat, geben wir eine entsprechende Information auf der Konsole aus.</span>
+</dd>
+<dt data-target-cell="annotated-cell-12" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-12" data-code-lines="9" data-code-annotation="4">Am Ende der Schleife aktualisieren wir den vorherigen Zustand <code>button_pressed_before</code>, damit er den aktuellen Zustand für die nächste Iteration speichert.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Das reicht fürs Erste, der Button kann tatsächlich nicht mehr als das. Reicht aber auch, damit können wir unseren Dimmer schon einen zusätzlichen Mehrwert verleihen. Schließlich kann unsere LED nicht nur weiß leuchten.</p>
+</section>
+<section id="stimmungslicht" class="level2" data-number="2.10">
+<h2 data-number="2.10" class="anchored" data-anchor-id="stimmungslicht"><span class="header-section-number">2.10</span> Stimmungslicht</h2>
+<p>Wäre es nicht praktisch, wenn wir das Licht der LED nicht nur dimmen, sondern auch den Farbton verändern könnten? Weißes Licht ist am Abend bekanntlich nicht empfehlenswert, und grünes Licht soll beruhigend wirken.</p>
+<p>Lasst uns unseren Dimmer so erweitern, dass per Knopfdruck der Farbton gewechselt werden kann. Fürs Erst wollen wir die Farben weiß, gelb und grün anbieten. Das lässt sich später beliebig erweitern.</p>
+<p>Der Ausgangspunkt für unser dimmbares Stimmungslicht ist der Dimmer aus <a href="#lst-dim-led" class="quarto-xref">Listing&nbsp;<span>2.1</span></a>. Von hier aus fügen wir Schritt für Schritt die Logik für den Farbwechsel per Button ein.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
