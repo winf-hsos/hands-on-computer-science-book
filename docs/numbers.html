@@ -329,21 +329,27 @@ window.Quarto = {
   <li><a href="#ein-led-dimmer-teil-1" id="toc-ein-led-dimmer-teil-1" class="nav-link" data-scroll-target="#ein-led-dimmer-teil-1"><span class="header-section-number">2.4</span> Ein LED-Dimmer (Teil 1)</a></li>
   <li><a href="#zahlensysteme" id="toc-zahlensysteme" class="nav-link" data-scroll-target="#zahlensysteme"><span class="header-section-number">2.5</span> Zahlensysteme</a>
   <ul class="collapse">
-  <li><a href="#unser-dezimalsytem" id="toc-unser-dezimalsytem" class="nav-link" data-scroll-target="#unser-dezimalsytem"><span class="header-section-number">2.5.1</span> Unser Dezimalsytem</a></li>
+  <li><a href="#unser-dezimalsystem" id="toc-unser-dezimalsystem" class="nav-link" data-scroll-target="#unser-dezimalsystem"><span class="header-section-number">2.5.1</span> Unser Dezimalsystem</a></li>
   <li><a href="#andere-zahlensysteme" id="toc-andere-zahlensysteme" class="nav-link" data-scroll-target="#andere-zahlensysteme"><span class="header-section-number">2.5.2</span> Andere Zahlensysteme</a></li>
   <li><a href="#das-oktalsystem" id="toc-das-oktalsystem" class="nav-link" data-scroll-target="#das-oktalsystem"><span class="header-section-number">2.5.3</span> Das Oktalsystem</a></li>
   <li><a href="#das-binärsystem" id="toc-das-binärsystem" class="nav-link" data-scroll-target="#das-binärsystem"><span class="header-section-number">2.5.4</span> Das Binärsystem</a></li>
   </ul></li>
   <li><a href="#bits-und-bytes" id="toc-bits-und-bytes" class="nav-link" data-scroll-target="#bits-und-bytes"><span class="header-section-number">2.6</span> Bits und Bytes</a></li>
   <li><a href="#kilo-mega-giga" id="toc-kilo-mega-giga" class="nav-link" data-scroll-target="#kilo-mega-giga"><span class="header-section-number">2.7</span> Kilo, Mega, Giga</a></li>
-  <li><a href="#ein-led-dimmer-teil-2" id="toc-ein-led-dimmer-teil-2" class="nav-link" data-scroll-target="#ein-led-dimmer-teil-2"><span class="header-section-number">2.8</span> Ein LED-Dimmer (Teil 2)</a>
+  <li><a href="#sec-led-dimmer-part-2" id="toc-sec-led-dimmer-part-2" class="nav-link" data-scroll-target="#sec-led-dimmer-part-2"><span class="header-section-number">2.8</span> Ein LED-Dimmer (Teil 2)</a>
   <ul class="collapse">
   <li><a href="#min-und-max" id="toc-min-und-max" class="nav-link" data-scroll-target="#min-und-max"><span class="header-section-number">2.8.1</span> <code>min()</code> und <code>max()</code></a></li>
   <li><a href="#helligkeit-entkoppeln" id="toc-helligkeit-entkoppeln" class="nav-link" data-scroll-target="#helligkeit-entkoppeln"><span class="header-section-number">2.8.2</span> Helligkeit entkoppeln</a></li>
   <li><a href="#konstanten" id="toc-konstanten" class="nav-link" data-scroll-target="#konstanten"><span class="header-section-number">2.8.3</span> Konstanten</a></li>
   </ul></li>
   <li><a href="#buttons" id="toc-buttons" class="nav-link" data-scroll-target="#buttons"><span class="header-section-number">2.9</span> Buttons</a></li>
-  <li><a href="#stimmungslicht" id="toc-stimmungslicht" class="nav-link" data-scroll-target="#stimmungslicht"><span class="header-section-number">2.10</span> Stimmungslicht</a></li>
+  <li><a href="#stimmungslicht" id="toc-stimmungslicht" class="nav-link" data-scroll-target="#stimmungslicht"><span class="header-section-number">2.10</span> Stimmungslicht</a>
+  <ul class="collapse">
+  <li><a href="#die-farbe-per-variable-steuern" id="toc-die-farbe-per-variable-steuern" class="nav-link" data-scroll-target="#die-farbe-per-variable-steuern"><span class="header-section-number">2.10.1</span> Die Farbe per Variable steuern</a></li>
+  <li><a href="#die-farbe-per-knopfdruck-ändern" id="toc-die-farbe-per-knopfdruck-ändern" class="nav-link" data-scroll-target="#die-farbe-per-knopfdruck-ändern"><span class="header-section-number">2.10.2</span> Die Farbe per Knopfdruck ändern</a></li>
+  </ul></li>
+  <li><a href="#dont-repeat-yourself" id="toc-dont-repeat-yourself" class="nav-link" data-scroll-target="#dont-repeat-yourself"><span class="header-section-number">2.11</span> Don’t Repeat Yourself</a></li>
+  <li><a href="#funktionen" id="toc-funktionen" class="nav-link" data-scroll-target="#funktionen"><span class="header-section-number">2.12</span> Funktionen</a></li>
   </ul>
 </nav>
     </div>
@@ -367,7 +373,7 @@ window.Quarto = {
 <div>
   <div class="abstract">
     <div class="block-title"></div>
-    <p>Unser Regenbogen aus dem ersten Kapitel war nur der Anfang. Doch wie speichert der Computer eigentlich die RGB-Werte für all diese Farben? Das führt uns zum Binärsystem: Mit nur Einsen und Nullen und in kleinen Päckchen, den Bytes – kann er jeden Farbton unseres Regenbogens abbilden. Und noch viel mehr.</p>
+    <p>Unser Regenbogen aus dem ersten Kapitel war nur der Anfang. Doch wie speichert der Computer eigentlich die RGB-Werte für all diese Farben? Das führt uns zum Binärsystem: Mit nur Einsen und Nullen, verpackt in kleinen Päckchen – den Bytes –, kann er jeden Farbton unseres Regenbogens abbilden. Und noch viel mehr.</p>
   </div>
 </div>
 
@@ -379,14 +385,15 @@ window.Quarto = {
 <h2 class="unnumbered anchored" data-anchor-id="zusammenfassung">Zusammenfassung</h2>
 <p>Unsere wichtigsten Lernziele in diesem Kapitel sind:</p>
 <ul>
-<li>Wir lernen Kontrollstrukturen kennen, mit denen wir unsere Programm steuern können.</li>
+<li>Wir lernen Kontrollstrukturen kennen, mit denen wir unser Programm steuern können.</li>
 <li>Wir verstehen das Binärsystem und wissen, wie der Computer Zahlen speichert.</li>
-<li>Wir führen das Byte als zentrale Einheit für Informationen in Computern ein.</li>
+<li>Wir führen das Byte als zentrale Informationseinheit im Computer ein.</li>
+<li>Wir wissen, wie wir mithilfe von Funktionen besseren Code schreiben.</li>
 </ul>
 </section>
 <section id="experimentaufbau" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="experimentaufbau">Experimentaufbau</h2>
-<p>Das erste Experiment in <a href="colors.html" class="quarto-xref"><span>Kapitel 1</span></a> war schon ein ordentlicher Einstieg! In diesem Kapitel legen wir noch eine Schippe drauf: Unsere Hardware bekommt ein neues Teil – einen Drehknopf (<a href="https://www.tinkerforge.com/en/doc/Hardware/Bricklets/Rotary_Encoder_V2.html">Rotary Encoder Bricklet 2.0</a>). Den schraubt ihr einfach neben die LED, wie in <a href="#fig-setup-rgb-led-rotary-encoder" class="quarto-xref">Abbildung&nbsp;<span>2.1</span></a> gezeigt.</p>
+<p>Das erste Experiment in <a href="colors.html" class="quarto-xref"><span>Kapitel 1</span></a> war ein guter Einstieg! In diesem Kapitel legen wir noch eine Schippe drauf: Unsere Hardware bekommt ein neues Bauteil – einen Drehknopf (<a href="https://www.tinkerforge.com/en/doc/Hardware/Bricklets/Rotary_Encoder_V2.html">Rotary Encoder Bricklet 2.0</a>). Das montiert ihr einfach neben der LED, wie in <a href="#fig-setup-rgb-led-rotary-encoder" class="quarto-xref">Abbildung&nbsp;<span>2.1</span></a> gezeigt.</p>
 <div id="fig-setup-rgb-led-rotary-encoder" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-setup-rgb-led-rotary-encoder-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -458,14 +465,14 @@ window.Quarto = {
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-setup-rgb-led-rotary-encoder-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;2.1: Einfaches Setup mit einem Mikrocontroller, der LED und einem Drehknopf.
+Abbildung&nbsp;2.1: Einfaches Setup mit einem Mikrocontroller, LED und einem Drehknopf.
 </figcaption>
 </figure>
 </div>
 </section>
 <section id="sec-numbers-first-steps" class="level2" data-number="2.1">
 <h2 data-number="2.1" class="anchored" data-anchor-id="sec-numbers-first-steps"><span class="header-section-number">2.1</span> Erste Schritte mit dem Drehknopf</h2>
-<p>Wie bei der LED werfen wir zuerst einen Blick auf den neuen Drehknopf im Brick Viewer. Schließt dazu euren Master Brick per USB an, startet den Brick Viewer und klickt auf <em>Connect</em>. Im Setup-Tab sollte nun neben der LED auch der Rotary Encoder auftauchen. Denkt daran: Dort findet ihr auch die UID eurer Geräte – die braucht ihr gleich für euer Programm.</p>
+<p>Wie bei der LED werfen wir zuerst einen Blick auf den neuen Drehknopf im Brick Viewer. Schließt dazu euren Master Brick per USB an, startet den Brick Viewer und klickt auf Connect. Im Setup-Tab sollte nun neben der LED auch der Rotary Encoder auftauchen. Denkt daran: Dort findet ihr auch die UID eurer Geräte – die braucht ihr gleich für euer Programm.</p>
 <div id="fig-exp-2-brick-viewer-after-connect" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="brick-viewer-rotary">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-exp-2-brick-viewer-after-connect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -476,9 +483,9 @@ Abbildung&nbsp;2.2: Der Brick Viewer nach dem Connect.
 </figcaption>
 </figure>
 </div>
-<p>Wechselt nun in den Tab für den Drehknopf, wo ihr ihn direkt testen könnt: Ihr seht den aktuellen Zählwert, der kann positiv oder negativ sein, je nachdem, wie oft und in welche Richtung ihr gedreht habt. Daneben zeigt ein Diagramm die zeitliche Entwicklung.</p>
+<p>Wechselt nun in den Tab für den Drehknopf, wo ihr ihn direkt testen könnt: Ihr seht den aktuellen Zählwert. Der kann positiv oder negativ sein – je nachdem, wie oft und in welche Richtung ihr gedreht habt. Daneben zeigt ein Diagramm die zeitliche Entwicklung.</p>
 <p>Doch der Knopf kann mehr als nur zählen: Ihr könnt ihn auch drücken. Achtet mal auf den kleinen Kreis im Brick Viewer. Wird er gedrückt, leuchtet er rot. Noch löst das Drücken keine Aktion aus, aber wir überlegen später, welche Funktion wir damit verbinden wollen.</p>
-<p>Und zuletzt: Der Button Reset Count. Damit setzt ihr den Zähler zurück, eine praktische Funktion, die wir später ebenfalls ins Programm einbauen können.</p>
+<p>Und zuletzt: der Button Reset Count. Damit setzt ihr den Zähler zurück – eine praktische Funktion, die wir später ebenfalls ins Programm einbauen können.</p>
 <div id="fig-brick-viewer-rotary-encoder" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-brick-viewer-rotary-encoder-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -495,10 +502,10 @@ Abbildung&nbsp;2.2: Der Brick Viewer nach dem Connect.
 <div id="fig-brick-viewer-rotary-encoder-pressed" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="brick-viewer-rotary">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-brick-viewer-rotary-encoder-pressed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="images/brick_viewer_rotary_encoder_pressed.png" class="lightbox" data-gallery="brick-viewer-rotary" title="Abbildung&nbsp;2.3&nbsp;(a): Der Button wir rot, wenn er gedrückt ist."><img src="images/brick_viewer_rotary_encoder_pressed.png" class="img-fluid figure-img" data-ref-parent="fig-brick-viewer-rotary-encoder"></a>
+<a href="images/brick_viewer_rotary_encoder_pressed.png" class="lightbox" data-gallery="brick-viewer-rotary" title="Abbildung&nbsp;2.3&nbsp;(a): Der Button wird rot, wenn er gedrückt ist."><img src="images/brick_viewer_rotary_encoder_pressed.png" class="img-fluid figure-img" data-ref-parent="fig-brick-viewer-rotary-encoder"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-brick-viewer-rotary-encoder-pressed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(a) Der Button wir rot, wenn er gedrückt ist.
+(a) Der Button wird rot, wenn er gedrückt ist.
 </figcaption>
 </figure>
 </div>
@@ -532,7 +539,7 @@ Abbildung&nbsp;2.4: Die gute alte Stereoanlage mit Drehknopf! Wer kennt sie nich
 </figure>
 </div>
 <p>Im Hintergrund verändert sich bei jeder Drehung der Wert, den der Knopf sendet – mal höher, mal niedriger, je nach Ausgangszustand. Im Brick Viewer habt ihr das schon gesehen. Probieren wir es jetzt in einem Programm aus: Der folgende Code verbindet sich mit dem Drehknopf, liest den aktuellen Wert und gibt ihn in der Konsole aus. Denkt daran, eure eigene UID einzutragen:</p>
-<div id="6b1947b3" class="cell" data-execution_count="1">
+<div id="16e31416" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
 <span id="annotated-cell-1-2"><a href="#annotated-cell-1-2"></a><span class="im">from</span> tinkerforge.bricklet_rotary_encoder_v2 <span class="im">import</span> BrickletRotaryEncoderV2</span>
 <span id="annotated-cell-1-3"><a href="#annotated-cell-1-3"></a></span>
@@ -556,18 +563,18 @@ Abbildung&nbsp;2.4: Die gute alte Stereoanlage mit Drehknopf! Wer kennt sie nich
 </div>
 <p>Die Ausgabe sollte mit dem Wert übereinstimmen, den ihr auch im Brick Viewer seht – kein Wunder, beide nutzen dieselbe Programmierschnittstelle. Damit habt ihr die erste Funktion des Drehknopfs erfolgreich aus Python getestet.</p>
 <p>Dreht ihr den Knopf und startet das Programm erneut, erscheint natürlich ein anderer Wert. Klar! Aber jedes Mal neu starten? Das geht besser. Die Lösung kennt ihr schon aus <a href="colors.html" class="quarto-xref"><span>Kapitel 1</span></a>: eine Schleife, die das Programm so lange wiederholt, bis wir es beenden:</p>
-<div id="e3d50d70" class="cell" data-execution_count="2">
+<div id="2518194e" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
 <span id="cb1-2"><a href="#cb1-2"></a>    count <span class="op">=</span> knob.get_count(reset<span class="op">=</span><span class="va">False</span>)</span>
 <span id="cb1-3"><a href="#cb1-3"></a>    <span class="bu">print</span>(count)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Zur Erinnerung: <code>while True</code> erzeugt eine Endlosschleife. Normalerweise wollen wir so etwas vermeiden – außer, wir brauchen es genau dafür. Endlosschleifen sind praktisch, wenn wir kontinuierlich Daten lesen oder auf Ereignisse warten. Und keine Sorge: Mit Strg+C könnt ihr das Programm jederzeit beenden.</p>
-<p>Wenn ihr das Programm ausführt, werdet ihr direkt ein Problem erkennen. Die Schleife rennt förmlich und gibt nacheinander immer wieder den selben Wert aus. Nur wenn wir am Knopf drehen ändert sich der Wert, wird aber von der Schleife X-Male auf die Konsole geschrieben. Wie könnten wir das verbessern?</p>
+<p>Wenn ihr das Programm ausführt, werdet ihr direkt ein Problem erkennen. Die Schleife rennt förmlich und gibt nacheinander immer wieder denselben Wert aus. Nur wenn wir am Knopf drehen, ändert sich der Wert – wird aber von der Schleife x-mal auf die Konsole geschrieben. Wie könnten wir das verbessern?</p>
 </section>
 <section id="sec-numbers-control-structures" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="sec-numbers-control-structures"><span class="header-section-number">2.3</span> Kontrollstrukturen</h2>
 <p>Wie wäre es hiermit?</p>
-<div id="9439091d" class="cell" data-execution_count="3">
+<div id="41b8f671" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>last_count <span class="op">=</span> <span class="va">None</span></span>
 <span id="cb2-2"><a href="#cb2-2"></a><span class="cf">while</span> <span class="va">True</span>:</span>
 <span id="cb2-3"><a href="#cb2-3"></a>    new_count <span class="op">=</span> knob.get_count(reset<span class="op">=</span><span class="va">False</span>)</span>
@@ -576,18 +583,18 @@ Abbildung&nbsp;2.4: Die gute alte Stereoanlage mit Drehknopf! Wer kennt sie nich
 <span id="cb2-6"><a href="#cb2-6"></a>        last_count <span class="op">=</span> new_count</span>
 <span id="cb2-7"><a href="#cb2-7"></a>        <span class="bu">print</span>(last_count)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Gehen wir durch, was hier passiert: Zuerst setzen weisen wir der Variable <code>last_count</code> den Wert <code>None</code> zu, und zwar vor dem ersten Schleifendurchlauf. Anschließend wird in der Schleife in jedem Durchlauf der aktuelle Zählerwert ausgelesen und auf der zweiten Variable <code>new_count</code> gespeichert. Danach prüfen wir, ob sich der neue Wert im Vergleich zum alten Wert verändert hat. Da auf dem alten Wert <code>last_count</code> im ersten Durchlauf <code>None</code> ist, wird die Bedingung in Zeile 5 im ersten Durchlauf immer <code>True</code> sein. Somit geben wir den Wert zu Beginn auf jeden Fall aus, was im Sinne der Anwendung ist.</p>
-<p>Anschließend wird in den darauffolgenden Schleifendurchläufen aber nur etwas ausgegeben, wenn der Wert sich verändert hat, also der Benutzer tatsächlich am Drehknopf gedreht hat. Ansonsten bleibt die Ausgabe unverändert.</p>
-<p>Die Prüfung, ob der aktuelle Wert, den wir auf der zweiten Variable <code>new_count</code> speichern, sich vom alten Wert unterscheidet, erfolgt in Zeile 5. Hier lernen wir auch neues Konzept der Programmierung kennen, die Kontrollstruktur mit <code>if</code>, gefolgt von einer Bedingung.</p>
-<p>Neu ist hier die Kontrollstruktur <code>if</code>. Sie prüft eine Bedingung, die, wie ihr schon aus <a href="colors.html" class="quarto-xref"><span>Kapitel 1</span></a> kennt, nur <code>True</code> oder <code>False</code> sein kann. Ist sie wahr (<code>True</code>), läuft der eingerückte Code darunter. Ist sie falsch (<code>False</code>), passiert nichts.</p>
-<p>Übertragen auf unser Programm heißt das: <code>print(count)</code> läuft nur dann, wenn sich der Wert tatsächlich verändert hat. In diesem Fall merken wir uns den neuen Wert und aktualisieren count. Beim nächsten Schleifendurchlauf prüfen wir wieder, ob sich etwas getan hat. Meistens ist das nicht so – und genau deshalb sehen wir nur dann eine Ausgabe, wenn wir wirklich am Knopf drehen. Ziemlich effizient, oder?</p>
+<p>Gehen wir durch, was hier passiert: Zuerst weisen wir der Variable <code>last_count</code> vor dem ersten Schleifendurchlauf den Wert <code>None</code> zu. Anschließend wird in jedem Durchlauf der aktuelle Zählerstand ausgelesen und in der Variable <code>new_count</code> gespeichert. Danach prüfen wir, ob sich der neue Wert im Vergleich zum alten unterscheidet. Da <code>last_count</code> im ersten Durchlauf <code>None</code> ist, wird die Bedingung in Zeile 5 beim Start immer <code>True</code> sein. Somit geben wir den Wert zu Beginn auf jeden Fall aus – genau so, wie es für die Anwendung sinnvoll ist.</p>
+<p>In den folgenden Schleifendurchläufen wird nur dann etwas ausgegeben, wenn sich der Wert verändert hat, ihr also tatsächlich am Drehknopf gedreht habt. Ansonsten bleibt die Ausgabe unverändert.</p>
+<p>Die Prüfung, ob der aktuelle Wert (gespeichert in <code>new_count</code>) sich vom alten Wert unterscheidet, erfolgt in Zeile 5. Hier lernen wir auch ein neues Konzept der Programmierung kennen: die Kontrollstruktur <code>if</code>, gefolgt von einer Bedingung.</p>
+<p>Neu ist hier die Kontrollstruktur <code>if</code>. Sie prüft eine Bedingung, die – wie ihr schon aus <a href="colors.html" class="quarto-xref"><span>Kapitel 1</span></a> kennt – nur <code>True</code> oder <code>False</code> sein kann. Ist sie wahr (<code>True</code>), läuft der eingerückte Code darunter. Ist sie falsch (<code>False</code>), passiert nichts.</p>
+<p>Übertragen auf unser Programm heißt das: <code>print(last_count)</code> läuft nur dann, wenn sich der Wert tatsächlich verändert hat. In diesem Fall merken wir uns den neuen Wert und aktualisieren <code>last_count</code>. Beim nächsten Schleifendurchlauf prüfen wir wieder, ob sich etwas getan hat. Meistens ist das nicht so – und genau deshalb sehen wir nur dann eine Ausgabe, wenn wir wirklich am Knopf drehen. Ziemlich effizient, oder?</p>
 </section>
 <section id="ein-led-dimmer-teil-1" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="ein-led-dimmer-teil-1"><span class="header-section-number">2.4</span> Ein LED-Dimmer (Teil 1)</h2>
 <p>Wenden wir das Gelernte an und bauen einen praktischen LED-Dimmer. Dafür holen wir unsere LED aus Kapitel 1 mit dazu und kombinieren sie mit dem Drehknopf.</p>
 <p>Die Idee ist simpel: Der Zähler des Knopfs steuert die Helligkeit der LED. Dreht ihr nach rechts, wird sie heller, nach links, dunkler. Wie bei der Stereoanlage in <a href="#fig-hifi-system" class="quarto-xref">Abbildung&nbsp;<span>2.4</span></a>.</p>
 <p>Bevor wir uns an die eigentliche Anwendungslogik machen, brauchen wir Zugriff auf beide Geräte – LED und Drehknopf. Dazu erweitern wir den bekannten Boilerplate-Code und speichern die Geräte in eigenen Variablen:</p>
-<div id="68d5e0b5" class="cell" data-execution_count="4">
+<div id="c435597d" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="im">from</span> tinkerforge.bricklet_rotary_encoder_v2 <span class="im">import</span> BrickletRotaryEncoderV2</span>
 <span id="cb3-3"><a href="#cb3-3"></a><span class="im">from</span> tinkerforge.bricklet_rgb_led_v2 <span class="im">import</span> BrickletRGBLEDV2</span>
@@ -601,7 +608,7 @@ Abbildung&nbsp;2.4: Die gute alte Stereoanlage mit Drehknopf! Wer kennt sie nich
 <p>Als Startpunkt nehmen wir den Code von oben, der den Zählerwert auf der Konsole ausgibt. Schließlich brauchen wir genau diese Information – wann sich der Wert ändert und wie er aktuell steht – auch, um die LED zu steuern.</p>
 <p>Damit wir die LED von aus bis volle Helligkeit dimmen können, legen wir uns zuerst auf eine Farbe fest. Ich bin zwar kein Fan von weißem LED-Licht, aber für dieses Kapitel ist es am einfachsten: voll aufgedreht leuchtet die LED weiß, ausgedreht ist sie schwarz – klar! Später kümmern wir uns darum, wie wir das Licht wärmer machen können.</p>
 <p>Erinnern wir uns also: Was bedeuten die Zustände An und Aus im RGB-Farbraum?</p>
-<div id="36486ee7" class="cell" data-execution_count="5">
+<div id="1091482e" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># White</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>led.set_rgb_value(<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">255</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -610,7 +617,7 @@ Abbildung&nbsp;2.4: Die gute alte Stereoanlage mit Drehknopf! Wer kennt sie nich
 </div>
 <p>Damit haben wir die beiden Extremzustände festgelegt. Doch was passiert dazwischen, wenn die LED gedimmt ist? Ganz einfach: Wir lassen die drei RGB-Werte gemeinsam von 1 bis 254 hoch- oder runterlaufen. Höhere Werte ergeben ein helleres Weiß, niedrigere ein dunkleres.</p>
 <p>Setzen wir diese Erkenntnisse in Programmcode um und weisen den Zählerwert den RGB-Werten der LED zu. Spoiler-Alert: Das ist etwas naiv, aber lasst uns mal schauen, was passiert und wo möglicherweise Probleme auftreten:</p>
-<div id="97fdccd2" class="cell" data-execution_count="6">
+<div id="9233aa56" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>knob.reset()</span>
 <span id="cb5-2"><a href="#cb5-2"></a>last_count <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb5-3"><a href="#cb5-3"></a></span>
@@ -621,24 +628,24 @@ Abbildung&nbsp;2.4: Die gute alte Stereoanlage mit Drehknopf! Wer kennt sie nich
 <span id="cb5-8"><a href="#cb5-8"></a>        last_count <span class="op">=</span> new_count</span>
 <span id="cb5-9"><a href="#cb5-9"></a>        <span class="bu">print</span>(last_count)</span>
 <span id="cb5-10"><a href="#cb5-10"></a></span>
-<span id="cb5-11"><a href="#cb5-11"></a>        <span class="co"># Set RGB values zu counter value</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a>        <span class="co"># Setze RGB-Werte auf den Zählerwert</span></span>
 <span id="cb5-12"><a href="#cb5-12"></a>        led.set_rgb_value(last_count, last_count, last_count)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Lasst mal laufen und dreht voll auf oder runter! Beobachtet dabei den Wert für <code>last_count</code>. Was passiert, wenn er kleiner als Null wird? Oder wenn er größer als 255 wird? Bumm! Das Programm stürzt ab!</p>
+<p>Lasst es mal laufen und dreht voll auf oder runter! Beobachtet dabei den Wert für <code>last_count</code>. Was passiert, wenn er kleiner als Null wird? Oder wenn er größer als 255 wird? Bumm! Das Programm stürzt ab!</p>
 <p>Warum? Auf der Kommandzeile bekommen wir eine lange Fehlermeldung mit der folgenden Aussage ganz am Ende:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode numberSource {bash} number-lines code-with-copy"><code class="sourceCode"><span id="cb6-1"><a href="#cb6-1"></a>#| code-line-numbers: false</span>
 <span id="cb6-2"><a href="#cb6-2"></a>struct.error: ubyte format requires 0 &lt;= number &lt;= 255</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Wenn man die Fehlermeldung googelt oder ChatGPT befragt bekommt man Hilfe. Offensichtlich wird für einen RGB-Wert, den wir der Funktion <code>set_rgb_value()</code> übergeben ein bestimmter Datentyp erwartet, der <code>ubyte</code> heisst. Das steht für “unsigned byte” und bedeutet, dass der Wert zwischen 0 und 255 liegen muss.</p>
-<p>Moment 🧐 - was hat jetzt Byte mit 0 bis 255 zu tun? Bisher dachten wir doch, das wäre wegen des RGB-Codes? Stimmt auch, aber der RGB-Code liegt nicht zufällig im Wertebereich von 0 bis 255.</p>
-<p>Um das zu verstehen, müssten wir das Binärsystem kennen. Also los!</p>
+<p>Wenn man die Fehlermeldung googelt oder ChatGPT befragt, bekommt man Hilfe. Offensichtlich wird für einen RGB-Wert, den wir der Funktion <code>set_rgb_value()</code> übergeben, ein bestimmter Datentyp erwartet, der <code>ubyte</code> heißt. Das steht für “unsigned byte” und bedeutet, dass der Wert zwischen 0 und 255 liegen muss.</p>
+<p>Moment 🧐 – was hat jetzt das Byte mit 0 bis 255 zu tun? Bisher dachten wir doch, das wäre wegen des RGB-Codes? Stimmt auch, aber der RGB-Code liegt nicht zufällig im Wertebereich von 0 bis 255.</p>
+<p>Um das zu verstehen, müssen wir das Binärsystem kennen. Also los!</p>
 </section>
 <section id="zahlensysteme" class="level2" data-number="2.5">
 <h2 data-number="2.5" class="anchored" data-anchor-id="zahlensysteme"><span class="header-section-number">2.5</span> Zahlensysteme</h2>
-<p>Eigentlich ist es schnell erklärt. Das Binärsystem ist wie das Dezimalsystem, mit dem wir alltäglich unterwegs sind, nur statt der Basis 10, nutzt es die Basis 2. Einfach oder? Wenn nicht, lest weiter, das hier soll schließlich ein Einführungsbuch sein.</p>
-<section id="unser-dezimalsytem" class="level3" data-number="2.5.1">
-<h3 data-number="2.5.1" class="anchored" data-anchor-id="unser-dezimalsytem"><span class="header-section-number">2.5.1</span> Unser Dezimalsytem</h3>
-<p>Wir wenden das Dezimalsystem täglich intuitiv an. Es fragt sich wahrscheinlich niemand von euch, was die Systematik dahinter ist, oder? Und doch habt ihr es alle einmal in der Schule gelernt und wir müssen es an dieser Stelle etwas auffrischen. Solltet ihr mit Stellenwertsystemen noch 100 % vertraut sein, könnt ihr diesen Abschnitt getrost überspringen.</p>
-<p>Nehmen wir eine Zahl wie die 123 als Beispiel. Wir haben sofort ein Gefühl für die Zahl, wir wissen etwa wie groß sie ist. Und wenn wir es etwas genauer erklären müssen, können die meisten von euch sicher erläutern, wofür - also für welchen Wert - jede Zahl steht. Wir beginnen mit der kleinsten Wertigkeit, was die Ziffer ganz rechts ist: die 3. Sie steht für die Einserstelle, und davon haben wir 3. Die nächste Stelle steht für die Zehner, und weil dort eine 2 steht sind es zwanzig. Also <span class="math inline">\(3+20=23\)</span>. Schließen wir auch die dritte und letzte Ziffer in unsere Erläuterung ein: die 1 steht für die Hunderterstelle, also <span class="math inline">\(1*100=100\)</span>. Damit haben wir <span class="math inline">\(100+20+3=123\)</span>. Ganz einfach und intuitiv.</p>
+<p>Eigentlich ist es schnell erklärt. Das Binärsystem ist wie das Dezimalsystem, mit dem wir alltäglich unterwegs sind – nur nutzt es statt der Basis 10 die Basis 2. Einfach, oder? Wenn nicht, lest weiter – das hier soll schließlich ein Einführungsbuch sein.</p>
+<section id="unser-dezimalsystem" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="unser-dezimalsystem"><span class="header-section-number">2.5.1</span> Unser Dezimalsystem</h3>
+<p>Wir wenden das Dezimalsystem täglich intuitiv an. Es fragt sich wahrscheinlich niemand von euch, was die Systematik dahinter ist, oder? Und doch habt ihr es alle einmal in der Schule gelernt, und wir müssen es an dieser Stelle etwas auffrischen. Solltet ihr mit Stellenwertsystemen noch 100 % vertraut sein, könnt ihr diesen Abschnitt getrost überspringen.</p>
+<p>Nehmen wir eine Zahl wie die 123 als Beispiel. Wir haben sofort ein Gefühl für die Zahl, wir wissen etwa, wie groß sie ist. Und wenn wir es etwas genauer erklären müssen, können die meisten von euch sicher erläutern, wofür – also für welchen Wert – jede Ziffer steht. Wir beginnen mit der kleinsten Wertigkeit, also der Ziffer ganz rechts: der 3. Sie steht für die Einserstelle, und davon haben wir 3. Die nächste Stelle steht für die Zehner, und weil dort eine 2 steht, sind es zwanzig. Also <span class="math inline">\(3+20=23\)</span>. Schließen wir auch die dritte und letzte Ziffer in unsere Erläuterung ein: Die 1 steht für die Hunderterstelle, also <span class="math inline">\(1*100=100\)</span>. Damit haben wir <span class="math inline">\(100+20+3=123\)</span>. Ganz einfach und intuitiv.</p>
 <div id="fig-decimal-123" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-decimal-123-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -674,8 +681,8 @@ Abbildung&nbsp;2.5: Das Dezimalsystem ist ein Stellenwertsystem.
 </figcaption>
 </figure>
 </div>
-<p>Das Ganze können wir nicht nur mit 3-stelligen Zahlen, sondern prinzipiell mit beliebig langen Zahlen. Wir wissen, dass die nächste Ziffer, die wir links im Beispiel in <a href="#fig-decimal-system-4123" class="quarto-xref">Abbildung&nbsp;<span>2.6</span></a> sehen, für die Tausenderstelle steht. Die nächste Stelle würde für die Zehntausenderstelle stehen, und so weiter. Warum fällt es uns so leicht?</p>
-<p>Erstens, weil wir damit jeden Tag umgehen. Das Dezimalsystem ist das System, das wir am häufigsten verwenden, und wir haben es von klein auf gelernt. Es ist intuitiv und einfach zu verstehen. Zweitens aber auch, weil die Systematik des Systems kennen: Jede Stelle ist 10 Mal mehr wert als die vorherige.</p>
+<p>Das Ganze funktioniert nicht nur mit dreistelligen Zahlen, sondern prinzipiell mit beliebig langen Zahlen. Wir wissen, dass die nächste Ziffer, die wir links im Beispiel in <a href="#fig-decimal-system-4123" class="quarto-xref">Abbildung&nbsp;<span>2.6</span></a> sehen, für die Tausenderstelle steht. Die nächste Stelle würde für die Zehntausenderstelle stehen – und so weiter. Warum fällt es uns so leicht?</p>
+<p>Erstens, weil wir damit jeden Tag umgehen. Das Dezimalsystem ist das System, das wir am häufigsten verwenden, und wir haben es von klein auf gelernt. Es ist intuitiv und einfach zu verstehen. Zweitens aber auch, weil wir die Systematik kennen: Jede Stelle ist 10-mal so viel wert wie die vorherige.</p>
 <div id="fig-decimal-system-4123" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-decimal-system-4123-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -689,11 +696,11 @@ Abbildung&nbsp;2.6: Jede Stelle steht für eine höhere Potenz der Basis 10.
 </section>
 <section id="andere-zahlensysteme" class="level3" data-number="2.5.2">
 <h3 data-number="2.5.2" class="anchored" data-anchor-id="andere-zahlensysteme"><span class="header-section-number">2.5.2</span> Andere Zahlensysteme</h3>
-<p>Wurde uns das Dezimalsystem von Gott gegeben? Vielleicht, wenn man an die Schöpfung glaubt<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> und dass Gott uns so geschaffen hat, wie wir sind, dann hat er implizit dafür gesorgt, dass wir dezimal denkende Wesen werden. Warum? Eine Theorie besagt, dass die menschliche Anatomie, insbesondere die Anzahl der Finger, einen Einfluss auf unser Zahlensystem hatte. Zählt einfach mal anhand eurer Finger durch.</p>
+<p>Wurde uns das Dezimalsystem von Gott gegeben? Vielleicht – wenn man an die Schöpfung glaubt<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> und daran, dass Gott uns so geschaffen hat, wie wir sind, dann hat er implizit dafür gesorgt, dass wir dezimal denkende Wesen werden. Warum? Eine Theorie besagt, dass die menschliche Anatomie, insbesondere die Anzahl der Finger, einen Einfluss auf unser Zahlensystem hatte. Zählt einfach mal anhand eurer Finger durch.</p>
 </section>
 <section id="das-oktalsystem" class="level3" data-number="2.5.3">
 <h3 data-number="2.5.3" class="anchored" data-anchor-id="das-oktalsystem"><span class="header-section-number">2.5.3</span> Das Oktalsystem</h3>
-<p>Nun gibt es auch Wesen mit weniger als zehn Fingern (und auch mit mehr?). Nehmt mal einen Cartoon-Charakter wie Mickey Mouse als Beispiel. In <a href="#fig-cartoon-character" class="quarto-xref">Abbildung&nbsp;<span>2.7</span></a> seht ihr, wie hier wahrscheinlich gezählt wird. Hätte ein Volk von Mickey Mäusen sich auch für das Dezimalsystem entschieden?</p>
+<p>Nun gibt es auch Wesen mit weniger als zehn Fingern (und auch mit mehr?). Nehmt mal einen Cartoon-Charakter wie Mickey Mouse als Beispiel. In <a href="#fig-cartoon-character" class="quarto-xref">Abbildung&nbsp;<span>2.7</span></a> seht ihr, wie hier wahrscheinlich gezählt wird. Hätte ein Volk von Mickey-Mäusen sich auch für das Dezimalsystem entschieden?</p>
 <div id="fig-cartoon-character" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-cartoon-character-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -718,25 +725,25 @@ Abbildung&nbsp;2.8: Das Oktalsystem funktioniert wie das Dezimalsystem. Nur die 
 </section>
 <section id="das-binärsystem" class="level3" data-number="2.5.4">
 <h3 data-number="2.5.4" class="anchored" data-anchor-id="das-binärsystem"><span class="header-section-number">2.5.4</span> Das Binärsystem</h3>
-<p>Treiben wir es noch ein wenig weiter auf die Spitze und nehmen ein paar Finger weg. Sagen wir bis auf zwei, dann wären wir vielleicht bei einem Delphin mit zwei Flossen, wie ihr ihn in <a href="#fig-binary-system-dolphin" class="quarto-xref">Abbildung&nbsp;<span>2.9</span></a> seht. Delfine haben sich vermutlich auf ein System geeinigt, das auch für unsere heutigen Computer die Grundlage darstellt: das Binärsystem.</p>
+<p>Treiben wir es noch ein wenig weiter auf die Spitze und nehmen ein paar Finger weg – sagen wir bis auf zwei. Dann wären wir vielleicht bei einem Delfin mit zwei Flossen, wie ihr ihn in <a href="#fig-binary-system-dolphin" class="quarto-xref">Abbildung&nbsp;<span>2.9</span></a> seht. Delfine haben sich vermutlich auf ein System geeinigt, das auch für unsere heutigen Computer die Grundlage darstellt: das Binärsystem.</p>
 <div id="fig-binary-system-dolphin" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-binary-system-dolphin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://winf-hsos.github.io/university-docs/images/binary_system_dolphin.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15" title="Abbildung&nbsp;2.9: Delphine würden anders zählen. Eher wir Computer."><img src="https://winf-hsos.github.io/university-docs/images/binary_system_dolphin.png" class="img-fluid figure-img"></a>
+<a href="https://winf-hsos.github.io/university-docs/images/binary_system_dolphin.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15" title="Abbildung&nbsp;2.9: Delfine würden anders zählen. Eher wie Computer."><img src="https://winf-hsos.github.io/university-docs/images/binary_system_dolphin.png" class="img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-binary-system-dolphin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;2.9: Delphine würden anders zählen. Eher wir Computer.
+Abbildung&nbsp;2.9: Delfine würden anders zählen. Eher wie Computer.
 </figcaption>
 </figure>
 </div>
-<p>Das Wort <em>binär</em> stammt aus dem Lateinischen und bedeutet <em>paarweise</em> oder <em>zu zweit</em>. Von diesem Wort stammt auch der Name des Stellenwertsystems mit der Basis 2 ab, und das nicht ohne Grund. Im Binärsystem gibt es für jedes Stelle genau zwei Möglichkeiten: 0 oder 1. Ein anderer Begriff ist übrigens Dualsystem, was genau das gleiche meint. Auch das Wort <em>dual</em> kommt von den Römern und heisst so viel wie “zwei enthaltend”.</p>
+<p>Das Wort “binär” stammt aus dem Lateinischen und bedeutet “paarweise” oder “zu zweit”. Von diesem Wort stammt auch der Name des Stellenwertsystems mit der Basis 2 – und das nicht ohne Grund. Im Binärsystem gibt es für jede Stelle genau zwei Möglichkeiten: 0 oder 1. Ein anderer Begriff ist übrigens Dualsystem, was genau das Gleiche meint. Auch das Wort “dual” kommt von den Römern und heißt so viel wie “zwei enthaltend”.</p>
 <div id="fig-light-switch" class="lightbox align-center quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-light-switch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="https://winf-hsos.github.io/university-docs/images/binary_system_light_switch.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16" title="Abbildung&nbsp;2.10: Eine Binärziffer ist bergleichbar mit einem Lichtschalter, der An oder Aus sein kann."><img src="https://winf-hsos.github.io/university-docs/images/binary_system_light_switch.png" class="align-center img-fluid figure-img"></a>
+<a href="https://winf-hsos.github.io/university-docs/images/binary_system_light_switch.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16" title="Abbildung&nbsp;2.10: Eine Binärziffer ist vergleichbar mit einem Lichtschalter, der an oder aus sein kann."><img src="https://winf-hsos.github.io/university-docs/images/binary_system_light_switch.png" class="align-center img-fluid figure-img"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-light-switch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;2.10: Eine Binärziffer ist bergleichbar mit einem Lichtschalter, der An oder Aus sein kann.
+Abbildung&nbsp;2.10: Eine Binärziffer ist vergleichbar mit einem Lichtschalter, der an oder aus sein kann.
 </figcaption>
 </figure>
 </div>
@@ -780,13 +787,13 @@ Abbildung&nbsp;2.11: Das Binärsystem funktioniert wie alle anderen Stellenwerts
 </section>
 <section id="bits-und-bytes" class="level2" data-number="2.6">
 <h2 data-number="2.6" class="anchored" data-anchor-id="bits-und-bytes"><span class="header-section-number">2.6</span> Bits und Bytes</h2>
-<p>Warum haben wir uns Zahlensysteme angeschaut, und was hat das mit Computern zu tun. Ganz einfach: Computer denken binär, das bedeutet sie kennen nur zwei Zustände. An oder aus, Null oder Eins.</p>
-<p>Wir kommen später noch einmal ausführlich darauf zurück, aber so viel schon vorweg. Eine Binärziffer nennen wir im Englischen <em>binary digit</em>, was mit <em>bit</em> abgekürzt wird. Jetzt klingelt es, oder?</p>
+<p>Warum haben wir uns Zahlensysteme angeschaut, und was hat das mit Computern zu tun? Ganz einfach: Computer denken binär. Das bedeutet, sie kennen nur zwei Zustände: an oder aus, 0 oder 1.</p>
+<p>Wir kommen später noch einmal ausführlich darauf zurück, aber so viel schon vorweg: Eine Binärziffer nennen wir im Englischen “binary digit”, kurz “bit”. Jetzt klingelt es, oder?</p>
 <p>Ein Bit ist eine Informationseinheit. Nicht irgendeine, sondern die kleinste, die es gibt. Die Erklärung, warum das so ist, folgt später. Wir wollen uns an dieser Stelle die Frage stellen, was wir mit einem Bit alles anstellen können.</p>
-<p>Ein Bit ist alleine ziemlich einsam und eingeschränkt. Wenn sich ein Computer mit einem Bit lediglich merken kann, ob eine Lampe an oder aus ist, dann sind das genau zwei Möglichkeiten. Nicht besonders viel. Wir kamen aber von den Farben über Zahlensysteme zu den Bits - und unsere ursprüngliche Frage war, wie ein Computer mit seinen Mitteln - also Nullen und Einsen (oder eben Bits) - so viele unterschiedliche Farben abbilden und speichern kann. Zwei würde gerade einmal für Schwarz/Weiß ausreichen.</p>
-<p>Ihr ahnt vielleicht schon die Antwort. Wir gesellen zum ersten ein zweites Bit hinzu. Und schon können wir vier unterschiedliche Zustände abbilden: <code>00</code>, <code>01</code>, <code>10</code> und <code>11</code>. Damit könnten wir zum Beispiel die Farben Schwarz, Blau, Grün und Cyan darstellen. Etwas willkürlich (warum gerade diese Farben), aber denkbar.</p>
-<p>Was passiert, wenn wir ein drittes Bit hinzunehmen? Sind es nun sechs Zustände? Nein, es sind acht: <code>000</code>, <code>001</code>, <code>010</code>, <code>011</code>, <code>100</code>, <code>101</code>, <code>110</code> und <code>111</code>. Damit könnten wir die Farben Schwarz, Blau, Grün, Cyan, Rot, Magenta, Gelb und Weiß darstellen (oder jede andere Kombination die wir uns wünschen).</p>
-<p>Mit jedem zusätzlichen Bit können wir also nicht plus Zwei mehr Zustände abbilden, sondern wir verdoppeln unsere Möglichkeiten. Also müssen wir <em>mal</em> zwei - und nicht <em>plus</em> zwei - rechnen. Das ist eine gute Nachricht, denn die Anzahl der Farben, die wir mit jedem zusätzlichen Bit darstellen können, verdoppelt sich jedesmal.</p>
+<p>Ein Bit ist alleine ziemlich einsam und eingeschränkt. Wenn sich ein Computer mit einem Bit lediglich merken kann, ob eine Lampe an oder aus ist, dann sind das genau zwei Möglichkeiten. Nicht besonders viel. Wir kamen aber von den Farben über Zahlensysteme zu den Bits – und unsere ursprüngliche Frage war, wie ein Computer mit seinen Mitteln – also Nullen und Einsen (oder eben Bits) – so viele unterschiedliche Farben abbilden und speichern kann. Zwei würden gerade einmal für Schwarz/Weiß ausreichen.</p>
+<p>Ihr ahnt es vielleicht schon: Wir gesellen zum ersten ein zweites Bit hinzu. Und schon können wir vier unterschiedliche Zustände abbilden: <code>00</code>, <code>01</code>, <code>10</code> und <code>11</code>. Damit könnten wir zum Beispiel die Farben Schwarz, Blau, Grün und Cyan darstellen. Etwas willkürlich (warum gerade diese Farben), aber denkbar.</p>
+<p>Was passiert, wenn wir ein drittes Bit hinzunehmen? Sind es nun sechs Zustände? Nein, es sind acht: <code>000</code>, <code>001</code>, <code>010</code>, <code>011</code>, <code>100</code>, <code>101</code>, <code>110</code> und <code>111</code>. Damit könnten wir die Farben Schwarz, Blau, Grün, Cyan, Rot, Magenta, Gelb und Weiß darstellen (oder jede andere Kombination, die wir uns wünschen).</p>
+<p>Mit jedem zusätzlichen Bit können wir also nicht plus zwei mehr Zustände abbilden, sondern wir verdoppeln unsere Möglichkeiten. Also müssen wir mal zwei – und nicht plus zwei – rechnen. Das ist eine gute Nachricht, denn die Anzahl der Farben, die wir mit jedem zusätzlichen Bit darstellen können, verdoppelt sich jedes Mal.</p>
 <p>Das halten wir fest, aber schauen wir zurück auf unsere RGB-Farben und die Fehlermeldung, die wir zuletzt bekommen haben. Der Wert für eine Farbe aus dem RGB-Farbcode muss zwischen 0 und 255 liegen. Wir haben somit inklusive der Null 256 Möglichkeiten für jede der drei RGB-Grundfarben. Wie viele Bits benötigen wir dafür? Rechnen wir es aus:</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -801,7 +808,7 @@ Abbildung&nbsp;2.11: Das Binärsystem funktioniert wie alle anderen Stellenwerts
 2^8 &amp;= 256 \\
 \end{aligned}
 \]</span></p>
-<p>Stop! <span class="math inline">\(2^8 = 256\)</span>, das genügt uns völlig. Mit 8 Bits können wir somit 256 Zustände abbilden - genau passend für zweihundertsechsundfünzig Rot, Grün, oder Blau-Anteile. Und das ist kein Zufall: 8 Bits sind für Computer eine besondere Hausnummer. Wir nennen eine Gruppe von 8 Bits ein Byte. Und jetzt dürfte es erneut klingeln.</p>
+<p>Stopp! <span class="math inline">\(2^8 = 256\)</span>, das genügt uns völlig. Mit 8 Bits können wir somit 256 Zustände abbilden – genau passend für 256 Rot-, Grün- oder Blauanteile. Und das ist kein Zufall: 8 Bits sind für Computer eine besondere Hausnummer. Wir nennen eine Gruppe von 8 Bits ein Byte. Und jetzt dürfte es erneut klingeln.</p>
 <div id="fig-binary-system-byte-a" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-binary-system-byte-a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -812,15 +819,15 @@ Abbildung&nbsp;2.12: Ein Byte könnt ihr euch vorstellen wie acht Glühbirnen ne
 </figcaption>
 </figure>
 </div>
-<p>In <a href="#fig-binary-system-byte-a" class="quarto-xref">Abbildung&nbsp;<span>2.12</span></a> ist ein Byte als Serie von acht Glühbirnen dargestellt. Ihr könnt euch vorstellen, dass Bits mit dem Wert 1 leuchten und Bits mit dem Wert 0 aus sind. Um den Wert zu ermitteln, den das Byte gerade darstellt, könnt ihr jeder Glühbirne von rechts nach links jeweils die Wertigkeiten der Stellen aus dem Binärsystem zuweisen und die Werte addieren. Stellen, an denen die Glühbirne an ist, werden addiert, die anderen werden ausgelassen (<a href="#fig-binary-system-byte-b" class="quarto-xref">Abbildung&nbsp;<span>2.13</span></a>). Das Byte im gezeigte Beispiel steht somit für:</p>
+<p>In <a href="#fig-binary-system-byte-a" class="quarto-xref">Abbildung&nbsp;<span>2.12</span></a> ist ein Byte als Reihe von acht Glühbirnen dargestellt. Ihr könnt euch vorstellen, dass Bits mit dem Wert 1 leuchten und Bits mit dem Wert 0 aus sind. Um den Wert zu ermitteln, den das Byte gerade darstellt, könnt ihr jeder Glühbirne von rechts nach links die entsprechenden Wertigkeiten der Stellen aus dem Binärsystem zuweisen und die Werte addieren. Stellen, an denen die Glühbirne leuchtet, werden addiert, die anderen werden ausgelassen (<a href="#fig-binary-system-byte-b" class="quarto-xref">Abbildung&nbsp;<span>2.13</span></a>). Das Byte im gezeigten Beispiel steht somit für:</p>
 <p><span class="math display">\[
 32 + 8 + 1 = 41
 \]</span></p>
-<p>Wofür steht das Byte, wenn alle Lampen leuchten? Oder anders gefragt: Was ist die größte Zahl, die wir einem Byte darstellen können?</p>
+<p>Wofür steht das Byte, wenn alle Lampen leuchten? Oder anders gefragt: Was ist die größte Zahl, die wir mit einem Byte darstellen können?</p>
 <p><span class="math display">\[
 128+64+32+16+8+4+2+1 = 255
 \]</span></p>
-<p>Die Antwort überrascht uns nicht, denn schließlich haben wir es ja schon herausgefunden: ein Byte erlaubt uns, Werte zwischen 0 (alle Glühbirnen aus) und 255 (alle Glühbirnen an) darzustellen. Insgesamt also 256 Möglichkeiten. Somit können wir mit 8 Glühbirnen die Intensität einer der drei Grundfarben im RGB-Code darstellen.</p>
+<p>Die Antwort überrascht uns nicht, denn schließlich haben wir es ja schon herausgefunden: Ein Byte erlaubt uns, Werte zwischen 0 (alle Glühbirnen aus) und 255 (alle Glühbirnen an) darzustellen. Insgesamt also 256 Möglichkeiten. Somit können wir mit 8 Glühbirnen die Intensität einer der drei Grundfarben im RGB-Code darstellen.</p>
 <div id="fig-binary-system-byte-b" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-binary-system-byte-b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -831,7 +838,7 @@ Abbildung&nbsp;2.13: Jede Glühbirne steht für eine Stelle aus dem Binärsystem
 </figcaption>
 </figure>
 </div>
-<p>Das erklärt auch die Fehlermeldung von oben: ein Byte kann Werte zwischen 0 und 255 darstellen. Wir haben im Experiment den Drehknopf voll nach oben oder nach unten gedreht, wodurch der Wert entweder größer als 255 oder kleiner als 0 wurde. Und damit ist es kein gültiger Wert in Sinne eines Bytes mehr.</p>
+<p>Das erklärt auch die Fehlermeldung von oben: Ein Byte kann Werte zwischen 0 und 255 darstellen. Wir haben im Experiment den Drehknopf voll nach oben oder nach unten gedreht, wodurch der Wert entweder größer als 255 oder kleiner als 0 wurde. Und damit ist es kein gültiger Wert im Sinne eines Bytes mehr.</p>
 </section>
 <section id="kilo-mega-giga" class="level2" data-number="2.7">
 <h2 data-number="2.7" class="anchored" data-anchor-id="kilo-mega-giga"><span class="header-section-number">2.7</span> Kilo, Mega, Giga</h2>
@@ -839,7 +846,7 @@ Abbildung&nbsp;2.13: Jede Glühbirne steht für eine Stelle aus dem Binärsystem
 <div id="tbl-data-sizes" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-data-sizes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Tabelle&nbsp;2.1: Verschiedene Mengeneinheiten für Bits und deren ungefähre Entsprechung.
+Tabelle&nbsp;2.1: Verschiedene Mengeneinheiten für Bytes und deren ungefähre Entsprechung.
 </figcaption>
 <div aria-describedby="tbl-data-sizes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <table class="caption-top table">
@@ -866,7 +873,7 @@ Tabelle&nbsp;2.1: Verschiedene Mengeneinheiten für Bits und deren ungefähre En
 </tr>
 <tr class="even">
 <td><span class="math inline">\(10^6\)</span></td>
-<td>Millionen</td>
+<td>Million</td>
 <td>Megabyte (MB)</td>
 <td>Digitales Foto</td>
 </tr>
@@ -911,16 +918,16 @@ Tabelle&nbsp;2.1: Verschiedene Mengeneinheiten für Bits und deren ungefähre En
 </div>
 </figure>
 </div>
-<p>Jetzt da ihr wisst, was mit einem Byte gemeint ist, könnt ihr eine ungefähre Vorstellung für die Größenordnungen von Datenmengen entwickeln. Die ersten drei Zeilen aus <a href="#tbl-data-sizes" class="quarto-xref">Tabelle&nbsp;<span>2.1</span></a> könnt ihr selbst einmal nachvollziehen. Schaut euch dazu mal eine Textdatei an, notiert deren Größe, und rechnet aus, wie viele Glühbirnen für die Speicherung gebraucht werden. Denkt daran: ein Byte entspricht acht Glühbirnen.</p>
+<p>Jetzt, da ihr wisst, was mit einem Byte gemeint ist, könnt ihr eine ungefähre Vorstellung für die Größenordnungen von Datenmengen entwickeln. Die ersten drei Zeilen aus <a href="#tbl-data-sizes" class="quarto-xref">Tabelle&nbsp;<span>2.1</span></a> könnt ihr selbst einmal nachvollziehen. Schaut euch dazu mal eine Textdatei an, notiert deren Größe und rechnet aus, wie viele Glühbirnen für die Speicherung gebraucht werden. Denkt daran: Ein Byte entspricht acht Glühbirnen.</p>
 <p>Wir kommen in den späteren Kapiteln immer wieder auf die Bits und Bytes zurück, weil wir in Computern letztlich überall mit diesen Einheiten arbeiten. Es ist somit gut, wenn ihr schon an dieser Stelle ein grundlegendes Verständnis für diese Konzepte entwickelt.</p>
 </section>
-<section id="ein-led-dimmer-teil-2" class="level2" data-number="2.8">
-<h2 data-number="2.8" class="anchored" data-anchor-id="ein-led-dimmer-teil-2"><span class="header-section-number">2.8</span> Ein LED-Dimmer (Teil 2)</h2>
-<p>Zurück zu unserem eigentlichen Vorhaben. Wir waren gerade dabei, einen Dimmer für unsere LED zu basteln, als uns die Zahlensysteme dazwischen gekommen sind. Dafür haben wir jetzt ein besseres Verständnis dafür, wie ein Computer Farben sieht - nämlich als lange Sequenz aus Nullen und Einsen. Und zwar 24 davon, weil jede Grundfarbe ein Byte an Speicher verwendet.</p>
+<section id="sec-led-dimmer-part-2" class="level2" data-number="2.8">
+<h2 data-number="2.8" class="anchored" data-anchor-id="sec-led-dimmer-part-2"><span class="header-section-number">2.8</span> Ein LED-Dimmer (Teil 2)</h2>
+<p>Zurück zu unserem eigentlichen Vorhaben. Wir waren gerade dabei, einen Dimmer für unsere LED zu basteln, als uns die Zahlensysteme dazwischengekommen sind. Dafür haben wir jetzt ein besseres Verständnis dafür, wie ein Computer Farben sieht – nämlich als lange Sequenz aus Nullen und Einsen. Und zwar 24 davon, weil jede Grundfarbe ein Byte an Speicher verwendet.</p>
 <section id="min-und-max" class="level3" data-number="2.8.1">
 <h3 data-number="2.8.1" class="anchored" data-anchor-id="min-und-max"><span class="header-section-number">2.8.1</span> <code>min()</code> und <code>max()</code></h3>
-<p>Was müssen wir also in unserem Programm verändern, jetzt da wir wissen, was das Problem zuvor war? Genau! Wir müssen sicherstellen, dass die Werte, die wir an die LED senden, im gültigen Bereich für ein Byte liegen. Und zwar zwischen 0 und 255.</p>
-<div id="08175c65" class="cell" data-execution_count="7">
+<p>Was müssen wir also in unserem Programm verändern, jetzt, da wir wissen, was zuvor das Problem war? Genau! Wir müssen sicherstellen, dass die Werte, die wir an die LED senden, im gültigen Bereich für ein Byte liegen – und zwar zwischen 0 und 255.</p>
+<div id="4dc8b2c0" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="annotated-cell-8"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-8-1"><a href="#annotated-cell-8-1"></a>knob.reset()</span>
 <span id="annotated-cell-8-2"><a href="#annotated-cell-8-2"></a>last_count <span class="op">=</span> <span class="dv">0</span></span>
 <span id="annotated-cell-8-3"><a href="#annotated-cell-8-3"></a></span>
@@ -935,30 +942,30 @@ Tabelle&nbsp;2.1: Verschiedene Mengeneinheiten für Bits und deren ungefähre En
 <span id="annotated-cell-8-12"><a href="#annotated-cell-8-12"></a></span>
 <span id="annotated-cell-8-13"><a href="#annotated-cell-8-13"></a>        <span class="bu">print</span>(last_count)</span>
 <span id="annotated-cell-8-14"><a href="#annotated-cell-8-14"></a></span>
-<span id="annotated-cell-8-15"><a href="#annotated-cell-8-15"></a>        <span class="co"># Set RGB values zu counter value</span></span>
+<span id="annotated-cell-8-15"><a href="#annotated-cell-8-15"></a>        <span class="co"># Setze RGB-Werte auf den Zählerwert</span></span>
 <span id="annotated-cell-8-16"><a href="#annotated-cell-8-16"></a>        led.set_rgb_value(last_count, last_count, last_count)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-8" data-target-annotation="1">1</dt>
 <dd>
-<span data-code-cell="annotated-cell-8" data-code-lines="11" data-code-annotation="1">Die Funktionen <code>min()</code> und <code>max()</code> sorgen dafür, dass der Wert von <code>last_count</code> immer zwischen 0 und 255 bleibt. Wenn <code>last_count</code> kleiner als 0 ist, wird es auf 0 gesetzt. Wenn es größer als 255 ist, wird es auf 255 gesetzt.</span>
+<span data-code-cell="annotated-cell-8" data-code-lines="11" data-code-annotation="1">Die Funktionen <code>min()</code> und <code>max()</code> sorgen dafür, dass der Wert von <code>last_count</code> immer zwischen 0 und 255 bleibt. Wenn <code>last_count</code> kleiner als 0 ist, wird er auf 0 gesetzt. Wenn er größer als 255 ist, wird er auf 255 gesetzt.</span>
 </dd>
 </dl>
 </div>
 </div>
-<p>Die neue Logik in Zeile 9 hilft uns dabei. Nachdem wir den neuen Wert des Zähler auf die Variable <code>last_count</code> gespeichert haben (Zeile 6), wenden wir eine geschickte Kombination der beiden Funktionen <code>max()</code> und <code>min()</code> an, um sicherzustellen, dass der Wert im gültigen Bereich bleibt. Wie funktioniert das genau? Dazu gehen wir die Zeile Schritt für Schritt durch.</p>
-<p>Zunächst einmal der Ausdruck <code>min(255, last_count)</code>. Die Funktion <code>min()</code> gibt einfach den kleineren der beiden Werte, die ihr übergeben wurden, zurück. Wenn <code>last_count</code> also größer als 255 ist, wird 255 zurückgegeben. Andernfalls wird <code>last_count</code> zurückgegeben. Das Ergebnis dieser Evaluation ist gleichzeitig der zweite Wert, den wir der Funktion <code>max()</code> übergeben.</p>
+<p>Die neue Logik in Zeile 9 hilft uns dabei. Nachdem wir den neuen Wert des Zählers in der Variable <code>last_count</code> gespeichert haben (Zeile 6), wenden wir eine geschickte Kombination der beiden Funktionen <code>max()</code> und <code>min()</code> an, um sicherzustellen, dass der Wert im gültigen Bereich bleibt. Wie funktioniert das genau? Dazu gehen wir die Zeile Schritt für Schritt durch.</p>
+<p>Zunächst einmal der Ausdruck <code>min(255, last_count)</code>. Die Funktion <code>min()</code> gibt einfach den kleineren der beiden Werte zurück, die ihr übergeben werden. Wenn <code>last_count</code> also größer als 255 ist, wird 255 zurückgegeben. Andernfalls wird <code>last_count</code> zurückgegeben. Das Ergebnis dieser Auswertung ist gleichzeitig der zweite Wert, den wir der Funktion <code>max()</code> übergeben.</p>
 <p>Die Funktion <code>max()</code> macht genau das Gegenteil. Sie gibt den größeren der beiden ihr übergebenen Werte zurück. Zur Auswahl stehen ihr der Wert 0 und das Ergebnis der <code>min()</code>-Funktion. Das bedeutet, dass <code>max()</code> sicherstellt, dass der endgültige Wert von <code>last_count</code> niemals kleiner als 0 ist.</p>
 <p>Und voilà! Nach Zeile 9 kann der Wert von <code>last_count</code> nur noch zwischen 0 und 255 liegen. Problem gelöst!</p>
 <p>Probiert es am besten direkt aus und dreht mal voll auf! Es sollte nun kein Fehler mehr auftreten.</p>
 </section>
 <section id="helligkeit-entkoppeln" class="level3" data-number="2.8.2">
 <h3 data-number="2.8.2" class="anchored" data-anchor-id="helligkeit-entkoppeln"><span class="header-section-number">2.8.2</span> Helligkeit entkoppeln</h3>
-<p>Vielleicht habt ihr es auch bemerkt, aber so ganz toll funktioniert unser Dimmer immer noch nicht. Zwar erscheint keine Fehlermeldung mehr, wenn wir endlos aufdrehen. Jedoch wird die LED auch nicht gedimmt, wenn wir wieder in die andere Richtung drehen. Der Grund dafür ist einfach: Die Helligkeit der LED hängt in unserem Programm direkt vom Zählerstand des Drehknopfes ab. Wenn der über 255 kommt, wird die Helligkeit zwar auf 255 gedeckelt, der Zähler wird aber im Hintergrund trotzdem weiter hochgezählt. Wenn wir die LED wieder dimmen, also einen Helligkeitswert von weniger als 255 erreichen möchten, dann müssen wir zunächst mit dem Drehknopf wieder bis unter die 255 kommen.</p>
-<p>Viel schöner wäre es es, wenn wir zwar endlos überdrehen könnten, aber mit der ersten Drehung in die andere Richtung die Helligkeit der LED sofort verringern. Ein einfacher Weg wäre, für den Zählerstand des Drehknopfes analog zu <code>last_count</code> nur Werte zwischen 0 und 255 zu erlauben. Dazu könnten wir den Zähler genau wie <code>last_count</code> manuell auf 0 oder 255 setzen, je nachdem ob wir größer 255 oder kleiner Null waren. Leider bietet der Drehknopf keine solche Funktion über seine Programmierschnittstelle an. Wir können den Wert zwar auslesen, aber nicht programmatisch verändern.</p>
+<p>Vielleicht habt ihr es auch bemerkt, aber so richtig toll funktioniert unser Dimmer immer noch nicht. Zwar erscheint keine Fehlermeldung mehr, wenn wir endlos aufdrehen. Jedoch wird die LED auch nicht gedimmt, wenn wir wieder in die andere Richtung drehen. Der Grund dafür ist einfach: Die Helligkeit der LED hängt in unserem Programm direkt vom Zählerstand des Drehknopfes ab. Wenn der über 255 kommt, wird die Helligkeit zwar auf 255 gedeckelt, der Zähler wird aber im Hintergrund trotzdem weiter hochgezählt. Wenn wir die LED wieder dimmen, also einen Helligkeitswert von weniger als 255 erreichen möchten, dann müssen wir zunächst mit dem Drehknopf wieder bis unter die 255 kommen.</p>
+<p>Viel schöner wäre es, wenn wir zwar endlos überdrehen könnten, aber mit der ersten Drehung in die andere Richtung die Helligkeit der LED sofort verringern. Ein einfacher Weg wäre, für den Zählerstand des Drehknopfes analog zu <code>last_count</code> nur Werte zwischen 0 und 255 zu erlauben. Dazu könnten wir den Zähler – genau wie <code>last_count</code> – manuell auf 0 oder 255 setzen, je nachdem, ob wir größer als 255 oder kleiner als 0 waren. Leider bietet der Drehknopf über seine Programmierschnittstelle keine solche Funktion an. Wir können den Wert zwar auslesen, aber nicht programmatisch verändern.</p>
 <p>Wir müssen also einen Workaround entwickeln. Eine Möglichkeit wäre, die Helligkeit unabhängig vom Zählerstand zu verwalten und dafür eine eigene Variable <code>brightness</code> einzuführen. Wir könnten den Wert von <code>brightness</code> dann erhöhen oder verringern, wenn wir eine Drehung in die eine oder andere Richtung erkannt haben.</p>
-<p>Um zu erkennen, ob und in welche Richtung der Drehknopf gedreht wurde, können wir die Differenz zwischen dem aktuellen und dem letzten Zählerstand betrachten. Sie gibt uns direkt Aufschluss: ist die Differenz positiv, wurde der Knopf nach oben gedreht, ist sie negativ, wurde er nach unten gedreht.</p>
-<div id="8da4ac13" class="cell" data-execution_count="8">
+<p>Um zu erkennen, ob und in welche Richtung der Drehknopf gedreht wurde, können wir die Differenz zwischen dem aktuellen und dem letzten Zählerstand betrachten. Sie gibt uns direkt Aufschluss: Ist die Differenz positiv, wurde der Knopf nach oben gedreht, ist sie negativ, wurde er nach unten gedreht.</p>
+<div id="e6c29a93" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="annotated-cell-9"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-9-1"><a href="#annotated-cell-9-1"></a>knob.reset()</span>
 <span id="annotated-cell-9-2"><a href="#annotated-cell-9-2"></a>last_count <span class="op">=</span> <span class="dv">0</span></span>
 <span id="annotated-cell-9-3"><a href="#annotated-cell-9-3"></a></span>
@@ -976,7 +983,7 @@ Tabelle&nbsp;2.1: Verschiedene Mengeneinheiten für Bits und deren ungefähre En
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="3">3</button><span id="annotated-cell-9-15" class="code-annotation-target"><a href="#annotated-cell-9-15"></a>        brightness <span class="op">+=</span> diff</span>
 <span id="annotated-cell-9-16"><a href="#annotated-cell-9-16"></a>        brightness <span class="op">=</span> <span class="bu">max</span>(<span class="dv">0</span>, <span class="bu">min</span>(<span class="dv">255</span>, brightness))</span>
 <span id="annotated-cell-9-17"><a href="#annotated-cell-9-17"></a></span>
-<span id="annotated-cell-9-18"><a href="#annotated-cell-9-18"></a>        <span class="co"># Set RGB values zu counter value</span></span>
+<span id="annotated-cell-9-18"><a href="#annotated-cell-9-18"></a>        <span class="co"># Setze RGB-Werte auf den Zählerwert</span></span>
 <span id="annotated-cell-9-19"><a href="#annotated-cell-9-19"></a>        led.set_rgb_value(brightness, brightness, brightness)</span>
 <span id="annotated-cell-9-20"><a href="#annotated-cell-9-20"></a></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="4">4</button><span id="annotated-cell-9-21" class="code-annotation-target"><a href="#annotated-cell-9-21"></a>        <span class="bu">print</span>(<span class="ss">f"Brightness / Counter: </span><span class="sc">{</span>brightness<span class="sc">}</span><span class="ss"> / </span><span class="sc">{</span>new_count<span class="sc">}</span><span class="ss">"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -996,7 +1003,7 @@ Tabelle&nbsp;2.1: Verschiedene Mengeneinheiten für Bits und deren ungefähre En
 </dd>
 <dt data-target-cell="annotated-cell-9" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-cell="annotated-cell-9" data-code-lines="21" data-code-annotation="4">Zur Überprüfung geben wir beide Variablen aus. Wenn wir den Wertebereich 0-255 verlassen gehen die Werte der beiden Variablen auseinander.</span>
+<span data-code-cell="annotated-cell-9" data-code-lines="21" data-code-annotation="4">Zur Überprüfung geben wir beide Variablen aus. Wenn wir den Wertebereich 0–255 verlassen, gehen die Werte der beiden Variablen auseinander.</span>
 </dd>
 </dl>
 </div>
@@ -1004,13 +1011,13 @@ Tabelle&nbsp;2.1: Verschiedene Mengeneinheiten für Bits und deren ungefähre En
 </section>
 <section id="konstanten" class="level3" data-number="2.8.3">
 <h3 data-number="2.8.3" class="anchored" data-anchor-id="konstanten"><span class="header-section-number">2.8.3</span> Konstanten</h3>
-<p>Das sieht schon sehr gut aus! Unser Dimmer ist fast fertig, die grundlegende Funktionalität läuft robust. Eine Kleinigkeit stört mich noch: der Dimmer reagiert nur sehr langsam und wir müssen scheinbar endlos drehen, um die LED auf die volle Helligkeit zu bekommen. Können wir das beschleunigen?</p>
-<p>Das ist natürlich eine rhetorische Frage, in der Programmierung können wir so gut wie alles umsetzen. Und in diesem Fall ist es sogar recht einfach. Damit die LED schneller hell oder dunkel wird wenn wir am Drehknopf drehen, können wir die Anpassung der Helligkeit einfach verstärken. Momentan wird die Variable <code>brightness</code> einfach um die Differenz des Zählerstands erhöht oder verringert. Wir könnten stattdessen einen festen, höheren Schrittwert definieren, um die Helligkeit schneller zu ändern.</p>
-<p>Dazu definieren wir eine neue Variable, die eine Besonderheit hat. Wir geben ihr den Namen <code>STEP</code>, der nur aus Großbuchstaben besteht (Zeile 3). Gemäß der <a href="https://docs.python.org/3/reference/lexical_analysis.html#identifiers" title="Regeln für Variablennamen in Python">Regeln für die Bennung von Variablen in Python</a> eigentlich nicht erlaubt. Und tatsächlich ist <code>STEP</code> genau genommen auch keine Variable, sondern eine <strong>Konstante</strong>.</p>
+<p>Das sieht schon sehr gut aus! Unser Dimmer ist fast fertig, die grundlegende Funktionalität läuft robust. Eine Kleinigkeit stört mich noch: Der Dimmer reagiert nur sehr langsam, und wir müssen scheinbar endlos drehen, um die LED auf die volle Helligkeit zu bekommen. Können wir das beschleunigen?</p>
+<p>Das ist natürlich eine rhetorische Frage – in der Programmierung können wir so gut wie alles umsetzen. Und in diesem Fall ist es sogar recht einfach. Damit die LED schneller hell oder dunkel wird, wenn wir am Drehknopf drehen, können wir die Anpassung der Helligkeit einfach verstärken. Momentan wird die Variable <code>brightness</code> um die Differenz des Zählerstands erhöht oder verringert. Wir könnten stattdessen einen festen, höheren Schrittwert definieren, um die Helligkeit schneller zu ändern.</p>
+<p>Dazu definieren wir eine neue Variable, die eine Besonderheit hat. Wir geben ihr den Namen <code>STEP</code>, der nur aus Großbuchstaben besteht (Zeile 3). Gemäß der <a href="https://docs.python.org/3/reference/lexical_analysis.html#identifiers" title="Regeln für Variablennamen in Python">Regeln für die Bennung von Variablen in Python</a> werden Namen in GROSSBUCHSTABEN üblicherweise für Konstanten verwendet – und tatsächlich ist <code>STEP</code> genau genommen auch keine Variable, sondern eine <strong>Konstante</strong>.</p>
 <p>Eine Konstante unterscheidet sich dadurch, dass ihr Wert einmal festgelegt wird und sich danach nicht mehr ändert. In unserem Fall wollen wir, dass <code>STEP</code> immer den Wert 10 hat. Konstanten definieren wir typischerweise zu Beginn eines Python-Programms, damit man einen schnellen Überblick über alle definierten Konstanten und ihre Werte bekommen kann.</p>
-<p>Es ist wichtig zu verstehen, dass der fixe Wert einer Konstante sich nur auf die Ausführung des Programms bezieht. Zwischen mehreren Ausführen den gleichen Programms kann der Wert einer Konstante geändert werden. Zum Beispiel könnten wir als Hersteller des LED-Dimmers für eine neue Version entscheiden, dass diese sich noch schneller Dimmen lassen soll und wir erhöhen den Wert für <code>STEP</code> auf 20. Oder der Benutzer könnte diesen Wert über die Einstellung der hypothetischen Dimmer-App anpassen.</p>
-<p>Wenn wir wie in Zeile 15 gezeigt die Differenz des Zähler mit der Schrittgröße multiplizieren, können wir die Anpassung der Helligkeit verstärken.</p>
-<div id="0140cfc8" class="cell" data-execution_count="9">
+<p>Es ist wichtig zu verstehen, dass der fixe Wert einer Konstante sich nur auf die Ausführung des Programms bezieht. Zwischen mehreren Ausführungen desselben Programms kann der Wert einer Konstante geändert werden. Zum Beispiel könnten wir als Hersteller des LED-Dimmers für eine neue Version entscheiden, dass dieser sich noch schneller dimmen lassen soll, und wir erhöhen den Wert für <code>STEP</code> auf 20. Oder der Benutzer könnte diesen Wert über die Einstellungen der hypothetischen Dimmer-App anpassen.</p>
+<p>Wenn wir – wie in Zeile 15 gezeigt – die Differenz des Zählers mit der Schrittgröße multiplizieren, können wir die Anpassung der Helligkeit verstärken.</p>
+<div id="d464d470" class="cell" data-execution_count="9">
 <div id="lst-dim-led" class="python cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-dim-led-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1034,7 +1041,7 @@ Listing&nbsp;2.1: Der fertige LED-Dimmer (ohne Boilerplate-Code)
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="2">2</button><span id="annotated-cell-10-15" class="code-annotation-target"><a href="#annotated-cell-10-15"></a>        brightness <span class="op">+=</span> diff <span class="op">*</span> STEP</span>
 <span id="annotated-cell-10-16"><a href="#annotated-cell-10-16"></a>        brightness <span class="op">=</span> <span class="bu">max</span>(<span class="dv">0</span>, <span class="bu">min</span>(<span class="dv">255</span>, brightness))</span>
 <span id="annotated-cell-10-17"><a href="#annotated-cell-10-17"></a></span>
-<span id="annotated-cell-10-18"><a href="#annotated-cell-10-18"></a>        <span class="co"># Set RGB values zu counter value</span></span>
+<span id="annotated-cell-10-18"><a href="#annotated-cell-10-18"></a>        <span class="co"># Setze RGB-Werte auf den Zählerwert</span></span>
 <span id="annotated-cell-10-19"><a href="#annotated-cell-10-19"></a>        led.set_rgb_value(brightness, brightness, brightness)</span>
 <span id="annotated-cell-10-20"><a href="#annotated-cell-10-20"></a></span>
 <span id="annotated-cell-10-21"><a href="#annotated-cell-10-21"></a>        <span class="bu">print</span>(<span class="ss">f"Brightness / Counter: </span><span class="sc">{</span>brightness<span class="sc">}</span><span class="ss"> / </span><span class="sc">{</span>new_count<span class="sc">}</span><span class="ss">"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1054,31 +1061,39 @@ Listing&nbsp;2.1: Der fertige LED-Dimmer (ohne Boilerplate-Code)
 </dl>
 </div>
 </div>
-<p>Mit dem LED-Dimmer haben wir die zentrale Funktion des Drehknopfes zu Genüge kennengelernt. Das Gerät hat aber nich eine andere Funktion.</p>
+<p>Mit dem LED-Dimmer haben wir die zentrale Funktion des Drehknopfes zur Genüge kennengelernt. Das Gerät hat aber noch eine andere Funktion.</p>
 </section>
 </section>
 <section id="buttons" class="level2" data-number="2.9">
 <h2 data-number="2.9" class="anchored" data-anchor-id="buttons"><span class="header-section-number">2.9</span> Buttons</h2>
-<p>Neben dem Zähler besitzt der Dreh<em>knopf</em> (der Name gibt es schon her) noch eine Funktion, nämlich die eines einfachen Druckknopfes. Wir haben es weiter oben in <a href="#sec-numbers-first-steps" class="quarto-xref"><span>Abschnitt 2.1</span></a> mit dem Brick Viewer schon ausprobiert, der Drehknopf löst sich drücken und erzeugt eine haptische Rückmeldung, ein leichtes Knacken. Im Brick Viewer wurde der kleine Kreis auf der rechten Seite dann rot eingefärbt.</p>
+<p>Neben dem Zähler besitzt der Drehknopf (der Name sagt es schon) noch eine Funktion, nämlich die eines einfachen Druckknopfes. Wir haben es weiter oben in <a href="#sec-numbers-first-steps" class="quarto-xref"><span>Abschnitt 2.1</span></a> mit dem Brick Viewer schon ausprobiert: Der Drehknopf lässt sich drücken und erzeugt eine haptische Rückmeldung, ein leichtes Knacken. Im Brick Viewer wurde der kleine Kreis auf der rechten Seite dann rot eingefärbt.</p>
 <p>Selbstverständlich können wir den Zustand des Buttons auch aus einem Programm heraus abfragen. Dazu bietet uns der Drehknopf eine Methode <code>is_pressed()</code> an:</p>
-<div id="dc7e2f57" class="cell" data-execution_count="10">
+<div id="c742f631" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
 <span id="cb7-2"><a href="#cb7-2"></a>    <span class="cf">if</span> knob.is_pressed():</span>
 <span id="cb7-3"><a href="#cb7-3"></a>        <span class="bu">print</span>(<span class="st">"Button pressed"</span>)</span>
 <span id="cb7-4"><a href="#cb7-4"></a>    <span class="cf">else</span>:</span>
 <span id="cb7-5"><a href="#cb7-5"></a>        <span class="bu">print</span>(<span class="st">"Button not pressed"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Die Funktion liefert <code>True</code> zurück, wenn der Button gerade gedrückt ist, und ansonsten <code>False</code>. Das können wir wunderbar nutzen und darüber eine Bedingung formulieren, um entweder “Button pressed” oder “Button not pressed” aus der Konsole auszugeben. Ihr erinnert euch bestimmt an das <code>if</code>-Statement aus <a href="#sec-numbers-control-structures" class="quarto-xref"><span>Abschnitt 2.3</span></a>. Das ist genau was wir jetzt brauchen!</p>
-<div id="39c01f4b" class="cell" data-execution_count="11">
+<p>Die Funktion liefert <code>True</code> zurück, wenn der Button gerade gedrückt ist, und ansonsten <code>False</code>. Das können wir wunderbar nutzen und darüber eine Bedingung formulieren, um entweder “Button pressed” oder “Button not pressed” auf der Konsole auszugeben. Ihr erinnert euch bestimmt an das <code>if</code>-Statement aus <a href="#sec-numbers-control-structures" class="quarto-xref"><span>Abschnitt 2.3</span></a>. Das ist genau das, was wir jetzt brauchen!</p>
+<div id="9e9cd0b8" class="cell" data-execution_count="11">
+<div id="lst-button-test" class="python cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-button-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Listing&nbsp;2.2: Ein erster Test des Drehknopf-Buttons.
+</figcaption>
+<div aria-describedby="lst-button-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode cell-code" id="annotated-cell-12"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><button class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="1">1</button><span id="annotated-cell-12-1" class="code-annotation-target"><a href="#annotated-cell-12-1"></a>button_pressed_before <span class="op">=</span> <span class="va">False</span></span>
 <span id="annotated-cell-12-2"><a href="#annotated-cell-12-2"></a><span class="cf">while</span> <span class="va">True</span>:</span>
-<span id="annotated-cell-12-3"><a href="#annotated-cell-12-3"></a></span>
-<span id="annotated-cell-12-4"><a href="#annotated-cell-12-4"></a>    button_pressed_after <span class="op">=</span> knob.is_pressed()</span>
-<span id="annotated-cell-12-5"><a href="#annotated-cell-12-5"></a>    </span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="2">2</button><span id="annotated-cell-12-6" class="code-annotation-target"><a href="#annotated-cell-12-6"></a>    <span class="cf">if</span> button_pressed_before <span class="op">!=</span> button_pressed_after:</span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="3">3</button><span id="annotated-cell-12-7" class="code-annotation-target"><a href="#annotated-cell-12-7"></a>        <span class="bu">print</span>(<span class="ss">f"Button state changed: </span><span class="sc">{</span>button_pressed_after<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="annotated-cell-12-8"><a href="#annotated-cell-12-8"></a>    </span>
-<button class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="4">4</button><span id="annotated-cell-12-9" class="code-annotation-target"><a href="#annotated-cell-12-9"></a>    button_pressed_before <span class="op">=</span> button_pressed_after</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="annotated-cell-12-3"><a href="#annotated-cell-12-3"></a>    button_pressed_after <span class="op">=</span> knob.is_pressed()</span>
+<span id="annotated-cell-12-4"><a href="#annotated-cell-12-4"></a></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="2">2</button><span id="annotated-cell-12-5" class="code-annotation-target"><a href="#annotated-cell-12-5"></a>    <span class="cf">if</span> button_pressed_before <span class="op">==</span> <span class="va">True</span> <span class="kw">and</span> button_pressed_after <span class="op">==</span> <span class="va">False</span>:</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="3">3</button><span id="annotated-cell-12-6" class="code-annotation-target"><a href="#annotated-cell-12-6"></a>        <span class="bu">print</span>(<span class="st">"Button was pressed and released"</span>)</span>
+<span id="annotated-cell-12-7"><a href="#annotated-cell-12-7"></a>    </span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="4">4</button><span id="annotated-cell-12-8" class="code-annotation-target"><a href="#annotated-cell-12-8"></a>    button_pressed_before <span class="op">=</span> button_pressed_after</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</figure>
+</div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
 <dt data-target-cell="annotated-cell-12" data-target-annotation="1">1</dt>
@@ -1087,26 +1102,264 @@ Listing&nbsp;2.1: Der fertige LED-Dimmer (ohne Boilerplate-Code)
 </dd>
 <dt data-target-cell="annotated-cell-12" data-target-annotation="2">2</dt>
 <dd>
-<span data-code-cell="annotated-cell-12" data-code-lines="6" data-code-annotation="2">Mit dem <code>if</code>-Statement überprüfen wir, ob sich der Zustand des Buttons geändert hat, indem wir den aktuellen Zustand <code>button_pressed_after</code> mit dem vorherigen Zustand <code>button_pressed_before</code> vergleichen.</span>
+<span data-code-cell="annotated-cell-12" data-code-lines="5" data-code-annotation="2">Mit dem <code>if</code>-Statement überprüfen wir, ob der Button logelassen wurde. Dazu muss der vorherige Zustand <code>True</code> und der aktuelle Zustand <code>False</code> sein.</span>
 </dd>
 <dt data-target-cell="annotated-cell-12" data-target-annotation="3">3</dt>
 <dd>
-<span data-code-cell="annotated-cell-12" data-code-lines="7" data-code-annotation="3">Wenn sich der Zustand geändert hat, geben wir eine entsprechende Information auf der Konsole aus.</span>
+<span data-code-cell="annotated-cell-12" data-code-lines="6" data-code-annotation="3">Wenn der Button soeben losgelassen wurde, geben wir eine entsprechende Information auf der Konsole aus.</span>
 </dd>
 <dt data-target-cell="annotated-cell-12" data-target-annotation="4">4</dt>
 <dd>
-<span data-code-cell="annotated-cell-12" data-code-lines="9" data-code-annotation="4">Am Ende der Schleife aktualisieren wir den vorherigen Zustand <code>button_pressed_before</code>, damit er den aktuellen Zustand für die nächste Iteration speichert.</span>
+<span data-code-cell="annotated-cell-12" data-code-lines="8" data-code-annotation="4">Am Ende der Schleife aktualisieren wir den vorherigen Zustand <code>button_pressed_before</code>, damit er den aktuellen Zustand für die nächste Iteration speichert.</span>
 </dd>
 </dl>
 </div>
 </div>
-<p>Das reicht fürs Erste, der Button kann tatsächlich nicht mehr als das. Reicht aber auch, damit können wir unseren Dimmer schon einen zusätzlichen Mehrwert verleihen. Schließlich kann unsere LED nicht nur weiß leuchten.</p>
+<p>Das reicht fürs Erste – der Button kann tatsächlich nicht mehr als das. Reicht aber auch: Damit können wir unserem Dimmer schon einen zusätzlichen Mehrwert verleihen. Schließlich kann unsere LED nicht nur weiß leuchten.</p>
 </section>
 <section id="stimmungslicht" class="level2" data-number="2.10">
 <h2 data-number="2.10" class="anchored" data-anchor-id="stimmungslicht"><span class="header-section-number">2.10</span> Stimmungslicht</h2>
 <p>Wäre es nicht praktisch, wenn wir das Licht der LED nicht nur dimmen, sondern auch den Farbton verändern könnten? Weißes Licht ist am Abend bekanntlich nicht empfehlenswert, und grünes Licht soll beruhigend wirken.</p>
-<p>Lasst uns unseren Dimmer so erweitern, dass per Knopfdruck der Farbton gewechselt werden kann. Fürs Erst wollen wir die Farben weiß, gelb und grün anbieten. Das lässt sich später beliebig erweitern.</p>
-<p>Der Ausgangspunkt für unser dimmbares Stimmungslicht ist der Dimmer aus <a href="#lst-dim-led" class="quarto-xref">Listing&nbsp;<span>2.1</span></a>. Von hier aus fügen wir Schritt für Schritt die Logik für den Farbwechsel per Button ein.</p>
+<p>Lasst uns unseren Dimmer so erweitern, dass per Knopfdruck der Farbton gewechselt werden kann. Fürs Erste wollen wir die Farben Weiß, Gelb und Grün anbieten. Das lässt sich später beliebig erweitern.</p>
+<section id="die-farbe-per-variable-steuern" class="level3" data-number="2.10.1">
+<h3 data-number="2.10.1" class="anchored" data-anchor-id="die-farbe-per-variable-steuern"><span class="header-section-number">2.10.1</span> Die Farbe per Variable steuern</h3>
+<p>Der Ausgangspunkt für unser dimmbares Stimmungslicht ist der Dimmer aus <a href="#lst-dim-led" class="quarto-xref">Listing&nbsp;<span>2.1</span></a>. Von hier aus fügen wir Schritt für Schritt die Logik für den Farbwechsel per Button ein. Lasst uns aber zunächst ganz ohne Button versuchen, die Farbe der LED zu ändern.</p>
+<p>Bisher haben wir es uns einfach gemacht und die LED in Weiß leuchten lassen. Dazu mussten wir nur jeden der drei RGB-Farbkanäle auf den gleichen Wert setzen. Wenn wir neben Weiß auch Gelb und Grün anbieten wollen, müssen wir die Farbkanäle unterschiedlich ansteuern. Für Gelb setzen wir den roten und den grünen Kanal auf den gleichen Wert, während der blaue Kanal auf 0 bleibt. Für Grün setzen wir den grünen Kanal auf den gleichen Wert und die anderen beiden auf 0. Um so eine Logik umzusetzen, haben wir das passende Instrument bereits in unserem Werkzeugkasten: <a href="#sec-numbers-control-structures">Kontrollstrukturen</a>.</p>
+<p>Nehmen wir mal an, wir hätten eine Variable <code>color</code>, auf der die aktuelle Farbe gespeichert ist, in der die LED leuchten soll. Sie könnte also die Werte “white”, “yellow” oder “green” annehmen. Dann könnten wir mit <code>if</code>-Statements die notwendige Logik umsetzen:</p>
+<div id="eed1a0ae" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="cf">if</span> color <span class="op">==</span> <span class="st">"white"</span>:</span>
+<span id="cb8-2"><a href="#cb8-2"></a>    led.set_rgb_value(brightness, brightness, brightness)</span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="cf">if</span> color <span class="op">==</span> <span class="st">"yellow"</span>:</span>
+<span id="cb8-4"><a href="#cb8-4"></a>    led.set_rgb_value(brightness, brightness, <span class="dv">0</span>)</span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="cf">if</span> color <span class="op">==</span> <span class="st">"green"</span>:</span>
+<span id="cb8-6"><a href="#cb8-6"></a>    led.set_rgb_value(<span class="dv">0</span>, brightness, <span class="dv">0</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Erinnert euch, dass der Code nach einem <code>if</code> nur dann ausgeführt wird, wenn die vorangegangene Bedingung erfüllt ist. Da die Variable <code>color</code> zu einem Zeitpunkt nur einen der drei Werte annehmen kann, muss genau eine der drei Bedingungen erfüllt sein und alle anderen entsprechend nicht.</p>
+<p>Wenn wir jetzt zu Beginn unseres Programms <code>color</code> auf einen der drei Werte setzen, können wir die Logik schnell mal testen:</p>
+<div id="ecb56383" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>color <span class="op">=</span> <span class="st">"white"</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="cf">if</span> color <span class="op">==</span> <span class="st">"white"</span>:</span>
+<span id="cb9-4"><a href="#cb9-4"></a>    led.set_rgb_value(brightness, brightness, brightness)</span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="cf">if</span> color <span class="op">==</span> <span class="st">"yellow"</span>:</span>
+<span id="cb9-6"><a href="#cb9-6"></a>    led.set_rgb_value(brightness, brightness, <span class="dv">0</span>)</span>
+<span id="cb9-7"><a href="#cb9-7"></a><span class="cf">if</span> color <span class="op">==</span> <span class="st">"green"</span>:</span>
+<span id="cb9-8"><a href="#cb9-8"></a>    led.set_rgb_value(<span class="dv">0</span>, brightness, <span class="dv">0</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Alles sollte so sein wie zuvor, die LED leuchtet weiß.</p>
+<div id="e68c7c6f" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>color <span class="op">=</span> <span class="st">"yellow"</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Jetzt sollte beim Start des Programms die LED gelb leuchten. Dasselbe probiert mal mit “green” aus, das dürfte auch funktionieren.</p>
+</section>
+<section id="die-farbe-per-knopfdruck-ändern" class="level3" data-number="2.10.2">
+<h3 data-number="2.10.2" class="anchored" data-anchor-id="die-farbe-per-knopfdruck-ändern"><span class="header-section-number">2.10.2</span> Die Farbe per Knopfdruck ändern</h3>
+<p>Die aktuelle Farbe in einer Variable zu speichern ist eine gute Idee gewesen. Darauf können wir aufbauen und den Button für den Wechsel der Farbe nutzen. Aber wie?</p>
+<p>Zunächst erinnern wir uns an die Logik aus <a href="#lst-button-test" class="quarto-xref">Listing&nbsp;<span>2.2</span></a>, in dem wir den Button bereits aus einem Programm heraus getestet haben. Dort haben wir eine Logik gebastelt, die erkennt, wenn der Button gedrückt und wieder losgelassen wird. Wenn das der Fall war, wurde der Wert “Button gedrückt” auf der Konsole ausgegeben. Könnten wir diese Logik nicht verwenden, um statt etwas auszugeben einfach die Farbe zu wechseln?</p>
+<p>Natürlich können wir das. Passen wir den Code entsprechend an:</p>
+<div id="34296397" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>button_pressed_before <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb11-3"><a href="#cb11-3"></a>    button_pressed_after <span class="op">=</span> knob.is_pressed()</span>
+<span id="cb11-4"><a href="#cb11-4"></a></span>
+<span id="cb11-5"><a href="#cb11-5"></a>    <span class="cf">if</span> button_pressed_before <span class="op">==</span> <span class="va">True</span> <span class="kw">and</span> button_pressed_after <span class="op">==</span> <span class="va">False</span>:</span>
+<span id="cb11-6"><a href="#cb11-6"></a>        <span class="cf">if</span> color <span class="op">==</span> <span class="st">"white"</span>:</span>
+<span id="cb11-7"><a href="#cb11-7"></a>            color <span class="op">=</span> <span class="st">"yellow"</span></span>
+<span id="cb11-8"><a href="#cb11-8"></a>        <span class="cf">elif</span> color <span class="op">==</span> <span class="st">"yellow"</span>:</span>
+<span id="cb11-9"><a href="#cb11-9"></a>            color <span class="op">=</span> <span class="st">"green"</span></span>
+<span id="cb11-10"><a href="#cb11-10"></a>        <span class="cf">elif</span> color <span class="op">==</span> <span class="st">"green"</span>:</span>
+<span id="cb11-11"><a href="#cb11-11"></a>            color <span class="op">=</span> <span class="st">"white"</span></span>
+<span id="cb11-12"><a href="#cb11-12"></a></span>
+<span id="cb11-13"><a href="#cb11-13"></a>    button_pressed_before <span class="op">=</span> button_pressed_after</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Wieder ein Haufen voller <code>if</code>s - aber es sollte funktionieren. Gehen wir es einmal durch: Wenn der Button losgelassen wurde (Zeile 5) gelangen wir zur Prüfung der <code>if</code>-Statements. Im ersten Fall wird geprüft, ob die LED gerade Weiß leuchtet (<code>color == "white"</code>). Ist das der Fall, dann wechseln wir jetzt auf Gelb. Im zweiten Schritt sehen wir ein <code>elif</code>, das sehr ähnlich zu einem <code>if</code> ist, mit der Einschränkung, dass es nur überhaupt geprüft wird, wenn das vorherige <code>if</code> nicht schon wahr war. Das macht in diesem Fall einen großen Unterschied (im Vergleich zu weiter oben, als wir einfache <code>if</code>-Statements verwendet haben, um die Farbe der LED mit <code>set_rgb_color</code> zu setzen). Überlegt mal, was passieren würde, wenn wir hier folgenden Code einsetzen würden:</p>
+<div id="dc330924" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="cf">if</span> color <span class="op">==</span> <span class="st">"white"</span>:</span>
+<span id="cb12-2"><a href="#cb12-2"></a>    color <span class="op">=</span> <span class="st">"yellow"</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="cf">if</span> color <span class="op">==</span> <span class="st">"yellow"</span>:</span>
+<span id="cb12-4"><a href="#cb12-4"></a>    color <span class="op">=</span> <span class="st">"green"</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a><span class="cf">if</span> color <span class="op">==</span> <span class="st">"green"</span>:</span>
+<span id="cb12-6"><a href="#cb12-6"></a>    color <span class="op">=</span> <span class="st">"white"</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Geht das mal im Kopf durch. Wenn <code>color</code> aktuell den Wert <code>white</code> hat, dann wird durch das erste <code>if</code> der Wert auf <code>yellow</code> gesetzt. Anschließend wird das zweite <code>if</code> geprüft, das jetzt wahr ist, und der Wert wird auf <code>green</code> gesetzt. Das dritte <code>if</code> wird dann also ebenfalls wahr sein, und der Wert wird wieder auf <code>white</code> gesetzt. Im Endeffekt haben wir also nichts gewonnen, die LED bliebe weiß. Hier ist die Verwendung von <code>elif</code> entscheidend. Denn ein <code>elif</code> wird nur geprüft, wenn das vorherige <code>if</code> oder <code>elif</code> nicht wahr war. Nach der ersten Anpassung wäre hier also Schluss und die Farbe ist wie gewünscht Gelb.</p>
+<p>Fügen wir alles zusammen - die neue Logik zum setzen der Farben basierend auf der Varible <code>color</code>und die Logik zum Ändern der Variable, sowie die Logik des Dimmers aus <a href="#lst-dim-led" class="quarto-xref">Listing&nbsp;<span>2.1</span></a>:</p>
+<div id="a2fae9c6" class="cell" data-execution_count="17">
+<div id="lst-color-brightness" class="python cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-color-brightness-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Listing&nbsp;2.3: Farbwechsel und Helligkeitsanpassung in einem Programm.
+</figcaption>
+<div aria-describedby="lst-color-brightness-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>button_pressed_before <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a></span>
+<span id="cb13-3"><a href="#cb13-3"></a><span class="co"># 1. Main loop to keep program running</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb13-5"><a href="#cb13-5"></a>    new_count <span class="op">=</span> knob.get_count(reset<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb13-6"><a href="#cb13-6"></a>    button_pressed_after <span class="op">=</span> knob.is_pressed()</span>
+<span id="cb13-7"><a href="#cb13-7"></a></span>
+<span id="cb13-8"><a href="#cb13-8"></a>    <span class="co"># 2. Logic for color change on button release</span></span>
+<span id="cb13-9"><a href="#cb13-9"></a>    <span class="cf">if</span> button_pressed_before <span class="op">==</span> <span class="va">True</span> <span class="kw">and</span> button_pressed_after <span class="op">==</span> <span class="va">False</span>:</span>
+<span id="cb13-10"><a href="#cb13-10"></a>        <span class="cf">if</span> color <span class="op">==</span> <span class="st">"white"</span>:</span>
+<span id="cb13-11"><a href="#cb13-11"></a>            color <span class="op">=</span> <span class="st">"yellow"</span></span>
+<span id="cb13-12"><a href="#cb13-12"></a>        <span class="cf">elif</span> color <span class="op">==</span> <span class="st">"yellow"</span>:</span>
+<span id="cb13-13"><a href="#cb13-13"></a>            color <span class="op">=</span> <span class="st">"green"</span></span>
+<span id="cb13-14"><a href="#cb13-14"></a>        <span class="cf">elif</span> color <span class="op">==</span> <span class="st">"green"</span>:</span>
+<span id="cb13-15"><a href="#cb13-15"></a>            color <span class="op">=</span> <span class="st">"white"</span></span>
+<span id="cb13-16"><a href="#cb13-16"></a></span>
+<span id="cb13-17"><a href="#cb13-17"></a>        <span class="co"># Update LED to reflect new color</span></span>
+<span id="cb13-18"><a href="#cb13-18"></a>        <span class="cf">if</span> color <span class="op">==</span> <span class="st">"white"</span>:</span>
+<span id="cb13-19"><a href="#cb13-19"></a>            led.set_rgb_value(brightness, brightness, brightness)</span>
+<span id="cb13-20"><a href="#cb13-20"></a>        <span class="cf">if</span> color <span class="op">==</span> <span class="st">"yellow"</span>:</span>
+<span id="cb13-21"><a href="#cb13-21"></a>            led.set_rgb_value(brightness, brightness, <span class="dv">0</span>)</span>
+<span id="cb13-22"><a href="#cb13-22"></a>        <span class="cf">if</span> color <span class="op">==</span> <span class="st">"green"</span>:</span>
+<span id="cb13-23"><a href="#cb13-23"></a>            led.set_rgb_value(<span class="dv">0</span>, brightness, <span class="dv">0</span>)</span>
+<span id="cb13-24"><a href="#cb13-24"></a></span>
+<span id="cb13-25"><a href="#cb13-25"></a>    button_pressed_before <span class="op">=</span> button_pressed_after</span>
+<span id="cb13-26"><a href="#cb13-26"></a></span>
+<span id="cb13-27"><a href="#cb13-27"></a>    <span class="co"># 3. Logic for brightness adjustment</span></span>
+<span id="cb13-28"><a href="#cb13-28"></a>    <span class="cf">if</span> new_count <span class="op">!=</span> last_count:</span>
+<span id="cb13-29"><a href="#cb13-29"></a>        diff <span class="op">=</span> new_count <span class="op">-</span> last_count</span>
+<span id="cb13-30"><a href="#cb13-30"></a>        last_count <span class="op">=</span> new_count</span>
+<span id="cb13-31"><a href="#cb13-31"></a></span>
+<span id="cb13-32"><a href="#cb13-32"></a>        <span class="co"># Adjust brightness</span></span>
+<span id="cb13-33"><a href="#cb13-33"></a>        brightness <span class="op">+=</span> diff <span class="op">*</span> STEP</span>
+<span id="cb13-34"><a href="#cb13-34"></a>        brightness <span class="op">=</span> <span class="bu">max</span>(<span class="dv">0</span>, <span class="bu">min</span>(<span class="dv">255</span>, brightness))</span>
+<span id="cb13-35"><a href="#cb13-35"></a></span>
+<span id="cb13-36"><a href="#cb13-36"></a>        <span class="co"># Update LED to reflect new color</span></span>
+<span id="cb13-37"><a href="#cb13-37"></a>        <span class="cf">if</span> color <span class="op">==</span> <span class="st">"white"</span>:</span>
+<span id="cb13-38"><a href="#cb13-38"></a>            led.set_rgb_value(brightness, brightness, brightness)</span>
+<span id="cb13-39"><a href="#cb13-39"></a>        <span class="cf">if</span> color <span class="op">==</span> <span class="st">"yellow"</span>:</span>
+<span id="cb13-40"><a href="#cb13-40"></a>            led.set_rgb_value(brightness, brightness, <span class="dv">0</span>)</span>
+<span id="cb13-41"><a href="#cb13-41"></a>        <span class="cf">if</span> color <span class="op">==</span> <span class="st">"green"</span>:</span>
+<span id="cb13-42"><a href="#cb13-42"></a>            led.set_rgb_value(<span class="dv">0</span>, brightness, <span class="dv">0</span>)</span>
+<span id="cb13-43"><a href="#cb13-43"></a></span>
+<span id="cb13-44"><a href="#cb13-44"></a>        <span class="bu">print</span>(<span class="ss">f"Brightness / Counter: </span><span class="sc">{</span>brightness<span class="sc">}</span><span class="ss"> / </span><span class="sc">{</span>new_count<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</figure>
+</div>
+</div>
+<p>Schaut euch den Code in Ruhe an und prüft, ob ihr ihn Zeile für Zeile nachvollziehen könnt. An dieser Stelle hat unser Programm schon eine beträchtliche Größe angenommen, und so langsam wird es unübersichtlich. Versuchen wir also, Struktur hineinzubringen. Im Wesentlichen besteht das Programm aus drei Teilen, jeden habe ich mit einem vorangestellten Kommentar markiert:</p>
+<ol type="1">
+<li>Hauptschleife, um das Programm am Laufen zu halten</li>
+<li>Logik für Farbwechsel bei Tastenfreigabe</li>
+<li>Logik zur Helligkeitsanpassung</li>
+</ol>
+<p>In der Hauptschleife wird am Anfange immer wieder der aktuelle Zählerstand und der Zustand des Buttons abgefragt und auf jeweils einer Variable gespeichert. Diese Werte benötigen wir, um zu entscheiden, ob wir die Farbe ändern oder die Helligkeit anpassen müssen.</p>
+<p>Um einen potenziellen Farbwechsel kümmert sich der zweite Block, der mit dem <code>if button_pressed_before == True ...</code> beginnt. Die Bedingung prüft, ob der Button gerade aus dem gedrückten Zustand in den nicht gedrückten Zustand wechselt, der Benutzer ihn also gerade losgelassen hat. In diesem Moment soll die Farbe gewechselt werden. Die Logik dafür haben wir gerade entwickelt.</p>
+<p>Um die Helligkeitsanpassung kümmert sich dann der dritte und letzte größere Block. Er beginnt mit <code>if new_count != last_count</code>, was prüft, ob der Drehknop betätigt wurde. Wenn ja, dann wird die Helligkeit entsprechend der Differenz angepasst. Diese Logik haben wir in <a href="#sec-led-dimmer-part-2" class="quarto-xref"><span>Abschnitt 2.8</span></a> zusammen entwickelt.</p>
+<p>Wer von euch jetzt ganz genau hinsieht, der erkennt, dass die Blöcke 2 und 3 zum Teil identischen Code ausführen. In der Programmierung ist das eine rote Flagge 🚩! Lasst uns darüber sprechen, warum!</p>
+</section>
+</section>
+<section id="dont-repeat-yourself" class="level2" data-number="2.11">
+<h2 data-number="2.11" class="anchored" data-anchor-id="dont-repeat-yourself"><span class="header-section-number">2.11</span> Don’t Repeat Yourself</h2>
+<p>In der Programmierung ist es wichtig, Wiederholungen zu vermeiden. Wenn wir feststellen, dass wir denselben Code an mehreren Stellen verwenden, sollten wir darüber nachdenken, etwas zu verändern. Warum?</p>
+<p>Nehmen wir in unserem Beispiel an, wir führen eine vierte Farbe ein, sagen wir Blau. Dann müssten wir den Code in den Blöcken 2 und 3 anpassen, um die neue Farbe zu berücksichtigen. Das bedeutet, dass wir den gleichen Code an mehreren Stellen ändern müssten, was fehleranfällig und mühsam ist. Zwei mag noch nicht nach einem Problem klingen, aber selbst hier zeigt sich das Problem der Wiederholung. Wird eine Stelle vergessen, ist der Code inkonsistent und funktioniert nicht mehr wie gewünscht.</p>
+<p>Die Lösung liegt darin, häufig verwendeten Code in Funktionen auszulagern.</p>
+</section>
+<section id="funktionen" class="level2" data-number="2.12">
+<h2 data-number="2.12" class="anchored" data-anchor-id="funktionen"><span class="header-section-number">2.12</span> Funktionen</h2>
+<p>Funktionen sind ein mächtiges Werkzeug in der Programmierung. Sie ermöglichen es uns, Codeblöcke zu definieren, die wir immer wieder verwenden können, ohne sie jedes Mal neu schreiben zu müssen. Funktionen helfen uns dabei, unseren Code sauberer, übersichtlicher und wartbarer zu gestalten.</p>
+<p>Im <a href="#lst-color-brightness" class="quarto-xref">Listing&nbsp;<span>2.3</span></a> wird dieser Teil an zwei Stellen wiederholt:</p>
+<div id="0b613f45" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="cf">if</span> color <span class="op">==</span> <span class="st">"white"</span>:</span>
+<span id="cb14-2"><a href="#cb14-2"></a>    led.set_rgb_value(brightness, brightness, brightness)</span>
+<span id="cb14-3"><a href="#cb14-3"></a><span class="cf">if</span> color <span class="op">==</span> <span class="st">"yellow"</span>:</span>
+<span id="cb14-4"><a href="#cb14-4"></a>    led.set_rgb_value(brightness, brightness, <span class="dv">0</span>)</span>
+<span id="cb14-5"><a href="#cb14-5"></a><span class="cf">if</span> color <span class="op">==</span> <span class="st">"green"</span>:</span>
+<span id="cb14-6"><a href="#cb14-6"></a>    led.set_rgb_value(<span class="dv">0</span>, brightness, <span class="dv">0</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Zeit, diesen Code nur einmal zu schreiben! Machen wir daraus eine Funktion. Wie das geht? Im Prinzip müssen wir vier Dinge klären:</p>
+<ol type="1">
+<li>Was soll die Funktion tun?</li>
+<li>Wie sieht das Ergebnis aus?</li>
+<li>Was benötigt die Funktion, um ihre Aufgabe zu erledigen?</li>
+<li>Wie heisst die Funktion?</li>
+</ol>
+<div id="fig-numbers-input-function-output" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-numbers-input-function-output-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/problem_solving_input_function_output.png" class="lightbox" data-gallery="quarto-lightbox-gallery-21" title="Abbildung&nbsp;2.14: Funktionen folgen einem Eingabe-Verarbeitung-Ausgabe (EVA) Schema."><img src="https://winf-hsos.github.io/university-docs/images/problem_solving_input_function_output.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-numbers-input-function-output-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;2.14: Funktionen folgen einem Eingabe-Verarbeitung-Ausgabe (EVA) Schema.
+</figcaption>
+</figure>
+</div>
+<div id="6a3733f8" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">def</span> set_led_color(color, brightness):</span>
+<span id="cb15-2"><a href="#cb15-2"></a>    <span class="cf">if</span> color <span class="op">==</span> <span class="st">"white"</span>:</span>
+<span id="cb15-3"><a href="#cb15-3"></a>        led.set_rgb_value(brightness, brightness, brightness)</span>
+<span id="cb15-4"><a href="#cb15-4"></a>    <span class="cf">if</span> color <span class="op">==</span> <span class="st">"yellow"</span>:</span>
+<span id="cb15-5"><a href="#cb15-5"></a>        led.set_rgb_value(brightness, brightness, <span class="dv">0</span>)</span>
+<span id="cb15-6"><a href="#cb15-6"></a>    <span class="cf">if</span> color <span class="op">==</span> <span class="st">"green"</span>:</span>
+<span id="cb15-7"><a href="#cb15-7"></a>        led.set_rgb_value(<span class="dv">0</span>, brightness, <span class="dv">0</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>In <a href="#lst-dim-led-color" class="quarto-xref">Listing&nbsp;<span>2.4</span></a> seht ihr den fertigen Code für den Dimmer mit Farbwechsel per Knopfdruck.</p>
+<div id="dbe09d4b" class="cell" data-execution_count="20">
+<div id="lst-dim-led-color" class="python cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-dim-led-color-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Listing&nbsp;2.4: Der fertige Dimmer mit Farbwechsel per Knopfdruck.
+</figcaption>
+<div aria-describedby="lst-dim-led-color-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="im">from</span> tinkerforge.bricklet_rotary_encoder_v2 <span class="im">import</span> BrickletRotaryEncoderV2</span>
+<span id="cb16-3"><a href="#cb16-3"></a><span class="im">from</span> tinkerforge.bricklet_rgb_led_v2 <span class="im">import</span> BrickletRGBLEDV2</span>
+<span id="cb16-4"><a href="#cb16-4"></a></span>
+<span id="cb16-5"><a href="#cb16-5"></a>ipcon <span class="op">=</span> IPConnection()</span>
+<span id="cb16-6"><a href="#cb16-6"></a>ipcon.<span class="ex">connect</span>(<span class="st">'localhost'</span>, <span class="dv">4223</span>)</span>
+<span id="cb16-7"><a href="#cb16-7"></a>knob <span class="op">=</span> BrickletRotaryEncoderV2(<span class="st">'WZd'</span>, ipcon) </span>
+<span id="cb16-8"><a href="#cb16-8"></a>led <span class="op">=</span> BrickletRGBLEDV2(<span class="st">'ZG1'</span>, ipcon)</span>
+<span id="cb16-9"><a href="#cb16-9"></a></span>
+<span id="cb16-10"><a href="#cb16-10"></a>knob.reset()</span>
+<span id="cb16-11"><a href="#cb16-11"></a>brightness <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb16-12"><a href="#cb16-12"></a>STEP <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb16-13"><a href="#cb16-13"></a>led.set_rgb_value(brightness, brightness, brightness) </span>
+<span id="cb16-14"><a href="#cb16-14"></a>last_count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb16-15"><a href="#cb16-15"></a></span>
+<span id="cb16-16"><a href="#cb16-16"></a>color <span class="op">=</span> <span class="st">"white"</span></span>
+<span id="cb16-17"><a href="#cb16-17"></a>button_pressed_before <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb16-18"><a href="#cb16-18"></a></span>
+<span id="cb16-19"><a href="#cb16-19"></a><span class="kw">def</span> set_led_color(color, brightness):</span>
+<span id="cb16-20"><a href="#cb16-20"></a>    <span class="cf">if</span> color <span class="op">==</span> <span class="st">"white"</span>:</span>
+<span id="cb16-21"><a href="#cb16-21"></a>        led.set_rgb_value(brightness, brightness, brightness)</span>
+<span id="cb16-22"><a href="#cb16-22"></a>    <span class="cf">if</span> color <span class="op">==</span> <span class="st">"yellow"</span>:</span>
+<span id="cb16-23"><a href="#cb16-23"></a>        led.set_rgb_value(brightness, brightness, <span class="dv">0</span>)</span>
+<span id="cb16-24"><a href="#cb16-24"></a>    <span class="cf">if</span> color <span class="op">==</span> <span class="st">"green"</span>:</span>
+<span id="cb16-25"><a href="#cb16-25"></a>        led.set_rgb_value(<span class="dv">0</span>, brightness, <span class="dv">0</span>)</span>
+<span id="cb16-26"><a href="#cb16-26"></a></span>
+<span id="cb16-27"><a href="#cb16-27"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb16-28"><a href="#cb16-28"></a>    new_count <span class="op">=</span> knob.get_count(reset<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb16-29"><a href="#cb16-29"></a>    button_pressed_after <span class="op">=</span> knob.is_pressed()</span>
+<span id="cb16-30"><a href="#cb16-30"></a></span>
+<span id="cb16-31"><a href="#cb16-31"></a>    <span class="co"># If button changes from pressed to not pressed</span></span>
+<span id="cb16-32"><a href="#cb16-32"></a>    <span class="cf">if</span> button_pressed_before <span class="op">==</span> <span class="va">True</span> <span class="kw">and</span> button_pressed_after <span class="op">==</span> <span class="va">False</span>:</span>
+<span id="cb16-33"><a href="#cb16-33"></a>        <span class="cf">if</span> color <span class="op">==</span> <span class="st">"white"</span>:</span>
+<span id="cb16-34"><a href="#cb16-34"></a>            color <span class="op">=</span> <span class="st">"yellow"</span></span>
+<span id="cb16-35"><a href="#cb16-35"></a>        <span class="cf">elif</span> color <span class="op">==</span> <span class="st">"yellow"</span>:</span>
+<span id="cb16-36"><a href="#cb16-36"></a>            color <span class="op">=</span> <span class="st">"green"</span></span>
+<span id="cb16-37"><a href="#cb16-37"></a>        <span class="cf">elif</span> color <span class="op">==</span> <span class="st">"green"</span>:</span>
+<span id="cb16-38"><a href="#cb16-38"></a>            color <span class="op">=</span> <span class="st">"white"</span></span>
+<span id="cb16-39"><a href="#cb16-39"></a></span>
+<span id="cb16-40"><a href="#cb16-40"></a>        <span class="bu">print</span>(<span class="ss">f"Color changed to: </span><span class="sc">{</span>color<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb16-41"><a href="#cb16-41"></a>        set_led_color(color, brightness)   </span>
+<span id="cb16-42"><a href="#cb16-42"></a></span>
+<span id="cb16-43"><a href="#cb16-43"></a>    button_pressed_before <span class="op">=</span> button_pressed_after</span>
+<span id="cb16-44"><a href="#cb16-44"></a></span>
+<span id="cb16-45"><a href="#cb16-45"></a>    <span class="cf">if</span> new_count <span class="op">!=</span> last_count:</span>
+<span id="cb16-46"><a href="#cb16-46"></a>        diff <span class="op">=</span> new_count <span class="op">-</span> last_count</span>
+<span id="cb16-47"><a href="#cb16-47"></a>        last_count <span class="op">=</span> new_count</span>
+<span id="cb16-48"><a href="#cb16-48"></a></span>
+<span id="cb16-49"><a href="#cb16-49"></a>        <span class="co"># Adjust brightness</span></span>
+<span id="cb16-50"><a href="#cb16-50"></a>        brightness <span class="op">+=</span> diff <span class="op">*</span> STEP</span>
+<span id="cb16-51"><a href="#cb16-51"></a>        brightness <span class="op">=</span> <span class="bu">max</span>(<span class="dv">0</span>, <span class="bu">min</span>(<span class="dv">255</span>, brightness))</span>
+<span id="cb16-52"><a href="#cb16-52"></a></span>
+<span id="cb16-53"><a href="#cb16-53"></a>        <span class="bu">print</span>(<span class="ss">f"Brightness / Counter: </span><span class="sc">{</span>brightness<span class="sc">}</span><span class="ss"> / </span><span class="sc">{</span>new_count<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb16-54"><a href="#cb16-54"></a>        set_led_color(color, brightness)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</figure>
+</div>
+</div>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">

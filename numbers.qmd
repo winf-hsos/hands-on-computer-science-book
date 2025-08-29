@@ -1,6 +1,6 @@
 ---
 abstract: |
-    Unser Regenbogen aus dem ersten Kapitel war nur der Anfang. Doch wie speichert der Computer eigentlich die RGB-Werte für all diese Farben? Das führt uns zum Binärsystem: Mit nur Einsen und Nullen und in kleinen Päckchen, den Bytes – kann er jeden Farbton unseres Regenbogens abbilden. Und noch viel mehr.
+    Unser Regenbogen aus dem ersten Kapitel war nur der Anfang. Doch wie speichert der Computer eigentlich die RGB-Werte für all diese Farben? Das führt uns zum Binärsystem: Mit nur Einsen und Nullen, verpackt in kleinen Päckchen – den Bytes –, kann er jeden Farbton unseres Regenbogens abbilden. Und noch viel mehr.
 abstract-title: ""
 ---
 
@@ -10,13 +10,14 @@ abstract-title: ""
 
 Unsere wichtigsten Lernziele in diesem Kapitel sind:
 
--   Wir lernen Kontrollstrukturen kennen, mit denen wir unsere Programm steuern können.
+-   Wir lernen Kontrollstrukturen kennen, mit denen wir unser Programm steuern können.
 -   Wir verstehen das Binärsystem und wissen, wie der Computer Zahlen speichert.
--   Wir führen das Byte als zentrale Einheit für Informationen in Computern ein.
+-   Wir führen das Byte als zentrale Informationseinheit im Computer ein.
+-   Wir wissen, wie wir mithilfe von Funktionen besseren Code schreiben.
 
 ## Experimentaufbau {.unnumbered}
 
-Das erste Experiment in @sec-colors war schon ein ordentlicher Einstieg! In diesem Kapitel legen wir noch eine Schippe drauf: Unsere Hardware bekommt ein neues Teil – einen Drehknopf ([Rotary Encoder Bricklet 2.0](https://www.tinkerforge.com/en/doc/Hardware/Bricklets/Rotary_Encoder_V2.html)). Den schraubt ihr einfach neben die LED, wie in @fig-setup-rgb-led-rotary-encoder gezeigt.
+Das erste Experiment in @sec-colors war ein guter Einstieg! In diesem Kapitel legen wir noch eine Schippe drauf: Unsere Hardware bekommt ein neues Bauteil – einen Drehknopf ([Rotary Encoder Bricklet 2.0](https://www.tinkerforge.com/en/doc/Hardware/Bricklets/Rotary_Encoder_V2.html)). Das montiert ihr einfach neben der LED, wie in @fig-setup-rgb-led-rotary-encoder gezeigt.
 
 ::: {#fig-setup-rgb-led-rotary-encoder layout="[[1], [1,1], [1,1]]"}
 ![Seitenansicht.](images/master_brick_with_led_and_rotary_01.jpg){#fig-setup-rgb-led-a .lightbox group="setup-rgb-led"}
@@ -29,25 +30,25 @@ Das erste Experiment in @sec-colors war schon ein ordentlicher Einstieg! In dies
 
 ![Untenansicht.](images/master_brick_with_led_and_rotary_05.jpg){#fig-setup-rgb-led-e .lightbox group="setup-rgb-led"}
 
-Einfaches Setup mit einem Mikrocontroller, der LED und einem Drehknopf.
+Einfaches Setup mit einem Mikrocontroller, LED und einem Drehknopf.
 :::
 
 ## Erste Schritte mit dem Drehknopf {#sec-numbers-first-steps}
 
-Wie bei der LED werfen wir zuerst einen Blick auf den neuen Drehknopf im Brick Viewer. Schließt dazu euren Master Brick per USB an, startet den Brick Viewer und klickt auf *Connect*. Im Setup-Tab sollte nun neben der LED auch der Rotary Encoder auftauchen. Denkt daran: Dort findet ihr auch die UID eurer Geräte – die braucht ihr gleich für euer Programm.
+Wie bei der LED werfen wir zuerst einen Blick auf den neuen Drehknopf im Brick Viewer. Schließt dazu euren Master Brick per USB an, startet den Brick Viewer und klickt auf Connect. Im Setup-Tab sollte nun neben der LED auch der Rotary Encoder auftauchen. Denkt daran: Dort findet ihr auch die UID eurer Geräte – die braucht ihr gleich für euer Programm.
 
 ![Der Brick Viewer nach dem Connect.](images/exp_2_brick_viewer_after_connect.png){#fig-exp-2-brick-viewer-after-connect .lightbox group="brick-viewer-rotary"}
 
-Wechselt nun in den Tab für den Drehknopf, wo ihr ihn direkt testen könnt: Ihr seht den aktuellen Zählwert, der kann positiv oder negativ sein, je nachdem, wie oft und in welche Richtung ihr gedreht habt. Daneben zeigt ein Diagramm die zeitliche Entwicklung.
+Wechselt nun in den Tab für den Drehknopf, wo ihr ihn direkt testen könnt: Ihr seht den aktuellen Zählwert. Der kann positiv oder negativ sein – je nachdem, wie oft und in welche Richtung ihr gedreht habt. Daneben zeigt ein Diagramm die zeitliche Entwicklung.
 
 Doch der Knopf kann mehr als nur zählen: Ihr könnt ihn auch drücken. Achtet mal auf den kleinen Kreis im Brick Viewer. Wird er gedrückt, leuchtet er rot. Noch löst das Drücken keine Aktion aus, aber wir überlegen später, welche Funktion wir damit verbinden wollen.
 
-Und zuletzt: Der Button Reset Count. Damit setzt ihr den Zähler zurück, eine praktische Funktion, die wir später ebenfalls ins Programm einbauen können.
+Und zuletzt: der Button Reset Count. Damit setzt ihr den Zähler zurück – eine praktische Funktion, die wir später ebenfalls ins Programm einbauen können.
 
 ::: {#fig-brick-viewer-rotary-encoder layout="[[1,1]]"}
 ![Das Diagramm zeigt den aktuellen Wert an.](images/brick_viewer_rotary_encoder.png){.lightbox group="brick-viewer-rotary"}
 
-![Der Button wir rot, wenn er gedrückt ist.](images/brick_viewer_rotary_encoder_pressed.png){#fig-brick-viewer-rotary-encoder-pressed .lightbox group="brick-viewer-rotary"}
+![Der Button wird rot, wenn er gedrückt ist.](images/brick_viewer_rotary_encoder_pressed.png){#fig-brick-viewer-rotary-encoder-pressed .lightbox group="brick-viewer-rotary"}
 
 Die Funktionen des Rotary Encoders im Brick Viewer.
 :::
@@ -94,7 +95,7 @@ while True:
 
 Zur Erinnerung: `while True` erzeugt eine Endlosschleife. Normalerweise wollen wir so etwas vermeiden – außer, wir brauchen es genau dafür. Endlosschleifen sind praktisch, wenn wir kontinuierlich Daten lesen oder auf Ereignisse warten. Und keine Sorge: Mit Strg+C könnt ihr das Programm jederzeit beenden.
 
-Wenn ihr das Programm ausführt, werdet ihr direkt ein Problem erkennen. Die Schleife rennt förmlich und gibt nacheinander immer wieder den selben Wert aus. Nur wenn wir am Knopf drehen ändert sich der Wert, wird aber von der Schleife X-Male auf die Konsole geschrieben. Wie könnten wir das verbessern?
+Wenn ihr das Programm ausführt, werdet ihr direkt ein Problem erkennen. Die Schleife rennt förmlich und gibt nacheinander immer wieder denselben Wert aus. Nur wenn wir am Knopf drehen, ändert sich der Wert – wird aber von der Schleife x-mal auf die Konsole geschrieben. Wie könnten wir das verbessern?
 
 ## Kontrollstrukturen {#sec-numbers-control-structures}
 
@@ -110,15 +111,15 @@ while True:
         print(last_count)
 ```
 
-Gehen wir durch, was hier passiert: Zuerst setzen weisen wir der Variable `last_count` den Wert `None` zu, und zwar vor dem ersten Schleifendurchlauf. Anschließend wird in der Schleife in jedem Durchlauf der aktuelle Zählerwert ausgelesen und auf der zweiten Variable `new_count` gespeichert. Danach prüfen wir, ob sich der neue Wert im Vergleich zum alten Wert verändert hat. Da auf dem alten Wert `last_count` im ersten Durchlauf `None` ist, wird die Bedingung in Zeile 5 im ersten Durchlauf immer `True` sein. Somit geben wir den Wert zu Beginn auf jeden Fall aus, was im Sinne der Anwendung ist.
+Gehen wir durch, was hier passiert: Zuerst weisen wir der Variable `last_count` vor dem ersten Schleifendurchlauf den Wert `None` zu. Anschließend wird in jedem Durchlauf der aktuelle Zählerstand ausgelesen und in der Variable `new_count` gespeichert. Danach prüfen wir, ob sich der neue Wert im Vergleich zum alten unterscheidet. Da `last_count` im ersten Durchlauf `None` ist, wird die Bedingung in Zeile 5 beim Start immer `True` sein. Somit geben wir den Wert zu Beginn auf jeden Fall aus – genau so, wie es für die Anwendung sinnvoll ist.
 
-Anschließend wird in den darauffolgenden Schleifendurchläufen aber nur etwas ausgegeben, wenn der Wert sich verändert hat, also der Benutzer tatsächlich am Drehknopf gedreht hat. Ansonsten bleibt die Ausgabe unverändert.
+In den folgenden Schleifendurchläufen wird nur dann etwas ausgegeben, wenn sich der Wert verändert hat, ihr also tatsächlich am Drehknopf gedreht habt. Ansonsten bleibt die Ausgabe unverändert.
 
-Die Prüfung, ob der aktuelle Wert, den wir auf der zweiten Variable `new_count` speichern, sich vom alten Wert unterscheidet, erfolgt in Zeile 5. Hier lernen wir auch neues Konzept der Programmierung kennen, die Kontrollstruktur mit `if`, gefolgt von einer Bedingung.
+Die Prüfung, ob der aktuelle Wert (gespeichert in `new_count`) sich vom alten Wert unterscheidet, erfolgt in Zeile 5. Hier lernen wir auch ein neues Konzept der Programmierung kennen: die Kontrollstruktur `if`, gefolgt von einer Bedingung.
 
-Neu ist hier die Kontrollstruktur `if`. Sie prüft eine Bedingung, die, wie ihr schon aus @sec-colors kennt, nur `True` oder `False` sein kann. Ist sie wahr (`True`), läuft der eingerückte Code darunter. Ist sie falsch (`False`), passiert nichts.
+Neu ist hier die Kontrollstruktur `if`. Sie prüft eine Bedingung, die – wie ihr schon aus @sec-colors kennt – nur `True` oder `False` sein kann. Ist sie wahr (`True`), läuft der eingerückte Code darunter. Ist sie falsch (`False`), passiert nichts.
 
-Übertragen auf unser Programm heißt das: `print(count)` läuft nur dann, wenn sich der Wert tatsächlich verändert hat. In diesem Fall merken wir uns den neuen Wert und aktualisieren count. Beim nächsten Schleifendurchlauf prüfen wir wieder, ob sich etwas getan hat. Meistens ist das nicht so – und genau deshalb sehen wir nur dann eine Ausgabe, wenn wir wirklich am Knopf drehen. Ziemlich effizient, oder?
+Übertragen auf unser Programm heißt das: `print(last_count)` läuft nur dann, wenn sich der Wert tatsächlich verändert hat. In diesem Fall merken wir uns den neuen Wert und aktualisieren `last_count`. Beim nächsten Schleifendurchlauf prüfen wir wieder, ob sich etwas getan hat. Meistens ist das nicht so – und genau deshalb sehen wir nur dann eine Ausgabe, wenn wir wirklich am Knopf drehen. Ziemlich effizient, oder?
 
 ## Ein LED-Dimmer (Teil 1)
 
@@ -171,11 +172,11 @@ while True:
         last_count = new_count
         print(last_count)
 
-        # Set RGB values zu counter value
+        # Setze RGB-Werte auf den Zählerwert
         led.set_rgb_value(last_count, last_count, last_count)
 ```
 
-Lasst mal laufen und dreht voll auf oder runter! Beobachtet dabei den Wert für `last_count`. Was passiert, wenn er kleiner als Null wird? Oder wenn er größer als 255 wird? Bumm! Das Programm stürzt ab!
+Lasst es mal laufen und dreht voll auf oder runter! Beobachtet dabei den Wert für `last_count`. Was passiert, wenn er kleiner als Null wird? Oder wenn er größer als 255 wird? Bumm! Das Programm stürzt ab!
 
 Warum? Auf der Kommandzeile bekommen wir eine lange Fehlermeldung mit der folgenden Aussage ganz am Ende:
 
@@ -184,21 +185,21 @@ Warum? Auf der Kommandzeile bekommen wir eine lange Fehlermeldung mit der folgen
 struct.error: ubyte format requires 0 <= number <= 255
 ```
 
-Wenn man die Fehlermeldung googelt oder ChatGPT befragt bekommt man Hilfe. Offensichtlich wird für einen RGB-Wert, den wir der Funktion `set_rgb_value()` übergeben ein bestimmter Datentyp erwartet, der `ubyte` heisst. Das steht für "unsigned byte" und bedeutet, dass der Wert zwischen 0 und 255 liegen muss.
+Wenn man die Fehlermeldung googelt oder ChatGPT befragt, bekommt man Hilfe. Offensichtlich wird für einen RGB-Wert, den wir der Funktion `set_rgb_value()` übergeben, ein bestimmter Datentyp erwartet, der `ubyte` heißt. Das steht für "unsigned byte" und bedeutet, dass der Wert zwischen 0 und 255 liegen muss.
 
-Moment 🧐 - was hat jetzt Byte mit 0 bis 255 zu tun? Bisher dachten wir doch, das wäre wegen des RGB-Codes? Stimmt auch, aber der RGB-Code liegt nicht zufällig im Wertebereich von 0 bis 255.
+Moment 🧐 – was hat jetzt das Byte mit 0 bis 255 zu tun? Bisher dachten wir doch, das wäre wegen des RGB-Codes? Stimmt auch, aber der RGB-Code liegt nicht zufällig im Wertebereich von 0 bis 255.
 
-Um das zu verstehen, müssten wir das Binärsystem kennen. Also los!
+Um das zu verstehen, müssen wir das Binärsystem kennen. Also los!
 
 ## Zahlensysteme
 
-Eigentlich ist es schnell erklärt. Das Binärsystem ist wie das Dezimalsystem, mit dem wir alltäglich unterwegs sind, nur statt der Basis 10, nutzt es die Basis 2. Einfach oder? Wenn nicht, lest weiter, das hier soll schließlich ein Einführungsbuch sein.
+Eigentlich ist es schnell erklärt. Das Binärsystem ist wie das Dezimalsystem, mit dem wir alltäglich unterwegs sind – nur nutzt es statt der Basis 10 die Basis 2. Einfach, oder? Wenn nicht, lest weiter – das hier soll schließlich ein Einführungsbuch sein.
 
-### Unser Dezimalsytem
+### Unser Dezimalsystem
 
-Wir wenden das Dezimalsystem täglich intuitiv an. Es fragt sich wahrscheinlich niemand von euch, was die Systematik dahinter ist, oder? Und doch habt ihr es alle einmal in der Schule gelernt und wir müssen es an dieser Stelle etwas auffrischen. Solltet ihr mit Stellenwertsystemen\index{Stellenwertsystem} noch 100 % vertraut sein, könnt ihr diesen Abschnitt getrost überspringen.
+Wir wenden das Dezimalsystem täglich intuitiv an. Es fragt sich wahrscheinlich niemand von euch, was die Systematik dahinter ist, oder? Und doch habt ihr es alle einmal in der Schule gelernt, und wir müssen es an dieser Stelle etwas auffrischen. Solltet ihr mit Stellenwertsystemen\index{Stellenwertsystem} noch 100 % vertraut sein, könnt ihr diesen Abschnitt getrost überspringen.
 
-Nehmen wir eine Zahl wie die 123 als Beispiel. Wir haben sofort ein Gefühl für die Zahl, wir wissen etwa wie groß sie ist. Und wenn wir es etwas genauer erklären müssen, können die meisten von euch sicher erläutern, wofür - also für welchen Wert - jede Zahl steht. Wir beginnen mit der kleinsten Wertigkeit, was die Ziffer ganz rechts ist: die 3. Sie steht für die Einserstelle, und davon haben wir 3. Die nächste Stelle steht für die Zehner, und weil dort eine 2 steht sind es zwanzig. Also $3+20=23$. Schließen wir auch die dritte und letzte Ziffer in unsere Erläuterung ein: die 1 steht für die Hunderterstelle, also $1*100=100$. Damit haben wir $100+20+3=123$. Ganz einfach und intuitiv.
+Nehmen wir eine Zahl wie die 123 als Beispiel. Wir haben sofort ein Gefühl für die Zahl, wir wissen etwa, wie groß sie ist. Und wenn wir es etwas genauer erklären müssen, können die meisten von euch sicher erläutern, wofür – also für welchen Wert – jede Ziffer steht. Wir beginnen mit der kleinsten Wertigkeit, also der Ziffer ganz rechts: der 3. Sie steht für die Einserstelle, und davon haben wir 3. Die nächste Stelle steht für die Zehner, und weil dort eine 2 steht, sind es zwanzig. Also $3+20=23$. Schließen wir auch die dritte und letzte Ziffer in unsere Erläuterung ein: Die 1 steht für die Hunderterstelle, also $1*100=100$. Damit haben wir $100+20+3=123$. Ganz einfach und intuitiv.
 
 ::: {#fig-decimal-123 layout="[[1,1]]"}
 ![Im Dezimalsystem hat jede Stelle einen anderen Wert.](https://winf-hsos.github.io/university-docs/images/binary_system_decimal_calculation_123_a.png){#fig-decimal-system-calculation-123-a .lightbox}
@@ -208,21 +209,21 @@ Nehmen wir eine Zahl wie die 123 als Beispiel. Wir haben sofort ein Gefühl für
 Das Dezimalsystem ist ein Stellenwertsystem.
 :::
 
-Das Ganze können wir nicht nur mit 3-stelligen Zahlen, sondern prinzipiell mit beliebig langen Zahlen. Wir wissen, dass die nächste Ziffer, die wir links im Beispiel in @fig-decimal-system-4123 sehen, für die Tausenderstelle steht. Die nächste Stelle würde für die Zehntausenderstelle stehen, und so weiter. Warum fällt es uns so leicht?
+Das Ganze funktioniert nicht nur mit dreistelligen Zahlen, sondern prinzipiell mit beliebig langen Zahlen. Wir wissen, dass die nächste Ziffer, die wir links im Beispiel in @fig-decimal-system-4123 sehen, für die Tausenderstelle steht. Die nächste Stelle würde für die Zehntausenderstelle stehen – und so weiter. Warum fällt es uns so leicht?
 
-Erstens, weil wir damit jeden Tag umgehen. Das Dezimalsystem ist das System, das wir am häufigsten verwenden, und wir haben es von klein auf gelernt. Es ist intuitiv und einfach zu verstehen. Zweitens aber auch, weil die Systematik des Systems kennen: Jede Stelle ist 10 Mal mehr wert als die vorherige.
+Erstens, weil wir damit jeden Tag umgehen. Das Dezimalsystem ist das System, das wir am häufigsten verwenden, und wir haben es von klein auf gelernt. Es ist intuitiv und einfach zu verstehen. Zweitens aber auch, weil wir die Systematik kennen: Jede Stelle ist 10-mal so viel wert wie die vorherige.
 
 ![Jede Stelle steht für eine höhere Potenz der Basis 10.](https://winf-hsos.github.io/university-docs/images/binary_system_decimal_calculation_4123.png){#fig-decimal-system-4123 .lightbox}
 
 ### Andere Zahlensysteme
 
-Wurde uns das Dezimalsystem von Gott gegeben? Vielleicht, wenn man an die Schöpfung glaubt[^numbers-1] und dass Gott uns so geschaffen hat, wie wir sind, dann hat er implizit dafür gesorgt, dass wir dezimal denkende Wesen werden. Warum? Eine Theorie besagt, dass die menschliche Anatomie, insbesondere die Anzahl der Finger, einen Einfluss auf unser Zahlensystem hatte. Zählt einfach mal anhand eurer Finger durch.
+Wurde uns das Dezimalsystem von Gott gegeben? Vielleicht – wenn man an die Schöpfung glaubt[^numbers-1] und daran, dass Gott uns so geschaffen hat, wie wir sind, dann hat er implizit dafür gesorgt, dass wir dezimal denkende Wesen werden. Warum? Eine Theorie besagt, dass die menschliche Anatomie, insbesondere die Anzahl der Finger, einen Einfluss auf unser Zahlensystem hatte. Zählt einfach mal anhand eurer Finger durch.
 
 [^numbers-1]: Hände hoch, wer daran noch glaubt!
 
 ### Das Oktalsystem
 
-Nun gibt es auch Wesen mit weniger als zehn Fingern (und auch mit mehr?). Nehmt mal einen Cartoon-Charakter wie Mickey Mouse als Beispiel. In @fig-cartoon-character seht ihr, wie hier wahrscheinlich gezählt wird. Hätte ein Volk von Mickey Mäusen sich auch für das Dezimalsystem entschieden?
+Nun gibt es auch Wesen mit weniger als zehn Fingern (und auch mit mehr?). Nehmt mal einen Cartoon-Charakter wie Mickey Mouse als Beispiel. In @fig-cartoon-character seht ihr, wie hier wahrscheinlich gezählt wird. Hätte ein Volk von Mickey-Mäusen sich auch für das Dezimalsystem entschieden?
 
 ![Cartoon-Charaktere haben nur acht Finger. Quelle: Erstellt mit ChatGPT nach @petzold_code_2022](https://winf-hsos.github.io/university-docs/images/binary_system_human_vs_cartoon.png){#fig-cartoon-character .lightbox}
 
@@ -232,13 +233,13 @@ Vermutlich nicht!
 
 ### Das Binärsystem
 
-Treiben wir es noch ein wenig weiter auf die Spitze und nehmen ein paar Finger weg. Sagen wir bis auf zwei, dann wären wir vielleicht bei einem Delphin mit zwei Flossen, wie ihr ihn in @fig-binary-system-dolphin seht. Delfine haben sich vermutlich auf ein System geeinigt, das auch für unsere heutigen Computer die Grundlage darstellt: das Binärsystem\index{Binärsystem}.
+Treiben wir es noch ein wenig weiter auf die Spitze und nehmen ein paar Finger weg – sagen wir bis auf zwei. Dann wären wir vielleicht bei einem Delfin mit zwei Flossen, wie ihr ihn in @fig-binary-system-dolphin seht. Delfine haben sich vermutlich auf ein System geeinigt, das auch für unsere heutigen Computer die Grundlage darstellt: das Binärsystem\index{Binärsystem}.
 
-![Delphine würden anders zählen. Eher wir Computer.](https://winf-hsos.github.io/university-docs/images/binary_system_dolphin.png){#fig-binary-system-dolphin .lightbox}
+![Delfine würden anders zählen. Eher wie Computer.](https://winf-hsos.github.io/university-docs/images/binary_system_dolphin.png){#fig-binary-system-dolphin .lightbox}
 
-Das Wort *binär*\index{binär} stammt aus dem Lateinischen und bedeutet *paarweise* oder *zu zweit*. Von diesem Wort stammt auch der Name des Stellenwertsystems mit der Basis 2 ab, und das nicht ohne Grund. Im Binärsystem gibt es für jedes Stelle genau zwei Möglichkeiten: 0 oder 1. Ein anderer Begriff ist übrigens Dualsystem, was genau das gleiche meint. Auch das Wort *dual* kommt von den Römern und heisst so viel wie "zwei enthaltend".
+Das Wort "binär"\index{binär} stammt aus dem Lateinischen und bedeutet "paarweise" oder "zu zweit". Von diesem Wort stammt auch der Name des Stellenwertsystems mit der Basis 2 – und das nicht ohne Grund. Im Binärsystem gibt es für jede Stelle genau zwei Möglichkeiten: 0 oder 1. Ein anderer Begriff ist übrigens Dualsystem, was genau das Gleiche meint. Auch das Wort "dual" kommt von den Römern und heißt so viel wie "zwei enthaltend".
 
-![Eine Binärziffer ist bergleichbar mit einem Lichtschalter, der An oder Aus sein kann.](https://winf-hsos.github.io/university-docs/images/binary_system_light_switch.png){#fig-light-switch .lightbox .align-center}
+![Eine Binärziffer ist vergleichbar mit einem Lichtschalter, der an oder aus sein kann.](https://winf-hsos.github.io/university-docs/images/binary_system_light_switch.png){#fig-light-switch .lightbox .align-center}
 
 ::: {#fig-binary-110 layout="[[1,1]]"}
 ![](https://winf-hsos.github.io/university-docs/images/binary_system_binary_110_b.png){#fig-binary-110-b .lightbox group="binary-system"}
@@ -252,19 +253,19 @@ Das Binärsystem funktioniert wie alle anderen Stellenwertsysteme auch.
 
 ## Bits und Bytes
 
-Warum haben wir uns Zahlensysteme angeschaut, und was hat das mit Computern zu tun. Ganz einfach: Computer denken binär, das bedeutet sie kennen nur zwei Zustände. An oder aus, Null oder Eins.
+Warum haben wir uns Zahlensysteme angeschaut, und was hat das mit Computern zu tun? Ganz einfach: Computer denken binär. Das bedeutet, sie kennen nur zwei Zustände: an oder aus, 0 oder 1.
 
-Wir kommen später noch einmal ausführlich darauf zurück, aber so viel schon vorweg. Eine Binärziffer nennen wir im Englischen *binary digit*, was mit *bit* abgekürzt wird. Jetzt klingelt es, oder?
+Wir kommen später noch einmal ausführlich darauf zurück, aber so viel schon vorweg: Eine Binärziffer nennen wir im Englischen "binary digit", kurz "bit". Jetzt klingelt es, oder?
 
 Ein Bit ist eine Informationseinheit. Nicht irgendeine, sondern die kleinste, die es gibt. Die Erklärung, warum das so ist, folgt später. Wir wollen uns an dieser Stelle die Frage stellen, was wir mit einem Bit alles anstellen können.
 
-Ein Bit ist alleine ziemlich einsam und eingeschränkt. Wenn sich ein Computer mit einem Bit lediglich merken kann, ob eine Lampe an oder aus ist, dann sind das genau zwei Möglichkeiten. Nicht besonders viel. Wir kamen aber von den Farben über Zahlensysteme zu den Bits - und unsere ursprüngliche Frage war, wie ein Computer mit seinen Mitteln - also Nullen und Einsen (oder eben Bits) - so viele unterschiedliche Farben abbilden und speichern kann. Zwei würde gerade einmal für Schwarz/Weiß ausreichen.
+Ein Bit ist alleine ziemlich einsam und eingeschränkt. Wenn sich ein Computer mit einem Bit lediglich merken kann, ob eine Lampe an oder aus ist, dann sind das genau zwei Möglichkeiten. Nicht besonders viel. Wir kamen aber von den Farben über Zahlensysteme zu den Bits – und unsere ursprüngliche Frage war, wie ein Computer mit seinen Mitteln – also Nullen und Einsen (oder eben Bits) – so viele unterschiedliche Farben abbilden und speichern kann. Zwei würden gerade einmal für Schwarz/Weiß ausreichen.
 
-Ihr ahnt vielleicht schon die Antwort. Wir gesellen zum ersten ein zweites Bit hinzu. Und schon können wir vier unterschiedliche Zustände abbilden: `00`, `01`, `10` und `11`. Damit könnten wir zum Beispiel die Farben Schwarz, Blau, Grün und Cyan darstellen. Etwas willkürlich (warum gerade diese Farben), aber denkbar.
+Ihr ahnt es vielleicht schon: Wir gesellen zum ersten ein zweites Bit hinzu. Und schon können wir vier unterschiedliche Zustände abbilden: `00`, `01`, `10` und `11`. Damit könnten wir zum Beispiel die Farben Schwarz, Blau, Grün und Cyan darstellen. Etwas willkürlich (warum gerade diese Farben), aber denkbar.
 
-Was passiert, wenn wir ein drittes Bit hinzunehmen? Sind es nun sechs Zustände? Nein, es sind acht: `000`, `001`, `010`, `011`, `100`, `101`, `110` und `111`. Damit könnten wir die Farben Schwarz, Blau, Grün, Cyan, Rot, Magenta, Gelb und Weiß darstellen (oder jede andere Kombination die wir uns wünschen).
+Was passiert, wenn wir ein drittes Bit hinzunehmen? Sind es nun sechs Zustände? Nein, es sind acht: `000`, `001`, `010`, `011`, `100`, `101`, `110` und `111`. Damit könnten wir die Farben Schwarz, Blau, Grün, Cyan, Rot, Magenta, Gelb und Weiß darstellen (oder jede andere Kombination, die wir uns wünschen).
 
-Mit jedem zusätzlichen Bit können wir also nicht plus Zwei mehr Zustände abbilden, sondern wir verdoppeln unsere Möglichkeiten. Also müssen wir *mal* zwei - und nicht *plus* zwei - rechnen. Das ist eine gute Nachricht, denn die Anzahl der Farben, die wir mit jedem zusätzlichen Bit darstellen können, verdoppelt sich jedesmal.
+Mit jedem zusätzlichen Bit können wir also nicht plus zwei mehr Zustände abbilden, sondern wir verdoppeln unsere Möglichkeiten. Also müssen wir mal zwei – und nicht plus zwei – rechnen. Das ist eine gute Nachricht, denn die Anzahl der Farben, die wir mit jedem zusätzlichen Bit darstellen können, verdoppelt sich jedes Mal.
 
 Das halten wir fest, aber schauen wir zurück auf unsere RGB-Farben und die Fehlermeldung, die wir zuletzt bekommen haben. Der Wert für eine Farbe aus dem RGB-Farbcode muss zwischen 0 und 255 liegen. Wir haben somit inklusive der Null 256 Möglichkeiten für jede der drei RGB-Grundfarben. Wie viele Bits benötigen wir dafür? Rechnen wir es aus:
 
@@ -282,27 +283,27 @@ $$
 \end{aligned}
 $$
 
-Stop! $2^8 = 256$, das genügt uns völlig. Mit 8 Bits können wir somit 256 Zustände abbilden - genau passend für zweihundertsechsundfünzig Rot, Grün, oder Blau-Anteile. Und das ist kein Zufall: 8 Bits sind für Computer eine besondere Hausnummer. Wir nennen eine Gruppe von 8 Bits ein Byte\index{Byte}. Und jetzt dürfte es erneut klingeln.
+Stopp! $2^8 = 256$, das genügt uns völlig. Mit 8 Bits können wir somit 256 Zustände abbilden – genau passend für 256 Rot-, Grün- oder Blauanteile. Und das ist kein Zufall: 8 Bits sind für Computer eine besondere Hausnummer. Wir nennen eine Gruppe von 8 Bits ein Byte\index{Byte}. Und jetzt dürfte es erneut klingeln.
 
 ![Ein Byte könnt ihr euch vorstellen wie acht Glühbirnen nebeneinander.](https://winf-hsos.github.io/university-docs/images/binary_system_byte_a.png){#fig-binary-system-byte-a .lightbox}
 
-In @fig-binary-system-byte-a ist ein Byte als Serie von acht Glühbirnen dargestellt. Ihr könnt euch vorstellen, dass Bits mit dem Wert 1 leuchten und Bits mit dem Wert 0 aus sind. Um den Wert zu ermitteln, den das Byte gerade darstellt, könnt ihr jeder Glühbirne von rechts nach links jeweils die Wertigkeiten der Stellen aus dem Binärsystem zuweisen und die Werte addieren. Stellen, an denen die Glühbirne an ist, werden addiert, die anderen werden ausgelassen (@fig-binary-system-byte-b). Das Byte im gezeigte Beispiel steht somit für:
+In @fig-binary-system-byte-a ist ein Byte als Reihe von acht Glühbirnen dargestellt. Ihr könnt euch vorstellen, dass Bits mit dem Wert 1 leuchten und Bits mit dem Wert 0 aus sind. Um den Wert zu ermitteln, den das Byte gerade darstellt, könnt ihr jeder Glühbirne von rechts nach links die entsprechenden Wertigkeiten der Stellen aus dem Binärsystem zuweisen und die Werte addieren. Stellen, an denen die Glühbirne leuchtet, werden addiert, die anderen werden ausgelassen (@fig-binary-system-byte-b). Das Byte im gezeigten Beispiel steht somit für:
 
 $$
 32 + 8 + 1 = 41
 $$
 
-Wofür steht das Byte, wenn alle Lampen leuchten? Oder anders gefragt: Was ist die größte Zahl, die wir einem Byte darstellen können?
+Wofür steht das Byte, wenn alle Lampen leuchten? Oder anders gefragt: Was ist die größte Zahl, die wir mit einem Byte darstellen können?
 
 $$
 128+64+32+16+8+4+2+1 = 255
 $$
 
-Die Antwort überrascht uns nicht, denn schließlich haben wir es ja schon herausgefunden: ein Byte erlaubt uns, Werte zwischen 0 (alle Glühbirnen aus) und 255 (alle Glühbirnen an) darzustellen. Insgesamt also 256 Möglichkeiten. Somit können wir mit 8 Glühbirnen die Intensität einer der drei Grundfarben im RGB-Code darstellen.
+Die Antwort überrascht uns nicht, denn schließlich haben wir es ja schon herausgefunden: Ein Byte erlaubt uns, Werte zwischen 0 (alle Glühbirnen aus) und 255 (alle Glühbirnen an) darzustellen. Insgesamt also 256 Möglichkeiten. Somit können wir mit 8 Glühbirnen die Intensität einer der drei Grundfarben im RGB-Code darstellen.
 
 ![Jede Glühbirne steht für eine Stelle aus dem Binärsystem.](https://winf-hsos.github.io/university-docs/images/binary_system_byte_b.png){#fig-binary-system-byte-b .lightbox}
 
-Das erklärt auch die Fehlermeldung von oben: ein Byte kann Werte zwischen 0 und 255 darstellen. Wir haben im Experiment den Drehknopf voll nach oben oder nach unten gedreht, wodurch der Wert entweder größer als 255 oder kleiner als 0 wurde. Und damit ist es kein gültiger Wert in Sinne eines Bytes mehr.
+Das erklärt auch die Fehlermeldung von oben: Ein Byte kann Werte zwischen 0 und 255 darstellen. Wir haben im Experiment den Drehknopf voll nach oben oder nach unten gedreht, wodurch der Wert entweder größer als 255 oder kleiner als 0 wurde. Und damit ist es kein gültiger Wert im Sinne eines Bytes mehr.
 
 ## Kilo, Mega, Giga
 
@@ -311,7 +312,7 @@ Ein Byte besteht aus 8 Bits. Wenn wir also von Bytes sprechen, reden wir oft auc
 | Potenz (Bytes) | Ausgeschrieben | Bezeichnung (Abkürzung) | Entspricht ca. |
 |------------|--------------|-----------------|------------------------------|
 | $10^3$ | Tausend | Kilobyte (KB) | kleine Textdatei |
-| $10^6$ | Millionen | Megabyte (MB) | Digitales Foto |
+| $10^6$ | Million | Megabyte (MB) | Digitales Foto |
 | $10^9$ | Milliarde | Gigabyte (GB) | Film (DVD 4,7 GB) |
 | $10^{12}$ | Billion | Terabyte (TB) | Gängige Festplattenkapazität |
 | $10^{15}$ | Billiarde | Petabyte (PB) | Speichervolumen Rechenzentrum |
@@ -319,19 +320,19 @@ Ein Byte besteht aus 8 Bits. Wenn wir also von Bytes sprechen, reden wir oft auc
 | $10^{21}$ | Trilliarde | Zettabyte (ZB) | Datenbestand weltweit (\>100 ZB) |
 | $10^{24}$ | Quadrillion | Yottabyte (YB) | keine Entsprechung |
 
-: Verschiedene Mengeneinheiten für Bits und deren ungefähre Entsprechung. {#tbl-data-sizes}
+: Verschiedene Mengeneinheiten für Bytes und deren ungefähre Entsprechung. {#tbl-data-sizes}
 
-Jetzt da ihr wisst, was mit einem Byte gemeint ist, könnt ihr eine ungefähre Vorstellung für die Größenordnungen von Datenmengen entwickeln. Die ersten drei Zeilen aus @tbl-data-sizes könnt ihr selbst einmal nachvollziehen. Schaut euch dazu mal eine Textdatei an, notiert deren Größe, und rechnet aus, wie viele Glühbirnen für die Speicherung gebraucht werden. Denkt daran: ein Byte entspricht acht Glühbirnen. 
+Jetzt, da ihr wisst, was mit einem Byte gemeint ist, könnt ihr eine ungefähre Vorstellung für die Größenordnungen von Datenmengen entwickeln. Die ersten drei Zeilen aus @tbl-data-sizes könnt ihr selbst einmal nachvollziehen. Schaut euch dazu mal eine Textdatei an, notiert deren Größe und rechnet aus, wie viele Glühbirnen für die Speicherung gebraucht werden. Denkt daran: Ein Byte entspricht acht Glühbirnen.
 
 Wir kommen in den späteren Kapiteln immer wieder auf die Bits und Bytes zurück, weil wir in Computern letztlich überall mit diesen Einheiten arbeiten. Es ist somit gut, wenn ihr schon an dieser Stelle ein grundlegendes Verständnis für diese Konzepte entwickelt.
 
-## Ein LED-Dimmer (Teil 2)
+## Ein LED-Dimmer (Teil 2) {#sec-led-dimmer-part-2}
 
-Zurück zu unserem eigentlichen Vorhaben. Wir waren gerade dabei, einen Dimmer für unsere LED zu basteln, als uns die Zahlensysteme dazwischen gekommen sind. Dafür haben wir jetzt ein besseres Verständnis dafür, wie ein Computer Farben sieht - nämlich als lange Sequenz aus Nullen und Einsen. Und zwar 24 davon, weil jede Grundfarbe ein Byte an Speicher verwendet.
+Zurück zu unserem eigentlichen Vorhaben. Wir waren gerade dabei, einen Dimmer für unsere LED zu basteln, als uns die Zahlensysteme dazwischengekommen sind. Dafür haben wir jetzt ein besseres Verständnis dafür, wie ein Computer Farben sieht – nämlich als lange Sequenz aus Nullen und Einsen. Und zwar 24 davon, weil jede Grundfarbe ein Byte an Speicher verwendet.
 
 ### `min()` und `max()`
 
-Was müssen wir also in unserem Programm verändern, jetzt da wir wissen, was das Problem zuvor war? Genau! Wir müssen sicherstellen, dass die Werte, die wir an die LED senden, im gültigen Bereich für ein Byte liegen. Und zwar zwischen 0 und 255.
+Was müssen wir also in unserem Programm verändern, jetzt, da wir wissen, was zuvor das Problem war? Genau! Wir müssen sicherstellen, dass die Werte, die wir an die LED senden, im gültigen Bereich für ein Byte liegen – und zwar zwischen 0 und 255.
 
 ```{python}
 knob.reset()
@@ -348,15 +349,15 @@ while True:
 
         print(last_count)
 
-        # Set RGB values zu counter value
+        # Setze RGB-Werte auf den Zählerwert
         led.set_rgb_value(last_count, last_count, last_count)
 ```
 
-1. Die Funktionen `min()` und `max()` sorgen dafür, dass der Wert von `last_count` immer zwischen 0 und 255 bleibt. Wenn `last_count` kleiner als 0 ist, wird es auf 0 gesetzt. Wenn es größer als 255 ist, wird es auf 255 gesetzt.
+1. Die Funktionen `min()` und `max()` sorgen dafür, dass der Wert von `last_count` immer zwischen 0 und 255 bleibt. Wenn `last_count` kleiner als 0 ist, wird er auf 0 gesetzt. Wenn er größer als 255 ist, wird er auf 255 gesetzt.
 
-Die neue Logik in Zeile 9 hilft uns dabei. Nachdem wir den neuen Wert des Zähler auf die Variable `last_count` gespeichert haben (Zeile 6), wenden wir eine geschickte Kombination der beiden Funktionen `max()` und `min()` an, um sicherzustellen, dass der Wert im gültigen Bereich bleibt. Wie funktioniert das genau? Dazu gehen wir die Zeile Schritt für Schritt durch.
+Die neue Logik in Zeile 9 hilft uns dabei. Nachdem wir den neuen Wert des Zählers in der Variable `last_count` gespeichert haben (Zeile 6), wenden wir eine geschickte Kombination der beiden Funktionen `max()` und `min()` an, um sicherzustellen, dass der Wert im gültigen Bereich bleibt. Wie funktioniert das genau? Dazu gehen wir die Zeile Schritt für Schritt durch.
 
-Zunächst einmal der Ausdruck `min(255, last_count)`. Die Funktion `min()` gibt einfach den kleineren der beiden Werte, die ihr übergeben wurden, zurück. Wenn `last_count` also größer als 255 ist, wird 255 zurückgegeben. Andernfalls wird `last_count` zurückgegeben. Das Ergebnis dieser Evaluation ist gleichzeitig der zweite Wert, den wir der Funktion `max()` übergeben.
+Zunächst einmal der Ausdruck `min(255, last_count)`. Die Funktion `min()` gibt einfach den kleineren der beiden Werte zurück, die ihr übergeben werden. Wenn `last_count` also größer als 255 ist, wird 255 zurückgegeben. Andernfalls wird `last_count` zurückgegeben. Das Ergebnis dieser Auswertung ist gleichzeitig der zweite Wert, den wir der Funktion `max()` übergeben.
 
 Die Funktion `max()` macht genau das Gegenteil. Sie gibt den größeren der beiden ihr übergebenen Werte zurück. Zur Auswahl stehen ihr der Wert 0 und das Ergebnis der `min()`-Funktion. Das bedeutet, dass `max()` sicherstellt, dass der endgültige Wert von `last_count` niemals kleiner als 0 ist.
 
@@ -366,13 +367,13 @@ Probiert es am besten direkt aus und dreht mal voll auf! Es sollte nun kein Fehl
 
 ### Helligkeit entkoppeln
 
-Vielleicht habt ihr es auch bemerkt, aber so ganz toll funktioniert unser Dimmer immer noch nicht. Zwar erscheint keine Fehlermeldung mehr, wenn wir endlos aufdrehen. Jedoch wird die LED auch nicht gedimmt, wenn wir wieder in die andere Richtung drehen. Der Grund dafür ist einfach: Die Helligkeit der LED hängt in unserem Programm direkt vom Zählerstand des Drehknopfes ab. Wenn der über 255 kommt, wird die Helligkeit zwar auf 255 gedeckelt, der Zähler wird aber im Hintergrund trotzdem weiter hochgezählt. Wenn wir die LED wieder dimmen, also einen Helligkeitswert von weniger als 255 erreichen möchten, dann müssen wir zunächst mit dem Drehknopf wieder bis unter die 255 kommen.
+Vielleicht habt ihr es auch bemerkt, aber so richtig toll funktioniert unser Dimmer immer noch nicht. Zwar erscheint keine Fehlermeldung mehr, wenn wir endlos aufdrehen. Jedoch wird die LED auch nicht gedimmt, wenn wir wieder in die andere Richtung drehen. Der Grund dafür ist einfach: Die Helligkeit der LED hängt in unserem Programm direkt vom Zählerstand des Drehknopfes ab. Wenn der über 255 kommt, wird die Helligkeit zwar auf 255 gedeckelt, der Zähler wird aber im Hintergrund trotzdem weiter hochgezählt. Wenn wir die LED wieder dimmen, also einen Helligkeitswert von weniger als 255 erreichen möchten, dann müssen wir zunächst mit dem Drehknopf wieder bis unter die 255 kommen.
 
-Viel schöner wäre es es, wenn wir zwar endlos überdrehen könnten, aber mit der ersten Drehung in die andere Richtung die Helligkeit der LED sofort verringern. Ein einfacher Weg wäre, für den Zählerstand des Drehknopfes analog zu `last_count` nur Werte zwischen 0 und 255 zu erlauben. Dazu könnten wir den Zähler genau wie `last_count` manuell auf 0 oder 255 setzen, je nachdem ob wir größer 255 oder kleiner Null waren. Leider bietet der Drehknopf keine solche Funktion über seine Programmierschnittstelle an. Wir können den Wert zwar auslesen, aber nicht programmatisch verändern.
+Viel schöner wäre es, wenn wir zwar endlos überdrehen könnten, aber mit der ersten Drehung in die andere Richtung die Helligkeit der LED sofort verringern. Ein einfacher Weg wäre, für den Zählerstand des Drehknopfes analog zu `last_count` nur Werte zwischen 0 und 255 zu erlauben. Dazu könnten wir den Zähler – genau wie `last_count` – manuell auf 0 oder 255 setzen, je nachdem, ob wir größer als 255 oder kleiner als 0 waren. Leider bietet der Drehknopf über seine Programmierschnittstelle keine solche Funktion an. Wir können den Wert zwar auslesen, aber nicht programmatisch verändern.
 
 Wir müssen also einen Workaround entwickeln. Eine Möglichkeit wäre, die Helligkeit unabhängig vom Zählerstand zu verwalten und dafür eine eigene Variable `brightness` einzuführen. Wir könnten den Wert von `brightness` dann erhöhen oder verringern, wenn wir eine Drehung in die eine oder andere Richtung erkannt haben.
 
-Um zu erkennen, ob und in welche Richtung der Drehknopf gedreht wurde, können wir die Differenz zwischen dem aktuellen und dem letzten Zählerstand betrachten. Sie gibt uns direkt Aufschluss: ist die Differenz positiv, wurde der Knopf nach oben gedreht, ist sie negativ, wurde er nach unten gedreht.
+Um zu erkennen, ob und in welche Richtung der Drehknopf gedreht wurde, können wir die Differenz zwischen dem aktuellen und dem letzten Zählerstand betrachten. Sie gibt uns direkt Aufschluss: Ist die Differenz positiv, wurde der Knopf nach oben gedreht, ist sie negativ, wurde er nach unten gedreht.
 
 ```{python}
 knob.reset()
@@ -392,30 +393,30 @@ while True:
         brightness += diff # <3>
         brightness = max(0, min(255, brightness))
 
-        # Set RGB values zu counter value
+        # Setze RGB-Werte auf den Zählerwert
         led.set_rgb_value(brightness, brightness, brightness)
 
         print(f"Brightness / Counter: {brightness} / {new_count}") # <4>
 ```
 
-1. Die  neue Variable `brightness` zu Beginn mit 0 initialisieren. Die LED soll aus sein.
+1. Die neue Variable `brightness` zu Beginn mit 0 initialisieren. Die LED soll aus sein.
 2. Hier ermitteln wir die Differenz zwischen dem aktuellen und dem letzten Zählerstand und speichern sie in der Variable `diff`.
 3. Wir passen die Helligkeit an, indem wir `brightness` um `diff` erhöhen oder verringern. Dabei stellen wir sicher, dass der Wert zwischen 0 und 255 bleibt.
-4. Zur Überprüfung geben wir beide Variablen aus. Wenn wir den Wertebereich 0-255 verlassen gehen die Werte der beiden Variablen auseinander.
+4. Zur Überprüfung geben wir beide Variablen aus. Wenn wir den Wertebereich 0–255 verlassen, gehen die Werte der beiden Variablen auseinander.
 
 ### Konstanten
 
-Das sieht schon sehr gut aus! Unser Dimmer ist fast fertig, die grundlegende Funktionalität läuft robust. Eine Kleinigkeit stört mich noch: der Dimmer reagiert nur sehr langsam und wir müssen scheinbar endlos drehen, um die LED auf die volle Helligkeit zu bekommen. Können wir das beschleunigen?
+Das sieht schon sehr gut aus! Unser Dimmer ist fast fertig, die grundlegende Funktionalität läuft robust. Eine Kleinigkeit stört mich noch: Der Dimmer reagiert nur sehr langsam, und wir müssen scheinbar endlos drehen, um die LED auf die volle Helligkeit zu bekommen. Können wir das beschleunigen?
 
-Das ist natürlich eine rhetorische Frage, in der Programmierung können wir so gut wie alles umsetzen. Und in diesem Fall ist es sogar recht einfach. Damit die LED schneller hell oder dunkel wird wenn wir am Drehknopf drehen, können wir die Anpassung der Helligkeit einfach verstärken. Momentan wird die Variable `brightness` einfach um die Differenz des Zählerstands erhöht oder verringert. Wir könnten stattdessen einen festen, höheren Schrittwert definieren, um die Helligkeit schneller zu ändern.
+Das ist natürlich eine rhetorische Frage – in der Programmierung können wir so gut wie alles umsetzen. Und in diesem Fall ist es sogar recht einfach. Damit die LED schneller hell oder dunkel wird, wenn wir am Drehknopf drehen, können wir die Anpassung der Helligkeit einfach verstärken. Momentan wird die Variable `brightness` um die Differenz des Zählerstands erhöht oder verringert. Wir könnten stattdessen einen festen, höheren Schrittwert definieren, um die Helligkeit schneller zu ändern.
 
-Dazu definieren wir eine neue Variable, die eine Besonderheit hat. Wir geben ihr den Namen `STEP`, der nur aus Großbuchstaben besteht (Zeile 3). Gemäß der [Regeln für die Bennung von Variablen in Python](https://docs.python.org/3/reference/lexical_analysis.html#identifiers "Regeln für Variablennamen in Python") eigentlich nicht erlaubt. Und tatsächlich ist `STEP` genau genommen auch keine Variable, sondern eine **Konstante**\index{Konstante}.
+Dazu definieren wir eine neue Variable, die eine Besonderheit hat. Wir geben ihr den Namen `STEP`, der nur aus Großbuchstaben besteht (Zeile 3). Gemäß der [Regeln für die Bennung von Variablen in Python](https://docs.python.org/3/reference/lexical_analysis.html#identifiers "Regeln für Variablennamen in Python") werden Namen in GROSSBUCHSTABEN üblicherweise für Konstanten verwendet – und tatsächlich ist `STEP` genau genommen auch keine Variable, sondern eine **Konstante**\index{Konstante}.
 
 Eine Konstante unterscheidet sich dadurch, dass ihr Wert einmal festgelegt wird und sich danach nicht mehr ändert. In unserem Fall wollen wir, dass `STEP` immer den Wert 10 hat. Konstanten definieren wir typischerweise zu Beginn eines Python-Programms, damit man einen schnellen Überblick über alle definierten Konstanten und ihre Werte bekommen kann.
 
-Es ist wichtig zu verstehen, dass der fixe Wert einer Konstante sich nur auf die Ausführung des Programms bezieht. Zwischen mehreren Ausführen den gleichen Programms kann der Wert einer Konstante geändert werden. Zum Beispiel könnten wir als Hersteller des LED-Dimmers für eine neue Version entscheiden, dass diese sich noch schneller Dimmen lassen soll und wir erhöhen den Wert für `STEP` auf 20. Oder der Benutzer könnte diesen Wert über die Einstellung der hypothetischen Dimmer-App anpassen.
+Es ist wichtig zu verstehen, dass der fixe Wert einer Konstante sich nur auf die Ausführung des Programms bezieht. Zwischen mehreren Ausführungen desselben Programms kann der Wert einer Konstante geändert werden. Zum Beispiel könnten wir als Hersteller des LED-Dimmers für eine neue Version entscheiden, dass dieser sich noch schneller dimmen lassen soll, und wir erhöhen den Wert für `STEP` auf 20. Oder der Benutzer könnte diesen Wert über die Einstellungen der hypothetischen Dimmer-App anpassen.
 
-Wenn wir wie in Zeile 15 gezeigt die Differenz des Zähler mit der Schrittgröße multiplizieren, können wir die Anpassung der Helligkeit verstärken.
+Wenn wir – wie in Zeile 15 gezeigt – die Differenz des Zählers mit der Schrittgröße multiplizieren, können wir die Anpassung der Helligkeit verstärken.
 
 ```{python}
 #| lst-label: lst-dim-led
@@ -437,7 +438,7 @@ while True:
         brightness += diff * STEP # <2>
         brightness = max(0, min(255, brightness))
 
-        # Set RGB values zu counter value
+        # Setze RGB-Werte auf den Zählerwert
         led.set_rgb_value(brightness, brightness, brightness)
 
         print(f"Brightness / Counter: {brightness} / {new_count}")
@@ -446,11 +447,11 @@ while True:
 1. Hier definieren wir eine Konstante `STEP` und weisen ihr den Wert 10 zu.
 2. Die Helligkeit wird nun um `diff * STEP` angepasst, was bedeutet, dass jede Drehung des Knopfes einen größeren Einfluss auf die Helligkeit hat.
 
-Mit dem LED-Dimmer haben wir die zentrale Funktion des Drehknopfes zu Genüge kennengelernt. Das Gerät hat aber nich eine andere Funktion.
+Mit dem LED-Dimmer haben wir die zentrale Funktion des Drehknopfes zur Genüge kennengelernt. Das Gerät hat aber noch eine andere Funktion.
 
 ## Buttons
 
-Neben dem Zähler besitzt der Dreh*knopf* (der Name gibt es schon her) noch eine Funktion, nämlich die eines einfachen Druckknopfes. Wir haben es weiter oben in @sec-numbers-first-steps mit dem Brick Viewer schon ausprobiert, der Drehknopf löst sich drücken und erzeugt eine haptische Rückmeldung, ein leichtes Knacken. Im Brick Viewer wurde der kleine Kreis auf der rechten Seite dann rot eingefärbt.
+Neben dem Zähler besitzt der Drehknopf (der Name sagt es schon) noch eine Funktion, nämlich die eines einfachen Druckknopfes. Wir haben es weiter oben in @sec-numbers-first-steps mit dem Brick Viewer schon ausprobiert: Der Drehknopf lässt sich drücken und erzeugt eine haptische Rückmeldung, ein leichtes Knacken. Im Brick Viewer wurde der kleine Kreis auf der rechten Seite dann rot eingefärbt.
 
 Selbstverständlich können wir den Zustand des Buttons auch aus einem Programm heraus abfragen. Dazu bietet uns der Drehknopf eine Methode `is_pressed()` an:
 
@@ -462,33 +463,279 @@ while True:
         print("Button not pressed")
 ```
 
-Die Funktion liefert `True` zurück, wenn der Button gerade gedrückt ist, und ansonsten `False`. Das können wir wunderbar nutzen und darüber eine Bedingung formulieren, um entweder "Button pressed" oder "Button not pressed" aus der Konsole auszugeben. Ihr erinnert euch bestimmt an das `if`-Statement aus @sec-numbers-control-structures. Das ist genau was wir jetzt brauchen!
+Die Funktion liefert `True` zurück, wenn der Button gerade gedrückt ist, und ansonsten `False`. Das können wir wunderbar nutzen und darüber eine Bedingung formulieren, um entweder "Button pressed" oder "Button not pressed" auf der Konsole auszugeben. Ihr erinnert euch bestimmt an das `if`-Statement aus @sec-numbers-control-structures. Das ist genau das, was wir jetzt brauchen!
 
 
 ```{python}
+#| lst-cap: Ein erster Test des Drehknopf-Buttons.
+#| lst-label: lst-button-test
 button_pressed_before = False # <1>
 while True:
-
     button_pressed_after = knob.is_pressed()
-    
-    if button_pressed_before != button_pressed_after: # <2>
-        print(f"Button state changed: {button_pressed_after}") # <3>
+
+    if button_pressed_before == True and button_pressed_after == False: # <2>
+        print("Button was pressed and released") # <3>
     
     button_pressed_before = button_pressed_after # <4>
 ```
 
-1. Wir initialisieren eine Variable `button_pressed_before`, die den vorherigen Zustand des Buttons speichert. Am Anfang gehen wir  mal davon aus, dass er nicht gedrückt ist.
-2. Mit dem `if`-Statement überprüfen wir, ob sich der Zustand des Buttons geändert hat, indem wir den aktuellen Zustand `button_pressed_after` mit dem vorherigen Zustand `button_pressed_before` vergleichen.
-3. Wenn sich der Zustand geändert hat, geben wir eine entsprechende Information auf der Konsole aus.
+1. Wir initialisieren eine Variable `button_pressed_before`, die den vorherigen Zustand des Buttons speichert. Am Anfang gehen wir mal davon aus, dass er nicht gedrückt ist.
+2. Mit dem `if`-Statement überprüfen wir, ob der Button logelassen wurde. Dazu muss der vorherige Zustand `True` und der aktuelle Zustand `False` sein.
+3. Wenn der Button soeben losgelassen wurde, geben wir eine entsprechende Information auf der Konsole aus.
 4. Am Ende der Schleife aktualisieren wir den vorherigen Zustand `button_pressed_before`, damit er den aktuellen Zustand für die nächste Iteration speichert.
 
-Das reicht fürs Erste, der Button kann tatsächlich nicht mehr als das. Reicht aber auch, damit können wir unseren Dimmer schon einen zusätzlichen Mehrwert verleihen. Schließlich kann unsere LED nicht nur weiß leuchten.
+Das reicht fürs Erste – der Button kann tatsächlich nicht mehr als das. Reicht aber auch: Damit können wir unserem Dimmer schon einen zusätzlichen Mehrwert verleihen. Schließlich kann unsere LED nicht nur weiß leuchten.
 
 ## Stimmungslicht
 
 Wäre es nicht praktisch, wenn wir das Licht der LED nicht nur dimmen, sondern auch den Farbton verändern könnten? Weißes Licht ist am Abend bekanntlich nicht empfehlenswert, und grünes Licht soll beruhigend wirken.
 
-Lasst uns unseren Dimmer so erweitern, dass per Knopfdruck der Farbton gewechselt werden kann. Fürs Erst wollen wir die Farben weiß, gelb und grün anbieten. Das lässt sich später beliebig erweitern.
+Lasst uns unseren Dimmer so erweitern, dass per Knopfdruck der Farbton gewechselt werden kann. Fürs Erste wollen wir die Farben Weiß, Gelb und Grün anbieten. Das lässt sich später beliebig erweitern.
 
-Der Ausgangspunkt für unser dimmbares Stimmungslicht ist der Dimmer aus @lst-dim-led. Von hier aus fügen wir Schritt für Schritt die Logik für den Farbwechsel per Button ein.
+### Die Farbe per Variable steuern
 
+Der Ausgangspunkt für unser dimmbares Stimmungslicht ist der Dimmer aus @lst-dim-led. Von hier aus fügen wir Schritt für Schritt die Logik für den Farbwechsel per Button ein. Lasst uns aber zunächst ganz ohne Button versuchen, die Farbe der LED zu ändern.
+
+Bisher haben wir es uns einfach gemacht und die LED in Weiß leuchten lassen. Dazu mussten wir nur jeden der drei RGB-Farbkanäle auf den gleichen Wert setzen. Wenn wir neben Weiß auch Gelb und Grün anbieten wollen, müssen wir die Farbkanäle unterschiedlich ansteuern. Für Gelb setzen wir den roten und den grünen Kanal auf den gleichen Wert, während der blaue Kanal auf 0 bleibt. Für Grün setzen wir den grünen Kanal auf den gleichen Wert und die anderen beiden auf 0. Um so eine Logik umzusetzen, haben wir das passende Instrument bereits in unserem Werkzeugkasten: [Kontrollstrukturen](#sec-numbers-control-structures).
+
+Nehmen wir mal an, wir hätten eine Variable `color`, auf der die aktuelle Farbe gespeichert ist, in der die LED leuchten soll. Sie könnte also die Werte "white", "yellow" oder "green" annehmen. Dann könnten wir mit `if`-Statements die notwendige Logik umsetzen:
+
+```{python}
+if color == "white":
+    led.set_rgb_value(brightness, brightness, brightness)
+if color == "yellow":
+    led.set_rgb_value(brightness, brightness, 0)
+if color == "green":
+    led.set_rgb_value(0, brightness, 0)
+```
+
+Erinnert euch, dass der Code nach einem `if` nur dann ausgeführt wird, wenn die vorangegangene Bedingung erfüllt ist. Da die Variable `color` zu einem Zeitpunkt nur einen der drei Werte annehmen kann, muss genau eine der drei Bedingungen erfüllt sein und alle anderen entsprechend nicht.
+
+Wenn wir jetzt zu Beginn unseres Programms `color` auf einen der drei Werte setzen, können wir die Logik schnell mal testen:
+
+```{python}
+color = "white"
+
+if color == "white":
+    led.set_rgb_value(brightness, brightness, brightness)
+if color == "yellow":
+    led.set_rgb_value(brightness, brightness, 0)
+if color == "green":
+    led.set_rgb_value(0, brightness, 0)
+```
+
+Alles sollte so sein wie zuvor, die LED leuchtet weiß.
+
+```{python}
+color = "yellow"
+```
+
+Jetzt sollte beim Start des Programms die LED gelb leuchten. Dasselbe probiert mal mit "green" aus, das dürfte auch funktionieren.
+
+### Die Farbe per Knopfdruck ändern
+
+Die aktuelle Farbe in einer Variable zu speichern ist eine gute Idee gewesen. Darauf können wir aufbauen und den Button für den Wechsel der Farbe nutzen. Aber wie?
+
+Zunächst erinnern wir uns an die Logik aus @lst-button-test, in dem wir den Button bereits aus einem Programm heraus getestet haben. Dort haben wir eine Logik gebastelt, die erkennt, wenn der Button gedrückt und wieder losgelassen wird. Wenn das der Fall war, wurde der Wert "Button gedrückt" auf der Konsole ausgegeben. Könnten wir diese Logik nicht verwenden, um statt etwas auszugeben einfach die Farbe zu wechseln?
+
+Natürlich können wir das. Passen wir den Code entsprechend an:
+
+```{python}
+button_pressed_before = False
+while True:
+    button_pressed_after = knob.is_pressed()
+
+    if button_pressed_before == True and button_pressed_after == False:
+        if color == "white":
+            color = "yellow"
+        elif color == "yellow":
+            color = "green"
+        elif color == "green":
+            color = "white"
+
+    button_pressed_before = button_pressed_after
+```
+
+Wieder ein Haufen voller `if`s - aber es sollte funktionieren. Gehen wir es einmal durch: Wenn der Button losgelassen wurde (Zeile 5) gelangen wir zur Prüfung der `if`-Statements. Im ersten Fall wird geprüft, ob die LED gerade Weiß leuchtet (`color == "white"`). Ist das der Fall, dann wechseln wir jetzt auf Gelb. Im zweiten Schritt sehen wir ein `elif`, das sehr ähnlich zu einem `if` ist, mit der Einschränkung, dass es nur überhaupt geprüft wird, wenn das vorherige `if` nicht schon wahr war. Das macht in diesem Fall einen großen Unterschied (im Vergleich zu weiter oben, als wir einfache `if`-Statements verwendet haben, um die Farbe der LED mit `set_rgb_color` zu setzen). Überlegt mal, was passieren würde, wenn wir hier folgenden Code einsetzen würden:
+
+```{python}
+if color == "white":
+    color = "yellow"
+if color == "yellow":
+    color = "green"
+if color == "green":
+    color = "white"
+
+```
+
+Geht das mal im Kopf durch. Wenn `color` aktuell den Wert `white` hat, dann wird durch das erste `if` der Wert auf `yellow` gesetzt. Anschließend wird das zweite `if` geprüft, das jetzt wahr ist, und der Wert wird auf `green` gesetzt. Das dritte `if` wird dann also ebenfalls wahr sein, und der Wert wird wieder auf `white` gesetzt. Im Endeffekt haben wir also nichts gewonnen, die LED bliebe weiß. Hier ist die Verwendung von `elif` entscheidend. Denn ein `elif` wird nur geprüft, wenn das vorherige `if` oder `elif` nicht wahr war. Nach der ersten Anpassung wäre hier also Schluss und die Farbe ist wie gewünscht Gelb.
+
+Fügen wir alles zusammen - die neue Logik zum setzen der Farben basierend auf der Varible `color`und die Logik zum Ändern der Variable, sowie die Logik des Dimmers aus @lst-dim-led:
+
+```{python}
+#| lst-cap: Farbwechsel und Helligkeitsanpassung in einem Programm.
+#| lst-label: lst-color-brightness
+button_pressed_before = False
+
+# 1. Main loop to keep program running
+while True:
+    new_count = knob.get_count(reset=False)
+    button_pressed_after = knob.is_pressed()
+
+    # 2. Logic for color change on button release
+    if button_pressed_before == True and button_pressed_after == False:
+        if color == "white":
+            color = "yellow"
+        elif color == "yellow":
+            color = "green"
+        elif color == "green":
+            color = "white"
+
+        # Update LED to reflect new color
+        if color == "white":
+            led.set_rgb_value(brightness, brightness, brightness)
+        if color == "yellow":
+            led.set_rgb_value(brightness, brightness, 0)
+        if color == "green":
+            led.set_rgb_value(0, brightness, 0)
+
+    button_pressed_before = button_pressed_after
+
+    # 3. Logic for brightness adjustment
+    if new_count != last_count:
+        diff = new_count - last_count
+        last_count = new_count
+
+        # Adjust brightness
+        brightness += diff * STEP
+        brightness = max(0, min(255, brightness))
+
+        # Update LED to reflect new color
+        if color == "white":
+            led.set_rgb_value(brightness, brightness, brightness)
+        if color == "yellow":
+            led.set_rgb_value(brightness, brightness, 0)
+        if color == "green":
+            led.set_rgb_value(0, brightness, 0)
+
+        print(f"Brightness / Counter: {brightness} / {new_count}")
+```
+
+Schaut euch den Code in Ruhe an und prüft, ob ihr ihn Zeile für Zeile nachvollziehen könnt. An dieser Stelle hat unser Programm schon eine beträchtliche Größe angenommen, und so langsam wird es unübersichtlich. Versuchen wir also, Struktur hineinzubringen. Im Wesentlichen besteht das Programm aus drei Teilen, jeden habe ich mit einem vorangestellten Kommentar markiert:
+
+1. Hauptschleife, um das Programm am Laufen zu halten
+2. Logik für Farbwechsel bei Tastenfreigabe
+3. Logik zur Helligkeitsanpassung
+
+In der Hauptschleife wird am Anfange immer wieder der aktuelle Zählerstand und der Zustand des Buttons abgefragt und auf jeweils einer Variable gespeichert. Diese Werte benötigen wir, um zu entscheiden, ob wir die Farbe ändern oder die Helligkeit anpassen müssen.
+
+Um einen potenziellen Farbwechsel kümmert sich der zweite Block, der mit dem `if button_pressed_before == True ...` beginnt. Die Bedingung prüft, ob der Button gerade aus dem gedrückten Zustand in den nicht gedrückten Zustand wechselt, der Benutzer ihn also gerade losgelassen hat. In diesem Moment soll die Farbe gewechselt werden. Die Logik dafür haben wir gerade entwickelt.
+
+Um die Helligkeitsanpassung kümmert sich dann der dritte und letzte größere Block. Er beginnt mit `if new_count != last_count`, was prüft, ob der Drehknop betätigt wurde. Wenn ja, dann wird die Helligkeit entsprechend der Differenz angepasst. Diese Logik haben wir in @sec-led-dimmer-part-2 zusammen entwickelt.
+
+Wer von euch jetzt ganz genau hinsieht, der erkennt, dass die Blöcke 2 und 3 zum Teil identischen Code ausführen. In der Programmierung ist das eine rote Flagge 🚩! Lasst uns darüber sprechen, warum!
+
+## Don't Repeat Yourself
+
+In der Programmierung ist es wichtig, Wiederholungen zu vermeiden. Wenn wir feststellen, dass wir denselben Code an mehreren Stellen verwenden, sollten wir darüber nachdenken, etwas zu verändern. Warum?
+
+Nehmen wir in unserem Beispiel an, wir führen eine vierte Farbe ein, sagen wir Blau. Dann müssten wir den Code in den Blöcken 2 und 3 anpassen, um die neue Farbe zu berücksichtigen. Das bedeutet, dass wir den gleichen Code an mehreren Stellen ändern müssten, was fehleranfällig und mühsam ist. Zwei mag noch nicht nach einem Problem klingen, aber selbst hier zeigt sich das Problem der Wiederholung. Wird eine Stelle vergessen, ist der Code inkonsistent und funktioniert nicht mehr wie gewünscht.
+
+Die Lösung liegt darin, häufig verwendeten Code in Funktionen auszulagern.
+
+## Funktionen
+
+Funktionen sind ein mächtiges Werkzeug in der Programmierung. Sie ermöglichen es uns, Codeblöcke zu definieren, die wir immer wieder verwenden können, ohne sie jedes Mal neu schreiben zu müssen. Funktionen helfen uns dabei, unseren Code sauberer, übersichtlicher und wartbarer zu gestalten.
+
+Im @lst-color-brightness wird dieser Teil an zwei Stellen wiederholt:
+
+```{python}
+if color == "white":
+    led.set_rgb_value(brightness, brightness, brightness)
+if color == "yellow":
+    led.set_rgb_value(brightness, brightness, 0)
+if color == "green":
+    led.set_rgb_value(0, brightness, 0)
+```
+
+Zeit, diesen Code nur einmal zu schreiben! Machen wir daraus eine Funktion. Wie das geht? Im Prinzip müssen wir vier Dinge klären:
+
+1. Was soll die Funktion tun?
+2. Wie sieht das Ergebnis aus?
+3. Was benötigt die Funktion, um ihre Aufgabe zu erledigen?
+4. Wie heisst die Funktion?
+
+
+![Funktionen folgen einem Eingabe-Verarbeitung-Ausgabe (EVA) Schema.](https://winf-hsos.github.io/university-docs/images/problem_solving_input_function_output.png){#fig-numbers-input-function-output .lightbox}
+
+```{python}
+def set_led_color(color, brightness):
+    if color == "white":
+        led.set_rgb_value(brightness, brightness, brightness)
+    if color == "yellow":
+        led.set_rgb_value(brightness, brightness, 0)
+    if color == "green":
+        led.set_rgb_value(0, brightness, 0)
+
+```
+
+In @lst-dim-led-color seht ihr den fertigen Code für den Dimmer mit Farbwechsel per Knopfdruck.
+
+```{python}
+#| lst-cap: Der fertige Dimmer mit Farbwechsel per Knopfdruck.
+#| lst-label: lst-dim-led-color
+from tinkerforge.ip_connection import IPConnection
+from tinkerforge.bricklet_rotary_encoder_v2 import BrickletRotaryEncoderV2
+from tinkerforge.bricklet_rgb_led_v2 import BrickletRGBLEDV2
+
+ipcon = IPConnection()
+ipcon.connect('localhost', 4223)
+knob = BrickletRotaryEncoderV2('WZd', ipcon) 
+led = BrickletRGBLEDV2('ZG1', ipcon)
+
+knob.reset()
+brightness = 0
+STEP = 10
+led.set_rgb_value(brightness, brightness, brightness) 
+last_count = 0
+
+color = "white"
+button_pressed_before = False
+
+def set_led_color(color, brightness):
+    if color == "white":
+        led.set_rgb_value(brightness, brightness, brightness)
+    if color == "yellow":
+        led.set_rgb_value(brightness, brightness, 0)
+    if color == "green":
+        led.set_rgb_value(0, brightness, 0)
+
+while True:
+    new_count = knob.get_count(reset=False)
+    button_pressed_after = knob.is_pressed()
+
+    # If button changes from pressed to not pressed
+    if button_pressed_before == True and button_pressed_after == False:
+        if color == "white":
+            color = "yellow"
+        elif color == "yellow":
+            color = "green"
+        elif color == "green":
+            color = "white"
+
+        print(f"Color changed to: {color}")
+        set_led_color(color, brightness)   
+
+    button_pressed_before = button_pressed_after
+
+    if new_count != last_count:
+        diff = new_count - last_count
+        last_count = new_count
+
+        # Adjust brightness
+        brightness += diff * STEP
+        brightness = max(0, min(255, brightness))
+
+        print(f"Brightness / Counter: {brightness} / {new_count}")
+        set_led_color(color, brightness)
+```
