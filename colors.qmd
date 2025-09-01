@@ -8,13 +8,17 @@ abstract-title: ""
 
 ## Zusammenfassung {.unnumbered}
 
+Im ersten Kapitel steigen wir gleich voll ein und schreiben unser erstes Programm. Unser Ziel ist es, eine LED nacheinander in allen Farben des Regenbogens leuchten zu lassen. Um dahin zu kommen, lernen wir in @sec-colors-control-led zuerst, wie man überhaupt eine LED aus einem Programm heraus steuern kann. In @sec-colors-light-and-colors werfen wir einen kurzen Blick auf Farben im allgemeinen und wie diese im Computer erzeugt werden. Dabei unterscheiden wir die additive von der subtraktiven Farbmischung. Danach bereiten wir uns in @sec-colors-pulsating-led auf den Regenbogenfarbverlauf vor, indem wir zuerst eine pulsierende LED programmieren. Wir lernen dann in @sec-colors-hue-circle, wie man mittels RGB-Farbcode überhaupt einen Regenbogen erzeugen kann und warum das für uns Menschen nützlich ist. Am Ende in @sec-colors-rainbow-led schreiben wir schließlich das Programm, das die LED in allen Farben des Regenbogens leuchten lässt.
+
 Unsere wichtigsten Lernziele in diesem Kapitel sind:
 
-1.  Wir verstehen, wie Farben im Computer funktionieren.
-2.  Wir schreiben unser erstes Programm am Beispiel einer LED-Steuerung.
-3.  Wir lernen Schleifen in der Programmierung kennen.
+1.  Wir verstehen, wie Farben im Computer funktionieren und beschrieben werden.
+2.  Wir entwickeln unser erstes Programm am Beispiel einer LED-Steuerung.
+3.  Wir lernen Schleifen als wichtiges Konzept in der Programmierung kennen.
 
 ## Experimentaufbau {.unnumbered}
+
+### Hardwareaufbau {.unnumbered}
 
 Bereit für euer erstes Hardware-Experiment? Perfekt! Ihr braucht dafür eine LED ([RGB LED Bricklet 2.0](https://www.tinkerforge.com/en/doc/Hardware/Bricklets/RGB_LED_V2.html)) und einen Mikrocontroller ([Master Brick 3.2](https://www.tinkerforge.com/de/shop/master-brick.html)). Befestigt beide Bauteile mit Abstandshaltern auf einer Montageplatte, wie in @fig-setup-rgb-led gezeigt. Zwei Schrauben pro Gerät reichen völlig. Denkt an die kleinen, weißen Unterlegscheiben aus Kunststoff. Sie schützen eure Platinen vor Druckstellen.
 
@@ -34,7 +38,7 @@ Neben der Hardware benötigt ihr auch die passende Software. Diese solltet ihr b
 Einfaches Setup mit einem Mikrocontroller und einer LED.
 :::
 
-## Erste Schritte mit der LED
+### Erste Schritte {.unnumbered}
 
 Im ersten Schritt wollen wir die LED und ihre Funktionen testen! Das geht ganz leicht mit dem Brick Viewer. Schließt zuerst den Master Brick über das USB-Kabel an euren Computer an und öffnet den Brick Viewer. Klickt dann auf den Connect-Button.
 
@@ -52,7 +56,8 @@ Mit den drei Schiebereglern steuert ihr die einzelnen Farbkanäle – Rot, Grün
 
 Fazit: Der Brick Viewer ist ideal zum Ausprobieren. Aber wenn ihr echte Projekte umsetzen wollt, müsst ihr programmieren lernen. Also los!
 
-## Unser erstes Programm
+
+## Erstes Programm: LED ansteuern {#sec-colors-control-led}
 
 Wie verbinden wir uns über ein Programm mit der LED und setzen ihre Farbe? Die Antwort darauf findet ihr im folgenden kurzen Codebeispiel.
 
@@ -157,7 +162,9 @@ Warum aber ist das so? Warum kodieren wir in der Informatik jede Farbe mit *drei
 
 Vorher müssen wir aber kurz zurück in die Schule.
 
-## Farben und Licht
+## Licht und Farben {#sec-colors-light-and-colors}
+
+### Blick auf die Physik
 
 Physik ist vielleicht schon eine Weile her. Erinnern wir uns dennoch kurz, was Licht ist und wie Farben damit zusammenhängen. Licht ist *elektromagnetische Strahlung*\index{elektromagnetische Strahlung}. Das bedeutet, es handelt sich um gekoppelte Schwingungen elektrischer und magnetischer Felder, die sich mit Lichtgeschwindigkeit ausbreiten. Vereinfacht können wir uns Licht als Wellen vorstellen, die sich durch den Raum bewegen. Diese Wellen haben unterschiedliche Frequenzen und Wellenlängen. Das sichtbare Licht ist nur ein kleiner Teil des gesamten elektromagnetischen Spektrums, das von Radiowellen über Infrarotstrahlung bis hin zu Röntgenstrahlen und Gammastrahlen reicht.
 
@@ -171,15 +178,9 @@ Was bedeutet das nun für eine LED? Eine LED (Light Emitting Diode) ist ein Halb
 
 Die RGB LED besteht in Wirklichkeit aus drei einzelnen LEDs: einer roten, einer grünen und einer blauen. Jede dieser LEDs kann unabhängig voneinander angesteuert werden, um verschiedene Farben zu erzeugen. Mehr Stromstärke bedeutet mehr Intensität der jeweiligen Farbe. Durch die Kombination der drei Grundfarben Rot, Grün und Blau in unterschiedlichen Intensitäten können wir eine Vielzahl von Farben mischen. Das ist das Prinzip der additiven Farbmischung: Wenn wir alle drei Farben mit voller Intensität leuchten lassen, erhalten wir Weiß. Wenn wir keine Farbe leuchten lassen, erhalten wir Schwarz. Klar, die LEDs sind dann alle aus.
 
-## Farben im Computer
+Jetzt wissen wir, warum die Methode `set_rgb_value()` drei Parameter erwartet: Rot, Grün und Blau. Diese Parameter sind die Intensitäten der jeweiligen Farbe, die wir in unserem Programm angeben. Mit den Werten 0 bis 255 können wir jede Farbe im sichtbaren Spektrum erzeugen.
 
-Nun wissen wir, warum die Methode `set_rgb_value()` drei Parameter erwartet: Rot, Grün und Blau. Diese Parameter sind die Intensitäten der jeweiligen Farbe, die wir in unserem Programm angeben. Mit den Werten 0 bis 255 können wir jede Farbe im sichtbaren Spektrum erzeugen.
-
-Wie kommt es aber zu der merkwürdigen Zahl 255? Warum nicht einfach 0 bis 100? Das liegt daran, wie ein Computer grundsätzlich Werte speichert und wie dieser Speicher organisiert ist. Kurz gesagt: Der Wertebereich 0 bis 255 passt genau in ein sogenanntes *Byte*\index{Byte}. Ein Byte ist eine Speichereinheit, die aus 8 Bits besteht. Ein Bit kann entweder 0 oder 1 sein. Mit 8 Bits können wir also $2^8 = 256$ verschiedene Werte darstellen, von 0 bis 255. Das ist genau der Bereich, den wir für die RGB-Farbkodierung verwenden. Dazu lernen wir später noch mehr.
-
-Wir halten also fest, dass sich ein Farbwert im Computer aus drei Zahlen zusammensetzt, die jeweils zwischen 0 und 255 liegen. Das gilt für unsere LED, aber auch für Pixel in TVs, Smartphones, digitalen Fotos oder Monitoren. All diese Dinge beleuchten wir später noch genauer.
-
-## Farben mischen
+Ein Farbwert im Computer besteht also aus drei Zahlen besteht, die jeweils zwischen 0 und 255 liegen. Das gilt für unsere LED, aber auch für Pixel in TVs, Smartphones, digitalen Fotos oder Monitoren. Wie kommt es aber zu der merkwürdigen Zahl 255? Warum nicht einfach 0 bis 100? Das liegt daran, wie ein Computer grundsätzlich Werte speichert und wie dieser Speicher organisiert ist. Genaueres erfahren wir schon in @sec-numbers.
 
 Klingt alles theoretisch sehr gut. Aber wie sieht es mit der Praxis aus? Probieren wir es aus und mischen zwei Farben mit voller Intensität!
 
@@ -243,15 +244,15 @@ led.set_rgb_value(255, 0, 255)
 
 Gemäß der Theorie der additiven Farbmischung (@fig-additive-color-mixing) müssten Rot und Blau Magenta ergeben. Probiert es aus!
 
-## Schleifen
+## Pulsierende LED {#sec-colors-pulsating-led}
 
-Das deklarierte Ziel unseres ersten Experiments ist es, einen Regenbogenfarbverlauf zu erzeugen. Dazu müssen wir die Farbe der LED kontinuierlich ändern, sodass sie von Rot über Gelb, Grün, Cyan, Blau und Violett wieder zurück zu Rot wechselt. Das erreichen wir mit einer *Schleife*\index{Schleife}. Eine Schleife ist ein Konstrukt in der Programmierung, das es uns ermöglicht, einen bestimmten Codeabschnitt mehrfach auszuführen, ohne ihn jedes Mal neu schreiben zu müssen. Das spart Zeit und macht den Code übersichtlicher.
+Das deklarierte Ziel unseres ersten Experiments ist es, einen Regenbogenfarbverlauf zu erzeugen. Dazu müssen wir die Farbe der LED kontinuierlich ändern, sodass sie von Rot über Gelb, Grün, Cyan, Blau und Violett wieder zurück zu Rot wechselt.
+
+Lasst uns aber möglichst einfach anfangen und uns dem Regenbogen schrittweise annähern. Zunächst wäre es schön, wenn wir die LED einfach Rot pulsieren lassen könnten. Dazu müssen wir nämlich nur den Rot-Kanal und nicht alle drei Kanäle der LED ansteuern. Gleichzeitig lernen wir schon hier ein Problem kennen, das uns in der Programmierung häufig begegnet und für das es eine elegante Lösung gibt.
 
 ### Abzählbare Wiederholungen
 
-Wir beginnen wie immer einfach und nähern uns dem Regenbogen schrittweise an. Zunächst wäre es schön, wenn wir die LED einfach Rot pulsieren lassen könnten. Dazu müssen wir nämlich nur den Rot-Kanal und nicht alle drei Kanäle der LED ansteuern. Gleichzeitig lernen wir schon hier ein Problem kennen, das mit Schleifen gelöst werden kann.
-
-Was bedeutet es, die LED pulsieren zu lassen? Und was müssen wir dafür tun? Pulsieren bedeutet, dass die LED langsam immer heller wird, kurz in der vollen Helligkeit verweilt und dann sofort wieder kontinuierlich dunkler wird. Sobald sie schwarz ist, fängt der Zyklus von vorne an.
+Was bedeutet es, die LED pulsieren zu lassen? Und was müssen wir dafür tun? Pulsieren bedeutet, dass die LED über einen kurzen Zeitraum immer heller wird, kurz in der vollen Helligkeit verweilt und dann sofort wieder kontinuierlich dunkler wird. Sobald sie schwarz ist, fängt der Zyklus von vorne an.
 
 Den Ausdruck *immer heller werden* können wir bezogen auf die LED so übersetzen, dass wir den Anteil des Rot-Kanals schrittweise erhöhen. Wenn die LED zu Beginn aus ist, also alle Kanäle auf 0 stehen, können wir den Rot-Kanal von 0 auf 255 erhöhen und so die LED immer heller in Rot aufleuchten lassen.
 
@@ -279,9 +280,9 @@ led.set_rgb_value(4, 0, 0)
 # ...
 ```
 
-Wenn wir nach diesem Muster fortfahren, hätten wir bis zum vollen Rot 255 Zeilen Code geschrieben, eine Zeile für jeden Erhöhungsschritt. Und anschließend das Gleiche nochmal rückwärts, damit wir wieder zu Schwarz kommen. Mit 510 Zeilen Code hätten wir dann einen Pulsierungszyklus durchlaufen. Wollen wir die LED öfter pulsieren lassen, vervielfacht sich unser Code entsprechend. Das kann doch nicht die Lösung für ein so einfaches Problem sein.
+Wenn wir nach diesem Muster fortfahren, hätten wir bis zum vollen Rot 255 Zeilen Code geschrieben, eine Zeile für jeden Erhöhungsschritt. Und anschließend das Gleiche nochmal rückwärts, damit wir wieder zu Schwarz kommen. Mit 510 Zeilen Code hätten wir dann einen Pulsierungszyklus durchlaufen. Wollen wir die LED öfter pulsieren lassen, vervielfacht sich unser Code entsprechend. Das kann nicht die Lösung für ein so einfaches Problem sein.
 
-Und tatsächlich gibt es in der Programmierung eine bessere Möglichkeit, um sich wiederholende Abläufe abzubilden: die Schleife. In einem Fall, bei dem wir genau wissen, wie oft wir etwas wiederholen wollen, bietet sich eine Zählerschleife an:
+Und tatsächlich gibt es in der Programmierung eine bessere Möglichkeit, um sich wiederholende Abläufe abzubilden: die Schleife\index{Schleife}. In einem Fall, bei dem wir genau wissen, wie oft wir etwas wiederholen wollen, bietet sich eine Zählerschleife\index{Zählerschleife} an:
 
 ```{python}
 #| code-line-numbers: false
@@ -352,40 +353,30 @@ Das können wir auf unsere pulsierende LED anwenden. Sie soll ihren Pulsierzyklu
 
 ```{python}
 while 1==1:
-    print("The condition is always true")
+    print("This condition is always true")
     time.sleep(1)
 ```
 
 Das Schlüsselwort `while` führt eine bedingte Schleife ein, gefolgt von der Bedingung, die die Schleife steuert. Die Bedingung wird vor jedem neuen Schleifendurchlauf geprüft (auch vor dem ersten) und sollte sie falsch (`false`) sein, wird die Schleife beendet.
 
-Wann wird die Schleife oben also beendet? Richtig – niemals. Die Bedingung `1==1` ist immer wahr, die Schleife läuft somit endlos. Wir sprechen auch von einer Endlosschleife, die wir in der Programmierung unbedingt vermeiden wollen, es sei denn, sie ist explizit gewollt und nicht versehentlich entstanden. Das kurze Programm oben schreibt also in Abständen von einer Sekunde den Text "The condition is always true" auf die Konsole.
+Wann wird die Schleife oben also beendet? Richtig – niemals. Die Bedingung `1==1` ist immer wahr, die Schleife läuft somit endlos. Wir sprechen auch von einer Endlosschleife, die wir in der Programmierung unbedingt vermeiden wollen, es sei denn, sie ist explizit gewollt und nicht versehentlich entstanden. Das kurze Programm oben schreibt also in Abständen von einer Sekunde den Text "This condition is always true" auf die Konsole.
 
 Eine Bedingung ist in Python und anderen Programmiersprachen ein wichtiges Konzept, das es uns ermöglicht, Entscheidungen zu treffen und den Programmfluss zu steuern. In unserem Fall könnte die Bedingung lauten: *solange der Benutzer nicht stoppt, wiederhole den Pulsierzyklus*. Eine Bedingung hat die Eigenschaft, dass sie jederzeit ausgewertet werden kann und entweder den Wert wahr (true) oder falsch (false) annimmt. Wie aber drücken wir das in Python aus?
 
 ```{python}
-import keyboard
-
-while not keyboard.is_pressed('esc'):
-    print("Nobody pressed ESC yet")
+while True:
+    print("I will loop forever")
     time.sleep(1)
 ```
 
-Für Ereignisse, die die Tastatur betreffen, können wir uns der Bibliothek `keyboard` bedienen, die es uns ermöglicht, Tasteneingaben einfach zu überwachen. Die Bedingung `not keyboard.is_pressed('esc')` prüft, ob die ESC-Taste gedrückt ist. Wegen des `not` wird die Schleife fortgesetzt, solange die ESC-Taste *nicht* gedrückt ist. Das Schlüsselwort verneint das Ergebnis einer Bedingung. Aus `True` wird `False`, und umgekehrt.
+Die einfachste Möglichkeit ist es, das Ergebnis der Evaluation direkt hinzuschreiben. Die obige Schleife prüft in jedem Durchgang, ob der Wert `True` wahr ist - was er natürlich ist. Das ist also so ähnlich wie bei der Schleife weiter oben, die die Bedingung `1==1` geprüft hat. Die ist ebenfalls immer `True` oder wahr. 
 
-Die [Bibliothek](#bibliotheken) `keyboard` ist eine sogenannte externe Bibliothek und muss vor der Verwendung installiert werden. Das könnt ihr über den Paketmanager `pip` bewerkstelligen, der mit jeder Python-Installation mitgeliefert wird. Gebt auf der Kommandozeile dazu den folgenden Befehl ein:
+Wir lernen im Laufe des Buches noch viele echte Bedingungen kennen, deren Ergebnis nicht von Vornherein bekannt ist. Für unsere pulsierende LED reicht es aber aus, wenn wir eine gewollte Endlosschleife verwenden. Denn auch eine Endlosschleife können wir jederzeit verlassen, indem wir das Programm mit der Tastenkombination Strg+C abbrechen. 
 
-``` bash
-pip install keyboard
-```
-
-Anschließend ist die Bibliothek in eurer Python-Umgebung vorhanden und sollte mit dem `import`-Befehl erfolgreich geladen werden können.
-
-Wenn wir jetzt unseren Pulsierzyklus von oben in die neue bedingte Schleife einfügen, sind wir schon am Ziel. Der Pulsierzyklus wird wiederholt, solange der Benutzer nicht die Taste Escape drückt.
+Wenn wir jetzt unseren Pulsierzyklus von oben in die neue bedingte `while`-Schleife einfügen, sind wir schon am Ziel. Der Pulsierzyklus wird wiederholt, solange das Programm nicht abgebrochen wird:
 
 ```{python}
-import keyboard
-
-while not keyboard.is_pressed('esc'):
+while True:
 
     # Increase red step by step
     for r in range(256):
@@ -420,7 +411,7 @@ led = BrickletRGBLEDV2('ZEP', ipcon)
 # Turn LED off initially
 led.set_rgb_value(0, 0, 0)
 
-while not keyboard.is_pressed('esc'):
+while True:
 
     # Increase red step by step
     for r in range(256):
@@ -439,7 +430,7 @@ while not keyboard.is_pressed('esc'):
     time.sleep(0.25)
 ```
 
-## Farbkreise
+## Farbkreise {#sec-colors-hue-circle}
 
 Das RGB-Farbschema ist für Computer optimal, weil sich damit mit nur drei Zahlen jede beliebige Farbe kodieren lässt. Zahlen sind schließlich die Sprache, mit der Computer am besten umgehen können. Für uns Menschen ist dieses Schema jedoch weniger intuitiv. Oder könntet ihr auf Anhieb sagen, welche Farbe hinter der Kombination (67, 201, 182) steckt?
 
@@ -450,7 +441,7 @@ Um Farben für uns leichter wählbar zu machen, wurde der sogenannte Hue-Farbkre
 :::
 
 ::: {.content-hidden when-format="html"}
-![Die Farbauswahl in Google Slides funktioniert über den Hue-Farbkreis.](images/hue_color_picker_still.png){.lightbox fig-align="center" width="33%"}
+![Die Farbauswahl in Google Slides funktioniert über den Hue-Farbkreis.](images/hue_color_picker_still.png){#fig-hue-color-picker .lightbox fig-align="center" width="33%"}
 :::
 
 In @fig-hue-color-picker seht ihr, wie die Farbauswahl in Google Slides funktioniert. Mit dem Slider in der Mitte bestimmt ihr den Farbton. Habt ihr einen passenden Ton gefunden, könnt ihr im Rechteck darüber durch Verschieben des kleinen Kreises die Sättigung und Helligkeit anpassen.
@@ -476,9 +467,9 @@ Dann beginnt der Zyklus von vorn.
 
 ![Der Hue-Farbverlauf mit den Veränderungen der RGB-Werte (Quelle: [Ronja's Tutorials](https://www.ronja-tutorials.com/post/041-hsv-colorspace/)).](images/hue_rgb_diagram.png){#fig-hue-rgb-diagram .lightbox fig-align="center" width="75%"}
 
-### Farbkreis als Programm
+## Regenbogen-LED {#sec-colors-rainbow-led}
 
-Beginnen wir mit der ersten Phase und schreiben dafür ein Python-Programm:
+Mit dem Wissen können wir uns an das erklärte Ziel unseres Experiments machen: die LED nacheinander in allen Farben des Regenbogens aufleuchten zu lassen. Beginnen wir mit der ersten Phase und schreiben dafür ein Python-Programm:
 
 ```{python}
 for green in range(256):
@@ -539,12 +530,12 @@ for blue in range(255, -1, -1):
 
 Wie schön 🌈 Eine Sache fehlt aber noch.
 
-### Der Zyklus wiederholt sich
+### Runde für Runde
 
 Der Regenbogen soll am Ende wieder von vorne beginnen. Wie schon beim Pulsieren der Farben können wir auch hier eine `while`-Schleife verwenden und die Phasen kontinuierlich abspielen – solange, bis der Benutzer die Escape-Taste drückt:
 
 ```{python}
-while not keyboard.is_pressed('esc'):
+while True:
 
     # phase 1
     for green in range(256):
@@ -580,7 +571,7 @@ while not keyboard.is_pressed('esc'):
 
 Wir haben es fast geschafft! Eine Kleinigkeit wollen wir an unserem Programm noch verbessern.
 
-### Zeitsteuerung
+### Geschwindigkeit steuern
 
 Vielleicht habt ihr gemerkt, dass die Geschwindigkeit, mit der unsere LED den gesamten Regenbogen einmal durchläuft, nicht sehr hoch ist. Ich würde das gerne beschleunigen. Die Zeit steuern wir über die `time.sleep()`-Funktion, sodass wir einfach den Wert in jedem Funktionsaufruf verringern könnten. Das wäre aber nicht sehr effizient, weil wir ihn an sechs Stellen anpassen müssen. Wenn wir danach merken, dass es zu schnell ist, müssten wir den Wert erneut überall editieren. Das geht einfacher!
 
@@ -620,10 +611,11 @@ while not keyboard.is_pressed('esc'):
     # etc.
 ```
 
-Und schon können wir unseren Regenbogen beliebig zeitlich steuern. Damit sind wir am Ende des Kapitels angekommen. Wir schließen es mit dem vollständigen Code für unseren Regenbogenverlauf ab. Vergesst nicht, den Wert für die UID eurer LED anzupassen, damit es auch bei euch funktioniert:
+Und schon können wir unseren Regenbogen beliebig zeitlich steuern. Damit sind wir am Ende des Kapitels angekommen. Wir schließen es mit dem vollständigen Code für unseren Regenbogenverlauf in @lst-rainbow-program ab. Vergesst nicht, den Wert für die UID eurer LED anzupassen, damit es auch bei euch funktioniert:
 
 ```{python}
-import keyboard
+#| lst-cap: Das fertige Regenbogenprogramm.
+#| lst-label: lst-rainbow-program
 import time
 from tinkerforge.ip_connection import IPConnection
 from tinkerforge.bricklet_rgb_led_v2 import BrickletRGBLEDV2
@@ -638,8 +630,7 @@ led.set_rgb_value(0, 0, 0)
 rainbow_duration = 5
 pause_duration = rainbow_duration / 1536
 
-# Loop until user presses escape key
-while not keyboard.is_pressed('esc'):
+while True:
 
     # phase 1
     for green in range(256):

@@ -370,7 +370,7 @@ Abbildung&nbsp;9.1: Dein Puls im Brick Viewer
 <h2 data-number="9.2" class="anchored" data-anchor-id="vom-diagramm-zur-zahl"><span class="header-section-number">9.2</span> Vom Diagramm zur Zahl</h2>
 <p>Auch wenn du das Signal im Liniendiagramm in <a href="#fig-pulse-brick-viewer" class="quarto-xref">Abbildung&nbsp;<span>9.1</span></a> bereits deutlich sehen kannst, bleibt eine spannende Herausforderung bestehen: Wie schreibst du ein Programm, das aus diesen Daten deinen Puls als konkrete Zahl, zum Beispiel “60 Schläge pro Minute”, berechnet? Genau dafür sind wir ja hier – um herauszufinden, wie man solche kniffligen Aufgaben löst. Lass uns gemeinsam starten!</p>
 <p>Zunächst müssen wir den Farbsensor in unserem Python-Programm auslesen. Den notwendigen Code dafür haben wir im vorherigen <a href="sensors.html" class="quarto-xref"><span>Kapitel 8</span></a> bereits kennengelernt.</p>
-<div id="799dc2a1" class="cell" data-execution_count="1">
+<div id="c1c55942" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
 <span id="annotated-cell-1-2"><a href="#annotated-cell-1-2"></a><span class="im">from</span> tinkerforge.bricklet_color_v2 <span class="im">import</span> BrickletColorV2</span>
 <span id="annotated-cell-1-3"><a href="#annotated-cell-1-3"></a></span>
@@ -388,7 +388,7 @@ Abbildung&nbsp;9.1: Dein Puls im Brick Viewer
 </div>
 </div>
 <p>Jetzt haben wir Zugriff auf die Funktionen des Sensors und können etwa die Lichtintensität messen:</p>
-<div id="a51125ff" class="cell" data-execution_count="2">
+<div id="27eb7f7e" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1">1</button><span id="annotated-cell-2-1" class="code-annotation-target"><a href="#annotated-cell-2-1"></a>color_sensor.set_light(<span class="va">True</span>)</span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="2">2</button><span id="annotated-cell-2-2" class="code-annotation-target"><a href="#annotated-cell-2-2"></a>color_sensor.set_configuration(<span class="dv">1</span>, <span class="dv">1</span>)</span>
 <span id="annotated-cell-2-3"><a href="#annotated-cell-2-3"></a>illuminance <span class="op">=</span> color_sensor.get_illuminance()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -406,7 +406,7 @@ Abbildung&nbsp;9.1: Dein Puls im Brick Viewer
 </div>
 </div>
 <p>Der zurückgegebene Wert hängt von zwei Einstellungen ab: <em>Gain</em> (Verstärkung) und <em>Integration Time</em> (Messzeit). Je länger die Messzeit, desto genauer die Werte – allerdings können dann weniger Messungen pro Sekunde durchgeführt werden. Laut Dokumentation können wir aus dem gemessenen Wert die Lichtintensität in Lux wie folgt berechnen:</p>
-<div id="d3b486b6" class="cell" data-execution_count="3">
+<div id="8ddad61e" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="annotated-cell-3"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><button class="code-annotation-anchor" data-target-cell="annotated-cell-3" data-target-annotation="1">1</button><span id="annotated-cell-3-1" class="code-annotation-target"><a href="#annotated-cell-3-1"></a>illuminance_lux <span class="op">=</span> illuminance <span class="op">*</span> <span class="dv">700</span> <span class="op">/</span> <span class="dv">4</span> <span class="op">/</span> <span class="dv">24</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
@@ -419,14 +419,14 @@ Abbildung&nbsp;9.1: Dein Puls im Brick Viewer
 </div>
 <p>Um deinen Puls zu berechnen, müssen wir jetzt mehrere Werte in kurzen Abständen messen. Warum? Weil wir die regelmäßigen Tief- und Hochpunkte erkennen wollen. Ein Tiefpunkt entsteht, wenn dein Finger am dunkelsten ist – hier ist also gerade besonders viel Blut im Finger. Die Hochpunkte markieren dagegen den Moment, in dem das Blut größtenteils wieder zurückgeflossen ist. Jeder Herzschlag erzeugt genau einen Tief- und einen Hochpunkt. Finden wir diese Punkte, können wir einfach die Zeitabstände messen und daraus die Pulsfrequenz berechnen.</p>
 <p>Beginnen wir damit, unsere Messungen in einer Schleife durchzuführen. Das ist eine praktische Methode, kontinuierlich Daten zu erfassen:</p>
-<div id="84fe7c8f" class="cell" data-execution_count="4">
+<div id="3ee80692" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
 <span id="cb1-2"><a href="#cb1-2"></a>    illuminance <span class="op">=</span> color_sensor.get_illuminance()</span>
 <span id="cb1-3"><a href="#cb1-3"></a>    illuminance_lux <span class="op">=</span> illuminance <span class="op">*</span> <span class="dv">700</span> <span class="op">/</span> <span class="dv">4</span> <span class="op">/</span> <span class="dv">24</span></span>
 <span id="cb1-4"><a href="#cb1-4"></a>    <span class="bu">print</span>(<span class="ss">f"Lichtintensität in Lux: </span><span class="sc">{</span>illuminance_lux<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Lass uns das Programm einmal ausprobieren. Es sieht aktuell so aus:</p>
-<div id="d43701d8" class="cell" data-execution_count="5">
+<div id="d5c0db90" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="annotated-cell-5"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-5-1"><a href="#annotated-cell-5-1"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
 <span id="annotated-cell-5-2"><a href="#annotated-cell-5-2"></a><span class="im">from</span> tinkerforge.bricklet_color_v2 <span class="im">import</span> BrickletColorV2</span>
 <span id="annotated-cell-5-3"><a href="#annotated-cell-5-3"></a></span>

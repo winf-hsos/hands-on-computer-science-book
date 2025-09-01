@@ -61,7 +61,7 @@ Fassen wir zusammen, was unser Drehknopf (Rotary Encoder) draufhat:
 
 Zeit also, das Ganze in Python auszuprobieren und zu sehen, welche coolen Anwendungen wir damit bauen können.
 
-## Hoch- und Runterzählen
+## Zähler auslesen
 
 Der Drehknopf funktioniert ähnlich wie der Lautstärkeregler einer Stereoanlage (siehe @fig-hifi-system): Dreht ihr nach rechts, wird es lauter – nach links, leiser.
 
@@ -121,7 +121,7 @@ Neu ist hier die Kontrollstruktur `if`. Sie prüft eine Bedingung, die – wie i
 
 Übertragen auf unser Programm heißt das: `print(last_count)` läuft nur dann, wenn sich der Wert tatsächlich verändert hat. In diesem Fall merken wir uns den neuen Wert und aktualisieren `last_count`. Beim nächsten Schleifendurchlauf prüfen wir wieder, ob sich etwas getan hat. Meistens ist das nicht so – und genau deshalb sehen wir nur dann eine Ausgabe, wenn wir wirklich am Knopf drehen. Ziemlich effizient, oder?
 
-## Ein LED-Dimmer (Teil 1)
+## LED-Dimmer 1.0
 
 Wenden wir das Gelernte an und bauen einen praktischen LED-Dimmer. Dafür holen wir unsere LED aus Kapitel 1 mit dazu und kombinieren sie mit dem Drehknopf.
 
@@ -215,8 +215,6 @@ Erstens, weil wir damit jeden Tag umgehen. Das Dezimalsystem ist das System, das
 
 ![Jede Stelle steht für eine höhere Potenz der Basis 10.](https://winf-hsos.github.io/university-docs/images/binary_system_decimal_calculation_4123.png){#fig-decimal-system-4123 .lightbox}
 
-### Andere Zahlensysteme
-
 Wurde uns das Dezimalsystem von Gott gegeben? Vielleicht – wenn man an die Schöpfung glaubt[^numbers-1] und daran, dass Gott uns so geschaffen hat, wie wir sind, dann hat er implizit dafür gesorgt, dass wir dezimal denkende Wesen werden. Warum? Eine Theorie besagt, dass die menschliche Anatomie, insbesondere die Anzahl der Finger, einen Einfluss auf unser Zahlensystem hatte. Zählt einfach mal anhand eurer Finger durch.
 
 [^numbers-1]: Hände hoch, wer daran noch glaubt!
@@ -251,7 +249,9 @@ Das Binärsystem funktioniert wie alle anderen Stellenwertsysteme auch.
 
 ![](https://winf-hsos.github.io/university-docs/images/binary_system_place_value_systems.png)
 
-## Bits und Bytes
+## Bits & Bytes
+
+### Zwei Zustände
 
 Warum haben wir uns Zahlensysteme angeschaut, und was hat das mit Computern zu tun? Ganz einfach: Computer denken binär. Das bedeutet, sie kennen nur zwei Zustände: an oder aus, 0 oder 1.
 
@@ -283,7 +283,11 @@ $$
 \end{aligned}
 $$
 
-Stopp! $2^8 = 256$, das genügt uns völlig. Mit 8 Bits können wir somit 256 Zustände abbilden – genau passend für 256 Rot-, Grün- oder Blauanteile. Und das ist kein Zufall: 8 Bits sind für Computer eine besondere Hausnummer. Wir nennen eine Gruppe von 8 Bits ein Byte\index{Byte}. Und jetzt dürfte es erneut klingeln.
+Stopp! $2^8 = 256$, das genügt uns völlig. Mit 8 Bits können wir somit 256 Zustände abbilden – genau passend für 256 Rot-, Grün- oder Blauanteile. 
+
+### Acht Bits macht ein Byte
+
+Und das ist kein Zufall: 8 Bits sind für Computer eine besondere Größe. Wir nennen eine Gruppe von 8 Bits ein Byte\index{Byte}. Und jetzt dürfte es erneut klingeln.
 
 ![Ein Byte könnt ihr euch vorstellen wie acht Glühbirnen nebeneinander.](https://winf-hsos.github.io/university-docs/images/binary_system_byte_a.png){#fig-binary-system-byte-a .lightbox}
 
@@ -305,7 +309,7 @@ Die Antwort überrascht uns nicht, denn schließlich haben wir es ja schon herau
 
 Das erklärt auch die Fehlermeldung von oben: Ein Byte kann Werte zwischen 0 und 255 darstellen. Wir haben im Experiment den Drehknopf voll nach oben oder nach unten gedreht, wodurch der Wert entweder größer als 255 oder kleiner als 0 wurde. Und damit ist es kein gültiger Wert im Sinne eines Bytes mehr.
 
-## Kilo, Mega, Giga
+### Kilo, Mega, Giga
 
 Ein Byte besteht aus 8 Bits. Wenn wir also von Bytes sprechen, reden wir oft auch von Kilobytes, Megabytes, Gigabytes et cetera. Diese Begriffe sind wichtig, um die Größe von Daten zu beschreiben. In @tbl-data-sizes seht ihr eine Übersicht über die verschiedenen Größenordnungen.
 
@@ -326,7 +330,7 @@ Jetzt, da ihr wisst, was mit einem Byte gemeint ist, könnt ihr eine ungefähre 
 
 Wir kommen in den späteren Kapiteln immer wieder auf die Bits und Bytes zurück, weil wir in Computern letztlich überall mit diesen Einheiten arbeiten. Es ist somit gut, wenn ihr schon an dieser Stelle ein grundlegendes Verständnis für diese Konzepte entwickelt.
 
-## Ein LED-Dimmer (Teil 2) {#sec-led-dimmer-part-2}
+## Ein LED-Dimmer 2.0 {#sec-led-dimmer-part-2}
 
 Zurück zu unserem eigentlichen Vorhaben. Wir waren gerade dabei, einen Dimmer für unsere LED zu basteln, als uns die Zahlensysteme dazwischengekommen sind. Dafür haben wir jetzt ein besseres Verständnis dafür, wie ein Computer Farben sieht – nämlich als lange Sequenz aus Nullen und Einsen. Und zwar 24 davon, weil jede Grundfarbe ein Byte an Speicher verwendet.
 
@@ -449,7 +453,7 @@ while True:
 
 Mit dem LED-Dimmer haben wir die zentrale Funktion des Drehknopfes zur Genüge kennengelernt. Das Gerät hat aber noch eine andere Funktion.
 
-## Buttons
+## Druckknopf auslesen
 
 Neben dem Zähler besitzt der Drehknopf (der Name sagt es schon) noch eine Funktion, nämlich die eines einfachen Druckknopfes. Wir haben es weiter oben in @sec-numbers-first-steps mit dem Brick Viewer schon ausprobiert: Der Drehknopf lässt sich drücken und erzeugt eine haptische Rückmeldung, ein leichtes Knacken. Im Brick Viewer wurde der kleine Kreis auf der rechten Seite dann rot eingefärbt.
 
@@ -486,13 +490,13 @@ while True:
 
 Das reicht fürs Erste – der Button kann tatsächlich nicht mehr als das. Reicht aber auch: Damit können wir unserem Dimmer schon einen zusätzlichen Mehrwert verleihen. Schließlich kann unsere LED nicht nur weiß leuchten.
 
-## Stimmungslicht
+## LED-Dimmer 3.0
 
 Wäre es nicht praktisch, wenn wir das Licht der LED nicht nur dimmen, sondern auch den Farbton verändern könnten? Weißes Licht ist am Abend bekanntlich nicht empfehlenswert, und grünes Licht soll beruhigend wirken.
 
 Lasst uns unseren Dimmer so erweitern, dass per Knopfdruck der Farbton gewechselt werden kann. Fürs Erste wollen wir die Farben Weiß, Gelb und Grün anbieten. Das lässt sich später beliebig erweitern.
 
-### Die Farbe per Variable steuern
+### Farbe per Variable steuern
 
 Der Ausgangspunkt für unser dimmbares Stimmungslicht ist der Dimmer aus @lst-dim-led. Von hier aus fügen wir Schritt für Schritt die Logik für den Farbwechsel per Button ein. Lasst uns aber zunächst ganz ohne Button versuchen, die Farbe der LED zu ändern.
 
@@ -532,7 +536,7 @@ color = "yellow"
 
 Jetzt sollte beim Start des Programms die LED gelb leuchten. Dasselbe probiert mal mit "green" aus, das dürfte auch funktionieren.
 
-### Die Farbe per Knopfdruck ändern
+### Farbe per Knopfdruck ändern
 
 Die aktuelle Farbe in einer Variable zu speichern ist eine gute Idee gewesen. Darauf können wir aufbauen und den Button für den Wechsel der Farbe nutzen. Aber wie?
 
@@ -635,17 +639,13 @@ Um die Helligkeitsanpassung kümmert sich dann der dritte und letzte größere B
 
 Wer von euch jetzt ganz genau hinsieht, der erkennt, dass die Blöcke 2 und 3 zum Teil identischen Code ausführen. In der Programmierung ist das eine rote Flagge 🚩! Lasst uns darüber sprechen, warum!
 
-## Don't Repeat Yourself
+## Funktionen
 
-In der Programmierung ist es wichtig, Wiederholungen zu vermeiden. Wenn wir feststellen, dass wir denselben Code an mehreren Stellen verwenden, sollten wir darüber nachdenken, etwas zu verändern. Warum?
+In der Programmierung ist es wichtig, Wiederholungen zu vermeiden. Wir sprechen auch vom DRY-Prinzip, was für *Don't Repeat Yourself* steht. Wenn wir feststellen, dass wir denselben Code an mehreren Stellen verwenden, sollten wir darüber nachdenken, etwas zu verändern. Warum?
 
 Nehmen wir in unserem Beispiel an, wir führen eine vierte Farbe ein, sagen wir Blau. Dann müssten wir den Code in den Blöcken 2 und 3 anpassen, um die neue Farbe zu berücksichtigen. Das bedeutet, dass wir den gleichen Code an mehreren Stellen ändern müssten, was fehleranfällig und mühsam ist. Zwei mag noch nicht nach einem Problem klingen, aber selbst hier zeigt sich das Problem der Wiederholung. Wird eine Stelle vergessen, ist der Code inkonsistent und funktioniert nicht mehr wie gewünscht.
 
-Die Lösung liegt darin, häufig verwendeten Code in Funktionen auszulagern.
-
-## Funktionen
-
-Funktionen sind ein mächtiges Werkzeug in der Programmierung. Sie ermöglichen es uns, Codeblöcke zu definieren, die wir immer wieder verwenden können, ohne sie jedes Mal neu schreiben zu müssen. Funktionen helfen uns dabei, unseren Code sauberer, übersichtlicher und wartbarer zu gestalten.
+Die Lösung liegt darin, häufig verwendeten Code in Funktionen auszulagern. Funktionen sind ein mächtiges Werkzeug in der Programmierung. Sie ermöglichen es uns, Codeblöcke zu definieren, die wir immer wieder verwenden können, ohne sie jedes Mal neu schreiben zu müssen. Funktionen helfen uns dabei, unseren Code sauberer, übersichtlicher und wartbarer zu gestalten.
 
 Im @lst-color-brightness wird dieser Teil an zwei Stellen wiederholt:
 
