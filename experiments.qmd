@@ -31,7 +31,7 @@ Kapitel für Kapitel werden wir an unterschiedlichen Experimenten arbeiten. Dabe
 | Kapitel | Experiment(e) |
 |----------------|--------------------------------------------------------|
 | @sec-colors | Wir lassen eine LED einen Regenbogenfarbverlauf über die Zeit erzeugen. |
-| @sec-texts | Wir lernen, wie man Texte umständlich und ohne Tastatur eingeben kann – über Handgesten. |
+| @sec-text | Wir lernen, wie man Texte umständlich und ohne Tastatur eingeben kann – über Handgesten. |
 | @sec-images | Wir verbinden Tabellenkalkulation mit Bildern und Touchdisplays 🤯 |
 | @sec-codes | Wir lernen Morse-Code und wie wir diesen über einen Lautsprecher ausgeben können. |
 | @sec-conversion | Wir verwenden einfache Kippschalter, um analoge Werte in digitale Werte umzuwandeln. |

@@ -4,55 +4,534 @@ abstract: |
 abstract-title: ""
 ---
 
-# Texte {#sec-texts}
+# Texte {#sec-text}
 
-## Setup {.unnumbered}
+## Zusammenfassung {.unnumbered}
 
-Für dieses Kapitel benötigen wir die LED ([RGB LED Bricklet 2.0](https://www.tinkerforge.com/de/shop/rgb-led-v2-bricklet.html)) und den Infrarot-Entfernungsmesser [Distance IR 4-30cm Bricklet 2.0](https://www.tinkerforge.com/de/shop/distance-ir-4-30cm-v2-bricklet.html). Beide Geräte schließen wir an den Mikrocontroller ([Master Brick 3.2](https://www.tinkerforge.com/de/shop/master-brick.html)) and und fixieren alle drei auf einer Montageplatte. Wie in der Abbildung gezeigt, soll der Entfernungsmesser dabei nach oben zeigen.
+Unsere wichtigsten Lernziele in diesem Kapitel sind:
 
-::: callout-note
-## Kommt bald
+-   Wir führen das Hexadezimalsystem als ein Zahlensystem mit einer Basis \> 10 ein.
+-   Wir lernen Codesysteme für die Speicherung von Texten kennen.
+-   Wir wissen, was eine Variable ist und wie sie im Computer funktioniert.
+-   Wir verstehen Binärcodierung und warum sie in Computern zum Einsatz kommt.
 
-Dieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.
-:::
+## Experimentaufbau {.unnumbered}
 
+### Hardware {.unnumbered}
 
+Für dieses Kapitel benötigen wir erneut die LED ([RGB LED Bricklet 2.0](https://www.tinkerforge.com/de/shop/rgb-led-v2-bricklet.html)), tauschen aber den Drehknopf aus @sec-numbers gegen einen Infrarot-Entfernungsmesser ([Distance IR 4-30cm Bricklet 2.0](https://www.tinkerforge.com/de/shop/distance-ir-4-30cm-v2-bricklet.html)). Beide Geräte schließen wir an den Mikrocontroller ([Master Brick 3.2](https://www.tinkerforge.com/de/shop/master-brick.html)) and und fixieren sie auf einer Montageplatte. Wie in der Abbildung gezeigt, wird der Entfernungsmesser mit einem Winkekl aus Metall so befestigt, dass er bündig mit der Montageplatte ist und dabei nach Vorne zeigt.
 
-## Texte – ganz ohne Tastatur?
+### Erste Schritte mit dem Abstandssensor {#sec-text-first-steps .unnumbered}
 
-Ja, ich gebe zu: Eine Tastatur ist schon richtig praktisch. Schnell tippen wir damit Buchstaben, Zahlen, Satz- und Sonderzeichen (wie neue Zeilen und Leerzeichen) ein. Aber stell dir mal vor: Wie könnte ich eigentlich dieses Buch schreiben, wenn ich keine Tastatur hätte?
+Wie bei der LED werfen wir zuerst einen Blick auf den neuen Abstandssensor im Brick Viewer. Schließt dazu euren Master Brick per USB an, startet den Brick Viewer und klickt auf Connect. Im Setup-Tab sollte nun neben der LED auch der Abstandssensor auftauchen. Denkt daran: Dort findet ihr auch die UID eurer Geräte, die braucht ihr gleich für euer Programm.
 
-Tatsächlich gibt es spannende Alternativen! Hast du schon mal versucht, Texte zu diktieren? Google Docs oder Microsoft Word bieten mittlerweile ziemlich gute Möglichkeiten dafür. Anfangs fühlt sich das ungewohnt an, aber ich kenne Menschen, die darauf schwören und damit sogar produktiver sind.
+![Nach erfolgreicher Verbindung erscheint der Infrarot-Entfernungsmesser in der Übersicht des Brick Viewers.](images/brick_viewer_connect_ir_sensor.png){#fig-brick-viewer-connect-ir-sensor .lightbox group="brick-viewer-ir"}
 
-Heute wollen wir aber bewusst einmal einen Schritt zurückgehen und das Tippen absichtlich erschweren. Klingt komisch? Macht aber Sinn! Denn wenn wir das Eingeben von Texten schwieriger gestalten, lernen wir einerseits, unsere Tastaturen wieder richtig zu schätzen. Andererseits verstehen wir dann besser, wie Texte im Hintergrund verarbeitet und gespeichert werden.
+Wechselt in den Tab für den Abstandssensor, wo ihr ihn direkt testen könnt: Ihr seht die aktuelle Entfernung, die der Sensor misst, in Echtzeit und in Zentimetern oben in der Mitte. Darunter zeigt ein Kurendiagramm die zeitliche Entwicklung. Bewegt eure Hand vor dem Sensor, um ein Gefühl für ihn zu bekommen. Was passiert, wenn ihr sehr nach vor dem Sensor seid? Was, wenn ihr eure Hand weit weg bewegt?
 
-Wie wäre es also mit einer Tastatur, die auf Handgesten basiert? Klingt verrückt? Perfekt – genau das machen wir!
+![Der Brick Viewer zeigt die aktuelle Entfernung im Zeitverlauf an.](images/brick_viewer_ir_sensor.png){#fig-brick-viewer-ir-sensor .lightbox group="brick-viewer-ir"}
 
-## Klein anfangen: Ein einfacher Button mit Handgesten
+## Lichtschranke
 
-Starten wir ganz simpel. Wir bauen zuerst eine Art "Knopf" oder Button, der auf Handgesten reagiert. Dafür verwenden wir einen der Infrarot-Abstandssensoren – oder wie er bei Tinkerforge heißt: *Distance IR 4-30cm Bricklet 2.0*. Wie der Name schon sagt, misst der Sensor Entfernungen von 4 bis maximal 30 cm.
+Ein Infrarot-(IR)-Abstandssensor verwenden wir in der Praxis zur berührungslosen Messung des Abstands zu einem Objekt. Der Sensor sendet einen unsichtbaren Infrarotlichtstrahl aus und misst das Licht, das vom Objekt zurückgeworfen wird. Anhand der Intensität oder des Winkels des zurückkehrenden Lichts berechnet der Sensor die Entfernung. Diese kleinen Sensoren sind aus der Praxis nicht wegzudenken und kommen in vielfältigen Szenarien zum Einsatz, hier ein paar Beispiele:
 
-Um den Sensor in unserem Programm zu nutzen, können wir ganz entspannt den Grundcode (Boilerplate-Code) aus den vorherigen Kapiteln übernehmen. Nur zwei kleine Anpassungen brauchen wir noch speziell für unseren Sensor:
+-   Objekterkennung an einem Fließband.
+-   Füllstandsmessung in Behältern.
+-   Hinerniserkennung für Roboter, etwa bei Staubsaugerrobotern
+-   Positionierung von Werkstücken in Maschinen
+-   Einparkhilfe beim Auto
+
+Die Liste lässt sich lange fortführen. Letzlich lassen sich alle Anwendungsfälle auf zwei Fragen reduzieren:
+
+1.  Befindet sich ein Objekt in der Sicht des Sensors?
+2.  Wie weit ist ein Objekt vom Abstandssensor entfernt?
+
+Wir starten mit der einfacheren der beiden Fragen: Befindet sich ein Objekt in der Sicht des Infrarot-Sensors? Das beschreibt im Kern die Funktion einer Lichtschranke.
+
+Wie ihr beim Ausprobieren im Brick Viewer vielleicht schon festgestellt habt, misst der Sensor Entfernungen zwischen 4 und 30 cm. Das bedeutet alle Objekte, die weiter entfernt sind, werden nicht erkannt. Ebenso wenn ein Objekt näher als 4 cm am Sensor ist. Eine Lichtschranke hat somit die Aufgabe zu prüfen, ob der Abstandssensor einen Wert misst, der kleiner ist als 30 cm, was bedeuetet, dass sich ein Objekt in der Sichtlinie des Sensors befindet.
+
+Verbinden wir uns mit dem Sensor und schreiben wir unseren notwendigen Boilerplate-Code. Ihr könnt dazu den Boilerplate-Code aus einem der vorangegangenen Kapitel kopieren und nur die Einträge für den Abstandssensor anpassen (Zeile 2 und 6). Denkt daran, die UID eures Sensors hier einzutragen:
 
 ```{python}
+#| lst-cap: Boilerplate-Code für den IR-Abstandssensor
+#| lst-label: lst-text-ir-sensor-boilerplate
 from tinkerforge.ip_connection import IPConnection
-from tinkerforge.bricklet_distance_ir_v2 import BrickletDistanceIRV2 # <1>
+from tinkerforge.bricklet_distance_ir_v2 import BrickletDistanceIRV2
 
-ip_con = IPConnection()
-ip_con.connect("localhost", 4223)
-
-ir_sensor = BrickletDistanceIRV2("", ip_con) # <2>
+ipcon = IPConnection()
+ipcon.connect('localhost', 4223)
+ir = BrickletDistanceIRV2('2a7S', ipcon) # <1>
 ```
-1. Hier importieren wir die Klasse für den IR-Sensor.
-2. Hier erzeugen wir eine konkrete Instanz und verbinden uns mit dem angeschlossenen Sensor. Vergiss nicht, deine UID hier einzutragen!
 
-Was kann der Sensor? Eigentlich hat er nur eine Funktion:
+1.  Denkt daran, eure UID hier einzutragen!
+
+Der Sensor ist danach auf der Variable `ir` gespeichert und wir können [seine Funktionen](https://www.tinkerforge.com/de/doc/Software/Bricklets/DistanceIRV2_Bricklet_Python.html) darüber ansprechen. Eine davon erlaubt uns das Auslesen des gerade gemessenen Werts:
 
 ```{python}
-distance = ir_sensor.get_distance() # <1>
-print(f"Objekt ist {distance/100} cm entfernt") # <2>
+#| code-line-numbers: false
+distance = ir.get_distance()
 ```
-1. Die Funktion `get_distance()` fragt den aktuell gemessenen Wert ab.
-2. Der Sensor liefert den Wert in Zentimeter * 100 zurück.
 
-Aber wie lässt sich mit den Entfernungswert ein Button umsetzen? Dazu vergegenwärtigen wir uns, was ein herkömmlicher Button eigentlich ist und wie er funktioniert. Ein Button, wie wir ihn auf einer **Tastatur**\index{Tastatur} finden, kennt zwei Zustände: Gedrückt und nicht gedrückt. An oder aus. Wenn wir eine Taste drücken, so schließen wir darüber einen Stromkreis, der in einem winzigen Mikroprozessor mündet. Dieser Prozessor erkennt durch laufendes Scannen sämtlicher Verbindungen zu den Tasten (die als Matrix angeordnet sind), durch welche Kreise Strom fließt und kann so auf die gedrückte Taste schließen. Der Mikroprozessor ermittelt dann anhand der Koordinate in der Matrix einen so gennanten **Scan Code**\index{Scan Code}, der für jede Taste anders lautet. Dieser Code wird als binäre Folge von Nullen und Einsen über das USB-Kabel an den Computer geschickt und dort von dem aktiven Programm - etwa einer Textverarbeitungssoftware - in ein Codesystem umgewandelt, das Zeichen abbilden kann. So wie etwa das ASCII-Codesystem, das wir weiter unten kennenlernen.
+Ein Blick in die Dokumentation verrät uns, dass der Rückgabewert der Funktion in Millimetern angegeben wird. Ein Wert von 300 bedeutet somit, dass der Sensor aktuell kein Objekt in seiner Reichweite sieht. Damit wir mit unserem Programm ein wenig besser testen können, lesen wir den Wert kontinuierlich aus und schreiben ihn auf die Konsole:
+
+```{python}
+#| code-line-numbers: false
+while True:
+    distance = ir.get_distance()
+    print(f"Aktuelle Entfernung: {distance} mm")
+```
+
+Ihr werdet sehen, dass wir wieder eine sehr große Menge an Ausgaben auf der Konsole erzeugen, weil in jedem Schleifendurchlauf der Wert ausgegeben wird, egal ob er sich verändert hat oder nicht. Geben wir erneut nur die Veränderungen aus, um die Ausgaben zu reduzieren:
+
+```{python}
+#| code-line-numbers: false
+last_distance = 0
+while True:
+    distance = ir.get_distance()
+    if distance != last_distance:
+        print(f"Aktuelle Entfernung: {distance} mm")
+        last_distance = distance
+```
+
+Ihr erinnert euch, das gleiche Prinzip haben wir bereits in @sec-led-dimmer-part-2 verwendet, um dort nur bei einer Änderung des Drehknopfes eine Ausgabe zu erzeugen. Wir merken uns den letzten Wert und vergleichen ihn mit dem aktuell gemessenen. Ist er gleich, passiert nichts. Hat er sich verändert (`distance != last_distance`), dann geben wir den neuen Wert aus und aktualisieren den letzten Wert (`last_distance = distance`).
+
+Wir sind unserem Etappenziel einer Lichtschranke schon sehr nah gekommen. Wir könnten anhand der Ausgabe schon entscheiden, ob ein Objekt in der Sicht des Sensors ist oder nicht. Aber das wollen wir natürlich nicht manuell machen, sondern das soll unser Programm automatisch erledigen. Dazu fügen wir eine weitere Bedingung mit einer `if`-Anweisung hinzu:
+
+```{python}
+#| code-line-numbers: false
+last_distance = 0
+while True:
+    distance = ir.get_distance()
+    if last_distance != distance:
+        if distance < 300:
+            print(f"Objekt erkannt: {distance} mm")
+        else:
+            print("Kein Objekt in Reichweite")
+    
+        last_distance = distance
+```
+
+Die neue `if`-Anweisung prüft, ob der Abstand kleiner als 300 mm ist, was bedeutet, es befindet sich etwas vor dem Sensor. In diesem Fall geben wir einen entsprechenden Hinweis aus der Konsole aus. Andernfalls kommt der Hinweis "Kein Objekt in Reichweite". Diesen Andernfalls-Fall können wir in der Programmierung mit dem optionalen `else`-Teil einer `if`-Anweisung abbilden. Code, der hinter dem `else`-Teil folgt, wird immer dann ausgeführt, wenn keine der vorher definierten Bedingungen über `if` ode r `elif` zutrifft.
+
+Damit unsere Lichtschranke auch ohne Computer und Blick auf die Konsole funktioniert, wollen wir im letzten Schritt die LED ins spiel bringen. Sie soll Rot aufleuchten, wenn ein Objekt erkannt wird. Die LED haben wir bereits in den beiden vorherigen Kapiteln ausgiebig kennengelernt, den Code können wir kopieren:
+
+```{python}
+last_distance = 0
+while True:
+    distance = ir.get_distance()
+    if last_distance != distance:
+        if distance < 300:
+            print(f"Objekt erkannt: {distance} mm")
+            led.set_rgb_value(255, 0, 0) # <1>
+        else:
+            print("Kein Objekt in Reichweite")
+            led.set_rgb_value(0, 0, 0) # <2>
+    
+        last_distance = distance
+```
+
+1.  Die LED leuchtet rot, wenn ein Objekt erkannt wird.
+2.  Die LED schaltet sich aus, wenn kein Objekt mehr erkannt wird.
+
+Probiert es aus - die Lichtschranke sollte funktionieren und Objekte innerhalb 30 cm des Sensors zu verlässig erkennen.
+
+## Hinderniserkennung
+
+Die Lichtschranke leuchtet immer rot, sobald ein Objekt erkannt wird. Dabei spielt die Entfernung keine Rolle. Lasst uns die Idee der Lichtschranke zu einer Hinderniserkennung für einen hypothetischen Staubsaugerroboter erweitern. Die LED soll dabei anzeigen, ob sich ein Objekt bereits nahe am Roboter befindet, oder ob es nich weit genug entfernt ist.
+
+Nehmen wir an, dass Objekt, die 17 cm oder näher am Roboter sind, als Gefahr betrachtet werden sollen. Alles was zwischen 17 und 30 cm Abstand hält, sieht der Roboter nicht als Bedrohung an. Die beiden Zustände wolle wir über die Farbe der LED abbilden:
+
+-   Gelb: Es wurde ein nahes Objekt erkannt (17 cm \< Abstand \< 30 cm)
+-   Rot: Es wurde ein nahes Objekt erkannt (\<= 17 cm)
+-   Aus: Es wurde kein Objekt vor dem Sensor erkannt (\>= 30 cm)
+
+Wir können dazu den Code der Lichtschranke erweitern:
+
+```{python}
+#| lst-cap: Der Code für die zweistufige Hinderniserkennung.
+#| lst-label: lst-text-obstacle-detection
+last_distance = 0
+while True:
+    distance = ir.get_distance()
+    if last_distance != distance:
+        if distance > 170 and distance < 300:
+            led.set_rgb_value(255, 255, 0) # <1>
+        elif distance <= 170:
+            led.set_rgb_value(255, 0, 0) # <2>
+        else:
+            led.set_rgb_value(0, 0, 0) # <3>
+    
+        last_distance = distance
+```
+
+1.  Die LED leuchtet gelb, wenn ein Objekt in mittlerer Entfernung erkannt wird.
+2.  Die LED leuchtet rot, wenn ein Objekt in naher Entfernung erkannt wird.
+3.  Die LED schaltet sich aus, wenn kein Objekt mehr erkannt wird.
+
+Ihr erinnert euch an die additive Farbmischung aus @fig-additive-color-mixing? Gelb entsteht durch die Kombination von Rot und Grün. Wir verwenden hier eine `elif`-Anweisung, die eine weitere Bedingung prüft, wenn die vorherige `if`-Bedingung nicht zutrifft. So können wir mehrere Bedingungen hintereinander prüfen. Der letzte `else`-Teil fängt alle Fälle ab, die keine der vorherigen Bedingungen erfüllen. Das ist dann also der Fall, dass kein Objekt erkannt wurde.
+
+Unser Staubsaugerroboter könnte den Code oben verwenden, um Hindernisse zu erkennen und bei zu größer Nähe entsprechend mit einem Ausweichmanöver zu reagieren.
+
+## Universelles Eingabegerät
+
+Eine andere Möglichkeit, den Abstandssensor und den Code aus @lst-text-obstacle-detection zu verwenden, wäre als Eingabegerät für Informationen in unseren Computer? "Hä?", fragt ihr euch vielleicht. Wie soll denn ein Abstandssensor als Eingabegerät für Informationen fungieren? Spinnt der jetzt total?
+
+Wie wir später noch sehen werden, benötigt man für die Darstellung von Informationen unterschiedliche Zustände. Und mit unterschiedlich meinen wir mindestens zwei (oder mehr). Genau das verkörpert ja auch das Bit, das wir kürzlich in @sec-numbers-bit-and-bytes kennengelernt haben. Ein Bit hat zwei Zustände, an oder aus, Null oder Eins.
+
+Was wäre, wenn wir die beiden Bereiche für die Abstände "nah" und "weit genug entfernt" nicht länger so interpretieren und sie einfach als zwei beliebige Zustände betrachten? Sagen wir der Bereich "nah" stünde für die 1 und der Bereicht "weit genug entfernt" für die 0. Dann könnten wir über eine bewusste Platzierung eines soliden Gegenstandes und anschließende Messung der Entfernung den Zustand eines Bits *kodieren*
+
+```{python}
+last_distance = 0
+while True:
+    distance = ir.get_distance()
+    if last_distance != distance:
+        if distance > 170 and distance < 300:
+            print("1")
+        elif distance <= 170:
+            print("0")
+    
+        last_distance = distance
+```
+
+Wenn ihr den Code ausführt, werdet ihr ein Problem erkennen: Platzieren wir unsere Hand nahe am Sensor, um eine 1 zu kodieren, so gibt das Programm nacheinander sehr viele Einsen aus. Dasselbe können wir für die Nullen beobachten. Dabei wollen wir mit einer Handgeste jeweils nur eine 1 oder 0 übermitteln, nicht eine ganze Reihe. Das liegt daran, dass unsere Hand sich minimal bewegt, auch wenn sie auf einer Oberfläche aufliegt. Es reicht schließlich schon ein Millimeter.
+
+Wir müssen unser Programm so anpassen, dass es nicht erneut auf eine Änderung reagiert, solange die Hand nicht wieder weggenommen wurde. Das können wir daran erkennen, dass der Sensor die maximale Entfernung von 30 cm misst. Erst wenn dieses Ereignis wieder auftritt, soll ein neuer Zustand kodiert werden.
+
+Eine Lösung besteht darin, dass wir uns merken, ob unser Eingabegerät aktuell empfangsbereit ist oder nicht. Wir führen dafür die Variable `receiving` ein, die den Zustand unseres Eingabegerätes beschreibt. Ist sie `True`, so ist das Gerät bereit, eine Eingabe zu empfangen. Ist sie `False`, so ignorieren wir alle Änderungen, bis die Hand wieder weggenommen wurde.
+
+```{python}
+last_distance = 0
+receiving = False
+while True:
+    distance = ir.get_distance()
+    if last_distance != distance:
+        
+        if receiving: # <!>
+            if distance > 170 and distance < 300:
+                print(f"1 at {distance} mm")
+                receiving = False
+            elif distance <= 170:
+                print(f"0 at {distance} mm")
+                receiving = False
+        else: # <2>
+            if distance >= 300:
+                receiving = True # <3>
+                print(f"Ready to receive next code")
+
+        last_distance = distance
+```
+
+1.  Nur wenn aktuell im Empfangsmodus soll anhand der Entfernung ein Bit kodiert werden.
+2.  Wenn wir nicht im Empfangsmodus sind, müssen wir prüfen, ob die Hand wieder weggenommen wurde (\> 30 cm).
+3.  Wenn die Hand wieder weggenommen wurde, soll wieder in den Empfangsmodus geschaltet werden.
+
+Das sieht schon gut aus, das Programm informiert uns, wenn es empfangsbereit ist und wenn es einen neuen Code empfangen hat. Probiert aber einmal aus, eure Hand sehr langsam von oben nach unten vor den Sensor zu bewegen, und zwar im nahen Bereich, sodass eigentlich eine 0 kodiert werden sollte. In manchen Fällen erkennt das Programm fälschlicherweise eine 1 statt der 0. Warum ist das so? Ganz einfach: Der Sensor hat bei der Messung eine leichte zeitliche Verzögerung. Wenn er aktuell 30 cm Abstand misst und wir unsere Hand langsam nach unten bewegen, dann misst der Sensor zunächst einen Abstand, der etwas unter 30 cm liegt. Das Proramm reagiert sofort und kodiert eine 1, obwohl wenig später der Sensorwert in den Bereich der 0 kommt (sagen wir 8 cm).
+
+Wir können das Problem umgehen, indem wir einen kleinen Verzug einbauchen, sobald ein Unterschied erkannt wurde. Nach diesem zeitlichen Verzug messen wir erneut, um sicherzugehen, die korrekte Position der Hand zu messen. So könnte das im Code aussehen:
+
+```{python}
+last_distance = 0
+receiving = False
+while True:
+    distance = ir.get_distance()
+    if last_distance != distance:
+
+        # Wait 100 ms and measure again
+        time.sleep(0.1) 
+        distance = ir.get_distance()
+        
+        if receiving:
+            if distance > 170 and distance < 300:
+                print(f"1 at {distance} mm")
+                receiving = False
+            elif distance <= 170:
+                print(f"0 at {distance} mm")
+                receiving = False
+        else:
+            if distance >= 300:
+                receiving = True
+                print(f"Ready to receive next code")
+
+        last_distance = distance
+```
+
+Testet es jetzt einmal und ihr werdet sehen, dass unser Eingabegerät die Zustände 0 und 1 zuverlässig erkennt.
+
+## Texte kodieren
+
+Können wir unser universelles Eingabegerät dazu verwenden, dem Computer Texte zu diktieren? Schließlich bedeutet universell, dass es für viele Zwecke einsetzbar ist. Und die Antwort lautet ja! Wenn wir ein Gerät entwickeln, mit dem wir Bits kodieren können, dann können wir damit alles eingeben, was ein Computer darstellen kann.
+
+Im @sec-numbers haben wir gesehen, wie wir mit 8 Bits den Wert einer der drei Grundfarben im RGB-Code darstellen können. Wenn wir unser Eingabegerät einsetzen, um hintereinander 24 Bits zu übermitteln und diese als einen RGB-Farbcode interpretieren, dann könnten wir damit unsere LED in einer beliebigen Farbe aufleuchten lassen. Das versuchen wir später zusammen, jetzt kümmern wir uns aber um eine ebenso wichtige Form der Information: Texte.
+
+### Wie viele Bits benötigen wir?
+
+Wir beginnen klein und fangen mit einem Bit an. Wenn wir Bits als Text interpretieren, wie viele Zeichen (oder Buchstaben) können wir dann mit einem einzigen Bit darstellen? Richtig: Zwei!
+
+```{python}
+last_distance = 0
+receiving = False
+while True:
+    distance = ir.get_distance()
+    if last_distance != distance:
+
+        # Wait 100 ms and measure again
+        time.sleep(0.1) 
+        distance = ir.get_distance()
+        
+        if receiving:
+            if distance > 170 and distance < 300:
+                print("B")
+                receiving = False
+            elif distance <= 170:
+                print("A")
+                receiving = False
+        else:
+            if distance >= 300:
+                receiving = True
+            
+        last_distance = distance
+```
+
+Lasst das Programm laufen und lasst eure Hand einmal nahe vor dem Sensor, dann zwei Mal weiter weg, und wieder nah, herunter. Das habt ihr gerade geschrieben: "ABBA"
+
+Neben der bekannten schwedischen Band lassen sich mit den Buchstaben A und B jedoch nicht viele andere Wörter buchstabieren. Wir sind gut beraten, mindestens ein zweites Bit hinzuzunehen. Die Anzahl Bits, die wir für einen Buchstaben benötigeb, erhöht sich damit auf zwei. Wie bilden wir das im Programm ab?
+
+Am einfachsten, indem wir uns die Bits zunächst merken, indem wir sie hintereinander in eine Zeichenkette schreiben. Sobald eine vorher definierte Länge einer Nachricht, die hier zunächst zwei Bits wäre, erreicht ist, dekodieren wir die Bitfolge und bekommen den passenden Buchstaben. Danach geht es wieder von Vorne los und unsere Bit-Zeichenkette ist wieder leer.
+
+```{python}
+MESSAGE_LENGTH = 2 # <1>
+bits = "" # <2>
+last_distance = 0
+receiving = False
+
+while True:
+    distance = ir.get_distance()
+    if last_distance != distance:
+
+        time.sleep(0.1) 
+        distance = ir.get_distance()
+        
+        if receiving:
+            if distance > 170 and distance < 300:
+                print("1")
+                bits += "1" # <3>
+                receiving = False
+            elif distance <= 170:
+                print("0")
+                bits += "0" # <4>
+                receiving = False
+
+            if len(bits) == MESSAGE_LENGTH: # <5>
+                print(f"Bits: {bits}")
+                letter = decode_letter(bits) # <6>
+                print(f"Letter: {letter}")
+                bits = "" # <7>
+        else:
+            if distance >= 300:
+                receiving = True
+            
+        last_distance = distance
+```
+
+1.  Die Länge einer Nachricht. So viele Bits müssen wir sammeln, bis wir die Nachricht entschlüsseln können.
+2.  Wir erstellen eine leere Zeichenkette `bits`, in der wir jede empfangene Bit speichern.
+3.  Wir merken uns das Bit, indem wir es an das Ende von `bits` hinzufügen. In diesem Fall eine "1".
+4.  Wir merken uns das Bit, indem wir es an das Ende von `bits` hinzufügen. In diesem Fall eine "0".
+5.  Wenn wir genug Bits zusammen haben, dekodieren wir die Bitfolge und bekommen den passenden Buchstaben.
+6.  Die Funktion `decode_letter(bits)` wandelt die Bitfolge in einen Buchstaben um. Dazu wird die Bitfolge zuerst in eine Zahl umgewandelt und dann in einen Buchstaben konvertiert. Darum müssen wir uns noch kümmern.
+7.  Nicht vergessen, die Bit-Zeichenkette nach dem Dekodieren zurückzusetzen.
+
+\[EXPLAIN CODE\]
+
+Okay - probieren wir es aus. Unser Programm sammelt das erste Bit, dann das zweite und dann:
+
+```         
+NameError: name 'decode_letter' is not defined
+```
+
+Was ist das? Die Fehlermeldung sagt es schon: Die Funktion `decode_letter()` ist nicht definiert. Wir müssen sie also noch implementieren. Wir haben die Funktion zwar schon namentlich genannt, aber es gibt nirgends eine Definition dieser Funktion. Das holen wir jetzt nach.
+
+Erinnert euch an @sec-numbers-functions, dort haben wir uns angeschaut, was eine Funktion ausmacht. Wir müssen wissen, was die Funktion tun soll, was sie dafür benötigt, und was sie zurückgibt. Und einen Namen natürlich, aber den haben wir ja bereits vorweggenommen: `decode_letter`.
+
+Die Funktion soll unsere Zeichenkette voller Bits der Länge zwei, also sowas wie "00", "01", "10" oder "11" in einen Buchstaben umwandeln. Die Eingabe ist also die Zeichenkette `bits` und die Ausgabe ein Buchstabe, den diese Bitfolge kodiert. Unsere Funktion könnte so aussehen:
+
+```{python}
+def decode_letter(bits):
+    if bits == "00":
+        return "A"
+    elif bits == "01":
+        return "B"
+    elif bits == "10":
+        return "C"
+    elif bits == "11":
+        return "D"
+```
+
+Mit einem `if`-Stamement begleitet von drei `elif`-Zweigen prüfen wir, welchem der möglichen Werte die Zeichenkette `bits` entspricht und geben einen Buchstaben A, B, C oder D zurück. Da es mit zwei Bits insgesamt vier Möglichkeiten gibt, können wir auch nur vier Buchstaben damit abbilden. Wir erweitern das weiter unten, damit wir alle Buchstaben des Alphabets abdecken können.
+
+| Bitfolge | Dezimalzahl | Buchstabe |
+|----------|-------------|-----------|
+| 00       | 0           | A         |
+| 01       | 1           | B         |
+| 10       | 2           | C         |
+| 11       | 3           | D         |
+
+: Unser aktuelles Codesystem für vier Buchstaben.
+
+Die Tabelle fasst unser Codesystem zusammen. In der zweiten Spalte haben wir zur Bitfolge die entsprechende Dezimalzahl eingetragen. Erinnert euch, das Binärsystem ist ein Stellenwertsystem wie jedes andere auch, nur eben zur Basis 2. Wie ihr die entsprechende Dezimalzahl zu einer Binärzahl errechnet, haben wir bereits in @sec-numbers-binary-system gelernt.
+
+Fügen wir die Funktion in unsere Programm ein. Es ist wichtig zu beachten, dass eine Funktion vor ihrer Verwendung definiert werden muss.
+
+```{python}
+#| code-fold: show
+MESSAGE_LENGTH = 2
+bits = ""
+last_distance = 0
+receiving = False
+
+def decode_letter(bits):
+    if bits == "00":
+        return "A"
+    elif bits == "01":
+        return "B"
+    elif bits == "10":
+        return "C"
+    elif bits == "11":
+        return "D"
+
+while True:
+    distance = ir.get_distance()
+    if last_distance != distance:
+
+        time.sleep(0.1) 
+        distance = ir.get_distance()
+        
+        if receiving:
+            if distance > 170 and distance < 300:
+                print("1")
+                bits += "1"
+                receiving = False
+            elif distance <= 170:
+                print("0")
+                bits += "0"
+                receiving = False
+
+            if len(bits) == MESSAGE_LENGTH: 
+                print(f"Bits: {bits}")
+                letter = decode_letter(bits)
+                print(f"Letter: {letter}")
+                bits = ""
+        else:
+            if distance >= 300:
+                receiving = True
+            
+        last_distance = distance
+```
+
+Damit wir auch den geschrieben Text nicht verlieren, speichern wir diesen auf einer neuen Variable `text`:
+
+```{python}
+#| code-fold: show
+MESSAGE_LENGTH = 2
+bits = ""
+text = ""
+last_distance = 0
+receiving = False
+
+def decode_letter(bits):
+    if bits == "00":
+        return "A"
+    elif bits == "01":
+        return "B"
+    elif bits == "10":
+        return "C"
+    elif bits == "11":
+        return "D"
+
+while True:
+    distance = ir.get_distance()
+    if last_distance != distance:
+
+        time.sleep(0.1) 
+        distance = ir.get_distance()
+        
+        if receiving:
+            if distance > 170 and distance < 300:
+                print("1")
+                bits += "1"
+                receiving = False
+            elif distance <= 170:
+                print("0")
+                bits += "0"
+                receiving = False
+
+            if len(bits) == MESSAGE_LENGTH: 
+                print(f"Bits: {bits}")
+                letter = decode_letter(bits)
+                text += letter
+                print(f"Text: {text}")
+                bits = ""
+        else:
+            if distance >= 300:
+                receiving = True
+            
+        last_distance = distance
+```
+
+Cool, neben "ABBA" können wir jetzt auch "ADAC" schreiben. Wir wollen aber natürlich noch mehr, und bevor wir jetzt Bit für Bit hinzufügen, lasst uns direkt mal überlegen, wie viele Bits wir eigentlich benötigen.
+
+Es gibt 26 Buchstaben im Alphabet, und vielleicht wollen wir auch ein Leerzeichen kodieren. Die Unterscheidung zwischen Klein- und Großbuchstaben lassen wir an dieser Stelle einmal weg, die wäre aber für ein praxistaugliches Codesystem wichtig. Somit sind es 27 Zeichen, die wir kodieren wollen. Mit jeden zusätzlichen Bit verdoppeln wir unsere Möglichkeiten, das haben wir bereits in @sec-numbers-bit-and-bytes gelernt. Rufen wir uns noch einmal die Tabelle in den Sinn, um zu erkennen, wie viele Bits wir benötigen.
+
+| Anzahl Bits | Mögliche Kodierungen |
+|-------------|----------------------|
+| 1           | $2^1 = 2$            |
+| 2           | $2^2 = 4$            |
+| 3           | $2 ^3 =8$            |
+| 4           | $2 ^4 =16$           |
+| 5           | $2 ^5 =32$           |
+| 6           | $2 ^6 =64$           |
+| 7           | $2 ^7 =128$          |
+| 8           | $2 ^8 =256$          |
+
+: Anzahl Bits und mögliche Kodierungen.
+
+Demnach reichen uns fünf Bits aus, denn damit könnten wir insgesamt 32 Kodierungen vornehmen. Wir hätten somit noch 5 freie Plätze, die wir vielleicht für Satzzeichen wie Punkt oder Komma vergeben könnten.
+
+Um das in unserem Programm zu reflektieren müssen wir die Funktion ´decode_letter´ anpassen und gleichzeitig die Länge einer Nachricht auf 5 Bits erhöhen. Damit wir es etwas einfacher haben und die Buchstaben den Dezimalzahlen von 0 - 25 zuordnen können, wandeln wir die Bitfolge zuerst in eine Dezimalzahl um:
+
+```{python}
+def decode_letter(bits):
+    # Transform to decimal
+    decimal = int(bits, 2) # <1>
+    if decimal == 0:
+        return "A"
+    elif decimal == 1:
+        return "B"
+    elif decimal == 2:
+        return "C"
+    elif decimal == 3:
+        return "D"
+    elif decimal == 4:
+        return "E"
+    ...
+    elif decimal == 25:
+        return "Z"
+    else:
+        return "?"
+```
+
+1. Die Funktion `int` wandelt die Bitfolge in eine Dezimalzahl um. Der erste Parameter ist die Bitfolge als String, der zweite die Basis (in diesem Fall 2 für Binärzahlen).
+
+### Wörterbücher
+
+-   Dictionaries in Python
+
+### Binärcode
+
+### Ternärcode
+
+## LED-Dimmer 4.0
+
+In @sec-numbers haben wir bereits drei Versionen eines LED-Dimmers gebastelt. Wir fügen dieser Liste noch eine vierte Variante hinzu. Und zwar wollen wir die Helligkeit mit dem Abstandssensor steuern.
+
+### Hexadezimalzahlen

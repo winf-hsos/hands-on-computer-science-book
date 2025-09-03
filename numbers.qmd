@@ -17,6 +17,8 @@ Unsere wichtigsten Lernziele in diesem Kapitel sind:
 
 ## Experimentaufbau {.unnumbered}
 
+### Hardware {.unnumbered}
+
 Das erste Experiment in @sec-colors war ein guter Einstieg! In diesem Kapitel legen wir noch eine Schippe drauf: Unsere Hardware bekommt ein neues Bauteil – einen Drehknopf ([Rotary Encoder Bricklet 2.0](https://www.tinkerforge.com/en/doc/Hardware/Bricklets/Rotary_Encoder_V2.html)). Das montiert ihr einfach neben der LED, wie in @fig-setup-rgb-led-rotary-encoder gezeigt.
 
 ::: {#fig-setup-rgb-led-rotary-encoder layout="[[1], [1,1], [1,1]]"}
@@ -229,7 +231,7 @@ Vermutlich nicht!
 
 ![Das Oktalsystem funktioniert wie das Dezimalsystem. Nur die Basis ist 8 statt 10.](https://winf-hsos.github.io/university-docs/images/binary_system_octal_123.png){#fig-octal-123 .lightbox}
 
-### Das Binärsystem
+### Das Binärsystem {#sec-numbers-binary-system}
 
 Treiben wir es noch ein wenig weiter auf die Spitze und nehmen ein paar Finger weg – sagen wir bis auf zwei. Dann wären wir vielleicht bei einem Delfin mit zwei Flossen, wie ihr ihn in @fig-binary-system-dolphin seht. Delfine haben sich vermutlich auf ein System geeinigt, das auch für unsere heutigen Computer die Grundlage darstellt: das Binärsystem\index{Binärsystem}.
 
@@ -249,7 +251,13 @@ Das Binärsystem funktioniert wie alle anderen Stellenwertsysteme auch.
 
 ![](https://winf-hsos.github.io/university-docs/images/binary_system_place_value_systems.png)
 
-## Bits & Bytes
+### Andere Systeme
+
+- Römische Zahlen
+- Tally-Schreibweise
+
+
+## Bits & Bytes {#sec-numbers-bit-and-bytes}
 
 ### Zwei Zustände
 
@@ -639,9 +647,9 @@ Um die Helligkeitsanpassung kümmert sich dann der dritte und letzte größere B
 
 Wer von euch jetzt ganz genau hinsieht, der erkennt, dass die Blöcke 2 und 3 zum Teil identischen Code ausführen. In der Programmierung ist das eine rote Flagge 🚩! Lasst uns darüber sprechen, warum!
 
-## Funktionen
+## Funktionen {#sec-numbers-functions}
 
-In der Programmierung ist es wichtig, Wiederholungen zu vermeiden. Wir sprechen auch vom DRY-Prinzip, was für *Don't Repeat Yourself* steht. Wenn wir feststellen, dass wir denselben Code an mehreren Stellen verwenden, sollten wir darüber nachdenken, etwas zu verändern. Warum?
+In der Programmierung möchten wir Wiederholungen um jeden Preis vermeiden. Wir sprechen auch vom DRY-Prinzip, was für *Don't Repeat Yourself* steht. Wenn wir feststellen, dass wir denselben Code an mehreren Stellen verwenden, sollten wir darüber nachdenken, etwas zu verändern. Warum? Und was?
 
 Nehmen wir in unserem Beispiel an, wir führen eine vierte Farbe ein, sagen wir Blau. Dann müssten wir den Code in den Blöcken 2 und 3 anpassen, um die neue Farbe zu berücksichtigen. Das bedeutet, dass wir den gleichen Code an mehreren Stellen ändern müssten, was fehleranfällig und mühsam ist. Zwei mag noch nicht nach einem Problem klingen, aber selbst hier zeigt sich das Problem der Wiederholung. Wird eine Stelle vergessen, ist der Code inkonsistent und funktioniert nicht mehr wie gewünscht.
 

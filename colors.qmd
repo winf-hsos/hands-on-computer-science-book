@@ -18,7 +18,7 @@ Unsere wichtigsten Lernziele in diesem Kapitel sind:
 
 ## Experimentaufbau {.unnumbered}
 
-### Hardwareaufbau {.unnumbered}
+### Hardware {.unnumbered}
 
 Bereit für euer erstes Hardware-Experiment? Perfekt! Ihr braucht dafür eine LED ([RGB LED Bricklet 2.0](https://www.tinkerforge.com/en/doc/Hardware/Bricklets/RGB_LED_V2.html)) und einen Mikrocontroller ([Master Brick 3.2](https://www.tinkerforge.com/de/shop/master-brick.html)). Befestigt beide Bauteile mit Abstandshaltern auf einer Montageplatte, wie in @fig-setup-rgb-led gezeigt. Zwei Schrauben pro Gerät reichen völlig. Denkt an die kleinen, weißen Unterlegscheiben aus Kunststoff. Sie schützen eure Platinen vor Druckstellen.
 
