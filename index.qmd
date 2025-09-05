@@ -1,34 +1,32 @@
 # Vorwort {.unnumbered}
 
-Glückwunsch – du bist angekommen! Wie auch immer dein Weg hierher aussah, du hast es geschafft, dieses Buch zu öffnen. Vielleicht bist du Student oder Studentin an der Hochschule Osnabrück und wurdest (zu deinem Glück) gezwungen, oder du bist ganz bewusst hier gelandet und freust dich darauf, etwas Neues zu lernen – genau wie ich.
+Glückwunsch, ihr seid angekommen! Egal, wie euer Weg hierher aussah: Ihr habt dieses Buch geöffnet. Vielleicht studiert ihr an der Hochschule Osnabrück und wurdet (zu eurem Glück) dazu verpflichtet, oder ihr seid ganz bewusst hier gelandet und freut euch darauf, etwas Neues zu lernen – genau wie ich.
 
-Dieses Buch entstand ursprünglich, um meinen Veranstaltungen an der Hochschule Osnabrück eine verständliche und praxisnahe Grundlage zu geben. Es dient als Hauptlektüre für meine Vorlesungen, aber auch als Nachschlagewerk für alle, die vielleicht mal eine Sitzung verpasst haben oder Themen eigenständig vertiefen wollen. Besonders willkommen sind dabei Quereinsteiger, Wiederholer oder einfach neugierige Menschen, die bisher noch gar keinen Kontakt mit der [Hochschule Osnabrück](https://hs-osnabrueck.de/ "Link zur offiziellem Webseite der Hochschule Osnabrück") hatten.
+Dieses Buch entstand ursprünglich, um meinen Veranstaltungen an der Hochschule Osnabrück eine verständliche und praxisnahe Grundlage zu geben. Es dient als Hauptlektüre für meine Vorlesungen und als Nachschlagewerk für alle, die eine Sitzung verpasst haben oder Themen eigenständig vertiefen möchten. Besonders willkommen sind Quereinsteiger, Wiederholer und neugierige Menschen, die bisher noch gar keinen Kontakt mit der [Hochschule Osnabrück](https://hs-osnabrueck.de/ "Link zur offiziellen Webseite der Hochschule Osnabrück") hatten.
 
-Hier bekommst du keine trockene Theorie präsentiert, sondern eine spannende, praxisnahe Einführung in die Grundlagen moderner Computer und unserer digitalen Welt. Das Fach, das sich dahinter verbirgt, heißt auf Deutsch Informatik, international auch bekannt als Computer Science. Der Titel Hands-On Computer Science verrät bereits: Hier wird es praktisch – und zwar von Anfang an.
+Hier bekommt ihr keine trockene Theorie, sondern eine praxisnahe Einführung in die Grundlagen moderner Computer und unserer digitalen Welt. Das Fach dahinter heißt auf Deutsch Informatik, international Computer Science. Der Titel Hands-On Computer Science verrät bereits, worum es geht: Es wird praktisch, und zwar von Anfang an.
 
 ## Was macht dieses Buch besonders?
 
-Lehrbücher zur Informatik gibt es reichlich. Viele davon sind großartig, aber kaum eines passt perfekt zu dem, was ich mit meinen Studierenden vorhabe. Woran liegt das?
+Lehrbücher zur Informatik gibt es reichlich. Viele sind großartig, aber kaum eines passt genau zu dem, was ich mit meinen Studierenden vorhabe. Woran liegt das?
 
-Viele klassische Informatikbücher versuchen, das gesamte Fachgebiet möglichst umfassend abzubilden. Das ist sinnvoll für angehende Informatiker, aber meine Zielgruppe bist Du: Studierende in Studiengängen wie [Management nachhaltiger Ernährungssysteme](https://hs-osnabrueck.de/bne), [Lebensmittelproduktion](https://www.hs-osnabrueck.de/blp) oder [Agrarsystemtechnologien](https://www.hs-osnabrueck.de/agr0arsystemtechnologien-bsc/) – oder vielleicht bist du nicht mal Student oder Studentin, sondern einfach interessiert daran, einen besseren Zugang zur digitalen Welt zu finden.
+Viele klassische Informatikbücher versuchen, das gesamte Fach möglichst umfassend abzubilden. Das ist sinnvoll für angehende Informatikerinnen und Informatiker, aber meine Zielgruppe seid ihr: Studierende in Studiengängen wie [Management nachhaltiger Ernährungssysteme](https://hs-osnabrueck.de/bne), [Lebensmittelproduktion](https://www.hs-osnabrueck.de/blp) oder [Agrarsystemtechnologien](https://www.hs-osnabrueck.de/agrarsystemtechnologien-bsc/) – oder ihr seid gar nicht an der Hochschule, sondern wollt euch einfach einen besseren Zugang zur digitalen Welt erarbeiten.
 
-Kurz gesagt: Dieses Buch ist für alle gedacht, die Lust haben, in die digitale Welt einzutauchen, ohne sich gleich mit komplizierten Details zu überfordern. Dafür brauchst du kein allumfassendes Nachschlagewerk, sondern einen klaren roten Faden, der dich Schritt für Schritt an die grundlegenden Konzepte heranführt.
+Kurz gesagt: Dieses Buch ist für alle gedacht, die in die digitale Welt eintauchen wollen, ohne sich mit komplizierten Details zu überfordern. Dafür braucht ihr kein allumfassendes Nachschlagewerk, sondern einen klaren roten Faden, der euch Schritt für Schritt an die grundlegenden Konzepte heranführt.
 
-Viele Bücher versprechen Praxisnähe, doch oft endet diese in nüchternen Übungsaufgaben am Kapitelende. Genau hier setzt *Hands-On Computer Science* an und macht zwei Dinge anders:
+Viele Bücher versprechen Praxisnähe, doch oft endet sie in nüchternen Übungsaufgaben am Kapitelende. Genau hier setzt Hands-On Computer Science an und macht drei Dinge anders:
 
-1. Du lernst informatische Konzepte anhand spannender Experimente mit Microcontrollern, Sensoren, Buttons, LEDs und Displays kennen.
+1. Ihr lernt informatische Konzepte anhand spannender Experimente mit Microcontrollern, Sensoren, Buttons, LEDs und Displays.
+2. Wir führen wichtige Konzepte früh ein, gehen aber erst nach und nach ins Detail und wiederholen sie regelmäßig.
+3. Theorie und Praxis sind nicht getrennt, sondern eng miteinander verbunden – Programmieren und informatische Grundlagen lernt ihr gleichzeitig.
 
-2. Du arbeitest kontinuierlich am LiFi-Projekt, das dich durch alle Kapitel begleitet und dabei immer weiter wächst.
-
-3. Theorie und Praxis sind nicht getrennt, sondern eng miteinander verbunden – Programmieren und informatische Grundlagen lernst du gleichzeitig.
-
-Schon ab Kapitel 1 beginnst du zu programmieren und zwar nicht abstrakt, sondern konkret mit Bauteilen wie LEDs. Im Laufe des Buches lernst du Schritt für Schritt neue Hardware-Komponenten kennen, die immer direkt mit relevanten informatischen Konzepten verknüpft sind. So schließt du am Ende nicht nur eine Reihe Experimente erfolgreich ab, sondern verfügst fast nebenbei über ein solides Fundament in der Informatik und der Programmierung. Wenn alles gut läuft, merkst du kaum, wie schnell du gelernt hast.
+Schon ab Kapitel 1 beginnt ihr zu programmieren, und zwar nicht abstrakt, sondern konkret mit Hardware-Bauteilen wie einer LED. Im Laufe des Buches lernt ihr Schritt für Schritt neue Hardwarekomponenten kennen, die direkt mit relevanten informatischen Konzepten verknüpft sind. So schließt ihr nicht nur eine Reihe Experimente erfolgreich ab, sondern baut fast nebenbei ein solides Fundament in Informatik und Programmierung auf. Wenn alles gut läuft, merkt ihr kaum, wie schnell ihr gelernt habt.
 
 ## Tipps für die Lektüre
 
-Weil es in diesem Buch viel ums Programmieren geht, findest auch viele Codeblöcke oder Code*snippets*. Als Einstiegssprache verwenden wir Python. Warum ausgerechnet Python? Das erfährst du später genauer.
+Weil es in diesem Buch viel ums Programmieren geht, findet ihr viele Codeblöcke und Code-Snippets. Als Einstiegssprache verwenden wir Python. Warum ausgerechnet Python? Das erfahrt ihr später.
 
-Codeblöcke sind deutlich sichtbar vom übrigen Text abgehoben, grau hinterlegt und in einer Schreibmaschinenschrift dargestellt, etwa *Courier New* oder *Consolas*. Hier ein kleines Beispiel:
+Codeblöcke sind deutlich vom übrigen Text abgehoben, grau hinterlegt und in einer Schreibmaschinenschrift dargestellt, etwa Courier New oder Consolas. Hier ein kleines Beispiel:
 
 ```{python}
 led.set_rgb_value(0, 0, 0) # <1>
@@ -39,14 +37,16 @@ print("Diese Zeile hat keine Annotation")
 # Lasse die LED blau aufleuchten # <3>
 led.set_rgb_value(0, 0, 255)
 ```
-1. Schaltet die LED aus, weil der RGB-Code (0,0,0) schwarz erzeugt.
-2. Schaltet die LED auf weißes Licht, weil drei Mal die 255 die Farbe Weiß ergibt.
+1. Schaltet die LED aus, weil der RGB-Code (0, 0, 0) die Farbe Schwarz ergibt.
+2. Schaltet die LED auf weißes Licht, weil dreimal 255 die Farbe Weiß ergibt.
 3. Auch Kommentare sind für kurze Erläuterungen nützlich.
 
-Kommentare sind mit einer kleinen Zahl versehen. Wenn du das Buch online liest und mit der Maus über diese Zahl fährst, erscheint ein Tooltip, der die Codezeile erklärt. Das funktioniert nur online, nicht in PDF oder Druckversion. Dort sind die Erläuterungen unter dem Codeblock aufgeführt.
+Die Annotationen sind mit einer kleinen Zahl versehen. Wenn ihr das Buch online lest und mit der Maus über diese Zahl fahrt, erscheint ein Tooltip, der die jeweilige Codezeile erklärt. Das funktioniert nur online, nicht in der PDF- oder Druckversion. Dort sind die Erläuterungen unter dem Codeblock aufgeführt.
 
-Noch ein kleiner Tipp: Wenn du mit der Maus über den Codeblock fährst, siehst du rechts oben ein Clipboard-Symbol. Ein Klick darauf kopiert den Code direkt in deine Zwischenablage, und du kannst ihn problemlos in dein geöffnetes Visual Studio Code oder eine andere IDE einfügen und ausprobieren.
+Weil wir in jedem Kapitel ein Programm Schritt für Schritt entwickeln und es dadurch immer länger wird, lasse ich gelegentlich Stellen im Code weg, um den Fokus auf neu hinzugekommene Zeilen zu legen. Diese Auslassungen markiere ich in den Codeblöcken mit drei Punkten (`...`). Keine Sorge: Den gesamten Code findet ihr stets am Ende eines Abschnitts. Außerdem liegt jedes Programm im zu diesem Buch gehörigen GitHub-Repository unter:
 
-Alle Codebeispiele findest du außerdem im [GitHub-Repository](https://github.com/winf-hsos/lifi-project "Link zum GitHub-Repository mit den Codebeispielen"), das zu diesem Buch gehört.
+<https://github.com/winf-hsos/hands-on-computer-science-code>
 
-Alles klar? Dann schauen wir mal, was uns in diesem Buch erwartet!
+Noch ein Tipp: Wenn ihr mit der Maus über einen Codeblock fahrt, erscheint rechts oben ein Clipboard-Symbol. Ein Klick darauf kopiert den Code direkt in eure Zwischenablage, und ihr könnt ihn anschließend in euer geöffnetes Visual Studio Code oder eine andere IDE einfügen und ausprobieren. In der Online-Version lassen sich manche Codeblöcke einklappen, damit ihr weniger scrollen müsst.
+
+Alles klar? Dann schauen wir uns an, was uns in diesem Buch erwartet!

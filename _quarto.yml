@@ -25,21 +25,24 @@ book:
     - index.qmd
     - experiments.qmd
     - prerequisites.qmd
+
     - colors.qmd
     - numbers.qmd
     - text.qmd
     - images.qmd
-    - codes.qmd
-    - conversion.qmd
-    - information.qmd
-    - sensors.qmd
-    - signals.qmd
-    - protocols.qmd
-    - encryption.qmd
-    - algorithms.qmd
-    - compression.qmd
-    - computer.qmd
-    - problems.qmd
+    - sound.qmd
+
+    #- codes.qmd
+    #- conversion.qmd
+    #- information.qmd
+    #- sensors.qmd
+    #- signals.qmd
+    #- protocols.qmd
+    #- encryption.qmd
+    #- algorithms.qmd
+    #- compression.qmd
+    #- computer.qmd
+    #- problems.qmd
     - references.qmd
 
 bibliography: references.bib

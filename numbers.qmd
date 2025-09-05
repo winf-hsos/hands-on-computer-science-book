@@ -10,10 +10,10 @@ abstract-title: ""
 
 Unsere wichtigsten Lernziele in diesem Kapitel sind:
 
+-   Wir verstehen wie ein Computer Zahlen darstellt und speichert.
+-   Wir führen das Bit als zentrale Informationseinheit im Computer ein.
 -   Wir lernen Kontrollstrukturen kennen, mit denen wir unser Programm steuern können.
--   Wir verstehen das Binärsystem und wissen, wie der Computer Zahlen speichert.
--   Wir führen das Byte als zentrale Informationseinheit im Computer ein.
--   Wir wissen, wie wir mithilfe von Funktionen besseren Code schreiben.
+-   Wir fügen Funktionen zu unserem Werkzeugkasten hinzu, um besseren Code zu schreiben.
 
 ## Experimentaufbau {.unnumbered}
 
@@ -338,7 +338,7 @@ Jetzt, da ihr wisst, was mit einem Byte gemeint ist, könnt ihr eine ungefähre 
 
 Wir kommen in den späteren Kapiteln immer wieder auf die Bits und Bytes zurück, weil wir in Computern letztlich überall mit diesen Einheiten arbeiten. Es ist somit gut, wenn ihr schon an dieser Stelle ein grundlegendes Verständnis für diese Konzepte entwickelt.
 
-## Ein LED-Dimmer 2.0 {#sec-led-dimmer-part-2}
+## LED-Dimmer 2.0 {#sec-led-dimmer-part-2}
 
 Zurück zu unserem eigentlichen Vorhaben. Wir waren gerade dabei, einen Dimmer für unsere LED zu basteln, als uns die Zahlensysteme dazwischengekommen sind. Dafür haben wir jetzt ein besseres Verständnis dafür, wie ein Computer Farben sieht – nämlich als lange Sequenz aus Nullen und Einsen. Und zwar 24 davon, weil jede Grundfarbe ein Byte an Speicher verwendet.
 

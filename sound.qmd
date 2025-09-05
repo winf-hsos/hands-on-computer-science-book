@@ -1,0 +1,16 @@
+---
+abstract: |
+    Das erste Kapitel hat es gleich in sich: Wir lernen etwas über Farben und wie sie im Computer funktionieren. Gleichzeitig steigen wir in die Programmierung ein und schreiben unser erstes Programm. Dabei nutzen wir eine LED und erzeugen einen Regenbogenfarbverlauf.
+abstract-title: ""
+---
+
+# Ton {#sec-sound}
+
+## Zusammenfassung {.unnumbered}
+
+## Experimentaufbau {.unnumbered}
+
+### Hardware {.unnumbered}
+
+### Erste Schritte mit ... {.unnumbered}
+

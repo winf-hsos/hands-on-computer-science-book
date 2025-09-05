@@ -56,7 +56,6 @@ Mit den drei Schiebereglern steuert ihr die einzelnen Farbkanäle – Rot, Grün
 
 Fazit: Der Brick Viewer ist ideal zum Ausprobieren. Aber wenn ihr echte Projekte umsetzen wollt, müsst ihr programmieren lernen. Also los!
 
-
 ## Erstes Programm: LED ansteuern {#sec-colors-control-led}
 
 Wie verbinden wir uns über ein Programm mit der LED und setzen ihre Farbe? Die Antwort darauf findet ihr im folgenden kurzen Codebeispiel.
@@ -134,7 +133,7 @@ In Zeile 6 erzeugen wir schließlich ein Objekt der Klasse `BrickletRGBLEDV2`. D
 Damit haben wir unser erstes Programm von oben nach unten erläutert und dabei schon viele wichtige Konzepte der Programmierung kennengelernt:
 
 |  |  |
-|-----------------------|-------------------------------------------------|
+|-----------------------|------------------------------------------------|
 | **Programme** | Abfolge von Anweisungen, die nacheinander ausgeführt werden. |
 | **Boilerplate Code** | Standard-Code, den man immer wieder braucht. |
 | **Importieren von Bibliotheken** | Sammlung von fertigen Code-Elementen. |
@@ -161,6 +160,10 @@ Aber warum machen wir das mit Zahlen? Weil Computer nun mal mit Zahlen arbeiten.
 Warum aber ist das so? Warum kodieren wir in der Informatik jede Farbe mit *drei* Zahlen? Warum überhaupt mit Zahlen? Hier kommen wir zu einer zentralen Frage dieses Buches: Wie bilden Computer Informationen ab?
 
 Vorher müssen wir aber kurz zurück in die Schule.
+
+::: callout-tip
+Das Codebeispiel aus diesem Abschnitt findet ihr auf [GitHub](https://github.com/winf-hsos/hands-on-computer-science-code/blob/main/chapter_01/1_1_first_program.py).
+:::
 
 ## Licht und Farben {#sec-colors-light-and-colors}
 
@@ -369,9 +372,9 @@ while True:
     time.sleep(1)
 ```
 
-Die einfachste Möglichkeit ist es, das Ergebnis der Evaluation direkt hinzuschreiben. Die obige Schleife prüft in jedem Durchgang, ob der Wert `True` wahr ist - was er natürlich ist. Das ist also so ähnlich wie bei der Schleife weiter oben, die die Bedingung `1==1` geprüft hat. Die ist ebenfalls immer `True` oder wahr. 
+Die einfachste Möglichkeit ist es, das Ergebnis der Evaluation direkt hinzuschreiben. Die obige Schleife prüft in jedem Durchgang, ob der Wert `True` wahr ist - was er natürlich ist. Das ist also so ähnlich wie bei der Schleife weiter oben, die die Bedingung `1==1` geprüft hat. Die ist ebenfalls immer `True` oder wahr.
 
-Wir lernen im Laufe des Buches noch viele echte Bedingungen kennen, deren Ergebnis nicht von Vornherein bekannt ist. Für unsere pulsierende LED reicht es aber aus, wenn wir eine gewollte Endlosschleife verwenden. Denn auch eine Endlosschleife können wir jederzeit verlassen, indem wir das Programm mit der Tastenkombination Strg+C abbrechen. 
+Wir lernen im Laufe des Buches noch viele echte Bedingungen kennen, deren Ergebnis nicht von Vornherein bekannt ist. Für unsere pulsierende LED reicht es aber aus, wenn wir eine gewollte Endlosschleife verwenden. Denn auch eine Endlosschleife können wir jederzeit verlassen, indem wir das Programm mit der Tastenkombination Strg+C abbrechen.
 
 Wenn wir jetzt unseren Pulsierzyklus von oben in die neue bedingte `while`-Schleife einfügen, sind wir schon am Ziel. Der Pulsierzyklus wird wiederholt, solange das Programm nicht abgebrochen wird:
 
@@ -430,6 +433,10 @@ while True:
     time.sleep(0.25)
 ```
 
+::: callout-tip
+Das Codebeispiel aus diesem Abschnitt findet ihr auf [GitHub](https://github.com/winf-hsos/hands-on-computer-science-code/blob/main/chapter_01/1_3_pulsating_led.py).
+:::
+
 ## Farbkreise {#sec-colors-hue-circle}
 
 Das RGB-Farbschema ist für Computer optimal, weil sich damit mit nur drei Zahlen jede beliebige Farbe kodieren lässt. Zahlen sind schließlich die Sprache, mit der Computer am besten umgehen können. Für uns Menschen ist dieses Schema jedoch weniger intuitiv. Oder könntet ihr auf Anhieb sagen, welche Farbe hinter der Kombination (67, 201, 182) steckt?
@@ -441,7 +448,7 @@ Um Farben für uns leichter wählbar zu machen, wurde der sogenannte Hue-Farbkre
 :::
 
 ::: {.content-hidden when-format="html"}
-![Die Farbauswahl in Google Slides funktioniert über den Hue-Farbkreis.](images/hue_color_picker_still.png){#fig-hue-color-picker .lightbox fig-align="center" width="33%"}
+![Die Farbauswahl in Google Slides funktioniert über den Hue-Farbkreis.](images/hue_color_picker_still.png){.lightbox fig-align="center" width="33%"}
 :::
 
 In @fig-hue-color-picker seht ihr, wie die Farbauswahl in Google Slides funktioniert. Mit dem Slider in der Mitte bestimmt ihr den Farbton. Habt ihr einen passenden Ton gefunden, könnt ihr im Rechteck darüber durch Verschieben des kleinen Kreises die Sättigung und Helligkeit anpassen.
@@ -661,9 +668,10 @@ while True:
     for blue in range(255, -1, -1):
         led.set_rgb_value(255, 0, blue)
         time.sleep(pause_duration)
-
-# Turn LED off
-led.set_rgb_value(0, 0, 0)
 ```
+
+::: callout-tip
+Das Codebeispiel aus diesem Abschnitt findet ihr auf [GitHub](https://github.com/winf-hsos/hands-on-computer-science-code/blob/main/chapter_01/1_5_rainbow_led.py).
+:::
 
 Seid ihr bereit für das nächste Experiment?

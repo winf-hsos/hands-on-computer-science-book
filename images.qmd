@@ -1,10 +1,10 @@
 # Bilder {#sec-images}
 
-::: callout-note
-## Kommt bald
+## Zusammenfassung {.unnumbered}
 
-Dieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.
-:::
+Unsere wichtigsten Lernziele in diesem Kapitel sind:
+
+-   Wir führen das Hexadezimalsystem als ein Zahlensystem mit einer Basis \> 10 ein
 
 ::: callout-tip
 ## Experiment
@@ -14,3 +14,16 @@ Dieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.
 - Studierende nutzen Bitmap-Sheet, um ein eigenes Logo zu entwerfen und auf dem LCD anzuzeigen
 :::
 
+## Experimentaufbau {.unnumbered}
+
+### Hardware {.unnumbered}
+
+### Erste Schritte mit ... {.unnumbered}
+
+## Bitmaps {#sec-images-bitmaps}
+
+## Komprimierte Bilder {#sec-images-compressed}
+
+## Hexadezimal {#sec-images-hexadecimal}
+
+## Der RGB-Code {#sec-images-rgb-code}
