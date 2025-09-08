@@ -1,6 +1,6 @@
 ---
 abstract: |
-    Wir nutzen Computer ständig, um Texte zu schreiben – von der WhatsApp-Nachricht über E-Mails und Einladungen bis hin zur Bachelorarbeit. Wir tippen auf Smartphone, Tablet oder Computer. Aber habt ihr euch schon einmal gefragt, wie das genau funktioniert? Um das zu verstehen, machen wir einen kleinen Umweg.
+    Wir nutzen Computer ständig, um Texte zu schreiben – von der WhatsApp-Nachricht über E-Mails und Einladungen bis hin zur Bachelorarbeit. Wir tippen auf dem Smartphone, Tablet oder Computer. Aber habt ihr euch schon einmal gefragt, wie das genau funktioniert? Um das zu verstehen, machen wir einen kleinen Umweg.
 abstract-title: ""
 ---
 
@@ -11,8 +11,8 @@ abstract-title: ""
 Unsere wichtigsten Lernziele in diesem Kapitel sind:
 
 - Wir lernen, wie Computer Texte darstellen und speichern.
-- Wir führen den ASCII- und Unicode als Standards für die Textdarstellung ein.
-- Wir verstehen Binärcodierung und wie sie in Computern zum Einsatz kommt.
+- Wir führen ASCII und Unicode als Standards für die Textdarstellung ein.
+- Wir verstehen Binärcodierung und wie sie im Computer zum Einsatz kommt.
 
 ## Experimentaufbau {.unnumbered}
 
@@ -61,7 +61,7 @@ Wir starten mit der einfacheren der beiden Fragen: Befindet sich ein Objekt in d
 
 Wie ihr beim Ausprobieren im Brick Viewer festgestellt habt, misst der Sensor Entfernungen zwischen 4 und 30 cm. Das bedeutet: Objekte außerhalb dieses Bereichs werden nicht erkannt – weder näher als 4 cm noch weiter als 30 cm. Eine Lichtschranke hat somit die Aufgabe zu prüfen, ob der IR-Abstandssensor einen Wert kleiner als 30 cm misst. Dann befindet sich ein Objekt in seiner Sichtlinie.
 
-Verbinden wir uns mit dem Sensor und schreiben den notwendigen Boilerplate-Code. Tragt eure UIDs ein und legt beide Bricklets an, Sensor und LED:
+Verbinden wir uns mit dem Sensor und schreiben das notwendige Grundgerüst. Tragt eure UIDs ein und legt beide Bricklets an, Sensor und LED:
 
 ```{python}
 #| lst-cap: Boilerplate-Code für IR-Abstandssensor und RGB-LED
@@ -75,7 +75,7 @@ ipcon = IPConnection()
 ipcon.connect('localhost', 4223)
 
 ir = BrickletDistanceIRV2('2a7S', ipcon)     # <1>
-led = BrickletRGBLEDV2('zYxW', ipcon)        # <2>
+led = BrickletRGBLEDV2('ZEL', ipcon)         # <2>
 ```
 
 1. Tragt hier die UID eures IR-Sensors ein.
@@ -190,7 +190,7 @@ Unser Staubsaugerroboter könnte den Code oben verwenden, um Hindernisse zu erke
 
 ## Universelles Eingabegerät
 
-Eine andere Möglichkeit, den Abstandssensor und den Code aus @lst-text-obstacle-detection zu verwenden, ist ein Eingabegerät für Informationen in unseren Computer. „Hä?“, fragt ihr euch vielleicht. Wie soll denn ein Abstandssensor als Eingabegerät für Informationen fungieren?
+Eine andere Möglichkeit, den Abstandssensor und den Code aus @lst-text-obstacle-detection zu verwenden, ist ein Eingabegerät für Informationen in unseren Computer. Wie soll ein Abstandssensor als Eingabegerät für Informationen fungieren?
 
 Wie wir später noch sehen werden, benötigen wir für die Darstellung von Informationen unterschiedliche Zustände – mindestens zwei. Genau das verkörpert das Bit, das wir in @sec-numbers-bit-and-bytes kennengelernt haben: Ein Bit hat zwei Zustände, an oder aus, 0 oder 1.
 
@@ -366,7 +366,7 @@ while True:
 8. Wir fügen den Buchstaben dem bisherigen Text an.
 9. Danach setzen wir die Bit-Zeichenkette zurück.
 
-Direkt nach dem Start wartet das Programm darauf, dass ihr eure Hand vor den Sensor haltet. Jede erkannte Änderung wird nach 100 Millisekunden noch einmal gemessen, um den Wert zu stabilisieren. Befinden wir uns im Empfangsmodus (`receiving == True`), schreiben wir je nach Abstand eine „1“ (weit) oder „0“ (nah) ans Ende der Zeichenkette `bits` und schalten den Empfang vorübergehend aus. Sobald die Länge von `bits` der erwarteten `MESSAGE_LENGTH` entspricht, rufen wir `decode_letter(bits)` auf, erhalten den passenden Buchstaben, hängen ihn an `text` an und leeren `bits`. Erst wenn der Sensor wieder mindestens 30 cm misst, schalten wir den Empfang erneut frei, damit die nächste Eingabe beginnen kann.
+Direkt nach dem Start wartet das Programm darauf, dass ihr eure Hand vor den Sensor haltet. Jede erkannte Änderung wird nach 100 Millisekunden noch einmal gemessen, um den Wert zu stabilisieren. Befinden wir uns im Empfangsmodus (`receiving` ist `True`), schreiben wir je nach Abstand eine „1“ (weit) oder „0“ (nah) ans Ende der Zeichenkette `bits` und schalten den Empfang vorübergehend aus. Sobald die Länge von `bits` der erwarteten `MESSAGE_LENGTH` entspricht, rufen wir `decode_letter(bits)` auf, erhalten den passenden Buchstaben, hängen ihn an `text` an und leeren `bits`. Erst wenn der Sensor wieder mindestens 30 cm misst, schalten wir den Empfang erneut frei, damit die nächste Eingabe beginnen kann.
 
 Okay – probieren wir es aus. Unser Programm sammelt das erste Bit, dann das zweite und dann...
 
@@ -701,10 +701,27 @@ Auf diese Weise wird sichergestellt, dass die häufigsten Zeichen möglichst wen
 
 ## LED-Dimmer 4.0
 
-In @sec-numbers haben wir bereits drei Versionen eines LED-Dimmers gebaut. Wir fügen dieser Liste noch eine vierte Variante hinzu: Die Helligkeit wird mit dem Abstandssensor gesteuert.
+In @sec-numbers haben wir bereits drei Versionen eines LED-Dimmers gebaut. Eine letzte, vierte Variante kommt noch dazu: Lasst uns schauen, ob wir die Helligkeit mit dem Abstandssensor steuern können.
+
+Das war wieder einmal eine rhetorische Frage, natürlich können wir das! Mit Computern lässt sich so gut wie jedes Problem lösen, es geht nur um das Wie. Vielleicht habt ihr schon eine Idee, nachdem wir den Abstandssensor in diesem Kapitel schon intensiv kennengelernt haben.
+
+Der Dimmer aus @sec-numbers lässt die LED in verschiedenen Stufen heller und dunkler leuchten. Über den Drehknopf haben wir zunächst 1er-Schritte umgesetzt, was bedeutete, dass wir 256 Ticks des Drehknopfs benötigten, um die LED auf volle Helligkeit zu schalten. Später haben wir dann eine Konstante `STEP` eingeführt, um die Schritte zu vergrößern, sodass nur noch eine Umdrehung notwendig war.
+
+Wie lässt sich das auf den Abstandssensor übertragen? Im Gegensatz zum Drehknopf, den wir beliebig lange in eine Richtung drehen können, hat der Abstandssensor einen festen Messbereich zwischen 4 und 30 cm. Das macht unsere Aufgabe einfacher, denn eine Transformation des Messbereichs in den Helligkeitsbereich der LED ist ausreichend. Wenn der Abstandssensor nun einen Wert von 4 cm misst, soll die LED auf 0 % Helligkeit dimmen, und bei 30 cm auf 100 % Helligkeit.
+
+Nehmen wir an, der aktuelle Messwert ist in `distance` gespeichert, dann könnten wir den Helligkeitswert `brightness` so berechnen:
 
 ```{python}
-#| lst-cap: Das fertig Programm für den LED-Dimmer mit dem Infrarot-Abstandsensor-Steuerung.
+#| code-line-numbers: false
+brightness = (distance - 40) / (300 - 40) * 255
+```
+
+Vergewissern wir uns, dass die Formel richtig ist. Wenn `distance` den Wert 4 cm hat, dann sollte `brightness` 0 sein. Das passt, denn der erste Teil der Formel wird dann 0. Und 0 geteilt durch egal was ergibt 0. Wenn `distance = 300`, dann sollte `brightness` 255 sein. Das passt ebenfalls, denn der erste Teil der Formel wird dann 260 und 260 geteilt durch 260 ergibt 1. Multipliziert mit 255 ergibt 255. Sieht also gut aus.
+
+Der folgende Code baut die Berechnungslogik in den LED-Dimmer aus @sec-led-dimmer-part-2 ein, der nur eine Farbe (Weiß) beherrscht. Wir könnten ihn aber genau wie in @sec-led-dimmer-part-3 um weitere Farben erweitern:
+
+```{python}
+#| lst-cap: Das fertige Programm für den LED-Dimmer mit Infrarot-Abstandssensor-Steuerung.
 
 from tinkerforge.ip_connection import IPConnection
 from tinkerforge.bricklet_distance_ir_v2 import BrickletDistanceIRV2
@@ -715,7 +732,7 @@ ipcon.connect('localhost', 4223)
 ir = BrickletDistanceIRV2('2a7S', ipcon) 
 
 led = BrickletRGBLEDV2('ZEL', ipcon)
-led.set_rgb_value(0, 0, 0)  # Set initial color to off
+led.set_rgb_value(0, 0, 0)  # Anfangszustand: aus
 
 last_distance = 0
 while True:
@@ -723,10 +740,13 @@ while True:
     if last_distance != distance:
         last_distance = distance
 
-        # Map distance to LED brightness (0-255)
+        # Abstand (40–300 mm) auf LED-Helligkeit (0–255) abbilden
         brightness = int((distance - 40) / (300 - 40) * 255)
-        brightness = max(0, min(255, brightness))  # Clamp to 0-255
-
-        led.set_rgb_value(brightness, brightness, brightness)  # Set LED color
-
+        led.set_rgb_value(brightness, brightness, brightness)  # LED-Helligkeit setzen
 ```
+
+Je näher wir mit der Hand an den Sensor kommen, desto dunkler wird die LED – und umgekehrt.
+
+Damit schließen wir dieses Kapitel ab. Wir haben gelernt, wie Computer Texte kodieren. Der Umweg über unser eigenes Eingabegerät für Binärcodes hat sich gelohnt: Eure Programmierskills sind gewachsen!
+
+Im folgenden @sec-images beschäftigen wir uns mit Bildern, wie Computer sie sehen, und wie ein Bild auf den Bildschirm kommt.
