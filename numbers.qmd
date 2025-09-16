@@ -19,7 +19,14 @@ Unsere wichtigsten Lernziele in diesem Kapitel sind:
 
 ### Hardware {.unnumbered}
 
-Das erste Experiment in @sec-colors war ein guter Einstieg! In diesem Kapitel legen wir noch eine Schippe drauf: Unsere Hardware bekommt ein neues Bauteil – einen Drehknopf ([Rotary Encoder Bricklet 2.0](https://www.tinkerforge.com/en/doc/Hardware/Bricklets/Rotary_Encoder_V2.html)). Das montiert ihr einfach neben der LED, wie in @fig-setup-rgb-led-rotary-encoder gezeigt.
+Das erste Experiment in @sec-colors war ein guter Einstieg! In diesem Kapitel legen wir noch eine Schippe drauf: Unsere Hardware bekommt ein neues Bauteil – einen Drehknopf. Das montiert ihr einfach neben der LED, wie in @fig-setup-rgb-led-rotary-encoder gezeigt.
+
+Die vollständige Hardwareliste für dieses Kapitel sieht so aus:
+
+-  1 x [Master Brick 3.2](https://www.tinkerforge.com/de/doc/Hardware/Bricks/Master_Brick.html)
+-  1 x [Distance IR 4-30cm Bricklet 2.0](https://www.tinkerforge.com/de/shop/distance-ir-4-30cm-v2-bricklet.html)
+-  1 x [Montageplatte 22x10](https://www.tinkerforge.com/de/shop/accessories/mounting/mounting-plate-22x10.html)
+-  2 x [Brickletkabel 15cm (7p-7p)](https://www.tinkerforge.com/de/shop/accessories/cable/bricklet-cable-15cm-7p-7p.html)
 
 ::: {#fig-setup-rgb-led-rotary-encoder layout="[[1], [1,1], [1,1]]"}
 ![Seitenansicht.](images/master_brick_with_led_and_rotary_01.jpg){#fig-setup-rgb-led-a .lightbox group="setup-rgb-led"}

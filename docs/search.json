@@ -20,6 +20,16 @@
     ]
   },
   {
+    "objectID": "index.html#bücher-die-ich-empfehle",
+    "href": "index.html#bücher-die-ich-empfehle",
+    "title": "Hands-On Computer Science",
+    "section": "Bücher, die ich empfehle",
+    "text": "Bücher, die ich empfehle\nAuch wenn dieses Buch für sich einzigartig ist, habe ich mich natürlich von anderen Autoren und deren Werken inspirieren lassen. Einige davon möchte ich euch hier vorstellen.\n\nCode: The Hidden Language of Computer Hardware and Software von Charles Petzold: Ein Klassiker, der die Grundlagen der Informatik und Computertechnik auf verständliche Weise erklärt. Petzold beginnt mit einfachen Konzepten und führt den Leser Schritt für Schritt zu komplexeren Themen. Bis ihr schließlich einen Computer gedanklich nachgebaut habt.\nAbenteuer Informatik von Jens Gallenbacher.\nComputer Science: An Overview von J. Glenn Brookshear und Dennis Brylow: Ein umfassendes Lehrbuch, das viele Aspekte der Informatik abdeckt. Es ist gut strukturiert und bietet eine solide Grundlage für das Verständnis der Disziplin.\nThe Way Things Work von David Macaulay: Ein großartiges Buch, das auf unterhaltsame Weise erklärt, wie verschiedene Technologien funktionieren. Der Teil “The Digital Domain” adressiert viele Konzepte, die auch in diesem Buch vorkommen. Die Einteilung in “Making Bits”, “Storing Bits”, “Processing Bits” und “Sending Bits” hat die Struktur meines Buches beeinflusst.",
+    "crumbs": [
+      "Vorwort"
+    ]
+  },
+  {
     "objectID": "index.html#tipps-für-die-lektüre",
     "href": "index.html#tipps-für-die-lektüre",
     "title": "Hands-On Computer Science",
@@ -204,7 +214,7 @@
     "href": "numbers.html#experimentaufbau",
     "title": "2  Zahlen",
     "section": "Experimentaufbau",
-    "text": "Experimentaufbau\n\nHardware\nDas erste Experiment in Kapitel 1 war ein guter Einstieg! In diesem Kapitel legen wir noch eine Schippe drauf: Unsere Hardware bekommt ein neues Bauteil – einen Drehknopf (Rotary Encoder Bricklet 2.0). Das montiert ihr einfach neben der LED, wie in Abbildung 2.1 gezeigt.\n\n\n\n\n\n\n\n\n\n\n\n(a) Seitenansicht.\n\n\n\n\n\n\n\n\n\n\n\n\n\n(b) Draufsicht.\n\n\n\n\n\n\n\n\n\n\n\n(c) Nahaufnahme des Rotary Encoders.\n\n\n\n\n\n\n\n\n\n\n\n\n\n(d) Seitenansicht.\n\n\n\n\n\n\n\n\n\n\n\n(e) Untenansicht.\n\n\n\n\n\n\n\nAbbildung 2.1: Einfaches Setup mit einem Mikrocontroller, LED und einem Drehknopf.",
+    "text": "Experimentaufbau\n\nHardware\nDas erste Experiment in Kapitel 1 war ein guter Einstieg! In diesem Kapitel legen wir noch eine Schippe drauf: Unsere Hardware bekommt ein neues Bauteil – einen Drehknopf. Das montiert ihr einfach neben der LED, wie in Abbildung 2.1 gezeigt.\nDie vollständige Hardwareliste für dieses Kapitel sieht so aus:\n\n1 x Master Brick 3.2\n1 x Distance IR 4-30cm Bricklet 2.0\n1 x Montageplatte 22x10\n2 x Brickletkabel 15cm (7p-7p)\n\n\n\n\n\n\n\n\n\n\n\n\n(a) Seitenansicht.\n\n\n\n\n\n\n\n\n\n\n\n\n\n(b) Draufsicht.\n\n\n\n\n\n\n\n\n\n\n\n(c) Nahaufnahme des Rotary Encoders.\n\n\n\n\n\n\n\n\n\n\n\n\n\n(d) Seitenansicht.\n\n\n\n\n\n\n\n\n\n\n\n(e) Untenansicht.\n\n\n\n\n\n\n\nAbbildung 2.1: Einfaches Setup mit einem Mikrocontroller, LED und einem Drehknopf.",
     "crumbs": [
       "<span class='chapter-number'>2</span>  <span class='chapter-title'>Zahlen</span>"
     ]
@@ -434,7 +444,17 @@
     "href": "images.html#experimentaufbau",
     "title": "4  Bilder",
     "section": "Experimentaufbau",
-    "text": "Experimentaufbau\n\nHardware\n\n\nErste Schritte mit …",
+    "text": "Experimentaufbau\n\nHardware\nIn den Experimenten dieses Kapitels greifen wir auf ein einfaches Display zurück, das wir an unserem Master Brick anschließen. Das Display kann einzelne Pixel weiß aufleuchten lasseen und damit einfache Bilder - aber auch Texte - darstellen. Insgesamt stehen uns 128 x 64 Pixel zur Verfügung, also 8192 einzelne Bildpunkte. Damit können wir was anfangen!\nDie vollständige Hardwareliste für dieses Kapitel sieht so aus:\n\n1 x Master Brick 3.2\n1 x Distance IR 4-30cm Bricklet 2.0\n1 x OLED 128x64 Bricklet 2.0\n1 x Montageplatte 22x10\n2 x Brickletkabel 15cm (7p-7p)\n\n\n\nErste Schritte mit dem Display\nWie immer geht es zuest in den Brick Viewer. Verbindet euch mit dem Master Brick und ihr solltet die angeschlossenen Geräte sehen können. Den Infrarotsensor kennen wir bereits aus dem letzten Kapitel. Wir fokussieren uns deshalb auf das neue Display, das wir im Tab “OLED 128x64 Bricklet 2.0” finden.\nDie Oberfläche für das Display sehen wir in Abbildung 4.1.. Im Wesentlichen kann das Display drei Dinge:\n\nEs kann einzelne Pixel ein- und ausschalten\nEs kann den gesamten Inhalt löschen\nEs kann Text anzeigen, was ein Spezialfall von Punkt 1 ist\n\n\n\n\n\n\n\nAbbildung 4.1: Im Brick Viewer können wir auf dem Display Text anzeigen oder zeichnen.\n\n\n\nAlle genannten Funktionen können wir einfach im Brick Viewer ausprobieren. Mit der Maus können wir auf der schwarzen Fläche freihand zeichnen und unser Resultat auf mit “Draw on Display” auf das Display projizieren. Mit “Clear Display” löschen wir den gesamten Inhalt wieder. Alternativ können wir auch Text in das Textfeld eingeben und mit “Send” auf dem Display anzeigen lassen.\nFür Text können wir die Position über die Angabe der Zeile (Line) sowie Position in der Zeile (Pos) bestimmen. Wenn ihr die auswählbaren Werte im Dropdown anschaut, werdet ihr feststellen, dass die Zeilen von 0 bis 7 und die Positionen von 0 bis 21 nummeriert sind. Das liegt daran, dass wir mit der Auflösung von 128 x 64 Pixeln nur 8 Zeilen mit jeweils 22 Zeichen darstellen können. Wie wir später sehen werden, ist ein Buchstabe 5 Pixel breit und 8 Pixel hoch. Damit passen 21 Buchstaben in eine Zeile (21 * 5 = 105 Pixel, es wird aber ein Abstand von einem Pixel zwischen jedem Buchstaben benötigt) und 8 Zeilen übereinander (8 * 8 = 64 Pixel).\n\n\n\n\n\n\n\n\n\n\n\n(a) Mein Versuch, den Titel des Buches mit der Maus zu zeichnen.\n\n\n\n\n\n\n\n\n\n\n\n(b) Das Display unterstützt auch die direkte Textausgabe.\n\n\n\n\n\n\n\nAbbildung 4.2\n\n\n\nIn Abbildung 4.3 könnt ihr den Unterschied zwischen meinem kläglichen Versuch, den Titel des Buches mit der Maus zu zeichnen, und der Textausgabe sehen. Das Display ist zwar nicht besonders groß, aber für einfache Grafiken und Texte reicht es allemal. Wie ihr seht ist der Text “Hands-On Computer Science” zu lang für eine Zeile. Er wird daher einfach abgeschnitten.\n\n\n\n\n\n\n\n\n\n\n\n(a) So sieht meine Zeichnung auf dem Display aus.\n\n\n\n\n\n\n\n\n\n\n\n(b) Es geht auch direkt als Text, allerdings abgeschnitten.\n\n\n\n\n\n\n\nAbbildung 4.3: Gezeichneter vs. getippter Text auf dem Display.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Bilder</span>"
+    ]
+  },
+  {
+    "objectID": "images.html#sec-images-pixels",
+    "href": "images.html#sec-images-pixels",
+    "title": "4  Bilder",
+    "section": "4.1 Pixel",
+    "text": "4.1 Pixel\nNachdem wir das Display im Brick Viewer ausprobiert haben, wollen wir uns die Funktionen auch in Python anschauen. Dazu erstellen wir wie immer mit der Verbindung zum Gerät und erzeugen eine Instanz des Display-Objekts:\n\nfrom tinkerforge.ip_connection import IPConnection\nfrom tinkerforge.bricklet_oled_128x64_v2 import BrickletOLED128x64V2\n\nipcon = IPConnection()\nipcon.connect('localhost', 4223)\n1oled = BrickletOLED128x64V2('25zo', ipcon)\n2oled.clear_display()\n\n\n1\n\nDenk dran, deine eigene UID einzutragen!\n\n2\n\nWir löschen den Display-Inhalt, damit wir mit einem leeren Display starten. Dei Funktion clear_display() erledigt das.\n\n\n\n\nÜber das Objekt auf der Variable oled können wir jetzt die verschiedenen Funktionen des Displays verwenden. Eine davon sehen wir im Codebeispiel bereits, nämlich das Löschen des Displays mit der Funktion clear_display(). Die andere wesentliche Funktion, ist das an- und ausschalten einzelner Pixel.\nDas Wort Pixelist eine Abkürzung für Picture Element, also übersetzt Bildelement. Ein Pixel ist der kleinste darstellbare Punkt auf einem Display. In unserem Fall kann ein Pixel entweder schwarz oder weiß sein. Auf anderen Bildschirmen, wie dem eures Smartphones oder Fernsehers, können Pixel auch farblich dargestellt werden. Das schauen wir uns später noch geauer an. In diesem Kapitel konzentrieren wir uns auf die einfache schwarz-weiße Darstellung, um das Grundprinzip zu verstehen. Und weil letzlich das das Display nichts anderes kann.\nDas Display, das wir verwenden, hat eine Auflösung von 128 x 64 Pixeln. Das bedeutet, dass es 128 Pixel in der Breite und 64 Pixel in der Höhe hat. Insgesamt ergibt das 8192 einzelne Pixel, die wir ansteuern können. Wie wir die Pixel verwenden und sie an- oder ausschalten, hängt davon ab, was wir darstellen wollen.\nBeginnen wir, indem wir das Pixel in der linken oberen Ecke des Displays einschalten. Die Koordinaten für dieses Pixel sind (0, 0), wobei die erste Zahl die x-Koordinate (horizontal) und die zweite Zahl die y-Koordinate (vertikal) ist. Um dieses Pixel einzuschalten, verwenden wir die Funktion write_pixels(), die wie folgt aussieht:\n\noled.write_pixels(0, 0, 0, 0, [1])\n\nDie ersten vier Argumente definieren zwei Punkte auf dem Display, die eine rechteckige Fläche beschreiben. Die ersten beiden Argumente sind die x- und y-Koordinaten des oberen linken Punkts, die zweiten beiden Argumente sind die x- und y-Koordinaten des unteren rechten Punkts. In unserem Fall sind beide Punkte (0, 0), was bedeutet, dass wir nur ein einzelnes Pixel an der Position (0, 0) ansprechen. Der letzte Parameter ist eine Liste von Werten, die angeben, ob die Pixel in der definierten Fläche ein- oder ausgeschaltet werden sollen. Ein Wert von 1 bedeutet, dass das Pixel eingeschaltet wird (weiß), und ein Wert von 0 bedeutet, dass das Pixel ausgeschaltet wird (schwarz). Da wir nur ein Pixel ansprechen, enthält die Liste nur einen Wert: [1].\nEine Liste wird in Python über die eckigen Klammern [] definiert. Innerhalb der Klammern können wir beliebig viele Werte durch Kommas getrennt angeben. In unserem Fall haben wir nur einen Wert, nämlich 1, um das einzelne Pixel einzuschalten.\nGenauso können wir das Pixel wieder ausschalten, indem wir den Wert in der Liste auf 0 ändern. Sobald ihr Enter drückt, sollte das Pixel in der linken oberen Ecke des Displays wieder ausgehen:\n\noled.write_pixels(0, 0, 0, 0, [1])\ninput(\"Drücke Enter um das Pixel auszuschalten...\")\noled.write_pixels(0, 0, 0, 0, [0])\n\nEinzelne Pixel lassen sich auf die oben gezeigte Weise an- und ausschalten. Aber was ist, wenn wir mehrere Pixel gleichzeitig ansteuern wollen? Zum Beispiel ein kleines Quadrat in der Mitte des Displays? Dafür müssen wir die Koordinaten der beiden Punkte anpassen, die die rechteckige Fläche definieren, und eine Liste mit den entsprechenden Werten für alle Pixel in dieser Fläche erstellen. Wir sprechen hier von einer Bitmap, also einer Matrix von Pixelwerten, die zusammen ein Bild ergeben.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Bilder</span>"
     ]
@@ -443,8 +463,48 @@
     "objectID": "images.html#sec-images-bitmaps",
     "href": "images.html#sec-images-bitmaps",
     "title": "4  Bilder",
-    "section": "4.1 Bitmaps",
-    "text": "4.1 Bitmaps",
+    "section": "4.2 Bitmaps",
+    "text": "4.2 Bitmaps\nSagen wir, wir wollen ein 4x4 großes Quadrat in der Mitte des Displays zeichnen. Dazu müssen wir zuerst berechnen, wo die Mitte des Displays ist. Da das Display 128 Pixel breit und 64 Pixel hoch ist, ist die Mitte bei (64, 32). Weil wir aber bei 0 beginnen zu zählen, korrigieren wir die Koordinaten entsprechend auf (63, 31). Um ein 4x4 Quadrat zu zeichnen, müssen wir die Koordinaten des oberen linken Punkts auf (61, 29) setzen und die Koordinaten des unteren rechten Punkts auf (64, 32). Die Liste der Werte für die Pixel in dieser Fläche muss 16 Werte enthalten, alle auf 1 gesetzt, um das Quadrat einzuschalten.\n\noled.write_pixels(61, 29, 64, 32, [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])\n\nGenau genommen ist die Liste also keine flache Liste, sondern wird als 4x4 Matrix interpretiert. Die Bitmap sieht also so aus:\n1 1 1 1\n1 1 1 1\n1 1 1 1\n1 1 1 1\nWas, wenn wir das Quadrat auf 5x5 vergrößern wollen? Dann müssen wir die Koordinaten des unteren rechten Punkts auf (65, 33) ändern oder den des linken oberen Punkts auf (60,28) und die Liste der Werte auf 25 Werte erweitern:\n\noled.write_pixels(61, 29, 65, 33, [1]*25)\n\nWir haben uns für die Erweiterung des unteren rechten Punkts entschieden. Die Liste der Werte haben wir mit der Python-Syntax [1]*25 erstellt, was bedeutet, dass wir 25 Mal den Wert 1 in der Liste haben wollen. Das ist eine praktische Abkürzung, um lange Listen mit gleichen Werten zu erstellen. Multiplizieren funktioniert in Python auch mit Listen.\nDie Idee der Funktion write_pixels() ist also, dass wir eine rechteckige Fläche auf dem Display definieren und dann eine Liste von Werten bereitstellen, die angeben, ob jedes Pixel in dieser Fläche ein- oder ausgeschaltet werden soll. Die Länge der Liste muss genau der Anzahl der Pixel in der definierten Fläche entsprechen. Wenn die Fläche 4x4 Pixel groß ist, muss die Liste 16 Werte enthalten. Wenn die Fläche 5x5 Pixel groß ist, muss die Liste 25 Werte enthalten, und so weiter. Die Werte in der Liste werden von links nach rechts und von oben nach unten gelesen, also zuerst die erste Zeile, dann die zweite Zeile, und so weiter.\nIn Abbildung 4.4 versuchen wir, das Konzept der Bitmap zu visualisieren. Der rote Bereich, in dem die Pixel gesetzt werden, wird durch die ersten vier Argumente der Funktion write_pixels() definiert. Die Liste der Werte, die wir übergeben, füllt diesen Bereich von links nach rechts und von oben nach unten aus. Die Liste sähe in diesem Fall also so aus:\n[0,1,0,1,1,1,0,1,0]\nAls Matrix dargestellt:\n0 1 0\n1 1 1\n0 1 0\nIn der Matrixdarstellung erkennt man schnell das Kreuzmuster, das wir gezeichnet haben.\n\n\n\n\n\n\nAbbildung 4.4: Der rote Bereich wird durch die ersten vier Argumente der Funktion write_pixels() definiert.\n\n\n\nWenn wir Kreuze als Bitmaps darstellen können, wir sieht es dann mit anderen Symbolen aus?",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Bilder</span>"
+    ]
+  },
+  {
+    "objectID": "images.html#sec-images-letters",
+    "href": "images.html#sec-images-letters",
+    "title": "4  Bilder",
+    "section": "4.3 Buchstaben",
+    "text": "4.3 Buchstaben\nUnd natürlich sind auch Buchstaben auf dem Bildschirm nichts anderes als Pixelmuster. Wie bereits erwähnt, ist ein Buchstabe 5 Pixel breit und 8 Pixel hoch. Das bedeutet, dass wir für jeden Buchstaben eine Bitmap mit 40 Werten benötigen, um ihn darzustellen. Tinkerforge, der Hersteller des Displays, stellt eine Übersicht der unterstützten Zeichen und deren Pixelmuster auf seiner Webseite bereit. Daraus habe ich den Buchstaben “A” als Bitmap in ein einfaches Spreadsheet übertragen, und Pixel, die an sind, mit schwarzem Hintergrund eingefärbt. Das Ergebnis seht ihr in Abbildung 4.5.\n\n\n\n\n\n\nAbbildung 4.5: Der Buchstabe “A” als Bitmap in einem Spreadsheet.\n\n\n\nAnhand dieser Darstellung können wir die Werte für Liste mit Einsen und Nullen ableiten, die wir benötigen, um den Buchstaben “A” auf dem Display darzustellen. Die Liste sieht so aus:\n\nletter_a_bitmap = [\n    0, 0, 1, 0, 0,\n    0, 1, 0, 1, 0,\n    1, 0, 0, 0, 1,\n    1, 0, 0, 0, 1,\n    1, 1, 1, 1, 1,\n    1, 0, 0, 0, 1,\n    1, 0, 0, 0, 1\n    0, 0, 0, 0, 0\n]  \n\nWer gute Augen hat erkennt in der Matrix den Buchstaben “A” sofort. Welcher Buchstabe verbirgt sich in der folgenden Bitmap?\nZeichnen wir den Buchstaben auf dem Display, um es herauszufinden. Wir kennen die Dimensionen (5x8 Pixel), haben die Bitmap und müssen nur noch die Position bestimmen, an der der Buchstabe gezeichnet werden soll. Ich habe mich für die Position (6, 10) als oberen linken Punkt entschieden:\n\noled.write_pixels(6, 10, 10, 17, letter_unknown_bitmap)\n\nUnd? Seht ihr auch ein großes “S”? Versuchen wir, davor noch das “A” zu schreiben:\n\noled.write_pixels(1, 10, 5, 17, letter_a_bitmap)\n\nWir haben richtig gerechnet: Das “A” soll vor dem “S” stehen, also müssen wir mit der x-Koordinate 5 Pixel nach links gehen. Die y-Koordinate bleibt gleich, weil beide Buchstaben auf der gleichen Höhe stehen sollen. Lasst uns noch ein Pixel Platz zwischen beiden Buchstaben lassen. Das bedeutet, dass wir die x-Koordinate des “A” um 1 Pixel weiter nach links setzen müssen, also auf 0. Die x-Koordinate des rechten unteren Punkts des “A” wird dann 4. Der Code für das “A” sieht dann so aus:\n\noled.write_pixels(0, 10, 4, 17, letter_a_bitmap)\n\nUnd nun noch ein “S” ans Ende, damit wir ein sinnvolles Wort geschrieben haben:\n\noled.write_pixels(0, 10, 4, 17, letter_a_bitmap)\noled.write_pixels(6, 10, 10, 17, letter_s_bitmap)\noled.write_pixels(12, 10, 16, 17, letter_s_bitmap)\n\nSucht euch aus, ob ihr nun eine Spielkarte, den Namen eines Schmerzmittels oder das englischsprachige Wort für Ar*** geschrieben habt. In jedem Fall sind es drei Buchstaben, die wir mit Bitmaps auf dem Display dargestellt haben. Und das ganz ohne die Textfunktion des Displays zu verwenden.\nDas wäre übrigens auch gegangen, wäre aber nicht so lehrreich gewesen:\n\noled.write_line(0, 0, \"Ass\")\n\nWenn ihr beides hintereinander ausführt, dann steht in der ersten Zeile “Ass” und in der zweiten Zeile “ASS”, was wir oben mit unseren eigenen Bitmaps gezeichnet haben. Das Schöne an der write_line() Funktion ist, dass sie automatisch die richtigen Bitmaps für die Buchstaben verwendet. Das Display hat eine eingebaute Schriftart, die es nutzt, wenn wir Text anzeigen wollen. Aber wie ihr gesehen habt, können wir auch eigene Bitmaps verwenden, um Buchstaben oder andere Symbole zu zeichnen, die nicht im Zeichensatz des Displays enthalten sind.\n[WRITE A PARAGRAPH ABOUT FONTS AND HOW THEY ARE JUST COLLECTIONS OF BITMAPS, USE EXAMPLE. SMOOTH TRANSITION TO NEXT SECTION ON VECTOR GRAPHICS.]",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Bilder</span>"
+    ]
+  },
+  {
+    "objectID": "images.html#sec-images-vector-graphics",
+    "href": "images.html#sec-images-vector-graphics",
+    "title": "4  Bilder",
+    "section": "4.4 Vektorgrafiken",
+    "text": "4.4 Vektorgrafiken\n[WRITE THE FIRST PARAGRAPH TO CONTRAST BITMAPS AND VECTOR GRAPHICS, USE EXAMPLE FONT]",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Bilder</span>"
+    ]
+  },
+  {
+    "objectID": "images.html#sec-images-icons",
+    "href": "images.html#sec-images-icons",
+    "title": "4  Bilder",
+    "section": "4.5 Icons",
+    "text": "4.5 Icons\n\n\n\n\n\n\nAbbildung 4.6\n\n\n\n\n\n\n\n\n\nAbbildung 4.7\n\n\n\n\nfrom openpyxl import load_workbook\n\nworkbook = load_workbook(\"pixel_art.xlsx\")\nsheet = workbook.active\n\narr = []\nfor row in sheet.iter_rows():\n    for cell in row:\n        color = getattr(cell.fill.fgColor, \"rgb\", None)\n        arr.append(1 if color == \"FF000000\" else 0)\n\nprint(arr)",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Bilder</span>"
+    ]
+  },
+  {
+    "objectID": "images.html#nibbles",
+    "href": "images.html#nibbles",
+    "title": "4  Bilder",
+    "section": "4.6 Nibbles",
+    "text": "4.6 Nibbles",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Bilder</span>"
     ]
@@ -453,28 +513,8 @@
     "objectID": "images.html#sec-images-compressed",
     "href": "images.html#sec-images-compressed",
     "title": "4  Bilder",
-    "section": "4.2 Komprimierte Bilder",
-    "text": "4.2 Komprimierte Bilder",
-    "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Bilder</span>"
-    ]
-  },
-  {
-    "objectID": "images.html#sec-images-hexadecimal",
-    "href": "images.html#sec-images-hexadecimal",
-    "title": "4  Bilder",
-    "section": "4.3 Hexadezimal",
-    "text": "4.3 Hexadezimal",
-    "crumbs": [
-      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Bilder</span>"
-    ]
-  },
-  {
-    "objectID": "images.html#sec-images-rgb-code",
-    "href": "images.html#sec-images-rgb-code",
-    "title": "4  Bilder",
-    "section": "4.4 Der RGB-Code",
-    "text": "4.4 Der RGB-Code\n\n\n\n\nAdami, Christoph. 2016. „What is Information?“ Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences 374 (2063): 20150230. https://doi.org/10.1098/rsta.2015.0230.\n\n\nBrookshear, J. Glenn, und Dennis Brylow. 2020. Computer science: an overview. 13th edition, global edition. NY, NY: Pearson.\n\n\nPetzold, Charles. 2022. Code: the hidden language of computer hardware and software. 2. Aufl. Hoboken: Microsoft Press.\n\n\nPólya, George, und John Horton Conway. 2004. How to solve it: a new aspect of mathematical method. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.\n\n\nScott, John C. 2009. But how do it know?: the basic principles of computers for everyone. Oldsmar, FL: John C. Scott.",
+    "section": "4.7 Komprimierte Bilder",
+    "text": "4.7 Komprimierte Bilder\n[WRITE ABOUT HOW BITMAPS CAN BE COMPRESSED, E.G. RLE, AND WHY THIS IS USEFUL]\n\n\n\n\nAdami, Christoph. 2016. „What is Information?“ Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences 374 (2063): 20150230. https://doi.org/10.1098/rsta.2015.0230.\n\n\nBrookshear, J. Glenn, und Dennis Brylow. 2020. Computer science: an overview. 13th edition, global edition. NY, NY: Pearson.\n\n\nPetzold, Charles. 2022. Code: the hidden language of computer hardware and software. 2. Aufl. Hoboken: Microsoft Press.\n\n\nPólya, George, und John Horton Conway. 2004. How to solve it: a new aspect of mathematical method. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.\n\n\nScott, John C. 2009. But how do it know?: the basic principles of computers for everyone. Oldsmar, FL: John C. Scott.",
     "crumbs": [
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Bilder</span>"
     ]

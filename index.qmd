@@ -22,6 +22,18 @@ Viele Bücher versprechen Praxisnähe, doch oft endet sie in nüchternen Übungs
 
 Schon ab Kapitel 1 beginnt ihr zu programmieren, und zwar nicht abstrakt, sondern konkret mit Hardware-Bauteilen wie einer LED. Im Laufe des Buches lernt ihr Schritt für Schritt neue Hardwarekomponenten kennen, die direkt mit relevanten informatischen Konzepten verknüpft sind. So schließt ihr nicht nur eine Reihe Experimente erfolgreich ab, sondern baut fast nebenbei ein solides Fundament in Informatik und Programmierung auf. Wenn alles gut läuft, merkt ihr kaum, wie schnell ihr gelernt habt.
 
+## Bücher, die ich empfehle
+
+Auch wenn dieses Buch für sich einzigartig ist, habe ich mich natürlich von anderen Autoren und deren Werken inspirieren lassen. Einige davon möchte ich euch hier vorstellen.
+
+- **Code: The Hidden Language of Computer Hardware and Software** von Charles Petzold: Ein Klassiker, der die Grundlagen der Informatik und Computertechnik auf verständliche Weise erklärt. Petzold beginnt mit einfachen Konzepten und führt den Leser Schritt für Schritt zu komplexeren Themen. Bis ihr schließlich einen Computer gedanklich nachgebaut habt.
+
+- **Abenteuer Informatik** von Jens Gallenbacher.
+
+- **Computer Science: An Overview** von J. Glenn Brookshear und Dennis Brylow: Ein umfassendes Lehrbuch, das viele Aspekte der Informatik abdeckt. Es ist gut strukturiert und bietet eine solide Grundlage für das Verständnis der Disziplin.
+
+- **The Way Things Work** von David Macaulay: Ein großartiges Buch, das auf unterhaltsame Weise erklärt, wie verschiedene Technologien funktionieren. Der Teil "The Digital Domain" adressiert viele Konzepte, die auch in diesem Buch vorkommen. Die Einteilung in "Making Bits", "Storing Bits", "Processing Bits" und "Sending Bits" hat die Struktur meines Buches beeinflusst.
+
 ## Tipps für die Lektüre
 
 Weil es in diesem Buch viel ums Programmieren geht, findet ihr viele Codeblöcke und Code-Snippets. Als Einstiegssprache verwenden wir Python. Warum ausgerechnet Python? Das erfahrt ihr später.
