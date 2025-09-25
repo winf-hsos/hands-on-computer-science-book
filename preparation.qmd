@@ -1,0 +1,41 @@
+# Vorbereitung {.unnumbered}
+
+## Benötigte Software {.unnumbered}
+
+Um die Experimente in diesem Buch selbst durchführen zu können, benötigt ihr folgende Software auf eurem Computer.
+
+| Software | Was ist das? | Download-Link |
+|------------------------|------------------------|------------------------|
+| Visual Studio Code | Eine beliebte und kostenlose Entwicklungsugebung. Damit schreiben wir unsere Programme. | [Download-Seite](https://code.visualstudio.com/) |
+| Python | Die Programmiersprache, die wir in diesem Buch verwenden. Ebenfalls weit verbreitet und kostenlos. | [Download-Seite](https://www.python.org/downloads/) |
+| Git | Ein kleines Werkzeug, mit dem wir Codestände verwalten können. Damit kommt ihr am einfachsten an die Codebeispiele aus diesem Buch. | [Download Seite](https://git-scm.com/downloads) |
+| Brick Daemon | Ein Hintergrundprozess, der die Kommunikation mit der Tinkerforge-Hardware ermöglicht. | [Download-Seite](https://www.tinkerforge.com/en/doc/Software/Brickd.html) |
+| Brick Viewer | Ein Tool, das eine grafische Benutzeroberfläche für die Interaktion mit der Tinkerforge-Hardware bietet. | [Download-Seite](https://www.tinkerforge.com/en/doc/Software/BrickViewer.html) |
+
+Klickt jeweils auf den Downloadlink, speichert die Installationsdatei auf eurem Computer, und installiert das Programm. Sobald ihr alles fertig installiert habt, macht ihr hier weiter.
+
+## Python-Erweiterung für Visual Studio Code {.unnumbered}
+
+Damit Visual Studio Code mit Python umgehen kann, benötigt ihr noch die Python-Erweiterung. Öffnet Visual Studio Code, klickt links auf das Erweiterungssymbol (das Quadrat-Symbol) und sucht nach "Python". Installiert die Erweiterung von Microsoft. Solltet ihr sie nicht finden, könnt ihr auch [hier](https://marketplace.visualstudio.com/items?itemName=ms-python.python) klicken.
+
+## Beispielcode herunterladen {.unnumbered}
+
+Ich stelle für dieses Buch die fertigen Programme nach jedem Abschnitt auf GitHub bereit. Ihr könnt euch den Code von dort ganz einfach auf euren Rechner herunterladen und jederzeit darauf zugreifen. Um den Code herunterzuladen, gibt es zwei Wege.
+
+### Code über Git herunterladen (empfohlen) {.unnumbered}
+
+Wenn ihr Git erfolgreich installiert habt, könnt ihr den Code über die Kommandozeile (Terminal) herunterladen. Öffnet dazu ein Terminalfenster (unter Windows: PowerShell, unter macOS: Terminal), wechselt in ein Verzeichnis, in dem ihr den Code speichern möchtet, und gebt folgenden Befehl ein:
+
+```         
+git clone https://github.com/winf-hsos/hands-on-computer-science-code
+```
+
+Bei funktionierende Internetverbindung wird der Code heruntergeladen und in einem neuen Ordner namens `hands-on-computer-science-code` gespeichert. Ihr könnt diesen Ordner dann in Visual Studio Code öffnen, um auf die Codebeispiele zuzugreifen.
+
+### Code als ZIP-Datei herunterladen {.unnumbered}
+
+Ihr könnt den aktuellen Stand von GitHub über herunterladen, indem ihr [hier](https://github.com/winf-hsos/hands-on-computer-science-code/archive/refs/heads/main.zip) klickt. Speichert die ZIP-Datei auf eurem Computer und entpackt sie an einen Ort eurer Wahl. Anschließend könnt ihr den Ordner mit den Codebeispielen in Visual Studio Code öffnen.
+
+## Los geht's! {.unnumbered}
+
+Jetzt seid ihr bereit, mit den Experimenten zu starten! Viel Spaß beim Lernen und Experimentieren!

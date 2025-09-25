@@ -86,7 +86,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./experiments.html" rel="next">
+<link href="./preparation.html" rel="next">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -227,9 +227,6 @@ div.csl-indent {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Hands-On Computer Science</a> 
-        <div class="sidebar-tools-main">
-    <a href="./Hands-On-Computer-Science-Book.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
-</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -247,14 +244,8 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./experiments.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Experimente</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./prerequisites.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Voraussetzungen</span></a>
+  <a href="./preparation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vorbereitung</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -283,12 +274,6 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./sound.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ton</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./glossary.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Glossar</span></a>
   </div>
@@ -312,7 +297,10 @@ div.csl-indent {
   <li><a href="#vorwort" id="toc-vorwort" class="nav-link active" data-scroll-target="#vorwort">Vorwort</a>
   <ul class="collapse">
   <li><a href="#was-macht-dieses-buch-besonders" id="toc-was-macht-dieses-buch-besonders" class="nav-link" data-scroll-target="#was-macht-dieses-buch-besonders">Was macht dieses Buch besonders?</a></li>
-  <li><a href="#bücher-die-ich-empfehle" id="toc-bücher-die-ich-empfehle" class="nav-link" data-scroll-target="#bücher-die-ich-empfehle">Bücher, die ich empfehle</a></li>
+  <li><a href="#hands-on-programmieren-lernen" id="toc-hands-on-programmieren-lernen" class="nav-link" data-scroll-target="#hands-on-programmieren-lernen">Hands-On Programmieren lernen</a></li>
+  <li><a href="#spannende-experimente" id="toc-spannende-experimente" class="nav-link" data-scroll-target="#spannende-experimente">Spannende Experimente</a></li>
+  <li><a href="#frust-ist-dein-freund-zumindest-ein-bisschen" id="toc-frust-ist-dein-freund-zumindest-ein-bisschen" class="nav-link" data-scroll-target="#frust-ist-dein-freund-zumindest-ein-bisschen">Frust ist dein Freund – zumindest ein bisschen</a></li>
+  <li><a href="#bücher-die-ich-euch-empfehle" id="toc-bücher-die-ich-euch-empfehle" class="nav-link" data-scroll-target="#bücher-die-ich-euch-empfehle">Bücher, die ich euch empfehle</a></li>
   <li><a href="#tipps-für-die-lektüre" id="toc-tipps-für-die-lektüre" class="nav-link" data-scroll-target="#tipps-für-die-lektüre">Tipps für die Lektüre</a></li>
   </ul></li>
   </ul>
@@ -357,22 +345,186 @@ div.csl-indent {
 <h1 class="unnumbered">Vorwort</h1><p><img src="cover.png" title="Hands-On Computer Science" class="quarto-cover-image nolightbox img-fluid"></p>
 <p>Glückwunsch, ihr seid angekommen! Egal, wie euer Weg hierher aussah: Ihr habt dieses Buch geöffnet. Vielleicht studiert ihr an der Hochschule Osnabrück und wurdet (zu eurem Glück) dazu verpflichtet, oder ihr seid ganz bewusst hier gelandet und freut euch darauf, etwas Neues zu lernen – genau wie ich.</p>
 <p>Dieses Buch entstand ursprünglich, um meinen Veranstaltungen an der Hochschule Osnabrück eine verständliche und praxisnahe Grundlage zu geben. Es dient als Hauptlektüre für meine Vorlesungen und als Nachschlagewerk für alle, die eine Sitzung verpasst haben oder Themen eigenständig vertiefen möchten. Besonders willkommen sind Quereinsteiger, Wiederholer und neugierige Menschen, die bisher noch gar keinen Kontakt mit der <a href="https://hs-osnabrueck.de/" title="Link zur offiziellen Webseite der Hochschule Osnabrück">Hochschule Osnabrück</a> hatten.</p>
-<p>Hier bekommt ihr keine trockene Theorie, sondern eine praxisnahe Einführung in die Grundlagen moderner Computer und unserer digitalen Welt. Das Fach dahinter heißt auf Deutsch Informatik, international Computer Science. Der Titel Hands-On Computer Science verrät bereits, worum es geht: Es wird praktisch, und zwar von Anfang an.</p>
+<p>Hier bekommt ihr keine trockene Theorie, sondern eine praxisnahe Einführung in die Grundlagen moderner Computer und unserer digitalen Welt. Die wissenschaftliche Disziplin dahinter heißt auf Deutsch Informatik, international Computer Science. Der Titel Hands-On Computer Science verrät bereits, worum es geht: Es wird praktisch, und zwar von Anfang an.</p>
 <section id="was-macht-dieses-buch-besonders" class="level2">
 <h2 class="anchored" data-anchor-id="was-macht-dieses-buch-besonders">Was macht dieses Buch besonders?</h2>
 <p>Lehrbücher zur Informatik gibt es reichlich. Viele sind großartig, aber kaum eines passt genau zu dem, was ich mit meinen Studierenden vorhabe. Woran liegt das?</p>
 <p>Viele klassische Informatikbücher versuchen, das gesamte Fach möglichst umfassend abzubilden. Das ist sinnvoll für angehende Informatikerinnen und Informatiker, aber meine Zielgruppe seid ihr: Studierende in Studiengängen wie <a href="https://hs-osnabrueck.de/bne">Management nachhaltiger Ernährungssysteme</a>, <a href="https://www.hs-osnabrueck.de/blp">Lebensmittelproduktion</a> oder <a href="https://www.hs-osnabrueck.de/agrarsystemtechnologien-bsc/">Agrarsystemtechnologien</a> – oder ihr seid gar nicht an der Hochschule, sondern wollt euch einfach einen besseren Zugang zur digitalen Welt erarbeiten.</p>
-<p>Kurz gesagt: Dieses Buch ist für alle gedacht, die in die digitale Welt eintauchen wollen, ohne sich mit komplizierten Details zu überfordern. Dafür braucht ihr kein allumfassendes Nachschlagewerk, sondern einen klaren roten Faden, der euch Schritt für Schritt an die grundlegenden Konzepte heranführt.</p>
+<p>Kurz gesagt: Dieses Buch ist für alle, die in die digitale Welt eintauchen wollen, ohne sich mit komplizierten Details zu überfordern. Dafür braucht ihr kein allumfassendes Nachschlagewerk, sondern einen klaren roten Faden, der euch Schritt für Schritt an die grundlegenden Konzepte heranführt. Und das wichtigste: Eine große Portion Spaß!</p>
 <p>Viele Bücher versprechen Praxisnähe, doch oft endet sie in nüchternen Übungsaufgaben am Kapitelende. Genau hier setzt Hands-On Computer Science an und macht drei Dinge anders:</p>
 <ol type="1">
 <li>Ihr lernt informatische Konzepte anhand spannender Experimente mit Microcontrollern, Sensoren, Buttons, LEDs und Displays.</li>
 <li>Wir führen wichtige Konzepte früh ein, gehen aber erst nach und nach ins Detail und wiederholen sie regelmäßig.</li>
 <li>Theorie und Praxis sind nicht getrennt, sondern eng miteinander verbunden – Programmieren und informatische Grundlagen lernt ihr gleichzeitig.</li>
 </ol>
-<p>Schon ab Kapitel 1 beginnt ihr zu programmieren, und zwar nicht abstrakt, sondern konkret mit Hardware-Bauteilen wie einer LED. Im Laufe des Buches lernt ihr Schritt für Schritt neue Hardwarekomponenten kennen, die direkt mit relevanten informatischen Konzepten verknüpft sind. So schließt ihr nicht nur eine Reihe Experimente erfolgreich ab, sondern baut fast nebenbei ein solides Fundament in Informatik und Programmierung auf. Wenn alles gut läuft, merkt ihr kaum, wie schnell ihr gelernt habt.</p>
 </section>
-<section id="bücher-die-ich-empfehle" class="level2">
-<h2 class="anchored" data-anchor-id="bücher-die-ich-empfehle">Bücher, die ich empfehle</h2>
+<section id="hands-on-programmieren-lernen" class="level2">
+<h2 class="anchored" data-anchor-id="hands-on-programmieren-lernen">Hands-On Programmieren lernen</h2>
+<p>Hast du dich schon einmal gefragt, wie man Informationen über Licht übertragen kann? Oder wie man mit Licht den Puls messen kann? Oder wie man mit zwei einfachen Kabeln einen Wasserstandssensor baut? Das alles klingt vielleicht weit hergeholt, ist aber tatsächlich machbar – und wie genau, das wollen wir in diesem Buch herausfinden! Dabei werden wir nicht nur die digitale Welt der Computer und Programmierung kennenlernen, sondern auch mit spannenden Geräten in der analogen Welt arbeiten.</p>
+<p>In jedem Kapitel führen wir ein neues Experiment durch und verwenden andere Geräte, die uns unterschiedliche Facetten der digitalen Welt näherbringen. Gleichzeitg können wir darüber das Programmieren spielerisch erlernen. Wenn alles gut läuft, merkt ihr kaum, wie schnell ihr das alles gelernt habt.</p>
+<p>Hier mal ein Überblick über die Geräte, mit denen wir gemeinsam experimentieren werden. Zusammen kosten alle Komponenten ca. 249 €. Aber keine Sorge: Wenn du das Buch im Rahmen meines Moduls „Digitalisierung und Programmierung“ an der Hochschule Osnabrück liest, erhältst du für die Zeit des gesamten Semesters ein komplettes Hardware-Kit umsonst.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Was?</th>
+<th>Bauteil</th>
+<th>Anzahl</th>
+<th>Preis pro Stück</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Bunte LED</td>
+<td><a href="https://www.tinkerforge.com/de/shop/rgb-led-v2-bricklet.html">RGB LED Bricklet 2.0</a></td>
+<td>1</td>
+<td>8 €</td>
+</tr>
+<tr class="even">
+<td>Drehknopf mit Zählerfunktion</td>
+<td><a href="https://www.tinkerforge.com/de/shop/bricklets/rotary-encoder-bricklet.html">Rotary Encoder Bricklet</a></td>
+<td>1</td>
+<td>8 €</td>
+</tr>
+<tr class="odd">
+<td>Infrarot-Entfernungsmesser</td>
+<td><a href="https://www.tinkerforge.com/de/shop/distance-ir-4-30cm-v2-bricklet.html">Distance IR 4-30cm Bricklet 2.0</a></td>
+<td>1</td>
+<td>20 €</td>
+</tr>
+<tr class="even">
+<td>OLED Display</td>
+<td><a href="https://www.tinkerforge.com/de/shop/oled-128x64-bricklet.html">OLED 128x64 Bricklet</a></td>
+<td>1</td>
+<td>25 €</td>
+</tr>
+<tr class="odd">
+<td>Button mit integrierter, bunter LED</td>
+<td><a href="https://www.tinkerforge.com/de/shop/bricklets/rgb-led-button-bricklet.html">RGB LED Button Bricklet</a></td>
+<td>1</td>
+<td>15 €</td>
+</tr>
+<tr class="even">
+<td>Licht- und Farbsensor</td>
+<td><a href="https://www.tinkerforge.com/de/shop/color-v2-bricklet.html">Color Bricklet 2.0</a></td>
+<td>1</td>
+<td>17 €</td>
+</tr>
+<tr class="odd">
+<td>Piezo Lautsprecher</td>
+<td><a href="https://www.tinkerforge.com/de/shop/piezo-speaker-v2-bricklet.html">Piezo Speaker Bricklet 2.0</a></td>
+<td>1</td>
+<td>19 €</td>
+</tr>
+<tr class="even">
+<td>Analoger Spannungssensor</td>
+<td><a href="https://www.tinkerforge.com/de/shop/analog-in-v3-bricklet.html">Analog In Bricklet 3.0</a></td>
+<td>1</td>
+<td>14 €</td>
+</tr>
+<tr class="odd">
+<td>Schalldruckpegelsenor</td>
+<td><a href="https://www.tinkerforge.com/de/shop/sound-pressure-level-bricklet-679.html">Sound Pressure Level Bricklet</a></td>
+<td>1</td>
+<td>35 €</td>
+</tr>
+<tr class="even">
+<td>Mikrocontroller</td>
+<td><a href="https://www.tinkerforge.com/de/shop/master-brick.html">Master Brick 3.2</a></td>
+<td>2</td>
+<td>35 €</td>
+</tr>
+<tr class="odd">
+<td>Anschlusskabel 15 cm</td>
+<td><a href="https://www.tinkerforge.com/de/shop/accessories/cable/bricklet-cable-15cm-7p-7p.html">Bricklet Kabel 15cm (7p-7p)</a></td>
+<td>8</td>
+<td>1 €</td>
+</tr>
+<tr class="even">
+<td>USB-A- auf USB-C Kabel</td>
+<td><a href="https://www.tinkerforge.com/de/shop/accessories/cable/usb-a-to-usb-c-cable-100cm.html">USB-A auf USB-C Kabel 100 cm</a></td>
+<td>1</td>
+<td>6 €</td>
+</tr>
+<tr class="odd">
+<td>Montageplatte</td>
+<td><a href="https://www.tinkerforge.com/de/shop/mounting-plate-22x22-with-cable-lead-through.html">Montageplatte 22x22 (12x12cm)</a></td>
+<td>2</td>
+<td>7 €</td>
+</tr>
+<tr class="even">
+<td>Schrauben, Abstandshalter und Muttern</td>
+<td><a href="https://www.tinkerforge.com/de/shop/accessories/mounting/mounting-kit-12mm.html">Befestigungskit 12mm</a></td>
+<td>4</td>
+<td>2 €</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="spannende-experimente" class="level2">
+<h2 class="anchored" data-anchor-id="spannende-experimente">Spannende Experimente</h2>
+<p>Kapitel für Kapitel werden wir an unterschiedlichen Experimenten arbeiten. Dabei lernt ihr nicht nur, wie man Hardware-Komponenten miteinander verbindet, sondern vor allem auch, wie man Computer – diese universellen Problemlösungsmaschinen – für eigene Ideen und Lösungen programmieren kann. Hier ist der Überblick, welche Experimente euch in diesem Buch erwarten:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 77%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Kapitel</th>
+<th>Experiment(e)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><a href="colors.html" class="quarto-xref"><span>1&nbsp; Farben</span></a></td>
+<td>Wir lassen eine LED einen Regenbogenfarbverlauf über die Zeit erzeugen.</td>
+</tr>
+<tr class="even">
+<td><a href="numbers.html" class="quarto-xref"><span>2&nbsp; Zahlen</span></a></td>
+<td>Wir entwickeln einen Dimmer für die LED, der über einen Drehknopf gesteuert wird.</td>
+</tr>
+<tr class="odd">
+<td><a href="text.html" class="quarto-xref"><span>3&nbsp; Texte</span></a></td>
+<td>Wir lernen, wie man Texte ganz ohne Tastatur eingeben kann – über Handgesten.</td>
+</tr>
+<tr class="even">
+<td><a href="images.html" class="quarto-xref"><span>4&nbsp; Bilder</span></a></td>
+<td>Wir verbinden Tabellenkalkulation mit Bildern und Displays</td>
+</tr>
+</tbody>
+</table>
+<!--
+| @sec-c | Wir lernen Morse-Code und wie wir diesen über einen Lautsprecher ausgeben können. |
+| @sec-conversion | Wir verwenden einfache Kippschalter, um analoge Werte in digitale Werte umzuwandeln. |
+| @sec-information |  |
+| @sec-sensors | Wir bauen einen Wasserstandssensor mit einem analogen Spannungssensor. |
+| @sec-signals | Wir basteln einen Pulsmesser aus einem Farbsensor 💓 |
+| @sec-protocols | Wir übertragen Nachrichten über Lichtsignale 🔦 |
+| @sec-encryption | Wir verstecken geheime Botschaften in harmlosen Nachrichten 🕵️‍♀️ |
+| @sec-algorithms |  |
+| @sec-compression | Wir entwickeln ein Verfahren, um Information zu komprimieren. |
+| @sec-computer | Wir entwickeln eine Rechenmaschine, die zwei Bytes addieren kann, mit nur einem einem Bauteil. |
+| @sec-problems |  |
+-->
+</section>
+<section id="frust-ist-dein-freund-zumindest-ein-bisschen" class="level2">
+<h2 class="anchored" data-anchor-id="frust-ist-dein-freund-zumindest-ein-bisschen">Frust ist dein Freund – zumindest ein bisschen</h2>
+<p>Eins möchte ich gleich vorwegnehmen: Beim Programmierenlernen ist eine gewisse Portion Frust unvermeidbar. Klingt unangenehm? Ist es auch! Aber es ist zugleich Teil eines enorm wertvollen Lernprozesses. Jeder Fehler, den du machst, ist eine Gelegenheit, um zu verstehen, wie Computer wirklich funktionieren – nämlich absolut präzise und ohne jede Toleranz für Fehler.</p>
+<p>Computer sind gnadenlose Lehrer. Sie zeigen dir sofort und unerbittlich, wenn etwas nicht stimmt – sei es ein vergessener Punkt, ein falscher Buchstabe oder ein simpler Zahlendreher. Das kann frustrieren, aber genau dieses direkte und sofortige Feedback hilft dir auch, schnell und effektiv zu lernen. Sobald du verstehst, wie du aus Fehlermeldungen sinnvolle Schlüsse ziehst und deine Programme entsprechend korrigierst, wirst du belohnt – mit Erfolgserlebnissen und einer steilen Lernkurve.</p>
+<div id="fig-chimp-frustrated" class="quarto-float quarto-figure quarto-figure-left anchored" data-fig-align="left">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-chimp-frustrated-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/longbite_frustrated.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:60.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-chimp-frustrated-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;1: Ein frustrierter Frosch
+</figcaption>
+</figure>
+</div>
+<p>Also, wenn mal etwas nicht klappt: Nimm es nicht persönlich, sondern sieh es als Herausforderung. Atme tief durch, mach dir klar, dass Fehler unvermeidbar und sogar wichtig sind, und probier es noch einmal. Ich verspreche dir: Es lohnt sich!</p>
+</section>
+<section id="bücher-die-ich-euch-empfehle" class="level2">
+<h2 class="anchored" data-anchor-id="bücher-die-ich-euch-empfehle">Bücher, die ich euch empfehle</h2>
 <p>Auch wenn dieses Buch für sich einzigartig ist, habe ich mich natürlich von anderen Autoren und deren Werken inspirieren lassen. Einige davon möchte ich euch hier vorstellen.</p>
 <ul>
 <li><p><strong>Code: The Hidden Language of Computer Hardware and Software</strong> von Charles Petzold: Ein Klassiker, der die Grundlagen der Informatik und Computertechnik auf verständliche Weise erklärt. Petzold beginnt mit einfachen Konzepten und führt den Leser Schritt für Schritt zu komplexeren Themen. Bis ihr schließlich einen Computer gedanklich nachgebaut habt.</p></li>
@@ -383,9 +535,9 @@ div.csl-indent {
 </section>
 <section id="tipps-für-die-lektüre" class="level2">
 <h2 class="anchored" data-anchor-id="tipps-für-die-lektüre">Tipps für die Lektüre</h2>
-<p>Weil es in diesem Buch viel ums Programmieren geht, findet ihr viele Codeblöcke und Code-Snippets. Als Einstiegssprache verwenden wir Python. Warum ausgerechnet Python? Das erfahrt ihr später.</p>
+<p>Weil es in diesem Buch viel ums Programmieren geht, findet ihr viele Codeblöcke und Code-Snippets. Als Einstiegssprache verwenden wir Python. Warum ausgerechnet Python? Weil Python zum einen in der Praxis sehr beliebt und wei verbreitet ist. Zum anderen ist Python eine der am einfachsten zu erlernenden Programmiersprachen. Die Syntax ist klar und übersichtlich, und es gibt viele Ressourcen und Bibliotheken, die den Einstieg erleichtern.</p>
 <p>Codeblöcke sind deutlich vom übrigen Text abgehoben, grau hinterlegt und in einer Schreibmaschinenschrift dargestellt, etwa Courier New oder Consolas. Hier ein kleines Beispiel:</p>
-<div id="7091b1b8" class="cell" data-execution_count="1">
+<div id="cce4cf0d" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1">1</button><span id="annotated-cell-1-1" class="code-annotation-target"><a href="#annotated-cell-1-1"></a>led.set_rgb_value(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2">2</button><span id="annotated-cell-1-2" class="code-annotation-target"><a href="#annotated-cell-1-2"></a>led.set_rgb_value(<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">255</span>)</span>
 <span id="annotated-cell-1-3"><a href="#annotated-cell-1-3"></a></span>
@@ -414,7 +566,7 @@ div.csl-indent {
 <p>Weil wir in jedem Kapitel ein Programm Schritt für Schritt entwickeln und es dadurch immer länger wird, lasse ich gelegentlich Stellen im Code weg, um den Fokus auf neu hinzugekommene Zeilen zu legen. Diese Auslassungen markiere ich in den Codeblöcken mit drei Punkten (<code>...</code>). Keine Sorge: Den gesamten Code findet ihr stets am Ende eines Abschnitts. Außerdem liegt jedes Programm im zu diesem Buch gehörigen GitHub-Repository unter:</p>
 <p><a href="https://github.com/winf-hsos/hands-on-computer-science-code" class="uri">https://github.com/winf-hsos/hands-on-computer-science-code</a></p>
 <p>Noch ein Tipp: Wenn ihr mit der Maus über einen Codeblock fahrt, erscheint rechts oben ein Clipboard-Symbol. Ein Klick darauf kopiert den Code direkt in eure Zwischenablage, und ihr könnt ihn anschließend in euer geöffnetes Visual Studio Code oder eine andere IDE einfügen und ausprobieren. In der Online-Version lassen sich manche Codeblöcke einklappen, damit ihr weniger scrollen müsst.</p>
-<p>Alles klar? Dann schauen wir uns an, was uns in diesem Buch erwartet!</p>
+<p>Alles klar? Dann machen wir uns startklar für die Experimente! Dazu müssen wir ein paar Dinge auf unserem Rechner installieren.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
@@ -423,6 +575,9 @@ Adami, Christoph. 2016. <span>„What is <span>Information</span>?“</span> <em
 </div>
 <div id="ref-brookshear_computer_2020" class="csl-entry" role="listitem">
 Brookshear, J. Glenn, und Dennis Brylow. 2020. <em>Computer science: an overview</em>. 13th edition, global edition. NY, NY: Pearson.
+</div>
+<div id="ref-gallenbacher_abenteuer_2020" class="csl-entry" role="listitem">
+Gallenbacher, Jens. 2020. <em>Abenteuer <span>Informatik</span>: <span>IT</span> zum <span>Anfassen</span> für alle von 9 bis 99, vom <span>Navi</span> bis <span>Social</span> <span>Media</span></em>. 4. Auflage, korrigierte Publikation. Berlin Heidelberg: Springer.
 </div>
 <div id="ref-petzold_code_2022" class="csl-entry" role="listitem">
 Petzold, Charles. 2022. <em>Code: the hidden language of computer hardware and software</em>. 2. Aufl. Hoboken: Microsoft Press.
@@ -902,8 +1057,8 @@ document.addEventListener("DOMContentLoaded", () => {
   <div class="nav-page nav-page-previous">
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./experiments.html" class="pagination-link" aria-label="Experimente">
-        <span class="nav-page-text">Experimente</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./preparation.html" class="pagination-link" aria-label="Vorbereitung">
+        <span class="nav-page-text">Vorbereitung</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -4,7 +4,7 @@ Glückwunsch, ihr seid angekommen! Egal, wie euer Weg hierher aussah: Ihr habt d
 
 Dieses Buch entstand ursprünglich, um meinen Veranstaltungen an der Hochschule Osnabrück eine verständliche und praxisnahe Grundlage zu geben. Es dient als Hauptlektüre für meine Vorlesungen und als Nachschlagewerk für alle, die eine Sitzung verpasst haben oder Themen eigenständig vertiefen möchten. Besonders willkommen sind Quereinsteiger, Wiederholer und neugierige Menschen, die bisher noch gar keinen Kontakt mit der [Hochschule Osnabrück](https://hs-osnabrueck.de/ "Link zur offiziellen Webseite der Hochschule Osnabrück") hatten.
 
-Hier bekommt ihr keine trockene Theorie, sondern eine praxisnahe Einführung in die Grundlagen moderner Computer und unserer digitalen Welt. Das Fach dahinter heißt auf Deutsch Informatik, international Computer Science. Der Titel Hands-On Computer Science verrät bereits, worum es geht: Es wird praktisch, und zwar von Anfang an.
+Hier bekommt ihr keine trockene Theorie, sondern eine praxisnahe Einführung in die Grundlagen moderner Computer und unserer digitalen Welt. Die wissenschaftliche Disziplin dahinter heißt auf Deutsch Informatik, international Computer Science. Der Titel Hands-On Computer Science verrät bereits, worum es geht: Es wird praktisch, und zwar von Anfang an.
 
 ## Was macht dieses Buch besonders?
 
@@ -12,7 +12,7 @@ Lehrbücher zur Informatik gibt es reichlich. Viele sind großartig, aber kaum e
 
 Viele klassische Informatikbücher versuchen, das gesamte Fach möglichst umfassend abzubilden. Das ist sinnvoll für angehende Informatikerinnen und Informatiker, aber meine Zielgruppe seid ihr: Studierende in Studiengängen wie [Management nachhaltiger Ernährungssysteme](https://hs-osnabrueck.de/bne), [Lebensmittelproduktion](https://www.hs-osnabrueck.de/blp) oder [Agrarsystemtechnologien](https://www.hs-osnabrueck.de/agrarsystemtechnologien-bsc/) – oder ihr seid gar nicht an der Hochschule, sondern wollt euch einfach einen besseren Zugang zur digitalen Welt erarbeiten.
 
-Kurz gesagt: Dieses Buch ist für alle gedacht, die in die digitale Welt eintauchen wollen, ohne sich mit komplizierten Details zu überfordern. Dafür braucht ihr kein allumfassendes Nachschlagewerk, sondern einen klaren roten Faden, der euch Schritt für Schritt an die grundlegenden Konzepte heranführt.
+Kurz gesagt: Dieses Buch ist für alle, die in die digitale Welt eintauchen wollen, ohne sich mit komplizierten Details zu überfordern. Dafür braucht ihr kein allumfassendes Nachschlagewerk, sondern einen klaren roten Faden, der euch Schritt für Schritt an die grundlegenden Konzepte heranführt. Und das wichtigste: Eine große Portion Spaß!
 
 Viele Bücher versprechen Praxisnähe, doch oft endet sie in nüchternen Übungsaufgaben am Kapitelende. Genau hier setzt Hands-On Computer Science an und macht drei Dinge anders:
 
@@ -20,9 +20,67 @@ Viele Bücher versprechen Praxisnähe, doch oft endet sie in nüchternen Übungs
 2. Wir führen wichtige Konzepte früh ein, gehen aber erst nach und nach ins Detail und wiederholen sie regelmäßig.
 3. Theorie und Praxis sind nicht getrennt, sondern eng miteinander verbunden – Programmieren und informatische Grundlagen lernt ihr gleichzeitig.
 
-Schon ab Kapitel 1 beginnt ihr zu programmieren, und zwar nicht abstrakt, sondern konkret mit Hardware-Bauteilen wie einer LED. Im Laufe des Buches lernt ihr Schritt für Schritt neue Hardwarekomponenten kennen, die direkt mit relevanten informatischen Konzepten verknüpft sind. So schließt ihr nicht nur eine Reihe Experimente erfolgreich ab, sondern baut fast nebenbei ein solides Fundament in Informatik und Programmierung auf. Wenn alles gut läuft, merkt ihr kaum, wie schnell ihr gelernt habt.
+## Hands-On Programmieren lernen
 
-## Bücher, die ich empfehle
+Hast du dich schon einmal gefragt, wie man Informationen über Licht übertragen kann? Oder wie man mit Licht den Puls messen kann? Oder wie man mit zwei einfachen Kabeln einen Wasserstandssensor baut? Das alles klingt vielleicht weit hergeholt, ist aber tatsächlich machbar – und wie genau, das wollen wir in diesem Buch herausfinden! Dabei werden wir nicht nur die digitale Welt der Computer und Programmierung kennenlernen, sondern auch mit spannenden Geräten in der analogen Welt arbeiten. 
+
+In jedem Kapitel führen wir ein neues Experiment durch und verwenden andere Geräte, die uns unterschiedliche Facetten der digitalen Welt näherbringen. Gleichzeitg können wir darüber das Programmieren spielerisch erlernen. Wenn alles gut läuft, merkt ihr kaum, wie schnell ihr das alles gelernt habt.
+
+Hier mal ein Überblick über die Geräte, mit denen wir gemeinsam experimentieren werden. Zusammen kosten alle Komponenten ca. 249 €. Aber keine Sorge: Wenn du das Buch im Rahmen meines Moduls „Digitalisierung und Programmierung“ an der Hochschule Osnabrück liest, erhältst du für die Zeit des gesamten Semesters ein komplettes Hardware-Kit umsonst.
+
+| Was? | Bauteil | Anzahl | Preis pro Stück |
+|--------------------|------------------|------------------|------------------|
+| Bunte LED | [RGB LED Bricklet 2.0](https://www.tinkerforge.com/de/shop/rgb-led-v2-bricklet.html) | 1 | 8 € |
+| Drehknopf mit Zählerfunktion | [Rotary Encoder Bricklet](https://www.tinkerforge.com/de/shop/bricklets/rotary-encoder-bricklet.html) | 1 | 8 € |
+| Infrarot-Entfernungsmesser | [Distance IR 4-30cm Bricklet 2.0](https://www.tinkerforge.com/de/shop/distance-ir-4-30cm-v2-bricklet.html) | 1 | 20 € |
+| OLED Display | [OLED 128x64 Bricklet](https://www.tinkerforge.com/de/shop/oled-128x64-bricklet.html) | 1 | 25 € |
+| Button mit integrierter, bunter LED | [RGB LED Button Bricklet](https://www.tinkerforge.com/de/shop/bricklets/rgb-led-button-bricklet.html) | 1 | 15 € |
+| Licht- und Farbsensor | [Color Bricklet 2.0](https://www.tinkerforge.com/de/shop/color-v2-bricklet.html) | 1 | 17 € |
+| Piezo Lautsprecher | [Piezo Speaker Bricklet 2.0](https://www.tinkerforge.com/de/shop/piezo-speaker-v2-bricklet.html) | 1 | 19 € |
+| Analoger Spannungssensor | [Analog In Bricklet 3.0](https://www.tinkerforge.com/de/shop/analog-in-v3-bricklet.html) | 1 | 14 € |
+| Schalldruckpegelsenor | [Sound Pressure Level Bricklet](https://www.tinkerforge.com/de/shop/sound-pressure-level-bricklet-679.html) | 1 | 35 € |
+| Mikrocontroller | [Master Brick 3.2](https://www.tinkerforge.com/de/shop/master-brick.html) | 2 | 35 € |
+| Anschlusskabel 15 cm | [Bricklet Kabel 15cm (7p-7p)](https://www.tinkerforge.com/de/shop/accessories/cable/bricklet-cable-15cm-7p-7p.html) | 8 | 1 € |
+| USB-A- auf USB-C Kabel | [USB-A auf USB-C Kabel 100 cm](https://www.tinkerforge.com/de/shop/accessories/cable/usb-a-to-usb-c-cable-100cm.html) | 1 | 6 € |
+| Montageplatte | [Montageplatte 22x22 (12x12cm)](https://www.tinkerforge.com/de/shop/mounting-plate-22x22-with-cable-lead-through.html) | 2 | 7 € |
+| Schrauben, Abstandshalter und Muttern | [Befestigungskit 12mm](https://www.tinkerforge.com/de/shop/accessories/mounting/mounting-kit-12mm.html) | 4 | 2 € |
+
+## Spannende Experimente
+
+Kapitel für Kapitel werden wir an unterschiedlichen Experimenten arbeiten. Dabei lernt ihr nicht nur, wie man Hardware-Komponenten miteinander verbindet, sondern vor allem auch, wie man Computer – diese universellen Problemlösungsmaschinen – für eigene Ideen und Lösungen programmieren kann. Hier ist der Überblick, welche Experimente euch in diesem Buch erwarten:
+
+| Kapitel | Experiment(e) |
+|----------------|--------------------------------------------------------|
+| @sec-colors | Wir lassen eine LED einen Regenbogenfarbverlauf über die Zeit erzeugen. |
+| @sec-numbers | Wir entwickeln einen Dimmer für die LED, der über einen Drehknopf gesteuert wird. |
+| @sec-text | Wir lernen, wie man Texte ganz ohne Tastatur eingeben kann – über Handgesten. |
+| @sec-images | Wir verbinden Tabellenkalkulation mit Bildern und Displays |
+
+<!--
+| @sec-c | Wir lernen Morse-Code und wie wir diesen über einen Lautsprecher ausgeben können. |
+| @sec-conversion | Wir verwenden einfache Kippschalter, um analoge Werte in digitale Werte umzuwandeln. |
+| @sec-information |  |
+| @sec-sensors | Wir bauen einen Wasserstandssensor mit einem analogen Spannungssensor. |
+| @sec-signals | Wir basteln einen Pulsmesser aus einem Farbsensor 💓 |
+| @sec-protocols | Wir übertragen Nachrichten über Lichtsignale 🔦 |
+| @sec-encryption | Wir verstecken geheime Botschaften in harmlosen Nachrichten 🕵️‍♀️ |
+| @sec-algorithms |  |
+| @sec-compression | Wir entwickeln ein Verfahren, um Information zu komprimieren. |
+| @sec-computer | Wir entwickeln eine Rechenmaschine, die zwei Bytes addieren kann, mit nur einem einem Bauteil. |
+| @sec-problems |  |
+-->
+
+## Frust ist dein Freund – zumindest ein bisschen
+
+Eins möchte ich gleich vorwegnehmen: Beim Programmierenlernen ist eine gewisse Portion Frust unvermeidbar. Klingt unangenehm? Ist es auch! Aber es ist zugleich Teil eines enorm wertvollen Lernprozesses. Jeder Fehler, den du machst, ist eine Gelegenheit, um zu verstehen, wie Computer wirklich funktionieren – nämlich absolut präzise und ohne jede Toleranz für Fehler.
+
+Computer sind gnadenlose Lehrer. Sie zeigen dir sofort und unerbittlich, wenn etwas nicht stimmt – sei es ein vergessener Punkt, ein falscher Buchstabe oder ein simpler Zahlendreher. Das kann frustrieren, aber genau dieses direkte und sofortige Feedback hilft dir auch, schnell und effektiv zu lernen. Sobald du verstehst, wie du aus Fehlermeldungen sinnvolle Schlüsse ziehst und deine Programme entsprechend korrigierst, wirst du belohnt – mit Erfolgserlebnissen und einer steilen Lernkurve.
+
+![Ein frustrierter Frosch](images/longbite_frustrated.png){#fig-chimp-frustrated fig-align="left" width="60%"}
+
+Also, wenn mal etwas nicht klappt: Nimm es nicht persönlich, sondern sieh es als Herausforderung. Atme tief durch, mach dir klar, dass Fehler unvermeidbar und sogar wichtig sind, und probier es noch einmal. Ich verspreche dir: Es lohnt sich!
+
+## Bücher, die ich euch empfehle
 
 Auch wenn dieses Buch für sich einzigartig ist, habe ich mich natürlich von anderen Autoren und deren Werken inspirieren lassen. Einige davon möchte ich euch hier vorstellen.
 
@@ -36,7 +94,7 @@ Auch wenn dieses Buch für sich einzigartig ist, habe ich mich natürlich von an
 
 ## Tipps für die Lektüre
 
-Weil es in diesem Buch viel ums Programmieren geht, findet ihr viele Codeblöcke und Code-Snippets. Als Einstiegssprache verwenden wir Python. Warum ausgerechnet Python? Das erfahrt ihr später.
+Weil es in diesem Buch viel ums Programmieren geht, findet ihr viele Codeblöcke und Code-Snippets. Als Einstiegssprache verwenden wir Python. Warum ausgerechnet Python? Weil Python zum einen in der Praxis sehr beliebt und wei verbreitet ist. Zum anderen ist Python eine der am einfachsten zu erlernenden Programmiersprachen. Die Syntax ist klar und übersichtlich, und es gibt viele Ressourcen und Bibliotheken, die den Einstieg erleichtern.
 
 Codeblöcke sind deutlich vom übrigen Text abgehoben, grau hinterlegt und in einer Schreibmaschinenschrift dargestellt, etwa Courier New oder Consolas. Hier ein kleines Beispiel:
 
@@ -61,4 +119,4 @@ Weil wir in jedem Kapitel ein Programm Schritt für Schritt entwickeln und es da
 
 Noch ein Tipp: Wenn ihr mit der Maus über einen Codeblock fahrt, erscheint rechts oben ein Clipboard-Symbol. Ein Klick darauf kopiert den Code direkt in eure Zwischenablage, und ihr könnt ihn anschließend in euer geöffnetes Visual Studio Code oder eine andere IDE einfügen und ausprobieren. In der Online-Version lassen sich manche Codeblöcke einklappen, damit ihr weniger scrollen müsst.
 
-Alles klar? Dann schauen wir uns an, was uns in diesem Buch erwartet!
+Alles klar? Dann machen wir uns startklar für die Experimente! Dazu müssen wir ein paar Dinge auf unserem Rechner installieren.

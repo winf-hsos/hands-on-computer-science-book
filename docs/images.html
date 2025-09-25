@@ -85,7 +85,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./sound.html" rel="next">
+<link href="./glossary.html" rel="next">
 <link href="./text.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -230,9 +230,6 @@ div.csl-indent {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Hands-On Computer Science</a> 
-        <div class="sidebar-tools-main">
-    <a href="./Hands-On-Computer-Science-Book.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
-</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -250,14 +247,8 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./experiments.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Experimente</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./prerequisites.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Voraussetzungen</span></a>
+  <a href="./preparation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vorbereitung</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -286,12 +277,6 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./sound.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ton</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./glossary.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Glossar</span></a>
   </div>
@@ -312,22 +297,26 @@ div.csl-indent {
     <h2 id="toc-title">Inhaltsverzeichnis</h2>
    
   <ul>
-  <li><a href="#zusammenfassung" id="toc-zusammenfassung" class="nav-link active" data-scroll-target="#zusammenfassung">Zusammenfassung</a></li>
-  <li><a href="#experimentaufbau" id="toc-experimentaufbau" class="nav-link" data-scroll-target="#experimentaufbau">Experimentaufbau</a>
+  <li><a href="#zusammenfassung" id="toc-zusammenfassung" class="nav-link active" data-scroll-target="#zusammenfassung">Zusammenfassung</a>
   <ul class="collapse">
-  <li><a href="#hardware" id="toc-hardware" class="nav-link" data-scroll-target="#hardware">Hardware</a></li>
-  <li><a href="#erste-schritte-mit-dem-display" id="toc-erste-schritte-mit-dem-display" class="nav-link" data-scroll-target="#erste-schritte-mit-dem-display">Erste Schritte mit dem Display</a></li>
+  <li><a href="#schritte-zum-ziel" id="toc-schritte-zum-ziel" class="nav-link" data-scroll-target="#schritte-zum-ziel">Schritte zum Ziel</a></li>
+  <li><a href="#begriffe-und-konzepte" id="toc-begriffe-und-konzepte" class="nav-link" data-scroll-target="#begriffe-und-konzepte">Begriffe und Konzepte</a></li>
   </ul></li>
-  <li><a href="#sec-images-pixels" id="toc-sec-images-pixels" class="nav-link" data-scroll-target="#sec-images-pixels"><span class="header-section-number">4.1</span> Pixel</a></li>
-  <li><a href="#sec-images-bitmaps" id="toc-sec-images-bitmaps" class="nav-link" data-scroll-target="#sec-images-bitmaps"><span class="header-section-number">4.2</span> Bitmaps</a></li>
-  <li><a href="#sec-images-letters" id="toc-sec-images-letters" class="nav-link" data-scroll-target="#sec-images-letters"><span class="header-section-number">4.3</span> Buchstaben</a></li>
-  <li><a href="#sec-images-vector-graphics" id="toc-sec-images-vector-graphics" class="nav-link" data-scroll-target="#sec-images-vector-graphics"><span class="header-section-number">4.4</span> Vektorgrafiken</a></li>
-  <li><a href="#sec-images-icons" id="toc-sec-images-icons" class="nav-link" data-scroll-target="#sec-images-icons"><span class="header-section-number">4.5</span> Icons</a></li>
-  <li><a href="#sec-images-compressed" id="toc-sec-images-compressed" class="nav-link" data-scroll-target="#sec-images-compressed"><span class="header-section-number">4.6</span> Komprimierte Bilder</a></li>
-  <li><a href="#nibbles" id="toc-nibbles" class="nav-link" data-scroll-target="#nibbles"><span class="header-section-number">4.7</span> Nibbles</a>
+  <li><a href="#-sec-images-experiment-setup" id="toc--sec-images-experiment-setup" class="nav-link" data-scroll-target="#-sec-images-experiment-setup"><span class="header-section-number">4.1</span> Experimentaufbau</a>
   <ul class="collapse">
-  <li><a href="#sec-images-animations" id="toc-sec-images-animations" class="nav-link" data-scroll-target="#sec-images-animations"><span class="header-section-number">4.7.1</span> Animationen</a></li>
-  <li><a href="#sec-images-object-oriented" id="toc-sec-images-object-oriented" class="nav-link" data-scroll-target="#sec-images-object-oriented"><span class="header-section-number">4.7.2</span> Objekte und Klassen</a></li>
+  <li><a href="#hardware" id="toc-hardware" class="nav-link" data-scroll-target="#hardware"><span class="header-section-number">4.1.1</span> Hardware</a></li>
+  <li><a href="#erste-schritte-mit-dem-display" id="toc-erste-schritte-mit-dem-display" class="nav-link" data-scroll-target="#erste-schritte-mit-dem-display"><span class="header-section-number">4.1.2</span> Erste Schritte mit dem Display</a></li>
+  </ul></li>
+  <li><a href="#sec-images-pixels" id="toc-sec-images-pixels" class="nav-link" data-scroll-target="#sec-images-pixels"><span class="header-section-number">4.2</span> Pixel</a></li>
+  <li><a href="#sec-images-bitmaps" id="toc-sec-images-bitmaps" class="nav-link" data-scroll-target="#sec-images-bitmaps"><span class="header-section-number">4.3</span> Bitmaps</a></li>
+  <li><a href="#sec-images-letters" id="toc-sec-images-letters" class="nav-link" data-scroll-target="#sec-images-letters"><span class="header-section-number">4.4</span> Buchstaben</a></li>
+  <li><a href="#sec-images-vector-graphics" id="toc-sec-images-vector-graphics" class="nav-link" data-scroll-target="#sec-images-vector-graphics"><span class="header-section-number">4.5</span> Vektorgrafiken</a></li>
+  <li><a href="#sec-images-icons" id="toc-sec-images-icons" class="nav-link" data-scroll-target="#sec-images-icons"><span class="header-section-number">4.6</span> Icons</a></li>
+  <li><a href="#sec-images-compressed" id="toc-sec-images-compressed" class="nav-link" data-scroll-target="#sec-images-compressed"><span class="header-section-number">4.7</span> Komprimierte Bilder</a></li>
+  <li><a href="#sec-images-nibbles" id="toc-sec-images-nibbles" class="nav-link" data-scroll-target="#sec-images-nibbles"><span class="header-section-number">4.8</span> Nibbles</a>
+  <ul class="collapse">
+  <li><a href="#sec-images-animations" id="toc-sec-images-animations" class="nav-link" data-scroll-target="#sec-images-animations"><span class="header-section-number">4.8.1</span> Animationen</a></li>
+  <li><a href="#sec-images-object-oriented" id="toc-sec-images-object-oriented" class="nav-link" data-scroll-target="#sec-images-object-oriented"><span class="header-section-number">4.8.2</span> Objekte und Klassen</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -354,15 +343,101 @@ div.csl-indent {
 </header>
 
 
-<section id="zusammenfassung" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="zusammenfassung">Zusammenfassung</h2>
-<p>Unsere wichtigsten Lernziele in diesem Kapitel sind:</p>
-<p>…</p>
+<section id="zusammenfassung" class="level2 unnumbered collapsable">
+<h2 class="unnumbered collapsable anchored" data-anchor-id="zusammenfassung">Zusammenfassung</h2>
+<details class="collapsable-section" open=""><summary></summary>
+<p>Im vierten Kapitel…</p>
+<section id="schritte-zum-ziel" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="schritte-zum-ziel">Schritte zum Ziel</h3>
+<p>Der Weg dahin führt über folgende Schritte:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 2%">
+<col style="width: 75%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Was?</th>
+<th>Wo?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Wir machen uns mit dem Display vertraut.</td>
+<td><span class="quarto-unresolved-ref">?sec-images-experiment-setup</span></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Wir lernen das Pixel kennen und schalten sie im Display an und aus.</td>
+<td><a href="#sec-images-pixels" class="quarto-xref"><span>Abschnitt 4.2</span></a></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Wir führen die Bitmap als eine Sammlung von Pixelwerten ein.</td>
+<td><a href="#sec-images-bitmaps" class="quarto-xref"><span>Abschnitt 4.3</span></a></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Wir lernen, wie man Buchstaben mit Pixeln darstellen kann.</td>
+<td><a href="#sec-images-letters" class="quarto-xref"><span>Abschnitt 4.4</span></a></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Wir lernen Vektorgrafiken kennen.</td>
+<td><a href="#sec-images-vector-graphics" class="quarto-xref"><span>Abschnitt 4.5</span></a></td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Wir führen Icons als Form einer Bitmap ein.</td>
+<td><a href="#sec-images-icons" class="quarto-xref"><span>Abschnitt 4.6</span></a></td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Wir fragen uns, ob wir Bilder auch komprimieren können.</td>
+<td><a href="#sec-images-compressed" class="quarto-xref"><span>Abschnitt 4.7</span></a></td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>Wir programmieren ein kleines DOS-Spiel namens Nibbles.</td>
+<td><a href="#sec-images-nibbles" class="quarto-xref"><span>Abschnitt 4.8</span></a></td>
+</tr>
+</tbody>
+</table>
 </section>
-<section id="experimentaufbau" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="experimentaufbau">Experimentaufbau</h2>
-<section id="hardware" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="hardware">Hardware</h3>
+<section id="begriffe-und-konzepte" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="begriffe-und-konzepte">Begriffe und Konzepte</h3>
+<p>Dabei lernen wir neue Begriffe und Konzepte kennen.</p>
+<!-- CHAPTER_GLOSSARY_START -->
+<div class="datatable-nosearch" data-order="[[2,&quot;asc&quot;]]">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Begriff</th>
+<th>Kategorie</th>
+<th>Wo?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Pixel</strong></td>
+<td>Repräsentation von Bildern</td>
+<td><a href="#sec-images-pixels" class="quarto-xref"><span>Abschnitt 4.2</span></a></td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- CHAPTER_GLOSSARY_END -->
+</section></details>
+</section>
+
+<section id="-sec-images-experiment-setup" class="level2 collapsable" data-number="4.1">
+<h2 class="collapsable anchored" data-number="4.1" data-anchor-id="-sec-images-experiment-setup"><span class="header-section-number">4.1</span> Experimentaufbau</h2>
+<details class="collapsable-section" open=""><summary></summary>
+<section id="hardware" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="hardware"><span class="header-section-number">4.1.1</span> Hardware</h3>
 <p>In den Experimenten dieses Kapitels verwenden wir ein einfaches Display, das wir an unseren Master Brick anschließen. Das Display kann einzelne Pixel weiß aufleuchten lassen und damit einfache Bilder und auch Texte darstellen. Insgesamt stehen uns 128 x 64 Pixel zur Verfügung, also 8192 einzelne Bildpunkte. Damit können wir arbeiten.</p>
 <p>Die vollständige Hardwareliste für dieses Kapitel sieht so aus:</p>
 <ul>
@@ -373,8 +448,8 @@ div.csl-indent {
 <li>2 x <a href="https://www.tinkerforge.com/de/shop/accessories/cable/bricklet-cable-15cm-7p-7p.html">Brickletkabel 15cm (7p-7p)</a></li>
 </ul>
 </section>
-<section id="erste-schritte-mit-dem-display" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="erste-schritte-mit-dem-display">Erste Schritte mit dem Display</h3>
+<section id="erste-schritte-mit-dem-display" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="erste-schritte-mit-dem-display"><span class="header-section-number">4.1.2</span> Erste Schritte mit dem Display</h3>
 <p>Wie immer geht es zuerst in den Brick Viewer. Verbindet euch mit dem Master Brick und ihr solltet die angeschlossenen Geräte sehen können. Den Infrarotsensor kennen wir bereits aus dem letzten Kapitel. Wir konzentrieren uns deshalb auf das neue Display, das ihr im Tab “OLED 128x64 Bricklet 2.0” findet.</p>
 <p>Die Oberfläche für das Display seht ihr in <a href="#fig-images-brick-viewer-oled-display" class="quarto-xref">Abbildung&nbsp;<span>4.1</span></a>. Im Wesentlichen kann das Display drei Dinge:</p>
 <ol type="1">
@@ -465,12 +540,14 @@ Abbildung&nbsp;4.3: Gezeichneter vs.&nbsp;getippter Text auf dem Display.
 </figcaption>
 </figure>
 </div>
+</section></details>
 </section>
-</section>
-<section id="sec-images-pixels" class="level2" data-number="4.1">
-<h2 data-number="4.1" class="anchored" data-anchor-id="sec-images-pixels"><span class="header-section-number">4.1</span> Pixel</h2>
+
+<section id="sec-images-pixels" class="level2 collapsable" data-number="4.2">
+<h2 class="collapsable anchored" data-number="4.2" data-anchor-id="sec-images-pixels"><span class="header-section-number">4.2</span> Pixel</h2>
+<details class="collapsable-section" open=""><summary></summary>
 <p>Nachdem wir das Display im Brick Viewer ausprobiert haben, wollen wir uns die Funktionen auch in Python anschauen. Dazu stellen wir wie immer die Verbindung her und erzeugen eine Instanz des Display-Objekts:</p>
-<div id="97fa78e2" class="cell" data-execution_count="1">
+<div id="abbfd0e1" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
 <span id="annotated-cell-1-2"><a href="#annotated-cell-1-2"></a><span class="im">from</span> tinkerforge.bricklet_oled_128x64_v2 <span class="im">import</span> BrickletOLED128x64V2</span>
 <span id="annotated-cell-1-3"><a href="#annotated-cell-1-3"></a></span>
@@ -495,23 +572,25 @@ Abbildung&nbsp;4.3: Gezeichneter vs.&nbsp;getippter Text auf dem Display.
 <p>Das Wort <a href="glossary.html#gl-pixel" title="Pixel"><span class="gloss-term">Pixel</span></a> wird vom englischen “picture element” abgeleitet, also Bildelement. Ein Pixel ist der kleinste darstellbare Punkt auf einem Display. In unserem Fall kann ein Pixel entweder schwarz oder weiß sein. Auf anderen Bildschirmen, wie dem eures Smartphones oder Fernsehers, können Pixel auch farbig sein. Das schauen wir uns später noch genauer an. In diesem Kapitel konzentrieren wir uns auf die einfache schwarzweiße Darstellung. Außerdem kann unser Display nur Schwarzweiß.</p>
 <p>Das Display, das wir verwenden, hat eine Auflösung von 128 x 64 Pixeln. Das bedeutet, dass es 128 Pixel in der Breite und 64 Pixel in der Höhe hat. Insgesamt ergibt das 8192 einzelne Pixel, die wir ansteuern können.</p>
 <p>Beginnen wir, indem wir das Pixel in der linken oberen Ecke des Displays einschalten. Die Koordinaten für dieses Pixel sind (0, 0), wobei die erste Zahl die x-Koordinate (horizontal) und die zweite Zahl die y-Koordinate (vertikal) ist. Um dieses Pixel einzuschalten, verwenden wir die Funktion <code>write_pixels()</code>, die wie folgt aussieht:</p>
-<div id="245f06d0" class="cell" data-execution_count="2">
+<div id="0f00800b" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, [<span class="dv">1</span>])</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Die ersten vier Argumente definieren zwei Punkte auf dem Display, die eine rechteckige Fläche beschreiben. Die ersten beiden Argumente sind die x- und y-Koordinaten des oberen linken Punkts, die zweiten beiden Argumente sind die x- und y-Koordinaten des unteren rechten Punkts. Diese Eckpunkte sind inklusive, das heißt, die Breite ergibt sich aus <code>x_end - x_start + 1</code> und die Höhe aus <code>y_end - y_start + 1</code>. In unserem Fall sind beide Punkte (0, 0), wir sprechen also genau ein Pixel an. Der letzte Parameter ist eine Liste von Werten, die angibt, ob die Pixel in der definierten Fläche ein- oder ausgeschaltet werden sollen. Ein Wert von 1 bedeutet weiß, 0 bedeutet schwarz. Da wir nur ein Pixel ansprechen, enthält die Liste nur einen Wert: <code>[1]</code>.</p>
 <p>Eine Liste wird in Python mit eckigen Klammern <code>[]</code> definiert. Innerhalb der Klammern können beliebig viele Werte durch Kommas getrennt angegeben werden. In unserem Fall haben wir nur einen Wert, nämlich 1, um das einzelne Pixel einzuschalten.</p>
 <p>Genauso können wir das Pixel wieder ausschalten, indem wir den Wert in der Liste auf 0 ändern. Sobald ihr Enter drückt, sollte das Pixel in der linken oberen Ecke wieder ausgehen:</p>
-<div id="d16b58e8" class="cell" data-execution_count="3">
+<div id="f8c3a858" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, [<span class="dv">1</span>])</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">input</span>(<span class="st">"Drücke Enter um das Pixel auszuschalten..."</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, [<span class="dv">0</span>])</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Einzelne Pixel lassen sich auf die oben gezeigte Weise an- und ausschalten. Aber was ist, wenn wir mehrere Pixel gleichzeitig ansteuern wollen? Zum Beispiel ein kleines Quadrat in der Mitte des Displays. Dafür müssen wir die Koordinaten der beiden Punkte anpassen, die die rechteckige Fläche definieren, und eine Liste mit den entsprechenden Werten für alle Pixel in dieser Fläche erstellen. Wir sprechen hier von einer Bitmap, also einer Matrix von Pixelwerten, die zusammen ein Bild ergeben.</p>
+</details>
 </section>
-<section id="sec-images-bitmaps" class="level2" data-number="4.2">
-<h2 data-number="4.2" class="anchored" data-anchor-id="sec-images-bitmaps"><span class="header-section-number">4.2</span> Bitmaps</h2>
+<section id="sec-images-bitmaps" class="level2 collapsable" data-number="4.3">
+<h2 class="collapsable anchored" data-number="4.3" data-anchor-id="sec-images-bitmaps"><span class="header-section-number">4.3</span> Bitmaps</h2>
+<details class="collapsable-section" open=""><summary></summary>
 <p>Sagen wir, wir wollen ein 4x4 großes Quadrat in der Mitte des Displays zeichnen. Dazu müssen wir zuerst berechnen, wo die Mitte des Displays ist. Da das Display 128 Pixel breit und 64 Pixel hoch ist, liegt die Mitte bei (64, 32). Weil wir bei 0 beginnen zu zählen, korrigieren wir auf (63, 31). Um ein 4x4-Quadrat zu zeichnen, setzen wir die Koordinaten des oberen linken Punkts auf (61, 29) und die Koordinaten des unteren rechten Punkts auf (64, 32). Die Liste der Werte für die Pixel in dieser Fläche muss 16 Werte enthalten, alle auf 1 gesetzt, um das Quadrat einzuschalten.</p>
-<div id="d57b32ec" class="cell" data-execution_count="4">
+<div id="85f66ff8" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">61</span>, <span class="dv">29</span>, <span class="dv">64</span>, <span class="dv">32</span>, [<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>])</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Genau genommen ist die Liste keine verschachtelte Struktur, sie wird aber als 4x4-Matrix interpretiert. Die Bitmap sieht also so aus:</p>
@@ -520,7 +599,7 @@ Abbildung&nbsp;4.3: Gezeichneter vs.&nbsp;getippter Text auf dem Display.
 1 1 1 1
 1 1 1 1</code></pre>
 <p>Was ist, wenn wir das Quadrat auf 5x5 vergrößern wollen? Dann ändern wir den unteren rechten Punkt auf (65, 33) oder alternativ den oberen linken Punkt auf (60, 28). Die Liste der Werte erweitern wir auf 25 Einträge:</p>
-<div id="e54ad61c" class="cell" data-execution_count="5">
+<div id="c4de1975" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">61</span>, <span class="dv">29</span>, <span class="dv">65</span>, <span class="dv">33</span>, [<span class="dv">1</span>]<span class="op">*</span><span class="dv">25</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Die Python-Syntax <code>[1]*25</code> erzeugt eine Liste mit 25 Einsen. Das ist eine praktische Abkürzung, um lange Listen mit gleichen Werten zu erstellen.</p>
@@ -543,9 +622,11 @@ Abbildung&nbsp;4.4: Der rote Bereich wird durch die ersten vier Argumente der Fu
 </figure>
 </div>
 <p>Wenn wir Kreuze als Bitmaps darstellen können, wie sieht es dann mit anderen Symbolen aus?</p>
+</details>
 </section>
-<section id="sec-images-letters" class="level2" data-number="4.3">
-<h2 data-number="4.3" class="anchored" data-anchor-id="sec-images-letters"><span class="header-section-number">4.3</span> Buchstaben</h2>
+<section id="sec-images-letters" class="level2 collapsable" data-number="4.4">
+<h2 class="collapsable anchored" data-number="4.4" data-anchor-id="sec-images-letters"><span class="header-section-number">4.4</span> Buchstaben</h2>
+<details class="collapsable-section" open=""><summary></summary>
 <p>Auch Buchstaben auf dem Bildschirm sind nichts anderes als Pixelmuster. Wie bereits erwähnt, ist ein Buchstabe 5 Pixel breit und 8 Pixel hoch. Das bedeutet, dass wir für jeden Buchstaben eine Bitmap mit 40 Werten benötigen. Tinkerforge, der Hersteller des Displays, stellt eine Übersicht der unterstützten Zeichen und deren Pixelmuster auf <a href="https://www.tinkerforge.com/en/doc/Hardware/Bricklets/OLED_128x64_V2.html#font">seiner Webseite</a> bereit. Daraus habe ich den Buchstaben “A” als Bitmap in ein einfaches Spreadsheet übertragen und Pixel, die an sind, schwarz eingefärbt. Das Ergebnis seht ihr in <a href="#fig-images-bitmap-letter-a-spreadsheet" class="quarto-xref">Abbildung&nbsp;<span>4.5</span></a>.</p>
 <div id="fig-images-bitmap-letter-a-spreadsheet" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
@@ -558,7 +639,7 @@ Abbildung&nbsp;4.5: Der Buchstabe “A” als Bitmap in einem Spreadsheet.
 </figure>
 </div>
 <p>Anhand dieser Darstellung können wir die Werte für die Liste mit Einsen und Nullen ableiten, die wir benötigen, um den Buchstaben “A” auf dem Display darzustellen. Die Liste sieht so aus:</p>
-<div id="a8f598ee" class="cell" data-execution_count="6">
+<div id="0fc26cfd" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>letter_a_bitmap <span class="op">=</span> [</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>,</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>,</span>
@@ -572,36 +653,38 @@ Abbildung&nbsp;4.5: Der Buchstabe “A” als Bitmap in einem Spreadsheet.
 </div>
 <p>Wer gute Augen hat, erkennt in der Matrix den Buchstaben “A” sofort. Welcher Buchstabe verbirgt sich in der folgenden Bitmap?</p>
 <p>Zeichnen wir den Buchstaben auf dem Display, um es herauszufinden. Wir kennen die Dimensionen (5x8 Pixel), haben die Bitmap und müssen nur noch die Position bestimmen, an der der Buchstabe gezeichnet werden soll. Ich habe mich für die Position (6, 10) als oberen linken Punkt entschieden:</p>
-<div id="ac9b4ed8" class="cell" data-execution_count="8">
+<div id="6c9135a6" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">6</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">17</span>, letter_unknown_bitmap)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Und? Seht ihr auch ein großes “S”? Versuchen wir, davor noch das “A” zu schreiben:</p>
-<div id="0b3b2e41" class="cell" data-execution_count="9">
+<div id="ef927c97" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">17</span>, letter_a_bitmap)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Wir haben richtig gerechnet: Das “A” soll vor dem “S” stehen, also müssen wir mit der x-Koordinate 5 Pixel nach links gehen. Die y-Koordinate bleibt gleich, weil beide Buchstaben auf der gleichen Höhe stehen sollen. Lasst uns noch ein Pixel Platz zwischen beiden Buchstaben lassen. Das bedeutet, dass wir die x-Koordinate des “A” um 1 Pixel weiter nach links setzen, also auf 0. Die x-Koordinate des rechten unteren Punkts des “A” wird dann 4. Der Code für das “A” sieht dann so aus:</p>
-<div id="cdd430ff" class="cell" data-execution_count="10">
+<div id="0874e090" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">4</span>, <span class="dv">17</span>, letter_a_bitmap)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Und nun noch ein “S” ans Ende, damit wir ein sinnvolles Wort geschrieben haben:</p>
-<div id="7fb9a52a" class="cell" data-execution_count="11">
+<div id="231583cd" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">4</span>, <span class="dv">17</span>, letter_a_bitmap)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">6</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">17</span>, letter_unknown_bitmap)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">12</span>, <span class="dv">10</span>, <span class="dv">16</span>, <span class="dv">17</span>, letter_unknown_bitmap)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Sucht euch aus, ob ihr nun eine Spielkarte, den Namen eines Schmerzmittels oder das englischsprachige Wort für Ar*** geschrieben habt. In jedem Fall sind es drei Buchstaben, die wir mit Bitmaps auf dem Display dargestellt haben. Und das ganz ohne die Textfunktion des Displays zu verwenden.</p>
 <p>Das wäre übrigens auch gegangen, wäre aber nicht so lehrreich gewesen:</p>
-<div id="43a371d9" class="cell" data-execution_count="12">
+<div id="0d543147" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>oled.write_line(<span class="dv">0</span>, <span class="dv">0</span>, <span class="st">"Ass"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Wenn ihr beides hintereinander ausführt, steht oben “Ass” per Textfunktion und darunter “ASS” als eigene Bitmaps. Das Schöne an der <code>write_line()</code>-Funktion ist, dass sie automatisch die richtigen Bitmaps für die Buchstaben verwendet. Das Display hat eine eingebaute Schriftart, die es nutzt, wenn wir Text anzeigen wollen. Aber wie ihr gesehen habt, können wir auch eigene Bitmaps verwenden, um Buchstaben oder andere Symbole zu zeichnen, die nicht im Zeichensatz des Displays enthalten sind.</p>
 <p>[WRITE A PARAGRAPH ABOUT FONTS AND HOW THEY ARE JUST COLLECTIONS OF BITMAPS, USE EXAMPLE. SMOOTH TRANSITION TO NEXT SECTION ON VECTOR GRAPHICS.] Schriftarten für Pixel-Displays sind im Kern nichts anderes als Sammlungen von Bitmaps: Für jedes Zeichen wird festgelegt, welche Pixel im 5x8-Raster leuchten. Unser “A” oben ist genau so definiert, und das OLED-Bricklet bringt eine solche Tabelle für viele Zeichen bereits mit. Wenn ihr eine andere Schrift wollt, erstellt ihr einfach eine neue Bitmap-Tabelle, etwa eine fette oder eine schmale Variante, und verwendet diese beim Zeichnen. Das funktioniert hervorragend in festen Rastergrößen, stößt aber an Grenzen, sobald ihr Größen ändern oder sehr glatte Kanten haben wollt. Hier kommen Vektorgrafiken ins Spiel, die Formen nicht als Pixelraster, sondern als Linien und Kurven beschreiben.</p>
+</details>
 </section>
-<section id="sec-images-vector-graphics" class="level2" data-number="4.4">
-<h2 data-number="4.4" class="anchored" data-anchor-id="sec-images-vector-graphics"><span class="header-section-number">4.4</span> Vektorgrafiken</h2>
+<section id="sec-images-vector-graphics" class="level2 collapsable" data-number="4.5">
+<h2 class="collapsable anchored" data-number="4.5" data-anchor-id="sec-images-vector-graphics"><span class="header-section-number">4.5</span> Vektorgrafiken</h2>
+<details class="collapsable-section" open=""><summary></summary>
 <p>Während Bitmaps jedes Pixel explizit speichern, beschreiben Vektorgrafiken Objekte mathematisch, etwa “eine Linie von A nach B” oder “ein Kreis mit Mittelpunkt M und Radius r”. Eine Vektor-Schriftart (z. B. TrueType) enthält keine 5x8-Raster pro Zeichen, sondern Pfade für die Konturen von “A”, “S” und Co.&nbsp;Der Vorteil: Diese Formen lassen sich beliebig vergrößern oder verkleinern, ohne dass Treppeneffekte entstehen. Das ist ideal für hochauflösende Displays und Druck. Auf unserem kleinen OLED-Display arbeiten wir dennoch mit Bitmaps, weil sie direkt den Pixeln entsprechen und ohne aufwendiges Rasterisieren angezeigt werden können.</p>
 <p>Schauen wir uns ein Beispiel an. Angenommen, wir wollen ein einfaches Haus zeichnen. In einer Vektorgrafik würden wir das Haus als Rechteck für die Wände und ein Dreieck für das Dach beschreiben. In Python könnten wir das so machen:</p>
-<div id="ea6d6a31" class="cell" data-execution_count="13">
+<div id="0bc0f658" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> draw_house(oled, x, y, scale<span class="op">=</span><span class="dv">1</span>):</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    width <span class="op">=</span> <span class="bu">round</span>(<span class="dv">15</span> <span class="op">*</span> scale)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    height <span class="op">=</span> <span class="bu">round</span>(<span class="dv">15</span> <span class="op">*</span> scale)</span>
@@ -614,9 +697,11 @@ Abbildung&nbsp;4.5: Der Buchstabe “A” als Bitmap in einem Spreadsheet.
 </div>
 <p>In diesem Beispiel definiert die Funktion <code>draw_house()</code> das Haus als Kombination von Rechteck (Wände) und Dreieck (Dach). Die Vektorbeschreibung wird in Pixel umgesetzt, indem wir die entsprechenden Bereiche mit <code>write_pixels()</code> füllen. Das Ergebnis ist ein einfaches Haus auf dem Display, das durch die Vektorbeschreibung flexibel skaliert werden könnte.</p>
 <p>Wir können das Haus nämlich ganz einfach größer oder kleiner zeichnen, indem wir die Parameter <code>width</code> und <code>height</code> anpassen. Das ist der große Vorteil von Vektorgrafiken: Sie sind skalierbar und behalten ihre Form, egal wie groß oder klein sie dargestellt werden.</p>
+</details>
 </section>
-<section id="sec-images-icons" class="level2" data-number="4.5">
-<h2 data-number="4.5" class="anchored" data-anchor-id="sec-images-icons"><span class="header-section-number">4.5</span> Icons</h2>
+<section id="sec-images-icons" class="level2 collapsable" data-number="4.6">
+<h2 class="collapsable anchored" data-number="4.6" data-anchor-id="sec-images-icons"><span class="header-section-number">4.6</span> Icons</h2>
+<details class="collapsable-section" open=""><summary></summary>
 <div id="fig-images-bitmap-r2d2" class="quarto-float quarto-figure quarto-figure-center anchored" width="50%">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-images-bitmap-r2d2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -637,7 +722,7 @@ Abbildung&nbsp;4.7
 </figcaption>
 </figure>
 </div>
-<div id="d427ea8c" class="cell" data-execution_count="14">
+<div id="2ff424d9" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="im">from</span> openpyxl <span class="im">import</span> load_workbook</span>
 <span id="cb15-2"><a href="#cb15-2"></a></span>
 <span id="cb15-3"><a href="#cb15-3"></a>workbook <span class="op">=</span> load_workbook(<span class="st">"pixel_art.xlsx"</span>)</span>
@@ -651,33 +736,41 @@ Abbildung&nbsp;4.7
 <span id="cb15-11"><a href="#cb15-11"></a></span>
 <span id="cb15-12"><a href="#cb15-12"></a><span class="bu">print</span>(arr)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</details>
 </section>
-<section id="sec-images-compressed" class="level2" data-number="4.6">
-<h2 data-number="4.6" class="anchored" data-anchor-id="sec-images-compressed"><span class="header-section-number">4.6</span> Komprimierte Bilder</h2>
+<section id="sec-images-compressed" class="level2 collapsable" data-number="4.7">
+<h2 class="collapsable anchored" data-number="4.7" data-anchor-id="sec-images-compressed"><span class="header-section-number">4.7</span> Komprimierte Bilder</h2>
+<details class="collapsable-section" open=""><summary></summary>
 <p>Bitmaps speichern für jedes Pixel einen Wert. Das ist einfach, kann aber viel Speicher benötigen. Deshalb werden Bitmaps häufig komprimiert. Ein klassisches Verfahren ist Run-Length Encoding (RLE). Dabei werden Folgen identischer Pixel durch “Wert + Länge” ersetzt. Aus <code>0,0,0,0,1,1,0,0</code> wird zum Beispiel <code>(0x4),(1x2),(0x2)</code>. Besonders bei großen einfarbigen Flächen spart das deutlich Speicher und Übertragungszeit. Für eingebettete Systeme wie unser Display ist das nützlich, weil weniger Daten übertragen und verarbeitet werden müssen. Vor der Anzeige wird die komprimierte Darstellung einfach wieder in die ursprüngliche Pixelsequenz entpackt.</p>
 <p>Das Extrembeispiel ist ein komplett schwarzes oder weißes Bild. Statt 8192 Nullen oder Einsen zu speichern, reicht ein Eintrag: <code>(0x8192)</code> oder <code>(1x8192)</code>. Das spart enorm viel Platz.</p>
+</details>
 </section>
-<section id="nibbles" class="level2" data-number="4.7">
-<h2 data-number="4.7" class="anchored" data-anchor-id="nibbles"><span class="header-section-number">4.7</span> Nibbles</h2>
+<section id="sec-images-nibbles" class="level2 collapsable" data-number="4.8">
+<h2 class="collapsable anchored" data-number="4.8" data-anchor-id="sec-images-nibbles"><span class="header-section-number">4.8</span> Nibbles</h2>
+<details class="collapsable-section" open=""><summary></summary>
 <p>Zum Abschluss des Kapitels wollen wir noch zwei Aspekte betrachten, die wir bei der Entwicklung eines kleinen Spiels kennenlernen wollen: Animationen und Objektorientierung.</p>
 <p>Das Spiel <em>Nibbles</em> wurde 1991 als Spiel für das Betriebssystem Microsoft DOS veröffentlicht und kostenlos bereitgestellt. Es wurde in der Programmiersprache QBasic geschrieben, in der auch ich das Programmieren zuerst gelernt habe. Die Spielidee wurde später im Spiel <em>Snake</em> weiterverwendet, das auf vielen Handys, besonders von Nokia, vorinstalliert war. In beiden Spielen bewegt ihr eine Schlange über den Bildschirm, die immer länger wird, je mehr sie frisst. Ziel ist es, die Schlange so zu steuern, dass sie nicht mit sich selbst oder den Bildschirmrändern kollidiert.</p>
 <p>Damit wir Nibbles auf umserem kleinen OLED umsetzen können - übrigens hatten die ersten Nokia-Mobiltelefone Displays mit kleinerer Auflösung - müssen wir uns zunächst überlegen, wie wir Dinge wie eine Schlange auf dem Bildschirm bewegen oder animieren können. Der Begriff <em>animieren</em> kommt aus dem Lateinischen und bedeutet so viel wie “beleben” oder “zum Leben erwecken”. Das klingt gut!</p>
-<section id="sec-images-animations" class="level3" data-number="4.7.1">
-<h3 data-number="4.7.1" class="anchored" data-anchor-id="sec-images-animations"><span class="header-section-number">4.7.1</span> Animationen</h3>
+<section id="sec-images-animations" class="level3" data-number="4.8.1">
+<h3 data-number="4.8.1" class="anchored" data-anchor-id="sec-images-animations"><span class="header-section-number">4.8.1</span> Animationen</h3>
 <p>Animationen sind im Grunde nichts anderes als eine schnelle Abfolge von Bildern, die nacheinander angezeigt werden. Wenn die Bilder schnell genug wechseln, entsteht der Eindruck von Bewegung. Das Prinzip ist ähnlich wie bei einem Daumenkino, wo eine Serie von Zeichnungen durch schnelles Blättern zum Leben erweckt wird.</p>
 <p>In unserem Fall können wir Animationen auf dem OLED-Display erstellen, indem wir mehrere Bitmaps vorbereiten, die verschiedene Zustände eines Objekts darstellen. Zum Beispiel könnten wir eine einfache Animation eines laufenden Roboters erstellen, indem wir verschiedene Positionen der Beine zeichnen und diese nacheinander anzeigen.</p>
 </section>
-<section id="sec-images-object-oriented" class="level3" data-number="4.7.2">
-<h3 data-number="4.7.2" class="anchored" data-anchor-id="sec-images-object-oriented"><span class="header-section-number">4.7.2</span> Objekte und Klassen</h3>
+<section id="sec-images-object-oriented" class="level3" data-number="4.8.2">
+<h3 data-number="4.8.2" class="anchored" data-anchor-id="sec-images-object-oriented"><span class="header-section-number">4.8.2</span> Objekte und Klassen</h3>
 <p>In <a href="colors.html" class="quarto-xref"><span>Kapitel 1</span></a> haben wir bereits kurz die Begriffe <em>Klasse</em> und <em>Objekt</em> eingeführt. Hier wollen wir das Konzept vertiefen, indem wir eine eigene Klasse für ein animiertes Objekt definieren. Eine Klasse ist wie ein Bauplan für ein Objekt, das bestimmte Eigenschaften (Attribute) und Fähigkeiten (Methoden) hat. Eine Klasse, die wir einmal definiert haben, können wir beliebig oft ins Leben rufen, indem wir Objekte dieser Klasse erstellen.</p>
 
 
+</section></details>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-adami_what_2016" class="csl-entry" role="listitem">
 Adami, Christoph. 2016. <span>„What is <span>Information</span>?“</span> <em>Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences</em> 374 (2063): 20150230. <a href="https://doi.org/10.1098/rsta.2015.0230">https://doi.org/10.1098/rsta.2015.0230</a>.
 </div>
 <div id="ref-brookshear_computer_2020" class="csl-entry" role="listitem">
 Brookshear, J. Glenn, und Dennis Brylow. 2020. <em>Computer science: an overview</em>. 13th edition, global edition. NY, NY: Pearson.
+</div>
+<div id="ref-gallenbacher_abenteuer_2020" class="csl-entry" role="listitem">
+Gallenbacher, Jens. 2020. <em>Abenteuer <span>Informatik</span>: <span>IT</span> zum <span>Anfassen</span> für alle von 9 bis 99, vom <span>Navi</span> bis <span>Social</span> <span>Media</span></em>. 4. Auflage, korrigierte Publikation. Berlin Heidelberg: Springer.
 </div>
 <div id="ref-petzold_code_2022" class="csl-entry" role="listitem">
 Petzold, Charles. 2022. <em>Code: the hidden language of computer hardware and software</em>. 2. Aufl. Hoboken: Microsoft Press.
@@ -690,7 +783,7 @@ Scott, John C. 2009. <em>But how do it know?: the basic principles of computers 
 </div>
 </div>
 </section>
-</section>
+
 
 </main> <!-- /main -->
 <script>
@@ -1160,8 +1253,8 @@ document.addEventListener("DOMContentLoaded", () => {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./sound.html" class="pagination-link" aria-label="Ton">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ton</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./glossary.html" class="pagination-link" aria-label="Glossar">
+        <span class="nav-page-text">Glossar</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -1,23 +1,42 @@
----
-abstract: |
-    Unser Regenbogen aus dem ersten Kapitel war nur der Anfang. Doch wie speichert der Computer eigentlich die RGB-Werte für all diese Farben? Das führt uns zum Binärsystem: Mit nur Einsen und Nullen, verpackt in kleinen Päckchen – den Bytes –, kann er jeden Farbton unseres Regenbogens abbilden. Und noch viel mehr.
-abstract-title: ""
----
-
 # Zahlen {#sec-numbers}
 
-## Zusammenfassung {.unnumbered}
+## Zusammenfassung {.unnumbered .collapsable}
 
-Unsere wichtigsten Lernziele in diesem Kapitel sind:
+Im zweiten Kapitel spendieren wir der LED aus @sec-numbers eine Dimmfunktion, die wir über einen Drehknopf steuern können.
 
--   Wir verstehen wie ein Computer Zahlen darstellt und speichert.
--   Wir führen das Bit als zentrale Informationseinheit im Computer ein.
--   Wir lernen Kontrollstrukturen kennen, mit denen wir unser Programm steuern können.
--   Wir fügen Funktionen zu unserem Werkzeugkasten hinzu, um besseren Code zu schreiben.
+### Schritte zum Ziel {.unnumbered}
 
-## Experimentaufbau {.unnumbered}
+Auf dem Weg dorthin gehen wir die folgenden Schritte.
 
-### Hardware {.unnumbered}
+| \# | Was? | Wo? |
+|--|-------------------------------------------------------|----------------|
+| 1 | Wir machen uns mit dem Drehknopf vertraut. | @sec-numbers-experiment-setup |
+| 2 | Wir lesen den Zählerstand des Drehknopfs aus einem Programm heraus aus. | @sec-numbers-read-counter |
+| 3 | Wir führen Kontrollstrukturen ein (`if`). | @sec-numbers-control-structures |
+| 4 | Wir erstellen eine erste Version eines Dimmers für die LED. | @sec-numbers-led-dimmer-1 |
+| 5 | Wir beschäftigen uns mit Zahlensystemen. | @sec-numbers-number-systems |
+| 6 | Wir lernen, was ein Bit und ein Byte ist. | @sec-numbers-bit-and-bytes |
+| 7 | Wir erweitern den LED-Dimmer zur Version 2. | @sec-numbers-led-dimmer-2 |
+| 8 | Wir setzen und mit den Druckknopf auseinander. | @sec-numbers-button-reading |
+| 9 | Wir bauen Version 3 des LED-Dimmers. | @sec-numbers-led-dimmer-3 |
+| 10 | Wir modularisieren unseren Code mit Funktionen. | @sec-numbers-functions |
+
+### Begriffe und Konzepte {.unnumbered}
+
+Dabei lernen wir neue Begriffe und Konzepte kennen.
+
+<!-- CHAPTER_GLOSSARY_START -->
+::: {.datatable-nosearch data-order='[[2,"asc"]]'}
+| Begriff | Kategorie | Wo? |
+|---|---|---|
+| **DRY-Prinzip** | Programmierung | @sec-numbers-led-dimmer-3 |
+| **Funktionen** | Programmierung | @sec-numbers-led-dimmer-3 |
+:::
+<!-- CHAPTER_GLOSSARY_END -->
+
+## Experimentaufbau {#sec-numbers-experiment-setup .collapsable}
+
+### Hardware
 
 Das erste Experiment in @sec-colors war ein guter Einstieg! In diesem Kapitel legen wir noch eine Schippe drauf: Unsere Hardware bekommt ein neues Bauteil – einen Drehknopf. Das montiert ihr einfach neben der LED, wie in @fig-setup-rgb-led-rotary-encoder gezeigt.
 
@@ -42,7 +61,7 @@ Die vollständige Hardwareliste für dieses Kapitel sieht so aus:
 Einfaches Setup mit einem Mikrocontroller, LED und einem Drehknopf.
 :::
 
-## Erste Schritte mit dem Drehknopf {#sec-numbers-first-steps}
+### Erste Schritte mit dem Drehknopf {#sec-numbers-first-steps}
 
 Wie bei der LED werfen wir zuerst einen Blick auf den neuen Drehknopf im Brick Viewer. Schließt dazu euren Master Brick per USB an, startet den Brick Viewer und klickt auf Connect. Im Setup-Tab sollte nun neben der LED auch der Rotary Encoder auftauchen. Denkt daran: Dort findet ihr auch die UID eurer Geräte – die braucht ihr gleich für euer Programm.
 
@@ -70,7 +89,7 @@ Fassen wir zusammen, was unser Drehknopf (Rotary Encoder) draufhat:
 
 Zeit also, das Ganze in Python auszuprobieren und zu sehen, welche coolen Anwendungen wir damit bauen können.
 
-## Zähler auslesen
+## Zähler auslesen {#sec-numbers-read-counter .collapsable}
 
 Der Drehknopf funktioniert ähnlich wie der Lautstärkeregler einer Stereoanlage (siehe @fig-hifi-system): Dreht ihr nach rechts, wird es lauter – nach links, leiser.
 
@@ -106,7 +125,7 @@ Zur Erinnerung: `while True` erzeugt eine Endlosschleife. Normalerweise wollen w
 
 Wenn ihr das Programm ausführt, werdet ihr direkt ein Problem erkennen. Die Schleife rennt förmlich und gibt nacheinander immer wieder denselben Wert aus. Nur wenn wir am Knopf drehen, ändert sich der Wert – wird aber von der Schleife x-mal auf die Konsole geschrieben. Wie könnten wir das verbessern?
 
-## Kontrollstrukturen {#sec-numbers-control-structures}
+## Kontrollstrukturen {#sec-numbers-control-structures .collapsable}
 
 Wie wäre es hiermit?
 
@@ -130,7 +149,7 @@ Neu ist hier die Kontrollstruktur `if`. Sie prüft eine Bedingung, die – wie i
 
 Übertragen auf unser Programm heißt das: `print(last_count)` läuft nur dann, wenn sich der Wert tatsächlich verändert hat. In diesem Fall merken wir uns den neuen Wert und aktualisieren `last_count`. Beim nächsten Schleifendurchlauf prüfen wir wieder, ob sich etwas getan hat. Meistens ist das nicht so – und genau deshalb sehen wir nur dann eine Ausgabe, wenn wir wirklich am Knopf drehen. Ziemlich effizient, oder?
 
-## LED-Dimmer 1.0
+## LED-Dimmer 1.0 {#sec-numbers-led-dimmer-1 .collapsable}
 
 Wenden wir das Gelernte an und bauen einen praktischen LED-Dimmer. Dafür holen wir unsere LED aus Kapitel 1 mit dazu und kombinieren sie mit dem Drehknopf.
 
@@ -200,7 +219,7 @@ Moment 🧐 – was hat jetzt das Byte mit 0 bis 255 zu tun? Bisher dachten wir 
 
 Um das zu verstehen, müssen wir das Binärsystem kennen. Also los!
 
-## Zahlensysteme
+## Zahlensysteme {#sec-numbers-number-systems .collapsable}
 
 Eigentlich ist es schnell erklärt. Das Binärsystem ist wie das Dezimalsystem, mit dem wir alltäglich unterwegs sind – nur nutzt es statt der Basis 10 die Basis 2. Einfach, oder? Wenn nicht, lest weiter – das hier soll schließlich ein Einführungsbuch sein.
 
@@ -264,7 +283,7 @@ Das Binärsystem funktioniert wie alle anderen Stellenwertsysteme auch.
 - Tally-Schreibweise
 
 
-## Bits & Bytes {#sec-numbers-bit-and-bytes}
+## Bits & Bytes {#sec-numbers-bit-and-bytes .collapsable}
 
 ### Zwei Zustände
 
@@ -345,7 +364,7 @@ Jetzt, da ihr wisst, was mit einem Byte gemeint ist, könnt ihr eine ungefähre 
 
 Wir kommen in den späteren Kapiteln immer wieder auf die Bits und Bytes zurück, weil wir in Computern letztlich überall mit diesen Einheiten arbeiten. Es ist somit gut, wenn ihr schon an dieser Stelle ein grundlegendes Verständnis für diese Konzepte entwickelt.
 
-## LED-Dimmer 2.0 {#sec-led-dimmer-part-2}
+## LED-Dimmer 2.0 {#sec-numbers-led-dimmer-2 .collapsable}
 
 Zurück zu unserem eigentlichen Vorhaben. Wir waren gerade dabei, einen Dimmer für unsere LED zu basteln, als uns die Zahlensysteme dazwischengekommen sind. Dafür haben wir jetzt ein besseres Verständnis dafür, wie ein Computer Farben sieht – nämlich als lange Sequenz aus Nullen und Einsen. Und zwar 24 davon, weil jede Grundfarbe ein Byte an Speicher verwendet.
 
@@ -468,7 +487,7 @@ while True:
 
 Mit dem LED-Dimmer haben wir die zentrale Funktion des Drehknopfes zur Genüge kennengelernt. Das Gerät hat aber noch eine andere Funktion.
 
-## Druckknopf auslesen
+## Druckknopf auslesen {#sec-numbers-button-reading .collapsable}
 
 Neben dem Zähler besitzt der Drehknopf (der Name sagt es schon) noch eine Funktion, nämlich die eines einfachen Druckknopfes. Wir haben es weiter oben in @sec-numbers-first-steps mit dem Brick Viewer schon ausprobiert: Der Drehknopf lässt sich drücken und erzeugt eine haptische Rückmeldung, ein leichtes Knacken. Im Brick Viewer wurde der kleine Kreis auf der rechten Seite dann rot eingefärbt.
 
@@ -505,7 +524,7 @@ while True:
 
 Das reicht fürs Erste – der Button kann tatsächlich nicht mehr als das. Reicht aber auch: Damit können wir unserem Dimmer schon einen zusätzlichen Mehrwert verleihen. Schließlich kann unsere LED nicht nur weiß leuchten.
 
-## LED-Dimmer 3.0 {#sec-led-dimmer-part-3}
+## LED-Dimmer 3.0 {#sec-numbers-led-dimmer-3 .collapsable}
 
 Wäre es nicht praktisch, wenn wir das Licht der LED nicht nur dimmen, sondern auch den Farbton verändern könnten? Weißes Licht ist am Abend bekanntlich nicht empfehlenswert, und grünes Licht soll beruhigend wirken.
 
@@ -650,17 +669,17 @@ In der Hauptschleife wird am Anfange immer wieder der aktuelle Zählerstand und 
 
 Um einen potenziellen Farbwechsel kümmert sich der zweite Block, der mit dem `if button_pressed_before == True ...` beginnt. Die Bedingung prüft, ob der Button gerade aus dem gedrückten Zustand in den nicht gedrückten Zustand wechselt, der Benutzer ihn also gerade losgelassen hat. In diesem Moment soll die Farbe gewechselt werden. Die Logik dafür haben wir gerade entwickelt.
 
-Um die Helligkeitsanpassung kümmert sich dann der dritte und letzte größere Block. Er beginnt mit `if new_count != last_count`, was prüft, ob der Drehknop betätigt wurde. Wenn ja, dann wird die Helligkeit entsprechend der Differenz angepasst. Diese Logik haben wir in @sec-led-dimmer-part-2 zusammen entwickelt.
+Um die Helligkeitsanpassung kümmert sich dann der dritte und letzte größere Block. Er beginnt mit `if new_count != last_count`, was prüft, ob der Drehknop betätigt wurde. Wenn ja, dann wird die Helligkeit entsprechend der Differenz angepasst. Diese Logik haben wir in @sec-numbers-led-dimmer-2 zusammen entwickelt.
 
 Wer von euch jetzt ganz genau hinsieht, der erkennt, dass die Blöcke 2 und 3 zum Teil identischen Code ausführen. In der Programmierung ist das eine rote Flagge 🚩! Lasst uns darüber sprechen, warum!
 
-## Funktionen {#sec-numbers-functions}
+## Funktionen {#sec-numbers-functions .collapsable}
 
-In der Programmierung möchten wir Wiederholungen um jeden Preis vermeiden. Wir sprechen auch vom DRY-Prinzip, was für *Don't Repeat Yourself* steht. Wenn wir feststellen, dass wir denselben Code an mehreren Stellen verwenden, sollten wir darüber nachdenken, etwas zu verändern. Warum? Und was?
+In der Programmierung möchten wir Wiederholungen um jeden Preis vermeiden. Wir sprechen auch vom \gloss{DRY-Prinzip}{Grundprinzip in der Programmierung, Code möglichst nicht zu wiederholen.}{Programmierung}, was für *Don't Repeat Yourself* steht. Wenn wir feststellen, dass wir denselben Code an mehreren Stellen verwenden, sollten wir darüber nachdenken, etwas zu verändern. Warum? Und was?
 
 Nehmen wir in unserem Beispiel an, wir führen eine vierte Farbe ein, sagen wir Blau. Dann müssten wir den Code in den Blöcken 2 und 3 anpassen, um die neue Farbe zu berücksichtigen. Das bedeutet, dass wir den gleichen Code an mehreren Stellen ändern müssten, was fehleranfällig und mühsam ist. Zwei mag noch nicht nach einem Problem klingen, aber selbst hier zeigt sich das Problem der Wiederholung. Wird eine Stelle vergessen, ist der Code inkonsistent und funktioniert nicht mehr wie gewünscht.
 
-Die Lösung liegt darin, häufig verwendeten Code in Funktionen auszulagern. Funktionen sind ein mächtiges Werkzeug in der Programmierung. Sie ermöglichen es uns, Codeblöcke zu definieren, die wir immer wieder verwenden können, ohne sie jedes Mal neu schreiben zu müssen. Funktionen helfen uns dabei, unseren Code sauberer, übersichtlicher und wartbarer zu gestalten.
+Die Lösung liegt darin, häufig verwendeten Code in Funktionen auszulagern. \gloss{Funktionen}{Benannter Codeblock zur Lösung eines definierten Problems.}{Programmierung} sind ein mächtiges Werkzeug in der Programmierung. Sie ermöglichen es uns, Codeblöcke zu definieren, die wir immer wieder verwenden können, ohne sie jedes Mal neu schreiben zu müssen. Funktionen helfen uns dabei, unseren Code sauberer, übersichtlicher und wartbarer zu gestalten.
 
 Im @lst-color-brightness wird dieser Teil an zwei Stellen wiederholt:
 

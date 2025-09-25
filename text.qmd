@@ -1,22 +1,38 @@
----
-abstract: |
-    Wir nutzen Computer ständig, um Texte zu schreiben – von der WhatsApp-Nachricht über E-Mails und Einladungen bis hin zur Bachelorarbeit. Wir tippen auf dem Smartphone, Tablet oder Computer. Aber habt ihr euch schon einmal gefragt, wie das genau funktioniert? Um das zu verstehen, machen wir einen kleinen Umweg.
-abstract-title: ""
----
-
 # Texte {#sec-text}
 
-## Zusammenfassung {.unnumbered}
+## Zusammenfassung {.unnumbered .collapsable}
 
-Unsere wichtigsten Lernziele in diesem Kapitel sind:
+Im dritten Kapitel basteln wir ein universelles Eingabegerät für Informationen. Dafür verwenden wir einen Infrarot-Abstandssensor, mit dem wir Bits kodieren können. Mit diesen Bits können wir dann zum Beispiel Texte eingeben.
 
-- Wir lernen, wie Computer Texte darstellen und speichern.
-- Wir führen ASCII und Unicode als Standards für die Textdarstellung ein.
-- Wir verstehen Binärcodierung und wie sie im Computer zum Einsatz kommt.
+### Schritte zum Ziel {.unnumbered}
 
-## Experimentaufbau {.unnumbered}
+Der Weg dahin führt über folgende Schritte:
 
-### Hardware {.unnumbered}
+| \# | Was? | Wo? |
+|--|-------------------------------------------------------|----------------|
+| 1 | Wir machen uns mit dem Infrarot-Abstandssensor vertraut. | @sec-text-experiment-setup |
+| 2 | Wir bauen eine einfache Lichtschranke. | @sec-text-light-barrier |
+| 3 | Wir erweitern die Lichtschranke zu einer Hinderniserkennung für Roboter. | @sec-text-obstacle-detection |
+| 4 | Wir erschaffen ein universelles Eingabegerät für Binärcodes. | @sec-text-universal-input |
+| 5 | Wir geben den Binärcodes eine Bedeutung und übermitteln Texte. | @sec-text-encode-text |
+| 6 | Wir schauen auf ein verbreitetes Codesystem für Texte: ASCII. | @sec-text-ascii-code |
+| 7 | Wir setzen den Infrarot-Abstandssensor in den LED-Dimmer ein. | @sec-text-led-dimmer |
+
+### Begriffe und Konzepte {.unnumbered}
+
+Dabei lernen wir neue Begriffe und Konzepte kennen.
+
+<!-- CHAPTER_GLOSSARY_START -->
+::: {.datatable-nosearch data-order='[[2,"asc"]]'}
+| Begriff | Kategorie | Wo? |
+|---|---|---|
+| **Infrarot-Abstandssensor** | Bauteile | @sec-text-light-barrier |
+:::
+<!-- CHAPTER_GLOSSARY_END -->
+
+## Experimentaufbau {#sec-text-experiment-setup .collapsable}
+
+### Hardware
 
 Für dieses Kapitel benötigen wir erneut die LED ([RGB LED Bricklet 2.0](https://www.tinkerforge.com/de/shop/rgb-led-v2-bricklet.html)), ersetzen aber den Drehknopf aus @sec-numbers durch einen Infrarot-Abstandssensor ([Distance IR 4-30cm Bricklet 2.0](https://www.tinkerforge.com/de/shop/distance-ir-4-30cm-v2-bricklet.html)). Beide Geräte schließen wir an den Mikrocontroller ([Master Brick 3.2](https://www.tinkerforge.com/de/shop/master-brick.html)) an und fixieren sie auf einer Montageplatte. Wie in der Abbildung gezeigt, befestigen wir den Abstandssensor mit einem Metallwinkel so, dass er bündig mit der Platte ist und nach vorn zeigt.
 
@@ -32,7 +48,7 @@ Für dieses Kapitel benötigen wir erneut die LED ([RGB LED Bricklet 2.0](https:
 Einfaches Setup mit einem Mikrocontroller, LED und einem Infrarot-Abstandssensor.
 :::
 
-### Erste Schritte mit dem Abstandssensor {#sec-text-first-steps .unnumbered}
+### Erste Schritte mit dem Abstandssensor {#sec-text-first-steps}
 
 Wie bei der LED werfen wir zuerst einen Blick auf den neuen Abstandssensor im Brick Viewer. Schließt dazu euren Master Brick per USB an, startet den Brick Viewer und klickt auf Connect. Im Tab Setup sollten nun neben der LED auch der Abstandssensor erscheinen. Denkt daran: Dort findet ihr auch die UID eurer Geräte – die braucht ihr gleich im Programm.
 
@@ -42,9 +58,9 @@ Wechselt in den Tab für den Abstandssensor, wo ihr ihn direkt testen könnt: Ih
 
 ![Der Brick Viewer zeigt die aktuelle Entfernung im Zeitverlauf an.](images/brick_viewer_ir_sensor.png){#fig-brick-viewer-ir-sensor .lightbox group="brick-viewer-ir"}
 
-## Lichtschranke
+## Lichtschranke {#sec-text-light-barrier .collapsable}
 
-Einen Infrarot-Abstandssensor verwenden wir in der Praxis zur berührungslosen Messung des Abstands zu einem Objekt. Der Sensor sendet einen unsichtbaren Infrarotlichtstrahl aus und misst das Licht, das vom Objekt zurückgeworfen wird. Anhand der Intensität oder des Winkels des zurückkehrenden Lichts berechnet der Sensor die Entfernung. Diese Sensoren sind aus der Praxis nicht wegzudenken und kommen in vielen Szenarien zum Einsatz, zum Beispiel:
+Einen \gloss{Infrarot-Abstandssensor}{Ein Sensor, der über Licht des Infrarotspektrums Abstände messen kann.}{Bauteile} verwenden wir in der Praxis zur berührungslosen Messung des Abstands zu einem Objekt. Der Sensor sendet einen unsichtbaren Infrarotlichtstrahl aus und misst das Licht, das vom Objekt zurückgeworfen wird. Anhand der Intensität oder des Winkels des zurückkehrenden Lichts berechnet der Sensor die Entfernung. Diese Sensoren sind aus der Praxis nicht wegzudenken und kommen in vielen Szenarien zum Einsatz, zum Beispiel:
 
 - Objekterkennung an einem Fließband
 - Füllstandsmessung in Behältern
@@ -109,7 +125,7 @@ while True:
         last_distance = distance
 ```
 
-Ihr erinnert euch: Dasselbe Prinzip haben wir in @sec-led-dimmer-part-2 verwendet, um nur bei einer Änderung des Drehknopfs eine Ausgabe zu erzeugen. Wir merken uns den letzten Wert und vergleichen ihn mit dem aktuell gemessenen. Ist er gleich, passiert nichts. Hat er sich verändert (`distance != last_distance`), geben wir den neuen Wert aus und aktualisieren den letzten Wert (`last_distance = distance`).
+Ihr erinnert euch: Dasselbe Prinzip haben wir in @sec-numbers-led-dimmer-2 verwendet, um nur bei einer Änderung des Drehknopfs eine Ausgabe zu erzeugen. Wir merken uns den letzten Wert und vergleichen ihn mit dem aktuell gemessenen. Ist er gleich, passiert nichts. Hat er sich verändert (`distance != last_distance`), geben wir den neuen Wert aus und aktualisieren den letzten Wert (`last_distance = distance`).
 
 Wir sind unserem Etappenziel einer Lichtschranke schon sehr nah. Anhand der Ausgabe könnten wir entscheiden, ob ein Objekt in der Sicht des Sensors ist oder nicht. Das soll aber unser Programm automatisch erledigen. Dazu fügen wir eine weitere Bedingung mit einer `if`-Anweisung hinzu:
 
@@ -151,7 +167,7 @@ while True:
 
 Probiert es aus – die Lichtschranke sollte funktionieren und Objekte innerhalb von 30 cm zuverlässig erkennen.
 
-## Hinderniserkennung
+## Hinderniserkennung {#sec-text-obstacle-detection .collapsable}
 
 Die Lichtschranke leuchtet immer rot, sobald ein Objekt erkannt wird. Dabei spielt die Entfernung keine Rolle. Lasst uns die Idee zu einer Hinderniserkennung für einen hypothetischen Staubsaugerroboter erweitern. Die LED soll anzeigen, ob sich ein Objekt bereits nahe am Roboter befindet oder ob es noch weit genug entfernt ist.
 
@@ -188,7 +204,7 @@ Ihr erinnert euch an die additive Farbmischung aus @fig-additive-color-mixing? G
 
 Unser Staubsaugerroboter könnte den Code oben verwenden, um Hindernisse zu erkennen und bei zu großer Nähe ein Ausweichmanöver zu starten.
 
-## Universelles Eingabegerät
+## Universelles Eingabegerät {#sec-text-universal-input .collapsable}
 
 Eine andere Möglichkeit, den Abstandssensor und den Code aus @lst-text-obstacle-detection zu verwenden, ist ein Eingabegerät für Informationen in unseren Computer. Wie soll ein Abstandssensor als Eingabegerät für Informationen fungieren?
 
@@ -273,7 +289,7 @@ while True:
 
 Testet es jetzt: Unser Eingabegerät erkennt die Zustände 0 und 1 zuverlässig.
 
-## Texte kodieren
+## Texte kodieren {#sec-text-encode-text .collapsable}
 
 Können wir unser universelles Eingabegerät dazu verwenden, dem Computer Texte zu diktieren? Schließlich bedeutet „universell“, dass es für viele Zwecke einsetzbar ist. Und die Antwort lautet: ja! Wenn wir ein Gerät entwickeln, mit dem wir Bits kodieren können, können wir damit alles eingeben, was ein Computer darstellen kann.
 
@@ -643,7 +659,7 @@ Das Codebeispiel aus diesem Abschnitt findet ihr auf [GitHub](https://github.com
 Klont das Repository und öffnet den Ordner in eurem Visual Studio Code, um es schnell ausführen zu können.
 :::
 
-## ASCII-Code
+## ASCII-Code {#sec-text-ascii-code .collapsable}
 
 Im vorigen Abschnitt haben wir zusammen überlegt, wie wir Texte kodieren und als Bitfolge über ein universelles Eingabegerät basierend auf einem IR-Abstandssensor übertragen können. Ziemlich cool, findet ihr nicht? Dabei haben wir jedem Buchstaben eine eindeutige Bitfolge zugewiesen und sind letztlich auf unser eigenes 5-Bit-Kodierungssystem gekommen.
 
@@ -699,7 +715,7 @@ Eine hilfreiche Analogie: Stellt euch UTF-8 wie einen Paketdienst mit vier Paket
 
 Auf diese Weise wird sichergestellt, dass die häufigsten Zeichen möglichst wenig Speicherplatz benötigen, während dennoch alle Zeichen der Welt eindeutig kodiert werden können. Das macht UTF-8 zur bevorzugten Wahl für die Textverarbeitung in modernen Anwendungen und im Web. Ihr könnt das übrigens selbst einmal überprüfen: Erstellt zwei leere Textdateien und speichert beide als UTF-8. Fügt in die erste einen Text nur aus Buchstaben, Zahlen und Leerzeichen ein und in die zweite einen Text mit Sonderzeichen und Emojis. Dabei sollte in jeder Datei die gleiche Anzahl Zeichen stehen. Wie unterscheidet sich die Größe der Dateien im Dateiexplorer?
 
-## LED-Dimmer 4.0
+## LED-Dimmer 4.0 {#sec-text-led-dimmer .collapsable}
 
 In @sec-numbers haben wir bereits drei Versionen eines LED-Dimmers gebaut. Eine letzte, vierte Variante kommt noch dazu: Lasst uns schauen, ob wir die Helligkeit mit dem Abstandssensor steuern können.
 
@@ -718,7 +734,7 @@ brightness = (distance - 40) / (300 - 40) * 255
 
 Vergewissern wir uns, dass die Formel richtig ist. Wenn `distance` den Wert 4 cm hat, dann sollte `brightness` 0 sein. Das passt, denn der erste Teil der Formel wird dann 0. Und 0 geteilt durch egal was ergibt 0. Wenn `distance = 300`, dann sollte `brightness` 255 sein. Das passt ebenfalls, denn der erste Teil der Formel wird dann 260 und 260 geteilt durch 260 ergibt 1. Multipliziert mit 255 ergibt 255. Sieht also gut aus.
 
-Der folgende Code baut die Berechnungslogik in den LED-Dimmer aus @sec-led-dimmer-part-2 ein, der nur eine Farbe (Weiß) beherrscht. Wir könnten ihn aber genau wie in @sec-led-dimmer-part-3 um weitere Farben erweitern:
+Der folgende Code baut die Berechnungslogik in den LED-Dimmer aus @sec-numbers-led-dimmer-2 ein, der nur eine Farbe (Weiß) beherrscht. Wir könnten ihn aber genau wie in @sec-numbers-led-dimmer-3 um weitere Farben erweitern:
 
 ```{python}
 #| lst-cap: Das fertige Programm für den LED-Dimmer mit Infrarot-Abstandssensor-Steuerung.

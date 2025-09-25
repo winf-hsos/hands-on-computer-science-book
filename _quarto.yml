@@ -25,21 +25,17 @@ book:
   date-format: long
   search: true
   output-file: "Hands-On-Computer-Science-Book"
-  downloads: [pdf]
+  #downloads: [pdf]
   
   chapters:
     - index.qmd
-    - experiments.qmd
-    - prerequisites.qmd
+    - preparation.qmd
 
     - colors.qmd
     - numbers.qmd
     - text.qmd
     - images.qmd
-    - sound.qmd
-
-    - glossary.qmd
-
+    #- sound.qmd
     #- codes.qmd
     #- conversion.qmd
     #- information.qmd
@@ -51,6 +47,8 @@ book:
     #- compression.qmd
     #- computer.qmd
     #- problems.qmd
+
+    - glossary.qmd
     - references.qmd
 
 bibliography: references.bib
@@ -71,16 +69,16 @@ format:
       - partials/gloss.css
       - partials/collapsable.css
 
-  pdf:
-    documentclass: scrreprt
-    include-in-header: 
-      text: |
-        \usepackage{makeidx}
-        \makeindex
-    include-after-body: 
-      text: |
-        \printindex
-  docx:
-    toc: true
-    number-sections: true
-    highlight-style: github
+  #pdf:
+  #  documentclass: scrreprt
+  #  include-in-header: 
+  #    text: |
+  #      \usepackage{makeidx}
+  #      \makeindex
+  #  include-after-body: 
+  #    text: |
+  #      \printindex
+  #docx:
+  #  toc: true
+  #  number-sections: true
+  #  highlight-style: github

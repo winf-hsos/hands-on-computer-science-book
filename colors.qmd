@@ -1,9 +1,3 @@
----
-abstract: |
-    Das erste Kapitel hat es gleich in sich: Wir lernen etwas über Farben und wie sie im Computer funktionieren. Gleichzeitig steigen wir in die Programmierung ein und schreiben unser erstes Programm. Dabei nutzen wir eine LED und erzeugen einen Regenbogenfarbverlauf.
-abstract-title: ""
----
-
 # Farben {#sec-colors}
 
 ## Zusammenfassung {.unnumbered .collapsable}
@@ -24,7 +18,7 @@ Auf dem Weg dorthin gehen wir die folgenden Schritte.
 
 ### Begriffe und Konzepte {.unnumbered}
 
-Dabei lernen wir neue Begriffe und Konzepte kennen:
+Dabei lernen wir neue Begriffe und Konzepte kennen.
 
 <!-- CHAPTER_GLOSSARY_START -->
 ::: {.datatable-nosearch data-order='[[2,"asc"]]'}
@@ -32,6 +26,7 @@ Dabei lernen wir neue Begriffe und Konzepte kennen:
 |---|---|---|
 | **Brick Viewer** | Bauteile | @sec-colors-experiment-setup |
 | **RGB LED** | Bauteile | @sec-colors-experiment-setup |
+| **UID** | Programmierung | @sec-colors-control-led |
 | **Programm** | Programmierung | @sec-colors-control-led |
 | **Boilerplate-Code** | Programmierung | @sec-colors-control-led |
 | **Bibliothek** | Programmierung | @sec-colors-control-led |
@@ -68,7 +63,7 @@ Neben der Hardware benötigt ihr auch die passende Software. Diese solltet ihr b
 Einfaches Setup mit einem Mikrocontroller und einer LED.
 :::
 
-### Erste Schritte
+### Erste Schritte mit der LED
 
 Im ersten Schritt wollen wir die LED und ihre Funktionen testen! Das geht ganz leicht mit dem \gloss{Brick Viewer}{Ein Werkzeug zum schnellen Testen der Tinkerforge-Bauteile}{Bauteile}. Schließt zuerst den Master Brick über das USB-Kabel an euren Computer an und öffnet den Brick Viewer. Klickt dann auf den Connect-Button.
 
@@ -106,7 +101,7 @@ led = BrickletRGBLEDV2("ZEP", ipcon) # <5>
 2.  Hier importieren wir ein weiteres Objekt, das wir zur Darstellung der LED als Python-Objekt benötigen.
 3.  Die Verbindung erfolgt über eine sogenannte IP-Verbindung, die wir hier als Objekt erstellen.
 4.  Mit `connect` stellen wir eine Verbindung zum angeschlossenen Master Brick her.
-5.  Schließlich holen wir uns eine virtuelle Instanz des RGB LED Bricklets, indem wir die UID nennen und sagen, welche Verbindung (`ipcon`) genutzt werden soll.
+5.  Schließlich holen wir uns eine virtuelle Instanz des RGB LED Bricklets, indem wir die \gloss{UID}{*Unique Identifier*: Eindeutige Identifikation, hier eines Tinkerforge-Geräts.}{Programmierung} nennen und sagen, welche Verbindung (`ipcon`) genutzt werden soll.
 
 ### Programme
 

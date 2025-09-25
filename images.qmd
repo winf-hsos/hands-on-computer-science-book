@@ -1,14 +1,39 @@
 # Bilder {#sec-images}
 
-## Zusammenfassung {.unnumbered}
+## Zusammenfassung {.unnumbered .collapsable}
 
-Unsere wichtigsten Lernziele in diesem Kapitel sind:
+Im vierten Kapitel...
 
-...
+### Schritte zum Ziel {.unnumbered}
 
-## Experimentaufbau {.unnumbered}
+Der Weg dahin führt über folgende Schritte:
 
-### Hardware {.unnumbered}
+| \# | Was? | Wo? |
+|--|-------------------------------------------------------|----------------|
+| 1 | Wir machen uns mit dem Display vertraut. | @sec-images-experiment-setup |
+| 2 | Wir lernen das Pixel kennen und schalten sie im Display an und aus. | @sec-images-pixels |
+| 3 | Wir führen die Bitmap als eine Sammlung von Pixelwerten ein. | @sec-images-bitmaps |
+| 4 | Wir lernen, wie man Buchstaben mit Pixeln darstellen kann. | @sec-images-letters |
+| 5 | Wir lernen Vektorgrafiken kennen. | @sec-images-vector-graphics |
+| 6 | Wir führen Icons als Form einer Bitmap ein. | @sec-images-icons |
+| 7 | Wir fragen uns, ob wir Bilder auch komprimieren können. | @sec-images-compressed |
+| 8 | Wir programmieren ein kleines DOS-Spiel namens Nibbles. | @sec-images-nibbles |
+
+### Begriffe und Konzepte {.unnumbered}
+
+Dabei lernen wir neue Begriffe und Konzepte kennen.
+
+<!-- CHAPTER_GLOSSARY_START -->
+::: {.datatable-nosearch data-order='[[2,"asc"]]'}
+| Begriff | Kategorie | Wo? |
+|---|---|---|
+| **Pixel** | Repräsentation von Bildern | @sec-images-pixels |
+:::
+<!-- CHAPTER_GLOSSARY_END -->
+
+## Experimentaufbau {#-sec-images-experiment-setup .collapsable}
+
+### Hardware
 
 In den Experimenten dieses Kapitels verwenden wir ein einfaches Display, das wir an unseren Master Brick anschließen. Das Display kann einzelne Pixel weiß aufleuchten lassen und damit einfache Bilder und auch Texte darstellen. Insgesamt stehen uns 128 x 64 Pixel zur Verfügung, also 8192 einzelne Bildpunkte. Damit können wir arbeiten.
 
@@ -20,7 +45,7 @@ Die vollständige Hardwareliste für dieses Kapitel sieht so aus:
 -  1 x [Montageplatte 22x10](https://www.tinkerforge.com/de/shop/accessories/mounting/mounting-plate-22x10.html)
 -  2 x [Brickletkabel 15cm (7p-7p)](https://www.tinkerforge.com/de/shop/accessories/cable/bricklet-cable-15cm-7p-7p.html)
 
-### Erste Schritte mit dem Display {.unnumbered}
+### Erste Schritte mit dem Display
 
 Wie immer geht es zuerst in den Brick Viewer. Verbindet euch mit dem Master Brick und ihr solltet die angeschlossenen Geräte sehen können. Den Infrarotsensor kennen wir bereits aus dem letzten Kapitel. Wir konzentrieren uns deshalb auf das neue Display, das ihr im Tab "OLED 128x64 Bricklet 2.0" findet.
 
@@ -56,7 +81,7 @@ Gezeichneter vs. getippter Text auf dem Display.
 
 :::
 
-## Pixel {#sec-images-pixels}
+## Pixel {#sec-images-pixels .collapsable}
 
 Nachdem wir das Display im Brick Viewer ausprobiert haben, wollen wir uns die Funktionen auch in Python anschauen. Dazu stellen wir wie immer die Verbindung her und erzeugen eine Instanz des Display-Objekts:
 
@@ -101,7 +126,7 @@ oled.write_pixels(0, 0, 0, 0, [0])
 
 Einzelne Pixel lassen sich auf die oben gezeigte Weise an- und ausschalten. Aber was ist, wenn wir mehrere Pixel gleichzeitig ansteuern wollen? Zum Beispiel ein kleines Quadrat in der Mitte des Displays. Dafür müssen wir die Koordinaten der beiden Punkte anpassen, die die rechteckige Fläche definieren, und eine Liste mit den entsprechenden Werten für alle Pixel in dieser Fläche erstellen. Wir sprechen hier von einer Bitmap\index{Bitmap}, also einer Matrix von Pixelwerten, die zusammen ein Bild ergeben.
 
-## Bitmaps {#sec-images-bitmaps}
+## Bitmaps {#sec-images-bitmaps .collapsable}
 
 Sagen wir, wir wollen ein 4x4 großes Quadrat in der Mitte des Displays zeichnen. Dazu müssen wir zuerst berechnen, wo die Mitte des Displays ist. Da das Display 128 Pixel breit und 64 Pixel hoch ist, liegt die Mitte bei (64, 32). Weil wir bei 0 beginnen zu zählen, korrigieren wir auf (63, 31). Um ein 4x4-Quadrat zu zeichnen, setzen wir die Koordinaten des oberen linken Punkts auf (61, 29) und die Koordinaten des unteren rechten Punkts auf (64, 32). Die Liste der Werte für die Pixel in dieser Fläche muss 16 Werte enthalten, alle auf 1 gesetzt, um das Quadrat einzuschalten.
 
@@ -150,7 +175,7 @@ In der Matrixdarstellung erkennt man schnell das Kreuzmuster, das wir gezeichnet
 
 Wenn wir Kreuze als Bitmaps darstellen können, wie sieht es dann mit anderen Symbolen aus?
 
-## Buchstaben {#sec-images-letters}
+## Buchstaben {#sec-images-letters .collapsable}
 
 Auch Buchstaben auf dem Bildschirm sind nichts anderes als Pixelmuster. Wie bereits erwähnt, ist ein Buchstabe 5 Pixel breit und 8 Pixel hoch. Das bedeutet, dass wir für jeden Buchstaben eine Bitmap mit 40 Werten benötigen. Tinkerforge, der Hersteller des Displays, stellt eine Übersicht der unterstützten Zeichen und deren Pixelmuster auf [seiner Webseite](https://www.tinkerforge.com/en/doc/Hardware/Bricklets/OLED_128x64_V2.html#font) bereit. Daraus habe ich den Buchstaben "A" als Bitmap in ein einfaches Spreadsheet übertragen und Pixel, die an sind, schwarz eingefärbt. Das Ergebnis seht ihr in @fig-images-bitmap-letter-a-spreadsheet.
 
@@ -233,7 +258,7 @@ Wenn ihr beides hintereinander ausführt, steht oben "Ass" per Textfunktion und 
 [WRITE A PARAGRAPH ABOUT FONTS AND HOW THEY ARE JUST COLLECTIONS OF BITMAPS, USE EXAMPLE. SMOOTH TRANSITION TO NEXT SECTION ON VECTOR GRAPHICS.]
 Schriftarten für Pixel-Displays sind im Kern nichts anderes als Sammlungen von Bitmaps: Für jedes Zeichen wird festgelegt, welche Pixel im 5x8-Raster leuchten. Unser "A" oben ist genau so definiert, und das OLED-Bricklet bringt eine solche Tabelle für viele Zeichen bereits mit. Wenn ihr eine andere Schrift wollt, erstellt ihr einfach eine neue Bitmap-Tabelle, etwa eine fette oder eine schmale Variante, und verwendet diese beim Zeichnen. Das funktioniert hervorragend in festen Rastergrößen, stößt aber an Grenzen, sobald ihr Größen ändern oder sehr glatte Kanten haben wollt. Hier kommen Vektorgrafiken ins Spiel, die Formen nicht als Pixelraster, sondern als Linien und Kurven beschreiben.
 
-## Vektorgrafiken {#sec-images-vector-graphics}
+## Vektorgrafiken {#sec-images-vector-graphics .collapsable}
 
 Während Bitmaps jedes Pixel explizit speichern, beschreiben Vektorgrafiken Objekte mathematisch, etwa "eine Linie von A nach B" oder "ein Kreis mit Mittelpunkt M und Radius r". Eine Vektor-Schriftart (z. B. TrueType) enthält keine 5x8-Raster pro Zeichen, sondern Pfade für die Konturen von "A", "S" und Co. Der Vorteil: Diese Formen lassen sich beliebig vergrößern oder verkleinern, ohne dass Treppeneffekte entstehen. Das ist ideal für hochauflösende Displays und Druck. Auf unserem kleinen OLED-Display arbeiten wir dennoch mit Bitmaps, weil sie direkt den Pixeln entsprechen und ohne aufwendiges Rasterisieren angezeigt werden können.
 
@@ -256,7 +281,7 @@ In diesem Beispiel definiert die Funktion `draw_house()` das Haus als Kombinatio
 
 Wir können das Haus nämlich ganz einfach größer oder kleiner zeichnen, indem wir die Parameter `width` und `height` anpassen. Das ist der große Vorteil von Vektorgrafiken: Sie sind skalierbar und behalten ihre Form, egal wie groß oder klein sie dargestellt werden.
 
-## Icons {#sec-images-icons}
+## Icons {#sec-images-icons .collapsable}
 
 ![](images/bitmap_bw_r2d2.png){#fig-images-bitmap-r2d2 .lightbox width="50%"}
 
@@ -277,13 +302,13 @@ for row in sheet.iter_rows():
 print(arr)
 ```
 
-## Komprimierte Bilder {#sec-images-compressed}
+## Komprimierte Bilder {#sec-images-compressed .collapsable}
 
 Bitmaps speichern für jedes Pixel einen Wert. Das ist einfach, kann aber viel Speicher benötigen. Deshalb werden Bitmaps häufig komprimiert. Ein klassisches Verfahren ist Run-Length Encoding (RLE). Dabei werden Folgen identischer Pixel durch "Wert + Länge" ersetzt. Aus `0,0,0,0,1,1,0,0` wird zum Beispiel `(0x4),(1x2),(0x2)`. Besonders bei großen einfarbigen Flächen spart das deutlich Speicher und Übertragungszeit. Für eingebettete Systeme wie unser Display ist das nützlich, weil weniger Daten übertragen und verarbeitet werden müssen. Vor der Anzeige wird die komprimierte Darstellung einfach wieder in die ursprüngliche Pixelsequenz entpackt.
 
 Das Extrembeispiel ist ein komplett schwarzes oder weißes Bild. Statt 8192 Nullen oder Einsen zu speichern, reicht ein Eintrag: `(0x8192)` oder `(1x8192)`. Das spart enorm viel Platz.
 
-## Nibbles
+## Nibbles {#sec-images-nibbles .collapsable}
 
 Zum Abschluss des Kapitels wollen wir noch zwei Aspekte betrachten, die wir bei der Entwicklung eines kleinen Spiels kennenlernen wollen: Animationen und Objektorientierung. 
 
