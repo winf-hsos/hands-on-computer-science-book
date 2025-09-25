@@ -6,19 +6,49 @@ abstract-title: ""
 
 # Farben {#sec-colors}
 
-## Zusammenfassung {.unnumbered}
+## Zusammenfassung {.unnumbered .collapsable}
 
-Im ersten Kapitel steigen wir gleich voll ein und schreiben unser erstes Programm. Unser Ziel ist es, eine LED nacheinander in allen Farben des Regenbogens leuchten zu lassen. Um dahin zu kommen, lernen wir in @sec-colors-control-led zuerst, wie man überhaupt eine LED aus einem Programm heraus steuern kann. In @sec-colors-light-and-colors werfen wir einen kurzen Blick auf Farben im allgemeinen und wie diese im Computer erzeugt werden. Dabei unterscheiden wir die additive von der subtraktiven Farbmischung. Danach bereiten wir uns in @sec-colors-pulsating-led auf den Regenbogenfarbverlauf vor, indem wir zuerst eine pulsierende LED programmieren. Wir lernen dann in @sec-colors-hue-circle, wie man mittels RGB-Farbcode überhaupt einen Regenbogen erzeugen kann und warum das für uns Menschen nützlich ist. Am Ende in @sec-colors-rainbow-led schreiben wir schließlich das Programm, das die LED in allen Farben des Regenbogens leuchten lässt.
+Im ersten Kapitel steigen wir gleich voll ein und schreiben unser erstes Programm. Unser Ziel ist es, eine LED nacheinander in allen Farben des Regenbogens leuchten zu lassen.
 
-Unsere wichtigsten Lernziele in diesem Kapitel sind:
+### Schritte zum Ziel {.unnumbered}
 
-1.  Wir verstehen, wie Farben im Computer funktionieren und beschrieben werden.
-2.  Wir entwickeln unser erstes Programm am Beispiel einer LED-Steuerung.
-3.  Wir lernen Schleifen als wichtiges Konzept in der Programmierung kennen.
+Auf dem Weg dorthin gehen wir die folgenden Schritte.
 
-## Experimentaufbau {.unnumbered}
+| \# | Was? | Wo? |
+|--|-------------------------------------------------------|----------------|
+| 1 | Wir lernen, wie man eine LED aus einem Programm heraus steuert. | @sec-colors-control-led |
+| 2 | Wir werfen einen kurzen Blick auf Farben und wie sie im Computer erzeugt werden. Dabei lernen wir den Unterschied zwischen additiver und subtraktiver Farbmischung kennen. | @sec-colors-light-and-colors |
+| 3 | Wir programmieren eine pulsierende LED als erster Schritt in Richtung Regenbogenverlauf. | @sec-colors-pulsating-led |
+| 4 | Wir lernen den Hue-Farbverlauf kennen, weil wir den für einen schönen Regenbogen benötigen. | @sec-colors-hue-circle |
+| 5 | Endlich - wir schreiben das Programm für den Regenbogenverlauf. | @sec-colors-rainbow-led |
 
-### Hardware {.unnumbered}
+### Begriffe und Konzepte {.unnumbered}
+
+Dabei lernen wir neue Begriffe und Konzepte kennen:
+
+<!-- CHAPTER_GLOSSARY_START -->
+::: {.datatable-nosearch data-order='[[2,"asc"]]'}
+| Begriff | Kategorie | Wo? |
+|---|---|---|
+| **Brick Viewer** | Bauteile | @sec-colors-experiment-setup |
+| **RGB LED** | Bauteile | @sec-colors-experiment-setup |
+| **Programm** | Programmierung | @sec-colors-control-led |
+| **Boilerplate-Code** | Programmierung | @sec-colors-control-led |
+| **Bibliothek** | Programmierung | @sec-colors-control-led |
+| **Klasse** | Programmierung | @sec-colors-control-led |
+| **Objekte** | Programmierung | @sec-colors-control-led |
+| **Schlüsselwort** | Programmierung | @sec-colors-control-led |
+| **Methode** | Programmierung | @sec-colors-control-led |
+| **elektromagnetische Strahlung** | Physik | @sec-colors-control-led |
+| **Frequenz** | Physik | @sec-colors-light-and-colors |
+| **LED** | Bauteile | @sec-colors-light-and-colors |
+:::
+<!-- CHAPTER_GLOSSARY_END -->
+
+
+## Experimentaufbau {#sec-colors-experiment-setup .collapsable}
+
+### Hardware
 
 Bereit für euer erstes Hardware-Experiment? Perfekt! Ihr braucht dafür eine LED ([RGB LED Bricklet 2.0](https://www.tinkerforge.com/en/doc/Hardware/Bricklets/RGB_LED_V2.html)) und einen Mikrocontroller ([Master Brick 3.2](https://www.tinkerforge.com/de/shop/master-brick.html)). Befestigt beide Bauteile mit Abstandshaltern auf einer Montageplatte, wie in @fig-setup-rgb-led gezeigt. Zwei Schrauben pro Gerät reichen völlig. Denkt an die kleinen, weißen Unterlegscheiben aus Kunststoff. Sie schützen eure Platinen vor Druckstellen.
 
@@ -38,9 +68,9 @@ Neben der Hardware benötigt ihr auch die passende Software. Diese solltet ihr b
 Einfaches Setup mit einem Mikrocontroller und einer LED.
 :::
 
-### Erste Schritte {.unnumbered}
+### Erste Schritte
 
-Im ersten Schritt wollen wir die LED und ihre Funktionen testen! Das geht ganz leicht mit dem Brick Viewer. Schließt zuerst den Master Brick über das USB-Kabel an euren Computer an und öffnet den Brick Viewer. Klickt dann auf den Connect-Button.
+Im ersten Schritt wollen wir die LED und ihre Funktionen testen! Das geht ganz leicht mit dem \gloss{Brick Viewer}{Ein Werkzeug zum schnellen Testen der Tinkerforge-Bauteile}{Bauteile}. Schließt zuerst den Master Brick über das USB-Kabel an euren Computer an und öffnet den Brick Viewer. Klickt dann auf den Connect-Button.
 
 ![Über den Connect-Button verbindet ihr den Brick Viewer mit dem angeschlossenen Master Brick.](images/brick_viewer_connect.png){#fig-brick-viewer-connect .lightbox fig-align="center" width="100%" group="brick-viewer"}
 
@@ -48,7 +78,7 @@ Wenn alles geklappt hat, zeigt euch der Brick Viewer alle angeschlossenen Gerät
 
 ![Der Brick Viewer, nachdem ihr mit dem Master Brick verbunden seid.](images/brick_viewer_after_connect.png){#fig-brick-viewer-after-connect .lightbox group="brick-viewer"}
 
-Wechselt nun zum Tab der RGB LED. Hier könnt ihr auf unterschiedlichen Wegen die Farbe der LED einstellen. Mehr kann eine LED nicht!
+Wechselt nun zum Tab der \gloss{RGB LED}{Eine LED, die in verschiedenen Farben leuchten kann.}{Bauteile}. Hier könnt ihr auf unterschiedlichen Wegen die Farbe der LED einstellen. Mehr kann eine LED nicht!
 
 Mit den drei Schiebereglern steuert ihr die einzelnen Farbkanäle – Rot, Grün, Blau. Der Wertebereich: 0 bis 255. Warum gerade diese Farben und diese Zahlen? Gute Frage. Die Antwort kommt weiter unten.
 
@@ -56,7 +86,7 @@ Mit den drei Schiebereglern steuert ihr die einzelnen Farbkanäle – Rot, Grün
 
 Fazit: Der Brick Viewer ist ideal zum Ausprobieren. Aber wenn ihr echte Projekte umsetzen wollt, müsst ihr programmieren lernen. Also los!
 
-## Erstes Programm: LED ansteuern {#sec-colors-control-led}
+## Erstes Programm: LED ansteuern {#sec-colors-control-led .collapsable}
 
 Wie verbinden wir uns über ein Programm mit der LED und setzen ihre Farbe? Die Antwort darauf findet ihr im folgenden kurzen Codebeispiel.
 
@@ -80,7 +110,7 @@ led = BrickletRGBLEDV2("ZEP", ipcon) # <5>
 
 ### Programme
 
-Zunächst klären wir den Begriff *Programm*\index{Programm}. Ein Programm ist eine Abfolge von Anweisungen, die ein Computer ausführt, um eine bestimmte Aufgabe zu erledigen. In unserem Fall ist das Programm später dafür zuständig, mit der LED zu interagieren und sie in verschiedenen Farben leuchten zu lassen. Programme werden in Programmiersprachen geschrieben, die es uns ermöglichen, dem Computer präzise Anweisungen zu geben. Wir verwenden in diesem Buch die Programmiersprache Python, die sich besonders gut für Einsteiger eignet und gleichzeitig mächtig genug ist, um komplexe Aufgaben zu lösen.
+Zunächst klären wir den Begriff \gloss{Programm}{Abfolge von Anweisungen, die ein Computer ausführt}{Programmierung}. Ein Programm ist eine Abfolge von Anweisungen, die ein Computer ausführt, um eine bestimmte Aufgabe zu erledigen. In unserem Fall ist das Programm später dafür zuständig, mit der LED zu interagieren und sie in verschiedenen Farben leuchten zu lassen. Programme werden in Programmiersprachen geschrieben, die es uns ermöglichen, dem Computer präzise Anweisungen zu geben. Wir verwenden in diesem Buch die Programmiersprache Python, die sich besonders gut für Einsteiger eignet und gleichzeitig mächtig genug ist, um komplexe Aufgaben zu lösen.
 
 Wenn wir ein Programm ausführen, arbeitet der Computer die Anweisungen Schritt für Schritt von oben nach unten ab. Die Nummerierung der Zeilen verdeutlicht das sehr schön. Der Computer beginnt bei Zeile 1 und arbeitet die Befehle Zeile für Zeile bis nach unten ab.
 
@@ -88,11 +118,11 @@ Es gibt Befehle, die den Computer von dieser linearen Abfolge abweichen lassen, 
 
 ### Boilerplate Code {#boilerplate-code}
 
-Der Codeausschnitt in @lst-boilerplate-code wird uns im Verlauf dieses Buches immer wieder begegnen. Wir benötigen ihn, um uns am Anfang des Programms mit den Geräten zu verbinden, die wir für unsere Anwendung benötigen. In der Informatik nennen wir solchen Code, den wir häufig in der gleichen Form benötigen und fast eins zu eins kopieren können, auch *Boilerplate-Code*. Wundert euch also nicht, wenn ich diesen Begriff ab und an mal verwende. Jetzt wisst ihr, was gemeint ist.
+Der Codeausschnitt in @lst-boilerplate-code wird uns im Verlauf dieses Buches immer wieder begegnen. Wir benötigen ihn, um uns am Anfang des Programms mit den Geräten zu verbinden, die wir für unsere Anwendung benötigen. In der Informatik nennen wir solchen Code, den wir häufig in der gleichen Form benötigen und fast eins zu eins kopieren können, auch \gloss{Boilerplate-Code}{Vorlagen-Code, der häufig wiederverwendet wird und oft unverändert bleibt.}{Programmierung}. Wundert euch also nicht, wenn ich diesen Begriff ab und an mal verwende. Jetzt wisst ihr, was gemeint ist.
 
 ### Bibliotheken {#bibliotheken}
 
-Beginnen wir in den ersten beiden Zeilen. Hier seht ihr zwei sehr ähnliche Befehle, die mit dem Schlüsselwort `from` beginnen. Nach dem Schlüsselwort `from` folgt der Name einer Bibliothek, aus der wir ein für unser Programm benötigtes Objekt importieren. Die Kombination der Schlüsselwörter `from ... import` lässt sich also wörtlich übersetzen: "Aus der Bibliothek X importiere das Objekt Y".
+Beginnen wir in den ersten beiden Zeilen. Hier seht ihr zwei sehr ähnliche Befehle, die mit dem Schlüsselwort `from` beginnen. Nach dem Schlüsselwort `from` folgt der Name einer \gloss{Bibliothek}{Eine Bündelung von fertigen Funktionen, Klassen oder Konstanten in einer Programmiersprache}{Programmierung}, aus der wir ein für unser Programm benötigtes Objekt importieren. Die Kombination der Schlüsselwörter `from ... import` lässt sich also wörtlich übersetzen: "Aus der Bibliothek X importiere das Objekt Y".
 
 Eine *Bibliothek*\index{Bibliothek} in einer Programmiersprache ist die Bündelung und Bereitstellung von Funktionen, Klassen oder Konstanten. Eine Bibliothek könnt ihr euch vorstellen wie einen Werkzeugkasten: Sie enthält fertige Werkzeuge (Funktionen und Klassen), damit ihr nicht alles von Grund auf selbst programmieren müsst. Tinkerforge stellt uns genau solche Werkzeuge bereit, damit wir schnell und unkompliziert mit den Geräten loslegen können. Für jedes Gerät gibt es in der Tinkerforge-Bibliothek eine eigene Klasse, über die wir auf die Funktionen jedes Geräts zugreifen können.
 
@@ -100,7 +130,7 @@ Eine *Bibliothek*\index{Bibliothek} in einer Programmiersprache ist die Bündelu
 
 Mit `from ... import` importieren wir also etwas aus einer Bibliothek. Soweit so gut. Aber was bedeutet das genau? Mit *importieren* ist konkret gemeint, dass wir dem Programm mitteilen, dass wir vorhaben, die genannten Dinge in unserem Programm zu verwenden, und dass sie deshalb am besten schon einmal geladen werden sollten. Ob wir diese Dinge später wirklich nutzen, steht auf einem anderen Blatt.
 
-In dem Fall der ersten beiden Zeilen unseres Programms von oben sind es zwei *Klassen*\index{Klasse}, deren Verwendung wir ankündigen. Die erste Klasse heißt `IPConnection`\index{`IPConnection`} und die zweite `BrickletRGBLEDV2`\index{`BrickletRGBLEDV2`}. Der Begriff *Klasse* ist hier analog zum Begriff *Kategorie* zu verstehen. Wir können zu einer Klasse gehörige *Objekte*\index{Objekt} erzeugen, und alle Objekte derselben Klasse verhalten sich gleich und haben die gleichen Funktionen. Das verstehen wir am besten an einem einfachen Beispiel.
+In dem Fall der ersten beiden Zeilen unseres Programms von oben sind es zwei Klassen, deren Verwendung wir ankündigen. Die erste Klasse heißt `IPConnection`\index{`IPConnection`} und die zweite `BrickletRGBLEDV2`\index{`BrickletRGBLEDV2`}. Der Begriff \gloss{Klasse}{Baupläne für Objekte, die bestimmte Eigenschaften und Funktionen definieren}{Programmierung} ist hier analog zum Begriff *Kategorie* zu verstehen. Wir können zu einer Klasse gehörige \gloss{Objekte}{Objekte sind konkrete Instanzen von Klassen, die die definierten Eigenschaften und Funktionen nutzen können.}{Programmierung} erzeugen, und alle Objekte derselben Klasse verhalten sich gleich und haben die gleichen Funktionen. Das verstehen wir am besten an einem einfachen Beispiel.
 
 Stellt euch vor, ihr habt eine Klasse namens `Auto`. Diese Klasse beschreibt alle Eigenschaften und Funktionen, die ein Auto haben kann, wie etwa `fahren()`, `bremsen()` oder `tanken()`. Diese Dinge sollen für jedes Auto gleich ablaufen. Jedes konkrete Auto in der Welt ist ein Objekt dieser Klasse. Wir können also sagen: "Mein Auto ist ein Objekt der Klasse `Auto`." Jedes `Auto` hat neben den Funktionen die gleichen Eigenschaften wie Farbe, Marke und Modell. Aber jedes Auto kann andere Werte für diese Eigenschaften haben.
 
@@ -108,7 +138,7 @@ Genauso verhält es sich mit den Klassen, die Tinkerforge für uns bereitgestell
 
 ### Schlüsselwörter
 
-Soeben haben wir mit `from` und `import` unsere ersten beiden Schlüsselwörter\index{Schlüsselwort} in Python kennengelernt! Aber was bedeutet das genau? Ein Schlüsselwort, das wir im Englischen auch *keyword* oder *reserved keyword* nennen, ist ein Begriff, der in der jeweiligen Programmiersprache eine feste Bedeutung hat und deshalb nicht anderweitig verwendet werden darf. Wir werden gleich noch sehen, dass wir bei der Programmierung auch häufig Namen vergeben müssen, etwa für Variablen oder Funktionen. Diese Namen dürfen nicht wie ein Schlüsselwort lauten, ansonsten funktioniert unser Programm nicht wie gewünscht. Welche Schlüsselwörter es in Python gibt, könnt ihr [hier](https://docs.python.org/3/reference/lexical_analysis.html#keywords "Reservierte Schlüsselwörter in Python") nachschauen.
+Soeben haben wir mit `from` und `import` unsere ersten beiden Schlüsselwörter in Python kennengelernt! Aber was bedeutet das genau? Ein \gloss{Schlüsselwort}{Begriff, der in der Programmiersprache eine feste Bedeutung hat}{Programmierung}, das wir im Englischen auch *keyword* oder *reserved keyword* nennen, ist ein Begriff, der in der jeweiligen Programmiersprache eine feste Bedeutung hat und deshalb nicht anderweitig verwendet werden darf. Wir werden gleich noch sehen, dass wir bei der Programmierung auch häufig Namen vergeben müssen, etwa für Variablen oder Funktionen. Diese Namen dürfen nicht wie ein Schlüsselwort lauten, ansonsten funktioniert unser Programm nicht wie gewünscht. Welche Schlüsselwörter es in Python gibt, könnt ihr [hier](https://docs.python.org/3/reference/lexical_analysis.html#keywords "Reservierte Schlüsselwörter in Python") nachschauen.
 
 Im Codeausschnitt oben laden wir zuerst das Objekt für die Verbindung zum angeschlossenen Mikrocontroller, die über eine IP-Verbindung hergestellt wird. Was das genau ist? Später mehr dazu. Zusätzlich zur `IPConnection` laden wir anschließend noch die benötigten Klassen für die Geräte, die wir in unserem aktuellen Setup verwenden wollen. In diesem Kapitel ist das nur die LED, in späteren Experimenten werden es auch mal mehrere Geräte sein.
 
@@ -118,7 +148,7 @@ In @lst-boilerplate-code in Zeile 4 erzeugen wir ein Objekt\index{Objekt} der Kl
 
 ### Methoden
 
-Über das Objekt `ipcon` können wir nun eine Verbindung zu unserem Mikrocontroller herstellen. Das geschieht in Zeile 5 mit der Methode `connect()`. Eine *Methode*\index{Methode} ist eine Funktion, die zu einem Objekt gehört – wie etwa `fahren()` oder `bremsen()` in unserem Auto-Beispiel.
+Über das Objekt `ipcon` können wir nun eine Verbindung zu unserem Mikrocontroller herstellen. Das geschieht in Zeile 5 mit der Methode `connect()`. Eine \gloss{Methode}{Funktion, die zu einem Objekt gehört}{Programmierung} ist eine Funktion, die zu einem Objekt gehört – wie etwa `fahren()` oder `bremsen()` in unserem Auto-Beispiel.
 
 Wir können Methoden aufrufen, um eine bestimmte Aktion auszuführen. In diesem case stellen wir eine Verbindung zum Mikrocontroller her, indem wir die Adresse und den Port angeben, über den die Verbindung hergestellt werden soll. In unserem Fall ist das "localhost", was für die lokale Maschine steht, und Port 4223, der durch den Brick Daemon standardmäßig so konfiguriert ist. Der Aufruf einer Methode erfolgt immer mit dem Punkt `.` nach dem Objekt, gefolgt vom Namen der Methode und den Klammern `()`, in denen wir eventuell benötigte Parameter angeben.
 
@@ -133,7 +163,7 @@ In Zeile 6 erzeugen wir schließlich ein Objekt der Klasse `BrickletRGBLEDV2`. D
 Damit haben wir unser erstes Programm von oben nach unten erläutert und dabei schon viele wichtige Konzepte der Programmierung kennengelernt:
 
 |  |  |
-|-----------------------|------------------------------------------------|
+|-------------------------|-----------------------------------------------|
 | **Programme** | Abfolge von Anweisungen, die nacheinander ausgeführt werden. |
 | **Boilerplate Code** | Standard-Code, den man immer wieder braucht. |
 | **Importieren von Bibliotheken** | Sammlung von fertigen Code-Elementen. |
@@ -165,17 +195,17 @@ Vorher müssen wir aber kurz zurück in die Schule.
 Das Codebeispiel aus diesem Abschnitt findet ihr auf [GitHub](https://github.com/winf-hsos/hands-on-computer-science-code/blob/main/chapter_01/1_1_first_program.py).
 :::
 
-## Licht und Farben {#sec-colors-light-and-colors}
+## Licht und Farben {#sec-colors-light-and-colors .collapsable}
 
 ### Blick auf die Physik
 
-Physik ist vielleicht schon eine Weile her. Erinnern wir uns dennoch kurz, was Licht ist und wie Farben damit zusammenhängen. Licht ist *elektromagnetische Strahlung*\index{elektromagnetische Strahlung}. Das bedeutet, es handelt sich um gekoppelte Schwingungen elektrischer und magnetischer Felder, die sich mit Lichtgeschwindigkeit ausbreiten. Vereinfacht können wir uns Licht als Wellen vorstellen, die sich durch den Raum bewegen. Diese Wellen haben unterschiedliche Frequenzen und Wellenlängen. Das sichtbare Licht ist nur ein kleiner Teil des gesamten elektromagnetischen Spektrums, das von Radiowellen über Infrarotstrahlung bis hin zu Röntgenstrahlen und Gammastrahlen reicht.
+Physik ist vielleicht schon eine Weile her. Erinnern wir uns dennoch kurz, was Licht ist und wie Farben damit zusammenhängen. Licht ist \gloss{elektromagnetische Strahlung}{Form von Energie, die sich in Wellen durch den Raum bewegt}{Physik}. Das bedeutet, es handelt sich um gekoppelte Schwingungen elektrischer und magnetischer Felder, die sich mit Lichtgeschwindigkeit ausbreiten. Vereinfacht können wir uns Licht als Wellen vorstellen, die sich durch den Raum bewegen. Diese Wellen haben unterschiedliche Frequenzen und Wellenlängen. Das sichtbare Licht ist nur ein kleiner Teil des gesamten elektromagnetischen Spektrums, das von Radiowellen über Infrarotstrahlung bis hin zu Röntgenstrahlen und Gammastrahlen reicht.
 
-Bei Wellen unterscheiden wir zwischen der Frequenz (wie oft die Welle pro Sekunde schwingt) und der Wellenlänge (der Abstand zwischen zwei aufeinanderfolgenden Wellenbergen). Die Frequenz und die Wellenlänge sind umgekehrt proportional: Je höher die Frequenz, desto kürzer die Wellenlänge und umgekehrt.
+Bei Wellen unterscheiden wir zwischen der \gloss{Frequenz}{Wie oft etwas pro Sekunde passiert}{Physik} (wie oft die Welle pro Sekunde schwingt) und der Wellenlänge (der Abstand zwischen zwei aufeinanderfolgenden Wellenbergen). Die Frequenz und die Wellenlänge sind umgekehrt proportional: Je höher die Frequenz, desto kürzer die Wellenlänge und umgekehrt.
 
 Frequenzen messen wir in Hertz (Hz), wobei 1 Hz einer Schwingung pro Sekunde entspricht. Das sichtbare Licht hat Frequenzen im Bereich von etwa 430 THz (Terahertz) bis 750 THz. Die Wellenlängen des sichtbaren Lichts liegen zwischen etwa 400 nm (Nanometer) für violettes Licht und etwa 700 nm für rotes Licht. Um sich das vorzustellen: Ein Nanometer ist ein Milliardstel Meter. Zum Vergleich: Ein menschliches Haar hat einen Durchmesser von etwa 80.000 bis 100.000 Nanometern. Die Abstände zwischen den Wellenlängen des sichtbaren Lichts sind also extrem klein.
 
-Was bedeutet das nun für eine LED? Eine LED (Light Emitting Diode) ist ein Halbleiterbauelement, das Licht erzeugt, wenn elektrischer Strom hindurchfließt. Die Farbe des Lichts hängt von Eigenschaften des Halbleitermaterials ab, aus dem die LED besteht. Verschiedene Materialien emittieren Licht bei unterschiedlichen Wellenlängen, was zu verschiedenen Farben führt. Zum Beispiel emittiert eine rote LED Licht mit einer Wellenlänge von etwa 620–750 nm, während eine grüne LED Licht mit einer Wellenlänge von etwa 495–570 nm emittiert.
+Was bedeutet das nun für eine LED? Eine \gloss{LED}{Steht für *light emitting diode*}{Bauteile} (Light Emitting Diode) ist ein Halbleiterbauelement, das Licht erzeugt, wenn elektrischer Strom hindurchfließt. Die Farbe des Lichts hängt von Eigenschaften des Halbleitermaterials ab, aus dem die LED besteht. Verschiedene Materialien emittieren Licht bei unterschiedlichen Wellenlängen, was zu verschiedenen Farben führt. Zum Beispiel emittiert eine rote LED Licht mit einer Wellenlänge von etwa 620–750 nm, während eine grüne LED Licht mit einer Wellenlänge von etwa 495–570 nm emittiert.
 
 ![Das elektromagnetische Spektrum, von dem das sichtbare Licht ein kleiner Teil ist. (Quelle: [Wikipedia](https://en.wikipedia.org/wiki/File:EM_Spectrum_Properties_edit.svg))](images/em_spectrum.png){#fig-em-spectrum fig-align="center" width="100%"}
 
@@ -247,7 +277,7 @@ led.set_rgb_value(255, 0, 255)
 
 Gemäß der Theorie der additiven Farbmischung (@fig-additive-color-mixing) müssten Rot und Blau Magenta ergeben. Probiert es aus!
 
-## Pulsierende LED {#sec-colors-pulsating-led}
+## Pulsierende LED {#sec-colors-pulsating-led .collapsable}
 
 Das deklarierte Ziel unseres ersten Experiments ist es, einen Regenbogenfarbverlauf zu erzeugen. Dazu müssen wir die Farbe der LED kontinuierlich ändern, sodass sie von Rot über Gelb, Grün, Cyan, Blau und Violett wieder zurück zu Rot wechselt.
 
@@ -437,7 +467,7 @@ while True:
 Das Codebeispiel aus diesem Abschnitt findet ihr auf [GitHub](https://github.com/winf-hsos/hands-on-computer-science-code/blob/main/chapter_01/1_3_pulsating_led.py).
 :::
 
-## Farbkreise {#sec-colors-hue-circle}
+## Farbkreise {#sec-colors-hue-circle .collapsable}
 
 Das RGB-Farbschema ist für Computer optimal, weil sich damit mit nur drei Zahlen jede beliebige Farbe kodieren lässt. Zahlen sind schließlich die Sprache, mit der Computer am besten umgehen können. Für uns Menschen ist dieses Schema jedoch weniger intuitiv. Oder könntet ihr auf Anhieb sagen, welche Farbe hinter der Kombination (67, 201, 182) steckt?
 
@@ -474,7 +504,7 @@ Dann beginnt der Zyklus von vorn.
 
 ![Der Hue-Farbverlauf mit den Veränderungen der RGB-Werte (Quelle: [Ronja's Tutorials](https://www.ronja-tutorials.com/post/041-hsv-colorspace/)).](images/hue_rgb_diagram.png){#fig-hue-rgb-diagram .lightbox fig-align="center" width="75%"}
 
-## Regenbogen-LED {#sec-colors-rainbow-led}
+## Regenbogen-LED {#sec-colors-rainbow-led .collapsable}
 
 Mit dem Wissen können wir uns an das erklärte Ziel unseres Experiments machen: die LED nacheinander in allen Farben des Regenbogens aufleuchten zu lassen. Beginnen wir mit der ersten Phase und schreiben dafür ein Python-Programm:
 

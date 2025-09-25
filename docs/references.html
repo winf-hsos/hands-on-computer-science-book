@@ -50,7 +50,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./sound.html" rel="prev">
+<link href="./glossary.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -88,8 +88,82 @@ div.csl-indent {
     "search-label": "Suchen"
   }
 }</script>
+<!-- DataTables assets -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+
+<style>
+/* linksbündig + volle Breite */
+.datatable table, .datatable-nosearch table { width: 100% !important; }
+.datatable table td, .datatable table th,
+.datatable-nosearch table td, .datatable-nosearch table th { text-align: left; }
+
+/* etwas Luft unter dem Suchfeld (nur .datatable mit Suche) */
+.datatable .dataTables_filter { margin-bottom: 1.5rem; }
+</style>
+
+<script>
+(function () {
+  function initDT() {
+    if (!window.jQuery || !jQuery.fn || !jQuery.fn.DataTable) return;
+
+    // 0) Vorhandene Instanzen zerstören (Hot-Reload zuverlässig)
+    document.querySelectorAll('.datatable table, .datatable-nosearch table').forEach(function (tbl) {
+      if (jQuery.fn.dataTable.isDataTable(tbl)) {
+        try { jQuery(tbl).DataTable().destroy(); } catch(e) {}
+      }
+      tbl.removeAttribute('data-dt-inited');
+      tbl.classList.remove('dataTable');
+    });
+
+    // 1) Tabellen MIT Suche (globales Glossar)
+    document.querySelectorAll('.datatable table').forEach(function (tbl) {
+      if (tbl.dataset.dtInited === '1') return;
+      const wrap = tbl.closest('.datatable');
+      let order = [[0,'asc']];
+      try {
+        const o = wrap && wrap.getAttribute('data-order');
+        if (o) order = JSON.parse(o);
+      } catch(e) {}
+      jQuery(tbl).DataTable({
+        dom: 'f',
+        paging: false,
+        info: false,
+        ordering: true,
+        order: order
+      });
+      tbl.dataset.dtInited = '1';
+    });
+
+    // 2) Tabellen OHNE Suche (Kapitel-Glossare)
+    document.querySelectorAll('.datatable-nosearch table').forEach(function (tbl) {
+      if (tbl.dataset.dtInited === '1') return;
+      const wrap = tbl.closest('.datatable-nosearch');
+      let order = [[0,'asc']]; // Fallback
+      try {
+        const o = wrap && wrap.getAttribute('data-order');
+        if (o) order = JSON.parse(o);   // <-- liest z.B. [[2,"asc"]]
+      } catch(e) {}
+      jQuery(tbl).DataTable({
+        dom: 't',        // nur Tabelle
+        paging: false,
+        info: false,
+        ordering: true,
+        order: order,
+        orderMulti: false
+      });
+      tbl.dataset.dtInited = '1';
+    });
+  }
+  document.addEventListener('DOMContentLoaded', initDT);
+  document.addEventListener('quarto:rendered', initDT);
+})();
+</script>
 
 
+<link rel="stylesheet" href="partials/gloss.css">
+<link rel="stylesheet" href="partials/collapsable.css">
 </head>
 
 <body class="nav-sidebar floating quarto-light">
@@ -179,6 +253,12 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./glossary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Glossar</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Literaturverzeichnis</span></a>
   </div>
@@ -242,6 +322,28 @@ Computers for Everyone</em>. Oldsmar, FL: John C. Scott.
 
 
 </main> <!-- /main -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  if (document.documentElement.dataset.collapsableInit) return;
+  document.documentElement.dataset.collapsableInit = "1";
+
+  document.querySelectorAll(
+    "h1.collapsable, h2.collapsable, h3.collapsable, h4.collapsable, h5.collapsable, h6.collapsable"
+  ).forEach(h => {
+    const details = h.nextElementSibling;
+    if (!details || details.tagName.toLowerCase() !== "details") return;
+
+    // Icon-Status initial
+    h.classList.toggle("closed", !details.open);
+
+    h.style.cursor = "pointer";
+    h.addEventListener("click", () => {
+      details.open = !details.open;
+      h.classList.toggle("closed", !details.open);
+    });
+  });
+});
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
@@ -682,8 +784,8 @@ Computers for Everyone</em>. Oldsmar, FL: John C. Scott.
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./sound.html" class="pagination-link" aria-label="Ton">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ton</span></span>
+      <a href="./glossary.html" class="pagination-link" aria-label="Glossar">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Glossar</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">

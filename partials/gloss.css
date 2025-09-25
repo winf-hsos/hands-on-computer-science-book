@@ -1,0 +1,4 @@
+.gloss-term {
+  font-weight: 500;       /* fett */
+  border-bottom: 1px dotted #aaa;  /* dezent unterstrichen */
+}

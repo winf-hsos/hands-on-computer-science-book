@@ -1,5 +1,6 @@
 project:
   type: book
+  pre-render: "python build_glossary_from_book.py"
   execute-dir: project
   output-dir: docs
 
@@ -10,6 +11,11 @@ lang: de
 execute: 
   enabled: true
   eval: false
+
+filters:
+  - filters/gloss.lua
+  - filters/collapsable.lua
+
 
 book:
   title: "Hands-On Computer Science"
@@ -31,6 +37,8 @@ book:
     - text.qmd
     - images.qmd
     - sound.qmd
+
+    - glossary.qmd
 
     #- codes.qmd
     #- conversion.qmd
@@ -57,6 +65,12 @@ format:
     number-sections: true
     code-annotations: hover
     code-line-numbers: true
+    include-in-header: partials/datatables.html
+    include-after-body: partials/collapsable.html
+    css: 
+      - partials/gloss.css
+      - partials/collapsable.css
+
   pdf:
     documentclass: scrreprt
     include-in-header: 

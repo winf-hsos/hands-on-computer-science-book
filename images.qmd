@@ -75,7 +75,7 @@ oled.clear_display() # <2>
 
 Über die Variable `oled` können wir jetzt die verschiedenen Funktionen des Displays verwenden. Eine davon seht ihr bereits im Codebeispiel, nämlich das Löschen des Displays mit `clear_display()`. Die andere wesentliche Funktion ist das An- und Ausschalten einzelner Pixel.
 
-Das Wort Pixel\index{Pixel} wird vom englischen "picture element" abgeleitet, also Bildelement. Ein Pixel ist der kleinste darstellbare Punkt auf einem Display. In unserem Fall kann ein Pixel entweder schwarz oder weiß sein. Auf anderen Bildschirmen, wie dem eures Smartphones oder Fernsehers, können Pixel auch farbig sein. Das schauen wir uns später noch genauer an. In diesem Kapitel konzentrieren wir uns auf die einfache schwarzweiße Darstellung. Außerdem kann unser Display nur Schwarzweiß.
+Das Wort \gloss{Pixel}{Ein Pixel ist der kleinste darstellbare Punkt auf einem Display}{Repräsentation von Bildern} wird vom englischen "picture element" abgeleitet, also Bildelement. Ein Pixel ist der kleinste darstellbare Punkt auf einem Display. In unserem Fall kann ein Pixel entweder schwarz oder weiß sein. Auf anderen Bildschirmen, wie dem eures Smartphones oder Fernsehers, können Pixel auch farbig sein. Das schauen wir uns später noch genauer an. In diesem Kapitel konzentrieren wir uns auf die einfache schwarzweiße Darstellung. Außerdem kann unser Display nur Schwarzweiß.
 
 Das Display, das wir verwenden, hat eine Auflösung von 128 x 64 Pixeln. Das bedeutet, dass es 128 Pixel in der Breite und 64 Pixel in der Höhe hat. Insgesamt ergibt das 8192 einzelne Pixel, die wir ansteuern können.
 

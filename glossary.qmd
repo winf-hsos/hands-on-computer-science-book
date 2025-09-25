@@ -1,0 +1,20 @@
+# Glossar {.unnumbered}
+
+::: {#glossar-table .datatable data-order='[[0,"asc"]]' }
+| Begriff | Kategorie | Definition | Kapitel |
+|---|---|---|---|
+| <span id="gl-bibliothek">Bibliothek</span> | Programmierung | Eine Bündelung von fertigen Funktionen, Klassen oder Konstanten in einer Programmiersprache | @sec-colors |
+| <span id="gl-boilerplate-code">Boilerplate-Code</span> | Programmierung | Vorlagen-Code, der häufig wiederverwendet wird und oft unverändert bleibt. | @sec-colors |
+| <span id="gl-brick-viewer">Brick Viewer</span> | Bauteile | Ein Werkzeug zum schnellen Testen der Tinkerforge-Bauteile | @sec-colors |
+| <span id="gl-elektromagnetische-strahlung">elektromagnetische Strahlung</span> | Physik | Form von Energie, die sich in Wellen durch den Raum bewegt | @sec-colors |
+| <span id="gl-frequenz">Frequenz</span> | Physik | Wie oft etwas pro Sekunde passiert | @sec-colors |
+| <span id="gl-klasse">Klasse</span> | Programmierung | Baupläne für Objekte, die bestimmte Eigenschaften und Funktionen definieren | @sec-colors |
+| <span id="gl-led">LED</span> | Bauteile | Steht für *light emitting diode* | @sec-colors |
+| <span id="gl-methode">Methode</span> | Programmierung | Funktion, die zu einem Objekt gehört | @sec-colors |
+| <span id="gl-objekte">Objekte</span> | Programmierung | Objekte sind konkrete Instanzen von Klassen, die die definierten Eigenschaften und Funktionen nutzen können. | @sec-colors |
+| <span id="gl-pixel">Pixel</span> | Repräsentation von Bildern | Ein Pixel ist der kleinste darstellbare Punkt auf einem Display | @sec-images |
+| <span id="gl-programm">Programm</span> | Programmierung | Abfolge von Anweisungen, die ein Computer ausführt | @sec-colors |
+| <span id="gl-rgb-led">RGB LED</span> | Bauteile | Eine LED, die in verschiedenen Farben leuchten kann. | @sec-colors |
+| <span id="gl-schlusselwort">Schlüsselwort</span> | Programmierung | Begriff, der in der Programmiersprache eine feste Bedeutung hat | @sec-colors |
+:::
+

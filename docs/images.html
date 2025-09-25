@@ -127,8 +127,82 @@ div.csl-indent {
     "search-label": "Suchen"
   }
 }</script>
+<!-- DataTables assets -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+
+<style>
+/* linksbündig + volle Breite */
+.datatable table, .datatable-nosearch table { width: 100% !important; }
+.datatable table td, .datatable table th,
+.datatable-nosearch table td, .datatable-nosearch table th { text-align: left; }
+
+/* etwas Luft unter dem Suchfeld (nur .datatable mit Suche) */
+.datatable .dataTables_filter { margin-bottom: 1.5rem; }
+</style>
+
+<script>
+(function () {
+  function initDT() {
+    if (!window.jQuery || !jQuery.fn || !jQuery.fn.DataTable) return;
+
+    // 0) Vorhandene Instanzen zerstören (Hot-Reload zuverlässig)
+    document.querySelectorAll('.datatable table, .datatable-nosearch table').forEach(function (tbl) {
+      if (jQuery.fn.dataTable.isDataTable(tbl)) {
+        try { jQuery(tbl).DataTable().destroy(); } catch(e) {}
+      }
+      tbl.removeAttribute('data-dt-inited');
+      tbl.classList.remove('dataTable');
+    });
+
+    // 1) Tabellen MIT Suche (globales Glossar)
+    document.querySelectorAll('.datatable table').forEach(function (tbl) {
+      if (tbl.dataset.dtInited === '1') return;
+      const wrap = tbl.closest('.datatable');
+      let order = [[0,'asc']];
+      try {
+        const o = wrap && wrap.getAttribute('data-order');
+        if (o) order = JSON.parse(o);
+      } catch(e) {}
+      jQuery(tbl).DataTable({
+        dom: 'f',
+        paging: false,
+        info: false,
+        ordering: true,
+        order: order
+      });
+      tbl.dataset.dtInited = '1';
+    });
+
+    // 2) Tabellen OHNE Suche (Kapitel-Glossare)
+    document.querySelectorAll('.datatable-nosearch table').forEach(function (tbl) {
+      if (tbl.dataset.dtInited === '1') return;
+      const wrap = tbl.closest('.datatable-nosearch');
+      let order = [[0,'asc']]; // Fallback
+      try {
+        const o = wrap && wrap.getAttribute('data-order');
+        if (o) order = JSON.parse(o);   // <-- liest z.B. [[2,"asc"]]
+      } catch(e) {}
+      jQuery(tbl).DataTable({
+        dom: 't',        // nur Tabelle
+        paging: false,
+        info: false,
+        ordering: true,
+        order: order,
+        orderMulti: false
+      });
+      tbl.dataset.dtInited = '1';
+    });
+  }
+  document.addEventListener('DOMContentLoaded', initDT);
+  document.addEventListener('quarto:rendered', initDT);
+})();
+</script>
 
 
+<link rel="stylesheet" href="partials/gloss.css">
+<link rel="stylesheet" href="partials/collapsable.css">
 </head>
 
 <body class="nav-sidebar floating quarto-light">
@@ -214,6 +288,12 @@ div.csl-indent {
   <div class="sidebar-item-container"> 
   <a href="./sound.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Ton</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./glossary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Glossar</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -390,7 +470,7 @@ Abbildung&nbsp;4.3: Gezeichneter vs.&nbsp;getippter Text auf dem Display.
 <section id="sec-images-pixels" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="sec-images-pixels"><span class="header-section-number">4.1</span> Pixel</h2>
 <p>Nachdem wir das Display im Brick Viewer ausprobiert haben, wollen wir uns die Funktionen auch in Python anschauen. Dazu stellen wir wie immer die Verbindung her und erzeugen eine Instanz des Display-Objekts:</p>
-<div id="86b0157d" class="cell" data-execution_count="1">
+<div id="97fa78e2" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
 <span id="annotated-cell-1-2"><a href="#annotated-cell-1-2"></a><span class="im">from</span> tinkerforge.bricklet_oled_128x64_v2 <span class="im">import</span> BrickletOLED128x64V2</span>
 <span id="annotated-cell-1-3"><a href="#annotated-cell-1-3"></a></span>
@@ -412,16 +492,16 @@ Abbildung&nbsp;4.3: Gezeichneter vs.&nbsp;getippter Text auf dem Display.
 </div>
 </div>
 <p>Über die Variable <code>oled</code> können wir jetzt die verschiedenen Funktionen des Displays verwenden. Eine davon seht ihr bereits im Codebeispiel, nämlich das Löschen des Displays mit <code>clear_display()</code>. Die andere wesentliche Funktion ist das An- und Ausschalten einzelner Pixel.</p>
-<p>Das Wort Pixel wird vom englischen “picture element” abgeleitet, also Bildelement. Ein Pixel ist der kleinste darstellbare Punkt auf einem Display. In unserem Fall kann ein Pixel entweder schwarz oder weiß sein. Auf anderen Bildschirmen, wie dem eures Smartphones oder Fernsehers, können Pixel auch farbig sein. Das schauen wir uns später noch genauer an. In diesem Kapitel konzentrieren wir uns auf die einfache schwarzweiße Darstellung. Außerdem kann unser Display nur Schwarzweiß.</p>
+<p>Das Wort <a href="glossary.html#gl-pixel" title="Pixel"><span class="gloss-term">Pixel</span></a> wird vom englischen “picture element” abgeleitet, also Bildelement. Ein Pixel ist der kleinste darstellbare Punkt auf einem Display. In unserem Fall kann ein Pixel entweder schwarz oder weiß sein. Auf anderen Bildschirmen, wie dem eures Smartphones oder Fernsehers, können Pixel auch farbig sein. Das schauen wir uns später noch genauer an. In diesem Kapitel konzentrieren wir uns auf die einfache schwarzweiße Darstellung. Außerdem kann unser Display nur Schwarzweiß.</p>
 <p>Das Display, das wir verwenden, hat eine Auflösung von 128 x 64 Pixeln. Das bedeutet, dass es 128 Pixel in der Breite und 64 Pixel in der Höhe hat. Insgesamt ergibt das 8192 einzelne Pixel, die wir ansteuern können.</p>
 <p>Beginnen wir, indem wir das Pixel in der linken oberen Ecke des Displays einschalten. Die Koordinaten für dieses Pixel sind (0, 0), wobei die erste Zahl die x-Koordinate (horizontal) und die zweite Zahl die y-Koordinate (vertikal) ist. Um dieses Pixel einzuschalten, verwenden wir die Funktion <code>write_pixels()</code>, die wie folgt aussieht:</p>
-<div id="cbfec388" class="cell" data-execution_count="2">
+<div id="245f06d0" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, [<span class="dv">1</span>])</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Die ersten vier Argumente definieren zwei Punkte auf dem Display, die eine rechteckige Fläche beschreiben. Die ersten beiden Argumente sind die x- und y-Koordinaten des oberen linken Punkts, die zweiten beiden Argumente sind die x- und y-Koordinaten des unteren rechten Punkts. Diese Eckpunkte sind inklusive, das heißt, die Breite ergibt sich aus <code>x_end - x_start + 1</code> und die Höhe aus <code>y_end - y_start + 1</code>. In unserem Fall sind beide Punkte (0, 0), wir sprechen also genau ein Pixel an. Der letzte Parameter ist eine Liste von Werten, die angibt, ob die Pixel in der definierten Fläche ein- oder ausgeschaltet werden sollen. Ein Wert von 1 bedeutet weiß, 0 bedeutet schwarz. Da wir nur ein Pixel ansprechen, enthält die Liste nur einen Wert: <code>[1]</code>.</p>
 <p>Eine Liste wird in Python mit eckigen Klammern <code>[]</code> definiert. Innerhalb der Klammern können beliebig viele Werte durch Kommas getrennt angegeben werden. In unserem Fall haben wir nur einen Wert, nämlich 1, um das einzelne Pixel einzuschalten.</p>
 <p>Genauso können wir das Pixel wieder ausschalten, indem wir den Wert in der Liste auf 0 ändern. Sobald ihr Enter drückt, sollte das Pixel in der linken oberen Ecke wieder ausgehen:</p>
-<div id="dda99146" class="cell" data-execution_count="3">
+<div id="d16b58e8" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, [<span class="dv">1</span>])</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">input</span>(<span class="st">"Drücke Enter um das Pixel auszuschalten..."</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, [<span class="dv">0</span>])</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -431,7 +511,7 @@ Abbildung&nbsp;4.3: Gezeichneter vs.&nbsp;getippter Text auf dem Display.
 <section id="sec-images-bitmaps" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="sec-images-bitmaps"><span class="header-section-number">4.2</span> Bitmaps</h2>
 <p>Sagen wir, wir wollen ein 4x4 großes Quadrat in der Mitte des Displays zeichnen. Dazu müssen wir zuerst berechnen, wo die Mitte des Displays ist. Da das Display 128 Pixel breit und 64 Pixel hoch ist, liegt die Mitte bei (64, 32). Weil wir bei 0 beginnen zu zählen, korrigieren wir auf (63, 31). Um ein 4x4-Quadrat zu zeichnen, setzen wir die Koordinaten des oberen linken Punkts auf (61, 29) und die Koordinaten des unteren rechten Punkts auf (64, 32). Die Liste der Werte für die Pixel in dieser Fläche muss 16 Werte enthalten, alle auf 1 gesetzt, um das Quadrat einzuschalten.</p>
-<div id="ba5efbc8" class="cell" data-execution_count="4">
+<div id="d57b32ec" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">61</span>, <span class="dv">29</span>, <span class="dv">64</span>, <span class="dv">32</span>, [<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>])</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Genau genommen ist die Liste keine verschachtelte Struktur, sie wird aber als 4x4-Matrix interpretiert. Die Bitmap sieht also so aus:</p>
@@ -440,7 +520,7 @@ Abbildung&nbsp;4.3: Gezeichneter vs.&nbsp;getippter Text auf dem Display.
 1 1 1 1
 1 1 1 1</code></pre>
 <p>Was ist, wenn wir das Quadrat auf 5x5 vergrößern wollen? Dann ändern wir den unteren rechten Punkt auf (65, 33) oder alternativ den oberen linken Punkt auf (60, 28). Die Liste der Werte erweitern wir auf 25 Einträge:</p>
-<div id="9a8ba594" class="cell" data-execution_count="5">
+<div id="e54ad61c" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">61</span>, <span class="dv">29</span>, <span class="dv">65</span>, <span class="dv">33</span>, [<span class="dv">1</span>]<span class="op">*</span><span class="dv">25</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Die Python-Syntax <code>[1]*25</code> erzeugt eine Liste mit 25 Einsen. Das ist eine praktische Abkürzung, um lange Listen mit gleichen Werten zu erstellen.</p>
@@ -478,7 +558,7 @@ Abbildung&nbsp;4.5: Der Buchstabe “A” als Bitmap in einem Spreadsheet.
 </figure>
 </div>
 <p>Anhand dieser Darstellung können wir die Werte für die Liste mit Einsen und Nullen ableiten, die wir benötigen, um den Buchstaben “A” auf dem Display darzustellen. Die Liste sieht so aus:</p>
-<div id="d5ba7e05" class="cell" data-execution_count="6">
+<div id="a8f598ee" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>letter_a_bitmap <span class="op">=</span> [</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>,</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>,</span>
@@ -492,26 +572,26 @@ Abbildung&nbsp;4.5: Der Buchstabe “A” als Bitmap in einem Spreadsheet.
 </div>
 <p>Wer gute Augen hat, erkennt in der Matrix den Buchstaben “A” sofort. Welcher Buchstabe verbirgt sich in der folgenden Bitmap?</p>
 <p>Zeichnen wir den Buchstaben auf dem Display, um es herauszufinden. Wir kennen die Dimensionen (5x8 Pixel), haben die Bitmap und müssen nur noch die Position bestimmen, an der der Buchstabe gezeichnet werden soll. Ich habe mich für die Position (6, 10) als oberen linken Punkt entschieden:</p>
-<div id="5b13b7ff" class="cell" data-execution_count="8">
+<div id="ac9b4ed8" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">6</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">17</span>, letter_unknown_bitmap)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Und? Seht ihr auch ein großes “S”? Versuchen wir, davor noch das “A” zu schreiben:</p>
-<div id="a9e60ff5" class="cell" data-execution_count="9">
+<div id="0b3b2e41" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">17</span>, letter_a_bitmap)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Wir haben richtig gerechnet: Das “A” soll vor dem “S” stehen, also müssen wir mit der x-Koordinate 5 Pixel nach links gehen. Die y-Koordinate bleibt gleich, weil beide Buchstaben auf der gleichen Höhe stehen sollen. Lasst uns noch ein Pixel Platz zwischen beiden Buchstaben lassen. Das bedeutet, dass wir die x-Koordinate des “A” um 1 Pixel weiter nach links setzen, also auf 0. Die x-Koordinate des rechten unteren Punkts des “A” wird dann 4. Der Code für das “A” sieht dann so aus:</p>
-<div id="33c7035c" class="cell" data-execution_count="10">
+<div id="cdd430ff" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">4</span>, <span class="dv">17</span>, letter_a_bitmap)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Und nun noch ein “S” ans Ende, damit wir ein sinnvolles Wort geschrieben haben:</p>
-<div id="4c4e78dd" class="cell" data-execution_count="11">
+<div id="7fb9a52a" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">4</span>, <span class="dv">17</span>, letter_a_bitmap)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">6</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">17</span>, letter_unknown_bitmap)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">12</span>, <span class="dv">10</span>, <span class="dv">16</span>, <span class="dv">17</span>, letter_unknown_bitmap)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Sucht euch aus, ob ihr nun eine Spielkarte, den Namen eines Schmerzmittels oder das englischsprachige Wort für Ar*** geschrieben habt. In jedem Fall sind es drei Buchstaben, die wir mit Bitmaps auf dem Display dargestellt haben. Und das ganz ohne die Textfunktion des Displays zu verwenden.</p>
 <p>Das wäre übrigens auch gegangen, wäre aber nicht so lehrreich gewesen:</p>
-<div id="522c14d4" class="cell" data-execution_count="12">
+<div id="43a371d9" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>oled.write_line(<span class="dv">0</span>, <span class="dv">0</span>, <span class="st">"Ass"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Wenn ihr beides hintereinander ausführt, steht oben “Ass” per Textfunktion und darunter “ASS” als eigene Bitmaps. Das Schöne an der <code>write_line()</code>-Funktion ist, dass sie automatisch die richtigen Bitmaps für die Buchstaben verwendet. Das Display hat eine eingebaute Schriftart, die es nutzt, wenn wir Text anzeigen wollen. Aber wie ihr gesehen habt, können wir auch eigene Bitmaps verwenden, um Buchstaben oder andere Symbole zu zeichnen, die nicht im Zeichensatz des Displays enthalten sind.</p>
@@ -521,7 +601,7 @@ Abbildung&nbsp;4.5: Der Buchstabe “A” als Bitmap in einem Spreadsheet.
 <h2 data-number="4.4" class="anchored" data-anchor-id="sec-images-vector-graphics"><span class="header-section-number">4.4</span> Vektorgrafiken</h2>
 <p>Während Bitmaps jedes Pixel explizit speichern, beschreiben Vektorgrafiken Objekte mathematisch, etwa “eine Linie von A nach B” oder “ein Kreis mit Mittelpunkt M und Radius r”. Eine Vektor-Schriftart (z. B. TrueType) enthält keine 5x8-Raster pro Zeichen, sondern Pfade für die Konturen von “A”, “S” und Co.&nbsp;Der Vorteil: Diese Formen lassen sich beliebig vergrößern oder verkleinern, ohne dass Treppeneffekte entstehen. Das ist ideal für hochauflösende Displays und Druck. Auf unserem kleinen OLED-Display arbeiten wir dennoch mit Bitmaps, weil sie direkt den Pixeln entsprechen und ohne aufwendiges Rasterisieren angezeigt werden können.</p>
 <p>Schauen wir uns ein Beispiel an. Angenommen, wir wollen ein einfaches Haus zeichnen. In einer Vektorgrafik würden wir das Haus als Rechteck für die Wände und ein Dreieck für das Dach beschreiben. In Python könnten wir das so machen:</p>
-<div id="c78d1a2f" class="cell" data-execution_count="13">
+<div id="ea6d6a31" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> draw_house(oled, x, y, scale<span class="op">=</span><span class="dv">1</span>):</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    width <span class="op">=</span> <span class="bu">round</span>(<span class="dv">15</span> <span class="op">*</span> scale)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    height <span class="op">=</span> <span class="bu">round</span>(<span class="dv">15</span> <span class="op">*</span> scale)</span>
@@ -557,7 +637,7 @@ Abbildung&nbsp;4.7
 </figcaption>
 </figure>
 </div>
-<div id="759a7dc9" class="cell" data-execution_count="14">
+<div id="d427ea8c" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="im">from</span> openpyxl <span class="im">import</span> load_workbook</span>
 <span id="cb15-2"><a href="#cb15-2"></a></span>
 <span id="cb15-3"><a href="#cb15-3"></a>workbook <span class="op">=</span> load_workbook(<span class="st">"pixel_art.xlsx"</span>)</span>
@@ -613,6 +693,28 @@ Scott, John C. 2009. <em>But how do it know?: the basic principles of computers 
 </section>
 
 </main> <!-- /main -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  if (document.documentElement.dataset.collapsableInit) return;
+  document.documentElement.dataset.collapsableInit = "1";
+
+  document.querySelectorAll(
+    "h1.collapsable, h2.collapsable, h3.collapsable, h4.collapsable, h5.collapsable, h6.collapsable"
+  ).forEach(h => {
+    const details = h.nextElementSibling;
+    if (!details || details.tagName.toLowerCase() !== "details") return;
+
+    // Icon-Status initial
+    h.classList.toggle("closed", !details.open);
+
+    h.style.cursor = "pointer";
+    h.addEventListener("click", () => {
+      details.open = !details.open;
+      h.classList.toggle("closed", !details.open);
+    });
+  });
+});
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";
