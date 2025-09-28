@@ -4,7 +4,7 @@
 
 Im zweiten Kapitel spendieren wir der LED aus @sec-numbers eine Dimmfunktion, die wir über einen Drehknopf steuern können.
 
-### Schritte zum Ziel {.unnumbered}
+### Schritt für Schritt zum Ziel {.unnumbered}
 
 Auf dem Weg dorthin gehen wir die folgenden Schritte.
 

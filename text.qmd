@@ -4,7 +4,7 @@
 
 Im dritten Kapitel basteln wir ein universelles Eingabegerät für Informationen. Dafür verwenden wir einen Infrarot-Abstandssensor, mit dem wir Bits kodieren können. Mit diesen Bits können wir dann zum Beispiel Texte eingeben.
 
-### Schritte zum Ziel {.unnumbered}
+### Schritt für Schritt zum Ziel {.unnumbered}
 
 Der Weg dahin führt über folgende Schritte:
 

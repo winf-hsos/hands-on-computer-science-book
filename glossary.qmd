@@ -3,22 +3,36 @@
 ::: {#glossar-table .datatable data-order='[[0,"asc"]]' }
 | Begriff | Kategorie | Definition | Kapitel |
 |---|---|---|---|
+| <span id="gl-additive-farbmischung">Additive Farbmischung</span> | Physik | Mischen von Farben durch Hinzufügen von Licht | @sec-colors |
+| <span id="gl-argumente">Argumente</span> | Programmierung | Platzhalter für übergebene Werte einer Funktion (s. Parameter) | @sec-colors |
+| <span id="gl-bedingung">Bedingung</span> | Programmierung | Aussage, die wahr oder falsch sein kann und die Ausführung von Code steuert | @sec-colors |
 | <span id="gl-bibliothek">Bibliothek</span> | Programmierung | Eine Bündelung von fertigen Funktionen, Klassen oder Konstanten in einer Programmiersprache | @sec-colors |
 | <span id="gl-boilerplate-code">Boilerplate-Code</span> | Programmierung | Vorlagen-Code, der häufig wiederverwendet wird und oft unverändert bleibt. | @sec-colors |
 | <span id="gl-brick-viewer">Brick Viewer</span> | Bauteile | Ein Werkzeug zum schnellen Testen der Tinkerforge-Bauteile | @sec-colors |
+| <span id="gl-cmyk">CMYK</span> | Drucker | Abkürzung der Grundfarben im Farbdruck | @sec-colors |
 | <span id="gl-dry-prinzip">DRY-Prinzip</span> | Programmierung | Grundprinzip in der Programmierung, Code möglichst nicht zu wiederholen. | @sec-numbers |
-| <span id="gl-elektromagnetische-strahlung">elektromagnetische Strahlung</span> | Physik | Form von Energie, die sich in Wellen durch den Raum bewegt | @sec-colors |
+| <span id="gl-elektromagnetische-strahlung">Elektromagnetische Strahlung</span> | Physik | Form von Energie, die sich in Wellen durch den Raum bewegt | @sec-colors |
+| <span id="gl-for-schleife">For-Schleife</span> | Programmierung | Wiederholung mit Zähler, s. Zählerschleife | @sec-colors |
 | <span id="gl-frequenz">Frequenz</span> | Physik | Wie oft etwas pro Sekunde passiert | @sec-colors |
 | <span id="gl-funktionen">Funktionen</span> | Programmierung | Benannter Codeblock zur Lösung eines definierten Problems. | @sec-numbers |
+| <span id="gl-hertz-hz">Hertz (Hz)</span> | Physik | Einheit für Frequenz (1/s) | @sec-colors |
+| <span id="gl-hsv-modell">HSV-Modell</span> | Farben | Farbmodell, das Farben durch Farbton, Sättigung und Helligkeit beschreibt | @sec-colors |
+| <span id="gl-hue-farbkreis">Hue-Farbkreis</span> | Farben | Kreis, der Farben nach ihrem Farbton anordnet | @sec-colors |
 | <span id="gl-infrarot-abstandssensor">Infrarot-Abstandssensor</span> | Bauteile | Ein Sensor, der über Licht des Infrarotspektrums Abstände messen kann. | @sec-text |
 | <span id="gl-klasse">Klasse</span> | Programmierung | Baupläne für Objekte, die bestimmte Eigenschaften und Funktionen definieren | @sec-colors |
 | <span id="gl-led">LED</span> | Bauteile | Steht für *light emitting diode* | @sec-colors |
 | <span id="gl-methode">Methode</span> | Programmierung | Funktion, die zu einem Objekt gehört | @sec-colors |
 | <span id="gl-objekte">Objekte</span> | Programmierung | Objekte sind konkrete Instanzen von Klassen, die die definierten Eigenschaften und Funktionen nutzen können. | @sec-colors |
-| <span id="gl-pixel">Pixel</span> | Repräsentation von Bildern | Ein Pixel ist der kleinste darstellbare Punkt auf einem Display | @sec-images |
+| <span id="gl-parameter">Parameter</span> | Programmierung | Werte, die an eine Funktion übergeben werden | @sec-colors |
 | <span id="gl-programm">Programm</span> | Programmierung | Abfolge von Anweisungen, die ein Computer ausführt | @sec-colors |
 | <span id="gl-rgb-led">RGB LED</span> | Bauteile | Eine LED, die in verschiedenen Farben leuchten kann. | @sec-colors |
+| <span id="gl-rgb-farbkodierung">RGB-Farbkodierung</span> | Codesysteme | Kodierung von Farben mittels Rot-, Grün- und Blauwerten | @sec-colors |
+| <span id="gl-schleife">Schleife</span> | Programmierung | Wiederholung von Programmcode | @sec-colors |
 | <span id="gl-schlusselwort">Schlüsselwort</span> | Programmierung | Begriff, der in der Programmiersprache eine feste Bedeutung hat | @sec-colors |
+| <span id="gl-subtraktive-farbmischung">Subtraktive Farbmischung</span> | Physik | Mischen von Farben durch Entfernen von Licht | @sec-colors |
 | <span id="gl-uid">UID</span> | Programmierung | *Unique Identifier*: Eindeutige Identifikation, hier eines Tinkerforge-Geräts. | @sec-colors |
+| <span id="gl-wellenlange">Wellenlänge</span> | Physik | der Abstand zwischen zwei aufeinanderfolgenden Wellen | @sec-colors |
+| <span id="gl-while-schleife">While-Schleife</span> | Programmierung | Wiederholung von Programmcode, solange eine Bedingung erfüllt ist | @sec-colors |
+| <span id="gl-zahlerschleife">Zählerschleife</span> | Programmierung | Wiederholung mit Zähler | @sec-colors |
 :::
 

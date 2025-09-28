@@ -85,7 +85,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./images.html" rel="next">
+<link href="./glossary.html" rel="next">
 <link href="./numbers.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -300,12 +300,6 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./images.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Bilder</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./glossary.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Glossar</span></a>
   </div>
@@ -328,7 +322,7 @@ window.Quarto = {
   <ul>
   <li><a href="#zusammenfassung" id="toc-zusammenfassung" class="nav-link active" data-scroll-target="#zusammenfassung">Zusammenfassung</a>
   <ul class="collapse">
-  <li><a href="#schritte-zum-ziel" id="toc-schritte-zum-ziel" class="nav-link" data-scroll-target="#schritte-zum-ziel">Schritte zum Ziel</a></li>
+  <li><a href="#schritt-für-schritt-zum-ziel" id="toc-schritt-für-schritt-zum-ziel" class="nav-link" data-scroll-target="#schritt-für-schritt-zum-ziel">Schritt für Schritt zum Ziel</a></li>
   <li><a href="#begriffe-und-konzepte" id="toc-begriffe-und-konzepte" class="nav-link" data-scroll-target="#begriffe-und-konzepte">Begriffe und Konzepte</a></li>
   </ul></li>
   <li><a href="#sec-text-experiment-setup" id="toc-sec-text-experiment-setup" class="nav-link" data-scroll-target="#sec-text-experiment-setup"><span class="header-section-number">3.1</span> Experimentaufbau</a>
@@ -378,8 +372,8 @@ window.Quarto = {
 <h2 class="unnumbered collapsable anchored" data-anchor-id="zusammenfassung">Zusammenfassung</h2>
 <details class="collapsable-section" open=""><summary></summary>
 <p>Im dritten Kapitel basteln wir ein universelles Eingabegerät für Informationen. Dafür verwenden wir einen Infrarot-Abstandssensor, mit dem wir Bits kodieren können. Mit diesen Bits können wir dann zum Beispiel Texte eingeben.</p>
-<section id="schritte-zum-ziel" class="level3 unnumbered">
-<h3 class="unnumbered anchored" data-anchor-id="schritte-zum-ziel">Schritte zum Ziel</h3>
+<section id="schritt-für-schritt-zum-ziel" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="schritt-für-schritt-zum-ziel">Schritt für Schritt zum Ziel</h3>
 <p>Der Weg dahin führt über folgende Schritte:</p>
 <table class="caption-top table">
 <colgroup>
@@ -575,7 +569,7 @@ Abbildung&nbsp;3.3: Der Brick Viewer zeigt die aktuelle Entfernung im Zeitverlau
 <p>Wir starten mit der einfacheren der beiden Fragen: Befindet sich ein Objekt in der Sicht des Sensors? Das beschreibt im Kern die Funktion einer Lichtschranke.</p>
 <p>Wie ihr beim Ausprobieren im Brick Viewer festgestellt habt, misst der Sensor Entfernungen zwischen 4 und 30 cm. Das bedeutet: Objekte außerhalb dieses Bereichs werden nicht erkannt – weder näher als 4 cm noch weiter als 30 cm. Eine Lichtschranke hat somit die Aufgabe zu prüfen, ob der IR-Abstandssensor einen Wert kleiner als 30 cm misst. Dann befindet sich ein Objekt in seiner Sichtlinie.</p>
 <p>Verbinden wir uns mit dem Sensor und schreiben das notwendige Grundgerüst. Tragt eure UIDs ein und legt beide Bricklets an, Sensor und LED:</p>
-<div id="50497693" class="cell" data-execution_count="1">
+<div id="e10b2196" class="cell" data-execution_count="1">
 <div id="lst-text-ir-led-boilerplate" class="python cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-text-ir-led-boilerplate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -609,17 +603,17 @@ Listing&nbsp;3.1: Boilerplate-Code für IR-Abstandssensor und RGB-LED
 </div>
 </div>
 <p>Der Sensor ist danach in der Variablen <code>ir</code> gespeichert. Über sie können wir <a href="https://www.tinkerforge.com/de/doc/Software/Bricklets/DistanceIRV2_Bricklet_Python.html">seine Funktionen</a> aufrufen. Eine davon erlaubt uns das Auslesen des aktuell gemessenen Werts:</p>
-<div id="1f73eeb7" class="cell" data-execution_count="2">
+<div id="7bd5aa52" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>distance <span class="op">=</span> ir.get_distance()</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Ein Blick in die Dokumentation verrät, dass der Rückgabewert in Millimetern angegeben wird. Ein Wert an der oberen Grenze (rund 300 mm) signalisiert typischerweise, dass sich kein Objekt innerhalb der Reichweite befindet. Damit wir besser testen können, lesen wir den Wert kontinuierlich aus und schreiben ihn auf die Konsole:</p>
-<div id="12275888" class="cell" data-execution_count="3">
+<div id="e12dafc7" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    distance <span class="op">=</span> ir.get_distance()</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Aktuelle Entfernung: </span><span class="sc">{</span>distance<span class="sc">}</span><span class="ss"> mm"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Ihr werdet sehen, dass wir sehr viele Ausgaben erzeugen, weil in jedem Schleifendurchlauf der Wert ausgegeben wird – auch wenn er sich nicht verändert hat. Geben wir erneut nur die Veränderungen aus, um die Ausgaben zu reduzieren:</p>
-<div id="fb56d77d" class="cell" data-execution_count="4">
+<div id="6f8c0efb" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>last_distance <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    distance <span class="op">=</span> ir.get_distance()</span>
@@ -629,7 +623,7 @@ Listing&nbsp;3.1: Boilerplate-Code für IR-Abstandssensor und RGB-LED
 </div>
 <p>Ihr erinnert euch: Dasselbe Prinzip haben wir in <a href="numbers.html#sec-numbers-led-dimmer-2" class="quarto-xref"><span>Abschnitt 2.7</span></a> verwendet, um nur bei einer Änderung des Drehknopfs eine Ausgabe zu erzeugen. Wir merken uns den letzten Wert und vergleichen ihn mit dem aktuell gemessenen. Ist er gleich, passiert nichts. Hat er sich verändert (<code>distance != last_distance</code>), geben wir den neuen Wert aus und aktualisieren den letzten Wert (<code>last_distance = distance</code>).</p>
 <p>Wir sind unserem Etappenziel einer Lichtschranke schon sehr nah. Anhand der Ausgabe könnten wir entscheiden, ob ein Objekt in der Sicht des Sensors ist oder nicht. Das soll aber unser Programm automatisch erledigen. Dazu fügen wir eine weitere Bedingung mit einer <code>if</code>-Anweisung hinzu:</p>
-<div id="c37b9b14" class="cell" data-execution_count="5">
+<div id="b1fa34db" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>last_distance <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    distance <span class="op">=</span> ir.get_distance()</span>
@@ -643,7 +637,7 @@ Listing&nbsp;3.1: Boilerplate-Code für IR-Abstandssensor und RGB-LED
 </div>
 <p>Die neue <code>if</code>-Anweisung prüft, ob der Abstand kleiner als 300 mm ist. Dann befindet sich etwas vor dem Sensor. In diesem Fall geben wir einen entsprechenden Hinweis aus. Andernfalls kommt der Hinweis „Kein Objekt in Reichweite“. Diesen anderen Fall bildet der optionale <code>else</code>-Teil ab. Code hinter <code>else</code> wird immer dann ausgeführt, wenn keine der vorher definierten Bedingungen über <code>if</code> oder <code>elif</code> zutrifft.</p>
 <p>Damit unsere Lichtschranke auch ohne Blick auf die Konsole funktioniert, bringen wir im letzten Schritt die LED ins Spiel. Sie soll rot aufleuchten, wenn ein Objekt erkannt wird. Die LED haben wir bereits kennengelernt, den Code können wir übernehmen:</p>
-<div id="d0f817e8" class="cell" data-execution_count="6">
+<div id="c6454f5d" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="annotated-cell-6"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-6-1"><a href="#annotated-cell-6-1"></a>last_distance <span class="op">=</span> <span class="dv">0</span></span>
 <span id="annotated-cell-6-2"><a href="#annotated-cell-6-2"></a><span class="cf">while</span> <span class="va">True</span>:</span>
 <span id="annotated-cell-6-3"><a href="#annotated-cell-6-3"></a>    distance <span class="op">=</span> ir.get_distance()</span>
@@ -683,7 +677,7 @@ Listing&nbsp;3.1: Boilerplate-Code für IR-Abstandssensor und RGB-LED
 <li>Aus: Kein Objekt vor dem Sensor (&gt;= 30 cm)</li>
 </ul>
 <p>Wir können dazu den Code der Lichtschranke erweitern:</p>
-<div id="b06edf4c" class="cell" data-execution_count="7">
+<div id="90890d6c" class="cell" data-execution_count="7">
 <div id="lst-text-obstacle-detection" class="python cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-text-obstacle-detection-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -732,7 +726,7 @@ Listing&nbsp;3.2: Der Code für die zweistufige Hinderniserkennung.
 <p>Eine andere Möglichkeit, den Abstandssensor und den Code aus <a href="#lst-text-obstacle-detection" class="quarto-xref">Listing&nbsp;<span>3.2</span></a> zu verwenden, ist ein Eingabegerät für Informationen in unseren Computer. Wie soll ein Abstandssensor als Eingabegerät für Informationen fungieren?</p>
 <p>Wie wir später noch sehen werden, benötigen wir für die Darstellung von Informationen unterschiedliche Zustände – mindestens zwei. Genau das verkörpert das Bit, das wir in <a href="numbers.html#sec-numbers-bit-and-bytes" class="quarto-xref"><span>Abschnitt 2.6</span></a> kennengelernt haben: Ein Bit hat zwei Zustände, an oder aus, 0 oder 1.</p>
 <p>Was wäre, wenn wir die beiden Bereiche „nah“ und „weit genug entfernt“ nicht länger als Entfernungen interpretieren, sondern einfach als zwei Zustände? Sagen wir, der Bereich „weit genug entfernt“ steht für die 1 und der Bereich „nah“ für die 0. Dann könnten wir über die bewusste Platzierung eines soliden Gegenstands und anschließende Messung der Entfernung den Zustand eines Bits kodieren:</p>
-<div id="ac8c2d32" class="cell" data-execution_count="8">
+<div id="b234ae81" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>last_distance <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb5-2"><a href="#cb5-2"></a><span class="cf">while</span> <span class="va">True</span>:</span>
 <span id="cb5-3"><a href="#cb5-3"></a>    distance <span class="op">=</span> ir.get_distance()</span>
@@ -747,7 +741,7 @@ Listing&nbsp;3.2: Der Code für die zweistufige Hinderniserkennung.
 <p>Wenn ihr den Code ausführt, werdet ihr ein Problem erkennen: Platzieren wir unsere Hand nahe am Sensor, um eine 0 zu kodieren, gibt das Programm nacheinander sehr viele Nullen aus. Dasselbe gilt für Einsen. Dabei wollen wir mit einer Handgeste jeweils nur eine 1 oder 0 übermitteln, nicht eine ganze Reihe. Das liegt daran, dass sich unsere Hand minimal bewegt – ein Millimeter reicht.</p>
 <p>Wir müssen unser Programm so anpassen, dass es nicht erneut auf eine Änderung reagiert, solange die Hand nicht wieder weggenommen wurde. Das erkennen wir daran, dass der Sensor die maximale Entfernung von 30 cm misst. Erst wenn dieses Ereignis wieder auftritt, soll ein neuer Zustand kodiert werden.</p>
 <p>Eine Lösung besteht darin, dass wir uns merken, ob unser Eingabegerät aktuell empfangsbereit ist oder nicht. Wir führen dafür die Variable <code>receiving</code> ein, die den Zustand unseres Eingabegeräts beschreibt. Ist sie <code>True</code>, ist das Gerät bereit, eine Eingabe zu empfangen. Ist sie <code>False</code>, ignorieren wir alle Änderungen, bis die Hand wieder weggenommen wurde.</p>
-<div id="c699cb63" class="cell" data-execution_count="9">
+<div id="1500e590" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="annotated-cell-9"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-9-1"><a href="#annotated-cell-9-1"></a>last_distance <span class="op">=</span> <span class="dv">0</span></span>
 <span id="annotated-cell-9-2"><a href="#annotated-cell-9-2"></a>receiving <span class="op">=</span> <span class="va">False</span></span>
 <span id="annotated-cell-9-3"><a href="#annotated-cell-9-3"></a><span class="cf">while</span> <span class="va">True</span>:</span>
@@ -786,7 +780,7 @@ Listing&nbsp;3.2: Der Code für die zweistufige Hinderniserkennung.
 </div>
 <p>Das sieht schon gut aus. Probiert aber einmal aus, eure Hand sehr langsam von oben nach unten vor den Sensor zu bewegen, und zwar im nahen Bereich, sodass eigentlich eine 0 kodiert werden sollte. In manchen Fällen erkennt das Programm fälschlicherweise eine 1 statt der 0. Warum ist das so? Der Sensor hat bei der Messung eine leichte zeitliche Verzögerung. Wenn er aktuell 30 cm Abstand misst und wir unsere Hand langsam nach unten bewegen, misst der Sensor zunächst einen Abstand knapp unter 30 cm. Das Programm reagiert sofort und kodiert eine 1, obwohl wenig später der Sensorwert in den Bereich der 0 kommt (zum Beispiel 8 cm).</p>
 <p>Wir können das Problem umgehen, indem wir einen kleinen Verzug einbauen, sobald ein Unterschied erkannt wurde. Nach diesem zeitlichen Verzug messen wir erneut, um sicherzugehen, die korrekte Position der Hand zu erwischen. So könnte das im Code aussehen:</p>
-<div id="7ba27096" class="cell" data-execution_count="10">
+<div id="48e77d5a" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>last_distance <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb6-2"><a href="#cb6-2"></a>receiving <span class="op">=</span> <span class="va">False</span></span>
 <span id="cb6-3"><a href="#cb6-3"></a><span class="cf">while</span> <span class="va">True</span>:</span>
@@ -824,7 +818,7 @@ Listing&nbsp;3.2: Der Code für die zweistufige Hinderniserkennung.
 <h3 data-number="3.5.1" class="anchored" data-anchor-id="wie-viele-bits-benötigen-wir"><span class="header-section-number">3.5.1</span> Wie viele Bits benötigen wir?</h3>
 <p>Genau wie bei den Farben, für die wir 24 Bits benötigen (jeweils 8 pro Farbe im RGB-Code), stellt sich bei Texten die Frage, wie viele Bits wir benötigen, um ein Zeichen darzustellen. Die Antwort hängt von der Anzahl der benötigten Zeichen ab.</p>
 <p>Nähern wir uns von der anderen Seite und erweitern unseren Zeichencode Bit für Bit. Wir beginnen klein und fangen mit einem Bit an. Wenn wir Bits als Text interpretieren, wie viele Zeichen (oder Buchstaben) können wir dann mit einem einzigen Bit darstellen? Richtig: zwei!</p>
-<div id="f0e70c6d" class="cell" data-execution_count="11">
+<div id="5c9c717d" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>last_distance <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb7-2"><a href="#cb7-2"></a>receiving <span class="op">=</span> <span class="va">False</span></span>
 <span id="cb7-3"><a href="#cb7-3"></a><span class="cf">while</span> <span class="va">True</span>:</span>
@@ -851,7 +845,7 @@ Listing&nbsp;3.2: Der Code für die zweistufige Hinderniserkennung.
 <p>Lasst das Programm laufen und legt eure Hand einmal nahe vor den Sensor, dann zweimal weiter weg und wieder nah. Das habt ihr gerade geschrieben: „ABBA“.</p>
 <p>Neben der bekannten schwedischen Band lassen sich mit den Buchstaben A und B jedoch nicht viele andere Wörter bilden. Wir sind also gut beraten, mindestens ein zweites Bit hinzuzunehmen. Die Anzahl Bits, die wir für einen Buchstaben benötigen, erhöht sich damit auf zwei. Wie bilden wir das im Programm ab?</p>
 <p>Am einfachsten, indem wir uns die Bits zunächst merken, sie also hintereinander in eine Zeichenkette schreiben. Sobald eine vorher definierte Länge einer Nachricht – hier zunächst zwei Bits – erreicht ist, dekodieren wir die Bitfolge und erhalten den passenden Buchstaben. Danach geht es wieder von vorn los und unsere Bit-Zeichenkette ist wieder leer.</p>
-<div id="330f7f3a" class="cell" data-execution_count="12">
+<div id="ff992bf5" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="annotated-cell-12"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><button class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="1">1</button><span id="annotated-cell-12-1" class="code-annotation-target"><a href="#annotated-cell-12-1"></a>MESSAGE_LENGTH <span class="op">=</span> <span class="dv">2</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="2">2</button><span id="annotated-cell-12-2" class="code-annotation-target"><a href="#annotated-cell-12-2"></a>bits <span class="op">=</span> <span class="st">""</span></span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="3">3</button><span id="annotated-cell-12-3" class="code-annotation-target"><a href="#annotated-cell-12-3"></a>text <span class="op">=</span> <span class="st">""</span></span>
@@ -934,7 +928,7 @@ Listing&nbsp;3.2: Der Code für die zweistufige Hinderniserkennung.
 <p>Was ist das? Eine Fehlermeldung, die uns sagt: Die Funktion <code>decode_letter()</code> ist nicht definiert. Wir müssen sie also noch implementieren. Wir haben die Funktion zwar schon namentlich genannt, aber es gibt nirgends eine Definition. Das holen wir jetzt nach.</p>
 <p>Erinnert euch an <a href="numbers.html#sec-numbers-functions" class="quarto-xref"><span>Abschnitt 2.10</span></a>: Wir müssen wissen, was die Funktion tun soll, was sie dafür benötigt und was sie zurückgibt. Einen Namen haben wir bereits: <code>decode_letter</code>.</p>
 <p>Die Funktion soll unsere Zeichenkette voller Bits der Länge zwei, also so etwas wie “00”, “01”, “10” oder “11”, in einen Buchstaben umwandeln. Die Eingabe ist <code>bits</code> und die Ausgabe ein Buchstabe, den diese Bitfolge kodiert. Unsere Funktion könnte so aussehen:</p>
-<div id="20c3c72b" class="cell" data-execution_count="13">
+<div id="eaf703e2" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">def</span> decode_letter(bits):</span>
 <span id="cb9-2"><a href="#cb9-2"></a>    <span class="cf">if</span> bits <span class="op">==</span> <span class="st">"00"</span>:</span>
 <span id="cb9-3"><a href="#cb9-3"></a>        <span class="cf">return</span> <span class="st">"A"</span></span>
@@ -980,7 +974,7 @@ Listing&nbsp;3.2: Der Code für die zweistufige Hinderniserkennung.
 </table>
 <p>Die Tabelle fasst unser Codesystem zusammen. In der zweiten Spalte haben wir zur Bitfolge die entsprechende Dezimalzahl eingetragen. Erinnert euch: Das Binärsystem ist ein Stellenwertsystem wie jedes andere auch, nur eben zur Basis 2. Wie ihr die entsprechende Dezimalzahl zu einer Binärzahl errechnet, haben wir in <a href="numbers.html#sec-numbers-binary-system" class="quarto-xref"><span>Abschnitt 2.5.3</span></a> gelernt.</p>
 <p>Fügen wir die Funktion in unser Programm ein. Wichtig ist: Eine Funktion muss vor ihrer Verwendung definiert sein.</p>
-<div id="d937acef" class="cell" data-execution_count="14">
+<div id="5faf923e" class="cell" data-execution_count="14">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>MESSAGE_LENGTH <span class="op">=</span> <span class="dv">2</span></span>
@@ -1077,7 +1071,7 @@ Listing&nbsp;3.2: Der Code für die zweistufige Hinderniserkennung.
 </table>
 <p>Demnach reichen uns fünf Bits aus, denn damit können wir insgesamt 32 Kodierungen vornehmen. Wir hätten somit noch fünf freie Plätze, die wir vielleicht für Satzzeichen wie Punkt oder Komma verwenden.</p>
 <p>Um das in unserem Programm zu reflektieren, müssen wir die Funktion <code>decode_letter</code> anpassen und gleichzeitig die Länge einer Nachricht auf 5 Bits erhöhen. Damit wir es etwas einfacher haben und die Buchstaben den Dezimalzahlen von 0–25 zuordnen können, wandeln wir die Bitfolge zuerst in eine Dezimalzahl um:</p>
-<div id="5ba24648" class="cell" data-execution_count="15">
+<div id="009bd3dd" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="annotated-cell-16"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-16-1"><a href="#annotated-cell-16-1"></a><span class="kw">def</span> decode_letter(bits):</span>
 <span id="annotated-cell-16-2"><a href="#annotated-cell-16-2"></a>    </span>
 <span id="annotated-cell-16-3"><a href="#annotated-cell-16-3"></a>    <span class="co"># In Dezimalzahl umwandeln</span></span>
@@ -1114,7 +1108,7 @@ Listing&nbsp;3.2: Der Code für die zweistufige Hinderniserkennung.
 <h3 data-number="3.5.2" class="anchored" data-anchor-id="wörterbücher"><span class="header-section-number">3.5.2</span> Wörterbücher</h3>
 <p>Ein Dictionary (deutsch: Wörterbuch) ist in der Programmierung eine Sammlung von Schlüssel-Wert-Paaren. Über einen Schlüssel – zum Beispiel eine Zahl – greifen wir direkt auf den zugehörigen Wert zu, etwa einen Buchstaben. Stellt euch das wie ein Telefonbuch vor, bei dem ihr über den Namen die Nummer herausfindet. Das ist ideal, wenn wir Bitfolgen zuerst in Dezimalzahlen umwandeln und dann schnell den passenden Buchstaben nachschlagen möchten. Statt viele <code>if</code>/<code>elif</code>-Zweige zu schreiben, legen wir einmalig eine Nachschlagetabelle an. Das macht den Code kürzer, übersichtlicher und leichter erweiterbar.</p>
 <p>Für unsere Zeichendekodierung können wir ein Dictionary nutzen, das die Dezimalwerte 0–25 auf „A“–„Z“ abbildet und zum Beispiel 26 als Leerzeichen reserviert. Damit wird <code>decode_letter</code> deutlich kompakter und leichter zu pflegen.</p>
-<div id="c4d717a9" class="cell" data-execution_count="16">
+<div id="a91ed8c5" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="annotated-cell-17"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-17-1"><a href="#annotated-cell-17-1"></a><span class="co"># Nachricht auf 5 Bits erweitern</span></span>
 <span id="annotated-cell-17-2"><a href="#annotated-cell-17-2"></a>MESSAGE_LENGTH <span class="op">=</span> <span class="dv">5</span></span>
 <span id="annotated-cell-17-3"><a href="#annotated-cell-17-3"></a></span>
@@ -1146,14 +1140,14 @@ Listing&nbsp;3.2: Der Code für die zweistufige Hinderniserkennung.
 </div>
 </div>
 <p>Wenn ihr später weitere Zeichen (z. B. Punkt oder Komma) ergänzen wollt, könnt ihr sie einfach hinzufügen:</p>
-<div id="c0195d29" class="cell" data-execution_count="17">
+<div id="e7908c4f" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>SYMBOLS[<span class="dv">27</span>] <span class="op">=</span> <span class="st">","</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>SYMBOLS[<span class="dv">28</span>] <span class="op">=</span> <span class="st">"."</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Wie ihr an der Schreibweise von <code>SYMBOLS</code> erkennen könnt, handelt es sich um eine Konstante. Logisch, schließlich verändert sich unser Codesystem für die Symbole im Verlauf des Programms nicht. Wir initialisieren ein leeres Dictionary mit geschweiften Klammern (Zeile 5). Die Zuweisung der Werte erfolgt dann über die eckigen Klammern, wobei in den eckigen Klammern der Schlüssel (englisch: Key) steht und der Wert, den wir dem Schlüssel zuweisen möchten, hinter dem Gleichheitszeichen folgt.</p>
 <p>Prinzipiell könnten wir mit den eckigen Klammern auch Werte abfragen. Wenn wir zum Beispiel <code>SYMBOLS[0]</code> schreiben, erhalten wir den Wert “A” zurück. Wenn wir einen Schlüssel abfragen, der nicht existiert, bekommen wir jedoch einen Fehler. Eine bessere Möglichkeit zum Abfragen von Werten bietet daher die <code>get()</code>-Methode. Sie liefert den Wert für den Schlüssel zurück, den wir als erstes Argument übergeben. Wenn dieser Schlüssel nicht existiert, bekommen wir den Wert <code>None</code> zurück, was robuster ist, als wenn das Programm mit einem Fehler abbräche. Zudem können wir als zweites Argument einen Standardwert angeben, der zurückgegeben wird, wenn der Schlüssel nicht existiert. In unserem Fall ist das ein Fragezeichen “?”, das signalisiert, dass die Bitfolge keinem bekannten Buchstaben zugeordnet werden kann.</p>
 <p>Überprüft euch selbst: Welcher Wert kommt bei folgendem Aufruf zurück?: <code>SYMBOLS.get(5)</code></p>
-<div id="8fe0fb83" class="cell" data-execution_count="18">
+<div id="8d93cfde" class="cell" data-execution_count="18">
 <div id="lst-text-full" class="python cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="true">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-text-full-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1271,7 +1265,7 @@ Tipp
 <details class="collapsable-section" open=""><summary></summary>
 <p>Im vorigen Abschnitt haben wir zusammen überlegt, wie wir Texte kodieren und als Bitfolge über ein universelles Eingabegerät basierend auf einem IR-Abstandssensor übertragen können. Ziemlich cool, findet ihr nicht? Dabei haben wir jedem Buchstaben eine eindeutige Bitfolge zugewiesen und sind letztlich auf unser eigenes 5-Bit-Kodierungssystem gekommen.</p>
 <p>Weil eine der ersten Anwendungen mit dem Computer die Verarbeitung von Texten war, haben sich darüber, wie man Texte kodieren kann, schon andere sehr schlaue Leute Gedanken gemacht. Das Ergebnis ist der ASCII-Code, den es seit den 1960er-Jahren gibt und der weltweit standardisiert ist.</p>
-<p>Der ASCII-Code basiert auf sieben Bits und kann somit 128 verschiedene Symbole verwalten. Die vollständige Liste an Symbolen seht ihr in <a href="#fig-text-ascii-table" class="quarto-xref">Abbildung&nbsp;<span>3.4</span></a>. Die Tabelle enthält fünf Spalten, wobei die ersten vier den Zahlencode für das kodierte ASCII-Zeichen in unterschiedlichen Zahlensystemen angeben. Ganz links seht ihr die Dezimalzahl, daneben die Binärdarstellung. Zusätzlich wird noch die Oktalzahl und die Hexadezimalschreibweise mit angezeigt. Oktal kennen wir bereits, was es mit Hexadezimal auf sich hat, lernen wir später in <a href="images.html" class="quarto-xref"><span>Kapitel 4</span></a>.</p>
+<p>Der ASCII-Code basiert auf sieben Bits und kann somit 128 verschiedene Symbole verwalten. Die vollständige Liste an Symbolen seht ihr in <a href="#fig-text-ascii-table" class="quarto-xref">Abbildung&nbsp;<span>3.4</span></a>. Die Tabelle enthält fünf Spalten, wobei die ersten vier den Zahlencode für das kodierte ASCII-Zeichen in unterschiedlichen Zahlensystemen angeben. Ganz links seht ihr die Dezimalzahl, daneben die Binärdarstellung. Zusätzlich wird noch die Oktalzahl und die Hexadezimalschreibweise mit angezeigt. Oktal kennen wir bereits, was es mit Hexadezimal auf sich hat, lernen wir später in <span class="quarto-unresolved-ref">?sec-images</span>.</p>
 <p>Wenn ihr genau hinseht, erkennt ihr, dass die Binärzahl nicht aus 7, sondern aus 8 Bits besteht. Die erste Ziffer ganz links ist aber immer 0. Das liegt daran, dass Computer häufig in 8-Bit-Einheiten – also in Bytes – denken. Auch der Speicher eines Computers ist so organisiert. Deshalb benötigt ein ASCII-Symbol in der Praxis statt sieben, acht Bits auf unserem Computer.</p>
 <p>Was passiert mit dem vermeintlich „verschwendeten“ Bit? Damit könnten wir doch immerhin 128 weitere Symbole abbilden. Und das wird auch gemacht: Es gibt verschiedene lokale Erweiterungen des ASCII-Codes, die zusätzliche Zeichen definieren. Für den deutschen Sprachraum etwa die Umlaute ä, ö, ü und das scharfe S (ß). Für andere Sprachen gibt es ähnliche Erweiterungen. Wir nennen diese Erweiterungen auch Codepages.</p>
 <p>Die Codepage, die wir üblicherweise verwenden, nennt sich Windows-1252 (CP-1252) und ist eine Erweiterung des ASCII-Codes, die 256 Zeichen umfasst. Die ersten 128 Zeichen sind identisch mit dem ASCII-Code, die weiteren 128 enthalten zusätzliche Zeichen, die in westeuropäischen Sprachen benötigt werden.</p>
@@ -1288,7 +1282,7 @@ Abbildung&nbsp;3.4: Die ursprüngliche ASCII-Codetabelle kodiert die Symbole als
 <p>Der ASCII-Code – das steht für American Standard Code for Information Interchange – beinhaltet ein paar nette Eigenschaften. So können wir zum Beispiel einen Großbuchstaben in einen Kleinbuchstaben umwandeln, indem wir 32 zu seinem Dezimalcode addieren. Umgekehrt funktioniert das natürlich auch.</p>
 <p>Für unsere Texteingabe über den IR-Abstandssensor bedeutet das: Wir benötigen überhaupt keinen eigenen Code, sondern können einfach den ASCII-Code verwenden. Allerdings müssen wir unsere Nachricht auf die Länge 7 erweitern, was mehr Aufwand bei der Eingabe macht. Dafür verwenden wir einen Standard. Argument genug – passen wir den Code an.</p>
 <p>Die Änderungen finden im Wesentlichen in der Funktion <code>decode_letter()</code> statt. Zudem ändern wir den Wert der Konstante <code>MESSAGE_LENGTH</code>:</p>
-<div id="799b0d8d" class="cell" data-execution_count="19">
+<div id="ca8649c7" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>MESSAGE_LENGTH <span class="op">=</span> <span class="dv">7</span> <span class="co"># Anzahl Bits pro Buchstabe</span></span>
 <span id="cb13-2"><a href="#cb13-2"></a></span>
 <span id="cb13-3"><a href="#cb13-3"></a>...</span>
@@ -1325,12 +1319,12 @@ Abbildung&nbsp;3.4: Die ursprüngliche ASCII-Codetabelle kodiert die Symbole als
 <p>Der Dimmer aus <a href="numbers.html" class="quarto-xref"><span>Kapitel 2</span></a> lässt die LED in verschiedenen Stufen heller und dunkler leuchten. Über den Drehknopf haben wir zunächst 1er-Schritte umgesetzt, was bedeutete, dass wir 256 Ticks des Drehknopfs benötigten, um die LED auf volle Helligkeit zu schalten. Später haben wir dann eine Konstante <code>STEP</code> eingeführt, um die Schritte zu vergrößern, sodass nur noch eine Umdrehung notwendig war.</p>
 <p>Wie lässt sich das auf den Abstandssensor übertragen? Im Gegensatz zum Drehknopf, den wir beliebig lange in eine Richtung drehen können, hat der Abstandssensor einen festen Messbereich zwischen 4 und 30 cm. Das macht unsere Aufgabe einfacher, denn eine Transformation des Messbereichs in den Helligkeitsbereich der LED ist ausreichend. Wenn der Abstandssensor nun einen Wert von 4 cm misst, soll die LED auf 0 % Helligkeit dimmen, und bei 30 cm auf 100 % Helligkeit.</p>
 <p>Nehmen wir an, der aktuelle Messwert ist in <code>distance</code> gespeichert, dann könnten wir den Helligkeitswert <code>brightness</code> so berechnen:</p>
-<div id="356251d4" class="cell" data-execution_count="20">
+<div id="2251ea6d" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>brightness <span class="op">=</span> (distance <span class="op">-</span> <span class="dv">40</span>) <span class="op">/</span> (<span class="dv">300</span> <span class="op">-</span> <span class="dv">40</span>) <span class="op">*</span> <span class="dv">255</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Vergewissern wir uns, dass die Formel richtig ist. Wenn <code>distance</code> den Wert 4 cm hat, dann sollte <code>brightness</code> 0 sein. Das passt, denn der erste Teil der Formel wird dann 0. Und 0 geteilt durch egal was ergibt 0. Wenn <code>distance = 300</code>, dann sollte <code>brightness</code> 255 sein. Das passt ebenfalls, denn der erste Teil der Formel wird dann 260 und 260 geteilt durch 260 ergibt 1. Multipliziert mit 255 ergibt 255. Sieht also gut aus.</p>
 <p>Der folgende Code baut die Berechnungslogik in den LED-Dimmer aus <a href="numbers.html#sec-numbers-led-dimmer-2" class="quarto-xref"><span>Abschnitt 2.7</span></a> ein, der nur eine Farbe (Weiß) beherrscht. Wir könnten ihn aber genau wie in <a href="numbers.html#sec-numbers-led-dimmer-3" class="quarto-xref"><span>Abschnitt 2.9</span></a> um weitere Farben erweitern:</p>
-<div id="5b77c0b4" class="cell" data-execution_count="21">
+<div id="5a275375" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb15" data-lst-cap="Das fertige Programm für den LED-Dimmer mit Infrarot-Abstandssensor-Steuerung."><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
 <span id="cb15-2"><a href="#cb15-2"></a><span class="im">from</span> tinkerforge.bricklet_distance_ir_v2 <span class="im">import</span> BrickletDistanceIRV2</span>
 <span id="cb15-3"><a href="#cb15-3"></a><span class="im">from</span> tinkerforge.bricklet_rgb_led_v2 <span class="im">import</span> BrickletRGBLEDV2</span>
@@ -1354,7 +1348,7 @@ Abbildung&nbsp;3.4: Die ursprüngliche ASCII-Codetabelle kodiert die Symbole als
 </div>
 <p>Je näher wir mit der Hand an den Sensor kommen, desto dunkler wird die LED – und umgekehrt.</p>
 <p>Damit schließen wir dieses Kapitel ab. Wir haben gelernt, wie Computer Texte kodieren. Der Umweg über unser eigenes Eingabegerät für Binärcodes hat sich gelohnt: Eure Programmierskills sind gewachsen!</p>
-<p>Im folgenden <a href="images.html" class="quarto-xref"><span>Kapitel 4</span></a> beschäftigen wir uns mit Bildern, wie Computer sie sehen, und wie ein Bild auf den Bildschirm kommt.</p>
+<p>Im folgenden <span class="quarto-unresolved-ref">?sec-images</span> beschäftigen wir uns mit Bildern, wie Computer sie sehen, und wie ein Bild auf den Bildschirm kommt.</p>
 
 
 </details>
@@ -1848,8 +1842,8 @@ document.addEventListener("DOMContentLoaded", () => {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./images.html" class="pagination-link" aria-label="Bilder">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Bilder</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./glossary.html" class="pagination-link" aria-label="Glossar">
+        <span class="nav-page-text">Glossar</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
