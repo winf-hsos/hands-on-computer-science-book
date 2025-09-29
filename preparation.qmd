@@ -14,7 +14,7 @@ Um die Experimente in diesem Buch selbst durchführen zu können, benötigt ihr 
 
 Klickt jeweils auf den Downloadlink, speichert die Installationsdatei auf eurem Computer, und installiert das Programm. Sobald ihr alles fertig installiert habt, macht ihr hier weiter.
 
-## Python-Erweiterung für Visual Studio Code {.unnumbered}
+## Erweiterung für Visual Studio Code {.unnumbered}
 
 Damit Visual Studio Code mit Python umgehen kann, benötigt ihr noch die Python-Erweiterung. Öffnet Visual Studio Code, klickt links auf das Erweiterungssymbol (das Quadrat-Symbol) und sucht nach "Python". Installiert die Erweiterung von Microsoft. Solltet ihr sie nicht finden, könnt ihr auch [hier](https://marketplace.visualstudio.com/items?itemName=ms-python.python) klicken.
 
@@ -26,7 +26,7 @@ Ich stelle für dieses Buch die fertigen Programme nach jedem Abschnitt auf GitH
 
 Wenn ihr Git erfolgreich installiert habt, könnt ihr den Code über die Kommandozeile (Terminal) herunterladen. Öffnet dazu ein Terminalfenster (unter Windows: PowerShell, unter macOS: Terminal), wechselt in ein Verzeichnis, in dem ihr den Code speichern möchtet, und gebt folgenden Befehl ein:
 
-```         
+```{.bash code-line-numbers="false"}    
 git clone https://github.com/winf-hsos/hands-on-computer-science-code
 ```
 
@@ -35,6 +35,48 @@ Bei funktionierende Internetverbindung wird der Code heruntergeladen und in eine
 ### Code als ZIP-Datei herunterladen {.unnumbered}
 
 Ihr könnt den aktuellen Stand von GitHub über herunterladen, indem ihr [hier](https://github.com/winf-hsos/hands-on-computer-science-code/archive/refs/heads/main.zip) klickt. Speichert die ZIP-Datei auf eurem Computer und entpackt sie an einen Ort eurer Wahl. Anschließend könnt ihr den Ordner mit den Codebeispielen in Visual Studio Code öffnen.
+
+## Virtuelle Python-Umgebung einrichten (optional) {.unnumbered}
+
+Um die Abhängigkeiten für die Codebeispiele zu installieren, ist es eine gute Idee, eine virtuelle Python-Umgebung zu verwenden. Dadurch wird sichergestellt, dass die benötigten Pakete isoliert von anderen Projekten installiert werden. Hier sind die Schritte, um eine virtuelle Umgebung einzurichten:
+
+1. Öffnet ein Terminalfenster in Visual Studio Code (Terminal > Neues Terminal).
+2. Navigiert zu dem Verzeichnis, in dem ihr den Code gespeichert habt.
+3. Führt den folgenden Befehl aus, um eine virtuelle Umgebung zu erstellen:
+
+```{.bash code-line-numbers="false"}
+python -m venv .python-env
+```
+
+4. Aktiviert die virtuelle Umgebung mit dem folgenden Befehl:
+
+Unter Windows:
+
+```{.bash code-line-numbers="false"}
+.python-env\Scripts\activate
+```
+
+Unter macOS und Linux:
+
+```{.bash code-line-numbers="false"}
+source .python-env/bin/activate
+```
+
+## Abhängigkeiten installieren {.unnumbered}
+
+Die Codebeispiele in diesem Buch verwenden (unter anderem) die Tinkerforge-Python-Bibliothek, um mit der Hardware zu kommunizieren. Diese Bibliothek müsst ihr einmalig installieren. Öffnet dazu ein Terminalfenster in Visual Studio Code (Terminal > Neues Terminal) und gebt folgenden Befehl ein:
+
+```{.bash code-line-numbers="false"}
+pip install tinkerforge
+``` 
+
+Alternativ könnt ihr auch folgenden Befehl verwenden:
+
+```{.bash code-line-numbers="false"}
+pip install -r requirements.txt
+```
+
+Damit installiert ihr alle Abhängigkeiten, die in der Datei `requirements.txt` aufgelistet sind. Damit seid ihr für die Experimente in diesem Buch bestens gerüstet.
 
 ## Los geht's! {.unnumbered}
 

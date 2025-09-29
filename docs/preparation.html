@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
@@ -254,12 +289,14 @@ div.csl-indent {
    
   <ul>
   <li><a href="#benötigte-software" id="toc-benötigte-software" class="nav-link active" data-scroll-target="#benötigte-software">Benötigte Software</a></li>
-  <li><a href="#python-erweiterung-für-visual-studio-code" id="toc-python-erweiterung-für-visual-studio-code" class="nav-link" data-scroll-target="#python-erweiterung-für-visual-studio-code">Python-Erweiterung für Visual Studio Code</a></li>
+  <li><a href="#erweiterung-für-visual-studio-code" id="toc-erweiterung-für-visual-studio-code" class="nav-link" data-scroll-target="#erweiterung-für-visual-studio-code">Erweiterung für Visual Studio Code</a></li>
   <li><a href="#beispielcode-herunterladen" id="toc-beispielcode-herunterladen" class="nav-link" data-scroll-target="#beispielcode-herunterladen">Beispielcode herunterladen</a>
   <ul class="collapse">
   <li><a href="#code-über-git-herunterladen-empfohlen" id="toc-code-über-git-herunterladen-empfohlen" class="nav-link" data-scroll-target="#code-über-git-herunterladen-empfohlen">Code über Git herunterladen (empfohlen)</a></li>
   <li><a href="#code-als-zip-datei-herunterladen" id="toc-code-als-zip-datei-herunterladen" class="nav-link" data-scroll-target="#code-als-zip-datei-herunterladen">Code als ZIP-Datei herunterladen</a></li>
   </ul></li>
+  <li><a href="#virtuelle-python-umgebung-einrichten-optional" id="toc-virtuelle-python-umgebung-einrichten-optional" class="nav-link" data-scroll-target="#virtuelle-python-umgebung-einrichten-optional">Virtuelle Python-Umgebung einrichten (optional)</a></li>
+  <li><a href="#abhängigkeiten-installieren" id="toc-abhängigkeiten-installieren" class="nav-link" data-scroll-target="#abhängigkeiten-installieren">Abhängigkeiten installieren</a></li>
   <li><a href="#los-gehts" id="toc-los-gehts" class="nav-link" data-scroll-target="#los-gehts">Los geht’s!</a></li>
   </ul>
 </nav>
@@ -327,8 +364,8 @@ div.csl-indent {
 </table>
 <p>Klickt jeweils auf den Downloadlink, speichert die Installationsdatei auf eurem Computer, und installiert das Programm. Sobald ihr alles fertig installiert habt, macht ihr hier weiter.</p>
 </section>
-<section id="python-erweiterung-für-visual-studio-code" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="python-erweiterung-für-visual-studio-code">Python-Erweiterung für Visual Studio Code</h2>
+<section id="erweiterung-für-visual-studio-code" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="erweiterung-für-visual-studio-code">Erweiterung für Visual Studio Code</h2>
 <p>Damit Visual Studio Code mit Python umgehen kann, benötigt ihr noch die Python-Erweiterung. Öffnet Visual Studio Code, klickt links auf das Erweiterungssymbol (das Quadrat-Symbol) und sucht nach “Python”. Installiert die Erweiterung von Microsoft. Solltet ihr sie nicht finden, könnt ihr auch <a href="https://marketplace.visualstudio.com/items?itemName=ms-python.python">hier</a> klicken.</p>
 </section>
 <section id="beispielcode-herunterladen" class="level2 unnumbered">
@@ -337,13 +374,38 @@ div.csl-indent {
 <section id="code-über-git-herunterladen-empfohlen" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="code-über-git-herunterladen-empfohlen">Code über Git herunterladen (empfohlen)</h3>
 <p>Wenn ihr Git erfolgreich installiert habt, könnt ihr den Code über die Kommandozeile (Terminal) herunterladen. Öffnet dazu ein Terminalfenster (unter Windows: PowerShell, unter macOS: Terminal), wechselt in ein Verzeichnis, in dem ihr den Code speichern möchtet, und gebt folgenden Befehl ein:</p>
-<pre><code>git clone https://github.com/winf-hsos/hands-on-computer-science-code</code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/winf-hsos/hands-on-computer-science-code</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Bei funktionierende Internetverbindung wird der Code heruntergeladen und in einem neuen Ordner namens <code>hands-on-computer-science-code</code> gespeichert. Ihr könnt diesen Ordner dann in Visual Studio Code öffnen, um auf die Codebeispiele zuzugreifen.</p>
 </section>
 <section id="code-als-zip-datei-herunterladen" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="code-als-zip-datei-herunterladen">Code als ZIP-Datei herunterladen</h3>
 <p>Ihr könnt den aktuellen Stand von GitHub über herunterladen, indem ihr <a href="https://github.com/winf-hsos/hands-on-computer-science-code/archive/refs/heads/main.zip">hier</a> klickt. Speichert die ZIP-Datei auf eurem Computer und entpackt sie an einen Ort eurer Wahl. Anschließend könnt ihr den Ordner mit den Codebeispielen in Visual Studio Code öffnen.</p>
 </section>
+</section>
+<section id="virtuelle-python-umgebung-einrichten-optional" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="virtuelle-python-umgebung-einrichten-optional">Virtuelle Python-Umgebung einrichten (optional)</h2>
+<p>Um die Abhängigkeiten für die Codebeispiele zu installieren, ist es eine gute Idee, eine virtuelle Python-Umgebung zu verwenden. Dadurch wird sichergestellt, dass die benötigten Pakete isoliert von anderen Projekten installiert werden. Hier sind die Schritte, um eine virtuelle Umgebung einzurichten:</p>
+<ol type="1">
+<li>Öffnet ein Terminalfenster in Visual Studio Code (Terminal &gt; Neues Terminal).</li>
+<li>Navigiert zu dem Verzeichnis, in dem ihr den Code gespeichert habt.</li>
+<li>Führt den folgenden Befehl aus, um eine virtuelle Umgebung zu erstellen:</li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> venv .python-env</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol start="4" type="1">
+<li>Aktiviert die virtuelle Umgebung mit dem folgenden Befehl:</li>
+</ol>
+<p>Unter Windows:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">.python-env\Scripts\activate</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Unter macOS und Linux:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .python-env/bin/activate</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="abhängigkeiten-installieren" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="abhängigkeiten-installieren">Abhängigkeiten installieren</h2>
+<p>Die Codebeispiele in diesem Buch verwenden (unter anderem) die Tinkerforge-Python-Bibliothek, um mit der Hardware zu kommunizieren. Diese Bibliothek müsst ihr einmalig installieren. Öffnet dazu ein Terminalfenster in Visual Studio Code (Terminal &gt; Neues Terminal) und gebt folgenden Befehl ein:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install tinkerforge</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Alternativ könnt ihr auch folgenden Befehl verwenden:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Damit installiert ihr alle Abhängigkeiten, die in der Datei <code>requirements.txt</code> aufgelistet sind. Damit seid ihr für die Experimente in diesem Buch bestens gerüstet.</p>
 </section>
 <section id="los-gehts" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="los-gehts">Los geht’s!</h2>

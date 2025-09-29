@@ -92,7 +92,7 @@ Wechselt nun zum Tab der \gloss{RGB LED}{Eine LED, die in verschiedenen Farben l
 
 Mit den drei Schiebereglern steuert ihr die einzelnen Farbkanäle – Rot, Grün, Blau. Der Wertebereich: 0 bis 255. Warum gerade diese Farben und diese Zahlen? Gute Frage. Die Antwort kommt weiter unten.
 
-![Die Ansicht für die RGB LED im Brick Viewer, in der ihr alle Funktionen per Klick im Zugriff habt.](images/brick_viewer_rgb_led_button.png){#fig-brick-viewer-rgb-led .lightbox group="brick-viewer"}
+![Die Ansicht für die RGB LED im Brick Viewer, in der ihr alle Funktionen per Klick im Zugriff habt.](images/brick_viewer_rgb_led.png){#fig-brick-viewer-rgb-led .lightbox group="brick-viewer"}
 
 Fazit: Der Brick Viewer ist ideal zum Ausprobieren. Aber wenn ihr echte Projekte umsetzen wollt, müsst ihr programmieren lernen. Also los!
 
