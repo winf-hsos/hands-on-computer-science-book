@@ -26,7 +26,20 @@ Dabei lernen wir neue Begriffe und Konzepte kennen.
 ::: {.datatable-nosearch data-order='[[2,"asc"]]'}
 | Begriff | Kategorie | Wo? |
 |---|---|---|
-| **Infrarot-Abstandssensor** | Bauteile | @sec-text-light-barrier |
+| **Infrarot-Abstandssensor** | Hardware | @sec-text-light-barrier |
+| **Else-Anweisung** | Programmieren | @sec-text-light-barrier |
+| **Kodieren** | Codesysteme | @sec-text-universal-input |
+| **Keyboard** | Hardware | @sec-text-universal-input |
+| **Dekodieren** | Codesysteme | @sec-text-universal-input |
+| **Bug** | Programmierung | @sec-text-encode-text |
+| **Zeichenkette** | Programmierung | @sec-text-encode-text |
+| **Dictionary** | Programmierung | @sec-text-encode-text |
+| **ASCII-Code** | Codesysteme | @sec-text-encode-text |
+| **Codepage** | Codesysteme | @sec-text-encode-text |
+| **Unicode** | Codesysteme | @sec-text-encode-text |
+| **UTF-8** | Codesysteme | @sec-text-encode-text |
+| **Textdatei** | Codesysteme | @sec-text-encode-text |
+| **Codepunkt** | Codesysteme | @sec-text-encode-text |
 :::
 <!-- CHAPTER_GLOSSARY_END -->
 
@@ -35,6 +48,15 @@ Dabei lernen wir neue Begriffe und Konzepte kennen.
 ### Hardware
 
 Für dieses Kapitel benötigen wir erneut die LED ([RGB LED Bricklet 2.0](https://www.tinkerforge.com/de/shop/rgb-led-v2-bricklet.html)), ersetzen aber den Drehknopf aus @sec-numbers durch einen Infrarot-Abstandssensor ([Distance IR 4-30cm Bricklet 2.0](https://www.tinkerforge.com/de/shop/distance-ir-4-30cm-v2-bricklet.html)). Beide Geräte schließen wir an den Mikrocontroller ([Master Brick 3.2](https://www.tinkerforge.com/de/shop/master-brick.html)) an und fixieren sie auf einer Montageplatte. Wie in der Abbildung gezeigt, befestigen wir den Abstandssensor mit einem Metallwinkel so, dass er bündig mit der Platte ist und nach vorn zeigt.
+
+Die vollständige Hardwareliste für dieses Kapitel sieht so aus:
+
+-  1 x [Master Brick 3.2](https://www.tinkerforge.com/de/doc/Hardware/Bricks/Master_Brick.html)
+-  1 x [RGB LED Bricklet 2.0](https://www.tinkerforge.com/en/doc/Hardware/Bricklets/RGB_LED_V2.html)
+-  1 x [Distance IR 4-30cm Bricklet 2.0](https://www.tinkerforge.com/de/shop/distance-ir-4-30cm-v2-bricklet.html)
+-  1 x [Montageplatte 22x10](https://www.tinkerforge.com/de/shop/accessories/mounting/mounting-plate-22x10.html)
+-  2 x [Brickletkabel 15cm (7p-7p)](https://www.tinkerforge.com/de/shop/accessories/cable/bricklet-cable-15cm-7p-7p.html)
+-  2 x [Befestigungskit 12 mm](https://www.tinkerforge.com/de/shop/accessories/mounting/mounting-kit-12mm.html)
 
 ::: {#fig-setup-rgb-led-ir layout="[[1], [1,1], [1,1]]"}
 ![Seitenansicht.](images/master_brick_with_led_and_ir_03.jpg){#fig-setup-rgb-led-ir .lightbox group="setup-rgb-ir"}
@@ -60,7 +82,7 @@ Wechselt in den Tab für den Abstandssensor, wo ihr ihn direkt testen könnt: Ih
 
 ## Lichtschranke {#sec-text-light-barrier .collapsable}
 
-Einen \gloss{Infrarot-Abstandssensor}{Ein Sensor, der über Licht des Infrarotspektrums Abstände messen kann.}{Bauteile} verwenden wir in der Praxis zur berührungslosen Messung des Abstands zu einem Objekt. Der Sensor sendet einen unsichtbaren Infrarotlichtstrahl aus und misst das Licht, das vom Objekt zurückgeworfen wird. Anhand der Intensität oder des Winkels des zurückkehrenden Lichts berechnet der Sensor die Entfernung. Diese Sensoren sind aus der Praxis nicht wegzudenken und kommen in vielen Szenarien zum Einsatz, zum Beispiel:
+Einen \gloss{Infrarot-Abstandssensor}{Ein Sensor, der über Licht des Infrarotspektrums Abstände messen kann.}{Hardware} verwenden wir in der Praxis zur berührungslosen Messung des Abstands zu einem Objekt. Der Sensor sendet einen unsichtbaren Infrarotlichtstrahl aus und misst das Licht, das vom Objekt zurückgeworfen wird. Anhand der Intensität oder des Winkels des zurückkehrenden Lichts berechnet der Sensor die Entfernung. Diese Sensoren sind aus der Praxis nicht wegzudenken und kommen in vielen Szenarien zum Einsatz, zum Beispiel:
 
 - Objekterkennung an einem Fließband
 - Füllstandsmessung in Behältern
@@ -202,6 +224,10 @@ while True:
 
 Ihr erinnert euch an die additive Farbmischung aus @fig-additive-color-mixing? Gelb entsteht durch die Kombination von Rot und Grün. Wir verwenden hier eine `elif`-Anweisung, die eine weitere Bedingung prüft, wenn die vorherige `if`-Bedingung nicht zutrifft. So können wir mehrere Bedingungen hintereinander prüfen. Der letzte `else`-Teil fängt alle Fälle ab, in denen kein Objekt erkannt wurde.
 
+<!-- 
+\gloss{Else-Anweisung}{Ein optionaler Teil einer if-Anweisung, der ausgeführt wird, wenn keine der vorherigen Bedingungen zutrifft.}{Programmieren}
+-->
+
 Unser Staubsaugerroboter könnte den Code oben verwenden, um Hindernisse zu erkennen und bei zu großer Nähe ein Ausweichmanöver zu starten.
 
 ## Universelles Eingabegerät {#sec-text-universal-input .collapsable}
@@ -225,7 +251,7 @@ while True:
         last_distance = distance
 ```
 
-Wenn ihr den Code ausführt, werdet ihr ein Problem erkennen: Platzieren wir unsere Hand nahe am Sensor, um eine 0 zu kodieren, gibt das Programm nacheinander sehr viele Nullen aus. Dasselbe gilt für Einsen. Dabei wollen wir mit einer Handgeste jeweils nur eine 1 oder 0 übermitteln, nicht eine ganze Reihe. Das liegt daran, dass sich unsere Hand minimal bewegt – ein Millimeter reicht.
+Wenn ihr den Code ausführt, werdet ihr ein Problem erkennen: Platzieren wir unsere Hand nahe am Sensor, um eine 0 zu kodieren, gibt das Programm nacheinander sehr viele Nullen aus. Dasselbe gilt für Einsen. Dabei wollen wir mit einer Handgeste jeweils nur eine 1 oder 0 übermitteln, nicht eine ganze Reihe. Das liegt daran, dass sich unsere Hand ständig minimal bewegt – ein Millimeter reicht.
 
 Wir müssen unser Programm so anpassen, dass es nicht erneut auf eine Änderung reagiert, solange die Hand nicht wieder weggenommen wurde. Das erkennen wir daran, dass der Sensor die maximale Entfernung von 30 cm misst. Erst wenn dieses Ereignis wieder auftritt, soll ein neuer Zustand kodiert werden.
 
@@ -291,11 +317,15 @@ Testet es jetzt: Unser Eingabegerät erkennt die Zustände 0 und 1 zuverlässig.
 
 ## Texte kodieren {#sec-text-encode-text .collapsable}
 
+<!--
+\gloss{Kodieren}{Das Umwandeln von Informationen in ein bestimmtes Format, das von einem Computer verarbeitet werden kann.}{Codesysteme}
+-->
+
 Können wir unser universelles Eingabegerät dazu verwenden, dem Computer Texte zu diktieren? Schließlich bedeutet „universell“, dass es für viele Zwecke einsetzbar ist. Und die Antwort lautet: ja! Wenn wir ein Gerät entwickeln, mit dem wir Bits kodieren können, können wir damit alles eingeben, was ein Computer darstellen kann.
 
 In @sec-numbers haben wir gesehen, wie wir mit 8 Bits den Wert einer der drei Grundfarben im RGB-Code darstellen können. Wenn wir unser Eingabegerät einsetzen, um hintereinander 24 Bits zu übermitteln und diese als einen RGB-Farbcode zu interpretieren, könnten wir damit unsere LED in einer beliebigen Farbe aufleuchten lassen. Das versuchen wir später. Jetzt kümmern wir uns um eine ebenso wichtige Form der Information: Texte.
 
-Texte bestehen allgemein aus Zeichen. Die meisten Zeichen in Texten sind Buchstaben, die wir in Klein- und Großbuchstaben unterscheiden. Dazu kommen Zahlen und Satzzeichen. Schaut auf das Keyboard eures Computers – dort findet ihr die meisten Zeichen, die ihr für Texte benötigt.
+Texte bestehen allgemein aus Zeichen. Die meisten Zeichen in Texten sind Buchstaben, die wir in Klein- und Großbuchstaben unterscheiden. Dazu kommen Zahlen und Satzzeichen. Schaut auf das \gloss{Keyboard}{Tastatur}{Hardware} eures Computers – dort findet ihr die meisten Zeichen, die ihr für Texte benötigt.
 
 ### Wie viele Bits benötigen wir?
 
@@ -333,6 +363,10 @@ Lasst das Programm laufen und legt eure Hand einmal nahe vor den Sensor, dann zw
 Neben der bekannten schwedischen Band lassen sich mit den Buchstaben A und B jedoch nicht viele andere Wörter bilden. Wir sind also gut beraten, mindestens ein zweites Bit hinzuzunehmen. Die Anzahl Bits, die wir für einen Buchstaben benötigen, erhöht sich damit auf zwei. Wie bilden wir das im Programm ab?
 
 Am einfachsten, indem wir uns die Bits zunächst merken, sie also hintereinander in eine Zeichenkette schreiben. Sobald eine vorher definierte Länge einer Nachricht – hier zunächst zwei Bits – erreicht ist, dekodieren wir die Bitfolge und erhalten den passenden Buchstaben. Danach geht es wieder von vorn los und unsere Bit-Zeichenkette ist wieder leer.
+
+<!--
+\gloss{Dekodieren}{Das Umwandeln von kodierten Informationen zurück in ihr ursprüngliches Format.}{Codesysteme}
+-->
 
 ```{python}
 MESSAGE_LENGTH = 2 # <1>
@@ -390,11 +424,15 @@ Okay – probieren wir es aus. Unser Programm sammelt das erste Bit, dann das zw
 NameError: name 'decode_letter' is not defined
 ```
 
-Was ist das? Eine Fehlermeldung, die uns sagt: Die Funktion `decode_letter()` ist nicht definiert. Wir müssen sie also noch implementieren. Wir haben die Funktion zwar schon namentlich genannt, aber es gibt nirgends eine Definition. Das holen wir jetzt nach.
+<!--
+\gloss{Bug}{Ein Fehler in einem Programm, der dazu führt, dass es nicht wie erwartet funktioniert.}{Programmierung}
+-->
+
+Was ist das? Eine Fehlermeldung (wie sprechen auch von Bugs), die uns sagt: Die Funktion `decode_letter()` ist nicht definiert. Wir müssen sie also noch implementieren. Wir haben die Funktion zwar schon namentlich genannt, aber es gibt nirgends eine Definition. Das holen wir jetzt nach.
 
 Erinnert euch an @sec-numbers-functions: Wir müssen wissen, was die Funktion tun soll, was sie dafür benötigt und was sie zurückgibt. Einen Namen haben wir bereits: `decode_letter`.
 
-Die Funktion soll unsere Zeichenkette voller Bits der Länge zwei, also so etwas wie "00", "01", "10" oder "11", in einen Buchstaben umwandeln. Die Eingabe ist `bits` und die Ausgabe ein Buchstabe, den diese Bitfolge kodiert. Unsere Funktion könnte so aussehen:
+Die Funktion soll unsere \gloss{Zeichenkette}{Eine Abfolge von Zeichen}{Programmierung} voller Bits der Länge zwei, also so etwas wie "00", "01", "10" oder "11", in einen Buchstaben umwandeln. Die Eingabe ist `bits` und die Ausgabe ein Buchstabe, den diese Bitfolge kodiert. Unsere Funktion könnte so aussehen:
 
 ```{python}
 def decode_letter(bits):
@@ -523,6 +561,10 @@ Für die Umwandlung der Bitfolge verwenden wir die Funktion `int()`, die uns sp�
 Die Lösung funktioniert, allerdings ist sie nicht besonders elegant. Wir müssen für jeden Buchstaben einen eigenen `if`/`elif`-Zweig schreiben, was schnell unübersichtlich wird. Zudem wird unser Code extrem lang – im Codeblock oben deutet `...` bereits an, dass es noch viele weitere Buchstaben zwischen E und Z gibt. Glücklicherweise geht das eleganter, und zwar mit einem Wörterbuch.
 
 ### Wörterbücher
+
+<!--
+\gloss{Dictionary}{Eine Sammlung von Schlüssel-Wert-Paaren, die eine schneller Suche ermöglichen.}{Programmierung}
+-->
 
 Ein Dictionary (deutsch: Wörterbuch) ist in der Programmierung eine Sammlung von Schlüssel-Wert-Paaren. Über einen Schlüssel – zum Beispiel eine Zahl – greifen wir direkt auf den zugehörigen Wert zu, etwa einen Buchstaben. Stellt euch das wie ein Telefonbuch vor, bei dem ihr über den Namen die Nummer herausfindet. Das ist ideal, wenn wir Bitfolgen zuerst in Dezimalzahlen umwandeln und dann schnell den passenden Buchstaben nachschlagen möchten. Statt viele `if`/`elif`-Zweige zu schreiben, legen wir einmalig eine Nachschlagetabelle an. Das macht den Code kürzer, übersichtlicher und leichter erweiterbar.
 
@@ -661,6 +703,11 @@ Klont das Repository und öffnet den Ordner in eurem Visual Studio Code, um es s
 
 ## ASCII-Code {#sec-text-ascii-code .collapsable}
 
+<!--
+\gloss{ASCII-Code}{Ein standardisiertes Kodierungssystem für Texte, das jedem Zeichen eine eindeutige Bitfolge zuweist.}{Codesysteme}
+\gloss{Codepage}{Eine Erweiterung eines Kodierungssystems, die zusätzliche Zeichen definiert.}{Codesysteme}
+-->
+
 Im vorigen Abschnitt haben wir zusammen überlegt, wie wir Texte kodieren und als Bitfolge über ein universelles Eingabegerät basierend auf einem IR-Abstandssensor übertragen können. Ziemlich cool, findet ihr nicht? Dabei haben wir jedem Buchstaben eine eindeutige Bitfolge zugewiesen und sind letztlich auf unser eigenes 5-Bit-Kodierungssystem gekommen.
 
 Weil eine der ersten Anwendungen mit dem Computer die Verarbeitung von Texten war, haben sich darüber, wie man Texte kodieren kann, schon andere sehr schlaue Leute Gedanken gemacht. Das Ergebnis ist der ASCII-Code, den es seit den 1960er-Jahren gibt und der weltweit standardisiert ist.
@@ -704,6 +751,13 @@ Ganz genau! Es gibt bereits eine Funktion, die die passenden Symbole für Codes 
 Die Funktion gibt also die Repräsentation des Codes als Zeichen zurück. Aber was steht da? Mit dem angegebenen Unicode-Codepunkt? Was ist denn jetzt schon wieder Unicode? Wir haben doch gerade über ASCII gesprochen.
 
 ### Unicode
+
+<!--
+\gloss{Unicode}{Ein internationaler Standard zur Kodierung von Texten, der eine große Anzahl von Zeichen aus verschiedenen Schriftsystemen umfasst.}{Codesysteme}
+\gloss{UTF-8}{Eine Kodierungsmethode für Unicode-Zeichen, die variable Byte-Längen verwendet.}{Codesysteme}
+\gloss{Textdatei}{Eine Datei, die nur Textinformationen enthält und keine Formatierungen oder Binärdaten.}{Codesysteme}
+\gloss{Codepunkt}{Eine eindeutige Nummer, die einem Zeichen in einem Zeichensatz zugeordnet ist.}{Codesysteme}
+-->
 
 Unicode ist ein internationaler Standard, der jedes Zeichen aus praktisch allen Schriftsystemen der Welt eindeutig beschreibt. Während ASCII nur 128 Symbole umfasst und damit vor allem die englische Sprache abdeckt, definiert Unicode einen gemeinsamen Zeichensatz mit weit über einer Million möglichen Codepunkten. Ein Codepunkt ist dabei eine Nummer, die einem Zeichen zugeordnet ist, zum Beispiel hat der Buchstabe „A“ den Codepunkt U+0041 und das Eurozeichen „€“ den Codepunkt U+20AC.
 
@@ -765,4 +819,4 @@ Je näher wir mit der Hand an den Sensor kommen, desto dunkler wird die LED – 
 
 Damit schließen wir dieses Kapitel ab. Wir haben gelernt, wie Computer Texte kodieren. Der Umweg über unser eigenes Eingabegerät für Binärcodes hat sich gelohnt: Eure Programmierskills sind gewachsen!
 
-Im folgenden @sec-images beschäftigen wir uns mit Bildern, wie Computer sie sehen, und wie ein Bild auf den Bildschirm kommt.
+Im folgenden Kapitel beschäftigen wir uns mit Bildern, wie Computer sie sehen, und wie ein Bild auf den Bildschirm kommt.

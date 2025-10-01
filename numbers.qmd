@@ -29,8 +29,32 @@ Dabei lernen wir neue Begriffe und Konzepte kennen.
 ::: {.datatable-nosearch data-order='[[2,"asc"]]'}
 | Begriff | Kategorie | Wo? |
 |---|---|---|
+| **Drehknopf** | Hardware | @sec-numbers-experiment-setup |
+| **Endlosschleife** | Programmierung | @sec-numbers-read-counter |
+| **Kontrollstruktur** | Programmierung | @sec-numbers-control-structures |
+| **Programmabsturz** | Programmierung | @sec-numbers-led-dimmer-1 |
+| **Kommandzeile** | Programmierung | @sec-numbers-led-dimmer-1 |
+| **Datentyp** | Programmierung | @sec-numbers-led-dimmer-1 |
+| **Binärsystem** | Zahlensysteme | @sec-numbers-led-dimmer-1 |
+| **Dezimalsystem** | Zahlensysteme | @sec-numbers-led-dimmer-1 |
+| **Stellenwertsystem** | Zahlensysteme | @sec-numbers-led-dimmer-1 |
+| **Oktalsystem** | Zahlensysteme | @sec-numbers-number-systems |
+| **Binär** | Zahlensysteme | @sec-numbers-number-systems |
+| **Dualsystem** | Zahlensyteme | @sec-numbers-number-systems |
+| **Binary Digit** | Zahlensysteme | @sec-numbers-number-systems |
+| **Bit** | Bits & Bytes | @sec-numbers-number-systems |
+| **Binärziffer** | Zahlensysteme | @sec-numbers-number-systems |
+| **Byte** | Bits & Bytes | @sec-numbers-bit-and-bytes |
+| **Kilobyte** | Bits & Bytes | @sec-numbers-bit-and-bytes |
+| **Megabyte** | Bits & Bytes | @sec-numbers-bit-and-bytes |
+| **Gigabyte** | Bits & Bytes | @sec-numbers-bit-and-bytes |
+| **Konstante** | Programmierung | @sec-numbers-led-dimmer-2 |
+| **Verschachtelte Kontrollstruktur** | Programmierung | @sec-numbers-button-reading |
 | **DRY-Prinzip** | Programmierung | @sec-numbers-led-dimmer-3 |
-| **Funktionen** | Programmierung | @sec-numbers-led-dimmer-3 |
+| **Funktion** | Programmierung | @sec-numbers-led-dimmer-3 |
+| **Codeblock** | Programmierung | @sec-numbers-led-dimmer-3 |
+| **EVA-Schema** | Programmierung | @sec-numbers-led-dimmer-3 |
+| **Parameter** | Programmierung | @sec-numbers-led-dimmer-3 |
 :::
 <!-- CHAPTER_GLOSSARY_END -->
 
@@ -38,14 +62,16 @@ Dabei lernen wir neue Begriffe und Konzepte kennen.
 
 ### Hardware
 
-Das erste Experiment in @sec-colors war ein guter Einstieg! In diesem Kapitel legen wir noch eine Schippe drauf: Unsere Hardware bekommt ein neues Bauteil – einen Drehknopf. Das montiert ihr einfach neben der LED, wie in @fig-setup-rgb-led-rotary-encoder gezeigt.
+Das erste Experiment in @sec-colors war ein guter Einstieg! In diesem Kapitel legen wir noch eine Schippe drauf: Unsere Hardware bekommt ein neues Bauteil – einen \gloss{Drehknopf}{Ein drehbarer Button mit Zählerfunktion.}{Hardware}. Das montiert ihr einfach neben der LED, wie in @fig-setup-rgb-led-rotary-encoder gezeigt.
 
 Die vollständige Hardwareliste für dieses Kapitel sieht so aus:
 
 -  1 x [Master Brick 3.2](https://www.tinkerforge.com/de/doc/Hardware/Bricks/Master_Brick.html)
--  1 x [Distance IR 4-30cm Bricklet 2.0](https://www.tinkerforge.com/de/shop/distance-ir-4-30cm-v2-bricklet.html)
+-  1 x [RGB LED Bricklet 2.0](https://www.tinkerforge.com/en/doc/Hardware/Bricklets/RGB_LED_V2.html)
+-  1 x [Rotary Encoder Bricklet 2.0](https://www.tinkerforge.com/de/shop/bricklets/human-input/rotary-encoder-v2-bricklet.html)
 -  1 x [Montageplatte 22x10](https://www.tinkerforge.com/de/shop/accessories/mounting/mounting-plate-22x10.html)
 -  2 x [Brickletkabel 15cm (7p-7p)](https://www.tinkerforge.com/de/shop/accessories/cable/bricklet-cable-15cm-7p-7p.html)
+-  2 x [Befestigungskit 12 mm](https://www.tinkerforge.com/de/shop/accessories/mounting/mounting-kit-12mm.html)
 
 ::: {#fig-setup-rgb-led-rotary-encoder layout="[[1], [1,1], [1,1]]"}
 ![Seitenansicht.](images/master_brick_with_led_and_rotary_01.jpg){#fig-setup-rgb-led-a .lightbox group="setup-rgb-led"}
@@ -121,7 +147,7 @@ while True:
     print(count)
 ```
 
-Zur Erinnerung: `while True` erzeugt eine Endlosschleife. Normalerweise wollen wir so etwas vermeiden – außer, wir brauchen es genau dafür. Endlosschleifen sind praktisch, wenn wir kontinuierlich Daten lesen oder auf Ereignisse warten. Und keine Sorge: Mit Strg+C könnt ihr das Programm jederzeit beenden.
+Zur Erinnerung: `while True` erzeugt eine \gloss{Endlosschleife}{Eine Schleife in einem Programm, die ewig läuft.}{Programmierung}. Normalerweise wollen wir so etwas vermeiden – außer, wir brauchen es genau dafür. Endlosschleifen sind praktisch, wenn wir kontinuierlich Daten lesen oder auf Ereignisse warten. Und keine Sorge: Mit Strg+C könnt ihr das Programm jederzeit beenden.
 
 Wenn ihr das Programm ausführt, werdet ihr direkt ein Problem erkennen. Die Schleife rennt förmlich und gibt nacheinander immer wieder denselben Wert aus. Nur wenn wir am Knopf drehen, ändert sich der Wert – wird aber von der Schleife x-mal auf die Konsole geschrieben. Wie könnten wir das verbessern?
 
@@ -143,7 +169,7 @@ Gehen wir durch, was hier passiert: Zuerst weisen wir der Variable `last_count` 
 
 In den folgenden Schleifendurchläufen wird nur dann etwas ausgegeben, wenn sich der Wert verändert hat, ihr also tatsächlich am Drehknopf gedreht habt. Ansonsten bleibt die Ausgabe unverändert.
 
-Die Prüfung, ob der aktuelle Wert (gespeichert in `new_count`) sich vom alten Wert unterscheidet, erfolgt in Zeile 5. Hier lernen wir auch ein neues Konzept der Programmierung kennen: die Kontrollstruktur `if`, gefolgt von einer Bedingung.
+Die Prüfung, ob der aktuelle Wert (gespeichert in `new_count`) sich vom alten Wert unterscheidet, erfolgt in Zeile 5. Hier lernen wir auch ein neues Konzept der Programmierung kennen: die \gloss{Kontrollstruktur}{Eine Struktur, die den Fluss eines Programms steuert.}{Programmierung} `if`, gefolgt von einer Bedingung.
 
 Neu ist hier die Kontrollstruktur `if`. Sie prüft eine Bedingung, die – wie ihr schon aus @sec-colors kennt – nur `True` oder `False` sein kann. Ist sie wahr (`True`), läuft der eingerückte Code darunter. Ist sie falsch (`False`), passiert nichts.
 
@@ -185,7 +211,7 @@ led.set_rgb_value(255, 255, 255)
 led.set_rgb_value(0, 0, 0)
 ```
 
-Damit haben wir die beiden Extremzustände festgelegt. Doch was passiert dazwischen, wenn die LED gedimmt ist? Ganz einfach: Wir lassen die drei RGB-Werte gemeinsam von 1 bis 254 hoch- oder runterlaufen. Höhere Werte ergeben ein helleres Weiß, niedrigere ein dunkleres.
+Damit haben wir die beiden Extremzustände festgelegt. Doch was passiert dazwischen, wenn die LED gedimmt ist? Ganz einfach: Wir lassen die drei RGB-Werte gemeinsam von 1 bis 255 hoch- oder runterlaufen. Höhere Werte ergeben ein helleres Weiß, niedrigere ein dunkleres.
 
 Setzen wir diese Erkenntnisse in Programmcode um und weisen den Zählerwert den RGB-Werten der LED zu. Spoiler-Alert: Das ist etwas naiv, aber lasst uns mal schauen, was passiert und wo möglicherweise Probleme auftreten:
 
@@ -206,14 +232,16 @@ while True:
 
 Lasst es mal laufen und dreht voll auf oder runter! Beobachtet dabei den Wert für `last_count`. Was passiert, wenn er kleiner als Null wird? Oder wenn er größer als 255 wird? Bumm! Das Programm stürzt ab!
 
-Warum? Auf der Kommandzeile bekommen wir eine lange Fehlermeldung mit der folgenden Aussage ganz am Ende:
+<!-- \gloss{Programmabsturz}{Ein unerwartetes Beenden eines Programms}{Programmierung} -->
+
+Warum? Auf der \gloss{Kommandzeile}{Der Bereich, in dem Befehle eingegeben und ausgegeben werden.}{Programmierung} bekommen wir eine lange Fehlermeldung mit der folgenden Aussage ganz am Ende:
 
 ```{bash}
 #| code-line-numbers: false
 struct.error: ubyte format requires 0 <= number <= 255
 ```
 
-Wenn man die Fehlermeldung googelt oder ChatGPT befragt, bekommt man Hilfe. Offensichtlich wird für einen RGB-Wert, den wir der Funktion `set_rgb_value()` übergeben, ein bestimmter Datentyp erwartet, der `ubyte` heißt. Das steht für "unsigned byte" und bedeutet, dass der Wert zwischen 0 und 255 liegen muss.
+Wenn man die Fehlermeldung googelt oder ChatGPT befragt, bekommt man Hilfe. Offensichtlich wird für einen RGB-Wert, den wir der Funktion `set_rgb_value()` übergeben, ein bestimmter \gloss{Datentyp}{Ein Format, das angibt, welche Art von Daten in einer Variablen gespeichert werden kann.}{Programmierung} erwartet, der `ubyte` heißt. Das steht für "unsigned byte" und bedeutet, dass der Wert zwischen 0 und 255 liegen muss.
 
 Moment 🧐 – was hat jetzt das Byte mit 0 bis 255 zu tun? Bisher dachten wir doch, das wäre wegen des RGB-Codes? Stimmt auch, aber der RGB-Code liegt nicht zufällig im Wertebereich von 0 bis 255.
 
@@ -221,11 +249,13 @@ Um das zu verstehen, müssen wir das Binärsystem kennen. Also los!
 
 ## Zahlensysteme {#sec-numbers-number-systems .collapsable}
 
-Eigentlich ist es schnell erklärt. Das Binärsystem ist wie das Dezimalsystem, mit dem wir alltäglich unterwegs sind – nur nutzt es statt der Basis 10 die Basis 2. Einfach, oder? Wenn nicht, lest weiter – das hier soll schließlich ein Einführungsbuch sein.
+Eigentlich ist es schnell erklärt. Das \gloss{Binärsystem}{Ein Zahlensystem, das nur die Ziffern 0 und 1 verwendet.}{Zahlensysteme} ist wie das \gloss{Dezimalsystem}{Ein Zahlensystem, das die Ziffern 0 bis 9 verwendet.}{Zahlensysteme}, mit dem wir alltäglich unterwegs sind – nur nutzt es statt der Basis 10 die Basis 2. Einfach, oder? Wenn nicht, lest weiter – das hier soll schließlich ein Einführungsbuch sein.
 
 ### Unser Dezimalsystem
 
-Wir wenden das Dezimalsystem täglich intuitiv an. Es fragt sich wahrscheinlich niemand von euch, was die Systematik dahinter ist, oder? Und doch habt ihr es alle einmal in der Schule gelernt, und wir müssen es an dieser Stelle etwas auffrischen. Solltet ihr mit Stellenwertsystemen\index{Stellenwertsystem} noch 100 % vertraut sein, könnt ihr diesen Abschnitt getrost überspringen.
+<!-- \gloss{Stellenwertsystem}{Ein System, bei dem der Wert einer Ziffer von ihrer Position abhängt.}{Zahlensysteme} -->
+
+Wir wenden das Dezimalsystem täglich intuitiv an. Es fragt sich wahrscheinlich niemand von euch, was die Systematik dahinter ist, oder? Und doch habt ihr es alle einmal in der Schule gelernt, und wir müssen es an dieser Stelle etwas auffrischen. Solltet ihr mit Stellenwertsystemen noch 100 % vertraut sein, könnt ihr diesen Abschnitt getrost überspringen.
 
 Nehmen wir eine Zahl wie die 123 als Beispiel. Wir haben sofort ein Gefühl für die Zahl, wir wissen etwa, wie groß sie ist. Und wenn wir es etwas genauer erklären müssen, können die meisten von euch sicher erläutern, wofür – also für welchen Wert – jede Ziffer steht. Wir beginnen mit der kleinsten Wertigkeit, also der Ziffer ganz rechts: der 3. Sie steht für die Einserstelle, und davon haben wir 3. Die nächste Stelle steht für die Zehner, und weil dort eine 2 steht, sind es zwanzig. Also $3+20=23$. Schließen wir auch die dritte und letzte Ziffer in unsere Erläuterung ein: Die 1 steht für die Hunderterstelle, also $1*100=100$. Damit haben wir $100+20+3=123$. Ganz einfach und intuitiv.
 
@@ -249,6 +279,8 @@ Wurde uns das Dezimalsystem von Gott gegeben? Vielleicht – wenn man an die Sch
 
 ### Das Oktalsystem
 
+<!-- \gloss{Oktalsystem}{Ein Zahlensystem, das die Ziffern 0 bis 7 verwendet.}{Zahlensysteme} -->
+
 Nun gibt es auch Wesen mit weniger als zehn Fingern (und auch mit mehr?). Nehmt mal einen Cartoon-Charakter wie Mickey Mouse als Beispiel. In @fig-cartoon-character seht ihr, wie hier wahrscheinlich gezählt wird. Hätte ein Volk von Mickey-Mäusen sich auch für das Dezimalsystem entschieden?
 
 ![Cartoon-Charaktere haben nur acht Finger. Quelle: Erstellt mit ChatGPT nach @petzold_code_2022](https://winf-hsos.github.io/university-docs/images/binary_system_human_vs_cartoon.png){#fig-cartoon-character .lightbox}
@@ -263,7 +295,9 @@ Treiben wir es noch ein wenig weiter auf die Spitze und nehmen ein paar Finger w
 
 ![Delfine würden anders zählen. Eher wie Computer.](https://winf-hsos.github.io/university-docs/images/binary_system_dolphin.png){#fig-binary-system-dolphin .lightbox}
 
-Das Wort "binär"\index{binär} stammt aus dem Lateinischen und bedeutet "paarweise" oder "zu zweit". Von diesem Wort stammt auch der Name des Stellenwertsystems mit der Basis 2 – und das nicht ohne Grund. Im Binärsystem gibt es für jede Stelle genau zwei Möglichkeiten: 0 oder 1. Ein anderer Begriff ist übrigens Dualsystem, was genau das Gleiche meint. Auch das Wort "dual" kommt von den Römern und heißt so viel wie "zwei enthaltend".
+<!-- \gloss{Binär}{Lateinisch für "zu zweit" oder "paarweise".}{Zahlensysteme} -->
+
+Das Wort "binär" stammt aus dem Lateinischen und bedeutet "paarweise" oder "zu zweit". Von diesem Wort stammt auch der Name des Stellenwertsystems mit der Basis 2 – und das nicht ohne Grund. Im Binärsystem gibt es für jede Stelle genau zwei Möglichkeiten: 0 oder 1. Ein anderer Begriff ist übrigens \gloss{Dualsystem}{s. Binärsystem}{Zahlensyteme}, was genau das Gleiche meint. Auch das Wort "dual" kommt von den Römern und heißt so viel wie "zwei enthaltend".
 
 ![Eine Binärziffer ist vergleichbar mit einem Lichtschalter, der an oder aus sein kann.](https://winf-hsos.github.io/university-docs/images/binary_system_light_switch.png){#fig-light-switch .lightbox .align-center}
 
@@ -279,13 +313,15 @@ Das Binärsystem funktioniert wie alle anderen Stellenwertsysteme auch.
 
 ### Andere Systeme
 
-- Römische Zahlen
-- Tally-Schreibweise
-
+Stellenwertsysteme sind nicht die einzigen Zahlensysteme. Es zum Beispiel das römische Zahlensystem, bei dem die Position der Ziffer keine Rolle spielt. Stattdessen werden verschiedene Symbole verwendet, um Zahlen darzustellen. Ein anderes Beispiel ist die Tally-Schreibweise, bei der Striche und Strichpakete verwendet werden, um Zahlen zu darzustellen.
 
 ## Bits & Bytes {#sec-numbers-bit-and-bytes .collapsable}
 
 ### Zwei Zustände
+
+<!-- \gloss{Binary Digit}{Eine einzelne Binärziffer, also eine 0 oder eine 1}{Zahlensysteme} -->
+<!-- \gloss{Bit}{Kurzform für "Binary Digit"; kleinste Informationseinheit}{Bits & Bytes} -->
+<!-- \gloss{Binärziffer}{Eine einzelne Ziffer im Binärsystem, also eine 0 oder eine 1}{Zahlensysteme} -->
 
 Warum haben wir uns Zahlensysteme angeschaut, und was hat das mit Computern zu tun? Ganz einfach: Computer denken binär. Das bedeutet, sie kennen nur zwei Zustände: an oder aus, 0 oder 1.
 
@@ -321,7 +357,7 @@ Stopp! $2^8 = 256$, das genügt uns völlig. Mit 8 Bits können wir somit 256 Zu
 
 ### Acht Bits macht ein Byte
 
-Und das ist kein Zufall: 8 Bits sind für Computer eine besondere Größe. Wir nennen eine Gruppe von 8 Bits ein Byte\index{Byte}. Und jetzt dürfte es erneut klingeln.
+Und das ist kein Zufall: 8 Bits sind für Computer eine besondere Größe. Wir nennen eine Gruppe von 8 Bits ein \gloss{Byte}{Eine Gruppe von 8 Bits}{Bits & Bytes}. Und jetzt dürfte es erneut klingeln.
 
 ![Ein Byte könnt ihr euch vorstellen wie acht Glühbirnen nebeneinander.](https://winf-hsos.github.io/university-docs/images/binary_system_byte_a.png){#fig-binary-system-byte-a .lightbox}
 
@@ -344,6 +380,12 @@ Die Antwort überrascht uns nicht, denn schließlich haben wir es ja schon herau
 Das erklärt auch die Fehlermeldung von oben: Ein Byte kann Werte zwischen 0 und 255 darstellen. Wir haben im Experiment den Drehknopf voll nach oben oder nach unten gedreht, wodurch der Wert entweder größer als 255 oder kleiner als 0 wurde. Und damit ist es kein gültiger Wert im Sinne eines Bytes mehr.
 
 ### Kilo, Mega, Giga
+
+<!-- 
+\gloss{Kilobyte}{1.000 Bytes}{Bits & Bytes}
+\gloss{Megabyte}{1.000.000 Bytes}{Bits & Bytes}
+\gloss{Gigabyte}{1.000.000.000 Bytes}{Bits & Bytes}
+-->
 
 Ein Byte besteht aus 8 Bits. Wenn wir also von Bytes sprechen, reden wir oft auch von Kilobytes, Megabytes, Gigabytes et cetera. Diese Begriffe sind wichtig, um die Größe von Daten zu beschreiben. In @tbl-data-sizes seht ihr eine Übersicht über die verschiedenen Größenordnungen.
 
@@ -444,6 +486,10 @@ while True:
 
 ### Konstanten
 
+<!--
+\gloss{Konstante}{Ein Wert, der sich während der Programmausführung nicht ändert.}{Programmierung}
+-->
+
 Das sieht schon sehr gut aus! Unser Dimmer ist fast fertig, die grundlegende Funktionalität läuft robust. Eine Kleinigkeit stört mich noch: Der Dimmer reagiert nur sehr langsam, und wir müssen scheinbar endlos drehen, um die LED auf die volle Helligkeit zu bekommen. Können wir das beschleunigen?
 
 Das ist natürlich eine rhetorische Frage – in der Programmierung können wir so gut wie alles umsetzen. Und in diesem Fall ist es sogar recht einfach. Damit die LED schneller hell oder dunkel wird, wenn wir am Drehknopf drehen, können wir die Anpassung der Helligkeit einfach verstärken. Momentan wird die Variable `brightness` um die Differenz des Zählerstands erhöht oder verringert. Wir könnten stattdessen einen festen, höheren Schrittwert definieren, um die Helligkeit schneller zu ändern.
@@ -489,7 +535,7 @@ Mit dem LED-Dimmer haben wir die zentrale Funktion des Drehknopfes zur Genüge k
 
 ## Druckknopf auslesen {#sec-numbers-button-reading .collapsable}
 
-Neben dem Zähler besitzt der Drehknopf (der Name sagt es schon) noch eine Funktion, nämlich die eines einfachen Druckknopfes. Wir haben es weiter oben in @sec-numbers-first-steps mit dem Brick Viewer schon ausprobiert: Der Drehknopf lässt sich drücken und erzeugt eine haptische Rückmeldung, ein leichtes Knacken. Im Brick Viewer wurde der kleine Kreis auf der rechten Seite dann rot eingefärbt.
+Neben dem Zähler besitzt der Dreh*knopf* (der Name sagt es schon) noch eine Funktion, nämlich die eines einfachen Druckknopfes. Wir haben es weiter oben in @sec-numbers-first-steps mit dem Brick Viewer schon ausprobiert: Der Drehknopf lässt sich drücken und erzeugt eine haptische Rückmeldung, ein leichtes Knacken. Im Brick Viewer wurde der kleine Kreis auf der rechten Seite dann rot eingefärbt.
 
 Selbstverständlich können wir den Zustand des Buttons auch aus einem Programm heraus abfragen. Dazu bietet uns der Drehknopf eine Methode `is_pressed()` an:
 
@@ -502,7 +548,6 @@ while True:
 ```
 
 Die Funktion liefert `True` zurück, wenn der Button gerade gedrückt ist, und ansonsten `False`. Das können wir wunderbar nutzen und darüber eine Bedingung formulieren, um entweder "Button pressed" oder "Button not pressed" auf der Konsole auszugeben. Ihr erinnert euch bestimmt an das `if`-Statement aus @sec-numbers-control-structures. Das ist genau das, was wir jetzt brauchen!
-
 
 ```{python}
 #| lst-cap: Ein erster Test des Drehknopf-Buttons.
@@ -526,7 +571,7 @@ Das reicht fürs Erste – der Button kann tatsächlich nicht mehr als das. Reic
 
 ## LED-Dimmer 3.0 {#sec-numbers-led-dimmer-3 .collapsable}
 
-Wäre es nicht praktisch, wenn wir das Licht der LED nicht nur dimmen, sondern auch den Farbton verändern könnten? Weißes Licht ist am Abend bekanntlich nicht empfehlenswert, und grünes Licht soll beruhigend wirken.
+Wäre es nicht praktisch, wenn wir das Licht der LED nicht nur dimmen, sondern auch den Farbton verändern könnten? Weißes Licht ist am Abend bekanntlich nicht empfehlenswert, ein wärmerer Farbton verbessert den Schlaf und grünes Licht soll beruhigend wirken.
 
 Lasst uns unseren Dimmer so erweitern, dass per Knopfdruck der Farbton gewechselt werden kann. Fürs Erste wollen wir die Farben Weiß, Gelb und Grün anbieten. Das lässt sich später beliebig erweitern.
 
@@ -594,7 +639,11 @@ while True:
     button_pressed_before = button_pressed_after
 ```
 
-Wieder ein Haufen voller `if`s - aber es sollte funktionieren. Gehen wir es einmal durch: Wenn der Button losgelassen wurde (Zeile 5) gelangen wir zur Prüfung der `if`-Statements. Im ersten Fall wird geprüft, ob die LED gerade Weiß leuchtet (`color == "white"`). Ist das der Fall, dann wechseln wir jetzt auf Gelb. Im zweiten Schritt sehen wir ein `elif`, das sehr ähnlich zu einem `if` ist, mit der Einschränkung, dass es nur überhaupt geprüft wird, wenn das vorherige `if` nicht schon wahr war. Das macht in diesem Fall einen großen Unterschied (im Vergleich zu weiter oben, als wir einfache `if`-Statements verwendet haben, um die Farbe der LED mit `set_rgb_color` zu setzen). Überlegt mal, was passieren würde, wenn wir hier folgenden Code einsetzen würden:
+<!--
+\gloss{Verschachtelte Kontrollstruktur}{Ein if-Statement, das innerhalb eines anderen if-Statements steht.}{Programmierung}
+-->
+
+Wieder ein Haufen voller `if`s - wir sprechen auch von verschachtelten `if`s - aber es sollte funktionieren. Gehen wir es einmal durch: Wenn der Button losgelassen wurde (Zeile 5) gelangen wir zur Prüfung der `if`-Statements. Im ersten Fall wird geprüft, ob die LED gerade Weiß leuchtet (`color == "white"`). Ist das der Fall, dann wechseln wir jetzt auf Gelb. Im zweiten Schritt sehen wir ein `elif`, das sehr ähnlich zu einem `if` ist, mit der Einschränkung, dass es nur überhaupt geprüft wird, wenn das vorherige `if` nicht schon wahr war. Das macht in diesem Fall einen großen Unterschied (im Vergleich zu weiter oben, als wir einfache `if`-Statements verwendet haben, um die Farbe der LED mit `set_rgb_color` zu setzen). Überlegt mal, was passieren würde, wenn wir hier folgenden Code einsetzen würden:
 
 ```{python}
 if color == "white":
@@ -679,7 +728,12 @@ In der Programmierung möchten wir Wiederholungen um jeden Preis vermeiden. Wir 
 
 Nehmen wir in unserem Beispiel an, wir führen eine vierte Farbe ein, sagen wir Blau. Dann müssten wir den Code in den Blöcken 2 und 3 anpassen, um die neue Farbe zu berücksichtigen. Das bedeutet, dass wir den gleichen Code an mehreren Stellen ändern müssten, was fehleranfällig und mühsam ist. Zwei mag noch nicht nach einem Problem klingen, aber selbst hier zeigt sich das Problem der Wiederholung. Wird eine Stelle vergessen, ist der Code inkonsistent und funktioniert nicht mehr wie gewünscht.
 
-Die Lösung liegt darin, häufig verwendeten Code in Funktionen auszulagern. \gloss{Funktionen}{Benannter Codeblock zur Lösung eines definierten Problems.}{Programmierung} sind ein mächtiges Werkzeug in der Programmierung. Sie ermöglichen es uns, Codeblöcke zu definieren, die wir immer wieder verwenden können, ohne sie jedes Mal neu schreiben zu müssen. Funktionen helfen uns dabei, unseren Code sauberer, übersichtlicher und wartbarer zu gestalten.
+<!--
+\gloss{Funktion}{Benannter Codeblock zur Lösung eines definierten Problems.}{Programmierung}
+\gloss{Codeblock}{Ein zusammenhängender Abschnitt von Programmcode, der eine bestimmte Aufgabe erfüllt. In Python sind Codeblöcke durch Einrückungen definiert.}{Programmierung}
+-->
+
+Die Lösung liegt darin, häufig verwendeten Code in Funktionen auszulagern. Funktionen sind ein mächtiges Werkzeug in der Programmierung. Sie ermöglichen es uns, Codeblöcke zu definieren, die wir immer wieder verwenden können, ohne sie jedes Mal neu schreiben zu müssen. Funktionen helfen uns dabei, unseren Code sauberer, übersichtlicher und wartbarer zu gestalten.
 
 Im @lst-color-brightness wird dieser Teil an zwei Stellen wiederholt:
 
@@ -699,6 +753,11 @@ Zeit, diesen Code nur einmal zu schreiben! Machen wir daraus eine Funktion. Wie 
 3. Was benötigt die Funktion, um ihre Aufgabe zu erledigen?
 4. Wie heisst die Funktion?
 
+
+<!--
+\gloss{EVA-Schema}{Ein Modell zur Repräsentation von Problemen anhand von Eingaben, Verarbeitungen und Ausgaben}{Programmierung}
+\gloss{Parameter}{Eingabewerte, die einer Funktion übergeben werden, damit sie ihre Aufgabe erfüllen kann.}{Programmierung}
+-->
 
 ![Funktionen folgen einem Eingabe-Verarbeitung-Ausgabe (EVA) Schema.](https://winf-hsos.github.io/university-docs/images/problem_solving_input_function_output.png){#fig-numbers-input-function-output .lightbox}
 

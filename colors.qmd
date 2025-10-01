@@ -24,33 +24,34 @@ Dabei lernen wir neue Begriffe und Konzepte kennen.
 ::: {.datatable-nosearch data-order='[[2,"asc"]]'}
 | Begriff | Kategorie | Wo? |
 |---|---|---|
-| **Brick Viewer** | Bauteile | @sec-colors-experiment-setup |
-| **RGB LED** | Bauteile | @sec-colors-experiment-setup |
+| **Brick Viewer** | Hardware | @sec-colors-experiment-setup |
+| **RGB LED** | Hardware | @sec-colors-experiment-setup |
 | **UID** | Programmierung | @sec-colors-control-led |
 | **Programm** | Programmierung | @sec-colors-control-led |
 | **Boilerplate-Code** | Programmierung | @sec-colors-control-led |
 | **Bibliothek** | Programmierung | @sec-colors-control-led |
+| **Objekt** | Programmierung | @sec-colors-control-led |
 | **Klasse** | Programmierung | @sec-colors-control-led |
-| **Objekte** | Programmierung | @sec-colors-control-led |
 | **Schlüsselwort** | Programmierung | @sec-colors-control-led |
+| **Instanz** | Programmierung | @sec-colors-control-led |
 | **Methode** | Programmierung | @sec-colors-control-led |
 | **RGB-Farbkodierung** | Codesysteme | @sec-colors-control-led |
 | **Elektromagnetische Strahlung** | Physik | @sec-colors-control-led |
 | **Frequenz** | Physik | @sec-colors-light-and-colors |
 | **Wellenlänge** | Physik | @sec-colors-light-and-colors |
 | **Hertz (Hz)** | Physik | @sec-colors-light-and-colors |
-| **LED** | Bauteile | @sec-colors-light-and-colors |
+| **LED** | Hardware | @sec-colors-light-and-colors |
 | **Parameter** | Programmierung | @sec-colors-light-and-colors |
 | **Additive Farbmischung** | Physik | @sec-colors-light-and-colors |
 | **Subtraktive Farbmischung** | Physik | @sec-colors-light-and-colors |
-| **CMYK** | Drucker | @sec-colors-light-and-colors |
+| **CMYK** | Hardware | @sec-colors-light-and-colors |
 | **Schleife** | Programmierung | @sec-colors-pulsating-led |
 | **Zählerschleife** | Programmierung | @sec-colors-pulsating-led |
-| **Argumente** | Programmierung | @sec-colors-pulsating-led |
+| **Argument** | Programmierung | @sec-colors-pulsating-led |
 | **While-Schleife** | Programmierung | @sec-colors-pulsating-led |
 | **Bedingung** | Programmierung | @sec-colors-pulsating-led |
-| **Hue-Farbkreis** | Farben | @sec-colors-pulsating-led |
-| **HSV-Modell** | Farben | @sec-colors-pulsating-led |
+| **Hue-Farbkreis** | Codesysteme | @sec-colors-pulsating-led |
+| **HSV-Modell** | Codesysteme | @sec-colors-pulsating-led |
 | **For-Schleife** | Programmierung | @sec-colors-hue-circle |
 :::
 <!-- CHAPTER_GLOSSARY_END -->
@@ -61,6 +62,14 @@ Dabei lernen wir neue Begriffe und Konzepte kennen.
 ### Hardware
 
 Bereit für euer erstes Hardware-Experiment? Perfekt! Ihr braucht dafür eine LED ([RGB LED Bricklet 2.0](https://www.tinkerforge.com/en/doc/Hardware/Bricklets/RGB_LED_V2.html)) und einen Mikrocontroller ([Master Brick 3.2](https://www.tinkerforge.com/de/shop/master-brick.html)). Befestigt beide Bauteile mit Abstandshaltern auf einer Montageplatte, wie in @fig-setup-rgb-led gezeigt. Zwei Schrauben pro Gerät reichen völlig. Denkt an die kleinen, weißen Unterlegscheiben aus Kunststoff. Sie schützen eure Platinen vor Druckstellen.
+
+Die vollsändige Hardwareliste für dieses Kapitel sieht so aus:
+
+-  1 x [Master Brick 3.2](https://www.tinkerforge.com/de/doc/Hardware/Bricks/Master_Brick.html)
+-  1 x [RGB LED Bricklet 2.0](https://www.tinkerforge.com/en/doc/Hardware/Bricklets/RGB_LED_V2.html)
+-  1 x [Montageplatte 22x10](https://www.tinkerforge.com/de/shop/accessories/mounting/mounting-plate-22x10.html)
+-  1 x [Brickletkabel 15cm (7p-7p)](https://www.tinkerforge.com/de/shop/accessories/cable/bricklet-cable-15cm-7p-7p.html)
+-  1 x [Befestigungskit 12 mm](https://www.tinkerforge.com/de/shop/accessories/mounting/mounting-kit-12mm.html)
 
 Neben der Hardware benötigt ihr auch die passende Software. Diese solltet ihr bereits installiert haben. Falls nicht, schaut im [Abschnitt zu den Voraussetzungen](prerequisites.qmd) vorbei. Dort ist alles genau beschrieben. Im Folgenden gehe ich davon aus, dass ihr alles am Laufen habt.
 
@@ -80,7 +89,7 @@ Einfaches Setup mit einem Mikrocontroller und einer LED.
 
 ### Erste Schritte mit der LED
 
-Im ersten Schritt wollen wir die LED und ihre Funktionen testen! Das geht ganz leicht mit dem \gloss{Brick Viewer}{Ein Werkzeug zum schnellen Testen der Tinkerforge-Bauteile}{Bauteile}. Schließt zuerst den Master Brick über das USB-Kabel an euren Computer an und öffnet den Brick Viewer. Klickt dann auf den Connect-Button.
+Im ersten Schritt wollen wir die LED und ihre Funktionen testen! Das geht ganz leicht mit dem \gloss{Brick Viewer}{Ein Werkzeug zum schnellen Testen der Tinkerforge-Bauteile}{Hardware}. Schließt zuerst den Master Brick über das USB-Kabel an euren Computer an und öffnet den Brick Viewer. Klickt dann auf den Connect-Button.
 
 ![Über den Connect-Button verbindet ihr den Brick Viewer mit dem angeschlossenen Master Brick.](images/brick_viewer_connect.png){#fig-brick-viewer-connect .lightbox fig-align="center" width="100%" group="brick-viewer"}
 
@@ -88,7 +97,7 @@ Wenn alles geklappt hat, zeigt euch der Brick Viewer alle angeschlossenen Gerät
 
 ![Der Brick Viewer, nachdem ihr mit dem Master Brick verbunden seid.](images/brick_viewer_after_connect.png){#fig-brick-viewer-after-connect .lightbox group="brick-viewer"}
 
-Wechselt nun zum Tab der \gloss{RGB LED}{Eine LED, die in verschiedenen Farben leuchten kann.}{Bauteile}. Hier könnt ihr auf unterschiedlichen Wegen die Farbe der LED einstellen. Mehr kann eine LED nicht!
+Wechselt nun zum Tab der \gloss{RGB LED}{Eine LED, die in verschiedenen Farben leuchten kann.}{Hardware}. Hier könnt ihr auf unterschiedlichen Wegen die Farbe der LED einstellen. Mehr kann eine LED nicht!
 
 Mit den drei Schiebereglern steuert ihr die einzelnen Farbkanäle – Rot, Grün, Blau. Der Wertebereich: 0 bis 255. Warum gerade diese Farben und diese Zahlen? Gute Frage. Die Antwort kommt weiter unten.
 
@@ -138,9 +147,13 @@ Eine *Bibliothek*\index{Bibliothek} in einer Programmiersprache ist die Bündelu
 
 ### Klassen und Objekte
 
+<!--
+\gloss{Objekt}{Eine konkrete Instanz einer Klasse, die die definierten Eigenschaften und Funktionen nutzen kann.}{Programmierung}
+-->
+
 Mit `from ... import` importieren wir also etwas aus einer Bibliothek. Soweit so gut. Aber was bedeutet das genau? Mit *importieren* ist konkret gemeint, dass wir dem Programm mitteilen, dass wir vorhaben, die genannten Dinge in unserem Programm zu verwenden, und dass sie deshalb am besten schon einmal geladen werden sollten. Ob wir diese Dinge später wirklich nutzen, steht auf einem anderen Blatt.
 
-In dem Fall der ersten beiden Zeilen unseres Programms von oben sind es zwei Klassen, deren Verwendung wir ankündigen. Die erste Klasse heißt `IPConnection`\index{`IPConnection`} und die zweite `BrickletRGBLEDV2`\index{`BrickletRGBLEDV2`}. Der Begriff \gloss{Klasse}{Baupläne für Objekte, die bestimmte Eigenschaften und Funktionen definieren}{Programmierung} ist hier analog zum Begriff *Kategorie* zu verstehen. Wir können zu einer Klasse gehörige \gloss{Objekte}{Objekte sind konkrete Instanzen von Klassen, die die definierten Eigenschaften und Funktionen nutzen können.}{Programmierung} erzeugen, und alle Objekte derselben Klasse verhalten sich gleich und haben die gleichen Funktionen. Das verstehen wir am besten an einem einfachen Beispiel.
+In dem Fall der ersten beiden Zeilen unseres Programms von oben sind es zwei Klassen, deren Verwendung wir ankündigen. Die erste Klasse heißt `IPConnection`\index{`IPConnection`} und die zweite `BrickletRGBLEDV2`\index{`BrickletRGBLEDV2`}. Der Begriff \gloss{Klasse}{Baupläne für Objekte, die bestimmte Eigenschaften und Funktionen definieren}{Programmierung} ist hier analog zum Begriff *Kategorie* zu verstehen. Wir können zu einer Klasse gehörige Objekte erzeugen, und alle Objekte derselben Klasse verhalten sich gleich und haben die gleichen Funktionen. Das verstehen wir am besten an einem einfachen Beispiel.
 
 Stellt euch vor, ihr habt eine Klasse namens `Auto`. Diese Klasse beschreibt alle Eigenschaften und Funktionen, die ein Auto haben kann, wie etwa `fahren()`, `bremsen()` oder `tanken()`. Diese Dinge sollen für jedes Auto gleich ablaufen. Jedes konkrete Auto in der Welt ist ein Objekt dieser Klasse. Wir können also sagen: "Mein Auto ist ein Objekt der Klasse `Auto`." Jedes `Auto` hat neben den Funktionen die gleichen Eigenschaften wie Farbe, Marke und Modell. Aber jedes Auto kann andere Werte für diese Eigenschaften haben.
 
@@ -154,7 +167,7 @@ Im Codeausschnitt oben laden wir zuerst das Objekt für die Verbindung zum anges
 
 ### Objekte erzeugen
 
-In @lst-boilerplate-code in Zeile 4 erzeugen wir ein Objekt\index{Objekt} der Klasse `IPConnection`. Die fertige Instanz\index{Objektinstanz} – so nennen wir ein Objekt, das aus einer Klasse erzeugt wurde – speichern wir auf einer *Variable* mit dem Namen `ipcon`. Diesen Namen haben wir uns selbst ausgedacht, damit wir später darauf zugreifen können. Wir hätten auch einen anderen Namen wählen können. Eine Variable ist also ein Platzhalter für einen Wert, den wir später im Programm verwenden wollen. In diesem Fall ist `ipcon` der Platzhalter für die Verbindung zu unserem Mikrocontroller. Was eine Variable technisch ist, lernen wir später noch genauer kennen.
+In @lst-boilerplate-code in Zeile 4 erzeugen wir ein Objekt\index{Objekt} der Klasse `IPConnection`. Die fertige \gloss{Instanz}{Ein erzeugtes Objekt einer Klasse, die die definierten Eigenschaften und Funktionen nutzen kann}{Programmierung} – so nennen wir ein Objekt, das aus einer Klasse erzeugt wurde – speichern wir auf einer *Variable* mit dem Namen `ipcon`. Diesen Namen haben wir uns selbst ausgedacht, damit wir später darauf zugreifen können. Wir hätten auch einen anderen Namen wählen können. Eine Variable ist also ein Platzhalter für einen Wert, den wir später im Programm verwenden wollen. In diesem Fall ist `ipcon` der Platzhalter für die Verbindung zu unserem Mikrocontroller. Was eine Variable technisch ist, lernen wir später noch genauer kennen.
 
 ### Methoden
 
@@ -217,7 +230,7 @@ Bei Wellen unterscheiden wir zwischen der \gloss{Frequenz}{Wie oft etwas pro Sek
 
 Frequenzen messen wir in \gloss{Hertz (Hz)}{Einheit für Frequenz (1/s)}{Physik}, wobei 1 Hz einer Schwingung pro Sekunde entspricht. Das sichtbare Licht hat Frequenzen im Bereich von etwa 430 THz (Terahertz) bis 750 THz. Die Wellenlängen des sichtbaren Lichts liegen zwischen etwa 400 nm (Nanometer) für violettes Licht und etwa 700 nm für rotes Licht. Um sich das vorzustellen: Ein Nanometer ist ein Milliardstel Meter. Zum Vergleich: Ein menschliches Haar hat einen Durchmesser von etwa 80.000 bis 100.000 Nanometern. Die Abstände zwischen den Wellenlängen des sichtbaren Lichts sind also extrem klein.
 
-Was bedeutet das nun für eine LED? Eine \gloss{LED}{Steht für *light emitting diode*}{Bauteile} (Light Emitting Diode) ist ein Halbleiterbauelement, das Licht erzeugt, wenn elektrischer Strom hindurchfließt. Die Farbe des Lichts hängt von Eigenschaften des Halbleitermaterials ab, aus dem die LED besteht. Verschiedene Materialien emittieren Licht bei unterschiedlichen Wellenlängen, was zu verschiedenen Farben führt. Zum Beispiel emittiert eine rote LED Licht mit einer Wellenlänge von etwa 620–750 nm, während eine grüne LED Licht mit einer Wellenlänge von etwa 495–570 nm emittiert.
+Was bedeutet das nun für eine LED? Eine \gloss{LED}{Steht für *light emitting diode*}{Hardware} (Light Emitting Diode) ist ein Halbleiterbauelement, das Licht erzeugt, wenn elektrischer Strom hindurchfließt. Die Farbe des Lichts hängt von Eigenschaften des Halbleitermaterials ab, aus dem die LED besteht. Verschiedene Materialien emittieren Licht bei unterschiedlichen Wellenlängen, was zu verschiedenen Farben führt. Zum Beispiel emittiert eine rote LED Licht mit einer Wellenlänge von etwa 620–750 nm, während eine grüne LED Licht mit einer Wellenlänge von etwa 495–570 nm emittiert.
 
 ![Das elektromagnetische Spektrum, von dem das sichtbare Licht ein kleiner Teil ist. (Quelle: [Wikipedia](https://en.wikipedia.org/wiki/File:EM_Spectrum_Properties_edit.svg))](images/em_spectrum.png){#fig-em-spectrum fig-align="center" width="100%"}
 
@@ -278,7 +291,7 @@ In @fig-color-mixing sehen wir die beiden Farbmischungsarten im Vergleich. In @f
 
 In der additiven Farbmischung entsteht Gelb durch das Mischen von Rot und Grün, wobei Blau fehlt. Im Umkehrschluss bedeutet das: Gelbes Licht enthält keine blaue Komponente, es reflektiert also kein Blau. In der subtraktiven Farbmischung (wie beim Farbkasten) wird Gelb erzeugt, indem Blau aus weißem Licht herausgefiltert wird – Gelb reflektiert also kein Blau, sondern absorbiert es. Gelb kann also auch als Blaufilter gesehen werden. Das erklärt, warum ein gelber Gegenstand unter blauem Licht dunkel erscheint: Er kann das blaue Licht nicht reflektieren.
 
-Jetzt können wir auch erklären, warum Farbdrucker vier unterschiedliche Kartuschen benötigen (@fig-toner-cmy). Mit den Grundfarben der subtraktiven Farbmischung Cyan, Magenta und Gelb können wir jede beliebige Farbe mischen. Zusätzlich haben Drucker eine Kartusche für Schwarz, um erstens ein sattes Schwarz drucken zu können und zweitens die Farbkartuschen zu schonen. Denn schließlich müssen alle drei Farben gemischt werden, um Schwarz zu erhalten. Und weil viele Drucksachen Schwarz enthalten (oder sogar ausschließlich), ist eine schwarze Kartusche einfach effizienter. Die Farbe Schwarz wird bei Druckerkartuschen als Key bezeichnet und mit "K" abgekürzt. Wir sprechen daher auch von \gloss{CMYK}{Abkürzung der Grundfarben im Farbdruck}{Drucker}.
+Jetzt können wir auch erklären, warum Farbdrucker vier unterschiedliche Kartuschen benötigen (@fig-toner-cmy). Mit den Grundfarben der subtraktiven Farbmischung Cyan, Magenta und Gelb können wir jede beliebige Farbe mischen. Zusätzlich haben Drucker eine Kartusche für Schwarz, um erstens ein sattes Schwarz drucken zu können und zweitens die Farbkartuschen zu schonen. Denn schließlich müssen alle drei Farben gemischt werden, um Schwarz zu erhalten. Und weil viele Drucksachen Schwarz enthalten (oder sogar ausschließlich), ist eine schwarze Kartusche einfach effizienter. Die Farbe Schwarz wird bei Druckerkartuschen als Key bezeichnet und mit "K" abgekürzt. Wir sprechen daher auch von \gloss{CMYK}{Abkürzung der Grundfarben im Farbdruck}{Hardware}.
 
 ![Ein typisches Set mit CMY-Druckerkartuschen inklusive Schwarz.](images/toner-cmy.png){#fig-toner-cmy .lightbox}
 
@@ -369,7 +382,11 @@ for r in range(255, -1, -1):
     led.set_rgb_value(r, 0, 0)
 ```
 
-Warum hat `range()` auf einmal drei \gloss{Argumente}{Platzhalter für übergebene Werte einer Funktion (s. Parameter)}{Programmierung}? Ganz einfach: Standardmäßig erstellt die Funktion eine Folge von 0 bis zur angegebenen Zahl minus eins. Wir können die Folge aber beeinflussen, indem wir einen Startwert und einen Schrittwert angeben. In unserem Fall oben beginnen wir bei 255 (erster Parameter) und gehen bis -1 (zweiter Parameter), wobei wir in jedem Schritt um -1 verringern (dritter Parameter). Warum zählen wir bis -1, wo wir doch eigentlich die 0 als kleinste Zahl benötigen? Das liegt daran, dass die Folge von `range()` immer bis zum zweiten Parameter minus eins geht. Wenn wir also 0 als kleinste Zahl benötigen, müssen wir bis -1 zählen.
+<!--
+\gloss{Argument}{Platzhalter für übergebene Werte einer Funktion}{Programmierung} 
+-->
+
+Warum hat `range()` auf einmal drei Argumente? Ganz einfach: Standardmäßig erstellt die Funktion eine Folge von 0 bis zur angegebenen Zahl minus eins. Wir können die Folge aber beeinflussen, indem wir einen Startwert und einen Schrittwert angeben. In unserem Fall oben beginnen wir bei 255 (erster Parameter) und gehen bis -1 (zweiter Parameter), wobei wir in jedem Schritt um -1 verringern (dritter Parameter). Warum zählen wir bis -1, wo wir doch eigentlich die 0 als kleinste Zahl benötigen? Das liegt daran, dass die Folge von `range()` immer bis zum zweiten Parameter minus eins geht. Wenn wir also 0 als kleinste Zahl benötigen, müssen wir bis -1 zählen.
 
 Fassen wir unsere Erkenntnis zusammen und lassen die LED pulsieren:
 
@@ -489,7 +506,7 @@ Das Codebeispiel aus diesem Abschnitt findet ihr auf [GitHub](https://github.com
 
 Das RGB-Farbschema ist für Computer optimal, weil sich damit mit nur drei Zahlen jede beliebige Farbe kodieren lässt. Zahlen sind schließlich die Sprache, mit der Computer am besten umgehen können. Für uns Menschen ist dieses Schema jedoch weniger intuitiv. Oder könntet ihr auf Anhieb sagen, welche Farbe hinter der Kombination (67, 201, 182) steckt?
 
-Um Farben für uns leichter wählbar zu machen, wurde der sogenannte \gloss{Hue-Farbkreis}{Kreis, der Farben nach ihrem Farbton anordnet}{Farben} entwickelt. Er ordnet die Farben auf einer Skala von 0 bis 360 Grad an – ähnlich wie die Winkel auf einem Kreis. Neben dem Farbton (Hue) lassen sich zusätzlich die Sättigung und die Helligkeit einstellen: Der Farbton bestimmt die eigentliche Farbe, die Sättigung, wie kräftig oder blass sie wirkt, und die Helligkeit, wie hell oder dunkel sie erscheint.
+Um Farben für uns leichter wählbar zu machen, wurde der sogenannte \gloss{Hue-Farbkreis}{Kreis, der Farben nach ihrem Farbton anordnet}{Codesysteme} entwickelt. Er ordnet die Farben auf einer Skala von 0 bis 360 Grad an – ähnlich wie die Winkel auf einem Kreis. Neben dem Farbton (Hue) lassen sich zusätzlich die Sättigung und die Helligkeit einstellen: Der Farbton bestimmt die eigentliche Farbe, die Sättigung, wie kräftig oder blass sie wirkt, und die Helligkeit, wie hell oder dunkel sie erscheint.
 
 ::: {.content-visible when-format="html"}
 ![Die Farbauswahl in Google Slides funktioniert über den Hue-Farbkreis.](images/hue_color_picker.gif){#fig-hue-color-picker .lightbox fig-align="center" width="33%"}
@@ -507,7 +524,7 @@ Da die Skala am Ende wieder bei Rot ankommt, lässt sich der Farbverlauf nahtlos
 
 ![Der Hue-Farbkreis mit HSV-Werten.](images/hue_color_circle_hsv.png){#fig-hue-color-circle .lightbox fig-align="center" width="50%"}
 
-@fig-hue-color-circle zeigt den Hue-Farbkreis im \gloss{HSV-Modell}{Farbmodell, das Farben durch Farbton, Sättigung und Helligkeit beschreibt}{Farben}. HSV steht für Hue, Saturation, Value (Farbton, Sättigung, Helligkeit). Der Wert Value gibt die Helligkeit auf einer Skala von 0 bis 100 % an. Im Bild ist die Helligkeit konstant bei 100 %, während die Sättigung von innen nach außen zunimmt. In der Mitte sehen wir deshalb Weiß, während am äußeren Rand die Farben ihre volle Intensität haben.
+@fig-hue-color-circle zeigt den Hue-Farbkreis im \gloss{HSV-Modell}{Farbmodell, das Farben durch Farbton, Sättigung und Helligkeit beschreibt}{Codesysteme}. HSV steht für Hue, Saturation, Value (Farbton, Sättigung, Helligkeit). Der Wert Value gibt die Helligkeit auf einer Skala von 0 bis 100 % an. Im Bild ist die Helligkeit konstant bei 100 %, während die Sättigung von innen nach außen zunimmt. In der Mitte sehen wir deshalb Weiß, während am äußeren Rand die Farben ihre volle Intensität haben.
 
 Wenn wir ein Programm schreiben, das die gesamte Hue-Farbskala durchläuft und die LED jeweils in der passenden Farbe aufleuchten lässt, erhalten wir unser Regenbogenprogramm. Da die LED RGB-Werte benötigt, müssen wir den Verlauf des Hue-Farbkreises in RGB umsetzen. Ein Blick auf die Animation in @fig-hue-color-picker hilft: Der Farbverlauf lässt sich in sechs Phasen unterteilen, wie @fig-hue-rgb-diagram zeigt:
 
