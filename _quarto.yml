@@ -57,8 +57,13 @@ nocite: |
 
 format:
   html:
+    page-layout: article
+    grid:
+      margin-width: 300px
     theme: cosmo
     highlight: pygments
+    toc: true
+    toc-location: right
     toc-depth: 3
     number-sections: true
     code-annotations: hover

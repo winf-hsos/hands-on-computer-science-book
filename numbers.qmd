@@ -17,7 +17,7 @@ Auf dem Weg dorthin gehen wir die folgenden Schritte.
 | 5 | Wir beschäftigen uns mit Zahlensystemen. | @sec-numbers-number-systems |
 | 6 | Wir lernen, was ein Bit und ein Byte ist. | @sec-numbers-bit-and-bytes |
 | 7 | Wir erweitern den LED-Dimmer zur Version 2. | @sec-numbers-led-dimmer-2 |
-| 8 | Wir setzen und mit den Druckknopf auseinander. | @sec-numbers-button-reading |
+| 8 | Wir setzen uns mit den Druckknopf auseinander. | @sec-numbers-button-reading |
 | 9 | Wir bauen Version 3 des LED-Dimmers. | @sec-numbers-led-dimmer-3 |
 | 10 | Wir modularisieren unseren Code mit Funktionen. | @sec-numbers-functions |
 
@@ -147,7 +147,7 @@ while True:
     print(count)
 ```
 
-Zur Erinnerung: `while True` erzeugt eine \gloss{Endlosschleife}{Eine Schleife in einem Programm, die ewig läuft.}{Programmierung}. Normalerweise wollen wir so etwas vermeiden – außer, wir brauchen es genau dafür. Endlosschleifen sind praktisch, wenn wir kontinuierlich Daten lesen oder auf Ereignisse warten. Und keine Sorge: Mit Strg+C könnt ihr das Programm jederzeit beenden.
+Zur Erinnerung: `while True` erzeugt eine \gloss{Endlosschleife}{Eine Schleife in einem Programm, die ewig läuft.}{Programmierung}. Normalerweise wollen wir so etwas vermeiden – außer, wir brauchen es genau dafür. Endlosschleifen sind praktisch, wenn wir kontinuierlich Daten lesen oder auf Ereignisse warten. Und keine Sorge: Mit Strg+C könnt ihr das Programm jederzeit beenden, wenn die Konsole aktiv ist. Klickt also einmal in die Konsole und drückt Strg+C, dann hat der Spuk ein Ende.
 
 Wenn ihr das Programm ausführt, werdet ihr direkt ein Problem erkennen. Die Schleife rennt förmlich und gibt nacheinander immer wieder denselben Wert aus. Nur wenn wir am Knopf drehen, ändert sich der Wert – wird aber von der Schleife x-mal auf die Konsole geschrieben. Wie könnten wir das verbessern?
 
@@ -189,9 +189,9 @@ from tinkerforge.bricklet_rotary_encoder_v2 import BrickletRotaryEncoderV2
 from tinkerforge.bricklet_rgb_led_v2 import BrickletRGBLEDV2
 
 ipcon = IPConnection()
-ipcon.connect('localhost', 4223)
-knob = BrickletRotaryEncoderV2('WZd', ipcon) 
-led = BrickletRGBLEDV2('ZG1', ipcon)
+ipcon.connect("localhost", 4223)
+knob = BrickletRotaryEncoderV2("<YOUR_ROTARY_UID>", ipcon) 
+led = BrickletRGBLEDV2("<YOUR_LED_UID>", ipcon)
 ```
 
 Dieser Teil muss immer am Anfang unseres Programms stehen, damit alles funktioniert. In den kommenden Beispielen setzen wir ihn als gegeben voraus und wiederholen ihn nicht jedes Mal.
@@ -782,9 +782,9 @@ from tinkerforge.bricklet_rotary_encoder_v2 import BrickletRotaryEncoderV2
 from tinkerforge.bricklet_rgb_led_v2 import BrickletRGBLEDV2
 
 ipcon = IPConnection()
-ipcon.connect('localhost', 4223)
-knob = BrickletRotaryEncoderV2('WZd', ipcon) 
-led = BrickletRGBLEDV2('ZG1', ipcon)
+ipcon.connect("localhost", 4223)
+knob = BrickletRotaryEncoderV2("<YOUR_ROTARY_UID>", ipcon) 
+led = BrickletRGBLEDV2("<YOUR_LED_UID>", ipcon)
 
 knob.reset()
 brightness = 0

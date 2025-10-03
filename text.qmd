@@ -110,10 +110,10 @@ from tinkerforge.bricklet_rgb_led_v2 import BrickletRGBLEDV2
 import time
 
 ipcon = IPConnection()
-ipcon.connect('localhost', 4223)
+ipcon.connect("localhost", 4223)
 
-ir = BrickletDistanceIRV2('2a7S', ipcon)     # <1>
-led = BrickletRGBLEDV2('ZEL', ipcon)         # <2>
+ir = BrickletDistanceIRV2("<YOUR_IR_UID>", ipcon)     # <1>
+led = BrickletRGBLEDV2("<YOUR_LED_UID>", ipcon)         # <2>
 ```
 
 1. Tragt hier die UID eures IR-Sensors ein.
@@ -798,10 +798,9 @@ from tinkerforge.bricklet_distance_ir_v2 import BrickletDistanceIRV2
 from tinkerforge.bricklet_rgb_led_v2 import BrickletRGBLEDV2
 
 ipcon = IPConnection()
-ipcon.connect('localhost', 4223)
-ir = BrickletDistanceIRV2('2a7S', ipcon) 
-
-led = BrickletRGBLEDV2('ZEL', ipcon)
+ipcon.connect("localhost", 4223)
+ir = BrickletDistanceIRV2("<YOUR_IR_UID>", ipcon)
+led = BrickletRGBLEDV2("<YOUR_LED_UID>", ipcon)
 led.set_rgb_value(0, 0, 0)  # Anfangszustand: aus
 
 last_distance = 0
