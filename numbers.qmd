@@ -9,7 +9,7 @@ Im zweiten Kapitel spendieren wir der LED aus @sec-numbers eine Dimmfunktion, di
 Auf dem Weg dorthin gehen wir die folgenden Schritte.
 
 | \# | Was? | Wo? |
-|--|-------------------------------------------------------|----------------|
+|-------------------|----------------------------------|-------------------|
 | 1 | Wir machen uns mit dem Drehknopf vertraut. | @sec-numbers-experiment-setup |
 | 2 | Wir lesen den Zählerstand des Drehknopfs aus einem Programm heraus aus. | @sec-numbers-read-counter |
 | 3 | Wir führen Kontrollstrukturen ein (`if`). | @sec-numbers-control-structures |
@@ -45,20 +45,22 @@ Dabei lernen wir neue Begriffe und Konzepte kennen.
 | **Bit** | Bits & Bytes | @sec-numbers-number-systems |
 | **Binärziffer** | Zahlensysteme | @sec-numbers-number-systems |
 | **Byte** | Bits & Bytes | @sec-numbers-bit-and-bytes |
-| **Kilobyte** | Bits & Bytes | @sec-numbers-bit-and-bytes |
-| **Megabyte** | Bits & Bytes | @sec-numbers-bit-and-bytes |
-| **Gigabyte** | Bits & Bytes | @sec-numbers-bit-and-bytes |
-| **Konstante** | Programmierung | @sec-numbers-led-dimmer-2 |
-| **Verschachtelte Kontrollstruktur** | Programmierung | @sec-numbers-button-reading |
 | **DRY-Prinzip** | Programmierung | @sec-numbers-led-dimmer-3 |
-| **Funktion** | Programmierung | @sec-numbers-led-dimmer-3 |
-| **Codeblock** | Programmierung | @sec-numbers-led-dimmer-3 |
-| **EVA-Schema** | Programmierung | @sec-numbers-led-dimmer-3 |
-| **Parameter** | Programmierung | @sec-numbers-led-dimmer-3 |
 :::
 <!-- CHAPTER_GLOSSARY_END -->
 
 ## Experimentaufbau {#sec-numbers-experiment-setup .collapsable}
+
+::: callout-note
+## Quick Check
+
+-   [ ] Tinkerforge-Hardware ist auf Montageplatte montiert
+-   [ ] Master Brick ist über USB-Kabel mit euren Rechner verbunden
+-   [ ] Brick Viewer ist gestartet und mit dem Master Brick verbunden
+-   [ ] Ihr kennt die UIDs eurer Geräte → s. Brick Viewer
+-   [ ] Visual Studio Code ist offen
+-   [ ] Terminalfenster in Visual Studio Code ist gestartet
+:::
 
 ### Hardware
 
@@ -66,12 +68,12 @@ Das erste Experiment in @sec-colors war ein guter Einstieg! In diesem Kapitel le
 
 Die vollständige Hardwareliste für dieses Kapitel sieht so aus:
 
--  1 x [Master Brick 3.2](https://www.tinkerforge.com/de/doc/Hardware/Bricks/Master_Brick.html)
--  1 x [RGB LED Bricklet 2.0](https://www.tinkerforge.com/en/doc/Hardware/Bricklets/RGB_LED_V2.html)
--  1 x [Rotary Encoder Bricklet 2.0](https://www.tinkerforge.com/de/shop/bricklets/human-input/rotary-encoder-v2-bricklet.html)
--  1 x [Montageplatte 22x10](https://www.tinkerforge.com/de/shop/accessories/mounting/mounting-plate-22x10.html)
--  2 x [Brickletkabel 15cm (7p-7p)](https://www.tinkerforge.com/de/shop/accessories/cable/bricklet-cable-15cm-7p-7p.html)
--  2 x [Befestigungskit 12 mm](https://www.tinkerforge.com/de/shop/accessories/mounting/mounting-kit-12mm.html)
+-   1 x [Master Brick 3.2](https://www.tinkerforge.com/de/doc/Hardware/Bricks/Master_Brick.html)
+-   1 x [RGB LED Bricklet 2.0](https://www.tinkerforge.com/en/doc/Hardware/Bricklets/RGB_LED_V2.html)
+-   1 x [Rotary Encoder Bricklet 2.0](https://www.tinkerforge.com/de/shop/bricklets/human-input/rotary-encoder-v2-bricklet.html)
+-   1 x [Montageplatte 22x10](https://www.tinkerforge.com/de/shop/accessories/mounting/mounting-plate-22x10.html)
+-   2 x [Brickletkabel 15cm (7p-7p)](https://www.tinkerforge.com/de/shop/accessories/cable/bricklet-cable-15cm-7p-7p.html)
+-   2 x [Befestigungskit 12 mm](https://www.tinkerforge.com/de/shop/accessories/mounting/mounting-kit-12mm.html)
 
 ::: {#fig-setup-rgb-led-rotary-encoder layout="[[1], [1,1], [1,1]]"}
 ![Seitenansicht.](images/master_brick_with_led_and_rotary_01.jpg){#fig-setup-rgb-led-a .lightbox group="setup-rgb-led"}
@@ -113,7 +115,7 @@ Fassen wir zusammen, was unser Drehknopf (Rotary Encoder) draufhat:
 2.  Er merkt, wenn ihr ihn drückt
 3.  Er kann seinen Zähler zurücksetzen
 
-Zeit also, das Ganze in Python auszuprobieren und zu sehen, welche coolen Anwendungen wir damit bauen können.
+Zeit also, das Ganze in Python auszuprobieren und zu sehen, welche spannenden Anwendungen wir damit bauen können.
 
 ## Zähler auslesen {#sec-numbers-read-counter .collapsable}
 
@@ -169,7 +171,7 @@ Gehen wir durch, was hier passiert: Zuerst weisen wir der Variable `last_count` 
 
 In den folgenden Schleifendurchläufen wird nur dann etwas ausgegeben, wenn sich der Wert verändert hat, ihr also tatsächlich am Drehknopf gedreht habt. Ansonsten bleibt die Ausgabe unverändert.
 
-Die Prüfung, ob der aktuelle Wert (gespeichert in `new_count`) sich vom alten Wert unterscheidet, erfolgt in Zeile 5. Hier lernen wir auch ein neues Konzept der Programmierung kennen: die \gloss{Kontrollstruktur}{Eine Struktur, die den Fluss eines Programms steuert.}{Programmierung} `if`, gefolgt von einer Bedingung.
+Die Prüfung, ob der aktuelle Wert (gespeichert in `new_count`) sich vom alten Wert unterscheidet, erfolgt in Zeile 5. Hier lernen wir auch ein neues Konzept der Programmierung kennen: die \gloss{Kontrollstruktur}{Eine Struktur, die den Fluss eines Programms steuert.}{Programmierung}, eingeleitet mit dem Schlüsselwort `if`, gefolgt von einer Bedingung.
 
 Neu ist hier die Kontrollstruktur `if`. Sie prüft eine Bedingung, die – wie ihr schon aus @sec-colors kennt – nur `True` oder `False` sein kann. Ist sie wahr (`True`), läuft der eingerückte Code darunter. Ist sie falsch (`False`), passiert nichts.
 
@@ -236,8 +238,7 @@ Lasst es mal laufen und dreht voll auf oder runter! Beobachtet dabei den Wert f�
 
 Warum? Auf der \gloss{Kommandzeile}{Der Bereich, in dem Befehle eingegeben und ausgegeben werden.}{Programmierung} bekommen wir eine lange Fehlermeldung mit der folgenden Aussage ganz am Ende:
 
-```{bash}
-#| code-line-numbers: false
+``` {.bash code-line-numbers="false"}
 struct.error: ubyte format requires 0 <= number <= 255
 ```
 
@@ -320,7 +321,9 @@ Stellenwertsysteme sind nicht die einzigen Zahlensysteme. Es zum Beispiel das r�
 ### Zwei Zustände
 
 <!-- \gloss{Binary Digit}{Eine einzelne Binärziffer, also eine 0 oder eine 1}{Zahlensysteme} -->
+
 <!-- \gloss{Bit}{Kurzform für "Binary Digit"; kleinste Informationseinheit}{Bits & Bytes} -->
+
 <!-- \gloss{Binärziffer}{Eine einzelne Ziffer im Binärsystem, also eine 0 oder eine 1}{Zahlensysteme} -->
 
 Warum haben wir uns Zahlensysteme angeschaut, und was hat das mit Computern zu tun? Ganz einfach: Computer denken binär. Das bedeutet, sie kennen nur zwei Zustände: an oder aus, 0 oder 1.
@@ -353,7 +356,7 @@ $$
 \end{aligned}
 $$
 
-Stopp! $2^8 = 256$, das genügt uns völlig. Mit 8 Bits können wir somit 256 Zustände abbilden – genau passend für 256 Rot-, Grün- oder Blauanteile. 
+Stopp! $2^8 = 256$, das genügt uns völlig. Mit 8 Bits können wir somit 256 Zustände abbilden – genau passend für 256 Rot-, Grün- oder Blauanteile.
 
 ### Acht Bits macht ein Byte
 
@@ -381,16 +384,18 @@ Das erklärt auch die Fehlermeldung von oben: Ein Byte kann Werte zwischen 0 und
 
 ### Kilo, Mega, Giga
 
+```{=html}
 <!-- 
 \gloss{Kilobyte}{1.000 Bytes}{Bits & Bytes}
 \gloss{Megabyte}{1.000.000 Bytes}{Bits & Bytes}
 \gloss{Gigabyte}{1.000.000.000 Bytes}{Bits & Bytes}
 -->
+```
 
 Ein Byte besteht aus 8 Bits. Wenn wir also von Bytes sprechen, reden wir oft auch von Kilobytes, Megabytes, Gigabytes et cetera. Diese Begriffe sind wichtig, um die Größe von Daten zu beschreiben. In @tbl-data-sizes seht ihr eine Übersicht über die verschiedenen Größenordnungen.
 
 | Potenz (Bytes) | Ausgeschrieben | Bezeichnung (Abkürzung) | Entspricht ca. |
-|------------|--------------|-----------------|------------------------------|
+|------------------|------------------|------------------|-------------------|
 | $10^3$ | Tausend | Kilobyte (KB) | kleine Textdatei |
 | $10^6$ | Million | Megabyte (MB) | Digitales Foto |
 | $10^9$ | Milliarde | Gigabyte (GB) | Film (DVD 4,7 GB) |
@@ -433,15 +438,15 @@ while True:
         led.set_rgb_value(last_count, last_count, last_count)
 ```
 
-1. Die Funktionen `min()` und `max()` sorgen dafür, dass der Wert von `last_count` immer zwischen 0 und 255 bleibt. Wenn `last_count` kleiner als 0 ist, wird er auf 0 gesetzt. Wenn er größer als 255 ist, wird er auf 255 gesetzt.
+1.  Die Funktionen `min()` und `max()` sorgen dafür, dass der Wert von `last_count` immer zwischen 0 und 255 bleibt. Wenn `last_count` kleiner als 0 ist, wird er auf 0 gesetzt. Wenn er größer als 255 ist, wird er auf 255 gesetzt.
 
-Die neue Logik in Zeile 9 hilft uns dabei. Nachdem wir den neuen Wert des Zählers in der Variable `last_count` gespeichert haben (Zeile 6), wenden wir eine geschickte Kombination der beiden Funktionen `max()` und `min()` an, um sicherzustellen, dass der Wert im gültigen Bereich bleibt. Wie funktioniert das genau? Dazu gehen wir die Zeile Schritt für Schritt durch.
+Die neue Logik in Zeile 11 hilft uns dabei. Nachdem wir den neuen Wert des Zählers in der Variable `last_count` gespeichert haben (Zeile 8), wenden wir eine geschickte Kombination der beiden Funktionen `max()` und `min()` an, um sicherzustellen, dass der Wert im gültigen Bereich bleibt. Wie funktioniert das genau? Dazu gehen wir die Zeile Schritt für Schritt durch.
 
 Zunächst einmal der Ausdruck `min(255, last_count)`. Die Funktion `min()` gibt einfach den kleineren der beiden Werte zurück, die ihr übergeben werden. Wenn `last_count` also größer als 255 ist, wird 255 zurückgegeben. Andernfalls wird `last_count` zurückgegeben. Das Ergebnis dieser Auswertung ist gleichzeitig der zweite Wert, den wir der Funktion `max()` übergeben.
 
 Die Funktion `max()` macht genau das Gegenteil. Sie gibt den größeren der beiden ihr übergebenen Werte zurück. Zur Auswahl stehen ihr der Wert 0 und das Ergebnis der `min()`-Funktion. Das bedeutet, dass `max()` sicherstellt, dass der endgültige Wert von `last_count` niemals kleiner als 0 ist.
 
-Und voilà! Nach Zeile 9 kann der Wert von `last_count` nur noch zwischen 0 und 255 liegen. Problem gelöst!
+Und voilà! Nach Zeile 11 kann der Wert von `last_count` nur noch zwischen 0 und 255 liegen. Problem gelöst!
 
 Probiert es am besten direkt aus und dreht mal voll auf! Es sollte nun kein Fehler mehr auftreten.
 
@@ -479,22 +484,24 @@ while True:
         print(f"Brightness / Counter: {brightness} / {new_count}") # <4>
 ```
 
-1. Die neue Variable `brightness` zu Beginn mit 0 initialisieren. Die LED soll aus sein.
-2. Hier ermitteln wir die Differenz zwischen dem aktuellen und dem letzten Zählerstand und speichern sie in der Variable `diff`.
-3. Wir passen die Helligkeit an, indem wir `brightness` um `diff` erhöhen oder verringern. Dabei stellen wir sicher, dass der Wert zwischen 0 und 255 bleibt.
-4. Zur Überprüfung geben wir beide Variablen aus. Wenn wir den Wertebereich 0–255 verlassen, gehen die Werte der beiden Variablen auseinander.
+1.  Die neue Variable `brightness` zu Beginn mit 0 initialisieren. Die LED soll aus sein.
+2.  Hier ermitteln wir die Differenz zwischen dem aktuellen und dem letzten Zählerstand und speichern sie in der Variable `diff`.
+3.  Wir passen die Helligkeit an, indem wir `brightness` um `diff` erhöhen oder verringern. Dabei stellen wir sicher, dass der Wert zwischen 0 und 255 bleibt.
+4.  Zur Überprüfung geben wir beide Variablen aus. Wenn wir den Wertebereich 0–255 verlassen, gehen die Werte der beiden Variablen auseinander.
 
 ### Konstanten
 
+```{=html}
 <!--
 \gloss{Konstante}{Ein Wert, der sich während der Programmausführung nicht ändert.}{Programmierung}
 -->
+```
 
 Das sieht schon sehr gut aus! Unser Dimmer ist fast fertig, die grundlegende Funktionalität läuft robust. Eine Kleinigkeit stört mich noch: Der Dimmer reagiert nur sehr langsam, und wir müssen scheinbar endlos drehen, um die LED auf die volle Helligkeit zu bekommen. Können wir das beschleunigen?
 
 Das ist natürlich eine rhetorische Frage – in der Programmierung können wir so gut wie alles umsetzen. Und in diesem Fall ist es sogar recht einfach. Damit die LED schneller hell oder dunkel wird, wenn wir am Drehknopf drehen, können wir die Anpassung der Helligkeit einfach verstärken. Momentan wird die Variable `brightness` um die Differenz des Zählerstands erhöht oder verringert. Wir könnten stattdessen einen festen, höheren Schrittwert definieren, um die Helligkeit schneller zu ändern.
 
-Dazu definieren wir eine neue Variable, die eine Besonderheit hat. Wir geben ihr den Namen `STEP`, der nur aus Großbuchstaben besteht (Zeile 3). Gemäß der [Regeln für die Bennung von Variablen in Python](https://docs.python.org/3/reference/lexical_analysis.html#identifiers "Regeln für Variablennamen in Python") werden Namen in GROSSBUCHSTABEN üblicherweise für Konstanten verwendet – und tatsächlich ist `STEP` genau genommen auch keine Variable, sondern eine **Konstante**\index{Konstante}.
+Dazu definieren wir eine neue Variable, die eine Besonderheit hat. Wir geben ihr den Namen `STEP`, der nur aus Großbuchstaben besteht (Zeile 3 in @lst-dim-led). Gemäß der [Regeln für die Bennung von Variablen in Python](https://docs.python.org/3/reference/lexical_analysis.html#identifiers "Regeln für Variablennamen in Python") werden Namen in GROSSBUCHSTABEN üblicherweise für Konstanten verwendet – und tatsächlich ist `STEP` genau genommen auch keine Variable, sondern eine **Konstante**\index{Konstante}.
 
 Eine Konstante unterscheidet sich dadurch, dass ihr Wert einmal festgelegt wird und sich danach nicht mehr ändert. In unserem Fall wollen wir, dass `STEP` immer den Wert 10 hat. Konstanten definieren wir typischerweise zu Beginn eines Python-Programms, damit man einen schnellen Überblick über alle definierten Konstanten und ihre Werte bekommen kann.
 
@@ -528,8 +535,8 @@ while True:
         print(f"Brightness / Counter: {brightness} / {new_count}")
 ```
 
-1. Hier definieren wir eine Konstante `STEP` und weisen ihr den Wert 10 zu.
-2. Die Helligkeit wird nun um `diff * STEP` angepasst, was bedeutet, dass jede Drehung des Knopfes einen größeren Einfluss auf die Helligkeit hat.
+1.  Hier definieren wir eine Konstante `STEP` und weisen ihr den Wert 10 zu.
+2.  Die Helligkeit wird nun um `diff * STEP` angepasst, was bedeutet, dass jede Drehung des Knopfes einen größeren Einfluss auf die Helligkeit hat.
 
 Mit dem LED-Dimmer haben wir die zentrale Funktion des Drehknopfes zur Genüge kennengelernt. Das Gerät hat aber noch eine andere Funktion.
 
@@ -562,10 +569,10 @@ while True:
     button_pressed_before = button_pressed_after # <4>
 ```
 
-1. Wir initialisieren eine Variable `button_pressed_before`, die den vorherigen Zustand des Buttons speichert. Am Anfang gehen wir mal davon aus, dass er nicht gedrückt ist.
-2. Mit dem `if`-Statement überprüfen wir, ob der Button logelassen wurde. Dazu muss der vorherige Zustand `True` und der aktuelle Zustand `False` sein.
-3. Wenn der Button soeben losgelassen wurde, geben wir eine entsprechende Information auf der Konsole aus.
-4. Am Ende der Schleife aktualisieren wir den vorherigen Zustand `button_pressed_before`, damit er den aktuellen Zustand für die nächste Iteration speichert.
+1.  Wir initialisieren eine Variable `button_pressed_before`, die den vorherigen Zustand des Buttons speichert. Am Anfang gehen wir mal davon aus, dass er nicht gedrückt ist.
+2.  Mit dem `if`-Statement überprüfen wir, ob der Button logelassen wurde. Dazu muss der vorherige Zustand `True` und der aktuelle Zustand `False` sein.
+3.  Wenn der Button soeben losgelassen wurde, geben wir eine entsprechende Information auf der Konsole aus.
+4.  Am Ende der Schleife aktualisieren wir den vorherigen Zustand `button_pressed_before`, damit er den aktuellen Zustand für die nächste Iteration speichert.
 
 Das reicht fürs Erste – der Button kann tatsächlich nicht mehr als das. Reicht aber auch: Damit können wir unserem Dimmer schon einen zusätzlichen Mehrwert verleihen. Schließlich kann unsere LED nicht nur weiß leuchten.
 
@@ -639,11 +646,13 @@ while True:
     button_pressed_before = button_pressed_after
 ```
 
+```{=html}
 <!--
 \gloss{Verschachtelte Kontrollstruktur}{Ein if-Statement, das innerhalb eines anderen if-Statements steht.}{Programmierung}
 -->
+```
 
-Wieder ein Haufen voller `if`s - wir sprechen auch von verschachtelten `if`s - aber es sollte funktionieren. Gehen wir es einmal durch: Wenn der Button losgelassen wurde (Zeile 5) gelangen wir zur Prüfung der `if`-Statements. Im ersten Fall wird geprüft, ob die LED gerade Weiß leuchtet (`color == "white"`). Ist das der Fall, dann wechseln wir jetzt auf Gelb. Im zweiten Schritt sehen wir ein `elif`, das sehr ähnlich zu einem `if` ist, mit der Einschränkung, dass es nur überhaupt geprüft wird, wenn das vorherige `if` nicht schon wahr war. Das macht in diesem Fall einen großen Unterschied (im Vergleich zu weiter oben, als wir einfache `if`-Statements verwendet haben, um die Farbe der LED mit `set_rgb_color` zu setzen). Überlegt mal, was passieren würde, wenn wir hier folgenden Code einsetzen würden:
+Wieder ein Haufen voller `if`s - wir sprechen auch von verschachtelten `if`s - aber es sollte funktionieren. Gehen wir es einmal durch: Wenn der Button losgelassen wurde, also das erste `if` in Zeile 5 `True` zurückgibt, gelangen wir zur Prüfung des `if`-Statements auf zweiter Ebene. Hier wird im ersten Fall geprüft, ob die LED gerade Weiß leuchtet (`color == "white"`, Zeile 6). Ist das der Fall, dann wechseln wir jetzt auf Gelb. Im zweiten Schritt sehen wir ein `elif` (Zeile 8), das sehr ähnlich zu einem `if` ist, mit der Einschränkung, dass es nur überhaupt geprüft wird, wenn das vorherige `if` nicht schon wahr war. Das macht in diesem Fall einen großen Unterschied (im Vergleich zu weiter oben, als wir einfache `if`-Statements verwendet haben, um die Farbe der LED mit `set_rgb_color` zu setzen). Überlegt mal, was passieren würde, wenn wir hier folgenden Code einsetzen würden:
 
 ```{python}
 if color == "white":
@@ -710,9 +719,9 @@ while True:
 
 Schaut euch den Code in Ruhe an und prüft, ob ihr ihn Zeile für Zeile nachvollziehen könnt. An dieser Stelle hat unser Programm schon eine beträchtliche Größe angenommen, und so langsam wird es unübersichtlich. Versuchen wir also, Struktur hineinzubringen. Im Wesentlichen besteht das Programm aus drei Teilen, jeden habe ich mit einem vorangestellten Kommentar markiert:
 
-1. Hauptschleife, um das Programm am Laufen zu halten
-2. Logik für Farbwechsel bei Tastenfreigabe
-3. Logik zur Helligkeitsanpassung
+1.  Hauptschleife, um das Programm am Laufen zu halten
+2.  Logik für Farbwechsel bei Tastenfreigabe
+3.  Logik zur Helligkeitsanpassung
 
 In der Hauptschleife wird am Anfange immer wieder der aktuelle Zählerstand und der Zustand des Buttons abgefragt und auf jeweils einer Variable gespeichert. Diese Werte benötigen wir, um zu entscheiden, ob wir die Farbe ändern oder die Helligkeit anpassen müssen.
 
@@ -728,10 +737,12 @@ In der Programmierung möchten wir Wiederholungen um jeden Preis vermeiden. Wir 
 
 Nehmen wir in unserem Beispiel an, wir führen eine vierte Farbe ein, sagen wir Blau. Dann müssten wir den Code in den Blöcken 2 und 3 anpassen, um die neue Farbe zu berücksichtigen. Das bedeutet, dass wir den gleichen Code an mehreren Stellen ändern müssten, was fehleranfällig und mühsam ist. Zwei mag noch nicht nach einem Problem klingen, aber selbst hier zeigt sich das Problem der Wiederholung. Wird eine Stelle vergessen, ist der Code inkonsistent und funktioniert nicht mehr wie gewünscht.
 
+```{=html}
 <!--
 \gloss{Funktion}{Benannter Codeblock zur Lösung eines definierten Problems.}{Programmierung}
 \gloss{Codeblock}{Ein zusammenhängender Abschnitt von Programmcode, der eine bestimmte Aufgabe erfüllt. In Python sind Codeblöcke durch Einrückungen definiert.}{Programmierung}
 -->
+```
 
 Die Lösung liegt darin, häufig verwendeten Code in Funktionen auszulagern. Funktionen sind ein mächtiges Werkzeug in der Programmierung. Sie ermöglichen es uns, Codeblöcke zu definieren, die wir immer wieder verwenden können, ohne sie jedes Mal neu schreiben zu müssen. Funktionen helfen uns dabei, unseren Code sauberer, übersichtlicher und wartbarer zu gestalten.
 
@@ -748,16 +759,17 @@ if color == "green":
 
 Zeit, diesen Code nur einmal zu schreiben! Machen wir daraus eine Funktion. Wie das geht? Im Prinzip müssen wir vier Dinge klären:
 
-1. Was soll die Funktion tun?
-2. Wie sieht das Ergebnis aus?
-3. Was benötigt die Funktion, um ihre Aufgabe zu erledigen?
-4. Wie heisst die Funktion?
+1.  Was soll die Funktion tun?
+2.  Wie sieht das Ergebnis aus?
+3.  Was benötigt die Funktion, um ihre Aufgabe zu erledigen?
+4.  Wie heisst die Funktion?
 
-
+```{=html}
 <!--
 \gloss{EVA-Schema}{Ein Modell zur Repräsentation von Problemen anhand von Eingaben, Verarbeitungen und Ausgaben}{Programmierung}
 \gloss{Parameter}{Eingabewerte, die einer Funktion übergeben werden, damit sie ihre Aufgabe erfüllen kann.}{Programmierung}
 -->
+```
 
 ![Funktionen folgen einem Eingabe-Verarbeitung-Ausgabe (EVA) Schema.](https://winf-hsos.github.io/university-docs/images/problem_solving_input_function_output.png){#fig-numbers-input-function-output .lightbox}
 

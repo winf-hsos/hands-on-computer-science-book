@@ -60,6 +60,17 @@ Dabei lernen wir neue Begriffe und Konzepte kennen.
 
 ## Experimentaufbau {#sec-colors-experiment-setup .collapsable}
 
+::: callout-note
+## Quick Check
+
+-   [ ] Tinkerforge-Hardware ist auf Montageplatte montiert
+-   [ ] Master Brick ist über USB-Kabel mit euren Rechner verbunden
+-   [ ] Brick Viewer ist gestartet und mit dem Master Brick verbunden
+-   [ ] Ihr kennt die UIDs eurer Geräte → s. Brick Viewer
+-   [ ] Visual Studio Code ist offen
+-   [ ] Terminalfenster in Visual Studio Code ist gestartet
+:::
+
 ### Hardware
 
 Bereit für euer erstes Hardware-Experiment? Perfekt! Ihr braucht dafür eine LED ([RGB LED Bricklet 2.0](https://www.tinkerforge.com/en/doc/Hardware/Bricklets/RGB_LED_V2.html)) und einen Mikrocontroller ([Master Brick 3.2](https://www.tinkerforge.com/de/shop/master-brick.html)). Befestigt beide Bauteile mit Abstandshaltern auf einer Montageplatte, wie in @fig-setup-rgb-led gezeigt. Zwei Schrauben pro Gerät reichen völlig. Denkt an die kleinen, weißen Unterlegscheiben aus Kunststoff. Sie schützen eure Platinen vor Druckstellen.
@@ -207,7 +218,7 @@ led.set_rgb_value(0, 255, 0) # <1>
 
 1.  Setzt die LED auf grün. R = 0, G = 255, B = 0. Logisch, oder?
 
-Moment mal … Wo steht hier eigentlich *grün*? Steht da gar nicht. Stattdessen drei Zahlen. Willkommen bei der *RGB-Farbkodierung*\gloss{RGB-Farbkodierung}{Kodierung von Farben mittels Rot-, Grün- und Blauwerten}{Codesysteme}. Jede Farbe besteht aus drei Werten zwischen 0 und 255: Rot, Grün, Blau. Null ist nix. 255 ist volle Power. Alles 0? Schwarz. Alles 255? Weiß. Nur Grün auf 255? Na klar: grün.
+Moment mal … Wo steht hier eigentlich *grün*? Steht da gar nicht. Stattdessen drei Zahlen. Willkommen bei der \gloss{RGB-Farbkodierung}{Kodierung von Farben mittels Rot-, Grün- und Blauwerten}{Codesysteme}. Jede Farbe besteht aus drei Werten zwischen 0 und 255: Rot, Grün, Blau. Null ist nix. 255 ist volle Power. Alles 0? Schwarz. Alles 255? Weiß. Nur Grün auf 255? Na klar: grün.
 
 Aber warum machen wir das mit Zahlen? Weil Computer nun mal mit Zahlen arbeiten. Das ist einer der zentralen Gedanken dieses Buches: Wie übersetzen wir die Welt in etwas, das ein Computer versteht?
 
@@ -370,6 +381,7 @@ Jetzt wird es deutlich: Mit jedem Durchlauf der Schleife wird ein neuer Wert fü
 
 ```{python}
 #| eval: true
+#| code-line-numbers: false
 list_of_numbers = range(256)
 print(list(list_of_numbers)) # <1>
 ```
@@ -379,6 +391,7 @@ print(list(list_of_numbers)) # <1>
 Rückwärts erreichen wir das gleiche Ergebnis mit einer weiteren Schleife, deren Folge wir umkehren, sodass sie von 255 bis 0 geht:
 
 ```{python}
+#| code-line-numbers: false
 for r in range(255, -1, -1):
     led.set_rgb_value(r, 0, 0)
 ```
@@ -421,6 +434,7 @@ Beim Lösen von Problemen stoßen wir häufig auf Situationen, in denen wir best
 Das können wir auf unsere pulsierende LED anwenden. Sie soll ihren Pulsierzyklus Dunkel–Hell–Dunkel wiederholen, solange der Benutzer nicht unterbricht. Das ist zumindest ein pragmatisches Abbruchkriterium für unseren Fall. Wir definieren also hier keine feste Anzahl Wiederholungen wie bei der `for ... in`-Schleife, sondern wir wollen festlegen, unter welcher *Bedingung* die Schleife fortgesetzt wird. Wir könnten also sagen: *solange* die Bedingung X erfüllt ist, wiederhole die aufgeführten Schritte. Und weil Programmiersprachen für Menschen gemacht sind, klingt es im echten Programm auch so ähnlich:
 
 ```{python}
+#| code-line-numbers: false
 while 1==1:
     print("This condition is always true")
     time.sleep(1)
@@ -430,9 +444,10 @@ Das Schlüsselwort `while` führt eine bedingte Schleife ein, gefolgt von der \g
 
 Wann wird die Schleife oben also beendet? Richtig – niemals. Die Bedingung `1==1` ist immer wahr, die Schleife läuft somit endlos. Wir sprechen auch von einer Endlosschleife, die wir in der Programmierung unbedingt vermeiden wollen, es sei denn, sie ist explizit gewollt und nicht versehentlich entstanden. Das kurze Programm oben schreibt also in Abständen von einer Sekunde den Text "This condition is always true" auf die Konsole.
 
-Eine Bedingung ist in Python und anderen Programmiersprachen ein wichtiges Konzept, das es uns ermöglicht, Entscheidungen zu treffen und den Programmfluss zu steuern. In unserem Fall könnte die Bedingung lauten: *solange der Benutzer nicht stoppt, wiederhole den Pulsierzyklus*. Eine Bedingung hat die Eigenschaft, dass sie jederzeit ausgewertet werden kann und entweder den Wert wahr (true) oder falsch (false) annimmt. Wie aber drücken wir das in Python aus?
+Eine Bedingung ist in Python und anderen Programmiersprachen ein wichtiges Konzept, das es uns ermöglicht, Entscheidungen zu treffen und den Programmfluss zu steuern. In unserem Fall könnte die Bedingung lauten: "Solange der Benutzer nicht stoppt, wiederhole den Pulsierzyklus". Eine Bedingung hat die Eigenschaft, dass sie jederzeit ausgewertet werden kann und entweder den Wert wahr (true) oder falsch (false) annimmt. Wie aber drücken wir das in Python aus?
 
 ```{python}
+#| code-line-numbers: false
 while True:
     print("I will loop forever")
     time.sleep(1)
@@ -547,6 +562,7 @@ Dann beginnt der Zyklus von vorn.
 Mit dem Wissen können wir uns an das erklärte Ziel unseres Experiments machen: die LED nacheinander in allen Farben des Regenbogens aufleuchten zu lassen. Beginnen wir mit der ersten Phase und schreiben dafür ein Python-Programm:
 
 ```{python}
+#| code-line-numbers: false
 for green in range(256):
     led.set_rgb_value(255, green, 0)
     time.sleep(0.01)
@@ -555,6 +571,7 @@ for green in range(256):
 Weil wir genau wissen, wie oft wir die Schleife durchlaufen wollen, verwenden wir eine `for`-Schleife. Innerhalb der Schleife erhöhen wir die Variable `green` jeweils um 1, was effektiv den Grünanteil unseres RGB-Wertes erhöht. Mit jedem Durchlauf fügen wir somit mehr Grün hinzu, während Rot und Blau konstant bleiben. Phase 1 ist damit abgeschlossen – machen wir weiter mit Phase 2:
 
 ```{python}
+#| code-line-numbers: false
 for red in range(255, -1, -1):
     led.set_rgb_value(red, 255, 0)
     time.sleep(0.01)
@@ -563,6 +580,7 @@ for red in range(255, -1, -1):
 Wie wir mit einer `for`-Schleife rückwärts zählen, haben wir schon weiter oben kennengelernt. In Phase 2 verringern wir schrittweise den Rotanteil, während die anderen beiden Farben konstant bleiben. Damit kommen wir zu Phase 3:
 
 ```{python}
+#| code-line-numbers: false
 for blue in range(256):
     led.set_rgb_value(0, 255, blue)
     time.sleep(0.01)
