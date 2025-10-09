@@ -286,7 +286,9 @@ Nun gibt es auch Wesen mit weniger als zehn Fingern (und auch mit mehr?). Nehmt 
 
 ![Cartoon-Charaktere haben nur acht Finger. Quelle: Erstellt mit ChatGPT nach @petzold_code_2022](https://winf-hsos.github.io/university-docs/images/binary_system_human_vs_cartoon.png){#fig-cartoon-character .lightbox}
 
-Vermutlich nicht!
+Vermutlich nicht! Das Oktalsystem ist wie das Dezimalsystem ein Stellenwertsystem, nur mit einer anderen Basis. Das bedeutet, dass jede Stelle statt eine Zehnerpotenz eine Achterpotenz darstellt. Die verfügbaren Symbole oder Zifferen sind 0 bis 7. Warum? Weil es nur acht Finger gibt, und die mit zehn Fingern ist der achte Finger die Zahl 10. Im Oktalsystem stellt das die Dezimalzahl 8 dar, weil die zweite Ziffer von rechts für die Achterstelle steht.
+
+Die 123, die ihr in @fig-octal-123 seht, können wir - wie jede Zahl in einem beliebigen Stellenwertsystem - mit dem einfachen Ausmultiplizieren in das Dezimalsystem umrechnen. Die drei ganz rechts steht für $3 \cdot 1$. Weil jede Zahl hoch Null eine Eins ergibt, steht die erste Stelle steht in jedem System für die Eins. Die zweite Stelle steht für $8^2$, also für die Achter (also $2 \cdot 8=16$) und die dritte Stelle $8^3$, was Vierunsechszig ergbit. Somit geht sie mit $1 \cdot 64$ in die Berechnung des Dezimalwertes ein. Zusammen ergibt das $64+16+3=83$ im Dezimalsystem.
 
 ![Das Oktalsystem funktioniert wie das Dezimalsystem. Nur die Basis ist 8 statt 10.](https://winf-hsos.github.io/university-docs/images/binary_system_octal_123.png){#fig-octal-123 .lightbox}
 
@@ -300,7 +302,12 @@ Treiben wir es noch ein wenig weiter auf die Spitze und nehmen ein paar Finger w
 
 Das Wort "binär" stammt aus dem Lateinischen und bedeutet "paarweise" oder "zu zweit". Von diesem Wort stammt auch der Name des Stellenwertsystems mit der Basis 2 – und das nicht ohne Grund. Im Binärsystem gibt es für jede Stelle genau zwei Möglichkeiten: 0 oder 1. Ein anderer Begriff ist übrigens \gloss{Dualsystem}{s. Binärsystem}{Zahlensyteme}, was genau das Gleiche meint. Auch das Wort "dual" kommt von den Römern und heißt so viel wie "zwei enthaltend".
 
+Zwei Möglichkeiten, das erinnert an einen Lichtschalter, der entweder an oder aus sein kann. In @fig-light-switch ist das bildlich dargestellt. Entweder leuchtet die Lampe (1) oder sie ist aus (0). Mehr geht nicht. Das Binärsystem ist also wirklich simpel.
+
 ![Eine Binärziffer ist vergleichbar mit einem Lichtschalter, der an oder aus sein kann.](https://winf-hsos.github.io/university-docs/images/binary_system_light_switch.png){#fig-light-switch .lightbox .align-center}
+
+Und auch das Rechnen im Binärsystem ist nichts Besonderes. Es funktioniert wie im Dezimalsystem oder Oktalsystem auch, wir tauschen einfach die Basis aus. Jede Stelle stellt nun eine Potenz von zwei dar. Statt vieler Symbole gibt es nur die 0 und die 1, um Zahlen darzustellen. Das macht es im Binärsystem sogar noch einfacher, als in Systemen mit einer höheren Basis. Denn letztlich müssen wir nur die 2er-Potenzen, an denen eine 1 steht, addieren. Alles, wo eine Null steht, können wir ignorieren. 
+
 
 ::: {#fig-binary-110 layout="[[1,1]]"}
 ![](https://winf-hsos.github.io/university-docs/images/binary_system_binary_110_b.png){#fig-binary-110-b .lightbox group="binary-system"}
