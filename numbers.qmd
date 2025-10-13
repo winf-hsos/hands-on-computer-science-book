@@ -171,9 +171,7 @@ Gehen wir durch, was hier passiert: Zuerst weisen wir der Variable `last_count` 
 
 In den folgenden Schleifendurchläufen wird nur dann etwas ausgegeben, wenn sich der Wert verändert hat, ihr also tatsächlich am Drehknopf gedreht habt. Ansonsten bleibt die Ausgabe unverändert.
 
-Die Prüfung, ob der aktuelle Wert (gespeichert in `new_count`) sich vom alten Wert unterscheidet, erfolgt in Zeile 5. Hier lernen wir auch ein neues Konzept der Programmierung kennen: die \gloss{Kontrollstruktur}{Eine Struktur, die den Fluss eines Programms steuert.}{Programmierung}, eingeleitet mit dem Schlüsselwort `if`, gefolgt von einer Bedingung.
-
-Neu ist hier die Kontrollstruktur `if`. Sie prüft eine Bedingung, die – wie ihr schon aus @sec-colors kennt – nur `True` oder `False` sein kann. Ist sie wahr (`True`), läuft der eingerückte Code darunter. Ist sie falsch (`False`), passiert nichts.
+Die Prüfung, ob der aktuelle Wert (gespeichert in `new_count`) sich vom alten Wert unterscheidet, erfolgt in Zeile 5. Hier lernen wir auch ein neues Konzept der Programmierung kennen: die \gloss{Kontrollstruktur}{Eine Struktur, die den Fluss eines Programms steuert.}{Programmierung}, eingeleitet mit dem Schlüsselwort `if`, gefolgt von einer Bedingung. Eine Bedingung, kann – wie ihr schon aus @sec-colors wisst – nur `True` oder `False` sein. Ist sie wahr (`True`), läuft der eingerückte Code darunter. Ist sie falsch (`False`), passiert nichts.
 
 Übertragen auf unser Programm heißt das: `print(last_count)` läuft nur dann, wenn sich der Wert tatsächlich verändert hat. In diesem Fall merken wir uns den neuen Wert und aktualisieren `last_count`. Beim nächsten Schleifendurchlauf prüfen wir wieder, ob sich etwas getan hat. Meistens ist das nicht so – und genau deshalb sehen wir nur dann eine Ausgabe, wenn wir wirklich am Knopf drehen. Ziemlich effizient, oder?
 
