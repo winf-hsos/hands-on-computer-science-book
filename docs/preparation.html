@@ -319,6 +319,7 @@ div.csl-indent {
   </ul></li>
   <li><a href="#virtuelle-python-umgebung-einrichten-optional" id="toc-virtuelle-python-umgebung-einrichten-optional" class="nav-link" data-scroll-target="#virtuelle-python-umgebung-einrichten-optional">Virtuelle Python-Umgebung einrichten (optional)</a></li>
   <li><a href="#abhängigkeiten-installieren" id="toc-abhängigkeiten-installieren" class="nav-link" data-scroll-target="#abhängigkeiten-installieren">Abhängigkeiten installieren</a></li>
+  <li><a href="#umgebung-testen" id="toc-umgebung-testen" class="nav-link" data-scroll-target="#umgebung-testen">Umgebung testen</a></li>
   <li><a href="#los-gehts" id="toc-los-gehts" class="nav-link" data-scroll-target="#los-gehts">Los geht’s!</a></li>
   </ul>
 </nav>
@@ -395,9 +396,9 @@ div.csl-indent {
 <p>Ich stelle für dieses Buch die fertigen Programme nach jedem Abschnitt auf GitHub bereit. Ihr könnt euch den Code von dort ganz einfach auf euren Rechner herunterladen und jederzeit darauf zugreifen. Um den Code herunterzuladen, gibt es zwei Wege.</p>
 <section id="code-über-git-herunterladen-empfohlen" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="code-über-git-herunterladen-empfohlen">Code über Git herunterladen (empfohlen)</h3>
-<p>Wenn ihr Git erfolgreich installiert habt, könnt ihr den Code über die Kommandozeile (Terminal) herunterladen. Öffnet dazu ein Terminalfenster (unter Windows: PowerShell, unter macOS: Terminal), wechselt in ein Verzeichnis, in dem ihr den Code speichern möchtet, und gebt folgenden Befehl ein:</p>
+<p>Wenn ihr Git erfolgreich installiert habt, könnt ihr den Code über die Kommandozeile (Terminal) herunterladen. Öffnet dazu ein Terminalfenster (unter Windows: PowerShell oder Command Line, unter macOS: Terminal), wechselt in ein Verzeichnis, in dem ihr den Code speichern möchtet, und gebt folgenden Befehl ein:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/winf-hsos/hands-on-computer-science-code</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Bei funktionierende Internetverbindung wird der Code heruntergeladen und in einem neuen Ordner namens <code>hands-on-computer-science-code</code> gespeichert. Ihr könnt diesen Ordner dann in Visual Studio Code öffnen, um auf die Codebeispiele zuzugreifen.</p>
+<p>Bei funktionierender Internetverbindung wird der Code heruntergeladen und in einem neuen Ordner namens <code>hands-on-computer-science-code</code> gespeichert. Ihr könnt diesen Ordner dann in Visual Studio Code öffnen, um auf die Codebeispiele zuzugreifen.</p>
 </section>
 <section id="code-als-zip-datei-herunterladen" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="code-als-zip-datei-herunterladen">Code als ZIP-Datei herunterladen</h3>
@@ -408,26 +409,42 @@ div.csl-indent {
 <h2 class="unnumbered anchored" data-anchor-id="virtuelle-python-umgebung-einrichten-optional">Virtuelle Python-Umgebung einrichten (optional)</h2>
 <p>Um die Abhängigkeiten für die Codebeispiele zu installieren, ist es eine gute Idee, eine virtuelle Python-Umgebung zu verwenden. Dadurch wird sichergestellt, dass die benötigten Pakete isoliert von anderen Projekten installiert werden. Hier sind die Schritte, um eine virtuelle Umgebung einzurichten:</p>
 <ol type="1">
-<li>Öffnet ein Terminalfenster in Visual Studio Code (Terminal &gt; Neues Terminal).</li>
-<li>Navigiert zu dem Verzeichnis, in dem ihr den Code gespeichert habt.</li>
-<li>Führt den folgenden Befehl aus, um eine virtuelle Umgebung zu erstellen:</li>
+<li><p>Öffnet ein Terminalfenster in Visual Studio Code (Terminal &gt; Neues Terminal)</p></li>
+<li><p>Navigiert zu dem Verzeichnis, in dem ihr den Code gespeichert habt.</p></li>
+<li><p>Führt den folgenden Befehl aus, um eine virtuelle Umgebung zu erstellen:</p></li>
 </ol>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> venv .python-env</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Wenn ihr einen Mac-Rechner verwendet, müsst ihr anstelle des <code>python</code>-Befehls <code>python3</code> verwenden:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> venv .python-env</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol start="4" type="1">
 <li>Aktiviert die virtuelle Umgebung mit dem folgenden Befehl:</li>
 </ol>
 <p>Unter Windows:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">.python-env\Scripts\activate</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">.python-env\Scripts\activate</span></span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Unter macOS und Linux:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .python-env/bin/activate</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> .python-env/bin/activate</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="abhängigkeiten-installieren" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="abhängigkeiten-installieren">Abhängigkeiten installieren</h2>
 <p>Die Codebeispiele in diesem Buch verwenden (unter anderem) die Tinkerforge-Python-Bibliothek, um mit der Hardware zu kommunizieren. Diese Bibliothek müsst ihr einmalig installieren. Öffnet dazu ein Terminalfenster in Visual Studio Code (Terminal &gt; Neues Terminal) und gebt folgenden Befehl ein:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install tinkerforge</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install tinkerforge</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Alternativ könnt ihr auch folgenden Befehl verwenden:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-r</span> requirements.txt</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Damit installiert ihr alle Abhängigkeiten, die in der Datei <code>requirements.txt</code> aufgelistet sind. Damit seid ihr für die Experimente in diesem Buch bestens gerüstet.</p>
+<p>Auch hier unterscheidet sich der Befehl auf einem Mac-Rechner. Dort müsst ihr <code>pip3</code> anstelle von <code>pip</code> verwenden:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip3</span> install tinkerforge</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Alternativ könnt ihr auch folgenden Befehl verwenden:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip3</span> install <span class="at">-r</span> requirements.txt</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="umgebung-testen" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="umgebung-testen">Umgebung testen</h2>
+<p>Um sicherzustellen, dass alles korrekt eingerichtet ist, könnt ihr ein kleines Testprogramm schreiben und ausführen. Erstellt eine neue Python-Datei in Visual Studio Code im Unterordner <code>workspace</code> und benennte es <code>my_first_program.py</code>. Öffnet die neue Datei mit einem Doppelklick und fügt folgenden Code ein:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello, World!"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Speichert die Datei und führt sie aus, indem ihr im Terminal folgenden Befehl eingebt:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> my_first_program.py</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Und für alle Mac-Nutzer unter uns:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> my_first_program.py</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Es sollte nun die Ausgabe <code>Hello, World!</code> im Terminal erscheinen. Wenn das funktioniert, seid ihr bereit für die nächsten Schritte!</p>
 </section>
 <section id="los-gehts" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="los-gehts">Los geht’s!</h2>

@@ -24,13 +24,13 @@ Ich stelle für dieses Buch die fertigen Programme nach jedem Abschnitt auf GitH
 
 ### Code über Git herunterladen (empfohlen) {.unnumbered}
 
-Wenn ihr Git erfolgreich installiert habt, könnt ihr den Code über die Kommandozeile (Terminal) herunterladen. Öffnet dazu ein Terminalfenster (unter Windows: PowerShell, unter macOS: Terminal), wechselt in ein Verzeichnis, in dem ihr den Code speichern möchtet, und gebt folgenden Befehl ein:
+Wenn ihr Git erfolgreich installiert habt, könnt ihr den Code über die Kommandozeile (Terminal) herunterladen. Öffnet dazu ein Terminalfenster (unter Windows: PowerShell oder Command Line, unter macOS: Terminal), wechselt in ein Verzeichnis, in dem ihr den Code speichern möchtet, und gebt folgenden Befehl ein:
 
 ```{.bash code-line-numbers="false"}    
 git clone https://github.com/winf-hsos/hands-on-computer-science-code
 ```
 
-Bei funktionierende Internetverbindung wird der Code heruntergeladen und in einem neuen Ordner namens `hands-on-computer-science-code` gespeichert. Ihr könnt diesen Ordner dann in Visual Studio Code öffnen, um auf die Codebeispiele zuzugreifen.
+Bei funktionierender Internetverbindung wird der Code heruntergeladen und in einem neuen Ordner namens `hands-on-computer-science-code` gespeichert. Ihr könnt diesen Ordner dann in Visual Studio Code öffnen, um auf die Codebeispiele zuzugreifen.
 
 ### Code als ZIP-Datei herunterladen {.unnumbered}
 
@@ -40,12 +40,20 @@ Ihr könnt den aktuellen Stand von GitHub über herunterladen, indem ihr [hier](
 
 Um die Abhängigkeiten für die Codebeispiele zu installieren, ist es eine gute Idee, eine virtuelle Python-Umgebung zu verwenden. Dadurch wird sichergestellt, dass die benötigten Pakete isoliert von anderen Projekten installiert werden. Hier sind die Schritte, um eine virtuelle Umgebung einzurichten:
 
-1. Öffnet ein Terminalfenster in Visual Studio Code (Terminal > Neues Terminal).
-2. Navigiert zu dem Verzeichnis, in dem ihr den Code gespeichert habt.
-3. Führt den folgenden Befehl aus, um eine virtuelle Umgebung zu erstellen:
+1.  Öffnet ein Terminalfenster in Visual Studio Code (Terminal > Neues Terminal)
+
+2.  Navigiert zu dem Verzeichnis, in dem ihr den Code gespeichert habt.
+
+3.  Führt den folgenden Befehl aus, um eine virtuelle Umgebung zu erstellen:
 
 ```{.bash code-line-numbers="false"}
 python -m venv .python-env
+```
+
+Wenn ihr einen Mac-Rechner verwendet, müsst ihr anstelle des `python`-Befehls `python3` verwenden:
+
+```{.bash code-line-numbers="false"}
+python3 -m venv .python-env
 ```
 
 4. Aktiviert die virtuelle Umgebung mit dem folgenden Befehl:
@@ -77,6 +85,40 @@ pip install -r requirements.txt
 ```
 
 Damit installiert ihr alle Abhängigkeiten, die in der Datei `requirements.txt` aufgelistet sind. Damit seid ihr für die Experimente in diesem Buch bestens gerüstet.
+
+Auch hier unterscheidet sich der Befehl auf einem Mac-Rechner. Dort müsst ihr `pip3` anstelle von `pip` verwenden:
+
+```{.bash code-line-numbers="false"}
+pip3 install tinkerforge
+```
+
+Alternativ könnt ihr auch folgenden Befehl verwenden:
+
+```{.bash code-line-numbers="false"}
+pip3 install -r requirements.txt
+```
+
+## Umgebung testen {.unnumbered}
+
+Um sicherzustellen, dass alles korrekt eingerichtet ist, könnt ihr ein kleines Testprogramm schreiben und ausführen. Erstellt eine neue Python-Datei in Visual Studio Code im Unterordner `workspace`  und benennte es `my_first_program.py`. Öffnet die neue Datei mit einem Doppelklick und fügt folgenden Code ein:
+
+```{.python code-line-numbers="false"}
+print("Hello, World!")
+```
+
+Speichert die Datei und führt sie aus, indem ihr im Terminal folgenden Befehl eingebt:
+
+```{.bash code-line-numbers="false"}
+python my_first_program.py
+```
+
+Und für alle Mac-Nutzer unter uns:
+
+```{.bash code-line-numbers="false"}
+python3 my_first_program.py
+```
+
+Es sollte nun die Ausgabe `Hello, World!` im Terminal erscheinen. Wenn das funktioniert, seid ihr bereit für die nächsten Schritte!
 
 ## Los geht's! {.unnumbered}
 

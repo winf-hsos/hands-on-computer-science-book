@@ -17,7 +17,7 @@ Der Weg dahin führt über folgende Schritte:
 | 5 | Wir lernen Vektorgrafiken kennen. | @sec-images-vector-graphics |
 | 6 | Wir führen Icons als Form einer Bitmap ein. | @sec-images-icons |
 | 7 | Wir fragen uns, ob wir Bilder auch komprimieren können. | @sec-images-compressed |
-| 8 | Wir programmieren ein kleines DOS-Spiel namens Nibbles. | @sec-images-nibbles |
+| 8 | Wir programmieren ein Tic Tac Toe-Spiel. | @sec-images-nibbles |
 
 ### Begriffe und Konzepte {.unnumbered}
 
@@ -28,10 +28,11 @@ Dabei lernen wir neue Begriffe und Konzepte kennen.
 | Begriff | Kategorie | Wo? |
 |---|---|---|
 | **Pixel** | Repräsentation von Bildern | @sec-images-pixels |
+| **Bitmap** | Repräsentation von Bildern | @sec-images-pixels |
 :::
 <!-- CHAPTER_GLOSSARY_END -->
 
-## Experimentaufbau {#-sec-images-experiment-setup .collapsable}
+## Experimentaufbau {#sec-images-experiment-setup .collapsable}
 
 ### Hardware
 
@@ -51,9 +52,9 @@ Wie immer geht es zuerst in den Brick Viewer. Verbindet euch mit dem Master Bric
 
 Die Oberfläche für das Display seht ihr in @fig-images-brick-viewer-oled-display. Im Wesentlichen kann das Display drei Dinge:
 
-1. Es kann einzelne Pixel ein- und ausschalten
-2. Es kann den gesamten Inhalt löschen
-3. Es kann Text anzeigen, was ein Spezialfall von Punkt 1 ist
+1. Einzelne Pixel ein- und ausschalten
+2. Seinen gesamten Inhalt löschen
+3. Text anzeigen, was ein Spezialfall von Punkt 1 ist
 
 ![Im Brick Viewer können wir auf dem Display Text anzeigen oder zeichnen.](images/brick_viewer_oled_display.png){#fig-images-brick-viewer-oled-display .lightbox}
 
@@ -83,39 +84,53 @@ Gezeichneter vs. getippter Text auf dem Display.
 
 ## Pixel {#sec-images-pixels .collapsable}
 
-Nachdem wir das Display im Brick Viewer ausprobiert haben, wollen wir uns die Funktionen auch in Python anschauen. Dazu stellen wir wie immer die Verbindung her und erzeugen eine Instanz des Display-Objekts:
+Nachdem wir das Display im Brick Viewer ausprobiert haben, wollen wir uns seine Funktionen in Python anschauen. Dazu stellen wir wie immer die Verbindung her und erzeugen eine Instanz des Display-Objekts:
 
 ```{python}
 from tinkerforge.ip_connection import IPConnection
-from tinkerforge.bricklet_oled_128x64_v2 import BrickletOLED128x64V2
+from tinkerforge.bricklet_oled_128x64_v2 import BrickletOLED128x64V2 # <1>
 
 ipcon = IPConnection()
 ipcon.connect('localhost', 4223)
-oled = BrickletOLED128x64V2('25zo', ipcon) # <1>
-oled.clear_display() # <2>
+oled = BrickletOLED128x64V2('25zo', ipcon) # <2>
+oled.clear_display() # <3>
 ```
 
-1. Denk dran, eure eigene UID einzutragen.
-2. Wir löschen den Display-Inhalt, damit wir mit einem leeren Display starten. Die Funktion `clear_display()` erledigt das.
+1. Wir importieren die Klasse `BrickletOLED128x64V2` aus der Tinkerforge-Bibliothek, die uns die Funktionen des Displays zur Verfügung stellt.
+2. Denkt dran, eure eigene UID einzutragen.
+3. Wir löschen den Display-Inhalt, damit wir mit einem leeren Display starten. Die Funktion `clear_display()` erledigt das.
 
-Über die Variable `oled` können wir jetzt die verschiedenen Funktionen des Displays verwenden. Eine davon seht ihr bereits im Codebeispiel, nämlich das Löschen des Displays mit `clear_display()`. Die andere wesentliche Funktion ist das An- und Ausschalten einzelner Pixel.
+Über die Variable `oled` können wir von nun an die verschiedenen Funktionen des Displays verwenden. Eine davon seht ihr bereits im Codebeispiel, nämlich das Löschen des Displays mit `clear_display()`. Die andere wesentliche Funktion ist das An- und Ausschalten einzelner Pixel.
 
-Das Wort \gloss{Pixel}{Ein Pixel ist der kleinste darstellbare Punkt auf einem Display}{Repräsentation von Bildern} wird vom englischen "picture element" abgeleitet, also Bildelement. Ein Pixel ist der kleinste darstellbare Punkt auf einem Display. In unserem Fall kann ein Pixel entweder schwarz oder weiß sein. Auf anderen Bildschirmen, wie dem eures Smartphones oder Fernsehers, können Pixel auch farbig sein. Das schauen wir uns später noch genauer an. In diesem Kapitel konzentrieren wir uns auf die einfache schwarzweiße Darstellung. Außerdem kann unser Display nur Schwarzweiß.
+Das Wort \gloss{Pixel}{Ein Pixel ist der kleinste darstellbare Punkt auf einem Display}{Repräsentation von Bildern} wird vom englischen "picture element" abgeleitet, also Bildelement. Ein Pixel ist der kleinste darstellbare Punkt auf einem Display. In unserem Fall kann ein Pixel entweder schwarz oder weiß sein. Auf anderen Bildschirmen, wie dem eures Smartphones oder Fernsehers, können Pixel auch farbig sein. Das schauen wir uns später noch genauer an. In diesem Kapitel konzentrieren wir uns auf die einfache schwarzweiße Darstellung. Schließlich kann unser Display nur Schwarzweiß.
 
-Das Display, das wir verwenden, hat eine Auflösung von 128 x 64 Pixeln. Das bedeutet, dass es 128 Pixel in der Breite und 64 Pixel in der Höhe hat. Insgesamt ergibt das 8192 einzelne Pixel, die wir ansteuern können.
+Das Display, das wir verwenden, hat eine Auflösung von 128 x 64 Pixeln. Das bedeutet, dass es 128 Pixel in der Breite und 64 Pixel in der Höhe hat. Insgesamt ergibt das somit 8192 Pixel, die wir individuell an- oder ausschalten können.
 
-Beginnen wir, indem wir das Pixel in der linken oberen Ecke des Displays einschalten. Die Koordinaten für dieses Pixel sind (0, 0), wobei die erste Zahl die x-Koordinate (horizontal) und die zweite Zahl die y-Koordinate (vertikal) ist. Um dieses Pixel einzuschalten, verwenden wir die Funktion `write_pixels()`, die wie folgt aussieht:
+Beginnen wir, indem wir das Pixel in der linken oberen Ecke des Displays einschalten. Damit wir mit einzelnen Pixel sprechen können, hat jedes eine eigene Koordinate, die einfach die Position als Zeile und Spalte angibt. Genau wie in einer Excel-Tabelle, in der die Zelle in der dritten Spalte und vierten Zeile mit C4 adressiert würde. Nur verwenden wir bei Pixel statt Buchstaben nur Zahlen. 
+
+Die Koordinaten für das Pixel links oben lauten (0, 0), wobei die erste Zahl die x-Koordinate (horizontal) und die zweite Zahl die y-Koordinate (vertikal) ist. Um dieses Pixel einzuschalten, verwenden wir die Funktion `write_pixels()` und rufen sie wie folgt auf:
 
 ```{python}
 #| code-line-numbers: false
 oled.write_pixels(0, 0, 0, 0, [1])
 ```
 
-Die ersten vier Argumente definieren zwei Punkte auf dem Display, die eine rechteckige Fläche beschreiben. Die ersten beiden Argumente sind die x- und y-Koordinaten des oberen linken Punkts, die zweiten beiden Argumente sind die x- und y-Koordinaten des unteren rechten Punkts. Diese Eckpunkte sind inklusive, das heißt, die Breite ergibt sich aus `x_end - x_start + 1` und die Höhe aus `y_end - y_start + 1`. In unserem Fall sind beide Punkte (0, 0), wir sprechen also genau ein Pixel an. Der letzte Parameter ist eine Liste von Werten, die angibt, ob die Pixel in der definierten Fläche ein- oder ausgeschaltet werden sollen. Ein Wert von 1 bedeutet weiß, 0 bedeutet schwarz. Da wir nur ein Pixel ansprechen, enthält die Liste nur einen Wert: `[1]`.
+Aber warum denn so viele Argumente? Es reicht doch, wenn wir die Koordinaten des Pixels angeben, oder? Der Grund ist, dass die Funktion `write_pixels()` nicht nur einzelne Pixel ansteuern kann, sondern auch rechteckige Flächen von Pixeln. Deshalb müssen wir die Funktion so aufrufen, dass sie eine rechteckige Fläche beschreibt. @fig-images-write-pixels-single zeigt das anhand des Beispiels des linken oberen Pixels.
 
-Eine Liste wird in Python mit eckigen Klammern `[]` definiert. Innerhalb der Klammern können beliebig viele Werte durch Kommas getrennt angegeben werden. In unserem Fall haben wir nur einen Wert, nämlich 1, um das einzelne Pixel einzuschalten.
+![Die Funktion `write_pixels()` benötigt die Angabe eines Rechtecks und die entsprechenden Pixelwerte als 0 oder 1. Für ein einziges Pixel sind beide Punkte des Rechtecks identisch.](https://winf-hsos.github.io/university-docs/images/images_write_pixel_coordinates_single.png){#fig-images-write-pixels-single .lightbox}
 
-Genauso können wir das Pixel wieder ausschalten, indem wir den Wert in der Liste auf 0 ändern. Sobald ihr Enter drückt, sollte das Pixel in der linken oberen Ecke wieder ausgehen:
+In der Abbildung seht ihr die Werte, die die Funktion `write_pixels()` übergeben bekommt, um ein Pixel anzusteuern. Allgemein lautet die Signatur der Funktion so:
+
+```{python}
+#| code-line-numbers: false
+write_pixels(x_start, y_start, x_end, y_end, pixel_values)
+```
+
+Die ersten vier Argumente definieren die zwei Punkte die rechteckige Fläche als Linksoben und Rechtsunten beschreiben. Die ersten beiden Argumente sind die x- und y-Koordinaten des oberen linken Punkts, die zweiten beiden Argumente sind die x- und y-Koordinaten des unteren rechten Punkts. Diese Eckpunkte sind inklusive, das heißt, die Breite ergibt sich aus `x_end - x_start + 1` und die Höhe aus `y_end - y_start + 1`. In unserem Fall sind beide Punkte (0, 0), wir sprechen also genau ein Pixel an. Der letzte Parameter ist eine Liste von Werten, die angibt, ob die Pixel in der definierten Fläche ein- oder ausgeschaltet werden sollen. Ein Wert von 1 bedeutet weiß, 0 bedeutet schwarz. Da wir nur ein Pixel ansprechen, enthält die Liste nur einen Wert: `[1]`.
+
+Auch wenn es im Beispiel nur ein Wert ist, stellt die `[1]` dennoch eine Liste imn Python dar. Darauf weisen die eckigen Klammern hin. Innerhalb der Klammern können beliebig viele Werte durch Kommas getrennt angegeben werden. Es kann aber auch nur ein Wert sein, wie in unserem Fall.
+
+Wir können das Pixel wieder ausschalten, indem wir den Wert in der Liste auf 0 ändern. Sobald ihr Enter drückt, sollte das Pixel in der linken oberen Ecke wieder ausgehen:
 
 ```{python}
 #| code-line-numbers: false
@@ -124,44 +139,46 @@ input("Drücke Enter um das Pixel auszuschalten...")
 oled.write_pixels(0, 0, 0, 0, [0])
 ```
 
-Einzelne Pixel lassen sich auf die oben gezeigte Weise an- und ausschalten. Aber was ist, wenn wir mehrere Pixel gleichzeitig ansteuern wollen? Zum Beispiel ein kleines Quadrat in der Mitte des Displays. Dafür müssen wir die Koordinaten der beiden Punkte anpassen, die die rechteckige Fläche definieren, und eine Liste mit den entsprechenden Werten für alle Pixel in dieser Fläche erstellen. Wir sprechen hier von einer Bitmap\index{Bitmap}, also einer Matrix von Pixelwerten, die zusammen ein Bild ergeben.
+Einzelne Pixel lassen sich auf die oben gezeigte Weise an- und ausschalten. Aber was ist, wenn wir mehrere Pixel gleichzeitig ansteuern wollen? Zum Beispiel ein kleines Quadrat in der Mitte des Displays? Dafür müssen wir die Koordinaten der beiden Punkte anpassen, die die rechteckige Fläche definieren, und eine Liste mit den entsprechenden Werten für alle Pixel in dieser Fläche erstellen. Wir sprechen hier von einer \gloss{Bitmap}{Eine Matrix von Pixelwerten}{Repräsentation von Bildern}, also einer Matrix von Pixelwerten, die zusammen ein Bild ergeben.
 
 ## Bitmaps {#sec-images-bitmaps .collapsable}
 
-Sagen wir, wir wollen ein 4x4 großes Quadrat in der Mitte des Displays zeichnen. Dazu müssen wir zuerst berechnen, wo die Mitte des Displays ist. Da das Display 128 Pixel breit und 64 Pixel hoch ist, liegt die Mitte bei (64, 32). Weil wir bei 0 beginnen zu zählen, korrigieren wir auf (63, 31). Um ein 4x4-Quadrat zu zeichnen, setzen wir die Koordinaten des oberen linken Punkts auf (61, 29) und die Koordinaten des unteren rechten Punkts auf (64, 32). Die Liste der Werte für die Pixel in dieser Fläche muss 16 Werte enthalten, alle auf 1 gesetzt, um das Quadrat einzuschalten.
+Sagen wir, wir wollen ein 2x2 großes Quadrat in der Mitte des Displays zeichnen. Dazu müssen wir zuerst berechnen, wo die Mitte des Displays ist. Da das Display 128 Pixel breit und 64 Pixel hoch ist, läge die Mitte rechnerisch bei (64, 32). Weil wir bei 0 zu zählen beginnen, korrigieren wir auf (63, 31). Um ein 2x2-Quadrat zu zeichnen, setzen wir die Koordinaten des oberen linken Punkts auf (62, 30) und die Koordinaten des unteren rechten Punkts auf (63, 31). Die Liste der Werte für die Pixel in dieser Fläche muss 4 Werte enthalten, alle auf 1 gesetzt, um das Quadrat anzuzeigen.
 
 ```{python}
 #| code-line-numbers: false
-oled.write_pixels(61, 29, 64, 32, [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1])
+oled.write_pixels(62, 30, 63, 31, [1,1,1,1])
 ```
 
-Genau genommen ist die Liste keine verschachtelte Struktur, sie wird aber als 4x4-Matrix interpretiert. Die Bitmap sieht also so aus:
+Genau genommen ist die Liste eine flache Struktur, sie wird aber als 2x2-Matrix interpretiert. Die Bitmap sieht also so aus:
 
 ```
-1 1 1 1
-1 1 1 1
-1 1 1 1
-1 1 1 1
+1 1
+1 1
 ```
 
-Was ist, wenn wir das Quadrat auf 5x5 vergrößern wollen? Dann ändern wir den unteren rechten Punkt auf (65, 33) oder alternativ den oberen linken Punkt auf (60, 28). Die Liste der Werte erweitern wir auf 25 Einträge:
+@fig-images-write-pixels zeigt das Konzept der Bitmap für unser 2x2-Quadrat. Der Startpunt oben links unterscheidet sich in diesem Beispiel von dem Endpunkt unten rechts, weil wir nicht nur ein einzelnes Pixel ansteuern, sondern eine quadratische Fläche.
+
+![Ein 2x2 Quadrat über die Angabe der linken oberen sowie der unteren rechten Ecke.](https://winf-hsos.github.io/university-docs/images/images_write_pixel_coordinates.png){#fig-images-write-pixels .lightbox}
+
+Was ist, wenn wir das Quadrat auf 3x3 vergrößern wollen? Dann ändern wir den unteren rechten Punkt auf (64, 32) oder alternativ den oberen linken Punkt auf (61, 29). Die Liste der Werte erweitern wir auf 9 Einträge:
 
 ```{python}
 #| code-line-numbers: false
-oled.write_pixels(61, 29, 65, 33, [1]*25)
+oled.write_pixels(61, 29, 64, 32, [1]*9)
 ```
 
-Die Python-Syntax `[1]*25` erzeugt eine Liste mit 25 Einsen. Das ist eine praktische Abkürzung, um lange Listen mit gleichen Werten zu erstellen.
+Die Python-Syntax `[1]*9` erzeugt eine Liste mit 9 Einsen. Das ist eine praktische Abkürzung, um lange Listen mit gleichen Werten zu erstellen.
 
 Die Idee von `write_pixels()` ist also, dass wir eine rechteckige Fläche definieren und dann eine Liste von Werten bereitstellen, die angibt, ob jedes Pixel in dieser Fläche ein- oder ausgeschaltet wird. Die Länge der Liste muss genau der Anzahl der Pixel in der Fläche entsprechen. Die Werte in der Liste werden zeilenweise von links nach rechts und von oben nach unten gelesen.
 
-In @fig-images-display-pixel-frame visualisieren wir das Konzept der Bitmap. Der rote Bereich, in dem die Pixel gesetzt werden, wird durch die ersten vier Argumente der Funktion `write_pixels()` definiert. Die Liste der Werte füllt diesen Bereich von links nach rechts und von oben nach unten. Die Liste sähe in diesem Fall so aus:
+In @fig-images-write-pixel-coordinates-cross sehen wir ein weieteres Beispiel, ebenfalls für eine Bitmap mit 3x3 Pixeln. Jedoch sind dieses Mal nicht alle Pixel angeschaltet, sondern nur die Pixel, die ein Kreuzmuster ergeben. Als Liste sieht das so aus:
 
 ```
 [0,1,0,1,1,1,0,1,0]
 ```
 
-Als Matrix dargestellt:
+Als Matrix dargestellt, wie es auch auf dem Display erscheint, sieht das so aus:
 
 ```
 0 1 0
@@ -171,15 +188,15 @@ Als Matrix dargestellt:
 
 In der Matrixdarstellung erkennt man schnell das Kreuzmuster, das wir gezeichnet haben.
 
-![Der rote Bereich wird durch die ersten vier Argumente der Funktion `write_pixels()` definiert.](images/display_pixel_frame.png){#fig-images-display-pixel-frame .lightbox}
+![Über die Pixelwerte lassen sich beliebige Symbole darstellen, hier ein Kreuz.](https://winf-hsos.github.io/university-docs/images/images_write_pixel_coordinates_cross.png){#fig-images-write-pixel-coordinates-cross .lightbox}
 
 Wenn wir Kreuze als Bitmaps darstellen können, wie sieht es dann mit anderen Symbolen aus?
 
 ## Buchstaben {#sec-images-letters .collapsable}
 
-Auch Buchstaben auf dem Bildschirm sind nichts anderes als Pixelmuster. Wie bereits erwähnt, ist ein Buchstabe 5 Pixel breit und 8 Pixel hoch. Das bedeutet, dass wir für jeden Buchstaben eine Bitmap mit 40 Werten benötigen. Tinkerforge, der Hersteller des Displays, stellt eine Übersicht der unterstützten Zeichen und deren Pixelmuster auf [seiner Webseite](https://www.tinkerforge.com/en/doc/Hardware/Bricklets/OLED_128x64_V2.html#font) bereit. Daraus habe ich den Buchstaben "A" als Bitmap in ein einfaches Spreadsheet übertragen und Pixel, die an sind, schwarz eingefärbt. Das Ergebnis seht ihr in @fig-images-bitmap-letter-a-spreadsheet.
+Auch Buchstaben auf dem Bildschirm sind nichts anderes als Pixelmuster. Wie bereits erwähnt, ist ein Buchstabe auf dem Display von Tinkerforge 5 Pixel breit und 8 Pixel hoch. Das bedeutet, dass wir für jeden Buchstaben eine Bitmap mit 40 Werten benötigen. Tinkerforge, der Hersteller des Displays, stellt eine Übersicht der unterstützten Zeichen und deren Pixelmuster auf [seiner Webseite](https://www.tinkerforge.com/en/doc/Hardware/Bricklets/OLED_128x64_V2.html#font) bereit. Daraus habe ich den Buchstaben "A" als Bitmap in eine einfache Tabelle übertragen und Pixel, die an sind, schwarz eingefärbt. Das Ergebnis seht ihr in @fig-images-bitmap-letter-a.
 
-![Der Buchstabe "A" als Bitmap in einem Spreadsheet.](images/bitmap_letter_a.png){#fig-images-bitmap-letter-a-spreadsheet .lightbox width="25%"}
+![Der Buchstabe "A" als Bitmap.](https://winf-hsos.github.io/university-docs/images/images_letter_a.png){#fig-images-bitmap-letter-a .lightbox}
 
 Anhand dieser Darstellung können wir die Werte für die Liste mit Einsen und Nullen ableiten, die wir benötigen, um den Buchstaben "A" auf dem Display darzustellen. Die Liste sieht so aus:
 
@@ -201,7 +218,6 @@ Wer gute Augen hat, erkennt in der Matrix den Buchstaben "A" sofort. Welcher Buc
 
 ```{python}
 #| code-line-numbers: false
-#| echo: false
 letter_unknown_bitmap = [
     0, 1, 1, 1, 0,
     1, 0, 0, 0, 1,
@@ -214,21 +230,25 @@ letter_unknown_bitmap = [
 ]
 ```
 
-Zeichnen wir den Buchstaben auf dem Display, um es herauszufinden. Wir kennen die Dimensionen (5x8 Pixel), haben die Bitmap und müssen nur noch die Position bestimmen, an der der Buchstabe gezeichnet werden soll. Ich habe mich für die Position (6, 10) als oberen linken Punkt entschieden:
+Zeichnen wir den Buchstaben auf dem Display, um es herauszufinden. Wir kennen die Dimensionen (5x8 Pixel), haben die Bitmap als Liste und müssen nur noch die Position bestimmen, an der der Buchstabe gezeichnet werden soll. Ich habe mich für die Position (6, 10) als oberen linken Punkt entschieden:
 
 ```{python}
 #| code-line-numbers: false
 oled.write_pixels(6, 10, 10, 17, letter_unknown_bitmap)
 ```
 
-Und? Seht ihr auch ein großes "S"? Versuchen wir, davor noch das "A" zu schreiben:
+Und? Seht ihr auch ein großes "S"? 
+
+![Der Buchstabe "S" als Bitmap.](https://winf-hsos.github.io/university-docs/images/images_letter_s.png){#fig-images-bitmap-letter-s .lightbox}
+
+Versuchen wir, davor noch das "A" zu schreiben:
 
 ```{python}
 #| code-line-numbers: false
 oled.write_pixels(1, 10, 5, 17, letter_a_bitmap)
 ```
 
-Wir haben richtig gerechnet: Das "A" soll vor dem "S" stehen, also müssen wir mit der x-Koordinate 5 Pixel nach links gehen. Die y-Koordinate bleibt gleich, weil beide Buchstaben auf der gleichen Höhe stehen sollen. Lasst uns noch ein Pixel Platz zwischen beiden Buchstaben lassen. Das bedeutet, dass wir die x-Koordinate des "A" um 1 Pixel weiter nach links setzen, also auf 0. Die x-Koordinate des rechten unteren Punkts des "A" wird dann 4. Der Code für das "A" sieht dann so aus:
+Wir haben richtig gerechnet: Das "A" soll vor dem "S" stehen, also müssen wir mit der x-Koordinate 5 Pixel nach links gehen. Die y-Koordinate bleibt gleich, weil beide Buchstaben auf der gleichen Höhe stehen sollen. Lasst uns noch ein Pixel Platz zwischen beiden Buchstaben lassen. Das bedeutet, dass wir die x-Koordinate des "A" um 1 Pixel weiter nach links setzen, also auf 0. Die x-Koordinate des rechten unteren Punkts des "A" nimmt dann den Wert 4 an. Der Code für das "A" sieht so aus:
 
 ```{python}
 #| code-line-numbers: false
@@ -246,7 +266,7 @@ oled.write_pixels(12, 10, 16, 17, letter_unknown_bitmap)
 
 Sucht euch aus, ob ihr nun eine Spielkarte, den Namen eines Schmerzmittels oder das englischsprachige Wort für Ar*** geschrieben habt. In jedem Fall sind es drei Buchstaben, die wir mit Bitmaps auf dem Display dargestellt haben. Und das ganz ohne die Textfunktion des Displays zu verwenden.
 
-Das wäre übrigens auch gegangen, wäre aber nicht so lehrreich gewesen:
+Das wäre übrigens auch einfacher gegangen, wäre aber nicht so lehrreich gewesen:
 
 ```{python}
 #| code-line-numbers: false
@@ -255,31 +275,29 @@ oled.write_line(0, 0, "Ass")
 
 Wenn ihr beides hintereinander ausführt, steht oben "Ass" per Textfunktion und darunter "ASS" als eigene Bitmaps. Das Schöne an der `write_line()`-Funktion ist, dass sie automatisch die richtigen Bitmaps für die Buchstaben verwendet. Das Display hat eine eingebaute Schriftart, die es nutzt, wenn wir Text anzeigen wollen. Aber wie ihr gesehen habt, können wir auch eigene Bitmaps verwenden, um Buchstaben oder andere Symbole zu zeichnen, die nicht im Zeichensatz des Displays enthalten sind.
 
-[WRITE A PARAGRAPH ABOUT FONTS AND HOW THEY ARE JUST COLLECTIONS OF BITMAPS, USE EXAMPLE. SMOOTH TRANSITION TO NEXT SECTION ON VECTOR GRAPHICS.]
-Schriftarten für Pixel-Displays sind im Kern nichts anderes als Sammlungen von Bitmaps: Für jedes Zeichen wird festgelegt, welche Pixel im 5x8-Raster leuchten. Unser "A" oben ist genau so definiert, und das OLED-Bricklet bringt eine solche Tabelle für viele Zeichen bereits mit. Wenn ihr eine andere Schrift wollt, erstellt ihr einfach eine neue Bitmap-Tabelle, etwa eine fette oder eine schmale Variante, und verwendet diese beim Zeichnen. Das funktioniert hervorragend in festen Rastergrößen, stößt aber an Grenzen, sobald ihr Größen ändern oder sehr glatte Kanten haben wollt. Hier kommen Vektorgrafiken ins Spiel, die Formen nicht als Pixelraster, sondern als Linien und Kurven beschreiben.
+Schriftarten für Pixel-Displays sind im Kern nichts anderes als Sammlungen von Bitmaps: Für jedes Zeichen wird festgelegt, welche Pixel im 5x8-Raster leuchten. Unser "A" oben ist genau so definiert, und das OLED-Bricklet bringt eine solche Tabelle für viele Zeichen bereits mit. Wenn ihr eine andere Schrift wollt, erstellt ihr einfach eine neue Bitmap-Tabelle, etwa eine fette oder eine schmale Variante, und verwendet diese beim Zeichnen. Das funktioniert hervorragend in festen Rastergrößen, stößt aber an Grenzen, sobald sich die Größe der Buchstaben ändern sollen, wenn etwa die Schriftgröße hochgesetzt wird. Hier kommen Vektorgrafiken ins Spiel, die Formen nicht als Pixelraster, sondern als Linien und Kurven beschreiben.
 
 ## Vektorgrafiken {#sec-images-vector-graphics .collapsable}
 
-Während Bitmaps jedes Pixel explizit speichern, beschreiben Vektorgrafiken Objekte mathematisch, etwa "eine Linie von A nach B" oder "ein Kreis mit Mittelpunkt M und Radius r". Eine Vektor-Schriftart (z. B. TrueType) enthält keine 5x8-Raster pro Zeichen, sondern Pfade für die Konturen von "A", "S" und Co. Der Vorteil: Diese Formen lassen sich beliebig vergrößern oder verkleinern, ohne dass Treppeneffekte entstehen. Das ist ideal für hochauflösende Displays und Druck. Auf unserem kleinen OLED-Display arbeiten wir dennoch mit Bitmaps, weil sie direkt den Pixeln entsprechen und ohne aufwendiges Rasterisieren angezeigt werden können.
+Während Bitmaps jedes Pixel explizit speichern, beschreiben Vektorgrafiken Objekte mathematisch, etwa "eine Linie von A nach B" oder "ein Kreis mit Mittelpunkt M und Radius r". Eine Vektor-Schriftart (z. B. TrueType) enthält keine 5x8-Raster pro Zeichen, sondern Pfade für die Konturen von "A", "S" etc. Der Vorteil: Diese Formen lassen sich beliebig vergrößern oder verkleinern, ohne dass Treppeneffekte entstehen. Das ist ideal für hochauflösende Displays und Druck. Auf unserem kleinen OLED-Display arbeiten wir dennoch mit Bitmaps, weil sie direkt den Pixeln entsprechen und ohne aufwendiges Rasterisieren angezeigt werden können.
 
-Schauen wir uns ein Beispiel an. Angenommen, wir wollen ein einfaches Haus zeichnen. In einer Vektorgrafik würden wir das Haus als Rechteck für die Wände und ein Dreieck für das Dach beschreiben. In Python könnten wir das so machen:
+Damit ihr an der Stelle einen Eindruck bekommt, kopiert den folgenden Code in eine Textdatei und benennt sie `vector_graphics.svg`. Öffnet die Datei anschließend in einem Webbrowser.
 
-```{python}
-#| code-line-numbers: false
-def draw_house(oled, x, y, scale=1):
-    width = round(15 * scale)
-    height = round(15 * scale)
-    # Wände
-    oled.write_pixels(x, y + height // 2, x + width - 1, y + height - 1, [1] * (width * (height // 2)))
-    # Dach
-    roof_height = height // 2
-    for i in range(roof_height):
-        oled.write_pixels(x + i, y + roof_height - i - 1, x + width - i - 1, y + roof_height - i - 1, [1] * (width - 2 * i))
+```xml
+<svg width="440" height="220" xmlns="http://www.w3.org/2000/svg">
+  <circle cx="60" cy="60" r="50" stroke="#0085C7" stroke-width="10" fill="none" />
+  <circle cx="180" cy="60" r="50" stroke="#000000" stroke-width="10" fill="none" />
+  <circle cx="300" cy="60" r="50" stroke="#DF0024" stroke-width="10" fill="none" />
+  <circle cx="120" cy="110" r="50" stroke="#FFD500" stroke-width="10" fill="none" />
+  <circle cx="240" cy="110" r="50" stroke="#009F3D" stroke-width="10" fill="none" />
+</svg>
 ```
 
-In diesem Beispiel definiert die Funktion `draw_house()` das Haus als Kombination von Rechteck (Wände) und Dreieck (Dach). Die Vektorbeschreibung wird in Pixel umgesetzt, indem wir die entsprechenden Bereiche mit `write_pixels()` füllen. Das Ergebnis ist ein einfaches Haus auf dem Display, das durch die Vektorbeschreibung flexibel skaliert werden könnte.
+Ihr solltet ein Bild wie in @fig-images-vector-example sehen. Zoomt nun einmal ganz nach hinhein, indem ihr Strg + Plus (Windows) oder Cmd + Plus (Mac) drückt. Ihr werdet feststellen, dass die Kreise auch bei starker Vergrößerung scharf bleiben, ohne dass Treppeneffekte auftreten. Das liegt daran, dass Vektorgrafiken mathematisch beschrieben werden und nicht auf eine feste Pixelauflösung angewiesen sind.
 
-Wir können das Haus nämlich ganz einfach größer oder kleiner zeichnen, indem wir die Parameter `width` und `height` anpassen. Das ist der große Vorteil von Vektorgrafiken: Sie sind skalierbar und behalten ihre Form, egal wie groß oder klein sie dargestellt werden.
+![Eine Annäherungs der Olympischen Ringe als Vektorgrafik, die man ohne Qualitätsverlust beliebig vergrößern kann.](https://winf-hsos.github.io/university-docs/images/images_vector_example.png){#fig-images-vector-example .lightbox}
+
+Aufgrund ihrer Eigenschaften werden Vektorgrafiken insbesondere für Logos, Icons und Schriftarten verwendet, die in verschiedenen Größen dargestellt werden müssen. Designagenturen nutzen sie häufig, um sicherzustellen, dass ihre Designs in jeder Größe gut aussehen. Für komplexe Bilder mit vielen Farben und Details, wie Fotos, sind Bitmaps jedoch besser geeignet, weil eine Beschreibung der geometrischen Formen zu aufwendig wäre.
 
 ## Icons {#sec-images-icons .collapsable}
 
@@ -302,13 +320,16 @@ for row in sheet.iter_rows():
 print(arr)
 ```
 
+
+![Super Mario aus der 8-Bit Nintendo-Spielkonsole NES als Bitmap](https://winf-hsos.github.io/university-docs/images/images_super_mario.png){#fig-images-super-mario .lightbox}
+
 ## Komprimierte Bilder {#sec-images-compressed .collapsable}
 
 Bitmaps speichern für jedes Pixel einen Wert. Das ist einfach, kann aber viel Speicher benötigen. Deshalb werden Bitmaps häufig komprimiert. Ein klassisches Verfahren ist Run-Length Encoding (RLE). Dabei werden Folgen identischer Pixel durch "Wert + Länge" ersetzt. Aus `0,0,0,0,1,1,0,0` wird zum Beispiel `(0x4),(1x2),(0x2)`. Besonders bei großen einfarbigen Flächen spart das deutlich Speicher und Übertragungszeit. Für eingebettete Systeme wie unser Display ist das nützlich, weil weniger Daten übertragen und verarbeitet werden müssen. Vor der Anzeige wird die komprimierte Darstellung einfach wieder in die ursprüngliche Pixelsequenz entpackt.
 
 Das Extrembeispiel ist ein komplett schwarzes oder weißes Bild. Statt 8192 Nullen oder Einsen zu speichern, reicht ein Eintrag: `(0x8192)` oder `(1x8192)`. Das spart enorm viel Platz.
 
-## Nibbles {#sec-images-nibbles .collapsable}
+## Tic Tac Toe {#sec-images-nibbles .collapsable}
 
 Zum Abschluss des Kapitels wollen wir noch zwei Aspekte betrachten, die wir bei der Entwicklung eines kleinen Spiels kennenlernen wollen: Animationen und Objektorientierung. 
 
