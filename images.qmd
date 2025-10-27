@@ -295,33 +295,131 @@ Damit ihr an der Stelle einen Eindruck bekommt, kopiert den folgenden Code in ei
 
 Ihr solltet ein Bild wie in @fig-images-vector-example sehen. Zoomt nun einmal ganz nach hinhein, indem ihr Strg + Plus (Windows) oder Cmd + Plus (Mac) drückt. Ihr werdet feststellen, dass die Kreise auch bei starker Vergrößerung scharf bleiben, ohne dass Treppeneffekte auftreten. Das liegt daran, dass Vektorgrafiken mathematisch beschrieben werden und nicht auf eine feste Pixelauflösung angewiesen sind.
 
-![Eine Annäherungs der Olympischen Ringe als Vektorgrafik, die man ohne Qualitätsverlust beliebig vergrößern kann.](https://winf-hsos.github.io/university-docs/images/images_vector_example.png){#fig-images-vector-example .lightbox}
+![Ein Versuch der Olympischen Ringe als Vektorgrafik, die man ohne Qualitätsverlust beliebig vergrößern kann.](https://winf-hsos.github.io/university-docs/images/images_vector_example.png){#fig-images-vector-example .lightbox}
 
 Aufgrund ihrer Eigenschaften werden Vektorgrafiken insbesondere für Logos, Icons und Schriftarten verwendet, die in verschiedenen Größen dargestellt werden müssen. Designagenturen nutzen sie häufig, um sicherzustellen, dass ihre Designs in jeder Größe gut aussehen. Für komplexe Bilder mit vielen Farben und Details, wie Fotos, sind Bitmaps jedoch besser geeignet, weil eine Beschreibung der geometrischen Formen zu aufwendig wäre.
 
-## Icons {#sec-images-icons .collapsable}
+## Vom Bild aufs Display {#sec-images-from-image-to-display .collapsable}
 
-![](images/bitmap_bw_r2d2.png){#fig-images-bitmap-r2d2 .lightbox width="50%"}
+Wir bleiben in diesem Kapitel bei Bitmaps, weil es für unser kleines 128x64 Pixel Display nicht sinnvoll ist, Vektorgrafiken zu verwenden. Zudem ist auch eine Vektorgrafik am Ende auf dem Bildschirm nichts anderes als eine Bitmap, weil der Bildschirm nur Pixel kennt. Deshalb müssen Vektorgrafiken vor der Anzeige in Bitmaps umgewandelt werden, ein Prozess, der als Rasterisierung bezeichnet wird.
 
-![](images/bitmap_bw_darth_vader.png){#fig-images-bitmap-darth-vader .lightbox width="50%"}
+Egal ob es vorher eine Vektorgrafik war oder direkt als Bitmap vorliegt: Um ein Bild auf unserem Display anzuzeigen, müssen wir es in eine Liste von Pixelwerten umwandeln, die wir dann mit der `write_pixels()`-Funktion zeichnen können. Im Beispiel unseres Displays reicht eine Liste mit Binärwerten (0 und 1) aus, um jedes Pixel als aus- oder eingeschaltet zu kennzeichnen. Für ein farbiges Display, wie wir es typischerweise bei Computer, Smartphone oder Fernseher finden, wären mehrere Bits pro Pixel notwendig, um die verschiedenen Farben darzustellen. Ihr erinnert euch an den RGB-Farbcode? Der kann für Farbbilder verwendet werden und mündet im Endeffekt auch in einer Liste von Nullen und Einsen, die die Pixelwerte repräsentieren. Nur ist diese Liste eben deutlich länger.
+
+Betrachtet einmal das Bild in @fig-images-bitmap-darth-vader. Ihr kennt bestimmt, was es zeigt. Es handelt sich um eine Bitmap-Darstellung von Darth Vaders Kopf aus Star Wars. Das Bild ist 27 Pixel breit und 24 Pixel hoch, also insgesamt 648 Pixel. Jedes Pixel ist entweder schwarz oder weiß, was locker auf unser Display passt. Wie aber bekommen wir es nun auf unser Display?
+
+![Darth Vaders Kopf aus Star Wars als Bitmap](https://winf-hsos.github.io/university-docs/images/images_darth_vader.png){#fig-images-bitmap-darth-vader .lightbox}
+
+Nehmen wir an, die Liste aus Nullen und Einsen liegt uns noch nicht vor. Unser erstes Ziel sollte somit sein, diese Liste zu erstellen. Das könnten wir per Hand versuchen, indem wir Zeile für Zeile von links nach rechts durch das Bild gehen und für jedes weiße Pixel eine 0 und für jedes schwarze Pixel eine 1 notieren. Das wäre aber sehr mühsam und fehleranfällig. Glücklicherweise liegt das Bild bereits digital vor, allerdings nicht als Bildformat, sondern als Excel-Tabelle.
+
+Bitte was? Ein Bild als Excel-Tabelle? Die Idee habe ich aus dem CS50-Kurs der Harvard University übernommen. Dort erstellen Studierende mithilfe von Excel-Tabellen Pixelbilder, indem sie die Zellen entsprechend einfärben. Jede Zelle entspricht dabei einem Pixel, das entweder schwarz oder weiß ist. Das Ergebnis kann dann als Bitmap interpretiert werden. Die Excel-Datei mit Darth Vaders Maske könnt ihr euch [herunterladen](resources/Darth%20Vader%20Pixel%20Art.xlsx) und das Ganze einmal selbst ausprobieren.
+
+Da wir bereits eine digitale Form haben (wenn auch kein Bildformat), können wir das Problem im Sinne des EVA-Modells auffassen: Wir haben Eingabedaten (die Excel-Tabelle) und wollen eine Ausgabe (die Liste von Nullen und Einsen). Der Prozess dazwischen ist die Verarbeitung, bei der wir die Excel-Tabelle lesen und die Pixelwerte extrahieren. Und das Ganze bitte als Python-Programm, weil das unsere Programmiersprache der Wahl ist. Na dann los!
+
+### Excel mit Python einlesen
+
+Um Excel-Dateien in Python zu lesen, gibt es verschiedene Bibliotheken. Eine der beliebtesten ist `openpyxl`, die wir hier verwenden werden. Stellt sicher, dass ihr die Bibliothek installiert habt. Das könnt ihr mit dem folgenden Befehl in eurer Kommandozeile tun. Denkt daran, dass MacOS-Nutzer `pip3` anstelle von `pip` verwenden müssen.:
+
+```bash
+pip install openpyxl
+```
+
+Die Bibliothek `openpyxl` stellt uns eine Funktion mit dem Namen `load_workbook()` zur Verfügung, der wir einfach den Pfad der Excel-Datei übergeben können. Wenn ihr vorher die Excel-Datei mit Darth Vaders Maske heruntergeladen habt, könnt ihr sie so laden:
+
+```{python}
+#| code-line-numbers: false
+from openpyxl import load_workbook
+workbook = load_workbook("Dart Vader Pixel Art.xlsx")
+```
+
+Da ein Excel-Dokument aus mehreren Tabellenblättern bestehen kann, müssen wir nach dem Laden das Blatt auswählen, das wir verwenden wollen. Am sichersten geht das über den Namen des Tabellenblatts, das in unserem Fall "Darth Vader" heißt:
+
+```{python}
+#| code-line-numbers: false
+sheet = workbook["Darth Vader"]
+```
+
+### Zeile für Zeile die Pixelwerte extrahieren
+
+Um aus der Excel-Darstellung zu einer Liste mit 0 und 1 zu kommen, können wir ein Programm schreiben, das genau das Vorgehen simuliert, das wir per Hand machen würden: Wir gehen Zeile für Zeile durch die Tabelle und lesen die Farbe jeder Zelle aus. Wenn die Zelle schwarz ist, fügen wir eine 1 zur Liste hinzu, wenn sie weiß ist, eine 0. 
+
+Das Programmierkonzept, das wir dazu verwenden, haben wir schon kennengelernt. Erinnert ihr euch? Wir wollen etwas mehrfach ausführen (prüfen ob die Zelle schwarz oder weiß ist) für eine bekannte Menge von Elementen (alle Zellen in der Tabelle). Für die mehrfache Ausführung desselben Codes verwenden wir Schleifen, und wenn die Menge der Elemente bekannt ist, verwenden wir eine `for`-Schleife. Genau das brauchen wir hier.
+
+Für die Definition der Schleife verwenden wir die `iter_rows()`-Methode des Tabellenblatts, die uns alle Zeilen der Tabelle als Liste von Zellen zurückgibt. Für jede Zeile können wir dann wiederum über die einzelnen Zellen iterieren. Es gibt also zwei Schleifen, die ineinander verschachtelt sind: Die erste Schleife geht Zeile für Zeile vor, und die zweite geht für jede Zeile die Spalten (oder Zellen) durch. Innerhalb der zweiten (oder inneren) Schleife prüfen wir die Farbe der Zelle und fügen entsprechend eine 0 oder 1 zur Liste hinzu:
+
+```{python}
+for row in sheet.iter_rows(): # <1>
+    for cell in row: # <2>
+        ... # <3>
+```
+
+1. Die äußere Schleife iteriert über jede Zeile im Tabellenblatt.
+2. Die innere Schleife iteriert über jede Zelle in der aktuellen Zeile. Die Variable `row` ist eine Liste von Zellen, und `cell` repräsentiert die aktuelle Zelle in dieser Liste.
+3. Hier müssen wir gleich den Code ergänzen, der die Farbe der Zelle prüft und die entsprechende 0 oder 1 zur Liste hinzufügt.
+
+
+Was passiert nun für jede Zelle in der inneren Schleife? Wir müssen die Farbe der Zelle auslesen. In `openpyxl` können wir auf die Füllfarbe einer Zelle über das `fill`-Attribut zugreifen. Die Farbe selbst ist im `fgColor`-Attribut gespeichert, und der RGB-Wert der Farbe ist im `rgb`-Attribut zu finden. Etwas kompliziert, aber so funktioniert es nun mal. Man kann das alles in der Dokumentation der Bibliothek [nachlesen](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.styles.fills.html). Auswendig wissen muss man das nicht.
+
+Probieren wir also, die Farbe der Zelle auszulesen:
+
+```{python}
+for row in sheet.iter_rows():
+    for cell in row:
+        color = getattr(cell.fill.fgColor, "rgb", None) # <1>
+        print(color) # <2>
+```
+
+1. Das müssen wir nicht auswendig wissen, das schlagen wir in der Dokumentation der Bibliothek nach.
+2. Wir geben die Farbe der Zelle aus, um zu sehen, welchen Wert sie hat.
+
+Wenn ihr das Programm bis hierher ausführt, dann solltet ihr auf der Konsole eine lange Liste von Farbwerten sehen. Aber wie sehen die denn aus?
+
+### Hexadezimale Farbwerte
+
+Im vorigen Kapitel @sec-numbers haben wir das Binärsystem kennengelernt. Das Binärsystem ist nur eines von vielen Stellenwertsystemen und es verwenden als Basis die 2. Wir haben auch gesehen, dass andere Systeme mit anderen Basen gibt, wie das Oktalsystem zur Basis 8 oder das Dezimalsystem zur Basis 10, das wir im Alltag verwenden. Ein weiteres, in der Informatik wichtiges System, ist das Hexadezimalsystem zur Basis 16. Es verwendet die Ziffern 0 bis 9, und weil es dann keine weiteren Zahlen mehr gibt, anschließend die Buchstaben A bis F, um die Werte von 10 bis 15 darzustellen. Hexadezimale Zahlen werden häufig in der Informatik verwendet, um Bytes kompakt darzustellen. Wie ihr gleich sehen werdet, passt ein Byte nämlich wunderschön in zwei hexadezimale Ziffern.
+
 
 ```{python}
 from openpyxl import load_workbook
 
-workbook = load_workbook("pixel_art.xlsx")
-sheet = workbook.active
+workbook = load_workbook("Dart Vader Pixel Art.xlsx")
+sheet = workbook["Darth Vader"]
 
-arr = []
+bits = []
 for row in sheet.iter_rows():
     for cell in row:
         color = getattr(cell.fill.fgColor, "rgb", None)
-        arr.append(1 if color == "FF000000" else 0)
+        bits.append(1 if color == "FF000000" else 0)
 
-print(arr)
+print(bits)
 ```
 
+## Bewegte Bilder {#sec-images-animations .collapsable}
 
 ![Super Mario aus der 8-Bit Nintendo-Spielkonsole NES als Bitmap](https://winf-hsos.github.io/university-docs/images/images_super_mario.png){#fig-images-super-mario .lightbox}
+
+![Mario beginnt zu laufen](https://winf-hsos.github.io/university-docs/images/images_super_mario_walk_1.png){#fig-images-super-mario-walk-1 .lightbox}
+
+![Mario läuft weiter](https://winf-hsos.github.io/university-docs/images/images_super_mario_walk_2.png){#fig-images-super-mario-walk-2 .lightbox}
+
+![Mario nächster Schritt](https://winf-hsos.github.io/university-docs/images/images_super_mario_walk_3.png){#fig-images-super-mario-walk-3 .lightbox}
+
+![Die Einzelbilder hintereinander ergeben eine Animation](images/super_mario_walking_animation.gif){#fig-images-super-mario-animation .lightbox}
+
+Nun haben wir gesehen, wie eine Animation im Computer funktionert. Es handelt sich um eine schnelle Abfolge von Einzelbildern, die nacheinander angezeigt werden. Weil unser Gehirn die Einzelbilder nicht mehr als solche wahrnimmt, entsteht der Eindruck von Bewegung. Entscheidend ist hier die Anzahl der Bilder pro Sekunde, die sogenannte Framerate. Je höher die Framerate, desto flüssiger wirkt die Animation. Üblich sind heute 24, 30 oder sogar 60 Bilder pro Sekunde.
+
+Wäre es nicht toll, wenn wir die Animation auch auf unser kleines Display bringen könnten? Die Auflösung reicht aus, denn Mario ist nur 16x16 Pixel groß. Allerdings kann unser Display nur schwarzweiß darstellen. Wie können wir aus dem Farbbild von Mario ein schwarzweißes Bild machen?
+
+## Transformationen {#sec-images-transformations .collapsable}
+
+Sicher habt ihr das schon einmal gesehen oder selbst gemacht: Einen sogenannten Filter auf ein Foto angewendet, das euer Bild in Graustufen verwandelt. Das ist heute eine gängige Funktion von Social Media Apps wie Instagram, Snapchat oder TikTok. Aber wie funktioniert das eigentlich? Und was, wenn wir nicht einmal Graustufen, sondern nur Schwarzweiß wollen?
+
+### Graustufen
+
+![Ein Drohnenbild in Farbe und in Graustufen.](https://winf-hsos.github.io/university-docs/images/images_grayscale_transformation.png){#fig-images-grayscale-transformation .lightbox}
+
+### Schwarzweiß
+
+
 
 ## Komprimierte Bilder {#sec-images-compressed .collapsable}
 
