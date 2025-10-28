@@ -1,0 +1,1981 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.31">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>4&nbsp; Bilder – Hands-On Computer Science</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./glossary.html" rel="next">
+<link href="./text.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-1f622da0cb2db320f174c1b1af569670.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Keine Treffer",
+    "search-matching-documents-text": "Treffer",
+    "search-copy-link-title": "Link in die Suche kopieren",
+    "search-hide-matches-text": "Zusätzliche Treffer verbergen",
+    "search-more-match-text": "weitere Treffer in diesem Dokument",
+    "search-more-matches-text": "weitere Treffer in diesem Dokument",
+    "search-clear-button-title": "Zurücksetzen",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Abbrechen",
+    "search-submit-button-title": "Abschicken",
+    "search-label": "Suchen"
+  }
+}</script>
+<!-- DataTables assets -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+
+<style>
+/* linksbündig + volle Breite */
+.datatable table, .datatable-nosearch table { width: 100% !important; }
+.datatable table td, .datatable table th,
+.datatable-nosearch table td, .datatable-nosearch table th { text-align: left; }
+
+/* etwas Luft unter dem Suchfeld (nur .datatable mit Suche) */
+.datatable .dataTables_filter { margin-bottom: 1.5rem; }
+</style>
+
+<style>
+/* --- Quarto + DataTables: Floats neutralisieren --- */
+.dataTables_wrapper { 
+  display: flow-root;   /* enthält Floats, verhindert Überlaufen in die Margin */
+  max-width: 100%;
+}
+
+/* Alle DataTables-Steuerelemente nicht mehr floaten lassen */
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_paginate {
+  float: none !important;
+  text-align: left;     /* oder right, aber ohne float */
+  margin: 0 0 1rem 0;   /* etwas Luft unter die Zeile */
+}
+
+/* Sicherheitshalber: Tabelle bleibt im Content-Bereich */
+.page-columns .content .dataTables_wrapper { margin-right: 0; }
+</style>
+
+
+<script>
+(function () {
+  function initDT() {
+    if (!window.jQuery || !jQuery.fn || !jQuery.fn.DataTable) return;
+
+    // 0) Vorhandene Instanzen zerstören (Hot-Reload zuverlässig)
+    document.querySelectorAll('.datatable table, .datatable-nosearch table').forEach(function (tbl) {
+      if (jQuery.fn.dataTable.isDataTable(tbl)) {
+        try { jQuery(tbl).DataTable().destroy(); } catch(e) {}
+      }
+      tbl.removeAttribute('data-dt-inited');
+      tbl.classList.remove('dataTable');
+    });
+
+    // 1) Tabellen MIT Suche (globales Glossar)
+    document.querySelectorAll('.datatable table').forEach(function (tbl) {
+      if (tbl.dataset.dtInited === '1') return;
+      const wrap = tbl.closest('.datatable');
+      let order = [[0,'asc']];
+      try {
+        const o = wrap && wrap.getAttribute('data-order');
+        if (o) order = JSON.parse(o);
+      } catch(e) {}
+      jQuery(tbl).DataTable({
+        dom: 'f',
+        paging: false,
+        info: false,
+        ordering: true,
+        order: order
+      });
+      tbl.dataset.dtInited = '1';
+    });
+
+    // 2) Tabellen OHNE Suche (Kapitel-Glossare)
+    document.querySelectorAll('.datatable-nosearch table').forEach(function (tbl) {
+      if (tbl.dataset.dtInited === '1') return;
+      const wrap = tbl.closest('.datatable-nosearch');
+      let order = [[0,'asc']]; // Fallback
+      try {
+        const o = wrap && wrap.getAttribute('data-order');
+        if (o) order = JSON.parse(o);   // <-- liest z.B. [[2,"asc"]]
+      } catch(e) {}
+      jQuery(tbl).DataTable({
+        dom: 't',        // nur Tabelle
+        paging: false,
+        info: false,
+        ordering: true,
+        order: order,
+        orderMulti: false
+      });
+      tbl.dataset.dtInited = '1';
+    });
+  }
+  document.addEventListener('DOMContentLoaded', initDT);
+  document.addEventListener('quarto:rendered', initDT);
+})();
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="partials/gloss.css">
+<link rel="stylesheet" href="partials/collapsable.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./images.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Bilder</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Hands-On Computer Science</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Suchen"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vorwort</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preparation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vorbereitung</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./colors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Farben</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./numbers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Zahlen</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./text.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Texte</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./images.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Bilder</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./glossary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Glossar</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literaturverzeichnis</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+  <li><a href="#zusammenfassung" id="toc-zusammenfassung" class="nav-link active" data-scroll-target="#zusammenfassung">Zusammenfassung</a>
+  <ul class="collapse">
+  <li><a href="#schritt-für-schritt-zum-ziel" id="toc-schritt-für-schritt-zum-ziel" class="nav-link" data-scroll-target="#schritt-für-schritt-zum-ziel">Schritt für Schritt zum Ziel</a></li>
+  </ul></li>
+  <li><a href="#sec-images-experiment-setup" id="toc-sec-images-experiment-setup" class="nav-link" data-scroll-target="#sec-images-experiment-setup"><span class="header-section-number">4.1</span> Experimentaufbau</a>
+  <ul class="collapse">
+  <li><a href="#hardware" id="toc-hardware" class="nav-link" data-scroll-target="#hardware"><span class="header-section-number">4.1.1</span> Hardware</a></li>
+  <li><a href="#erste-schritte-mit-dem-display" id="toc-erste-schritte-mit-dem-display" class="nav-link" data-scroll-target="#erste-schritte-mit-dem-display"><span class="header-section-number">4.1.2</span> Erste Schritte mit dem Display</a></li>
+  </ul></li>
+  <li><a href="#sec-images-pixels" id="toc-sec-images-pixels" class="nav-link" data-scroll-target="#sec-images-pixels"><span class="header-section-number">4.2</span> Pixel</a></li>
+  <li><a href="#sec-images-bitmaps" id="toc-sec-images-bitmaps" class="nav-link" data-scroll-target="#sec-images-bitmaps"><span class="header-section-number">4.3</span> Bitmaps</a>
+  <ul class="collapse">
+  <li><a href="#quadrate-und-andere-formen" id="toc-quadrate-und-andere-formen" class="nav-link" data-scroll-target="#quadrate-und-andere-formen"><span class="header-section-number">4.3.1</span> Quadrate und andere Formen</a></li>
+  <li><a href="#sec-images-letters" id="toc-sec-images-letters" class="nav-link" data-scroll-target="#sec-images-letters"><span class="header-section-number">4.3.2</span> Buchstaben</a></li>
+  </ul></li>
+  <li><a href="#sec-images-vector-graphics" id="toc-sec-images-vector-graphics" class="nav-link" data-scroll-target="#sec-images-vector-graphics"><span class="header-section-number">4.4</span> Vektorgrafiken</a></li>
+  <li><a href="#sec-images-bits-to-display" id="toc-sec-images-bits-to-display" class="nav-link" data-scroll-target="#sec-images-bits-to-display"><span class="header-section-number">4.5</span> Von Bits zum Bild</a>
+  <ul class="collapse">
+  <li><a href="#excel-mit-python-einlesen" id="toc-excel-mit-python-einlesen" class="nav-link" data-scroll-target="#excel-mit-python-einlesen"><span class="header-section-number">4.5.1</span> Excel mit Python einlesen</a></li>
+  <li><a href="#zeile-für-zeile-die-pixelwerte-extrahieren" id="toc-zeile-für-zeile-die-pixelwerte-extrahieren" class="nav-link" data-scroll-target="#zeile-für-zeile-die-pixelwerte-extrahieren"><span class="header-section-number">4.5.2</span> Zeile für Zeile die Pixelwerte extrahieren</a></li>
+  <li><a href="#hexadezimale-farbwerte" id="toc-hexadezimale-farbwerte" class="nav-link" data-scroll-target="#hexadezimale-farbwerte"><span class="header-section-number">4.5.3</span> Hexadezimale Farbwerte</a></li>
+  <li><a href="#die-liste-mit-bits-erstellen" id="toc-die-liste-mit-bits-erstellen" class="nav-link" data-scroll-target="#die-liste-mit-bits-erstellen"><span class="header-section-number">4.5.4</span> Die Liste mit Bits erstellen</a></li>
+  <li><a href="#anzeige-auf-dem-display" id="toc-anzeige-auf-dem-display" class="nav-link" data-scroll-target="#anzeige-auf-dem-display"><span class="header-section-number">4.5.5</span> Anzeige auf dem Display</a></li>
+  <li><a href="#eine-bitmap-speichern" id="toc-eine-bitmap-speichern" class="nav-link" data-scroll-target="#eine-bitmap-speichern"><span class="header-section-number">4.5.6</span> Eine Bitmap speichern</a></li>
+  </ul></li>
+  <li><a href="#sec-images-compressed" id="toc-sec-images-compressed" class="nav-link" data-scroll-target="#sec-images-compressed"><span class="header-section-number">4.6</span> Komprimierte Bilder</a></li>
+  <li><a href="#sec-images-colored" id="toc-sec-images-colored" class="nav-link" data-scroll-target="#sec-images-colored"><span class="header-section-number">4.7</span> Farbige Bilder</a>
+  <ul class="collapse">
+  <li><a href="#bitmaps-im-rgb-format" id="toc-bitmaps-im-rgb-format" class="nav-link" data-scroll-target="#bitmaps-im-rgb-format"><span class="header-section-number">4.7.1</span> Bitmaps im RGB-Format</a></li>
+  <li><a href="#struktur-einer-bitmap-datei" id="toc-struktur-einer-bitmap-datei" class="nav-link" data-scroll-target="#struktur-einer-bitmap-datei"><span class="header-section-number">4.7.2</span> Struktur einer Bitmap-Datei</a></li>
+  </ul></li>
+  <li><a href="#sec-images-animation" id="toc-sec-images-animation" class="nav-link" data-scroll-target="#sec-images-animation"><span class="header-section-number">4.8</span> Bewegte Bilder</a></li>
+  <li><a href="#sec-images-transformations" id="toc-sec-images-transformations" class="nav-link" data-scroll-target="#sec-images-transformations"><span class="header-section-number">4.9</span> Transformationen</a>
+  <ul class="collapse">
+  <li><a href="#graustufen" id="toc-graustufen" class="nav-link" data-scroll-target="#graustufen"><span class="header-section-number">4.9.1</span> Graustufen</a></li>
+  <li><a href="#schwarzweiß" id="toc-schwarzweiß" class="nav-link" data-scroll-target="#schwarzweiß"><span class="header-section-number">4.9.2</span> Schwarzweiß</a></li>
+  </ul></li>
+  <li><a href="#sec-images-tic-tac-toe" id="toc-sec-images-tic-tac-toe" class="nav-link" data-scroll-target="#sec-images-tic-tac-toe"><span class="header-section-number">4.10</span> Jump &amp; Run</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-images" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Bilder</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="zusammenfassung" class="level2 unnumbered collapsable">
+<h2 class="unnumbered collapsable anchored" data-anchor-id="zusammenfassung">Zusammenfassung</h2>
+<details class="collapsable-section" open=""><summary></summary>
+<p>Im vierten Kapitel…</p>
+<section id="schritt-für-schritt-zum-ziel" class="level3 unnumbered">
+<h3 class="unnumbered anchored" data-anchor-id="schritt-für-schritt-zum-ziel">Schritt für Schritt zum Ziel</h3>
+<p>Der Weg dahin führt über folgende Schritte:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 2%">
+<col style="width: 75%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Was?</th>
+<th>Wo?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Wir machen uns mit dem Display vertraut.</td>
+<td><a href="#sec-images-experiment-setup" class="quarto-xref"><span>Abschnitt 4.1</span></a></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Wir lernen das Pixel kennen und schalten sie im Display an und aus.</td>
+<td><a href="#sec-images-pixels" class="quarto-xref"><span>Abschnitt 4.2</span></a></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Wir führen die Bitmap als eine Sammlung von Pixelwerten ein.</td>
+<td><a href="#sec-images-bitmaps" class="quarto-xref"><span>Abschnitt 4.3</span></a></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Wir lernen, wie man Buchstaben mit Pixeln darstellen kann.</td>
+<td><a href="#sec-images-letters" class="quarto-xref"><span>Abschnitt 4.3.2</span></a></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Wir lernen Vektorgrafiken kennen.</td>
+<td><a href="#sec-images-vector-graphics" class="quarto-xref"><span>Abschnitt 4.4</span></a></td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Wir zeigen ein Bild als Bitfolge aus dem Display an.</td>
+<td><a href="#sec-images-bits-to-display" class="quarto-xref"><span>Abschnitt 4.5</span></a></td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Wir erstellen eine Animation.</td>
+<td><a href="#sec-images-animation" class="quarto-xref"><span>Abschnitt 4.8</span></a></td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>Wir verstehen wie wir Redunanz in Bildern nutzen können.</td>
+<td><a href="#sec-images-compressed" class="quarto-xref"><span>Abschnitt 4.6</span></a></td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>Wir programmieren ein Tic Tac Toe-Spiel.</td>
+<td><a href="#sec-images-tic-tac-toe" class="quarto-xref"><span>Abschnitt 4.10</span></a></td>
+</tr>
+</tbody>
+</table>
+</section></details>
+</section>
+
+<section id="sec-images-experiment-setup" class="level2 collapsable" data-number="4.1">
+<h2 class="collapsable anchored" data-number="4.1" data-anchor-id="sec-images-experiment-setup"><span class="header-section-number">4.1</span> Experimentaufbau</h2>
+<details class="collapsable-section" open=""><summary></summary>
+<section id="hardware" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="hardware"><span class="header-section-number">4.1.1</span> Hardware</h3>
+<p>In den Experimenten dieses Kapitels verwenden wir ein einfaches Display, das wir an unseren Master Brick anschließen. Das Display kann einzelne Pixel weiß aufleuchten lassen und damit einfache Bilder und auch Texte darstellen. Insgesamt stehen uns 128 x 64 Pixel zur Verfügung, also 8192 einzelne Bildpunkte. Damit können wir arbeiten.</p>
+<p>Die vollständige Hardwareliste für dieses Kapitel sieht so aus:</p>
+<ul>
+<li>1 x <a href="https://www.tinkerforge.com/de/doc/Hardware/Bricks/Master_Brick.html">Master Brick 3.2</a></li>
+<li>1 x <a href="https://www.tinkerforge.com/de/shop/distance-ir-4-30cm-v2-bricklet.html">Distance IR 4-30cm Bricklet 2.0</a></li>
+<li>1 x <a href="https://www.tinkerforge.com/de/doc/Hardware/Bricklets/OLED_128x64_V2.html">OLED 128x64 Bricklet 2.0</a></li>
+<li>1 x <a href="https://www.tinkerforge.com/de/shop/accessories/mounting/mounting-plate-22x10.html">Montageplatte 22x10</a></li>
+<li>2 x <a href="https://www.tinkerforge.com/de/shop/accessories/cable/bricklet-cable-15cm-7p-7p.html">Brickletkabel 15cm (7p-7p)</a></li>
+</ul>
+</section>
+<section id="erste-schritte-mit-dem-display" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="erste-schritte-mit-dem-display"><span class="header-section-number">4.1.2</span> Erste Schritte mit dem Display</h3>
+<p>Wie immer geht es zuerst in den Brick Viewer. Verbindet euch mit dem Master Brick und ihr solltet die angeschlossenen Geräte sehen können. Den Infrarotsensor kennen wir bereits aus dem letzten Kapitel. Wir konzentrieren uns deshalb auf das neue Display, das ihr im Tab “OLED 128x64 Bricklet 2.0” findet.</p>
+<p>Die Oberfläche für das Display seht ihr in <a href="#fig-images-brick-viewer-oled-display" class="quarto-xref">Abbildung&nbsp;<span>4.1</span></a>. Im Wesentlichen kann das Display drei Dinge:</p>
+<ol type="1">
+<li>Einzelne Pixel ein- und ausschalten</li>
+<li>Seinen gesamten Inhalt löschen</li>
+<li>Text anzeigen, was ein Spezialfall von Punkt 1 ist</li>
+</ol>
+<div id="fig-images-brick-viewer-oled-display" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-images-brick-viewer-oled-display-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/brick_viewer_oled_display.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Abbildung&nbsp;4.1: Im Brick Viewer können wir auf dem Display Text anzeigen oder zeichnen."><img src="images/brick_viewer_oled_display.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-images-brick-viewer-oled-display-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;4.1: Im Brick Viewer können wir auf dem Display Text anzeigen oder zeichnen.
+</figcaption>
+</figure>
+</div>
+<p>Alle genannten Funktionen können wir direkt im Brick Viewer ausprobieren. Mit der Maus können wir auf der schwarzen Fläche freihändig zeichnen und unser Resultat mit “Draw on Display” auf das Display übertragen. Mit “Clear Display” löschen wir den gesamten Inhalt wieder. Alternativ können wir Text in das Textfeld eingeben und mit “Send” anzeigen lassen.</p>
+<p>Für Text können wir die Position über die Angabe der Zeile (Line) sowie der Position in der Zeile (Pos) bestimmen. Im Dropdown seht ihr, dass die Zeilen von 0 bis 7 und die Positionen von 0 bis 21 nummeriert sind. Das Display teilt die 128 Pixel Breite in 22 Zeichenpositionen und die 64 Pixel Höhe in 8 Textzeilen auf. Die eingebaute Schrift nutzt ein 5x8-Pixel-Raster pro Zeichen und fügt passende Abstände ein.</p>
+<div id="fig-images-display-drawing-vs-text-brick-viewer" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-images-display-drawing-vs-text-brick-viewer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-images-display-drawing-vs-text-brick-viewer" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-brick-viewer-oled-display-drawing-hocs" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="brick-viewer-oled-display">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-brick-viewer-oled-display-drawing-hocs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/brick_viewer_oled_display_drawing_hocs.png" class="lightbox" data-gallery="brick-viewer-oled-display" title="Abbildung&nbsp;4.2&nbsp;(a): Mein Versuch, den Titel des Buches mit der Maus zu zeichnen."><img src="images/brick_viewer_oled_display_drawing_hocs.png" class="img-fluid figure-img" data-ref-parent="fig-images-display-drawing-vs-text-brick-viewer"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-brick-viewer-oled-display-drawing-hocs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Mein Versuch, den Titel des Buches mit der Maus zu zeichnen.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-images-display-drawing-vs-text-brick-viewer" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-brick-viewer-oled-display-text" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="brick-viewer-oled-display">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-brick-viewer-oled-display-text-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/brick_viewer_oled_display_text.png" class="lightbox" data-gallery="brick-viewer-oled-display" title="Abbildung&nbsp;4.2&nbsp;(b): Das Display unterstützt auch die direkte Textausgabe."><img src="images/brick_viewer_oled_display_text.png" class="img-fluid figure-img" data-ref-parent="fig-images-display-drawing-vs-text-brick-viewer"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-brick-viewer-oled-display-text-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Das Display unterstützt auch die direkte Textausgabe.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-images-display-drawing-vs-text-brick-viewer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;4.2
+</figcaption>
+</figure>
+</div>
+<p>In <a href="#fig-images-display-drawing-vs-text" class="quarto-xref">Abbildung&nbsp;<span>4.3</span></a> könnt ihr den Unterschied zwischen meinem kläglichen Versuch, den Titel des Buches mit der Maus zu zeichnen, und der Textausgabe sehen. Das Display ist zwar nicht besonders groß, aber für einfache Grafiken und Texte reicht es allemal. Wie ihr seht, ist der Text “Hands-On Computer Science” zu lang für eine Zeile und wird daher abgeschnitten.</p>
+<div id="fig-images-display-drawing-vs-text" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-images-display-drawing-vs-text-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-images-display-drawing-vs-text" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-oled-display-hocs-drawing" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-oled-display-hocs-drawing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/oled_display_hocs_drawing.jpg" class="lightbox" data-gallery="fig-images-display-drawing-vs-text" title="Abbildung&nbsp;4.3&nbsp;(a): So sieht meine Zeichnung auf dem Display aus."><img src="images/oled_display_hocs_drawing.jpg" class="img-fluid figure-img" data-ref-parent="fig-images-display-drawing-vs-text"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-oled-display-hocs-drawing-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) So sieht meine Zeichnung auf dem Display aus.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-images-display-drawing-vs-text" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-oled-display-hocs-text" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-oled-display-hocs-text-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/oled_display_hocs_text.jpg" class="lightbox" data-gallery="fig-images-display-drawing-vs-text" title="Abbildung&nbsp;4.3&nbsp;(b): Es geht auch direkt als Text, allerdings abgeschnitten."><img src="images/oled_display_hocs_text.jpg" class="img-fluid figure-img" data-ref-parent="fig-images-display-drawing-vs-text"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-oled-display-hocs-text-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Es geht auch direkt als Text, allerdings abgeschnitten.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-images-display-drawing-vs-text-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;4.3: Gezeichneter vs.&nbsp;getippter Text auf dem Display.
+</figcaption>
+</figure>
+</div>
+</section></details>
+</section>
+
+<section id="sec-images-pixels" class="level2 collapsable" data-number="4.2">
+<h2 class="collapsable anchored" data-number="4.2" data-anchor-id="sec-images-pixels"><span class="header-section-number">4.2</span> Pixel</h2>
+<details class="collapsable-section" open=""><summary></summary>
+<p>Nachdem wir das Display im Brick Viewer ausprobiert haben, wollen wir uns seine Funktionen in Python anschauen. Dazu stellen wir wie immer die Verbindung her und erzeugen eine Instanz des Display-Objekts:</p>
+<div id="b95ffa35" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1">1</button><span id="annotated-cell-1-2" class="code-annotation-target"><a href="#annotated-cell-1-2"></a><span class="im">from</span> tinkerforge.bricklet_oled_128x64_v2 <span class="im">import</span> BrickletOLED128x64V2</span>
+<span id="annotated-cell-1-3"><a href="#annotated-cell-1-3"></a></span>
+<span id="annotated-cell-1-4"><a href="#annotated-cell-1-4"></a>ipcon <span class="op">=</span> IPConnection()</span>
+<span id="annotated-cell-1-5"><a href="#annotated-cell-1-5"></a>ipcon.<span class="ex">connect</span>(<span class="st">'localhost'</span>, <span class="dv">4223</span>)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2">2</button><span id="annotated-cell-1-6" class="code-annotation-target"><a href="#annotated-cell-1-6"></a>oled <span class="op">=</span> BrickletOLED128x64V2(<span class="st">'25zo'</span>, ipcon)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="3">3</button><span id="annotated-cell-1-7" class="code-annotation-target"><a href="#annotated-cell-1-7"></a>oled.clear_display()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="2" data-code-annotation="1">Wir importieren die Klasse <code>BrickletOLED128x64V2</code> aus der Tinkerforge-Bibliothek, die uns die Funktionen des Displays zur Verfügung stellt.</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="6" data-code-annotation="2">Denkt dran, eure eigene UID einzutragen.</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="7" data-code-annotation="3">Wir löschen den Display-Inhalt, damit wir mit einem leeren Display starten. Die Funktion <code>clear_display()</code> erledigt das.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Über die Variable <code>oled</code> können wir von nun an die verschiedenen Funktionen des Displays verwenden. Eine davon seht ihr bereits im Codebeispiel, nämlich das Löschen des Displays mit <code>clear_display()</code>. Die andere wesentliche Funktion ist das An- und Ausschalten einzelner Pixel.</p>
+<p>Das Wort <a href="glossary.html#gl-pixel" title="Pixel"><span class="gloss-term">Pixel</span></a> wird vom englischen “picture element” abgeleitet, also Bildelement. Ein Pixel ist der kleinste darstellbare Punkt auf einem Display. In unserem Fall kann ein Pixel entweder schwarz oder weiß sein. Auf anderen Bildschirmen, wie dem eures Smartphones oder Fernsehers, können Pixel auch farbig sein. Das schauen wir uns später noch genauer an. In diesem Kapitel konzentrieren wir uns auf die einfache schwarzweiße Darstellung. Schließlich kann unser Display nur Schwarzweiß.</p>
+<p>Das Display, das wir verwenden, hat eine Auflösung von 128 x 64 Pixeln. Das bedeutet, dass es 128 Pixel in der Breite und 64 Pixel in der Höhe hat. Insgesamt ergibt das somit 8192 Pixel, die wir individuell an- oder ausschalten können.</p>
+<p>Beginnen wir, indem wir das Pixel in der linken oberen Ecke des Displays einschalten. Damit wir mit einzelnen Pixel sprechen können, hat jedes eine eigene Koordinate, die einfach die Position als Zeile und Spalte angibt. Genau wie in einer Excel-Tabelle, in der die Zelle in der dritten Spalte und vierten Zeile mit C4 adressiert würde. Nur verwenden wir bei Pixel statt Buchstaben nur Zahlen.</p>
+<p>Die Koordinaten für das Pixel links oben lauten (0, 0), wobei die erste Zahl die x-Koordinate (horizontal) und die zweite Zahl die y-Koordinate (vertikal) ist. Um dieses Pixel einzuschalten, verwenden wir die Funktion <code>write_pixels()</code> und rufen sie wie folgt auf:</p>
+<div id="47fd7f70" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, [<span class="dv">1</span>])</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Aber warum denn so viele Argumente? Es reicht doch, wenn wir die Koordinaten des Pixels angeben, oder? Der Grund ist, dass die Funktion <code>write_pixels()</code> nicht nur einzelne Pixel ansteuern kann, sondern auch rechteckige Flächen von Pixeln. Deshalb müssen wir die Funktion so aufrufen, dass sie eine rechteckige Fläche beschreibt. <a href="#fig-images-write-pixels-single" class="quarto-xref">Abbildung&nbsp;<span>4.4</span></a> zeigt das anhand des Beispiels des linken oberen Pixels.</p>
+<div id="fig-images-write-pixels-single" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-images-write-pixels-single-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/images_write_pixel_coordinates_single.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Abbildung&nbsp;4.4: Die Funktion write_pixels() benötigt die Angabe eines Rechtecks und die entsprechenden Pixelwerte als 0 oder 1. Für ein einziges Pixel sind beide Punkte des Rechtecks identisch."><img src="https://winf-hsos.github.io/university-docs/images/images_write_pixel_coordinates_single.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-images-write-pixels-single-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;4.4: Die Funktion <code>write_pixels()</code> benötigt die Angabe eines Rechtecks und die entsprechenden Pixelwerte als 0 oder 1. Für ein einziges Pixel sind beide Punkte des Rechtecks identisch.
+</figcaption>
+</figure>
+</div>
+<p>In der Abbildung seht ihr die Werte, die die Funktion <code>write_pixels()</code> übergeben bekommt, um ein Pixel anzusteuern. Allgemein lautet die Signatur der Funktion so:</p>
+<div id="00f86070" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>write_pixels(x_start, y_start, x_end, y_end, pixel_values)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Die ersten vier Argumente definieren die zwei Punkte die rechteckige Fläche als Linksoben und Rechtsunten beschreiben. Die ersten beiden Argumente sind die x- und y-Koordinaten des oberen linken Punkts, die zweiten beiden Argumente sind die x- und y-Koordinaten des unteren rechten Punkts. Diese Eckpunkte sind inklusive, das heißt, die Breite ergibt sich aus <code>x_end - x_start + 1</code> und die Höhe aus <code>y_end - y_start + 1</code>. In unserem Fall sind beide Punkte (0, 0), wir sprechen also genau ein Pixel an. Der letzte Parameter ist eine Liste von Werten, die angibt, ob die Pixel in der definierten Fläche ein- oder ausgeschaltet werden sollen. Ein Wert von 1 bedeutet weiß, 0 bedeutet schwarz. Da wir nur ein Pixel ansprechen, enthält die Liste nur einen Wert: <code>[1]</code>.</p>
+<p>Auch wenn es im Beispiel nur ein Wert ist, stellt die <code>[1]</code> dennoch eine Liste imn Python dar. Darauf weisen die eckigen Klammern hin. Innerhalb der Klammern können beliebig viele Werte durch Kommas getrennt angegeben werden. Es kann aber auch nur ein Wert sein, wie in unserem Fall.</p>
+<p>Wir können das Pixel wieder ausschalten, indem wir den Wert in der Liste auf 0 ändern. Sobald ihr Enter drückt, sollte das Pixel in der linken oberen Ecke wieder ausgehen:</p>
+<div id="501b10b7" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, [<span class="dv">1</span>])</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">input</span>(<span class="st">"Drücke Enter um das Pixel auszuschalten..."</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, [<span class="dv">0</span>])</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Einzelne Pixel lassen sich auf die oben gezeigte Weise an- und ausschalten. Aber was ist, wenn wir mehrere Pixel gleichzeitig ansteuern wollen? Zum Beispiel ein kleines Quadrat in der Mitte des Displays? Dafür müssen wir die Koordinaten der beiden Punkte anpassen, die die rechteckige Fläche definieren, und eine Liste mit den entsprechenden Werten für alle Pixel in dieser Fläche erstellen. Wir sprechen hier von einer <a href="glossary.html#gl-bitmap" title="Bitmap"><span class="gloss-term">Bitmap</span></a>, also einer Matrix von Pixelwerten, die zusammen ein Bild ergeben.</p>
+</details>
+</section>
+<section id="sec-images-bitmaps" class="level2 collapsable" data-number="4.3">
+<h2 class="collapsable anchored" data-number="4.3" data-anchor-id="sec-images-bitmaps"><span class="header-section-number">4.3</span> Bitmaps</h2>
+<details class="collapsable-section" open=""><summary></summary>
+<section id="quadrate-und-andere-formen" class="level3" data-number="4.3.1">
+<h3 data-number="4.3.1" class="anchored" data-anchor-id="quadrate-und-andere-formen"><span class="header-section-number">4.3.1</span> Quadrate und andere Formen</h3>
+<p>Sagen wir, wir wollen ein 2x2 großes Quadrat in der Mitte des Displays zeichnen. Dazu müssen wir zuerst berechnen, wo die Mitte des Displays ist. Da das Display 128 Pixel breit und 64 Pixel hoch ist, läge die Mitte rechnerisch bei (64, 32). Weil wir bei 0 zu zählen beginnen, korrigieren wir auf (63, 31). Um ein 2x2-Quadrat zu zeichnen, setzen wir die Koordinaten des oberen linken Punkts auf (62, 30) und die Koordinaten des unteren rechten Punkts auf (63, 31). Die Liste der Werte für die Pixel in dieser Fläche muss 4 Werte enthalten, alle auf 1 gesetzt, um das Quadrat anzuzeigen.</p>
+<div id="ca298939" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">62</span>, <span class="dv">30</span>, <span class="dv">63</span>, <span class="dv">31</span>, [<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>])</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Genau genommen ist die Liste eine flache Struktur, sie wird aber als 2x2-Matrix interpretiert. Die Bitmap sieht also so aus:</p>
+<pre><code>1 1
+1 1</code></pre>
+<p><a href="#fig-images-write-pixels" class="quarto-xref">Abbildung&nbsp;<span>4.5</span></a> zeigt das Konzept der Bitmap für unser 2x2-Quadrat. Der Startpunt oben links unterscheidet sich in diesem Beispiel von dem Endpunkt unten rechts, weil wir nicht nur ein einzelnes Pixel ansteuern, sondern eine quadratische Fläche.</p>
+<div id="fig-images-write-pixels" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-images-write-pixels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/images_write_pixel_coordinates.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Abbildung&nbsp;4.5: Ein 2x2 Quadrat über die Angabe der linken oberen sowie der unteren rechten Ecke."><img src="https://winf-hsos.github.io/university-docs/images/images_write_pixel_coordinates.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-images-write-pixels-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;4.5: Ein 2x2 Quadrat über die Angabe der linken oberen sowie der unteren rechten Ecke.
+</figcaption>
+</figure>
+</div>
+<p>Was ist, wenn wir das Quadrat auf 3x3 vergrößern wollen? Dann ändern wir den unteren rechten Punkt auf (64, 32) oder alternativ den oberen linken Punkt auf (61, 29). Die Liste der Werte erweitern wir auf 9 Einträge:</p>
+<div id="f509b4b6" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">61</span>, <span class="dv">29</span>, <span class="dv">63</span>, <span class="dv">31</span>, [<span class="dv">1</span>]<span class="op">*</span><span class="dv">9</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Die Python-Syntax <code>[1]*9</code> erzeugt eine Liste mit 9 Einsen. Das ist eine praktische Abkürzung, um lange Listen mit gleichen Werten zu erstellen.</p>
+<p>Die Idee von <code>write_pixels()</code> ist also, dass wir eine rechteckige Fläche definieren und dann eine Liste von Werten bereitstellen, die angibt, ob jedes Pixel in dieser Fläche ein- oder ausgeschaltet wird. Die Länge der Liste muss genau der Anzahl der Pixel in der Fläche entsprechen. Die Werte in der Liste werden zeilenweise von links nach rechts und von oben nach unten gelesen.</p>
+<p>In <a href="#fig-images-write-pixel-coordinates-cross" class="quarto-xref">Abbildung&nbsp;<span>4.6</span></a> sehen wir ein weiteres Beispiel, ebenfalls für eine Bitmap mit 3x3 Pixeln. Jedoch sind dieses Mal nicht alle Pixel angeschaltet, sondern nur die Pixel, die ein Kreuzmuster ergeben. Als Liste sieht das so aus:</p>
+<pre><code>[0, 1, 0, 1, 1, 1, 0, 1, 0]</code></pre>
+<p>Als Matrix dargestellt, wie es auch auf dem Display erscheint, sieht das so aus:</p>
+<pre><code>0 1 0
+1 1 1
+0 1 0</code></pre>
+<p>In der Matrixdarstellung erkennt man schnell das Kreuzmuster, das wir gezeichnet haben.</p>
+<div id="fig-images-write-pixel-coordinates-cross" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-images-write-pixel-coordinates-cross-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/images_write_pixel_coordinates_cross.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Abbildung&nbsp;4.6: Über die Pixelwerte lassen sich beliebige Symbole darstellen, hier ein Kreuz."><img src="https://winf-hsos.github.io/university-docs/images/images_write_pixel_coordinates_cross.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-images-write-pixel-coordinates-cross-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;4.6: Über die Pixelwerte lassen sich beliebige Symbole darstellen, hier ein Kreuz.
+</figcaption>
+</figure>
+</div>
+<p>Wenn wir dieses Kreuzmuster öfters zeichnen wollen, dann wäre es eine gute Idee, die Liste der Pixelwerte in einer Variablen zu speichern. So können wir sie immer wieder verwenden, ohne die Liste jedes Mal neu schreiben zu müssen. Das sieht dann so aus:</p>
+<div id="7cc920d3" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>cross_bitmap <span class="op">=</span> [</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>,</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Jetzt können wir das Kreuzmuster einfach zeichnen, indem wir die Variable <code>cross_bitmap</code> an die Funktion <code>write_pixels()</code> übergeben:</p>
+<div id="84067f04" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">2</span>, cross_bitmap)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Da wir als Quadrat (0, 0) bis (2, 2) angegeben haben, wird das Kreuz in der linken oberen Ecke des Displays gezeichnet. Wir können die x- und y-Koordinaten anpassen, um das Kreuz an einer anderen Position zu zeichnen. Zum Beispiel direkt daneben noch eins, mit einem Pixel Abstand dazwischen:</p>
+<div id="51f542f2" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">2</span>, cross_bitmap)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">6</span>, <span class="dv">2</span>, cross_bitmap)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Was, wenn wir Kreuze über das gesamte Display zeichnen wollen? Ein Kreuz inklusive Abstand benötigt 3 Pixel auf der x-Achse. Da wir 128 Pixel in der Breite haben, können wir also 42 Kreuze in eine Zeile des Displays zeichnen.</p>
+<div id="f61ef2d7" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">2</span>, cross_bitmap)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">6</span>, <span class="dv">2</span>, cross_bitmap)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">8</span>, <span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">2</span>, cross_bitmap)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">120</span>, <span class="dv">0</span>, <span class="dv">122</span>, <span class="dv">2</span>, cross_bitmap)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Stellt euch statt “…” 38 weitere Zeilen Code vor, die jeweils ein Kreuz zeichnen. Das wäre ziemlich mühsam. Zum Glück kennen wir dafür schon eine bessere Lösung, die Schleife. Wir können eine Schleife verwenden, um die x-Koordinate automatisch zu berechnen und die Kreuze in einer einzigen Schleife zu zeichnen. So sieht das aus:</p>
+<div id="1e34f811" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">128</span>, <span class="dv">4</span>):</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    oled.write_pixels(x, <span class="dv">0</span>, x <span class="op">+</span> <span class="dv">2</span>, <span class="dv">2</span>, cross_bitmap)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Erinnert euch: Die <code>range()</code>-Funktion erzeugt eine Folge von Zahlen. In diesem Fall starten wir bei 0, enden bei 128 und erhöhen die Zahl in jedem Schritt um 4. Dadurch erhalten wir die x-Koordinaten 0, 4, 8, …, 124. In jedem Schleifendurchlauf zeichnen wir ein Kreuz an der aktuellen x-Position.</p>
+<p>Denken wir das Ganze ein Stück weiter und erzeugen ein Display voller Kreuze. Dazu könnten wir unsere Schleife kopieren und die y-Koordinate anpassen, um die Kreuze in mehreren Reihen zu zeichnen. Aber auch hier können wir wieder eine Schleife verwenden, um die y-Koordinate automatisch zu berechnen. So sieht das aus:</p>
+<div id="d9ff5bd4" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> y <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">64</span>, <span class="dv">4</span>):</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">128</span>, <span class="dv">4</span>):</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>        oled.write_pixels(x, y, x <span class="op">+</span> <span class="dv">2</span>, y <span class="op">+</span> <span class="dv">2</span>, cross_bitmap)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Wenn ihr den Code ausführt, könnt ihr dem Display beim Zeichnen zuschauen. Es füllt sich nach und nach mit Kreuzen, beginnend oben rechts nach unten links, bis das gesamte Display bedeckt ist. Schneller ginge es, wenn wir alle Pixelwerte in einer einzigen Liste speichern und dann auf einmal zeichnen. Das könnt ihr als Übung selbst ausprobieren.</p>
+<p>Wenn wir Kreuze als Bitmaps darstellen und zeichnen können, wie sieht es dann mit anderen Symbolen, wie etwa Buchstaben aus?</p>
+</section>
+<section id="sec-images-letters" class="level3" data-number="4.3.2">
+<h3 data-number="4.3.2" class="anchored" data-anchor-id="sec-images-letters"><span class="header-section-number">4.3.2</span> Buchstaben</h3>
+<p>Auch Buchstaben auf dem Bildschirm sind nichts anderes als Pixelmuster. Wie bereits erwähnt, ist ein Buchstabe auf dem Display von Tinkerforge 5 Pixel breit und 8 Pixel hoch. Das bedeutet, dass wir für jeden Buchstaben eine Bitmap mit 40 Werten benötigen. Tinkerforge, der Hersteller des Displays, stellt eine Übersicht der unterstützten Zeichen und deren Pixelmuster auf <a href="https://www.tinkerforge.com/en/doc/Hardware/Bricklets/OLED_128x64_V2.html#font">seiner Webseite</a> bereit. Daraus habe ich den Buchstaben “A” als Bitmap in eine einfache Tabelle übertragen und Pixel, die an sind, schwarz eingefärbt. Das Ergebnis seht ihr in <a href="#fig-images-bitmap-letter-a" class="quarto-xref">Abbildung&nbsp;<span>4.7</span></a>.</p>
+<div id="fig-images-bitmap-letter-a" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-images-bitmap-letter-a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/images_letter_a.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Abbildung&nbsp;4.7: Der Buchstabe “A” als Bitmap."><img src="https://winf-hsos.github.io/university-docs/images/images_letter_a.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-images-bitmap-letter-a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;4.7: Der Buchstabe “A” als Bitmap.
+</figcaption>
+</figure>
+</div>
+<p>Anhand dieser Darstellung können wir die Werte für die Liste mit Einsen und Nullen ableiten, die wir benötigen, um den Buchstaben “A” auf dem Display darzustellen. Die Liste sieht so aus:</p>
+<div id="00cb0eaf" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>letter_a_bitmap <span class="op">=</span> [</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>,</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>,</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>,</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Wer gute Augen hat, erkennt in der Matrix den Buchstaben “A” sofort. Welcher Buchstabe verbirgt sich in der folgenden Bitmap?</p>
+<div id="a1e1172b" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>letter_unknown_bitmap <span class="op">=</span> [</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>    <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>,</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>,</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>    <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>,</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>    <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>]</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Zeichnen wir den Buchstaben auf dem Display, um es herauszufinden. Wir kennen die Dimensionen (5x8 Pixel), haben die Bitmap als Liste und müssen nur noch die Position bestimmen, an der der Buchstabe gezeichnet werden soll. Ich habe mich für die Position (6, 10) als oberen linken Punkt entschieden:</p>
+<div id="b6b32b9c" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">6</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">17</span>, letter_unknown_bitmap)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Und? Seht ihr auch ein großes “S”?</p>
+<div id="fig-images-bitmap-letter-s" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-images-bitmap-letter-s-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/images_letter_s.png" class="lightbox" data-gallery="quarto-lightbox-gallery-10" title="Abbildung&nbsp;4.8: Der Buchstabe “S” als Bitmap."><img src="https://winf-hsos.github.io/university-docs/images/images_letter_s.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-images-bitmap-letter-s-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;4.8: Der Buchstabe “S” als Bitmap.
+</figcaption>
+</figure>
+</div>
+<p>Versuchen wir, davor noch das “A” zu schreiben:</p>
+<div id="0b0bf599" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">17</span>, letter_a_bitmap)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Wir haben richtig gerechnet: Das “A” soll vor dem “S” stehen, also müssen wir mit der x-Koordinate 5 Pixel nach links gehen. Die y-Koordinate bleibt gleich, weil beide Buchstaben auf der gleichen Höhe stehen sollen. Lasst uns noch ein Pixel Platz zwischen beiden Buchstaben lassen. Das bedeutet, dass wir die x-Koordinate des “A” um 1 Pixel weiter nach links setzen, also auf 0. Die x-Koordinate des rechten unteren Punkts des “A” nimmt dann den Wert 4 an. Der Code für das “A” sieht so aus:</p>
+<div id="55540a3e" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">4</span>, <span class="dv">17</span>, letter_a_bitmap)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Und nun noch ein “S” ans Ende, damit wir ein sinnvolles Wort geschrieben haben:</p>
+<div id="9546f5fd" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">4</span>, <span class="dv">17</span>, letter_a_bitmap)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">6</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">17</span>, letter_unknown_bitmap)</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">12</span>, <span class="dv">10</span>, <span class="dv">16</span>, <span class="dv">17</span>, letter_unknown_bitmap)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Sucht euch aus, ob ihr nun eine Spielkarte, den Namen eines Schmerzmittels oder das englischsprachige Wort für Ar*** geschrieben habt. In jedem Fall sind es drei Buchstaben, die wir mit Bitmaps auf dem Display dargestellt haben. Und das ganz ohne die Textfunktion des Displays zu verwenden.</p>
+<p>Das wäre übrigens auch einfacher gegangen, wäre aber nicht so lehrreich gewesen:</p>
+<div id="2a893a79" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>oled.write_line(<span class="dv">0</span>, <span class="dv">0</span>, <span class="st">"Ass"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Wenn ihr beides hintereinander ausführt, steht oben “Ass” per Textfunktion und darunter “ASS” als eigene Bitmaps. Das Schöne an der <code>write_line()</code>-Funktion ist, dass sie automatisch die richtigen Bitmaps für die Buchstaben verwendet. Das Display hat eine eingebaute Schriftart, die es nutzt, wenn wir Text anzeigen wollen. Aber wie ihr gesehen habt, können wir auch eigene Bitmaps verwenden, um Buchstaben oder andere Symbole zu zeichnen, die nicht im Zeichensatz des Displays enthalten sind.</p>
+<p>Schriftarten für Pixel-Displays sind im Kern nichts anderes als Sammlungen von Bitmaps: Für jedes Zeichen wird festgelegt, welche Pixel im 5x8-Raster leuchten. Unser “A” oben ist genau so definiert, und das OLED-Bricklet bringt eine solche Tabelle für viele Zeichen bereits mit. Wenn ihr eine andere Schrift wollt, erstellt ihr einfach eine neue Bitmap-Tabelle, etwa eine fette oder eine schmale Variante, und verwendet diese beim Zeichnen. Das funktioniert hervorragend in festen Rastergrößen, stößt aber an Grenzen, sobald sich die Größe der Buchstaben ändern muss, wenn etwa die Schrift vergrößert werden soll. Hier kommen Vektorgrafiken ins Spiel, die Formen nicht als Pixelraster, sondern als Linien und Kurven beschreiben.</p>
+</section></details>
+</section>
+
+<section id="sec-images-vector-graphics" class="level2 collapsable" data-number="4.4">
+<h2 class="collapsable anchored" data-number="4.4" data-anchor-id="sec-images-vector-graphics"><span class="header-section-number">4.4</span> Vektorgrafiken</h2>
+<details class="collapsable-section" open=""><summary></summary>
+<p>Während Bitmaps jedes Pixel explizit speichern, beschreiben Vektorgrafiken Objekte über geometrische Formen, etwa “eine Linie von A nach B” oder “ein Kreis mit Mittelpunkt M und Radius r”. Eine Vektor-Schriftart (wie TrueType) enthält keine 5x8-Raster pro Zeichen, sondern Pfade für die Konturen von “A”, “S” etc. Der Vorteil: Diese Formen lassen sich beliebig vergrößern oder verkleinern, ohne dass Treppeneffekte entstehen. Das ist ideal für hochauflösende Displays und Druck. Auf unserem kleinen OLED-Display arbeiten wir dennoch mit Bitmaps, weil sie direkt den Pixeln entsprechen und ohne aufwendiges Rasterisieren angezeigt werden können.</p>
+<p>Schaut euch zur Verdeutlichung der Problematik einmal die beiden “a” aus der <a href="#fig-images-truetype-vs-bitmap" class="quarto-xref">Abbildung&nbsp;<span>4.9</span></a> an. Das linke “a” ist eine TrueType-Schriftart, die als Vektorgrafik beschrieben wird. Das rechte “a” ist über eine Bitmap definiert und wurde stark vergrößert. Während das rechte “a” pixelig wirkt - wir sprechen auch vom Treppeneffekt, ist die als Vektorgrafik beschriebene Variante gestochen scharf, auch in großen Größen.</p>
+<div id="fig-images-truetype-vs-bitmap" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-images-truetype-vs-bitmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://winf-hsos.github.io/university-docs/images/images_truetype_vs_bitmap.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-images-truetype-vs-bitmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;4.9: Das linke “a” ist eine TrueType-Schriftart, das rechte “a” eine Bitmap. Quelle: <a href="https://de.wikipedia.org/wiki/TrueType#/media/Datei:TTvsBmpFont.svg">Wikipedia</a>.
+</figcaption>
+</figure>
+</div>
+<p>Wie funktioniert das? Dazu betrachten wir ein anderes Beispiel für eine Vektorgrafik in einem speziellen Format mit dem Namen Scalable Vector Grafik, oder kurz SVG. Kopiert einfach mal den folgenden Code in eine Textdatei und benennt sie <code>vector_graphics.svg</code>. Öffnet die Datei anschließend in einem Webbrowser.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource xml number-lines code-with-copy"><code class="sourceCode xml"><span id="cb22-1"><a href="#cb22-1"></a>&lt;<span class="kw">svg</span><span class="ot"> width=</span><span class="st">"440"</span><span class="ot"> height=</span><span class="st">"220"</span><span class="ot"> xmlns=</span><span class="st">"http://www.w3.org/2000/svg"</span>&gt;</span>
+<span id="cb22-2"><a href="#cb22-2"></a>  &lt;<span class="kw">circle</span><span class="ot"> cx=</span><span class="st">"60"</span><span class="ot"> cy=</span><span class="st">"60"</span><span class="ot"> r=</span><span class="st">"50"</span><span class="ot"> stroke=</span><span class="st">"#0085C7"</span><span class="ot"> stroke-width=</span><span class="st">"10"</span><span class="ot"> fill=</span><span class="st">"none"</span> /&gt;</span>
+<span id="cb22-3"><a href="#cb22-3"></a>  &lt;<span class="kw">circle</span><span class="ot"> cx=</span><span class="st">"180"</span><span class="ot"> cy=</span><span class="st">"60"</span><span class="ot"> r=</span><span class="st">"50"</span><span class="ot"> stroke=</span><span class="st">"#000000"</span><span class="ot"> stroke-width=</span><span class="st">"10"</span><span class="ot"> fill=</span><span class="st">"none"</span> /&gt;</span>
+<span id="cb22-4"><a href="#cb22-4"></a>  &lt;<span class="kw">circle</span><span class="ot"> cx=</span><span class="st">"300"</span><span class="ot"> cy=</span><span class="st">"60"</span><span class="ot"> r=</span><span class="st">"50"</span><span class="ot"> stroke=</span><span class="st">"#DF0024"</span><span class="ot"> stroke-width=</span><span class="st">"10"</span><span class="ot"> fill=</span><span class="st">"none"</span> /&gt;</span>
+<span id="cb22-5"><a href="#cb22-5"></a>  &lt;<span class="kw">circle</span><span class="ot"> cx=</span><span class="st">"120"</span><span class="ot"> cy=</span><span class="st">"110"</span><span class="ot"> r=</span><span class="st">"50"</span><span class="ot"> stroke=</span><span class="st">"#FFD500"</span><span class="ot"> stroke-width=</span><span class="st">"10"</span><span class="ot"> fill=</span><span class="st">"none"</span> /&gt;</span>
+<span id="cb22-6"><a href="#cb22-6"></a>  &lt;<span class="kw">circle</span><span class="ot"> cx=</span><span class="st">"240"</span><span class="ot"> cy=</span><span class="st">"110"</span><span class="ot"> r=</span><span class="st">"50"</span><span class="ot"> stroke=</span><span class="st">"#009F3D"</span><span class="ot"> stroke-width=</span><span class="st">"10"</span><span class="ot"> fill=</span><span class="st">"none"</span> /&gt;</span>
+<span id="cb22-7"><a href="#cb22-7"></a>&lt;/<span class="kw">svg</span>&gt;</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ihr solltet ein Bild wie in <a href="#fig-images-vector-example" class="quarto-xref">Abbildung&nbsp;<span>4.10</span></a> sehen. Zoomt nun einmal ganz nach hinhein, indem ihr Strg + Plus (Windows) oder Cmd + Plus (Mac) drückt. Ihr werdet feststellen, dass die Kreise auch bei starker Vergrößerung scharf bleiben, ohne dass Treppeneffekte auftreten. Das liegt daran, dass Vektorgrafiken mathematisch beschrieben werden und nicht auf eine feste Pixelauflösung angewiesen sind.</p>
+<div id="fig-images-vector-example" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-images-vector-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/images_vector_example.png" class="lightbox" data-gallery="quarto-lightbox-gallery-11" title="Abbildung&nbsp;4.10: Ein Versuch der Olympischen Ringe als Vektorgrafik, die man ohne Qualitätsverlust beliebig vergrößern kann."><img src="https://winf-hsos.github.io/university-docs/images/images_vector_example.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-images-vector-example-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;4.10: Ein Versuch der Olympischen Ringe als Vektorgrafik, die man ohne Qualitätsverlust beliebig vergrößern kann.
+</figcaption>
+</figure>
+</div>
+<p>Aber Moment, wenn Vektorgrafiken auf einem Bildschirm angezeigt werden, müssen sie dann nicht auch als Pixel dargestellt werden? Schließlich besteht doch jedes Bild im Endeffekt aus Pixeln wenn wir es anzeigen, oder? Und das stimmt. Während Vektorgrafiken das, was auf dem Bildschirm erscheinen soll, über geometrische Formen beschreiben, muss das Bild letztlich in eine Bitmap umgewandelt werden, damit es auf dem Bildschirm angezeigt werden kann. Dieser Prozess wird als <a href="glossary.html#gl-rasterisierung" title="Rasterisierung"><span class="gloss-term">Rasterisierung</span></a> bezeichnet.</p>
+<p>In <a href="#fig-images-vector-to-bitmap" class="quarto-xref">Abbildung&nbsp;<span>4.11</span></a> seht ihr die Vektorgrafik von oben, die in eine Bitmap mit niedriger Auflösung (100 x 50 Pixel) umgewandelt wurde. Wenn man wie im Bild hereinzoomt oder das Bild auf eine höhere Auflösung wie 1000 x 500 Pixel bringen möchte, weil man die Ringe vielleicht in einen Großformat auf ein Werbeplakt drucken möchte, dann erkennt man die Treppeneffekte deutlich. Die Auflösung einer Bitmap ist somit entscheidend für die Bildqualität. Je höher die Auflösung, desto mehr Pixel stehen zur Verfügung, um Details darzustellen, und desto schärfer wirkt das Bild. Bei Vektorgrafiken spielt das hingegen keine Rolle: Wir können für ein 3 x 2 m Werbeplakat einfach eine entsprechende hochauflösende Bitmap generieren, ohne dass die Qualität leidet, weil die Vektorgrafik immer die gleichen geometrischen Formen <em>beschreibt</em>.</p>
+<div id="fig-images-vector-to-bitmap" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-images-vector-to-bitmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/images_vector_example_rasterization.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12" title="Abbildung&nbsp;4.11: Die Beschreibung der geometrischen Objekte muss irgendwann in ein Bild aus Pixeln überführt werden. Dann spielt die Auflösung die entscheidende Rolle."><img src="https://winf-hsos.github.io/university-docs/images/images_vector_example_rasterization.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-images-vector-to-bitmap-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;4.11: Die Beschreibung der geometrischen Objekte muss irgendwann in ein Bild aus Pixeln überführt werden. Dann spielt die Auflösung die entscheidende Rolle.
+</figcaption>
+</figure>
+</div>
+<p>Aufgrund ihrer Eigenschaften werden Vektorgrafiken insbesondere für Logos, Icons und Schriftarten verwendet, die in verschiedenen Größen dargestellt werden müssen. Designagenturen nutzen sie häufig, um sicherzustellen, dass ihre Designs in jeder Größe gut aussehen. Für komplexe Bilder mit vielen Farben und Details, wie Fotos, sind Bitmaps jedoch besser geeignet, weil eine Beschreibung der geometrischen Formen zu aufwendig wäre.</p>
+</details>
+</section>
+<section id="sec-images-bits-to-display" class="level2 collapsable" data-number="4.5">
+<h2 class="collapsable anchored" data-number="4.5" data-anchor-id="sec-images-bits-to-display"><span class="header-section-number">4.5</span> Von Bits zum Bild</h2>
+<details class="collapsable-section" open=""><summary></summary>
+<p>Wir bleiben in diesem Kapitel bei Bitmaps, weil es für unser kleines 128x64 Pixel Display nicht sinnvoll ist, Vektorgrafiken zu verwenden. Zudem ist auch eine Vektorgrafik am Ende auf dem Bildschirm nichts anderes als eine Bitmap, weil der Bildschirm nur Pixel kennt. Deshalb müssen Vektorgrafiken vor der Anzeige in Bitmaps umgewandelt werden (Rasterisierung).</p>
+<p>Egal ob es vorher eine Vektorgrafik war oder direkt als Bitmap vorliegt: Um ein Bild auf unserem Display anzuzeigen, müssen wir es in eine Liste von Pixelwerten umwandeln, die wir dann mit der <code>write_pixels()</code>-Funktion zeichnen können. Im Beispiel unseres Displays reicht eine Liste mit Binärwerten (0 und 1) aus, um jedes Pixel als ein- oder ausgeschaltet zu kennzeichnen. Für ein farbiges Display, wie wir es typischerweise bei Computerbildschirmen, Smartphones oder Fernseher finden, wären mehrere Bits pro Pixel notwendig, um die verschiedenen Farben darzustellen. Ihr erinnert euch an den RGB-Farbcode aus <a href="colors.html" class="quarto-xref"><span>Kapitel 1</span></a>? Der kann für Farbbilder verwendet werden und mündet im Endeffekt auch in einer Liste von Nullen und Einsen, die die Farbwerte jedes Pixels repräsentieren. Nur ist diese Liste eben deutlich länger als bei Schwarzweiß-Bildern.</p>
+<p>Betrachtet einmal das Bild in <a href="#fig-images-bitmap-darth-vader" class="quarto-xref">Abbildung&nbsp;<span>4.12</span></a>. Ihr kennt bestimmt, was es zeigt. Es handelt sich um eine Bitmap-Darstellung von Darth Vaders Kopf aus Star Wars. Das Bild ist 27 Pixel breit und 24 Pixel hoch, also insgesamt 648 Pixel. Jedes Pixel ist entweder schwarz oder weiß, was locker auf unser Display passt. Wie aber bekommen wir es nun auf unser Display?</p>
+<div id="fig-images-bitmap-darth-vader" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-images-bitmap-darth-vader-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/images_darth_vader.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13" title="Abbildung&nbsp;4.12: Darth Vaders Kopf aus Star Wars als Bitmap"><img src="https://winf-hsos.github.io/university-docs/images/images_darth_vader.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-images-bitmap-darth-vader-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;4.12: Darth Vaders Kopf aus Star Wars als Bitmap
+</figcaption>
+</figure>
+</div>
+<p>Nehmen wir an, die Liste aus Nullen und Einsen liegt uns noch nicht vor. Unser erstes Ziel sollte somit sein, diese Liste zu erstellen. Das könnten wir per Hand versuchen, indem wir Zeile für Zeile von links nach rechts durch das Bild gehen und für jedes weiße Pixel eine 0 und für jedes schwarze Pixel eine 1 notieren. Das wäre aber sehr mühsam und fehleranfällig. Glücklicherweise liegt das Bild bereits digital vor, allerdings nicht als Bildformat, sondern als Excel-Tabelle.</p>
+<p>Bitte was? Ein Bild als Excel-Tabelle? Die Idee habe ich aus dem <a href="https://cs50.harvard.edu/x/2024/notes/4/#pixel-art">CS50-Kurs der Harvard University</a> übernommen. Dort erstellen Studierende mithilfe von Excel-Tabellen Pixelbilder, indem sie die Zellen entsprechend einfärben. Jede Zelle entspricht dabei einem Pixel, das entweder schwarz oder weiß ist. Das Ergebnis kann dann als Bitmap interpretiert werden. Die Excel-Datei mit Darth Vaders Maske könnt ihr euch <a href="resources/Darth Vader Pixel Art.xlsx">herunterladen</a> und das Ganze einmal selbst ausprobieren.</p>
+<p>Da wir bereits eine digitale Form haben (wenn auch kein Bildformat), können wir das Problem im Sinne des EVA-Modells auffassen: Wir haben Eingabedaten (die Excel-Tabelle) und wollen eine Ausgabe (die Liste von Nullen und Einsen). Der Prozess dazwischen ist die Verarbeitung, die dafür sorgt, dass die Excel-Tabelle gelesen und die Pixelwerte extrahiert werden. Das Ganze wollen wir natürlich als Python-Programm umsetzen, weil das unsere Programmiersprache der Wahl ist. Na dann los!</p>
+<div id="fig-images-darth-vader-input-output" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-images-darth-vader-input-output-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/images_darth_vader_input_output.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14" title="Abbildung&nbsp;4.13: Die Überführung einer Excel-basierten Bitmap in eine Liste aus Bits im EVA-Modell."><img src="https://winf-hsos.github.io/university-docs/images/images_darth_vader_input_output.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-images-darth-vader-input-output-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;4.13: Die Überführung einer Excel-basierten Bitmap in eine Liste aus Bits im EVA-Modell.
+</figcaption>
+</figure>
+</div>
+<section id="excel-mit-python-einlesen" class="level3" data-number="4.5.1">
+<h3 data-number="4.5.1" class="anchored" data-anchor-id="excel-mit-python-einlesen"><span class="header-section-number">4.5.1</span> Excel mit Python einlesen</h3>
+<p>Um Excel-Dateien in Python zu lesen müssen wir das Rad nicht neu erfinden. Es gibt verschiedene Bibliotheken, eine der beliebtesten und einfachsten ist <code>openpyxl</code>, die wir hier verwenden werden. Stellt sicher, dass ihr die Bibliothek installiert habt. Das könnt ihr mit dem folgenden Befehl in eurer Kommandozeile tun. Denkt daran, dass MacOS-Nutzer <code>pip3</code> anstelle von <code>pip</code> verwenden müssen:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install openpyxl</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Die Bibliothek <code>openpyxl</code> stellt uns eine Funktion mit dem Namen <code>load_workbook()</code> zur Verfügung, der wir einfach den Pfad der Excel-Datei übergeben können. Wenn ihr vorher die Excel-Datei mit Darth Vaders Maske heruntergeladen habt, könnt ihr sie so laden:</p>
+<div id="03751048" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openpyxl <span class="im">import</span> load_workbook</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>workbook <span class="op">=</span> load_workbook(<span class="st">"Dart Vader Pixel Art.xlsx"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Da ein Excel-Dokument aus mehreren Tabellenblättern bestehen kann, müssen wir nach dem Laden das Blatt auswählen, das wir verwenden wollen. Am sichersten geht das über den Namen des Tabellenblatts, das in unserem Fall “Darth Vader” heißt:</p>
+<div id="b6053520" class="cell" data-execution_count="21">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>sheet <span class="op">=</span> workbook[<span class="st">"Darth Vader"</span>]</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="zeile-für-zeile-die-pixelwerte-extrahieren" class="level3" data-number="4.5.2">
+<h3 data-number="4.5.2" class="anchored" data-anchor-id="zeile-für-zeile-die-pixelwerte-extrahieren"><span class="header-section-number">4.5.2</span> Zeile für Zeile die Pixelwerte extrahieren</h3>
+<p>Um aus der Excel-Darstellung zu einer Liste mit 0 und 1 zu kommen, können wir ein Programm schreiben, das genau das Vorgehen simuliert, das wir per Hand machen würden: Wir gehen Zeile für Zeile durch die Tabelle und lesen die Farbe jeder Zelle aus. Wenn die Zelle schwarz ist, fügen wir eine 1 zur Liste hinzu, wenn sie weiß ist, eine 0.</p>
+<p>Das Programmierkonzept, das wir dazu verwenden, haben wir schon kennengelernt. Erinnert ihr euch? Wir wollen etwas mehrfach ausführen (prüfen ob die Zelle schwarz oder weiß ist) für eine bekannte Menge von Elementen (alle Zellen in der Tabelle). Für die mehrfache Ausführung desselben Codes verwenden wir Schleifen. Und wenn die Menge der Elemente bekannt ist, verwenden wir eine <code>for</code>-Schleife. Genau das brauchen wir hier.</p>
+<p>Einer <code>for</code>-Schleife müssen wir mitteilen, für welche Menge an Elementen sie den selben Code mehrmals ausführen soll. Als wir die <code>for</code>-Schleife eingeführt haben, hat diese Aufgabe die <code>range()</code>-Funktion erledigt. Sie hat uns eine Sequenz (oder Menge) an Zahlen erzeugt, über die wir iterieren können.</p>
+<p>Diese Aufgabe übernimmt jetzt die Funktion <code>iter_rows()</code>, die das Tabellenblatt für uns bereitstellt. Sie gibt uns für ein Tabellenblatt die Menge aller Zeilen in der Tabelle zurück. Also erneut eine Menge an Elementen, wie von der <code>for</code>-Schleife gewünscht, wenn diesmal auch keine Zahlen. Für jede Zeile in dieser Menge können wir dann wiederum über die einzelnen Zellen iterieren, einfach indem wir <code>for cell in row:</code> schreiben. Es braucht also zwei Schleifen, die ineinander verschachtelt sind: Die erste Schleife geht Zeile für Zeile vor, und die zweite geht für jede Zeile die Spalten (oder Zellen) durch:</p>
+<div id="88c8bdd5" class="cell" data-execution_count="22">
+<div class="sourceCode cell-code" id="annotated-cell-27"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><button class="code-annotation-anchor" data-target-cell="annotated-cell-27" data-target-annotation="1">1</button><span id="annotated-cell-27-1" class="code-annotation-target"><a href="#annotated-cell-27-1"></a><span class="cf">for</span> row <span class="kw">in</span> sheet.iter_rows():</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-27" data-target-annotation="2">2</button><span id="annotated-cell-27-2" class="code-annotation-target"><a href="#annotated-cell-27-2"></a>    <span class="cf">for</span> cell <span class="kw">in</span> row:</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-27" data-target-annotation="3">3</button><span id="annotated-cell-27-3" class="code-annotation-target"><a href="#annotated-cell-27-3"></a>        ...</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-27" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-27" data-code-lines="1" data-code-annotation="1">Die äußere Schleife iteriert über jede Zeile im Tabellenblatt.</span>
+</dd>
+<dt data-target-cell="annotated-cell-27" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-27" data-code-lines="2" data-code-annotation="2">Die innere Schleife iteriert über jede Zelle in der aktuellen Zeile. Die Variable <code>row</code> ist eine Liste von Zellen, und <code>cell</code> repräsentiert die aktuelle Zelle in dieser Liste.</span>
+</dd>
+<dt data-target-cell="annotated-cell-27" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-27" data-code-lines="3" data-code-annotation="3">Hier müssen wir gleich den Code ergänzen, der die Farbe der Zelle prüft und die entsprechende 0 oder 1 zur Liste hinzufügt.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Was passiert nun für jede Zelle in der inneren Schleife? Wir müssen die Farbe der Zelle auslesen. In <code>openpyxl</code> können wir auf die Füllfarbe einer Zelle über das <code>fill</code>-Attribut zugreifen. Die Farbe selbst ist im <code>fgColor</code>-Attribut gespeichert, und der RGB-Wert der Farbe ist im <code>rgb</code>-Attribut zu finden. Etwas kompliziert, aber so funktioniert es nun mal. Man kann das alles in der Dokumentation der Bibliothek <a href="https://openpyxl.readthedocs.io/en/stable/api/openpyxl.styles.fills.html">nachlesen</a>. Auch ChatGPT &amp; Co.&nbsp;helfen hier weiter. Auswendig wissen muss man das nicht.</p>
+<p>Probieren wir also, die Farbe der Zelle auszulesen:</p>
+<div id="61dabb64" class="cell" data-execution_count="23">
+<div class="sourceCode cell-code" id="annotated-cell-28"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-28-1"><a href="#annotated-cell-28-1"></a><span class="cf">for</span> row <span class="kw">in</span> sheet.iter_rows():</span>
+<span id="annotated-cell-28-2"><a href="#annotated-cell-28-2"></a>    <span class="cf">for</span> cell <span class="kw">in</span> row:</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-28" data-target-annotation="1">1</button><span id="annotated-cell-28-3" class="code-annotation-target"><a href="#annotated-cell-28-3"></a>        color <span class="op">=</span> <span class="bu">getattr</span>(cell.fill.fgColor, <span class="st">"rgb"</span>, <span class="va">None</span>)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-28" data-target-annotation="2">2</button><span id="annotated-cell-28-4" class="code-annotation-target"><a href="#annotated-cell-28-4"></a>        <span class="bu">print</span>(color)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-28" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-28" data-code-lines="3" data-code-annotation="1">Das müssen wir nicht auswendig wissen, das schlagen wir in der Dokumentation der Bibliothek nach.</span>
+</dd>
+<dt data-target-cell="annotated-cell-28" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-28" data-code-lines="4" data-code-annotation="2">Wir geben die Farbe der Zelle aus, um zu sehen, welchen Wert sie hat.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Wenn ihr das Programm bis hierher ausführt, dann solltet ihr auf der Konsole eine lange Liste von Farbwerten sehen. Aber wie sehen die denn aus?</p>
+<pre><code>00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+FF000000
+FF000000
+...</code></pre>
+<p>Was soll das bitte bedeuten?</p>
+</section>
+<section id="hexadezimale-farbwerte" class="level3" data-number="4.5.3">
+<h3 data-number="4.5.3" class="anchored" data-anchor-id="hexadezimale-farbwerte"><span class="header-section-number">4.5.3</span> Hexadezimale Farbwerte</h3>
+<p>Im vorigen Kapitel <a href="numbers.html" class="quarto-xref"><span>Kapitel 2</span></a> haben wir das Binärsystem kennengelernt. Das Binärsystem ist nur eines von vielen Stellenwertsystemen und es verwendet als Basis die 2. Wir haben auch gesehen, dass andere Systeme mit anderen Basen gibt, wie das Oktalsystem zur Basis 8 oder das Dezimalsystem zur Basis 10, das wir im Alltag verwenden. Ein weiteres, in der Informatik wichtiges System, ist das Hexadezimalsystem zur Basis 16. Es verwendet die Ziffern 0 bis 9, und weil es dann keine weiteren Zahlen mehr gibt, anschließend die Buchstaben A bis F, um die Werte von 10 bis 15 darzustellen. Hexadezimale Zahlen werden häufig in der Informatik verwendet, um Bytes kompakt darzustellen. Wie ihr gleich sehen werdet, passt ein Byte nämlich wunderschön in zwei hexadezimale Ziffern.</p>
+<p>Aber eins nach dem anderen. Beginnen wir mit dem Hexadezimalsystem an sich. Wir können das bekannte Schema der Stellenwertsysteme anwenden, um zu verstehen, welche Wertigkeit jede Ziffer in einer Hexadezimalzahl hat:</p>
+<div id="fig-images-hexadecimal-places" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-images-hexadecimal-places-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/images_places_hexadecimal.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15" title="Abbildung&nbsp;4.14: Das Stellenwertschema für das Hexadezimalsystem zur Basis 16. Funktioniert wie jedes andere Stellenwertsystem."><img src="https://winf-hsos.github.io/university-docs/images/images_places_hexadecimal.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-images-hexadecimal-places-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;4.14: Das Stellenwertschema für das Hexadezimalsystem zur Basis 16. Funktioniert wie jedes andere Stellenwertsystem.
+</figcaption>
+</figure>
+</div>
+<p>In <a href="#fig-images-hexadecimal-places" class="quarto-xref">Abbildung&nbsp;<span>4.14</span></a> sehen wir die Wertigkeit der einzelnen Stellen in einer Hexadezimalzahl. Die rechte Stelle hat den Wert <span class="math inline">\(16^0 = 1\)</span>, die nächste Stelle links davon hat den Wert <span class="math inline">\(16^1 = 16\)</span>, dann <span class="math inline">\(16^2 = 256\)</span> und so weiter. Um den Gesamtwert einer Hexadezimalzahl zu berechnen, multiplizieren wir jede Ziffer mit ihrer jeweiligen Wertigkeit und addieren die Ergebnisse. Der einzige Unterschied zu den Stellenwertsystemen, die wir bisher kennengelernt haben, ist die Verwendung von Buchstaben für die Werte 10 bis 15. Da wir keine arabischen Ziffern für diese Werte haben, es aber ein Symbol für die 10, 11, 12, 13, 14 und 15 geben muss, verwenden wir die Buchstaben A, B, C, D, E und F. Ganz einfach, wenn auch gewöhnungsbedürftig.</p>
+<p>Warum ist das Hexadezimalsystem überhaupt interessant? Wie schon erwähnt, können wir über zwei Hexadezimalziffern ein Byte kompakt darstellen. Um zu verstehen warum, das so ist, schauen wir uns eine Hexadezimalzahl mit nur einer Ziffer genauer an. Mit einer Ziffer können wir Werte von 0 bis 15 darstellen. Im Binärsystem benötigen wir dafür ganze vier Ziffern, also 4 Bits. Ihr erinnert euch an die Darstellung eines Bytes aus <a href="numbers.html" class="quarto-xref"><span>Kapitel 2</span></a>:</p>
+<div id="fig-images-byte-compact-1" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-images-byte-compact-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/images_byte_compact_1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16" title="Abbildung&nbsp;4.15: Ein Byte lässt sich schön kompakt mit zwei Hexadezimalziffern darstellen."><img src="https://winf-hsos.github.io/university-docs/images/images_byte_compact_1.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-images-byte-compact-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;4.15: Ein Byte lässt sich schön kompakt mit zwei Hexadezimalziffern darstellen.
+</figcaption>
+</figure>
+</div>
+<p>Mit vier Bits können wir ebenfalls Werte von 0 bis 15 darstellen, also genauso viele wie mit einer Hexadezimalziffer. Das bedeutet wir können die erste Hälfte eines Bytes, was wir ein Nibble nennen, mit einer Hexadezimalziffer darstellen. Vergegenwärtigen wir uns nun, für welche Wertigkeit die zweite Ziffe im Hexadezimalsystem steht und welchen Wertebereich wir damit darstellen können: Die zweite Stelle steht für <span class="math inline">\(16^1 = 16\)</span>. Mit dieser Stelle können wir also Werte von 0 bis 15 mal 16 darstellen, also von 0 bis 240 in Schritten von 16. Kombinieren wir nun beide Stellen, also die erste und die zweite Ziffer, dann können wir Werte von 0 bis 15 (erste Ziffer) plus 0 bis 240 (zweite Ziffer) darstellen. Das ergibt einen Gesamtwertebereich von 0 bis 255, also genau den Wertebereich, den ein Byte abdeckt.</p>
+<div id="fig-images-byte-compact" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-images-byte-compact-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-images-byte-compact" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-images-byte-compact-2" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-images-byte-compact-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/images_byte_compact_2.png" class="lightbox" data-gallery="fig-images-byte-compact" title="Abbildung&nbsp;4.16&nbsp;(a): 0 entspricht dem Hexadezimalwert 0x00."><img src="https://winf-hsos.github.io/university-docs/images/images_byte_compact_2.png" class="img-fluid figure-img" data-ref-parent="fig-images-byte-compact"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-images-byte-compact-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) 0 entspricht dem Hexadezimalwert 0x00.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-images-byte-compact" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-images-byte-compact-3" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-images-byte-compact-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/images_byte_compact_3.png" class="lightbox" data-gallery="fig-images-byte-compact" title="Abbildung&nbsp;4.16&nbsp;(b): 255 entspricht dem Hexadezimalwert 0xFF."><img src="https://winf-hsos.github.io/university-docs/images/images_byte_compact_3.png" class="img-fluid figure-img" data-ref-parent="fig-images-byte-compact"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-images-byte-compact-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) 255 entspricht dem Hexadezimalwert 0xFF.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-images-byte-compact-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;4.16: Darstellung von Bytes als Hexadezimalzahlen.
+</figcaption>
+</figure>
+</div>
+<p>Kleine Randnotiz: In der Informatik wird eine Hexadezimalzahl häufig mit einem vorangestellten <code>0x</code> gekennzeichnet, um klarzumachen, dass es sich um eine Hexadezimalzahl handelt. So wird aus der Zahl 255 im Dezimalsystem die Zahl <code>0xFF</code> im Hexadezimalsystem.</p>
+<p>Zurück zu der merkwürdigen Ausgabe von oben. Was auf dem Terminal gesehen haben sind also Hexadezimalzahlen, die jeweils den Farbwert einer Zelle in der Excel-Tabelle repräsentieren. Aber Moment: Wir haben gelernt, dass ein RGB-Wert aus drei Bytes besteht, je ein Byte für einen der Farbkanäle Rot, Grün und Blau. Wenn wir ein Byte mit zwei Hexadezimalziffern darstellen können, warum sehen wir dann in der Ausgabe Hexadezimalzahlen mit 8 Ziffern? Die Antwort ist einfach: Die ersten zwei Ziffern repräsentieren die Transparenz (Alpha-Kanal), gefolgt von den von uns erwarteten sechs Ziffern für Rot, Grün und Blau. In unserem Fall sind die Farben entweder komplett schwarz (FF000000) oder komplett weiß (FFFFFFFF). Logisch, denn in unserer Excel-Tabelle gibt es nur Schwarz und Weiß.</p>
+<p>Macht doch mal den Test und färbt die obere linke Zelle in Rot ein und lasst das Programm erneut laufen. Achtung: Speichert die Excel-Datei und schließt sie, bevor ihr das Python-Programm erneut ausführt, sonst kann <code>openpyxl</code> die Datei nicht lesen:</p>
+<pre><code>FFFF0000
+00000000
+00000000
+00000000</code></pre>
+<p>Die erste Hexadezimalzahl <code>FFFF0000</code> repräsentiert jetzt die Farbe Rot (oder welche Farbe ihr in Excel als Zellenhintergrund gewählt habt): FF für den Alpha-Kanal (vollständig sichtbar), FF für den Rot-Kanal (volle Intensität), 00 für den Grün-Kanal (keine Intensität) und 00 für den Blau-Kanal (keine Intensität). Die anderen Zellen sind weiterhin schwarz.</p>
+</section>
+<section id="die-liste-mit-bits-erstellen" class="level3" data-number="4.5.4">
+<h3 data-number="4.5.4" class="anchored" data-anchor-id="die-liste-mit-bits-erstellen"><span class="header-section-number">4.5.4</span> Die Liste mit Bits erstellen</h3>
+<p>Damit haken wir das Thema der Hexadezimalzahlem ab, aber es war notwendig, um die Farbwerte in der Excel-Tabelle zu verstehen. Jetzt können wir nämlich die Farbe jeder Zelle prüfen und entsprechend eine 0 oder 1 zur Liste hinzufügen. Wenn die Farbe <code>FF000000</code> (schwarz) ist, fügen wir eine 1 hinzu, andernfalls eine 0:</p>
+<div id="1d857965" class="cell" data-execution_count="24">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a><span class="im">from</span> openpyxl <span class="im">import</span> load_workbook</span>
+<span id="cb28-2"><a href="#cb28-2"></a></span>
+<span id="cb28-3"><a href="#cb28-3"></a>workbook <span class="op">=</span> load_workbook(<span class="st">"Darth Vader Pixel Art.xlsx"</span>)</span>
+<span id="cb28-4"><a href="#cb28-4"></a>sheet <span class="op">=</span> workbook[<span class="st">"Darth Vader"</span>]</span>
+<span id="cb28-5"><a href="#cb28-5"></a></span>
+<span id="cb28-6"><a href="#cb28-6"></a>bits <span class="op">=</span> []</span>
+<span id="cb28-7"><a href="#cb28-7"></a><span class="cf">for</span> row <span class="kw">in</span> sheet.iter_rows():</span>
+<span id="cb28-8"><a href="#cb28-8"></a>    <span class="cf">for</span> cell <span class="kw">in</span> row:</span>
+<span id="cb28-9"><a href="#cb28-9"></a>        color <span class="op">=</span> <span class="bu">getattr</span>(cell.fill.fgColor, <span class="st">"rgb"</span>, <span class="va">None</span>)</span>
+<span id="cb28-10"><a href="#cb28-10"></a>        <span class="cf">if</span> color <span class="op">==</span> <span class="st">"FF000000"</span>:</span>
+<span id="cb28-11"><a href="#cb28-11"></a>            bits.append(<span class="dv">1</span>)</span>
+<span id="cb28-12"><a href="#cb28-12"></a>        <span class="cf">else</span>:</span>
+<span id="cb28-13"><a href="#cb28-13"></a>            bits.append(<span class="dv">0</span>)</span>
+<span id="cb28-14"><a href="#cb28-14"></a></span>
+<span id="cb28-15"><a href="#cb28-15"></a><span class="bu">print</span>(<span class="ss">f"Bitmap with </span><span class="sc">{</span><span class="bu">len</span>(bits)<span class="sc">}</span><span class="ss"> bits: </span><span class="sc">{</span>bits<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Die Aufgabe, schwarz von weiß zu unterscheiden, erledigt hier die <code>if</code>-Anweisung. Je nachdem, ob die Bedingung <code>color == "FF000000"</code> wahr oder falsch ist, wird entweder eine 1 oder eine 0 zur Liste <code>bits</code> hinzugefügt. Das Hinzufügen eines Elemnts an das Ende einer Liste funktioniert mit der <code>append()</code>-Methode, der wir das neue Element direkt übergeben. Am Ende haben wir eine Liste mit 648 Einträgen, die die Pixelwerte von Darth Vaders Maske repräsentieren. Jetzt bleibt nur noch die Frage, wie wir Darth Vader auf das Display bekommen.</p>
+</section>
+<section id="anzeige-auf-dem-display" class="level3" data-number="4.5.5">
+<h3 data-number="4.5.5" class="anchored" data-anchor-id="anzeige-auf-dem-display"><span class="header-section-number">4.5.5</span> Anzeige auf dem Display</h3>
+<p>Wie wir einzelne Pixel auf dem Display anzeigen können, haben wir bereits weiter oben in <a href="#sec-images-pixels" class="quarto-xref"><span>Abschnitt 4.2</span></a> gelernt. Dieses Vorgehen können wir jetzt nutze und unsere Liste mit Bits in der Variable <code>bits</code> an die <code>write_pixels()</code>-Funktion übergeben, um Darth Vaders Maske auf dem Display anzuzeigen. Wir müssen nur noch die Koordinaten des oberen linken und unteren rechten Punkts angeben. Dazu müssen wir entscheiden, wo wir das Bild auf dem Display platzieren wollen. Ich habe mich für die Position (50, 20) als oberen linken Punkt entschieden. Der untere rechte Punkt ergibt sich aus der Breite und Höhe des Bildes. Da das Bild 27 Pixel breit und 24 Pixel hoch ist, setzen wir den unteren rechten Punkt auf (76, 43):</p>
+<div id="4d2986c5" class="cell" data-execution_count="25">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">50</span>, <span class="dv">20</span>, <span class="dv">76</span>, <span class="dv">43</span>, bits)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Natürlich müssen wir zuvor den Boilerplate-Code zum Initialisieren des Displays in unser Programm kopieren. Das komplette Programm sieht dann so aus:</p>
+<div id="43be20bf" class="cell" data-execution_count="26">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a><span class="im">from</span> openpyxl <span class="im">import</span> load_workbook</span>
+<span id="cb30-2"><a href="#cb30-2"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
+<span id="cb30-3"><a href="#cb30-3"></a><span class="im">from</span> tinkerforge.bricklet_oled_128x64_v2 <span class="im">import</span> BrickletOLED128x64V2</span>
+<span id="cb30-4"><a href="#cb30-4"></a></span>
+<span id="cb30-5"><a href="#cb30-5"></a>ipcon <span class="op">=</span> IPConnection()</span>
+<span id="cb30-6"><a href="#cb30-6"></a>ipcon.<span class="ex">connect</span>(<span class="st">'localhost'</span>, <span class="dv">4223</span>)</span>
+<span id="cb30-7"><a href="#cb30-7"></a>oled <span class="op">=</span> BrickletOLED128x64V2(<span class="st">'25zo'</span>, ipcon)</span>
+<span id="cb30-8"><a href="#cb30-8"></a>oled.clear_display()</span>
+<span id="cb30-9"><a href="#cb30-9"></a></span>
+<span id="cb30-10"><a href="#cb30-10"></a>workbook <span class="op">=</span> load_workbook(<span class="st">"xlsx/Darth Vader Pixel Art.xlsx"</span>)</span>
+<span id="cb30-11"><a href="#cb30-11"></a>sheet <span class="op">=</span> workbook[<span class="st">"Darth Vader"</span>]</span>
+<span id="cb30-12"><a href="#cb30-12"></a></span>
+<span id="cb30-13"><a href="#cb30-13"></a>bits <span class="op">=</span> []</span>
+<span id="cb30-14"><a href="#cb30-14"></a><span class="cf">for</span> row <span class="kw">in</span> sheet.iter_rows():</span>
+<span id="cb30-15"><a href="#cb30-15"></a>    <span class="cf">for</span> cell <span class="kw">in</span> row:</span>
+<span id="cb30-16"><a href="#cb30-16"></a>        color <span class="op">=</span> <span class="bu">getattr</span>(cell.fill.fgColor, <span class="st">"rgb"</span>, <span class="va">None</span>)</span>
+<span id="cb30-17"><a href="#cb30-17"></a>        <span class="cf">if</span> color <span class="op">==</span> <span class="st">"FF000000"</span>:</span>
+<span id="cb30-18"><a href="#cb30-18"></a>            bits.append(<span class="dv">1</span>)</span>
+<span id="cb30-19"><a href="#cb30-19"></a>        <span class="cf">else</span>:</span>
+<span id="cb30-20"><a href="#cb30-20"></a>            bits.append(<span class="dv">0</span>)</span>
+<span id="cb30-21"><a href="#cb30-21"></a></span>
+<span id="cb30-22"><a href="#cb30-22"></a><span class="bu">print</span>(<span class="ss">f"Bitmap with </span><span class="sc">{</span><span class="bu">len</span>(bits)<span class="sc">}</span><span class="ss"> bits: </span><span class="sc">{</span>bits<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb30-23"><a href="#cb30-23"></a>oled.write_pixels(<span class="dv">50</span>, <span class="dv">20</span>, <span class="dv">76</span>, <span class="dv">43</span>, bits)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<p>Und Voilà! Darth Vader erscheint auf dem Display!</p>
+<div id="fig-images-oled-display-darth-vader" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-images-oled-display-darth-vader-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/oled_display_darth_vader.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-19" title="Abbildung&nbsp;4.17: Darth Vaders Maske als Bitmap aus dem OLED-Display."><img src="images/oled_display_darth_vader.jpg" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-images-oled-display-darth-vader-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;4.17: Darth Vaders Maske als Bitmap aus dem OLED-Display.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="eine-bitmap-speichern" class="level3" data-number="4.5.6">
+<h3 data-number="4.5.6" class="anchored" data-anchor-id="eine-bitmap-speichern"><span class="header-section-number">4.5.6</span> Eine Bitmap speichern</h3>
+<p>Das hat gut geklappt! Wir haben ein Programm geschrieben, das eine Bitmap aus Excel ausliest und auf dem Display anzeigt. Aber ist Excel wirklich ein geeignetes Format für die Speicherung von Bildern?</p>
+<p>Sicher nicht, auch wenn es für den Zweck des Verstehens gut funktioniert. Für Bilder, die als Pixelmatrix gespeichert werden, gibt es bessere Alternativen, wie das Bildformat BMP (Bitmap). Es ist ein einfaches, unkomprimiertes Format, das die Pixelwerte direkt speichert. Dieses Format erhält man auch, wenn an ein Foto mit einer digitalen Kamera schießt: Es wird jeder Farbwert vom Fotosensor gelesen und als Pixelwert gespeichert. Nicht als Excel-Datei, sondern als Bitmap-Datei mit der Endung <code>.bmp</code>.</p>
+<p>Lasst uns unser Bild auch als Bitmap speichern. Wenn wir das händisch machen wollten, müssten wir uns mit dem Aufbau des BMP-Formats beschäftigen. Denn eine BMP-Datei besteht nicht nur aus den Pixelwerten, sondern enthält zusätzlich einen Header mit Informationen über das Bild, wie die Breite, Höhe und Farbtiefe.</p>
+<p>Wie ihr schon ahnt müssen wir das Rad auch hier nicht neu erfinden. Es gibt Bibliotheken, die uns die Arbeit abnehmen. Eine der bekanntesten ist die Bibliothek <code>Pillow</code>, die vielseitige Möglichkeiten für die Arbeit mit Bildern in Python mitbringt. Mit <code>Pillow</code> können wir etwa Bilder laden, bearbeiten und speichern. Installiert die Bibliothek, falls noch nicht geschehen:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install Pillow</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>MacOS-Nutzer verwenden wieder <code>pip3</code> anstelle von <code>pip</code>.</p>
+<p>Um unser Bild als Bitmap zu speichern, können wir die <code>Image</code>-Klasse aus der <code>PIL</code>-Bibliothek verwenden, die wir am Anfang einmal importieren müssen. Am Ende, wenn wir die Bitmap aus Excel eingelesen haben, erstellen wir ein neues Bildobjekt mit der gewünschten Größe von 27x24 Pixel und dem Modus “1” für Schwarzweiß-Bilder. Dann setzen wir die Pixelwerte entsprechend unserer Liste <code>bits</code> und speichern das Bild als BMP-Datei:</p>
+<div id="7aa99590" class="cell" data-execution_count="27">
+<div class="sourceCode cell-code" id="annotated-cell-35"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><button class="code-annotation-anchor" data-target-cell="annotated-cell-35" data-target-annotation="1">1</button><span id="annotated-cell-35-1" class="code-annotation-target"><a href="#annotated-cell-35-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
+<span id="annotated-cell-35-2"><a href="#annotated-cell-35-2" aria-hidden="true" tabindex="-1"></a>...</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-35" data-target-annotation="2">2</button><span id="annotated-cell-35-3" class="code-annotation-target"><a href="#annotated-cell-35-3" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> Image.new(<span class="st">'1'</span>, (<span class="dv">27</span>, <span class="dv">24</span>))</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-35" data-target-annotation="3">3</button><span id="annotated-cell-35-4" class="code-annotation-target"><a href="#annotated-cell-35-4" aria-hidden="true" tabindex="-1"></a>image.putdata(bits)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-35" data-target-annotation="4">4</button><span id="annotated-cell-35-5" class="code-annotation-target"><a href="#annotated-cell-35-5" aria-hidden="true" tabindex="-1"></a>image.save(<span class="st">"xlsx/darth_vader.bmp"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-35" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-35" data-code-lines="1" data-code-annotation="1">Wir importieren die <code>Image</code>-Klasse aus der <code>PIL</code>-Bibliothek, die Teil von <code>Pillow</code> ist.</span>
+</dd>
+<dt data-target-cell="annotated-cell-35" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-35" data-code-lines="3" data-code-annotation="2">Wir erstellen ein neues Bildobjekt mit der Größe 27x24 Pixel im Modus “1” für Schwarzweiß-Bilder. Modus “RGB” wäre für Farbbilder im RGB-Code.</span>
+</dd>
+<dt data-target-cell="annotated-cell-35" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-35" data-code-lines="4" data-code-annotation="3">Wir setzen die Pixelwerte des Bildes mit unserer Liste <code>bits</code>. Die Werte werden zeilenweise von links nach rechts und von oben nach unten erwartet.</span>
+</dd>
+<dt data-target-cell="annotated-cell-35" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-35" data-code-lines="5" data-code-annotation="4">Wir speichern das Bild als BMP-Datei mit dem Namen <code>darth_vader.bmp</code> im Unterverzeichnis <code>xlsx</code>.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Schaut jetzt einmal in das Verzeichnis <code>xlsx</code>. Dort solltet ihr die Datei <code>darth_vader.bmp</code> finden. Öffnet sie mit einem Bildbetrachter eurer Wahl, und ihr solltet Darth Vaders Maske sehen.</p>
+<div id="fig-images-darth-vader-saved-bmp" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-images-darth-vader-saved-bmp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="images/darth_vader_saved_bmp.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-images-darth-vader-saved-bmp-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;4.18: Darth Vader als Bitmap-Datei auf eurer Festplatte.
+</figcaption>
+</figure>
+</div>
+</section></details>
+</section>
+
+<section id="sec-images-compressed" class="level2 collapsable" data-number="4.6">
+<h2 class="collapsable anchored" data-number="4.6" data-anchor-id="sec-images-compressed"><span class="header-section-number">4.6</span> Komprimierte Bilder</h2>
+<details class="collapsable-section" open=""><summary></summary>
+<p>Bitmaps speichern für jedes Pixel einen Wert. Das ist einfach, kann aber viel Speicher benötigen. Deshalb werden Bitmaps häufig komprimiert. Ein klassisches Verfahren ist Run-Length Encoding (RLE). Dabei werden Folgen identischer Pixel durch “Wert + Länge” ersetzt. Aus <code>0, 0, 0, 0, 1, 1, 0, 0</code> wird zum Beispiel <code>(0x4), (1x2), (0x2)</code>. Besonders bei großen einfarbigen Flächen spart das deutlich Speicher und Übertragungszeit. Für eingebettete Systeme wie unser Display ist das nützlich, weil weniger Daten übertragen und verarbeitet werden müssen. Vor der Anzeige wird die komprimierte Darstellung einfach wieder in die ursprüngliche Pixelsequenz entpackt.</p>
+<p>Das Extrembeispiel ist ein komplett schwarzes oder weißes Bild. Statt 8192 Nullen oder Einsen zu speichern, reicht ein Eintrag: <code>(0x8192)</code> oder <code>(1x8192)</code>. Das spart enorm viel Platz. Es gibt auch andere Arten der Kompression, wie verlustfreie (z.B. PNG) und verlustbehaftete (z.B. JPEG) Verfahren, die je nach Anwendungsfall sinnvoll sind. Wir werden darauf später im Buch noch einmal zurückkommen. In diesem Kapitel reicht und das Grundverständnis, wie Bilder überhaupt in einem Computer abgebildet und gespeichert werden können.</p>
+<p>Mit Bildern hängen auch Videos eng zusammen, denn Videos sind im Grunde nichts anderes als eine schnelle Abfolge von Einzelbildern, die nacheinander angezeigt werden. Wenn ihr also verstehen, wie Bilder gespeichert werden, dann können wir uns gut vorstellen, wie das mit Videos funktioniert. Weil hier sehr viele Bilder zusammenkommen, spielt die Kompression eine noch größere Rolle.</p>
+<p>Auf bewegte Bilder werden wir im Rest des Kapitels einen genaueren Blick werfen und wollen versuchen, eine kleine Animation selbst zu basteln. Dazu rufen wir eine berühmte Spielfigur aus der Videospielgeschichte auf den Plan: Super Mario aus den 1980er-Jahren. In Farbe!</p>
+</details>
+</section>
+<section id="sec-images-colored" class="level2 collapsable" data-number="4.7">
+<h2 class="collapsable anchored" data-number="4.7" data-anchor-id="sec-images-colored"><span class="header-section-number">4.7</span> Farbige Bilder</h2>
+<details class="collapsable-section" open=""><summary></summary>
+<p>Bisher haben wir uns nur mit Bitmaps beschäftigt, deren Pixel entweder schwarz oder weiß sind. Das hat mit unserem Display zu tun, das eben nicht mehr kann. Trotzdem sollten wir verstehen, wie das Ganze mit farbigen Bildern funktioniert, denn das Prinzip ist dasselbe. Nur dass wir für jedes Pixel nicht nur einen Binärwert (0 oder 1) speichern, sondern einen Farbwert, der aus mehreren Bits besteht. Die Grundlagen dafür, nämlich den RGB-Code, haben wir schon in <a href="colors.html" class="quarto-xref"><span>Kapitel 1</span></a> kennengelernt.</p>
+<section id="bitmaps-im-rgb-format" class="level3" data-number="4.7.1">
+<h3 data-number="4.7.1" class="anchored" data-anchor-id="bitmaps-im-rgb-format"><span class="header-section-number">4.7.1</span> Bitmaps im RGB-Format</h3>
+<p>In <a href="#fig-images-super-mario" class="quarto-xref">Abbildung&nbsp;<span>4.19</span></a> seht ihr eine farbige Bitmap von Super Mario, wie sie in meiner Kindheit häufig über den Bildschirm (damals noch Röhrenfernseher) geflimmert ist. Stundenlang habe ich versucht, den kleinen Klempner durch die Level zu steuern und Prinzessin Peach zu retten. Die Grafik war damals natürlich sehr pixelig, weil die Auflösung der Nintendo Entertainment System (NES) Konsole nur 256x240 Pixel betrug. Das hat aber dem Spielspaß keinen Abbruch getan.</p>
+<div id="fig-images-super-mario" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-images-super-mario-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/images_super_mario.png" class="lightbox" data-gallery="quarto-lightbox-gallery-20" title="Abbildung&nbsp;4.19: Super Mario aus der 8-Bit Nintendo-Spielkonsole NES als Bitmap"><img src="https://winf-hsos.github.io/university-docs/images/images_super_mario.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-images-super-mario-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;4.19: Super Mario aus der 8-Bit Nintendo-Spielkonsole NES als Bitmap
+</figcaption>
+</figure>
+</div>
+<p>Wie unterscheidet sich nun Super Mario in Farbe von Darth Vader, der nur schwarzweiß dargestellt wurde? Nun, zunächst fällt auf, dass die Dimensionen beider Bitmaps unterschiedlich sind. Super Mario ist 16 Pixel breit und 16 Pixel hoch, also insgesamt 256 Pixel. Darth Vader war mit 27x24 Pixeln deutlich größer. Aber das ist nicht der einzige Unterschied. Jedes Pixel in Super Marios Bitmap benötigt mehr Speicherplatz, weil es in Farbe dargestellt wird. Jedes Pixel in Super Marios Bitmap wird durch einen RGB-Wert repräsentiert, der ausdrei Bytes besteht (je eines für Rot, Grün und Blau). Das bedeutet, dass die gesamte Bitmap von Super Mario 256 Pixel x 3 Bytes pro Pixel = 768 Bytes Speicherplatz benötigt. Im Gegensatz dazu benötigt die Bitmap von Darth Vader nur 648 Pixel x 1 Bit pro Pixel = 81 Bytes Speicherplatz (da jedes Pixel nur schwarz oder weiß ist). Größeres Bild braucht weniger Speicher, hat dafür aber kein Farben.</p>
+<p>Ich habe für dieses Experiment auch Super Mario als Excel-Tabelle erstellt, ähnlich wie bei Darth Vader. Ihr könnt die Datei <a href="resources/Super Mario Pixel Art.xlsx">hier herunterladen</a>. Um Mario in eine Liste von Bits zu überführen, können wir unser Programm von oben grundsätzlich verwenden, müssen es aber ein wenig anpassen. Insbesondere müssen wir jetzt statt 0 oder 1 die RGB-Werte der Zellen auslesen und entsprechend in die Liste einfügen.</p>
+<p>Ladet zunächst die Excel-Datei herunter und ersetzt im Programm den Dateinamen und den Namen des Tabellenblatts:</p>
+<div id="ed7940a9" class="cell" data-execution_count="28">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>workbook <span class="op">=</span> load_workbook(<span class="st">"Super Mario Pixel Art.xlsx"</span>)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>sheet <span class="op">=</span> workbook[<span class="st">"Super Mario"</span>]</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Es folgen die beiden verschachtelten Schleifen, um jede Zelle auszulesen. Hier müssen wir die Anpassung vornehmen. Gehen wir wie immer Schritt für Schritt vor. Wie wir bereits wissen, kommt der Farbcode zusammen mit dem Alpha-Kanal als Hexadezimalzahl mit 8 Ziffern daher. Für uns sind aber nur die letzten 6 Ziffern interesant. Schneiden wir also die ersten beiden Ziffern ab:</p>
+<div id="014e9155" class="cell" data-execution_count="29">
+<div class="sourceCode cell-code" id="annotated-cell-37"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-37-1"><a href="#annotated-cell-37-1" aria-hidden="true" tabindex="-1"></a>bitmap <span class="op">=</span> []</span>
+<span id="annotated-cell-37-2"><a href="#annotated-cell-37-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> sheet.iter_rows():</span>
+<span id="annotated-cell-37-3"><a href="#annotated-cell-37-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> cell <span class="kw">in</span> row:</span>
+<span id="annotated-cell-37-4"><a href="#annotated-cell-37-4" aria-hidden="true" tabindex="-1"></a>        color <span class="op">=</span> <span class="bu">getattr</span>(cell.fill.fgColor, <span class="st">"rgb"</span>, <span class="va">None</span>)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-37" data-target-annotation="1">1</button><span id="annotated-cell-37-5" class="code-annotation-target"><a href="#annotated-cell-37-5" aria-hidden="true" tabindex="-1"></a>        color <span class="op">=</span> color[<span class="dv">2</span>:]</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-37" data-target-annotation="2">2</button><span id="annotated-cell-37-6" class="code-annotation-target"><a href="#annotated-cell-37-6" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(color)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-37" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-37" data-code-lines="5" data-code-annotation="1">Wir schneiden die ersten beiden Ziffern ab, um nur den RGB-Teil der Farbe zu erhalten.</span>
+</dd>
+<dt data-target-cell="annotated-cell-37" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-37" data-code-lines="6" data-code-annotation="2">Wir geben den RGB-Farbcode in der Konsole aus, um zu überprüfen, ob wir die richtigen Werte extrahiert haben.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Lasst es einmal laufen und prüft, dass wirklich 6-stellige RGB-Werte in Hexadezimalform ausgegeben werden:</p>
+<pre><code>FFFFFF
+FFFFFF
+FFFFFF
+FFFFFF
+FFFFFF
+B53120
+B53120
+B53120
+B53120
+B53120
+...</code></pre>
+<p>Wenn es bei euch auch so aussieht, dann ist soweit alles gut. Für die Speicherung im RGB-Format benötigen wir einzelne Bytes, was bedeutet, dass wir den RGB-Code in seine drei Bestandteile zerlegen müssen. Dazu erwartet die <code>putdat()</code>-Methode der <code>Image</code>-Klasse eine Liste von Dreiertupeln mit jeweils Dezimalwerten. Also beispielsweise für die ersten drei Pixel, die alle weiß sind:</p>
+<div id="46c8342f" class="cell" data-execution_count="30">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>bitmap <span class="op">=</span> [(<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">255</span>), (<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">255</span>), (<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">255</span>)]</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Wir müssen also zwei Schritte in unser Programm integrieren: Erstens das Zerlegen des RGB-Codes in seine Einzelteile (#FFFFFF wird zu FF, FF, FF) und zweitens die Umwandlung der Hexadezimalwerte in Dezimalwerte (FF wird zu 255). Beides können wir mit Python-Funktionen erledigen. Um den RGB-Code zu zerlegen, können wir die String-Slicing-Methode verwenden. Dabei können wir angeben, welchen Teilstring wir aus einer Zeichenkette extrahieren möchten. Für die Umwandlung von Hexadezimal- in Dezimalwerte gibt es die eingebaute Funktion <code>int()</code>, der wir den Hexadezimalstring und die Basis 16 übergeben können und sie spuckt die entsprechende Dezimalzahl aus. Das Ganze sieht dann so aus:</p>
+<div id="fc125ca2" class="cell" data-execution_count="31">
+<div class="sourceCode cell-code" id="annotated-cell-40"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-40-1"><a href="#annotated-cell-40-1" aria-hidden="true" tabindex="-1"></a>...</span>
+<span id="annotated-cell-40-2"><a href="#annotated-cell-40-2" aria-hidden="true" tabindex="-1"></a>color <span class="op">=</span> <span class="bu">getattr</span>(cell.fill.fgColor, <span class="st">"rgb"</span>, <span class="va">None</span>)</span>
+<span id="annotated-cell-40-3"><a href="#annotated-cell-40-3" aria-hidden="true" tabindex="-1"></a>color <span class="op">=</span> color[<span class="dv">2</span>:] </span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-40" data-target-annotation="1">1</button><span id="annotated-cell-40-4" class="code-annotation-target"><a href="#annotated-cell-40-4" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> <span class="bu">int</span>(color[<span class="dv">0</span>:<span class="dv">2</span>], <span class="dv">16</span>)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-40" data-target-annotation="2">2</button><span id="annotated-cell-40-5" class="code-annotation-target"><a href="#annotated-cell-40-5" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> <span class="bu">int</span>(color[<span class="dv">2</span>:<span class="dv">4</span>], <span class="dv">16</span>)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-40" data-target-annotation="3">3</button><span id="annotated-cell-40-6" class="code-annotation-target"><a href="#annotated-cell-40-6" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="bu">int</span>(color[<span class="dv">4</span>:<span class="dv">6</span>], <span class="dv">16</span>)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-40" data-target-annotation="4">4</button><span id="annotated-cell-40-7" class="code-annotation-target"><a href="#annotated-cell-40-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(r, g, b)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-40" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-40" data-code-lines="4" data-code-annotation="1">Wir extrahieren die ersten beiden Ziffern für den Rot-Kanal und wandeln sie mit <code>int()</code> in eine Dezimalzahl um.</span>
+</dd>
+<dt data-target-cell="annotated-cell-40" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-40" data-code-lines="5" data-code-annotation="2">Wir extrahieren die mittleren beiden Ziffern für den Grün-Kanal und wandeln sie mit <code>int()</code> in eine Dezimalzahl um.</span>
+</dd>
+<dt data-target-cell="annotated-cell-40" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-40" data-code-lines="6" data-code-annotation="3">Wir extrahieren die letzten beiden Ziffern für den Blau-Kanal und wandeln sie mit <code>int()</code> in eine Dezimalzahl um.</span>
+</dd>
+<dt data-target-cell="annotated-cell-40" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-40" data-code-lines="7" data-code-annotation="4">Wir geben die Dezimalwerte für Rot, Grün und Blau in der Konsole aus, um zu überprüfen, ob die Umwandlung korrekt ist.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Die Ausgabe sollte jetzt so aussehen:</p>
+<pre><code>255 255 255
+255 255 255
+255 255 255
+255 255 255
+255 255 255
+181 49 32
+181 49 32
+...</code></pre>
+<p>Die ersten fünf Pixel sind weiß, gefolgt von den ersten roten Pixeln von Marios Mütze. Passt also! Nun noch die RGB-Werte als Dreiertupel zur Liste <code>bitmap</code> hinzufügen:</p>
+<div id="422c53ba" class="cell" data-execution_count="32">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>bitmap.append((r, g, b))</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ein Tupel in Python ist sehr ähnlich wie eine Liste, nur dass wir eine Liste verändern können, ein Tupel nicht. Anstelle der eckigen Klammern <code>[]</code> verwenden wir runde Klammern <code>()</code>, um ein Tupel zu erstellen. Ansonsten funktioniert das Hinzufügen zu einer Liste genauso wie zuvor mit der <code>append()</code>-Methode.</p>
+<p>Hier nun der gesamte Code bis hierher (ohne Boilerplate-Code zum Initialisieren des Displays und das Öffnen des Excel-Dokuments):</p>
+<div id="139b6669" class="cell" data-execution_count="33">
+<div class="sourceCode cell-code" id="annotated-cell-43"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-43-1"><a href="#annotated-cell-43-1" aria-hidden="true" tabindex="-1"></a>bitmap <span class="op">=</span> []</span>
+<span id="annotated-cell-43-2"><a href="#annotated-cell-43-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> sheet.iter_rows():</span>
+<span id="annotated-cell-43-3"><a href="#annotated-cell-43-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> cell <span class="kw">in</span> row:</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-43" data-target-annotation="1">1</button><span id="annotated-cell-43-4" class="code-annotation-target"><a href="#annotated-cell-43-4" aria-hidden="true" tabindex="-1"></a>        color <span class="op">=</span> <span class="bu">getattr</span>(cell.fill.fgColor, <span class="st">"rgb"</span>, <span class="va">None</span>)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-43" data-target-annotation="2">2</button><span id="annotated-cell-43-5" class="code-annotation-target"><a href="#annotated-cell-43-5" aria-hidden="true" tabindex="-1"></a>        color <span class="op">=</span> color[<span class="dv">2</span>:]</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-43" data-target-annotation="3">3</button><span id="annotated-cell-43-6" class="code-annotation-target"><a href="#annotated-cell-43-6" aria-hidden="true" tabindex="-1"></a>        r <span class="op">=</span> <span class="bu">int</span>(color[<span class="dv">0</span>:<span class="dv">2</span>], <span class="dv">16</span>)</span>
+<span id="annotated-cell-43-7"><a href="#annotated-cell-43-7" aria-hidden="true" tabindex="-1"></a>        g <span class="op">=</span> <span class="bu">int</span>(color[<span class="dv">2</span>:<span class="dv">4</span>], <span class="dv">16</span>)</span>
+<span id="annotated-cell-43-8"><a href="#annotated-cell-43-8" aria-hidden="true" tabindex="-1"></a>        b <span class="op">=</span> <span class="bu">int</span>(color[<span class="dv">4</span>:<span class="dv">6</span>], <span class="dv">16</span>)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-43" data-target-annotation="4">4</button><span id="annotated-cell-43-9" class="code-annotation-target"><a href="#annotated-cell-43-9" aria-hidden="true" tabindex="-1"></a>        bitmap.append((r, g, b))</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-43" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-43" data-code-lines="4" data-code-annotation="1">Wir lesen die Farbe der Zelle aus.</span>
+</dd>
+<dt data-target-cell="annotated-cell-43" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-43" data-code-lines="5" data-code-annotation="2">Wir schneiden die ersten beiden Ziffern ab, um nur den RGB-Teil der Farbe zu erhalten, ohne den Alpha-Wert.</span>
+</dd>
+<dt data-target-cell="annotated-cell-43" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-43" data-code-lines="6" data-code-annotation="3">Wir extrahieren die Rot-, Grün- und Blau-Komponenten und wandeln sie in Dezimalzahlen um.</span>
+</dd>
+<dt data-target-cell="annotated-cell-43" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-43" data-code-lines="9" data-code-annotation="4">Wir fügen das Dreiertupel mit den RGB-Werten zur Liste <code>bitmap</code> hinzu.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Mit den RGB-Werten in der Liste <code>bitmap</code> können wir jetzt ein farbiges Bild von Super Mario erstellen und speichern. Dazu verwenden wir wieder die <code>Image</code>-Klasse aus der <code>PIL</code>-Bibliothek. Diesmal erstellen wir ein Bild im Modus “RGB”, der Dimensionierung 16x16 und übergeben wieder die Liste <code>bitmap</code> an die <code>putdata()</code>-Methode. Dadurch, dass wir den Modus auf “RGB” gesetzt haben, erwartet die Methode jetzt eine Liste von Dreiertupeln mit den RGB-Werten. Zum Schluss speichern wir das Bild als BMP-Datei:</p>
+<div id="88e2ed2c" class="cell" data-execution_count="34">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> Image.new(<span class="st">'RGB'</span>, (<span class="dv">16</span>, <span class="dv">16</span>))</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>image.putdata(bitmap)</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>image.save(<span class="st">"xlsx/super_mario_color.bmp"</span>)</span></code><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Öffnet jetzt einen Dateiexplorer und navigiert in das Verzeichnis, in dem ihr die Daten gespeichert habt. Ihr könnt die Datei öffnen und solltet Super Mario in Farbe sehen. Zum Abschluss dieses Abschnitts möchte ich aber mit euch einmal auf die Größe der Datei schauen.</p>
+</section>
+<section id="struktur-einer-bitmap-datei" class="level3" data-number="4.7.2">
+<h3 data-number="4.7.2" class="anchored" data-anchor-id="struktur-einer-bitmap-datei"><span class="header-section-number">4.7.2</span> Struktur einer Bitmap-Datei</h3>
+<p>Um die Größe der Datei anzuzeigen könnt ihr entweder im Datei-Explorer auf die Datei klicken. Unten in der Fuszeile sollte die genaue Größe in Bytes angegeben werden. Alternativ geht es das auch über das Terminal in Visual Studio Code. Wechselt dazu mit <code>cd</code> in das richtige Verzeichnis und gebt den Befehl <code>dir</code> (Windows) oder <code>ls -lh</code> (MacOS, Linux) ein. In der Ausgabe sollte die Datei und ihr Größe angezeigt werden:</p>
+<pre><code>28.10.2025  19:41    822 super_mario_color.bmp</code></pre>
+<p>Die Zahl von Interesse ist hier unmittelbar vor dem Dateinamen. In meinem Fall sind es 822 Bytes. Rein rechnerisch müssten wir aber auf:</p>
+<p><span class="math display">\[16 \cdot 16 \cdot 3 = 768 \]</span></p>
+<p>Bytes kommen. Warum ist die Datei also größer als erwartet? Die Differenz ist <span class="math inline">\(54\)</span> Bytes. Die Antwort ist, dass eine Bitmap-Datei (und so gut wie jede andere Datei auch), neben den eigentlichen Informationen (hier: Pixelwerte im RGB-Fomat) auch noch sogenannte Metadaten enthält. Metadaten sind Daten über die Daten. In einer Bitmap-Datei sind das zum Beispiel Informationen über die Breite und Höhe des Bildes, die Farbtiefe (also wie viele Bits pro Pixel verwendet werden). All diese Informationen werden im sogenannten Header der Bitmap-Datei gespeichert, der am Anfang der Datei steht. Der Header ist notwendig, damit ein Programm, das die Bitmap-Datei öffnet, weiß, wie es die Pixelwerte interpretieren soll, wo die Pixelwerte anfangen und enden, und so weiter.</p>
+<p>Die wichtigsten Strukturelemente einer Bitmap-Datei sind in <a href="#fig-images-bitmap-structure" class="quarto-xref">Abbildung&nbsp;<span>4.20</span></a> dargestellt. Der kleine gelbe Bereich am Anfang ist 14 Bytes lang und stellt den sogenannten Datei-Header dar. Hier wird zum Beispiel ganz zu Beginn mitgeteilt, dass es sich überhaupt um eine Bitmap-Datei handelt (die ersten beiden Bytes enthalten die ASCII-Zeichen “BM” für Bitmap). Außerdem wird hier die Gesamtgröße der Datei gespeichert (36 03 00 00, was 822 Bytes entspricht; da das little-endian Format verwendet wird, sind die Bytes in umgekehrter Reihenfolge gespeichert) und die Position, an der die eigentlichen Pixelwerte beginnen. Das ist die 36 im Bild, was dezimal 54 ist. Die eigentlichen Pixelwert beginnen also mit dem 54. Byte in der Datei.</p>
+<p>Direkt danach folgt der größere blaue Bereich, der 40 Bytes lang ist und den sogenannten DIB-Header (Device Independent Bitmap) enthält. In diesem Header sind Metadaten über das Bild gespeichert, wie die Breite, Höhe, Farbtiefe und so weiter. Letztere wird durch die 18 angegeben, was dezimal der 24 entspricht. Das steht für 24 Bits Farbtiefe. Ein Programm, das diese Bitmap-Datei liest, weiß also anhand des DIB-Header, wie es die Pixelwerte lesen muss, um das Bild korrekt dazustellen.</p>
+<p>Erst nach den beiden Headern folgen die eigentlichen Pixelwerte, die in <a href="#fig-images-bitmap-structure" class="quarto-xref">Abbildung&nbsp;<span>4.20</span></a> grünlich dargestellt sind und die in unserem Fall 768 Bytes lang sind. Das Bild zeigt nicht die gesamte Datei, es folgen noch weitere Pixelwerte. weiter unten. Probiert es am besten einmal selbst, die Datei im Hexcode-Editor anzuschauen. Dann bekommt ihr ein Gefühl dafür, wie die Datei tatsächlich aussieht und auf eurem Rechner gespeichert wird. Schließlich geht es in diesem Buch darum, wie Computer funktionieren, und da gehört es dazu, dass wir verstehen, wie Daten im Computer gespeichert werden. Das Beispiel der Bitmap ist dafür sehr zugänglich und anschaulich.</p>
+<div id="fig-images-bitmap-structure" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-images-bitmap-structure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/images_bitmap_structure.png" class="lightbox" data-gallery="quarto-lightbox-gallery-21" title="Abbildung&nbsp;4.20: Die Struktur einer Bitmap-Datei am Beispiel der sumper_mario_color.bmp von oben"><img src="https://winf-hsos.github.io/university-docs/images/images_bitmap_structure.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-images-bitmap-structure-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;4.20: Die Struktur einer Bitmap-Datei am Beispiel der sumper_mario_color.bmp von oben
+</figcaption>
+</figure>
+</div>
+<p>Öffnet einmal die Webseite <a href="https://hexed.it/">hexed.it</a> in eurem Browser. Hier bekommt ihr einen Editor für Dateien, wie ihr ihn auch von Word, Notepad oder Visual Studio Code kennt. Der Unterschied ist, dass dieser Editor auch die binären Daten der Datei anzeigt, also die Nullen und Einsen, die eurer Computer tatsächlich speichert. Damit die Schreibweise etwas kompakter wird, werden die Bits in Bytes gruppiert und als Hexadezimalzahlen dargestellt. Jedes Byte wird also als zwei Hexadezimalziffern angezeigt.</p>
+<div id="fig-images-hex-editor-mario" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-images-hex-editor-mario-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/images_hex_editor_mario.png" class="lightbox" data-gallery="quarto-lightbox-gallery-22" title="Abbildung&nbsp;4.21: Marios Bitmap im Hex-Editor. Hier wird jedes Byte als Hexadezimalzahl angezeigt."><img src="https://winf-hsos.github.io/university-docs/images/images_hex_editor_mario.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-images-hex-editor-mario-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;4.21: Marios Bitmap im Hex-Editor. Hier wird jedes Byte als Hexadezimalzahl angezeigt.
+</figcaption>
+</figure>
+</div>
+<p>Es passt also im Endeffekt doch alles zusammen: Die Bitmap-Datei hat 14 Bytes für den Datei-Header, 40 Bytes für den DIB-Header und 768 Bytes für die Pixelwerte, was zusammen die 822 Bytes gibt, die wir im Terminal oder Explorer sehen. Wir können alle beruhigt schlafen und haben wieder was gelernt!</p>
+</section></details>
+</section>
+
+<section id="sec-images-animation" class="level2 collapsable" data-number="4.8">
+<h2 class="collapsable anchored" data-number="4.8" data-anchor-id="sec-images-animation"><span class="header-section-number">4.8</span> Bewegte Bilder</h2>
+<details class="collapsable-section" open=""><summary></summary>
+<div id="fig-images-super-mario-walk" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-images-super-mario-walk-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-images-super-mario-walk" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="fig-images-super-mario-walk-1" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="super-mario-walk">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-images-super-mario-walk-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/images_super_mario_walk_1.png" class="lightbox" data-gallery="super-mario-walk" title="Abbildung&nbsp;4.22&nbsp;(a): Erste Frame"><img src="https://winf-hsos.github.io/university-docs/images/images_super_mario_walk_1.png" class="img-fluid figure-img" data-ref-parent="fig-images-super-mario-walk"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-images-super-mario-walk-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Erste Frame
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-images-super-mario-walk" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="fig-images-super-mario-walk-2" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="super-mario-walk">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-images-super-mario-walk-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/images_super_mario_walk_2.png" class="lightbox" data-gallery="super-mario-walk" title="Abbildung&nbsp;4.22&nbsp;(b): Zweiter Frame"><img src="https://winf-hsos.github.io/university-docs/images/images_super_mario_walk_2.png" class="img-fluid figure-img" data-ref-parent="fig-images-super-mario-walk"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-images-super-mario-walk-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Zweiter Frame
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-images-super-mario-walk" style="flex-basis: 33.3%;justify-content: flex-start;">
+<div id="fig-images-super-mario-walk-3" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="super-mario-walk">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-images-super-mario-walk-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/images_super_mario_walk_3.png" class="lightbox" data-gallery="super-mario-walk" title="Abbildung&nbsp;4.22&nbsp;(c): Dritter Frame"><img src="https://winf-hsos.github.io/university-docs/images/images_super_mario_walk_3.png" class="img-fluid figure-img" data-ref-parent="fig-images-super-mario-walk"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-images-super-mario-walk-3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(c) Dritter Frame
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-images-super-mario-walk-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;4.22: Drei Bilder - oder Frames - um Mario zum Laufen zu bringen.
+</figcaption>
+</figure>
+</div>
+<div id="fig-images-super-mario-animation" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-images-super-mario-animation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/super_mario_walking_animation.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-26" title="Abbildung&nbsp;4.23: Die Einzelbilder hintereinander ergeben eine Animation"><img src="images/super_mario_walking_animation.gif" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-images-super-mario-animation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;4.23: Die Einzelbilder hintereinander ergeben eine Animation
+</figcaption>
+</figure>
+</div>
+<p>Nun haben wir gesehen, wie eine Animation im Computer funktionert. Es handelt sich um eine schnelle Abfolge von Einzelbildern, die nacheinander angezeigt werden. Weil unser Gehirn die Einzelbilder nicht mehr als solche wahrnimmt, entsteht der Eindruck von Bewegung. Entscheidend ist hier die Anzahl der Bilder pro Sekunde, die sogenannte Framerate. Je höher die Framerate, desto flüssiger wirkt die Animation. Üblich sind heute 24, 30 oder sogar 60 Bilder pro Sekunde.</p>
+<p>Wäre es nicht toll, wenn wir die Animation auch auf unser kleines Display bringen könnten? Die Auflösung reicht aus, denn Mario ist nur 16x16 Pixel groß. Allerdings kann unser Display nur schwarzweiß darstellen. Wie können wir aus dem Farbbild von Mario ein schwarzweißes Bild machen?</p>
+</details>
+</section>
+<section id="sec-images-transformations" class="level2 collapsable" data-number="4.9">
+<h2 class="collapsable anchored" data-number="4.9" data-anchor-id="sec-images-transformations"><span class="header-section-number">4.9</span> Transformationen</h2>
+<details class="collapsable-section" open=""><summary></summary>
+<p>Sicher habt ihr das schon einmal gesehen oder selbst gemacht: Einen sogenannten Filter auf ein Foto angewendet, das euer Bild in Graustufen verwandelt. Das ist heute eine gängige Funktion von Social Media Apps wie Instagram, Snapchat oder TikTok. Aber wie funktioniert das eigentlich? Und was, wenn wir nicht einmal Graustufen, sondern nur Schwarzweiß wollen?</p>
+<section id="graustufen" class="level3" data-number="4.9.1">
+<h3 data-number="4.9.1" class="anchored" data-anchor-id="graustufen"><span class="header-section-number">4.9.1</span> Graustufen</h3>
+<div id="fig-images-grayscale-transformation" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-images-grayscale-transformation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/images_grayscale_transformation.png" class="lightbox" data-gallery="quarto-lightbox-gallery-27" title="Abbildung&nbsp;4.24: Ein Drohnenbild in Farbe und in Graustufen."><img src="https://winf-hsos.github.io/university-docs/images/images_grayscale_transformation.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-images-grayscale-transformation-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;4.24: Ein Drohnenbild in Farbe und in Graustufen.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="schwarzweiß" class="level3" data-number="4.9.2">
+<h3 data-number="4.9.2" class="anchored" data-anchor-id="schwarzweiß"><span class="header-section-number">4.9.2</span> Schwarzweiß</h3>
+</section></details>
+</section>
+
+<section id="sec-images-tic-tac-toe" class="level2 collapsable" data-number="4.10">
+<h2 class="collapsable anchored" data-number="4.10" data-anchor-id="sec-images-tic-tac-toe"><span class="header-section-number">4.10</span> Jump &amp; Run</h2>
+<details class="collapsable-section" open=""><summary></summary>
+<p>…</p>
+
+
+</details>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-adami_what_2016" class="csl-entry" role="listitem">
+Adami, Christoph. 2016. <span>„What is <span>Information</span>?“</span> <em>Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences</em> 374 (2063): 20150230. <a href="https://doi.org/10.1098/rsta.2015.0230">https://doi.org/10.1098/rsta.2015.0230</a>.
+</div>
+<div id="ref-brookshear_computer_2020" class="csl-entry" role="listitem">
+Brookshear, J. Glenn, und Dennis Brylow. 2020. <em>Computer science: an overview</em>. 13th edition, global edition. NY, NY: Pearson.
+</div>
+<div id="ref-gallenbacher_abenteuer_2020" class="csl-entry" role="listitem">
+Gallenbacher, Jens. 2020. <em>Abenteuer <span>Informatik</span>: <span>IT</span> zum <span>Anfassen</span> für alle von 9 bis 99, vom <span>Navi</span> bis <span>Social</span> <span>Media</span></em>. 4. Auflage, korrigierte Publikation. Berlin Heidelberg: Springer.
+</div>
+<div id="ref-petzold_code_2022" class="csl-entry" role="listitem">
+Petzold, Charles. 2022. <em>Code: the hidden language of computer hardware and software</em>. 2. Aufl. Hoboken: Microsoft Press.
+</div>
+<div id="ref-polya" class="csl-entry" role="listitem">
+Pólya, George, und John Horton Conway. 2004. <em>How to solve it: a new aspect of mathematical method</em>. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.
+</div>
+<div id="ref-scott_but_2009" class="csl-entry" role="listitem">
+Scott, John C. 2009. <em>But how do it know?: the basic principles of computers for everyone</em>. Oldsmar, FL: John C. Scott.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  if (document.documentElement.dataset.collapsableInit) return;
+  document.documentElement.dataset.collapsableInit = "1";
+
+  document.querySelectorAll(
+    "h1.collapsable, h2.collapsable, h3.collapsable, h4.collapsable, h5.collapsable, h6.collapsable"
+  ).forEach(h => {
+    const details = h.nextElementSibling;
+    if (!details || details.tagName.toLowerCase() !== "details") return;
+
+    // Icon-Status initial
+    h.classList.toggle("closed", !details.open);
+
+    h.style.cursor = "pointer";
+    h.addEventListener("click", () => {
+      details.open = !details.open;
+      h.classList.toggle("closed", !details.open);
+    });
+  });
+});
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Kopiert");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Kopiert");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+        for (let i=0; i<annoteTargets.length; i++) {
+          const annoteTarget = annoteTargets[i];
+          const targetCell = annoteTarget.getAttribute("data-target-cell");
+          const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+          const contentFn = () => {
+            const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+            if (content) {
+              const tipContent = content.cloneNode(true);
+              tipContent.classList.add("code-annotation-tip-content");
+              return tipContent.outerHTML;
+            }
+          }
+          const config = {
+            allowHTML: true,
+            content: contentFn,
+            onShow: (instance) => {
+              selectCodeLines(instance.reference);
+              instance.reference.classList.add('code-annotation-active');
+              window.tippy.hideAll();
+            },
+            onHide: (instance) => {
+              unselectCodeLines();
+              instance.reference.classList.remove('code-annotation-active');
+            },
+            maxWidth: 300,
+            delay: [50, 0],
+            duration: [200, 0],
+            offset: [5, 10],
+            arrow: true,
+            appendTo: function(el) {
+              return el.parentElement.parentElement.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'quarto',
+            placement: 'right',
+            popperOptions: {
+              modifiers: [
+              {
+                name: 'flip',
+                options: {
+                  flipVariations: false, // true by default
+                  allowedAutoPlacements: ['right'],
+                  fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+                },
+              },
+              {
+                name: 'preventOverflow',
+                options: {
+                  mainAxis: false,
+                  altAxis: false
+                }
+              }
+              ]        
+            }      
+          };
+          window.tippy(annoteTarget, config); 
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./text.html" class="pagination-link" aria-label="Texte">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Texte</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./glossary.html" class="pagination-link" aria-label="Glossar">
+        <span class="nav-page-text">Glossar</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>

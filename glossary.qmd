@@ -13,6 +13,7 @@
 | <span id="gl-binarsystem">Binärsystem</span> | Zahlensysteme | Ein Zahlensystem, das nur die Ziffern 0 und 1 verwendet. | @sec-numbers |
 | <span id="gl-binarziffer">Binärziffer</span> | Zahlensysteme | Eine einzelne Ziffer im Binärsystem, also eine 0 oder eine 1 | @sec-numbers |
 | <span id="gl-bit">Bit</span> | Bits & Bytes | Kurzform für "Binary Digit"; kleinste Informationseinheit | @sec-numbers |
+| <span id="gl-bitmap">Bitmap</span> | Repräsentation von Bildern | Eine Matrix von Pixelwerten | @sec-images |
 | <span id="gl-boilerplate-code">Boilerplate-Code</span> | Programmierung | Vorlagen-Code, der häufig wiederverwendet wird und oft unverändert bleibt. | @sec-colors |
 | <span id="gl-brick-viewer">Brick Viewer</span> | Hardware | Ein Werkzeug zum schnellen Testen der Tinkerforge-Bauteile | @sec-colors |
 | <span id="gl-bug">Bug</span> | Programmierung | Ein Fehler in einem Programm, der dazu führt, dass es nicht wie erwartet funktioniert. | @sec-text |
@@ -47,8 +48,10 @@
 | <span id="gl-objekt">Objekt</span> | Programmierung | Eine konkrete Instanz einer Klasse, die die definierten Eigenschaften und Funktionen nutzen kann. | @sec-colors |
 | <span id="gl-oktalsystem">Oktalsystem</span> | Zahlensysteme | Ein Zahlensystem, das die Ziffern 0 bis 7 verwendet. | @sec-numbers |
 | <span id="gl-parameter">Parameter</span> | Programmierung | Werte, die an eine Funktion übergeben werden | @sec-colors |
+| <span id="gl-pixel">Pixel</span> | Repräsentation von Bildern | Ein Pixel ist der kleinste darstellbare Punkt auf einem Display | @sec-images |
 | <span id="gl-programm">Programm</span> | Programmierung | Abfolge von Anweisungen, die ein Computer ausführt | @sec-colors |
 | <span id="gl-programmabsturz">Programmabsturz</span> | Programmierung | Ein unerwartetes Beenden eines Programms | @sec-numbers |
+| <span id="gl-rasterisierung">Rasterisierung</span> | Bilder | Überführung einer Vektorgrafik in eine Bitmap | @sec-images |
 | <span id="gl-rgb-led">RGB LED</span> | Hardware | Eine LED, die in verschiedenen Farben leuchten kann. | @sec-colors |
 | <span id="gl-rgb-farbkodierung">RGB-Farbkodierung</span> | Codesysteme | Kodierung von Farben mittels Rot-, Grün- und Blauwerten | @sec-colors |
 | <span id="gl-schleife">Schleife</span> | Programmierung | Wiederholung von Programmcode | @sec-colors |

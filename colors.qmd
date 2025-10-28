@@ -83,7 +83,7 @@ Die vollsändige Hardwareliste für dieses Kapitel sieht so aus:
 -  1 x [Brickletkabel 15cm (7p-7p)](https://www.tinkerforge.com/de/shop/accessories/cable/bricklet-cable-15cm-7p-7p.html)
 -  1 x [Befestigungskit 12 mm](https://www.tinkerforge.com/de/shop/accessories/mounting/mounting-kit-12mm.html)
 
-Neben der Hardware benötigt ihr auch die passende Software. Diese solltet ihr bereits installiert haben. Falls nicht, schaut im [Abschnitt zu den Voraussetzungen](prerequisites.qmd) vorbei. Dort ist alles genau beschrieben. Im Folgenden gehe ich davon aus, dass ihr alles am Laufen habt.
+Neben der Hardware benötigt ihr auch die passende Software. Diese solltet ihr bereits installiert haben. Falls nicht, schaut im [Abschnitt zu den Voraussetzungen](preparation.qmd) vorbei. Dort ist alles genau beschrieben. Im Folgenden gehe ich davon aus, dass ihr alles am Laufen habt.
 
 ::: {#fig-setup-rgb-led layout="[[1], [1,1], [1,1]]"}
 ![Seitenansicht.](images/master_brick_with_led_01.jpg){#fig-setup-rgb-led-a .lightbox group="setup-rgb-led"}

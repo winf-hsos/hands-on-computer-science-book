@@ -15,22 +15,11 @@ Der Weg dahin führt über folgende Schritte:
 | 3 | Wir führen die Bitmap als eine Sammlung von Pixelwerten ein. | @sec-images-bitmaps |
 | 4 | Wir lernen, wie man Buchstaben mit Pixeln darstellen kann. | @sec-images-letters |
 | 5 | Wir lernen Vektorgrafiken kennen. | @sec-images-vector-graphics |
-| 6 | Wir führen Icons als Form einer Bitmap ein. | @sec-images-icons |
-| 7 | Wir fragen uns, ob wir Bilder auch komprimieren können. | @sec-images-compressed |
-| 8 | Wir programmieren ein Tic Tac Toe-Spiel. | @sec-images-nibbles |
+| 6 | Wir zeigen ein Bild als Bitfolge aus dem Display an. | @sec-images-bits-to-display |
+| 7 | Wir erstellen eine Animation. | @sec-images-animation |
+| 8 | Wir verstehen wie wir Redunanz in Bildern nutzen können. | @sec-images-compressed |
+| 9 | Wir programmieren ein Tic Tac Toe-Spiel. | @sec-images-tic-tac-toe |
 
-### Begriffe und Konzepte {.unnumbered}
-
-Dabei lernen wir neue Begriffe und Konzepte kennen.
-
-<!-- CHAPTER_GLOSSARY_START -->
-::: {.datatable-nosearch data-order='[[2,"asc"]]'}
-| Begriff | Kategorie | Wo? |
-|---|---|---|
-| **Pixel** | Repräsentation von Bildern | @sec-images-pixels |
-| **Bitmap** | Repräsentation von Bildern | @sec-images-pixels |
-:::
-<!-- CHAPTER_GLOSSARY_END -->
 
 ## Experimentaufbau {#sec-images-experiment-setup .collapsable}
 
@@ -143,6 +132,8 @@ Einzelne Pixel lassen sich auf die oben gezeigte Weise an- und ausschalten. Aber
 
 ## Bitmaps {#sec-images-bitmaps .collapsable}
 
+### Quadrate und andere Formen
+
 Sagen wir, wir wollen ein 2x2 großes Quadrat in der Mitte des Displays zeichnen. Dazu müssen wir zuerst berechnen, wo die Mitte des Displays ist. Da das Display 128 Pixel breit und 64 Pixel hoch ist, läge die Mitte rechnerisch bei (64, 32). Weil wir bei 0 zu zählen beginnen, korrigieren wir auf (63, 31). Um ein 2x2-Quadrat zu zeichnen, setzen wir die Koordinaten des oberen linken Punkts auf (62, 30) und die Koordinaten des unteren rechten Punkts auf (63, 31). Die Liste der Werte für die Pixel in dieser Fläche muss 4 Werte enthalten, alle auf 1 gesetzt, um das Quadrat anzuzeigen.
 
 ```{python}
@@ -165,17 +156,17 @@ Was ist, wenn wir das Quadrat auf 3x3 vergrößern wollen? Dann ändern wir den 
 
 ```{python}
 #| code-line-numbers: false
-oled.write_pixels(61, 29, 64, 32, [1]*9)
+oled.write_pixels(61, 29, 63, 31, [1]*9)
 ```
 
 Die Python-Syntax `[1]*9` erzeugt eine Liste mit 9 Einsen. Das ist eine praktische Abkürzung, um lange Listen mit gleichen Werten zu erstellen.
 
 Die Idee von `write_pixels()` ist also, dass wir eine rechteckige Fläche definieren und dann eine Liste von Werten bereitstellen, die angibt, ob jedes Pixel in dieser Fläche ein- oder ausgeschaltet wird. Die Länge der Liste muss genau der Anzahl der Pixel in der Fläche entsprechen. Die Werte in der Liste werden zeilenweise von links nach rechts und von oben nach unten gelesen.
 
-In @fig-images-write-pixel-coordinates-cross sehen wir ein weieteres Beispiel, ebenfalls für eine Bitmap mit 3x3 Pixeln. Jedoch sind dieses Mal nicht alle Pixel angeschaltet, sondern nur die Pixel, die ein Kreuzmuster ergeben. Als Liste sieht das so aus:
+In @fig-images-write-pixel-coordinates-cross sehen wir ein weiteres Beispiel, ebenfalls für eine Bitmap mit 3x3 Pixeln. Jedoch sind dieses Mal nicht alle Pixel angeschaltet, sondern nur die Pixel, die ein Kreuzmuster ergeben. Als Liste sieht das so aus:
 
 ```
-[0,1,0,1,1,1,0,1,0]
+[0, 1, 0, 1, 1, 1, 0, 1, 0]
 ```
 
 Als Matrix dargestellt, wie es auch auf dem Display erscheint, sieht das so aus:
@@ -190,9 +181,67 @@ In der Matrixdarstellung erkennt man schnell das Kreuzmuster, das wir gezeichnet
 
 ![Über die Pixelwerte lassen sich beliebige Symbole darstellen, hier ein Kreuz.](https://winf-hsos.github.io/university-docs/images/images_write_pixel_coordinates_cross.png){#fig-images-write-pixel-coordinates-cross .lightbox}
 
-Wenn wir Kreuze als Bitmaps darstellen können, wie sieht es dann mit anderen Symbolen aus?
+Wenn wir dieses Kreuzmuster öfters zeichnen wollen, dann wäre es eine gute Idee, die Liste der Pixelwerte in einer Variablen zu speichern. So können wir sie immer wieder verwenden, ohne die Liste jedes Mal neu schreiben zu müssen. Das sieht dann so aus:
 
-## Buchstaben {#sec-images-letters .collapsable}
+```{python}
+#| code-line-numbers: false
+cross_bitmap = [
+    0, 1, 0,
+    1, 1, 1,
+    0, 1, 0
+]
+```
+
+Jetzt können wir das Kreuzmuster einfach zeichnen, indem wir die Variable `cross_bitmap` an die Funktion `write_pixels()` übergeben:
+
+```{python}
+#| code-line-numbers: false
+oled.write_pixels(0, 0, 2, 2, cross_bitmap)
+```
+
+Da wir als Quadrat (0, 0) bis (2, 2) angegeben haben, wird das Kreuz in der linken oberen Ecke des Displays gezeichnet. Wir können die x- und y-Koordinaten anpassen, um das Kreuz an einer anderen Position zu zeichnen. Zum Beispiel direkt daneben noch eins, mit einem Pixel Abstand dazwischen:
+
+```{python}
+#| code-line-numbers: false
+oled.write_pixels(0, 0, 2, 2, cross_bitmap)
+oled.write_pixels(4, 0, 6, 2, cross_bitmap)
+```
+
+Was, wenn wir Kreuze über das gesamte Display zeichnen wollen? Ein Kreuz inklusive Abstand benötigt 3 Pixel auf der x-Achse. Da wir 128 Pixel in der Breite haben, können wir also 42 Kreuze in eine Zeile des Displays zeichnen.
+
+```{python}
+#| code-line-numbers: false
+oled.write_pixels(0, 0, 2, 2, cross_bitmap)
+oled.write_pixels(4, 0, 6, 2, cross_bitmap)
+oled.write_pixels(8, 0, 10, 2, cross_bitmap)
+...
+oled.write_pixels(120, 0, 122, 2, cross_bitmap)
+```
+
+Stellt euch statt "..." 38 weitere Zeilen Code vor, die jeweils ein Kreuz zeichnen. Das wäre ziemlich mühsam. Zum Glück kennen wir dafür schon eine bessere Lösung, die Schleife. Wir können eine Schleife verwenden, um die x-Koordinate automatisch zu berechnen und die Kreuze in einer einzigen Schleife zu zeichnen. So sieht das aus:
+
+```{python}
+#| code-line-numbers: false
+for x in range(0, 128, 4):
+    oled.write_pixels(x, 0, x + 2, 2, cross_bitmap)
+```
+
+Erinnert euch: Die `range()`-Funktion erzeugt eine Folge von Zahlen. In diesem Fall starten wir bei 0, enden bei 128 und erhöhen die Zahl in jedem Schritt um 4. Dadurch erhalten wir die x-Koordinaten 0, 4, 8, ..., 124. In jedem Schleifendurchlauf zeichnen wir ein Kreuz an der aktuellen x-Position.
+
+Denken wir das Ganze ein Stück weiter und erzeugen ein Display voller Kreuze. Dazu könnten wir unsere Schleife kopieren und die y-Koordinate anpassen, um die Kreuze in mehreren Reihen zu zeichnen. Aber auch hier können wir wieder eine Schleife verwenden, um die y-Koordinate automatisch zu berechnen. So sieht das aus:
+
+```{python}
+#| code-line-numbers: false
+for y in range(0, 64, 4):
+    for x in range(0, 128, 4):
+        oled.write_pixels(x, y, x + 2, y + 2, cross_bitmap)
+```
+
+Wenn ihr den Code ausführt, könnt ihr dem Display beim Zeichnen zuschauen. Es füllt sich nach und nach mit Kreuzen, beginnend oben rechts nach unten links, bis das gesamte Display bedeckt ist. Schneller ginge es, wenn wir alle Pixelwerte in einer einzigen Liste speichern und dann auf einmal zeichnen. Das könnt ihr als Übung selbst ausprobieren.
+
+Wenn wir Kreuze als Bitmaps darstellen und zeichnen können, wie sieht es dann mit anderen Symbolen, wie etwa Buchstaben aus?
+
+### Buchstaben {#sec-images-letters}
 
 Auch Buchstaben auf dem Bildschirm sind nichts anderes als Pixelmuster. Wie bereits erwähnt, ist ein Buchstabe auf dem Display von Tinkerforge 5 Pixel breit und 8 Pixel hoch. Das bedeutet, dass wir für jeden Buchstaben eine Bitmap mit 40 Werten benötigen. Tinkerforge, der Hersteller des Displays, stellt eine Übersicht der unterstützten Zeichen und deren Pixelmuster auf [seiner Webseite](https://www.tinkerforge.com/en/doc/Hardware/Bricklets/OLED_128x64_V2.html#font) bereit. Daraus habe ich den Buchstaben "A" als Bitmap in eine einfache Tabelle übertragen und Pixel, die an sind, schwarz eingefärbt. Das Ergebnis seht ihr in @fig-images-bitmap-letter-a.
 
@@ -275,13 +324,17 @@ oled.write_line(0, 0, "Ass")
 
 Wenn ihr beides hintereinander ausführt, steht oben "Ass" per Textfunktion und darunter "ASS" als eigene Bitmaps. Das Schöne an der `write_line()`-Funktion ist, dass sie automatisch die richtigen Bitmaps für die Buchstaben verwendet. Das Display hat eine eingebaute Schriftart, die es nutzt, wenn wir Text anzeigen wollen. Aber wie ihr gesehen habt, können wir auch eigene Bitmaps verwenden, um Buchstaben oder andere Symbole zu zeichnen, die nicht im Zeichensatz des Displays enthalten sind.
 
-Schriftarten für Pixel-Displays sind im Kern nichts anderes als Sammlungen von Bitmaps: Für jedes Zeichen wird festgelegt, welche Pixel im 5x8-Raster leuchten. Unser "A" oben ist genau so definiert, und das OLED-Bricklet bringt eine solche Tabelle für viele Zeichen bereits mit. Wenn ihr eine andere Schrift wollt, erstellt ihr einfach eine neue Bitmap-Tabelle, etwa eine fette oder eine schmale Variante, und verwendet diese beim Zeichnen. Das funktioniert hervorragend in festen Rastergrößen, stößt aber an Grenzen, sobald sich die Größe der Buchstaben ändern sollen, wenn etwa die Schriftgröße hochgesetzt wird. Hier kommen Vektorgrafiken ins Spiel, die Formen nicht als Pixelraster, sondern als Linien und Kurven beschreiben.
+Schriftarten für Pixel-Displays sind im Kern nichts anderes als Sammlungen von Bitmaps: Für jedes Zeichen wird festgelegt, welche Pixel im 5x8-Raster leuchten. Unser "A" oben ist genau so definiert, und das OLED-Bricklet bringt eine solche Tabelle für viele Zeichen bereits mit. Wenn ihr eine andere Schrift wollt, erstellt ihr einfach eine neue Bitmap-Tabelle, etwa eine fette oder eine schmale Variante, und verwendet diese beim Zeichnen. Das funktioniert hervorragend in festen Rastergrößen, stößt aber an Grenzen, sobald sich die Größe der Buchstaben ändern muss, wenn etwa die Schrift vergrößert werden soll. Hier kommen Vektorgrafiken ins Spiel, die Formen nicht als Pixelraster, sondern als Linien und Kurven beschreiben.
 
 ## Vektorgrafiken {#sec-images-vector-graphics .collapsable}
 
-Während Bitmaps jedes Pixel explizit speichern, beschreiben Vektorgrafiken Objekte mathematisch, etwa "eine Linie von A nach B" oder "ein Kreis mit Mittelpunkt M und Radius r". Eine Vektor-Schriftart (z. B. TrueType) enthält keine 5x8-Raster pro Zeichen, sondern Pfade für die Konturen von "A", "S" etc. Der Vorteil: Diese Formen lassen sich beliebig vergrößern oder verkleinern, ohne dass Treppeneffekte entstehen. Das ist ideal für hochauflösende Displays und Druck. Auf unserem kleinen OLED-Display arbeiten wir dennoch mit Bitmaps, weil sie direkt den Pixeln entsprechen und ohne aufwendiges Rasterisieren angezeigt werden können.
+Während Bitmaps jedes Pixel explizit speichern, beschreiben Vektorgrafiken Objekte über geometrische Formen, etwa "eine Linie von A nach B" oder "ein Kreis mit Mittelpunkt M und Radius r". Eine Vektor-Schriftart (wie TrueType) enthält keine 5x8-Raster pro Zeichen, sondern Pfade für die Konturen von "A", "S" etc. Der Vorteil: Diese Formen lassen sich beliebig vergrößern oder verkleinern, ohne dass Treppeneffekte entstehen. Das ist ideal für hochauflösende Displays und Druck. Auf unserem kleinen OLED-Display arbeiten wir dennoch mit Bitmaps, weil sie direkt den Pixeln entsprechen und ohne aufwendiges Rasterisieren angezeigt werden können.
 
-Damit ihr an der Stelle einen Eindruck bekommt, kopiert den folgenden Code in eine Textdatei und benennt sie `vector_graphics.svg`. Öffnet die Datei anschließend in einem Webbrowser.
+Schaut euch zur Verdeutlichung der Problematik einmal die beiden "a" aus der @fig-images-truetype-vs-bitmap an. Das linke "a" ist eine TrueType-Schriftart, die als Vektorgrafik beschrieben wird. Das rechte "a" ist über eine Bitmap definiert und wurde stark vergrößert. Während das rechte "a" pixelig wirkt - wir sprechen auch vom Treppeneffekt, ist die als Vektorgrafik beschriebene Variante gestochen scharf, auch in großen Größen.
+
+![Das linke "a" ist eine TrueType-Schriftart, das rechte "a" eine Bitmap. Quelle: [Wikipedia](https://de.wikipedia.org/wiki/TrueType#/media/Datei:TTvsBmpFont.svg).](https://winf-hsos.github.io/university-docs/images/images_truetype_vs_bitmap.png){#fig-images-truetype-vs-bitmap}
+
+Wie funktioniert das? Dazu betrachten wir ein anderes Beispiel für eine Vektorgrafik in einem speziellen Format mit dem Namen Scalable Vector Grafik, oder kurz SVG. Kopiert einfach mal den folgenden Code in eine Textdatei und benennt sie `vector_graphics.svg`. Öffnet die Datei anschließend in einem Webbrowser.
 
 ```xml
 <svg width="440" height="220" xmlns="http://www.w3.org/2000/svg">
@@ -297,13 +350,19 @@ Ihr solltet ein Bild wie in @fig-images-vector-example sehen. Zoomt nun einmal g
 
 ![Ein Versuch der Olympischen Ringe als Vektorgrafik, die man ohne Qualitätsverlust beliebig vergrößern kann.](https://winf-hsos.github.io/university-docs/images/images_vector_example.png){#fig-images-vector-example .lightbox}
 
+Aber Moment, wenn Vektorgrafiken auf einem Bildschirm angezeigt werden, müssen sie dann nicht auch als Pixel dargestellt werden? Schließlich besteht doch jedes Bild im Endeffekt aus Pixeln wenn wir es anzeigen, oder? Und das stimmt. Während Vektorgrafiken das, was auf dem Bildschirm erscheinen soll, über geometrische Formen beschreiben, muss das Bild letztlich in eine Bitmap umgewandelt werden, damit es auf dem Bildschirm angezeigt werden kann. Dieser Prozess wird als \gloss{Rasterisierung}{Überführung einer Vektorgrafik in eine Bitmap}{Bilder} bezeichnet.
+
+In @fig-images-vector-to-bitmap seht ihr die Vektorgrafik von oben, die in eine Bitmap mit niedriger Auflösung (100 x 50 Pixel) umgewandelt wurde. Wenn man wie im Bild hereinzoomt oder das Bild auf eine höhere Auflösung wie 1000 x 500 Pixel bringen möchte, weil man die Ringe vielleicht in einen Großformat auf ein Werbeplakt drucken möchte, dann erkennt man die Treppeneffekte deutlich. Die Auflösung einer Bitmap ist somit entscheidend für die Bildqualität. Je höher die Auflösung, desto mehr Pixel stehen zur Verfügung, um Details darzustellen, und desto schärfer wirkt das Bild. Bei Vektorgrafiken spielt das hingegen keine Rolle: Wir können für ein 3 x 2 m Werbeplakat einfach eine entsprechende hochauflösende Bitmap generieren, ohne dass die Qualität leidet, weil die Vektorgrafik immer die gleichen geometrischen Formen *beschreibt*.
+
+![Die Beschreibung der geometrischen Objekte muss irgendwann in ein Bild aus Pixeln überführt werden. Dann spielt die Auflösung die entscheidende Rolle.](https://winf-hsos.github.io/university-docs/images/images_vector_example_rasterization.png){#fig-images-vector-to-bitmap .lightbox}
+
 Aufgrund ihrer Eigenschaften werden Vektorgrafiken insbesondere für Logos, Icons und Schriftarten verwendet, die in verschiedenen Größen dargestellt werden müssen. Designagenturen nutzen sie häufig, um sicherzustellen, dass ihre Designs in jeder Größe gut aussehen. Für komplexe Bilder mit vielen Farben und Details, wie Fotos, sind Bitmaps jedoch besser geeignet, weil eine Beschreibung der geometrischen Formen zu aufwendig wäre.
 
-## Vom Bild aufs Display {#sec-images-from-image-to-display .collapsable}
+## Von Bits zum Bild {#sec-images-bits-to-display .collapsable}
 
-Wir bleiben in diesem Kapitel bei Bitmaps, weil es für unser kleines 128x64 Pixel Display nicht sinnvoll ist, Vektorgrafiken zu verwenden. Zudem ist auch eine Vektorgrafik am Ende auf dem Bildschirm nichts anderes als eine Bitmap, weil der Bildschirm nur Pixel kennt. Deshalb müssen Vektorgrafiken vor der Anzeige in Bitmaps umgewandelt werden, ein Prozess, der als Rasterisierung bezeichnet wird.
+Wir bleiben in diesem Kapitel bei Bitmaps, weil es für unser kleines 128x64 Pixel Display nicht sinnvoll ist, Vektorgrafiken zu verwenden. Zudem ist auch eine Vektorgrafik am Ende auf dem Bildschirm nichts anderes als eine Bitmap, weil der Bildschirm nur Pixel kennt. Deshalb müssen Vektorgrafiken vor der Anzeige in Bitmaps umgewandelt werden (Rasterisierung).
 
-Egal ob es vorher eine Vektorgrafik war oder direkt als Bitmap vorliegt: Um ein Bild auf unserem Display anzuzeigen, müssen wir es in eine Liste von Pixelwerten umwandeln, die wir dann mit der `write_pixels()`-Funktion zeichnen können. Im Beispiel unseres Displays reicht eine Liste mit Binärwerten (0 und 1) aus, um jedes Pixel als aus- oder eingeschaltet zu kennzeichnen. Für ein farbiges Display, wie wir es typischerweise bei Computer, Smartphone oder Fernseher finden, wären mehrere Bits pro Pixel notwendig, um die verschiedenen Farben darzustellen. Ihr erinnert euch an den RGB-Farbcode? Der kann für Farbbilder verwendet werden und mündet im Endeffekt auch in einer Liste von Nullen und Einsen, die die Pixelwerte repräsentieren. Nur ist diese Liste eben deutlich länger.
+Egal ob es vorher eine Vektorgrafik war oder direkt als Bitmap vorliegt: Um ein Bild auf unserem Display anzuzeigen, müssen wir es in eine Liste von Pixelwerten umwandeln, die wir dann mit der `write_pixels()`-Funktion zeichnen können. Im Beispiel unseres Displays reicht eine Liste mit Binärwerten (0 und 1) aus, um jedes Pixel als ein- oder ausgeschaltet zu kennzeichnen. Für ein farbiges Display, wie wir es typischerweise bei Computerbildschirmen, Smartphones oder Fernseher finden, wären mehrere Bits pro Pixel notwendig, um die verschiedenen Farben darzustellen. Ihr erinnert euch an den RGB-Farbcode aus @sec-colors? Der kann für Farbbilder verwendet werden und mündet im Endeffekt auch in einer Liste von Nullen und Einsen, die die Farbwerte jedes Pixels repräsentieren. Nur ist diese Liste eben deutlich länger als bei Schwarzweiß-Bildern.
 
 Betrachtet einmal das Bild in @fig-images-bitmap-darth-vader. Ihr kennt bestimmt, was es zeigt. Es handelt sich um eine Bitmap-Darstellung von Darth Vaders Kopf aus Star Wars. Das Bild ist 27 Pixel breit und 24 Pixel hoch, also insgesamt 648 Pixel. Jedes Pixel ist entweder schwarz oder weiß, was locker auf unser Display passt. Wie aber bekommen wir es nun auf unser Display?
 
@@ -311,15 +370,17 @@ Betrachtet einmal das Bild in @fig-images-bitmap-darth-vader. Ihr kennt bestimmt
 
 Nehmen wir an, die Liste aus Nullen und Einsen liegt uns noch nicht vor. Unser erstes Ziel sollte somit sein, diese Liste zu erstellen. Das könnten wir per Hand versuchen, indem wir Zeile für Zeile von links nach rechts durch das Bild gehen und für jedes weiße Pixel eine 0 und für jedes schwarze Pixel eine 1 notieren. Das wäre aber sehr mühsam und fehleranfällig. Glücklicherweise liegt das Bild bereits digital vor, allerdings nicht als Bildformat, sondern als Excel-Tabelle.
 
-Bitte was? Ein Bild als Excel-Tabelle? Die Idee habe ich aus dem CS50-Kurs der Harvard University übernommen. Dort erstellen Studierende mithilfe von Excel-Tabellen Pixelbilder, indem sie die Zellen entsprechend einfärben. Jede Zelle entspricht dabei einem Pixel, das entweder schwarz oder weiß ist. Das Ergebnis kann dann als Bitmap interpretiert werden. Die Excel-Datei mit Darth Vaders Maske könnt ihr euch [herunterladen](resources/Darth%20Vader%20Pixel%20Art.xlsx) und das Ganze einmal selbst ausprobieren.
+Bitte was? Ein Bild als Excel-Tabelle? Die Idee habe ich aus dem [CS50-Kurs der Harvard University](https://cs50.harvard.edu/x/2024/notes/4/#pixel-art) übernommen. Dort erstellen Studierende mithilfe von Excel-Tabellen Pixelbilder, indem sie die Zellen entsprechend einfärben. Jede Zelle entspricht dabei einem Pixel, das entweder schwarz oder weiß ist. Das Ergebnis kann dann als Bitmap interpretiert werden. Die Excel-Datei mit Darth Vaders Maske könnt ihr euch [herunterladen](resources/Darth%20Vader%20Pixel%20Art.xlsx) und das Ganze einmal selbst ausprobieren.
 
-Da wir bereits eine digitale Form haben (wenn auch kein Bildformat), können wir das Problem im Sinne des EVA-Modells auffassen: Wir haben Eingabedaten (die Excel-Tabelle) und wollen eine Ausgabe (die Liste von Nullen und Einsen). Der Prozess dazwischen ist die Verarbeitung, bei der wir die Excel-Tabelle lesen und die Pixelwerte extrahieren. Und das Ganze bitte als Python-Programm, weil das unsere Programmiersprache der Wahl ist. Na dann los!
+Da wir bereits eine digitale Form haben (wenn auch kein Bildformat), können wir das Problem im Sinne des EVA-Modells auffassen: Wir haben Eingabedaten (die Excel-Tabelle) und wollen eine Ausgabe (die Liste von Nullen und Einsen). Der Prozess dazwischen ist die Verarbeitung, die dafür sorgt, dass die Excel-Tabelle gelesen und die Pixelwerte extrahiert werden. Das Ganze wollen wir natürlich als Python-Programm umsetzen, weil das unsere Programmiersprache der Wahl ist. Na dann los!
+
+![Die Überführung einer Excel-basierten Bitmap in eine Liste aus Bits im EVA-Modell.](https://winf-hsos.github.io/university-docs/images/images_darth_vader_input_output.png){#fig-images-darth-vader-input-output .lightbox}
 
 ### Excel mit Python einlesen
 
-Um Excel-Dateien in Python zu lesen, gibt es verschiedene Bibliotheken. Eine der beliebtesten ist `openpyxl`, die wir hier verwenden werden. Stellt sicher, dass ihr die Bibliothek installiert habt. Das könnt ihr mit dem folgenden Befehl in eurer Kommandozeile tun. Denkt daran, dass MacOS-Nutzer `pip3` anstelle von `pip` verwenden müssen.:
+Um Excel-Dateien in Python zu lesen müssen wir das Rad nicht neu erfinden. Es gibt verschiedene Bibliotheken, eine der beliebtesten und einfachsten ist `openpyxl`, die wir hier verwenden werden. Stellt sicher, dass ihr die Bibliothek installiert habt. Das könnt ihr mit dem folgenden Befehl in eurer Kommandozeile tun. Denkt daran, dass MacOS-Nutzer `pip3` anstelle von `pip` verwenden müssen:
 
-```bash
+```{.bash code-line-numbers="false"}
 pip install openpyxl
 ```
 
@@ -342,9 +403,11 @@ sheet = workbook["Darth Vader"]
 
 Um aus der Excel-Darstellung zu einer Liste mit 0 und 1 zu kommen, können wir ein Programm schreiben, das genau das Vorgehen simuliert, das wir per Hand machen würden: Wir gehen Zeile für Zeile durch die Tabelle und lesen die Farbe jeder Zelle aus. Wenn die Zelle schwarz ist, fügen wir eine 1 zur Liste hinzu, wenn sie weiß ist, eine 0. 
 
-Das Programmierkonzept, das wir dazu verwenden, haben wir schon kennengelernt. Erinnert ihr euch? Wir wollen etwas mehrfach ausführen (prüfen ob die Zelle schwarz oder weiß ist) für eine bekannte Menge von Elementen (alle Zellen in der Tabelle). Für die mehrfache Ausführung desselben Codes verwenden wir Schleifen, und wenn die Menge der Elemente bekannt ist, verwenden wir eine `for`-Schleife. Genau das brauchen wir hier.
+Das Programmierkonzept, das wir dazu verwenden, haben wir schon kennengelernt. Erinnert ihr euch? Wir wollen etwas mehrfach ausführen (prüfen ob die Zelle schwarz oder weiß ist) für eine bekannte Menge von Elementen (alle Zellen in der Tabelle). Für die mehrfache Ausführung desselben Codes verwenden wir Schleifen. Und wenn die Menge der Elemente bekannt ist, verwenden wir eine `for`-Schleife. Genau das brauchen wir hier.
 
-Für die Definition der Schleife verwenden wir die `iter_rows()`-Methode des Tabellenblatts, die uns alle Zeilen der Tabelle als Liste von Zellen zurückgibt. Für jede Zeile können wir dann wiederum über die einzelnen Zellen iterieren. Es gibt also zwei Schleifen, die ineinander verschachtelt sind: Die erste Schleife geht Zeile für Zeile vor, und die zweite geht für jede Zeile die Spalten (oder Zellen) durch. Innerhalb der zweiten (oder inneren) Schleife prüfen wir die Farbe der Zelle und fügen entsprechend eine 0 oder 1 zur Liste hinzu:
+Einer `for`-Schleife müssen wir mitteilen, für welche Menge an Elementen sie den selben Code mehrmals ausführen soll. Als wir die `for`-Schleife eingeführt haben, hat diese Aufgabe die `range()`-Funktion erledigt. Sie hat uns eine Sequenz (oder Menge) an Zahlen erzeugt, über die wir iterieren können. 
+
+Diese Aufgabe übernimmt jetzt die Funktion `iter_rows()`, die das Tabellenblatt für uns bereitstellt. Sie gibt uns für ein Tabellenblatt die Menge aller Zeilen in der Tabelle zurück. Also erneut eine Menge an Elementen, wie von der `for`-Schleife gewünscht, wenn diesmal auch keine Zahlen. Für jede Zeile in dieser Menge können wir dann wiederum über die einzelnen Zellen iterieren, einfach indem wir `for cell in row:` schreiben. Es braucht also zwei Schleifen, die ineinander verschachtelt sind: Die erste Schleife geht Zeile für Zeile vor, und die zweite geht für jede Zeile die Spalten (oder Zellen) durch:
 
 ```{python}
 for row in sheet.iter_rows(): # <1>
@@ -356,8 +419,7 @@ for row in sheet.iter_rows(): # <1>
 2. Die innere Schleife iteriert über jede Zelle in der aktuellen Zeile. Die Variable `row` ist eine Liste von Zellen, und `cell` repräsentiert die aktuelle Zelle in dieser Liste.
 3. Hier müssen wir gleich den Code ergänzen, der die Farbe der Zelle prüft und die entsprechende 0 oder 1 zur Liste hinzufügt.
 
-
-Was passiert nun für jede Zelle in der inneren Schleife? Wir müssen die Farbe der Zelle auslesen. In `openpyxl` können wir auf die Füllfarbe einer Zelle über das `fill`-Attribut zugreifen. Die Farbe selbst ist im `fgColor`-Attribut gespeichert, und der RGB-Wert der Farbe ist im `rgb`-Attribut zu finden. Etwas kompliziert, aber so funktioniert es nun mal. Man kann das alles in der Dokumentation der Bibliothek [nachlesen](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.styles.fills.html). Auswendig wissen muss man das nicht.
+Was passiert nun für jede Zelle in der inneren Schleife? Wir müssen die Farbe der Zelle auslesen. In `openpyxl` können wir auf die Füllfarbe einer Zelle über das `fill`-Attribut zugreifen. Die Farbe selbst ist im `fgColor`-Attribut gespeichert, und der RGB-Wert der Farbe ist im `rgb`-Attribut zu finden. Etwas kompliziert, aber so funktioniert es nun mal. Man kann das alles in der Dokumentation der Bibliothek [nachlesen](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.styles.fills.html). Auch ChatGPT & Co. helfen hier weiter. Auswendig wissen muss man das nicht.
 
 Probieren wir also, die Farbe der Zelle auszulesen:
 
@@ -373,35 +435,348 @@ for row in sheet.iter_rows():
 
 Wenn ihr das Programm bis hierher ausführt, dann solltet ihr auf der Konsole eine lange Liste von Farbwerten sehen. Aber wie sehen die denn aus?
 
+```
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+00000000
+FF000000
+FF000000
+...
+```
+
+Was soll das bitte bedeuten?
+
 ### Hexadezimale Farbwerte
 
-Im vorigen Kapitel @sec-numbers haben wir das Binärsystem kennengelernt. Das Binärsystem ist nur eines von vielen Stellenwertsystemen und es verwenden als Basis die 2. Wir haben auch gesehen, dass andere Systeme mit anderen Basen gibt, wie das Oktalsystem zur Basis 8 oder das Dezimalsystem zur Basis 10, das wir im Alltag verwenden. Ein weiteres, in der Informatik wichtiges System, ist das Hexadezimalsystem zur Basis 16. Es verwendet die Ziffern 0 bis 9, und weil es dann keine weiteren Zahlen mehr gibt, anschließend die Buchstaben A bis F, um die Werte von 10 bis 15 darzustellen. Hexadezimale Zahlen werden häufig in der Informatik verwendet, um Bytes kompakt darzustellen. Wie ihr gleich sehen werdet, passt ein Byte nämlich wunderschön in zwei hexadezimale Ziffern.
+Im vorigen Kapitel @sec-numbers haben wir das Binärsystem kennengelernt. Das Binärsystem ist nur eines von vielen Stellenwertsystemen und es verwendet als Basis die 2. Wir haben auch gesehen, dass andere Systeme mit anderen Basen gibt, wie das Oktalsystem zur Basis 8 oder das Dezimalsystem zur Basis 10, das wir im Alltag verwenden. Ein weiteres, in der Informatik wichtiges System, ist das Hexadezimalsystem zur Basis 16. Es verwendet die Ziffern 0 bis 9, und weil es dann keine weiteren Zahlen mehr gibt, anschließend die Buchstaben A bis F, um die Werte von 10 bis 15 darzustellen. Hexadezimale Zahlen werden häufig in der Informatik verwendet, um Bytes kompakt darzustellen. Wie ihr gleich sehen werdet, passt ein Byte nämlich wunderschön in zwei hexadezimale Ziffern.
 
+Aber eins nach dem anderen. Beginnen wir mit dem Hexadezimalsystem an sich. Wir können das bekannte Schema der Stellenwertsysteme anwenden, um zu verstehen, welche Wertigkeit jede Ziffer in einer Hexadezimalzahl hat:
+
+![Das Stellenwertschema für das Hexadezimalsystem zur Basis 16. Funktioniert wie jedes andere Stellenwertsystem.](https://winf-hsos.github.io/university-docs/images/images_places_hexadecimal){#fig-images-hexadecimal-places .lightbox}
+
+In @fig-images-hexadecimal-places sehen wir die Wertigkeit der einzelnen Stellen in einer Hexadezimalzahl. Die rechte Stelle hat den Wert $16^0 = 1$, die nächste Stelle links davon hat den Wert $16^1 = 16$, dann $16^2 = 256$ und so weiter. Um den Gesamtwert einer Hexadezimalzahl zu berechnen, multiplizieren wir jede Ziffer mit ihrer jeweiligen Wertigkeit und addieren die Ergebnisse. Der einzige Unterschied zu den Stellenwertsystemen, die wir bisher kennengelernt haben, ist die Verwendung von Buchstaben für die Werte 10 bis 15. Da wir keine arabischen Ziffern für diese Werte haben, es aber ein Symbol für die 10, 11, 12, 13, 14 und 15 geben muss, verwenden wir die Buchstaben A, B, C, D, E und F. Ganz einfach, wenn auch gewöhnungsbedürftig.
+
+Warum ist das Hexadezimalsystem überhaupt interessant? Wie schon erwähnt, können wir über zwei Hexadezimalziffern ein Byte kompakt darstellen. Um zu verstehen warum, das so ist, schauen wir uns eine Hexadezimalzahl mit nur einer Ziffer genauer an. Mit einer Ziffer können wir Werte von 0 bis 15 darstellen. Im Binärsystem benötigen wir dafür ganze vier Ziffern, also 4 Bits. Ihr erinnert euch an die Darstellung eines Bytes aus @sec-numbers:
+
+![Ein Byte lässt sich schön kompakt mit zwei Hexadezimalziffern darstellen.](https://winf-hsos.github.io/university-docs/images/images_byte_compact_1.png){#fig-images-byte-compact-1 .lightbox}
+
+
+Mit vier Bits können wir ebenfalls Werte von 0 bis 15 darstellen, also genauso viele wie  mit einer Hexadezimalziffer. Das bedeutet wir können die erste Hälfte eines Bytes, was wir ein Nibble nennen, mit einer Hexadezimalziffer darstellen. Vergegenwärtigen wir uns nun, für welche Wertigkeit die zweite Ziffe im Hexadezimalsystem steht und welchen Wertebereich wir damit darstellen können: Die zweite Stelle steht für $16^1 = 16$. Mit dieser Stelle können wir also Werte von 0 bis 15 mal 16 darstellen, also von 0 bis 240 in Schritten von 16. Kombinieren wir nun beide Stellen, also die erste und die zweite Ziffer, dann können wir Werte von 0 bis 15 (erste Ziffer) plus 0 bis 240 (zweite Ziffer) darstellen. Das ergibt einen Gesamtwertebereich von 0 bis 255, also genau den Wertebereich, den ein Byte abdeckt.
+
+::: {#fig-images-byte-compact layout="[[1,1]]"}
+![0 entspricht dem Hexadezimalwert 0x00.](https://winf-hsos.github.io/university-docs/images/images_byte_compact_2.png){#fig-images-byte-compact-2 .lightbox}
+
+![255 entspricht dem Hexadezimalwert 0xFF.](https://winf-hsos.github.io/university-docs/images/images_byte_compact_3.png){#fig-images-byte-compact-3 .lightbox}
+
+Darstellung von Bytes als Hexadezimalzahlen.
+:::
+
+Kleine Randnotiz: In der Informatik wird eine Hexadezimalzahl häufig mit einem vorangestellten `0x` gekennzeichnet, um klarzumachen, dass es sich um eine Hexadezimalzahl handelt. So wird aus der Zahl 255 im Dezimalsystem die Zahl `0xFF` im Hexadezimalsystem.
+
+Zurück zu der merkwürdigen Ausgabe von oben. Was auf dem Terminal gesehen haben sind also Hexadezimalzahlen, die jeweils den Farbwert einer Zelle in der Excel-Tabelle repräsentieren. Aber Moment: Wir haben gelernt, dass ein RGB-Wert aus drei Bytes besteht, je ein Byte für einen der Farbkanäle Rot, Grün und Blau. Wenn wir ein Byte mit zwei Hexadezimalziffern darstellen können, warum sehen wir dann in der Ausgabe Hexadezimalzahlen mit 8 Ziffern? Die Antwort ist einfach: Die ersten zwei Ziffern repräsentieren die Transparenz (Alpha-Kanal), gefolgt von den von uns erwarteten sechs Ziffern für Rot, Grün und Blau. In unserem Fall sind die Farben entweder komplett schwarz (FF000000) oder komplett weiß (FFFFFFFF). Logisch, denn in unserer Excel-Tabelle gibt es nur Schwarz und Weiß. 
+
+Macht doch mal den Test und färbt die obere linke Zelle in Rot ein und lasst das Programm erneut laufen. Achtung: Speichert die Excel-Datei und schließt sie, bevor ihr das Python-Programm erneut ausführt, sonst kann `openpyxl` die Datei nicht lesen:
+
+```
+FFFF0000
+00000000
+00000000
+00000000
+```
+
+Die erste Hexadezimalzahl `FFFF0000` repräsentiert jetzt die Farbe Rot (oder welche Farbe ihr in Excel als Zellenhintergrund gewählt habt): FF für den Alpha-Kanal (vollständig sichtbar), FF für den Rot-Kanal (volle Intensität), 00 für den Grün-Kanal (keine Intensität) und 00 für den Blau-Kanal (keine Intensität). Die anderen Zellen sind weiterhin schwarz.
+
+### Die Liste mit Bits erstellen
+
+Damit haken wir das Thema der Hexadezimalzahlem ab, aber es war notwendig, um die Farbwerte in der Excel-Tabelle zu verstehen. Jetzt können wir nämlich die Farbe jeder Zelle prüfen und entsprechend eine 0 oder 1 zur Liste hinzufügen. Wenn die Farbe `FF000000` (schwarz) ist, fügen wir eine 1 hinzu, andernfalls eine 0:
 
 ```{python}
 from openpyxl import load_workbook
 
-workbook = load_workbook("Dart Vader Pixel Art.xlsx")
+workbook = load_workbook("Darth Vader Pixel Art.xlsx")
 sheet = workbook["Darth Vader"]
 
 bits = []
 for row in sheet.iter_rows():
     for cell in row:
         color = getattr(cell.fill.fgColor, "rgb", None)
-        bits.append(1 if color == "FF000000" else 0)
+        if color == "FF000000":
+            bits.append(1)
+        else:
+            bits.append(0)
 
-print(bits)
+print(f"Bitmap with {len(bits)} bits: {bits}")
 ```
 
-## Bewegte Bilder {#sec-images-animations .collapsable}
+Die Aufgabe, schwarz von weiß zu unterscheiden, erledigt hier die `if`-Anweisung. Je nachdem, ob die Bedingung `color == "FF000000"` wahr oder falsch ist, wird entweder eine 1 oder eine 0 zur Liste `bits` hinzugefügt. Das Hinzufügen eines Elemnts an das Ende einer Liste funktioniert mit der `append()`-Methode, der wir das neue Element direkt übergeben. Am Ende haben wir eine Liste mit 648 Einträgen, die die Pixelwerte von Darth Vaders Maske repräsentieren. Jetzt bleibt nur noch die Frage, wie wir Darth Vader auf das Display bekommen.
+
+### Anzeige auf dem Display
+
+Wie wir einzelne Pixel auf dem Display anzeigen können, haben wir bereits weiter oben in @sec-images-pixels gelernt. Dieses Vorgehen können wir jetzt nutze und unsere Liste mit Bits in der Variable `bits` an die `write_pixels()`-Funktion übergeben, um Darth Vaders Maske auf dem Display anzuzeigen. Wir müssen nur noch die Koordinaten des oberen linken und unteren rechten Punkts angeben. Dazu müssen wir entscheiden, wo wir das Bild auf dem Display platzieren wollen. Ich habe mich für die Position (50, 20) als oberen linken Punkt entschieden. Der untere rechte Punkt ergibt sich aus der Breite und Höhe des Bildes. Da das Bild 27 Pixel breit und 24 Pixel hoch ist, setzen wir den unteren rechten Punkt auf (76, 43):
+
+```{python}
+#| code-line-numbers: false
+oled.write_pixels(50, 20, 76, 43, bits)
+```
+
+Natürlich müssen wir zuvor den Boilerplate-Code zum Initialisieren des Displays in unser Programm kopieren. Das komplette Programm sieht dann so aus:
+
+```{python}
+#| code-fold: show
+from openpyxl import load_workbook
+from tinkerforge.ip_connection import IPConnection
+from tinkerforge.bricklet_oled_128x64_v2 import BrickletOLED128x64V2
+
+ipcon = IPConnection()
+ipcon.connect('localhost', 4223)
+oled = BrickletOLED128x64V2('25zo', ipcon)
+oled.clear_display()
+
+workbook = load_workbook("xlsx/Darth Vader Pixel Art.xlsx")
+sheet = workbook["Darth Vader"]
+
+bits = []
+for row in sheet.iter_rows():
+    for cell in row:
+        color = getattr(cell.fill.fgColor, "rgb", None)
+        if color == "FF000000":
+            bits.append(1)
+        else:
+            bits.append(0)
+
+print(f"Bitmap with {len(bits)} bits: {bits}")
+oled.write_pixels(50, 20, 76, 43, bits)
+```
+
+Und Voilà! Darth Vader erscheint auf dem Display!
+
+![Darth Vaders Maske als Bitmap aus dem OLED-Display.](images/oled_display_darth_vader.jpg){#fig-images-oled-display-darth-vader .lightbox}
+
+### Eine Bitmap speichern
+
+Das hat gut geklappt! Wir haben ein Programm geschrieben, das eine Bitmap aus Excel ausliest und auf dem Display anzeigt. Aber ist Excel wirklich ein geeignetes Format für die Speicherung von Bildern? 
+
+Sicher nicht, auch wenn es für den Zweck des Verstehens gut funktioniert. Für Bilder, die als Pixelmatrix gespeichert werden, gibt es bessere Alternativen, wie das Bildformat BMP (Bitmap). Es ist ein einfaches, unkomprimiertes Format, das die Pixelwerte direkt speichert. Dieses Format erhält man auch, wenn an ein Foto mit einer digitalen Kamera schießt: Es wird jeder Farbwert vom Fotosensor gelesen und als Pixelwert gespeichert. Nicht als Excel-Datei, sondern als Bitmap-Datei mit der Endung `.bmp`.
+
+Lasst uns unser Bild auch als Bitmap speichern. Wenn wir das händisch machen wollten, müssten wir uns mit dem Aufbau des BMP-Formats beschäftigen. Denn eine BMP-Datei besteht nicht nur aus den Pixelwerten, sondern enthält zusätzlich einen Header mit Informationen über das Bild, wie die Breite, Höhe und Farbtiefe.
+
+Wie ihr schon ahnt müssen wir das Rad auch hier nicht neu erfinden. Es gibt Bibliotheken, die uns die Arbeit abnehmen. Eine der bekanntesten ist die Bibliothek `Pillow`, die vielseitige Möglichkeiten für die Arbeit mit Bildern in Python mitbringt. Mit `Pillow` können wir etwa Bilder laden, bearbeiten und speichern. Installiert die Bibliothek, falls noch nicht geschehen:
+
+```{.bash code-line-numbers="false"}
+pip install Pillow
+```
+
+MacOS-Nutzer verwenden wieder `pip3` anstelle von `pip`.
+
+Um unser Bild als Bitmap zu speichern, können wir die `Image`-Klasse aus der `PIL`-Bibliothek verwenden, die wir am Anfang einmal importieren müssen. Am Ende, wenn wir die Bitmap aus Excel eingelesen haben, erstellen wir ein neues Bildobjekt mit der gewünschten Größe von 27x24 Pixel und dem Modus "1" für Schwarzweiß-Bilder. Dann setzen wir die Pixelwerte entsprechend unserer Liste `bits` und speichern das Bild als BMP-Datei:
+
+```{python}
+#| code-line-numbers: false
+from PIL import Image # <1>
+...
+image = Image.new('1', (27, 24)) # <2>
+image.putdata(bits) # <3>
+image.save("xlsx/darth_vader.bmp") # <4>
+```
+1. Wir importieren die `Image`-Klasse aus der `PIL`-Bibliothek, die Teil von `Pillow` ist.
+2. Wir erstellen ein neues Bildobjekt mit der Größe 27x24 Pixel im Modus "1" für Schwarzweiß-Bilder. Modus "RGB" wäre für Farbbilder im RGB-Code.
+3. Wir setzen die Pixelwerte des Bildes mit unserer Liste `bits`. Die Werte werden zeilenweise von links nach rechts und von oben nach unten erwartet.
+4. Wir speichern das Bild als BMP-Datei mit dem Namen `darth_vader.bmp` im Unterverzeichnis `xlsx`.
+
+Schaut jetzt einmal in das Verzeichnis `xlsx`. Dort solltet ihr die Datei `darth_vader.bmp` finden. Öffnet sie mit einem Bildbetrachter eurer Wahl, und ihr solltet Darth Vaders Maske sehen.
+
+![Darth Vader als Bitmap-Datei auf eurer Festplatte.](images/darth_vader_saved_bmp.png){#fig-images-darth-vader-saved-bmp}
+
+## Komprimierte Bilder {#sec-images-compressed .collapsable}
+
+Bitmaps speichern für jedes Pixel einen Wert. Das ist einfach, kann aber viel Speicher benötigen. Deshalb werden Bitmaps häufig komprimiert. Ein klassisches Verfahren ist Run-Length Encoding (RLE). Dabei werden Folgen identischer Pixel durch "Wert + Länge" ersetzt. Aus `0, 0, 0, 0, 1, 1, 0, 0` wird zum Beispiel `(0x4), (1x2), (0x2)`. Besonders bei großen einfarbigen Flächen spart das deutlich Speicher und Übertragungszeit. Für eingebettete Systeme wie unser Display ist das nützlich, weil weniger Daten übertragen und verarbeitet werden müssen. Vor der Anzeige wird die komprimierte Darstellung einfach wieder in die ursprüngliche Pixelsequenz entpackt.
+
+Das Extrembeispiel ist ein komplett schwarzes oder weißes Bild. Statt 8192 Nullen oder Einsen zu speichern, reicht ein Eintrag: `(0x8192)` oder `(1x8192)`. Das spart enorm viel Platz. Es gibt auch andere Arten der Kompression, wie verlustfreie (z.B. PNG) und verlustbehaftete (z.B. JPEG) Verfahren, die je nach Anwendungsfall sinnvoll sind. Wir werden darauf später im Buch noch einmal zurückkommen. In diesem Kapitel reicht und das Grundverständnis, wie Bilder überhaupt in einem Computer abgebildet und gespeichert werden können.
+
+Mit Bildern hängen auch Videos eng zusammen, denn Videos sind im Grunde nichts anderes als eine schnelle Abfolge von Einzelbildern, die nacheinander angezeigt werden. Wenn ihr also verstehen, wie Bilder gespeichert werden, dann können wir uns gut vorstellen, wie das mit Videos funktioniert. Weil hier sehr viele Bilder zusammenkommen, spielt die Kompression eine noch größere Rolle.
+
+Auf bewegte Bilder werden wir im Rest des Kapitels einen genaueren Blick werfen und wollen versuchen, eine kleine Animation selbst zu basteln. Dazu rufen wir eine berühmte Spielfigur aus der Videospielgeschichte auf den Plan: Super Mario aus den 1980er-Jahren. In Farbe!
+
+
+## Farbige Bilder {#sec-images-colored .collapsable}
+
+
+Bisher haben wir uns nur mit Bitmaps beschäftigt, deren Pixel entweder schwarz oder weiß sind. Das hat mit unserem Display zu tun, das eben nicht mehr kann. Trotzdem sollten wir verstehen, wie das Ganze mit farbigen Bildern funktioniert, denn das Prinzip ist dasselbe. Nur dass wir für jedes Pixel nicht nur einen Binärwert (0 oder 1) speichern, sondern einen Farbwert, der aus mehreren Bits besteht. Die Grundlagen dafür, nämlich den RGB-Code, haben wir schon in @sec-colors kennengelernt.
+
+### Bitmaps im RGB-Format
+
+In @fig-images-super-mario seht ihr eine farbige Bitmap von Super Mario, wie sie in meiner Kindheit häufig über den Bildschirm (damals noch Röhrenfernseher) geflimmert ist. Stundenlang habe ich versucht, den kleinen Klempner durch die Level zu steuern und Prinzessin Peach zu retten. Die Grafik war damals natürlich sehr pixelig, weil die Auflösung der Nintendo Entertainment System (NES) Konsole nur 256x240 Pixel betrug. Das hat aber dem Spielspaß keinen Abbruch getan.
 
 ![Super Mario aus der 8-Bit Nintendo-Spielkonsole NES als Bitmap](https://winf-hsos.github.io/university-docs/images/images_super_mario.png){#fig-images-super-mario .lightbox}
 
-![Mario beginnt zu laufen](https://winf-hsos.github.io/university-docs/images/images_super_mario_walk_1.png){#fig-images-super-mario-walk-1 .lightbox}
+Wie unterscheidet sich nun Super Mario in Farbe von Darth Vader, der nur schwarzweiß dargestellt wurde? Nun, zunächst fällt auf, dass die Dimensionen beider Bitmaps unterschiedlich sind. Super Mario ist 16 Pixel breit und 16 Pixel hoch, also insgesamt 256 Pixel. Darth Vader war mit 27x24 Pixeln deutlich größer. Aber das ist nicht der einzige Unterschied. Jedes Pixel in Super Marios Bitmap benötigt mehr Speicherplatz, weil es in Farbe dargestellt wird. Jedes Pixel in Super Marios Bitmap wird durch einen RGB-Wert repräsentiert, der ausdrei Bytes besteht (je eines für Rot, Grün und Blau). Das bedeutet, dass die gesamte Bitmap von Super Mario 256 Pixel x 3 Bytes pro Pixel = 768 Bytes Speicherplatz benötigt. Im Gegensatz dazu benötigt die Bitmap von Darth Vader nur 648 Pixel x 1 Bit pro Pixel = 81 Bytes Speicherplatz (da jedes Pixel nur schwarz oder weiß ist). Größeres Bild braucht weniger Speicher, hat dafür aber kein Farben.
 
-![Mario läuft weiter](https://winf-hsos.github.io/university-docs/images/images_super_mario_walk_2.png){#fig-images-super-mario-walk-2 .lightbox}
+Ich habe für dieses Experiment auch Super Mario als Excel-Tabelle erstellt, ähnlich wie bei Darth Vader. Ihr könnt die Datei [hier herunterladen](resources/Super%20Mario%20Pixel%20Art.xlsx). Um Mario in eine Liste von Bits zu überführen, können wir unser Programm von oben grundsätzlich verwenden, müssen es aber ein wenig anpassen. Insbesondere müssen wir jetzt statt 0 oder 1 die RGB-Werte der Zellen auslesen und entsprechend in die Liste einfügen. 
 
-![Mario nächster Schritt](https://winf-hsos.github.io/university-docs/images/images_super_mario_walk_3.png){#fig-images-super-mario-walk-3 .lightbox}
+Ladet zunächst die Excel-Datei herunter und ersetzt im Programm den Dateinamen und den Namen des Tabellenblatts:
+
+```{python}
+#| code-line-numbers: false
+workbook = load_workbook("Super Mario Pixel Art.xlsx")
+sheet = workbook["Super Mario"]
+```
+
+Es folgen die beiden verschachtelten Schleifen, um jede Zelle auszulesen. Hier müssen wir die Anpassung vornehmen. Gehen wir wie immer Schritt für Schritt vor. Wie wir bereits wissen, kommt der Farbcode zusammen mit dem Alpha-Kanal als Hexadezimalzahl mit 8 Ziffern daher. Für uns sind aber nur die letzten 6 Ziffern interesant. Schneiden wir also die ersten beiden Ziffern ab:
+
+```{python}
+#| code-line-numbers: false
+bitmap = []
+for row in sheet.iter_rows():
+    for cell in row:
+        color = getattr(cell.fill.fgColor, "rgb", None)
+        color = color[2:] # <1>
+        print(color) # <2>
+```
+1. Wir schneiden die ersten beiden Ziffern ab, um nur den RGB-Teil der Farbe zu erhalten.
+2. Wir geben den RGB-Farbcode in der Konsole aus, um zu überprüfen, ob wir die richtigen Werte extrahiert haben.
+
+Lasst es einmal laufen und prüft, dass wirklich 6-stellige RGB-Werte in Hexadezimalform ausgegeben werden:
+
+```
+FFFFFF
+FFFFFF
+FFFFFF
+FFFFFF
+FFFFFF
+B53120
+B53120
+B53120
+B53120
+B53120
+...
+```
+
+Wenn es bei euch auch so aussieht, dann ist soweit alles gut. Für die Speicherung im RGB-Format benötigen wir einzelne Bytes, was bedeutet, dass wir den RGB-Code in seine drei Bestandteile zerlegen müssen. Dazu erwartet die `putdat()`-Methode der `Image`-Klasse eine Liste von Dreiertupeln mit jeweils Dezimalwerten. Also beispielsweise für die ersten drei Pixel, die alle weiß sind:
+
+```{python}
+#| code-line-numbers: false
+bitmap = [(255, 255, 255), (255, 255, 255), (255, 255, 255)]
+```
+
+Wir müssen also zwei Schritte in unser Programm integrieren: Erstens das Zerlegen des RGB-Codes in seine Einzelteile (#FFFFFF wird zu FF, FF, FF) und zweitens die Umwandlung der Hexadezimalwerte in Dezimalwerte (FF wird zu 255). Beides können wir mit Python-Funktionen erledigen. Um den RGB-Code zu zerlegen, können wir die String-Slicing-Methode verwenden. Dabei können wir angeben, welchen Teilstring wir aus einer Zeichenkette extrahieren möchten. Für die Umwandlung von Hexadezimal- in Dezimalwerte gibt es die eingebaute Funktion `int()`, der wir den Hexadezimalstring und die Basis 16 übergeben können und sie spuckt die entsprechende Dezimalzahl aus. Das Ganze sieht dann so aus:
+
+```{python}
+#| code-line-numbers: false
+...
+color = getattr(cell.fill.fgColor, "rgb", None)
+color = color[2:] 
+r = int(color[0:2], 16) # <1>
+g = int(color[2:4], 16) # <2>
+b = int(color[4:6], 16) # <3>
+print(r, g, b) # <4>
+```
+1. Wir extrahieren die ersten beiden Ziffern für den Rot-Kanal und wandeln sie mit `int()` in eine Dezimalzahl um.
+2. Wir extrahieren die mittleren beiden Ziffern für den Grün-Kanal und wandeln sie mit `int()` in eine Dezimalzahl um.
+3. Wir extrahieren die letzten beiden Ziffern für den Blau-Kanal und wandeln sie mit `int()` in eine Dezimalzahl um.
+4. Wir geben die Dezimalwerte für Rot, Grün und Blau in der Konsole aus, um zu überprüfen, ob die Umwandlung korrekt ist.
+
+Die Ausgabe sollte jetzt so aussehen:
+
+```
+255 255 255
+255 255 255
+255 255 255
+255 255 255
+255 255 255
+181 49 32
+181 49 32
+...
+```
+
+Die ersten fünf Pixel sind weiß, gefolgt von den ersten roten Pixeln von Marios Mütze. Passt also! Nun noch die RGB-Werte als Dreiertupel zur Liste `bitmap` hinzufügen:
+
+```{python}
+#| code-line-numbers: false
+bitmap.append((r, g, b))
+```
+
+Ein Tupel in Python ist sehr ähnlich wie eine Liste, nur dass wir eine Liste verändern können, ein Tupel nicht. Anstelle der eckigen Klammern `[]` verwenden wir runde Klammern `()`, um ein Tupel zu erstellen. Ansonsten funktioniert das Hinzufügen zu einer Liste genauso wie zuvor mit der `append()`-Methode.
+
+Hier nun der gesamte Code bis hierher (ohne Boilerplate-Code zum Initialisieren des Displays und das Öffnen des Excel-Dokuments):
+
+```{python}
+#| code-line-numbers: false
+bitmap = []
+for row in sheet.iter_rows():
+    for cell in row:
+        color = getattr(cell.fill.fgColor, "rgb", None) # <1>
+        color = color[2:] # <2>
+        r = int(color[0:2], 16) # <3>
+        g = int(color[2:4], 16)
+        b = int(color[4:6], 16)
+        bitmap.append((r, g, b)) # <4>
+```
+
+1. Wir lesen die Farbe der Zelle aus.
+2. Wir schneiden die ersten beiden Ziffern ab, um nur den RGB-Teil der Farbe zu erhalten, ohne den Alpha-Wert.
+3. Wir extrahieren die Rot-, Grün- und Blau-Komponenten und wandeln sie in Dezimalzahlen um.
+4. Wir fügen das Dreiertupel mit den RGB-Werten zur Liste `bitmap` hinzu.
+
+
+Mit den RGB-Werten in der Liste `bitmap` können wir jetzt ein farbiges Bild von Super Mario erstellen und speichern. Dazu verwenden wir wieder die `Image`-Klasse aus der `PIL`-Bibliothek. Diesmal erstellen wir ein Bild im Modus "RGB", der Dimensionierung 16x16 und übergeben wieder die Liste `bitmap` an die `putdata()`-Methode. Dadurch, dass wir den Modus auf "RGB" gesetzt haben, erwartet die Methode jetzt eine Liste von Dreiertupeln mit den RGB-Werten. Zum Schluss speichern wir das Bild als BMP-Datei:
+
+```{python}
+#| code-line-numbers: false
+image = Image.new('RGB', (16, 16))
+image.putdata(bitmap)
+image.save("xlsx/super_mario_color.bmp")
+```
+
+Öffnet jetzt einen Dateiexplorer und navigiert in das Verzeichnis, in dem ihr die Daten gespeichert habt. Ihr könnt die Datei öffnen und solltet Super Mario in Farbe sehen. Zum Abschluss dieses Abschnitts möchte ich aber mit euch einmal auf die Größe der Datei schauen. 
+
+### Struktur einer Bitmap-Datei
+
+Um die Größe der Datei anzuzeigen könnt ihr entweder im Datei-Explorer auf die Datei klicken. Unten in der Fuszeile sollte die genaue Größe in Bytes angegeben werden. Alternativ geht es das auch über das Terminal in Visual Studio Code. Wechselt dazu mit `cd` in das richtige Verzeichnis und gebt den Befehl `dir` (Windows) oder `ls -lh` (MacOS, Linux) ein. In der Ausgabe sollte die Datei und ihr Größe angezeigt werden: 
+
+```
+28.10.2025  19:41    822 super_mario_color.bmp
+```
+
+Die Zahl von Interesse ist hier unmittelbar vor dem Dateinamen. In meinem Fall sind es 822 Bytes. Rein rechnerisch müssten wir aber auf:
+
+$$16 \cdot 16 \cdot 3 = 768 $$
+
+Bytes kommen. Warum ist die Datei also größer als erwartet? Die Differenz ist $54$ Bytes. Die Antwort ist, dass eine Bitmap-Datei (und so gut wie jede andere Datei auch), neben den eigentlichen Informationen (hier: Pixelwerte im RGB-Fomat) auch noch sogenannte Metadaten enthält. Metadaten sind Daten über die Daten. In einer Bitmap-Datei sind das zum Beispiel Informationen über die Breite und Höhe des Bildes, die Farbtiefe (also wie viele Bits pro Pixel verwendet werden). All diese Informationen werden im sogenannten Header der Bitmap-Datei gespeichert, der am Anfang der Datei steht. Der Header ist notwendig, damit ein Programm, das die Bitmap-Datei öffnet, weiß, wie es die Pixelwerte interpretieren soll, wo die Pixelwerte anfangen und enden, und so weiter.
+
+Die wichtigsten Strukturelemente einer Bitmap-Datei sind in @fig-images-bitmap-structure dargestellt. Der kleine gelbe Bereich am Anfang ist 14 Bytes lang und stellt den sogenannten Datei-Header dar. Hier wird zum Beispiel ganz zu Beginn mitgeteilt, dass es sich überhaupt um eine Bitmap-Datei handelt (die ersten beiden Bytes enthalten die ASCII-Zeichen "BM" für Bitmap). Außerdem wird hier die Gesamtgröße der Datei gespeichert (36 03 00 00, was 822 Bytes entspricht; da das little-endian Format verwendet wird, sind die Bytes in umgekehrter Reihenfolge gespeichert) und die Position, an der die eigentlichen Pixelwerte beginnen. Das ist die 36 im Bild, was dezimal 54 ist. Die eigentlichen Pixelwert beginnen also mit dem 54. Byte in der Datei.
+
+Direkt danach folgt der größere blaue Bereich, der 40 Bytes lang ist und den sogenannten DIB-Header (Device Independent Bitmap) enthält. In diesem Header sind Metadaten über das Bild gespeichert, wie die Breite, Höhe, Farbtiefe und so weiter. Letztere wird durch die 18 angegeben, was dezimal der 24 entspricht. Das steht für 24 Bits Farbtiefe. Ein Programm, das diese Bitmap-Datei liest, weiß also anhand des DIB-Header, wie es die Pixelwerte lesen muss, um das Bild korrekt dazustellen. 
+
+Erst nach den beiden Headern folgen die eigentlichen Pixelwerte, die in @fig-images-bitmap-structure grünlich dargestellt sind und die in unserem Fall 768 Bytes lang sind. Das Bild zeigt nicht die gesamte Datei, es folgen noch weitere Pixelwerte. weiter unten. Probiert es am besten einmal selbst, die Datei im Hexcode-Editor anzuschauen. Dann bekommt ihr ein Gefühl dafür, wie die Datei tatsächlich aussieht und auf eurem Rechner gespeichert wird. Schließlich geht es in diesem Buch darum, wie Computer funktionieren, und da gehört es dazu, dass wir verstehen, wie Daten im Computer gespeichert werden. Das Beispiel der Bitmap ist dafür sehr zugänglich und anschaulich.
+
+![Die Struktur einer Bitmap-Datei am Beispiel der sumper_mario_color.bmp von oben](https://winf-hsos.github.io/university-docs/images/images_bitmap_structure.png){#fig-images-bitmap-structure .lightbox}
+
+Öffnet einmal die Webseite [hexed.it](https://hexed.it/) in eurem Browser. Hier bekommt ihr einen Editor für Dateien, wie ihr ihn auch von Word, Notepad oder Visual Studio Code kennt. Der Unterschied ist, dass dieser Editor auch die binären Daten der Datei anzeigt, also die Nullen und Einsen, die eurer Computer tatsächlich speichert. Damit die Schreibweise etwas kompakter wird, werden die Bits in Bytes gruppiert und als Hexadezimalzahlen dargestellt. Jedes Byte wird also als zwei Hexadezimalziffern angezeigt.
+
+![Marios Bitmap im Hex-Editor. Hier wird jedes Byte als Hexadezimalzahl angezeigt.](https://winf-hsos.github.io/university-docs/images/images_hex_editor_mario.png){#fig-images-hex-editor-mario .lightbox}
+
+Es passt also im Endeffekt doch alles zusammen: Die Bitmap-Datei hat 14 Bytes für den Datei-Header, 40 Bytes für den DIB-Header und 768 Bytes für die Pixelwerte, was zusammen die 822 Bytes gibt, die wir im Terminal oder Explorer sehen. Wir können alle beruhigt schlafen und haben wieder was gelernt!
+
+
+## Bewegte Bilder {#sec-images-animation .collapsable}
+
+::: {#fig-images-super-mario-walk layout="[[1,1,1]]"}
+
+![Erste Frame](https://winf-hsos.github.io/university-docs/images/images_super_mario_walk_1.png){#fig-images-super-mario-walk-1 group="super-mario-walk" .lightbox}
+
+![Zweiter Frame](https://winf-hsos.github.io/university-docs/images/images_super_mario_walk_2.png){#fig-images-super-mario-walk-2 group="super-mario-walk" .lightbox}
+
+![Dritter Frame](https://winf-hsos.github.io/university-docs/images/images_super_mario_walk_3.png){#fig-images-super-mario-walk-3 group="super-mario-walk" .lightbox}
+
+Drei Bilder - oder Frames - um Mario zum Laufen zu bringen.
+:::
 
 ![Die Einzelbilder hintereinander ergeben eine Animation](images/super_mario_walking_animation.gif){#fig-images-super-mario-animation .lightbox}
 
@@ -420,27 +795,6 @@ Sicher habt ihr das schon einmal gesehen oder selbst gemacht: Einen sogenannten 
 ### Schwarzweiß
 
 
+## Jump & Run {#sec-images-tic-tac-toe .collapsable}
 
-## Komprimierte Bilder {#sec-images-compressed .collapsable}
-
-Bitmaps speichern für jedes Pixel einen Wert. Das ist einfach, kann aber viel Speicher benötigen. Deshalb werden Bitmaps häufig komprimiert. Ein klassisches Verfahren ist Run-Length Encoding (RLE). Dabei werden Folgen identischer Pixel durch "Wert + Länge" ersetzt. Aus `0,0,0,0,1,1,0,0` wird zum Beispiel `(0x4),(1x2),(0x2)`. Besonders bei großen einfarbigen Flächen spart das deutlich Speicher und Übertragungszeit. Für eingebettete Systeme wie unser Display ist das nützlich, weil weniger Daten übertragen und verarbeitet werden müssen. Vor der Anzeige wird die komprimierte Darstellung einfach wieder in die ursprüngliche Pixelsequenz entpackt.
-
-Das Extrembeispiel ist ein komplett schwarzes oder weißes Bild. Statt 8192 Nullen oder Einsen zu speichern, reicht ein Eintrag: `(0x8192)` oder `(1x8192)`. Das spart enorm viel Platz.
-
-## Tic Tac Toe {#sec-images-nibbles .collapsable}
-
-Zum Abschluss des Kapitels wollen wir noch zwei Aspekte betrachten, die wir bei der Entwicklung eines kleinen Spiels kennenlernen wollen: Animationen und Objektorientierung. 
-
-Das Spiel *Nibbles* wurde 1991 als Spiel für das Betriebssystem Microsoft DOS veröffentlicht und kostenlos bereitgestellt. Es wurde in der Programmiersprache QBasic geschrieben, in der auch ich das Programmieren zuerst gelernt habe. Die Spielidee wurde später im Spiel *Snake* weiterverwendet, das auf vielen Handys, besonders von Nokia, vorinstalliert war. In beiden Spielen bewegt ihr eine Schlange über den Bildschirm, die immer länger wird, je mehr sie frisst. Ziel ist es, die Schlange so zu steuern, dass sie nicht mit sich selbst oder den Bildschirmrändern kollidiert.
-
-Damit wir Nibbles auf umserem kleinen OLED umsetzen können - übrigens hatten die ersten Nokia-Mobiltelefone Displays mit kleinerer Auflösung - müssen wir uns zunächst überlegen, wie wir Dinge wie eine Schlange auf dem Bildschirm bewegen oder animieren können. Der Begriff *animieren* kommt aus dem Lateinischen und bedeutet so viel wie "beleben" oder "zum Leben erwecken". Das klingt gut!
-
-### Animationen {#sec-images-animations}
-
-Animationen sind im Grunde nichts anderes als eine schnelle Abfolge von Bildern, die nacheinander angezeigt werden. Wenn die Bilder schnell genug wechseln, entsteht der Eindruck von Bewegung. Das Prinzip ist ähnlich wie bei einem Daumenkino, wo eine Serie von Zeichnungen durch schnelles Blättern zum Leben erweckt wird.
-
-In unserem Fall können wir Animationen auf dem OLED-Display erstellen, indem wir mehrere Bitmaps vorbereiten, die verschiedene Zustände eines Objekts darstellen. Zum Beispiel könnten wir eine einfache Animation eines laufenden Roboters erstellen, indem wir verschiedene Positionen der Beine zeichnen und diese nacheinander anzeigen.
-
-### Objekte und Klassen {#sec-images-object-oriented}
-
-In @sec-colors haben wir bereits kurz die Begriffe *Klasse* und *Objekt* eingeführt. Hier wollen wir das Konzept vertiefen, indem wir eine eigene Klasse für ein animiertes Objekt definieren. Eine Klasse ist wie ein Bauplan für ein Objekt, das bestimmte Eigenschaften (Attribute) und Fähigkeiten (Methoden) hat. Eine Klasse, die wir einmal definiert haben, können wir beliebig oft ins Leben rufen, indem wir Objekte dieser Klasse erstellen.
+...
