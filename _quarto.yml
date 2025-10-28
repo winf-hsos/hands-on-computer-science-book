@@ -34,7 +34,7 @@ book:
     - colors.qmd
     - numbers.qmd
     - text.qmd
-    - images.qmd
+    #- images.qmd
     #- sound.qmd
     #- codes.qmd
     #- conversion.qmd
