@@ -6,3 +6,5 @@ python
 _environment
 /env/
 /.quarto/
+
+**/*.quarto_ipynb

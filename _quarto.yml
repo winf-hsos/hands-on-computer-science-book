@@ -20,6 +20,7 @@ filters:
 book:
   title: "Hands-On Computer Science"
   author: "Nicolas Meseth"
+  description: "Ein Online-Buch mit Hardware-Experimenten, das Schritt für Schritt in die Welt der Digitalisierung einführt."
   cover-image: cover.png
   date: today
   date-format: long
@@ -34,7 +35,7 @@ book:
     - colors.qmd
     - numbers.qmd
     - text.qmd
-    #- images.qmd
+    - images.qmd
     #- sound.qmd
     #- codes.qmd
     #- conversion.qmd

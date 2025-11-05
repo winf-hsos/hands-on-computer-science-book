@@ -360,7 +360,7 @@ Aufgrund ihrer Eigenschaften werden Vektorgrafiken insbesondere für Logos, Icon
 
 ## Von Bits zum Bild {#sec-images-bits-to-display .collapsable}
 
-Wir bleiben in diesem Kapitel bei Bitmaps, weil es für unser kleines 128x64 Pixel Display nicht sinnvoll ist, Vektorgrafiken zu verwenden. Zudem ist auch eine Vektorgrafik am Ende auf dem Bildschirm nichts anderes als eine Bitmap, weil der Bildschirm nur Pixel kennt. Deshalb müssen Vektorgrafiken vor der Anzeige in Bitmaps umgewandelt werden (Rasterisierung).
+Wir bleiben in diesem Kapitel bei Bitmaps, weil auch eine Vektorgrafik am Ende auf dem Bildschirm nichts anderes als eine Bitmap. Ein Bildschirm kennt nur Pixel.
 
 Egal ob es vorher eine Vektorgrafik war oder direkt als Bitmap vorliegt: Um ein Bild auf unserem Display anzuzeigen, müssen wir es in eine Liste von Pixelwerten umwandeln, die wir dann mit der `write_pixels()`-Funktion zeichnen können. Im Beispiel unseres Displays reicht eine Liste mit Binärwerten (0 und 1) aus, um jedes Pixel als ein- oder ausgeschaltet zu kennzeichnen. Für ein farbiges Display, wie wir es typischerweise bei Computerbildschirmen, Smartphones oder Fernseher finden, wären mehrere Bits pro Pixel notwendig, um die verschiedenen Farben darzustellen. Ihr erinnert euch an den RGB-Farbcode aus @sec-colors? Der kann für Farbbilder verwendet werden und mündet im Endeffekt auch in einer Liste von Nullen und Einsen, die die Farbwerte jedes Pixels repräsentieren. Nur ist diese Liste eben deutlich länger als bei Schwarzweiß-Bildern.
 
@@ -378,7 +378,7 @@ Da wir bereits eine digitale Form haben (wenn auch kein Bildformat), können wir
 
 ### Excel mit Python einlesen
 
-Um Excel-Dateien in Python zu lesen müssen wir das Rad nicht neu erfinden. Es gibt verschiedene Bibliotheken, eine der beliebtesten und einfachsten ist `openpyxl`, die wir hier verwenden werden. Stellt sicher, dass ihr die Bibliothek installiert habt. Das könnt ihr mit dem folgenden Befehl in eurer Kommandozeile tun. Denkt daran, dass MacOS-Nutzer `pip3` anstelle von `pip` verwenden müssen:
+Um Excel-Dateien in Python zu lesen müssen wir das Rad nicht neu erfinden. Es gibt verschiedene Bibliotheken, eine der beliebtesten und einfachsten ist `openpyxl`. Stellt sicher, dass ihr die Bibliothek installiert habt. Das könnt ihr mit dem folgenden Befehl in eurer Kommandozeile tun. Denkt daran, dass MacOS-Nutzer `pip3` anstelle von `pip` verwenden müssen:
 
 ```{.bash code-line-numbers="false"}
 pip install openpyxl
@@ -388,9 +388,12 @@ Die Bibliothek `openpyxl` stellt uns eine Funktion mit dem Namen `load_workbook(
 
 ```{python}
 #| code-line-numbers: false
-from openpyxl import load_workbook
-workbook = load_workbook("Dart Vader Pixel Art.xlsx")
+from openpyxl import load_workbook # <1>
+workbook = load_workbook("Dart Vader Pixel Art.xlsx") # <2>
 ```
+
+1. Wir kündigen an, dass wir die Funktion `load_workbook()` aus der Bibliothek `openpyxl` verwenden möchten.
+2. Wir laden die Excel-Datei und speichern das Ergebnis in der Variable `workbook`.
 
 Da ein Excel-Dokument aus mehreren Tabellenblättern bestehen kann, müssen wir nach dem Laden das Blatt auswählen, das wir verwenden wollen. Am sichersten geht das über den Namen des Tabellenblatts, das in unserem Fall "Darth Vader" heißt:
 
@@ -403,11 +406,11 @@ sheet = workbook["Darth Vader"]
 
 Um aus der Excel-Darstellung zu einer Liste mit 0 und 1 zu kommen, können wir ein Programm schreiben, das genau das Vorgehen simuliert, das wir per Hand machen würden: Wir gehen Zeile für Zeile durch die Tabelle und lesen die Farbe jeder Zelle aus. Wenn die Zelle schwarz ist, fügen wir eine 1 zur Liste hinzu, wenn sie weiß ist, eine 0. 
 
-Das Programmierkonzept, das wir dazu verwenden, haben wir schon kennengelernt. Erinnert ihr euch? Wir wollen etwas mehrfach ausführen (prüfen ob die Zelle schwarz oder weiß ist) für eine bekannte Menge von Elementen (alle Zellen in der Tabelle). Für die mehrfache Ausführung desselben Codes verwenden wir Schleifen. Und wenn die Menge der Elemente bekannt ist, verwenden wir eine `for`-Schleife. Genau das brauchen wir hier.
+Das Programmierkonzept, das wir dazu verwenden, haben wir schon kennengelernt. Erinnert ihr euch? Wir wollen etwas mehrfach ausführen (prüfen ob die Zelle schwarz oder weiß ist) für eine bekannte Menge von Elementen (alle Zellen in der Tabelle). Für die mehrfache Ausführung desselben Codes verwenden wir Schleifen. Und wenn die Menge der Elemente bekannt ist, verwenden wir eine `for`-Schleife.
 
 Einer `for`-Schleife müssen wir mitteilen, für welche Menge an Elementen sie den selben Code mehrmals ausführen soll. Als wir die `for`-Schleife eingeführt haben, hat diese Aufgabe die `range()`-Funktion erledigt. Sie hat uns eine Sequenz (oder Menge) an Zahlen erzeugt, über die wir iterieren können. 
 
-Diese Aufgabe übernimmt jetzt die Funktion `iter_rows()`, die das Tabellenblatt für uns bereitstellt. Sie gibt uns für ein Tabellenblatt die Menge aller Zeilen in der Tabelle zurück. Also erneut eine Menge an Elementen, wie von der `for`-Schleife gewünscht, wenn diesmal auch keine Zahlen. Für jede Zeile in dieser Menge können wir dann wiederum über die einzelnen Zellen iterieren, einfach indem wir `for cell in row:` schreiben. Es braucht also zwei Schleifen, die ineinander verschachtelt sind: Die erste Schleife geht Zeile für Zeile vor, und die zweite geht für jede Zeile die Spalten (oder Zellen) durch:
+Diese Aufgabe übernimmt jetzt die Funktion `iter_rows()`, die die `openpyxl`-Klasse für das Tabellenblatt uns bereitstellt. Die Funtion gibt uns für ein Tabellenblatt die Menge aller Zeilen in der Tabelle zurück. Also erneut eine Menge an Elementen, wie von der `for`-Schleife gewünscht, wenn auch dieses Mal keine Zahlen. Für jede Zeile in dieser Menge können wir dann wiederum über die einzelnen Zellen iterieren, einfach indem wir `for cell in row:` schreiben. Es braucht also zwei Schleifen, die ineinander verschachtelt sind: Die erste Schleife geht Zeile für Zeile vor, und die zweite geht für jede Zeile die Spalten (oder Zellen) durch:
 
 ```{python}
 for row in sheet.iter_rows(): # <1>
@@ -419,9 +422,9 @@ for row in sheet.iter_rows(): # <1>
 2. Die innere Schleife iteriert über jede Zelle in der aktuellen Zeile. Die Variable `row` ist eine Liste von Zellen, und `cell` repräsentiert die aktuelle Zelle in dieser Liste.
 3. Hier müssen wir gleich den Code ergänzen, der die Farbe der Zelle prüft und die entsprechende 0 oder 1 zur Liste hinzufügt.
 
-Was passiert nun für jede Zelle in der inneren Schleife? Wir müssen die Farbe der Zelle auslesen. In `openpyxl` können wir auf die Füllfarbe einer Zelle über das `fill`-Attribut zugreifen. Die Farbe selbst ist im `fgColor`-Attribut gespeichert, und der RGB-Wert der Farbe ist im `rgb`-Attribut zu finden. Etwas kompliziert, aber so funktioniert es nun mal. Man kann das alles in der Dokumentation der Bibliothek [nachlesen](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.styles.fills.html). Auch ChatGPT & Co. helfen hier weiter. Auswendig wissen muss man das nicht.
+Was passiert nun für jede Zelle in der inneren Schleife? Wir müssen die Farbe der Zelle auslesen. Wir können auf die Füllfarbe einer Zelle über das `cell.fill`-Attribut zugreifen. Die Farbe selbst ist im `fgColor`-Attribut gespeichert, und der RGB-Wert der Farbe ist im `rgb`-Attribut zu finden. Etwas kompliziert, aber so funktioniert es nun mal. Man kann das alles in der Dokumentation der Bibliothek [nachlesen](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.styles.fills.html). Auch ChatGPT & Co. helfen hier weiter. Auswendig wissen muss man das nicht.
 
-Probieren wir also, die Farbe der Zelle auszulesen:
+Probieren wir, die Farbe der Zelle auszulesen:
 
 ```{python}
 for row in sheet.iter_rows():
@@ -433,7 +436,7 @@ for row in sheet.iter_rows():
 1. Das müssen wir nicht auswendig wissen, das schlagen wir in der Dokumentation der Bibliothek nach.
 2. Wir geben die Farbe der Zelle aus, um zu sehen, welchen Wert sie hat.
 
-Wenn ihr das Programm bis hierher ausführt, dann solltet ihr auf der Konsole eine lange Liste von Farbwerten sehen. Aber wie sehen die denn aus?
+Wenn ihr das Programm bis hierher ausführt, dann solltet ihr auf der Konsole eine lange Liste von Werten sehen. Aber wie sehen die denn aus und was soll das sein?
 
 ```
 00000000
@@ -451,8 +454,6 @@ FF000000
 ...
 ```
 
-Was soll das bitte bedeuten?
-
 ### Hexadezimale Farbwerte
 
 Im vorigen Kapitel @sec-numbers haben wir das Binärsystem kennengelernt. Das Binärsystem ist nur eines von vielen Stellenwertsystemen und es verwendet als Basis die 2. Wir haben auch gesehen, dass andere Systeme mit anderen Basen gibt, wie das Oktalsystem zur Basis 8 oder das Dezimalsystem zur Basis 10, das wir im Alltag verwenden. Ein weiteres, in der Informatik wichtiges System, ist das Hexadezimalsystem zur Basis 16. Es verwendet die Ziffern 0 bis 9, und weil es dann keine weiteren Zahlen mehr gibt, anschließend die Buchstaben A bis F, um die Werte von 10 bis 15 darzustellen. Hexadezimale Zahlen werden häufig in der Informatik verwendet, um Bytes kompakt darzustellen. Wie ihr gleich sehen werdet, passt ein Byte nämlich wunderschön in zwei hexadezimale Ziffern.
@@ -463,7 +464,7 @@ Aber eins nach dem anderen. Beginnen wir mit dem Hexadezimalsystem an sich. Wir 
 
 In @fig-images-hexadecimal-places sehen wir die Wertigkeit der einzelnen Stellen in einer Hexadezimalzahl. Die rechte Stelle hat den Wert $16^0 = 1$, die nächste Stelle links davon hat den Wert $16^1 = 16$, dann $16^2 = 256$ und so weiter. Um den Gesamtwert einer Hexadezimalzahl zu berechnen, multiplizieren wir jede Ziffer mit ihrer jeweiligen Wertigkeit und addieren die Ergebnisse. Der einzige Unterschied zu den Stellenwertsystemen, die wir bisher kennengelernt haben, ist die Verwendung von Buchstaben für die Werte 10 bis 15. Da wir keine arabischen Ziffern für diese Werte haben, es aber ein Symbol für die 10, 11, 12, 13, 14 und 15 geben muss, verwenden wir die Buchstaben A, B, C, D, E und F. Ganz einfach, wenn auch gewöhnungsbedürftig.
 
-Warum ist das Hexadezimalsystem überhaupt interessant? Wie schon erwähnt, können wir über zwei Hexadezimalziffern ein Byte kompakt darstellen. Um zu verstehen warum, das so ist, schauen wir uns eine Hexadezimalzahl mit nur einer Ziffer genauer an. Mit einer Ziffer können wir Werte von 0 bis 15 darstellen. Im Binärsystem benötigen wir dafür ganze vier Ziffern, also 4 Bits. Ihr erinnert euch an die Darstellung eines Bytes aus @sec-numbers:
+Warum ist das Hexadezimalsystem überhaupt interessant? Wie schon erwähnt, können wir über zwei Hexadezimalziffern ein Byte kompakt darstellen. Um zu verstehen, warum das so ist, schauen wir uns eine Hexadezimalzahl mit nur einer Ziffer genauer an. Mit einer Ziffer können wir Werte von 0 bis 15 darstellen. Im Binärsystem benötigen wir dafür ganze vier Ziffern, also 4 Bits. Ihr erinnert euch an die Darstellung eines Bytes aus @sec-numbers:
 
 ![Ein Byte lässt sich schön kompakt mit zwei Hexadezimalziffern darstellen.](https://winf-hsos.github.io/university-docs/images/images_byte_compact_1.png){#fig-images-byte-compact-1 .lightbox}
 
@@ -480,7 +481,11 @@ Darstellung von Bytes als Hexadezimalzahlen.
 
 Kleine Randnotiz: In der Informatik wird eine Hexadezimalzahl häufig mit einem vorangestellten `0x` gekennzeichnet, um klarzumachen, dass es sich um eine Hexadezimalzahl handelt. So wird aus der Zahl 255 im Dezimalsystem die Zahl `0xFF` im Hexadezimalsystem.
 
-Zurück zu der merkwürdigen Ausgabe von oben. Was auf dem Terminal gesehen haben sind also Hexadezimalzahlen, die jeweils den Farbwert einer Zelle in der Excel-Tabelle repräsentieren. Aber Moment: Wir haben gelernt, dass ein RGB-Wert aus drei Bytes besteht, je ein Byte für einen der Farbkanäle Rot, Grün und Blau. Wenn wir ein Byte mit zwei Hexadezimalziffern darstellen können, warum sehen wir dann in der Ausgabe Hexadezimalzahlen mit 8 Ziffern? Die Antwort ist einfach: Die ersten zwei Ziffern repräsentieren die Transparenz (Alpha-Kanal), gefolgt von den von uns erwarteten sechs Ziffern für Rot, Grün und Blau. In unserem Fall sind die Farben entweder komplett schwarz (FF000000) oder komplett weiß (FFFFFFFF). Logisch, denn in unserer Excel-Tabelle gibt es nur Schwarz und Weiß. 
+#### Alpha-Werte {.unnumbered}
+
+Zurück zu der merkwürdigen Ausgabe von oben. Was auf dem Terminal gesehen haben sind also Hexadezimalzahlen, die jeweils den Farbwert einer Zelle in der Excel-Tabelle repräsentieren. Aber Moment: Wir haben gelernt, dass ein RGB-Wert aus drei Bytes besteht, je ein Byte für einen der Farbkanäle Rot, Grün und Blau. Wenn wir ein Byte mit zwei Hexadezimalziffern darstellen können, warum sehen wir dann in der Ausgabe Hexadezimalzahlen mit 8 Ziffern? 
+
+Die Antwort ist einfach: Die ersten zwei Ziffern repräsentieren die Transparenz (Alpha-Kanal), gefolgt von den von uns erwarteten sechs Ziffern für Rot, Grün und Blau. In unserem Fall sind die Farben entweder komplett schwarz (**FF**000000) oder komplett weiß (**FF**FFFFFF). Hätten wir in unsere Excel-Tabelle einen Zellenhintergrund mit Transparenz eingefügt, dann würde sich der Alpha-Wert entsprechend ändern. Er kann also ebenfalls Werte von 00 (vollständig transparent) bis FF (vollständig undurchsichtig) annehmen und damit 256 mögliche Transparenzstufen repräsentieren.
 
 Macht doch mal den Test und färbt die obere linke Zelle in Rot ein und lasst das Programm erneut laufen. Achtung: Speichert die Excel-Datei und schließt sie, bevor ihr das Python-Programm erneut ausführt, sonst kann `openpyxl` die Datei nicht lesen:
 
@@ -519,7 +524,7 @@ Die Aufgabe, schwarz von weiß zu unterscheiden, erledigt hier die `if`-Anweisun
 
 ### Anzeige auf dem Display
 
-Wie wir einzelne Pixel auf dem Display anzeigen können, haben wir bereits weiter oben in @sec-images-pixels gelernt. Dieses Vorgehen können wir jetzt nutze und unsere Liste mit Bits in der Variable `bits` an die `write_pixels()`-Funktion übergeben, um Darth Vaders Maske auf dem Display anzuzeigen. Wir müssen nur noch die Koordinaten des oberen linken und unteren rechten Punkts angeben. Dazu müssen wir entscheiden, wo wir das Bild auf dem Display platzieren wollen. Ich habe mich für die Position (50, 20) als oberen linken Punkt entschieden. Der untere rechte Punkt ergibt sich aus der Breite und Höhe des Bildes. Da das Bild 27 Pixel breit und 24 Pixel hoch ist, setzen wir den unteren rechten Punkt auf (76, 43):
+Wie wir einzelne Pixel auf dem Display anzeigen können, haben wir bereits weiter oben in @sec-images-pixels gelernt. Dieses Vorgehen können wir jetzt nutzen und unsere Liste mit Bits in der Variable `bits` an die `write_pixels()`-Funktion übergeben, um Darth Vaders Maske auf dem Display anzuzeigen. Wir müssen nur noch die Koordinaten des oberen linken und unteren rechten Punkts angeben. Dazu müssen wir entscheiden, wo wir das Bild auf dem Display platzieren wollen. Ich habe mich für die Position (50, 20) als oberen linken Punkt entschieden, das ist ungefährt die Mitte. Der untere rechte Punkt ergibt sich aus der Breite und Höhe des Bildes. Da das Bild 27 Pixel breit und 24 Pixel hoch ist, setzen wir den unteren rechten Punkt auf (76, 43):
 
 ```{python}
 #| code-line-numbers: false
@@ -559,15 +564,15 @@ Und Voilà! Darth Vader erscheint auf dem Display!
 
 ![Darth Vaders Maske als Bitmap aus dem OLED-Display.](images/oled_display_darth_vader.jpg){#fig-images-oled-display-darth-vader .lightbox}
 
-### Eine Bitmap speichern
+### Eine Bitmap speichern {#sec-images-save-bitmap}
 
 Das hat gut geklappt! Wir haben ein Programm geschrieben, das eine Bitmap aus Excel ausliest und auf dem Display anzeigt. Aber ist Excel wirklich ein geeignetes Format für die Speicherung von Bildern? 
 
-Sicher nicht, auch wenn es für den Zweck des Verstehens gut funktioniert. Für Bilder, die als Pixelmatrix gespeichert werden, gibt es bessere Alternativen, wie das Bildformat BMP (Bitmap). Es ist ein einfaches, unkomprimiertes Format, das die Pixelwerte direkt speichert. Dieses Format erhält man auch, wenn an ein Foto mit einer digitalen Kamera schießt: Es wird jeder Farbwert vom Fotosensor gelesen und als Pixelwert gespeichert. Nicht als Excel-Datei, sondern als Bitmap-Datei mit der Endung `.bmp`.
+Sicher nicht, auch wenn es für den Zweck des Verstehens gut funktioniert. Für Bilder, die als Pixelmatrix gespeichert werden, gibt es bessere Alternativen, wie das Bildformat BMP (Bitmap). Es ist ein einfaches, unkomprimiertes Format, das die Pixelwerte direkt als Abfolge von Binärziffern speichert. Dieses Format erhält man auch, wenn an ein Foto mit einer digitalen Kamera schießt: Es wird jeder Farbwert vom Fotosensor gelesen und als Pixelwert gespeichert. Nicht als Excel-Datei, sondern als Bitmap-Datei mit der Endung `.bmp`.
 
-Lasst uns unser Bild auch als Bitmap speichern. Wenn wir das händisch machen wollten, müssten wir uns mit dem Aufbau des BMP-Formats beschäftigen. Denn eine BMP-Datei besteht nicht nur aus den Pixelwerten, sondern enthält zusätzlich einen Header mit Informationen über das Bild, wie die Breite, Höhe und Farbtiefe.
+Lasst uns versuchen, unser Bild auch als Bitmap zu speichern. Wenn wir das händisch machen wollten, müssten wir uns mit dem Aufbau des BMP-Formats beschäftigen. Denn eine BMP-Datei besteht nicht nur aus den Pixelwerten, sondern enthält zusätzlich einen Header mit Informationen über das Bild, wie die Breite, Höhe und Farbtiefe.
 
-Wie ihr schon ahnt müssen wir das Rad auch hier nicht neu erfinden. Es gibt Bibliotheken, die uns die Arbeit abnehmen. Eine der bekanntesten ist die Bibliothek `Pillow`, die vielseitige Möglichkeiten für die Arbeit mit Bildern in Python mitbringt. Mit `Pillow` können wir etwa Bilder laden, bearbeiten und speichern. Installiert die Bibliothek, falls noch nicht geschehen:
+Wie ihr schon ahnt, müssen wir das Rad auch hier nicht neu erfinden. Es gibt Bibliotheken, die uns die Arbeit abnehmen. Eine der bekanntesten ist die Bibliothek `Pillow`, die vielseitige Möglichkeiten für die Arbeit mit Bildern in Python mitbringt. Mit `Pillow` können wir ganz einfach Bilder laden, bearbeiten und speichern. Installiert die Bibliothek, falls noch nicht geschehen:
 
 ```{.bash code-line-numbers="false"}
 pip install Pillow
@@ -575,7 +580,7 @@ pip install Pillow
 
 MacOS-Nutzer verwenden wieder `pip3` anstelle von `pip`.
 
-Um unser Bild als Bitmap zu speichern, können wir die `Image`-Klasse aus der `PIL`-Bibliothek verwenden, die wir am Anfang einmal importieren müssen. Am Ende, wenn wir die Bitmap aus Excel eingelesen haben, erstellen wir ein neues Bildobjekt mit der gewünschten Größe von 27x24 Pixel und dem Modus "1" für Schwarzweiß-Bilder. Dann setzen wir die Pixelwerte entsprechend unserer Liste `bits` und speichern das Bild als BMP-Datei:
+Um unser Bild als Bitmap zu speichern, können wir die `Image`-Klasse aus der `PIL`-Bibliothek verwenden, die wir am Anfang einmal ankündigen müssen. Am Ende, wenn wir die Bitmap aus Excel eingelesen haben, erstellen wir ein neues Bildobjekt mit der gewünschten Größe von 27x24 Pixel und dem Modus "1", der steht für Schwarzweiß-Bilder. Dann setzen wir die Pixelwerte entsprechend unserer Liste `bits` und speichern das Bild als BMP-Datei:
 
 ```{python}
 #| code-line-numbers: false
@@ -594,31 +599,24 @@ Schaut jetzt einmal in das Verzeichnis `xlsx`. Dort solltet ihr die Datei `darth
 
 ![Darth Vader als Bitmap-Datei auf eurer Festplatte.](images/darth_vader_saved_bmp.png){#fig-images-darth-vader-saved-bmp}
 
-## Komprimierte Bilder {#sec-images-compressed .collapsable}
 
-Bitmaps speichern für jedes Pixel einen Wert. Das ist einfach, kann aber viel Speicher benötigen. Deshalb werden Bitmaps häufig komprimiert. Ein klassisches Verfahren ist Run-Length Encoding (RLE). Dabei werden Folgen identischer Pixel durch "Wert + Länge" ersetzt. Aus `0, 0, 0, 0, 1, 1, 0, 0` wird zum Beispiel `(0x4), (1x2), (0x2)`. Besonders bei großen einfarbigen Flächen spart das deutlich Speicher und Übertragungszeit. Für eingebettete Systeme wie unser Display ist das nützlich, weil weniger Daten übertragen und verarbeitet werden müssen. Vor der Anzeige wird die komprimierte Darstellung einfach wieder in die ursprüngliche Pixelsequenz entpackt.
-
-Das Extrembeispiel ist ein komplett schwarzes oder weißes Bild. Statt 8192 Nullen oder Einsen zu speichern, reicht ein Eintrag: `(0x8192)` oder `(1x8192)`. Das spart enorm viel Platz. Es gibt auch andere Arten der Kompression, wie verlustfreie (z.B. PNG) und verlustbehaftete (z.B. JPEG) Verfahren, die je nach Anwendungsfall sinnvoll sind. Wir werden darauf später im Buch noch einmal zurückkommen. In diesem Kapitel reicht und das Grundverständnis, wie Bilder überhaupt in einem Computer abgebildet und gespeichert werden können.
-
-Mit Bildern hängen auch Videos eng zusammen, denn Videos sind im Grunde nichts anderes als eine schnelle Abfolge von Einzelbildern, die nacheinander angezeigt werden. Wenn ihr also verstehen, wie Bilder gespeichert werden, dann können wir uns gut vorstellen, wie das mit Videos funktioniert. Weil hier sehr viele Bilder zusammenkommen, spielt die Kompression eine noch größere Rolle.
-
-Auf bewegte Bilder werden wir im Rest des Kapitels einen genaueren Blick werfen und wollen versuchen, eine kleine Animation selbst zu basteln. Dazu rufen wir eine berühmte Spielfigur aus der Videospielgeschichte auf den Plan: Super Mario aus den 1980er-Jahren. In Farbe!
-
+Bestimmt ist euch augefallen, dass wir mit dem Display nur Bilder im Schwarz-Weiß-Format anzeigen können. Darth Vader ist daher ein gutes Beispiel. Um aber zu verstehen, wir Computer Bilder repräsentieren, speichern und verarbeiten, müssen wir uns auch mit Farbbildern beschäftigen. Damit beginnen wir im nächsten Abschnitt und rufen dazu eine berühmte Spielfigur aus der Videospielgeschichte auf den Plan: Super Mario aus den 1980er-Jahren. In Farbe!
 
 ## Farbige Bilder {#sec-images-colored .collapsable}
-
 
 Bisher haben wir uns nur mit Bitmaps beschäftigt, deren Pixel entweder schwarz oder weiß sind. Das hat mit unserem Display zu tun, das eben nicht mehr kann. Trotzdem sollten wir verstehen, wie das Ganze mit farbigen Bildern funktioniert, denn das Prinzip ist dasselbe. Nur dass wir für jedes Pixel nicht nur einen Binärwert (0 oder 1) speichern, sondern einen Farbwert, der aus mehreren Bits besteht. Die Grundlagen dafür, nämlich den RGB-Code, haben wir schon in @sec-colors kennengelernt.
 
 ### Bitmaps im RGB-Format
 
-In @fig-images-super-mario seht ihr eine farbige Bitmap von Super Mario, wie sie in meiner Kindheit häufig über den Bildschirm (damals noch Röhrenfernseher) geflimmert ist. Stundenlang habe ich versucht, den kleinen Klempner durch die Level zu steuern und Prinzessin Peach zu retten. Die Grafik war damals natürlich sehr pixelig, weil die Auflösung der Nintendo Entertainment System (NES) Konsole nur 256x240 Pixel betrug. Das hat aber dem Spielspaß keinen Abbruch getan.
+In @fig-images-super-mario seht ihr eine farbige Bitmap von Super Mario, wie sie in meiner Kindheit häufig über den Bildschirm (damals noch Röhrenfernseher) geflimmert ist. Stundenlang habe ich versucht, den kleinen Klempner durch die Level zu steuern und Prinzessin Peach zu retten. Die Grafik war damals natürlich sehr pixelig, weil die Auflösung der Nintendo Entertainment System (NES) Konsole nur 256 x 240 Pixel betrug. Das hat dem Spielspaß aber keinen Abbruch getan.
 
 ![Super Mario aus der 8-Bit Nintendo-Spielkonsole NES als Bitmap](https://winf-hsos.github.io/university-docs/images/images_super_mario.png){#fig-images-super-mario .lightbox}
 
-Wie unterscheidet sich nun Super Mario in Farbe von Darth Vader, der nur schwarzweiß dargestellt wurde? Nun, zunächst fällt auf, dass die Dimensionen beider Bitmaps unterschiedlich sind. Super Mario ist 16 Pixel breit und 16 Pixel hoch, also insgesamt 256 Pixel. Darth Vader war mit 27x24 Pixeln deutlich größer. Aber das ist nicht der einzige Unterschied. Jedes Pixel in Super Marios Bitmap benötigt mehr Speicherplatz, weil es in Farbe dargestellt wird. Jedes Pixel in Super Marios Bitmap wird durch einen RGB-Wert repräsentiert, der ausdrei Bytes besteht (je eines für Rot, Grün und Blau). Das bedeutet, dass die gesamte Bitmap von Super Mario 256 Pixel x 3 Bytes pro Pixel = 768 Bytes Speicherplatz benötigt. Im Gegensatz dazu benötigt die Bitmap von Darth Vader nur 648 Pixel x 1 Bit pro Pixel = 81 Bytes Speicherplatz (da jedes Pixel nur schwarz oder weiß ist). Größeres Bild braucht weniger Speicher, hat dafür aber kein Farben.
+Wie unterscheidet sich nun Super Mario in Farbe von Darth Vader, der nur schwarzweiß dargestellt wurde? Nun, zunächst fällt auf, dass die Dimensionen beider Bitmaps unterschiedlich sind. Super Mario ist 16 Pixel breit und 16 Pixel hoch, also insgesamt 256 Pixel. Darth Vader war mit 27x24 Pixeln deutlich größer. Das hat aber nichts mit der Farbe zu tun.
 
-Ich habe für dieses Experiment auch Super Mario als Excel-Tabelle erstellt, ähnlich wie bei Darth Vader. Ihr könnt die Datei [hier herunterladen](resources/Super%20Mario%20Pixel%20Art.xlsx). Um Mario in eine Liste von Bits zu überführen, können wir unser Programm von oben grundsätzlich verwenden, müssen es aber ein wenig anpassen. Insbesondere müssen wir jetzt statt 0 oder 1 die RGB-Werte der Zellen auslesen und entsprechend in die Liste einfügen. 
+Ein anderer wesentlicher Unterschied ist, dass ein Pixel in Super Marios Bitmap mehr Speicherplatz benötigt, weil es in Farbe dargestellt wird. Jedes Pixel in Super Marios Bitmap wird durch einen RGB-Wert repräsentiert, der aus drei Bytes besteht, je eines für Rot, Grün und Blau. Das bedeutet, dass die gesamte Bitmap von Super Mario 256 Pixel x 3 Bytes pro Pixel = 768 Bytes Speicherplatz benötigt. Im Gegensatz dazu benötigt die Bitmap von Darth Vader nur 648 Pixel x 1 Bit pro Pixel = 81 Bytes Speicherplatz (da jedes Pixel nur schwarz oder weiß ist). Größeres Bild braucht weniger Speicher, hat dafür aber keine Farben.
+
+Ich habe für dieses Experiment Super Mario ebenfalls als Excel-Tabelle erstellt, genau wie bei Darth Vader. Ihr könnt die Datei [hier herunterladen](resources/Super%20Mario%20Pixel%20Art.xlsx). Um Mario in eine Liste von Bits zu überführen, können wir unser Programm von oben grundsätzlich wiederverwenden, müssen es aber ein wenig anpassen. Insbesondere müssen wir jetzt statt 0 oder 1 die RGB-Werte der Zellen in die Liste einfügen. 
 
 Ladet zunächst die Excel-Datei herunter und ersetzt im Programm den Dateinamen und den Namen des Tabellenblatts:
 
@@ -658,14 +656,14 @@ B53120
 ...
 ```
 
-Wenn es bei euch auch so aussieht, dann ist soweit alles gut. Für die Speicherung im RGB-Format benötigen wir einzelne Bytes, was bedeutet, dass wir den RGB-Code in seine drei Bestandteile zerlegen müssen. Dazu erwartet die `putdat()`-Methode der `Image`-Klasse eine Liste von Dreiertupeln mit jeweils Dezimalwerten. Also beispielsweise für die ersten drei Pixel, die alle weiß sind:
+Wenn es bei euch auch so aussieht, dann ist soweit alles gut. Für die Speicherung im RGB-Format benötigen wir einzelne Bytes, was bedeutet, dass wir den RGB-Code in seine drei Bestandteile zerlegen müssen. Dazu erwartet die `putdat()`-Methode der `Image`-Klasse eine Liste von Dreiertupeln jeweils als Dezimalwerte. Also beispielsweise für die ersten drei Pixel, die alle weiß sind:
 
 ```{python}
 #| code-line-numbers: false
 bitmap = [(255, 255, 255), (255, 255, 255), (255, 255, 255)]
 ```
 
-Wir müssen also zwei Schritte in unser Programm integrieren: Erstens das Zerlegen des RGB-Codes in seine Einzelteile (#FFFFFF wird zu FF, FF, FF) und zweitens die Umwandlung der Hexadezimalwerte in Dezimalwerte (FF wird zu 255). Beides können wir mit Python-Funktionen erledigen. Um den RGB-Code zu zerlegen, können wir die String-Slicing-Methode verwenden. Dabei können wir angeben, welchen Teilstring wir aus einer Zeichenkette extrahieren möchten. Für die Umwandlung von Hexadezimal- in Dezimalwerte gibt es die eingebaute Funktion `int()`, der wir den Hexadezimalstring und die Basis 16 übergeben können und sie spuckt die entsprechende Dezimalzahl aus. Das Ganze sieht dann so aus:
+Wir müssen also zwei Schritte in unser Programm integrieren: Erstens das Zerlegen des RGB-Codes in seine Einzelteile (`#FFFFFF` wird zu `FF`, `FF`, `FF`) und zweitens die Umwandlung der Hexadezimalwerte in Dezimalwerte (`FF`  wird zu `255`). Beides können wir mit Python-Funktionen erledigen. Um den RGB-Code zu zerlegen, können wir die String-Slicing-Methode verwenden. Dabei können wir angeben, welchen Teilstring wir aus einer Zeichenkette extrahieren möchten. Für die Umwandlung von Hexadezimal- in Dezimalwerte gibt es die eingebaute Funktion `int()`, der wir den Hexadezimalstring und die Basis 16 übergeben können und sie spuckt die entsprechende Dezimalzahl aus. Das Ganze sieht dann so aus:
 
 ```{python}
 #| code-line-numbers: false
@@ -695,19 +693,22 @@ Die Ausgabe sollte jetzt so aussehen:
 ...
 ```
 
-Die ersten fünf Pixel sind weiß, gefolgt von den ersten roten Pixeln von Marios Mütze. Passt also! Nun noch die RGB-Werte als Dreiertupel zur Liste `bitmap` hinzufügen:
+Die ersten fünf Pixel sind weiß, gefolgt von den ersten rötlichen Pixeln von Marios Mütze. Passt also! Nun noch die RGB-Werte als Dreiertupel zur Liste `bitmap` hinzufügen:
 
 ```{python}
 #| code-line-numbers: false
-bitmap.append((r, g, b))
+rgb_tuple = (r, g, b) # <1>
+bitmap.append(rgb_tuple) # <2>
 ```
 
-Ein Tupel in Python ist sehr ähnlich wie eine Liste, nur dass wir eine Liste verändern können, ein Tupel nicht. Anstelle der eckigen Klammern `[]` verwenden wir runde Klammern `()`, um ein Tupel zu erstellen. Ansonsten funktioniert das Hinzufügen zu einer Liste genauso wie zuvor mit der `append()`-Methode.
+1. Wir erstellen ein Dreiertupel mit den RGB-Werten.
+2. Wir fügen das Dreiertupel mit den RGB-Werten zur Liste `bitmap` hinzu.
+
+Ein Tupel in Python ist sehr ähnlich wie eine Liste, nur dass wir eine Liste verändern können, ein Tupel nicht. Anstelle der eckigen Klammern `[]` für Listen verwenden wir für Tupel runde Klammern `()`. Ansonsten funktioniert das Hinzufügen eines Tupels zu einer Liste genauso wie zuvor mit der `append()`-Methode.
 
 Hier nun der gesamte Code bis hierher (ohne Boilerplate-Code zum Initialisieren des Displays und das Öffnen des Excel-Dokuments):
 
 ```{python}
-#| code-line-numbers: false
 bitmap = []
 for row in sheet.iter_rows():
     for cell in row:
@@ -716,14 +717,15 @@ for row in sheet.iter_rows():
         r = int(color[0:2], 16) # <3>
         g = int(color[2:4], 16)
         b = int(color[4:6], 16)
-        bitmap.append((r, g, b)) # <4>
+        rgb_tuple = (r, g, b) # <4>
+        bitmap.append(rgb_tuple) # <5>
 ```
 
 1. Wir lesen die Farbe der Zelle aus.
 2. Wir schneiden die ersten beiden Ziffern ab, um nur den RGB-Teil der Farbe zu erhalten, ohne den Alpha-Wert.
 3. Wir extrahieren die Rot-, Grün- und Blau-Komponenten und wandeln sie in Dezimalzahlen um.
-4. Wir fügen das Dreiertupel mit den RGB-Werten zur Liste `bitmap` hinzu.
-
+4. Wir erstellen ein Dreiertupel mit den RGB-Werten.
+5. Wir fügen das Dreiertupel mit den RGB-Werten zur Liste `bitmap` hinzu.
 
 Mit den RGB-Werten in der Liste `bitmap` können wir jetzt ein farbiges Bild von Super Mario erstellen und speichern. Dazu verwenden wir wieder die `Image`-Klasse aus der `PIL`-Bibliothek. Diesmal erstellen wir ein Bild im Modus "RGB", der Dimensionierung 16x16 und übergeben wieder die Liste `bitmap` an die `putdata()`-Methode. Dadurch, dass wir den Modus auf "RGB" gesetzt haben, erwartet die Methode jetzt eine Liste von Dreiertupeln mit den RGB-Werten. Zum Schluss speichern wir das Bild als BMP-Datei:
 
@@ -738,7 +740,7 @@ image.save("xlsx/super_mario_color.bmp")
 
 ### Struktur einer Bitmap-Datei
 
-Um die Größe der Datei anzuzeigen könnt ihr entweder im Datei-Explorer auf die Datei klicken. Unten in der Fuszeile sollte die genaue Größe in Bytes angegeben werden. Alternativ geht es das auch über das Terminal in Visual Studio Code. Wechselt dazu mit `cd` in das richtige Verzeichnis und gebt den Befehl `dir` (Windows) oder `ls -lh` (MacOS, Linux) ein. In der Ausgabe sollte die Datei und ihr Größe angezeigt werden: 
+Um die Größe der Datei anzuzeigen könnt ihr entweder im Datei-Explorer auf die Datei klicken. Unten in der Fuszeile sollte die genaue Größe in Bytes angegeben werden. Alternativ geht es das auch über das Terminal in Visual Studio Code. Wechselt dazu mit `cd` in das richtige Verzeichnis und gebt den Befehl `dir` (Windows) oder `ls -lh` (MacOS, Linux) ein. In der Ausgabe sollte die Datei und ihre Größe angezeigt werden: 
 
 ```
 28.10.2025  19:41    822 super_mario_color.bmp
@@ -748,24 +750,31 @@ Die Zahl von Interesse ist hier unmittelbar vor dem Dateinamen. In meinem Fall s
 
 $$16 \cdot 16 \cdot 3 = 768 $$
 
-Bytes kommen. Warum ist die Datei also größer als erwartet? Die Differenz ist $54$ Bytes. Die Antwort ist, dass eine Bitmap-Datei (und so gut wie jede andere Datei auch), neben den eigentlichen Informationen (hier: Pixelwerte im RGB-Fomat) auch noch sogenannte Metadaten enthält. Metadaten sind Daten über die Daten. In einer Bitmap-Datei sind das zum Beispiel Informationen über die Breite und Höhe des Bildes, die Farbtiefe (also wie viele Bits pro Pixel verwendet werden). All diese Informationen werden im sogenannten Header der Bitmap-Datei gespeichert, der am Anfang der Datei steht. Der Header ist notwendig, damit ein Programm, das die Bitmap-Datei öffnet, weiß, wie es die Pixelwerte interpretieren soll, wo die Pixelwerte anfangen und enden, und so weiter.
+Bytes kommen. Schließlich haben wir 16 x 16 = 256 Pixel und jedes Pixel benötigt 3 Bytes Speicherplatz. Warum ist die Datei also größer als erwartet? 
 
-Die wichtigsten Strukturelemente einer Bitmap-Datei sind in @fig-images-bitmap-structure dargestellt. Der kleine gelbe Bereich am Anfang ist 14 Bytes lang und stellt den sogenannten Datei-Header dar. Hier wird zum Beispiel ganz zu Beginn mitgeteilt, dass es sich überhaupt um eine Bitmap-Datei handelt (die ersten beiden Bytes enthalten die ASCII-Zeichen "BM" für Bitmap). Außerdem wird hier die Gesamtgröße der Datei gespeichert (36 03 00 00, was 822 Bytes entspricht; da das little-endian Format verwendet wird, sind die Bytes in umgekehrter Reihenfolge gespeichert) und die Position, an der die eigentlichen Pixelwerte beginnen. Das ist die 36 im Bild, was dezimal 54 ist. Die eigentlichen Pixelwert beginnen also mit dem 54. Byte in der Datei.
+Die Differenz ist 54 Bytes. Die Erklärung dafür ist, dass eine Bitmap-Datei (und so gut wie jede andere Datei auch), neben den eigentlichen Informationen (hier: Pixelwerte im RGB-Fomat) auch noch sogenannte \gloss{Metainformationen}{Informationen über ein Objekt}{Bilder} enthält. Metainformationen sind Informationen über ein Objekt, hier die Datei oder das Bild. In einer Bitmap-Datei sind das zum Beispiel Informationen über die Breite und Höhe des Bildes oder die Farbtiefe (also wie viele Bits pro Pixel verwendet werden). All diese Informationen werden im sogenannten Header der Bitmap-Datei gespeichert, der am Anfang der steht. Der Header ist notwendig, damit ein Programm, das die Bitmap-Datei öffnet, weiß, wie es die Pixelwerte interpretieren soll, wo die Pixelwerte anfangen und enden, und so weiter.
 
-Direkt danach folgt der größere blaue Bereich, der 40 Bytes lang ist und den sogenannten DIB-Header (Device Independent Bitmap) enthält. In diesem Header sind Metadaten über das Bild gespeichert, wie die Breite, Höhe, Farbtiefe und so weiter. Letztere wird durch die 18 angegeben, was dezimal der 24 entspricht. Das steht für 24 Bits Farbtiefe. Ein Programm, das diese Bitmap-Datei liest, weiß also anhand des DIB-Header, wie es die Pixelwerte lesen muss, um das Bild korrekt dazustellen. 
+Die wichtigsten Strukturelemente einer Bitmap-Datei sind in @fig-images-bitmap-structure dargestellt. Wir sehen hier die Bitmap-Datei in einem sogenannten Hexadezimal-Editor, mehr dazu weiter unten. Der kleine gelbe Bereich am Anfang ist 14 Bytes lang und stellt den sogenannten Datei-Header dar. Hier wird zum Beispiel ganz zu Beginn mitgeteilt, dass es sich überhaupt um eine Bitmap-Datei handelt (die ersten beiden Bytes `42` und `4D` enthalten die ASCII-Zeichen "BM" für Bitmap). Außerdem wird hier die Gesamtgröße der Datei gespeichert (`36 03 00 00`, was 822 Bytes entspricht; da das Little-Endian Format verwendet wird, sind die Bytes in umgekehrter Reihenfolge gespeichert) und die Position, an der die eigentlichen Pixelwerte beginnen. Das ist die `36` im Bild, was dezimal 54 ist. Die eigentlichen Pixelwert beginnen also mit dem 54. Byte in der Datei, was der hellgrüne Bereich ist.
 
-Erst nach den beiden Headern folgen die eigentlichen Pixelwerte, die in @fig-images-bitmap-structure grünlich dargestellt sind und die in unserem Fall 768 Bytes lang sind. Das Bild zeigt nicht die gesamte Datei, es folgen noch weitere Pixelwerte. weiter unten. Probiert es am besten einmal selbst, die Datei im Hexcode-Editor anzuschauen. Dann bekommt ihr ein Gefühl dafür, wie die Datei tatsächlich aussieht und auf eurem Rechner gespeichert wird. Schließlich geht es in diesem Buch darum, wie Computer funktionieren, und da gehört es dazu, dass wir verstehen, wie Daten im Computer gespeichert werden. Das Beispiel der Bitmap ist dafür sehr zugänglich und anschaulich.
+Direkt danach folgt der größere rosafarbene Bereich, der 40 Bytes lang ist und den sogenannten DIB-Header (Device Independent Bitmap) enthält. In diesem Header sind Metadaten über das Bild gespeichert, wie die Breite, Höhe, Farbtiefe und so weiter. Letztere wird durch die `18` angegeben, was dezimal der 24 entspricht. Das steht für 24 Bits Farbtiefe. Ein Programm, das diese Bitmap-Datei liest, weiß also anhand des DIB-Header, wie es die Pixelwerte lesen muss, um das Bild korrekt darzustellen. 
+
+Erst nach den beiden Headern folgen die eigentlichen Pixelwerte, die in @fig-images-bitmap-structure grünlich dargestellt sind und die in unserem Fall 768 Bytes lang sind. Das Bild zeigt nur einen Auschnitt aus der gesamten Datei, es folgen weiter unten noch weitere Pixelwerte. Probiert es am besten einmal selbst, die Datei im Hexcode-Editor anzuschauen. Dann bekommt ihr ein Gefühl dafür, wie die Datei tatsächlich aussieht und auf eurem Rechner gespeichert wird. Schließlich geht es in diesem Buch darum, wie Computer funktionieren, und da gehört es dazu, dass wir verstehen, wie Daten im Computer gespeichert werden. Das Beispiel der Bitmap ist dafür sehr zugänglich und anschaulich.
 
 ![Die Struktur einer Bitmap-Datei am Beispiel der sumper_mario_color.bmp von oben](https://winf-hsos.github.io/university-docs/images/images_bitmap_structure.png){#fig-images-bitmap-structure .lightbox}
 
-Öffnet einmal die Webseite [hexed.it](https://hexed.it/) in eurem Browser. Hier bekommt ihr einen Editor für Dateien, wie ihr ihn auch von Word, Notepad oder Visual Studio Code kennt. Der Unterschied ist, dass dieser Editor auch die binären Daten der Datei anzeigt, also die Nullen und Einsen, die eurer Computer tatsächlich speichert. Damit die Schreibweise etwas kompakter wird, werden die Bits in Bytes gruppiert und als Hexadezimalzahlen dargestellt. Jedes Byte wird also als zwei Hexadezimalziffern angezeigt.
+Öffnet dazu einfach die Webseite [hexed.it](https://hexed.it/) in eurem Browser. Dahinter verbirgt sich ein Editor für Dateien, wie ihr ihn auch von Word, Notepad oder Visual Studio Code kennt. Der Unterschied ist, dass dieser Editor die Datei im Binärformat anzeigt, also die Nullen und Einsen, die eurer Computer tatsächlich speichert. Damit die Schreibweise etwas kompakter wird, werden die Bits in Bytes gruppiert und als Hexadezimalzahlen dargestellt. Jedes Byte wird also als zwei Hexadezimalziffern angezeigt. Wenn ihr die `super_mario_color.bmp`-Datei im Editor öffnet, solltet ihr eine ähnliche Ansicht wie in @fig-images-hex-editor-mario sehen. Dort sind die Farbwerte der ersten drei Pixel zum besseren Verständnis rot umrandet.
 
 ![Marios Bitmap im Hex-Editor. Hier wird jedes Byte als Hexadezimalzahl angezeigt.](https://winf-hsos.github.io/university-docs/images/images_hex_editor_mario.png){#fig-images-hex-editor-mario .lightbox}
 
 Es passt also im Endeffekt doch alles zusammen: Die Bitmap-Datei hat 14 Bytes für den Datei-Header, 40 Bytes für den DIB-Header und 768 Bytes für die Pixelwerte, was zusammen die 822 Bytes gibt, die wir im Terminal oder Explorer sehen. Wir können alle beruhigt schlafen und haben wieder was gelernt!
 
-
 ## Bewegte Bilder {#sec-images-animation .collapsable}
+
+Viele Anwendungen, wozu auch das Videospiel Super Mario gehört, kommen mit statischen Bildern nicht aus. Mario kann laufen, hüpfen und Feuerkugeln auf seine Gegner schleudern. Auch bei Videsoclips auf YouTube oder Filem auf Netflix stehen bewegte Bilder im Vordergrund. Aber wie funktionieren bewegte Bilder eigentlich?
+
+Das Verständnis, wie statische Bilder in einem Computer gespeichert werden, ist die Grundvoraussetzung, um bewegte Bilder - oder Animationen - zu verstehen. Denn eine Animation besteht im Grunde aus einer schnellen Abfolge von Einzelbildern, die nacheinander angezeigt werden. Wenn die Bilder schnell genug wechseln, dann entsteht der Eindruck von Bewegung. Unser Gehirn kann nämlich nicht so schnell unterscheiden, ob es sich um einzelne Bilder handelt oder ob sich etwas bewegt. 
+
+Um auch das einmal Hands-On zu erfahren, versuchen wir in diesem Abschnitt, Mario zum Laufen zu bringen. Dazu benötigen wir nicht nur ein Bild, sondern mehrere Bilder, die nacheinander die unterschiedlichen Posen abbilden, die Mario beim Laufen einnimmt. In @fig-images-super-mario-walk seht ihr drei solcher Bilder. Diese stammen 1:1 aus den Sprites des 1908er Spiels "Super Mario Bros." für die NES-Konsole. 
 
 ::: {#fig-images-super-mario-walk layout="[[1,1,1]]"}
 
@@ -778,23 +787,329 @@ Es passt also im Endeffekt doch alles zusammen: Die Bitmap-Datei hat 14 Bytes f�
 Drei Bilder - oder Frames - um Mario zum Laufen zu bringen.
 :::
 
+Ein Sprite ist ein kleines Bild, das in Videospielen verwendet wird, um Figuren oder Objekte darzustellen. In der Regel sind Sprites Teil einer größeren Grafikdatei, die alle benötigten Bilder für ein Spiel enthält. Diese Grafikdatei wird als Sprite-Sheet bezeichnet. Jedes Bild im Sprite-Sheet repräsentiert eine bestimmte Pose oder Aktion der Figur. Indem das Spiel schnell zwischen diesen Bildern wechselt, entsteht der Eindruck von Bewegung. Das aber nur am Rande.
+
+Wichtig ist, dass wir jetzt drei Bilder von Mario haben, die wir nacheinander anzeigen können, um den Eindruck zu erwecken, dass Mario läuft. Das fertige Ergebnis seht ihr in der Animation in @fig-images-super-mario-animation. Es handelt sich hierbei um ein so genannte GIF, was für Graphics Interchange Format steht. Ein GIF ist ein Bildformat, das mehrere Einzelbilder in einer Datei speichern kann. Jedes Einzelbild wird als Frame bezeichnet, und die Frames werden in schneller Abfolge abgespielt, um den Eindruck von Bewegung zu erzeugen. Aufgrund ihrer Einfachheit und der breiten Unterstützung in Webbrowsern sind GIFs besonders beliebt für kurze Animationen und Memes im Internet. Vielleicht habt ihr selbst schon einmal ein GIF versendet, zum Bepspiel über WhatsApp oder anderen Chatprogrammen. Dort sind sie ebenfalls sehr beliebt.
+
 ![Die Einzelbilder hintereinander ergeben eine Animation](images/super_mario_walking_animation.gif){#fig-images-super-mario-animation .lightbox}
 
-Nun haben wir gesehen, wie eine Animation im Computer funktionert. Es handelt sich um eine schnelle Abfolge von Einzelbildern, die nacheinander angezeigt werden. Weil unser Gehirn die Einzelbilder nicht mehr als solche wahrnimmt, entsteht der Eindruck von Bewegung. Entscheidend ist hier die Anzahl der Bilder pro Sekunde, die sogenannte Framerate. Je höher die Framerate, desto flüssiger wirkt die Animation. Üblich sind heute 24, 30 oder sogar 60 Bilder pro Sekunde.
-
-Wäre es nicht toll, wenn wir die Animation auch auf unser kleines Display bringen könnten? Die Auflösung reicht aus, denn Mario ist nur 16x16 Pixel groß. Allerdings kann unser Display nur schwarzweiß darstellen. Wie können wir aus dem Farbbild von Mario ein schwarzweißes Bild machen?
+Wir können das selbe Prinzip hinter GIFs nutzen, um eine Animation von Mario auf unser kleines OLED-Display zu bringen. Dazu müssen wir die drei Bilder nacheinander auf dem Display anzeigen und dazwischen jeweils eine kurze Pause einlegen. Wenn wir das schnell genug machen, dann entsteht der Eindruck, dass Mario läuft. Dazwischen steht noch ein Problem: Das Display kann keine Farben anzeigen.
 
 ## Transformationen {#sec-images-transformations .collapsable}
 
-Sicher habt ihr das schon einmal gesehen oder selbst gemacht: Einen sogenannten Filter auf ein Foto angewendet, das euer Bild in Graustufen verwandelt. Das ist heute eine gängige Funktion von Social Media Apps wie Instagram, Snapchat oder TikTok. Aber wie funktioniert das eigentlich? Und was, wenn wir nicht einmal Graustufen, sondern nur Schwarzweiß wollen?
+Der große Vorteil von digitalen Bildern ist es, dass wir sie mit einfacher Arithmetik fast beliebig bearbeiten können. In unserem Fall müssen wir die Bilder von Mario in eine Schwarzweiß-Darstellung umwandeln, damit wir sie auf dem Display darstellen können. Sicher habt ihr sowas ähnliches schon einmal selbst gemacht: Einen sogenannten Filter auf ein Foto angewendet, das euer Bild in Graustufen verwandelt, der die Farben knalliger erscheinen lässt. Filter sind heute gängige Funktionen von Social Media Apps wie Instagram, Snapchat oder TikTok. Aber wie funktioniert das eigentlich? Und was, wenn wir nicht einmal Graustufen, sondern nur Schwarzweiß wollen?
+
+Auf den Punkt gebracht können wir aus einem Farbild mit zwei einfachen Schritten, die nichts als einfache Arithmetik sind, ein Graustufenbild erstellen:
+
+1. Wir transformieren jedes Pixel in einen Grauwert. Dadurch erhalten wir ein Bild, das nur noch aus Grautönen besteht.
+2. Wir wandeln die Grautöne in Schwarzweiß um, indem wir einen Schwellenwert festlegen. Alle Grautöne, die heller als der Schwellenwert sind, werden zu Weiß, alle dunkleren Grautöne zu Schwarz.
 
 ### Graustufen
 
+In @fig-images-grayscale-transformation seht ihr ein Beispiel einer Drohnenaufnahme in Farbe und in Graustufen. Um das Farbbild in ein Graustufenbild zu verwandeln, müssen wir für jedes Pixel einen Grauwert berechnen. Wenn wir uns vor Augen führen, was ein Graustufenbild essentiell ausmacht, nämlich dass es nur Helligkeitswerte enthält, dann liegt die Lösung nahe: Wir müssen aus dem RGB-Wert eines Pixels einen einzigen Helligkeitswert, auch Luminanz genannt, berechnen. Eine einfache Möglichkeit ist es, pro Pixel den Durchschnitt der drei Farbwerte zu bilden:
+
+$$ \text{luminance} = \frac{R + G + B}{3} $$
+
+Damit bekommen wir für jedes Pixel einen Wert zwischen 0 und 255, der die Helligkeit des Pixels repräsentiert. 0 steht für schwarz, 255 für weiß, und alle Werte dazwischen für Grautöne. Das wäre eine Möglichkeit, um ein Graustufenbild zu erstellen. Allerdings entspricht diese Methode nicht exakt der menschlichen Wahrnehmung von Helligkeit. Man hat herausgefunden, dass unser Auge empfindlicher ist für Grün- und Rot-Töne als für Blau-Töne. Daher wird häufig eine gewichtete Summe verwendet, um die Luminanz genauer zu berechnen:
+
+$$ \text{luminance} = 0.299 \cdot R + 0.587 \cdot G + 0.114 \cdot B $$
+
 ![Ein Drohnenbild in Farbe und in Graustufen.](https://winf-hsos.github.io/university-docs/images/images_grayscale_transformation.png){#fig-images-grayscale-transformation .lightbox}
+
+
+Wir wollen Mario möglichst für Menschen optimieren, deshalb verwenden wir die gewichtete Summe. In Python können wir das so umsetzen:
+
+```{python}
+#| code-line-numbers: false
+luminance = 0.299 * r + 0.587 * g + 0.114 * b # <1>
+luminance = round(luminance) # <2>
+```
+
+1. Wir berechnen die Luminanz als gewichtete Summe der RGB-Werte.
+2. Wir wandeln den Luminanzwert durch Rundung mit der `round()`-Funktion in eine Ganzzahl um, da die RGB-Werte Ganzzahlen sein müssen.
+
+Bevor wir ein Pixel von Farbe in Graustufen umwandeln können, müssen wir zuerst die Bitmap-Datei laden und jedes Pixel einzeln auslesen. Das Laden funktioniert ganz einfach mit der `Pillow`-Bibliothek, die wir bereits weiter oben verwendet haben:
+
+```{python}
+#| code-line-numbers: false
+from PIL import Image
+image = Image.open("super_mario_color.bmp") # <1>
+```
+
+1. Mit der `open()`-Methode der `Image`-Klasse laden wir die Bitmap-Datei und erstellen ein Bildobjekt auf der Variable `image`.
+
+Denkt daran den Pfad zu eurem Bild anzupassen, solltet ihr es zum Beispiel in einem Unterordner gespeichert haben. Nach diesen beiden Zeilen Code haben wir Zugriff aus das Bild über die Variable `image`. Darüber können wir für jedes beliebige Pixel mit der `getpixel()`-Methode den Farbwert auslesen. Machen wir den Test und prüfen, ob das Pixel in der linken oberen Ecke wirklich weiß ist:
+
+```{python}
+#| code-line-numbers: false
+pixel = image.getpixel((0, 0)) # <1>
+print(pixel)
+```
+
+Die Funktion erwartet ein Tupel mit den Koordinaten des Pixels, das wir auslesen wollen. Die linke obere Ecke hat die Koordinaten (0, 0). Die Ausgabe sollte jetzt so aussehen:
+
+```
+(255, 255, 255)
+```
+
+Wie es aussieht erhalten wir ein Tupel zurück, das die RGB-Werte des Pixels enthält. Perfekt! Jetzt können wir die Luminanz berechnen und das Pixel in Graustufen umwandeln. Dazu extrahieren wir zunächst die einzelnen Farbwerte aus dem Tupel:
+
+```{python}
+#| code-line-numbers: false
+pixel = image.getpixel((0, 0))
+r = pixel[0]  
+g = pixel[1]               
+b = pixel[2]
+```
+
+Jetzt können wir die Luminanz berechnen, wie oben beschrieben. Wir geben sie auch gleich mit aus, um es auf der Konsole überprüfen zu können:
+
+```{python}
+#| code-line-numbers: false
+luminance = 0.299 * r + 0.587 * g + 0.114 * b
+luminance = round(luminance)
+print(f"R: {r}, G: {g}, B: {b}, Luminance: {luminance}")
+```
+
+So sieht es bis hierhin alles zusammen aus:
+
+```{python}
+pixel = image.getpixel((0, 0))
+r = pixel[0]  
+g = pixel[1]               
+b = pixel[2]               
+luminance = 0.299 * r + 0.587 * g + 0.114 * b
+luminance = round(luminance)
+print(f"R: {r}, G: {g}, B: {b}, Luminance: {luminance}")
+```
+
+Für das Pixel in oben links hat es also geklappt. Schauen wir uns @fig-images-super-mario noch einmal an. Das sechste Pixel in der ersten Reihe müsste einen rotähnlichen Wert haben. Das wollen wir mit unserem kleinen Programm überprüfen. Dazu müssen wir nur die Koordinaten in der `getpixel()`-Methode anpassen, ales andere bleibt gleich:
+
+```{python}
+pixel = image.getpixel((5, 0)) # <1>
+r = pixel[0]  
+g = pixel[1]               
+b = pixel[2]               
+luminance = 0.299 * r + 0.587 * g + 0.114 * b
+luminance = round(luminance)
+print(f"R: {r}, G: {g}, B: {b}, Luminance: {luminance}")
+```
+
+1. Wir passen die Koordinaten an, um das sechste Pixel in der ersten Reihe auszulesen. Der erste Wert ist die Spaltennummer (5), der zweite Wert die Zeilennummer (0).
+
+Warum 5 und nicht 6? Weil die Zählung bei 0 anfängt, ihr erinnert euch. Die Ausgabe sollte jetzt so aussehen:
+
+```
+R: 181, G: 49, B: 32, Luminance: 87
+```
+
+Nun würde ich das gerne auch noch für ein grünliches und ein gelbliches Pixel ausprobieren, möchte aber vorher eine kleine Verbesserung in unserem Code einbauen. Wie ihr vielleicht gemerkt habt, müssen wir für jedes Pixel den gesamten Code für die Berechnung des Graustufenwerts wiederholen. Das ist nicht sehr elegant und führt zu viel doppeltem Code, was wir in der Programmierung unbedingt vermeiden wollen. Besser wäre es, wenn wir den Code in eine Funktion packen könnten, die wir dann für jedes Pixel aufrufen:
+
+```{python}
+#| code-line-numbers: false
+def rgb_to_luminance(rgb_tupel): # <1>
+    r = rgb_tupel[0]
+    g = rgb_tupel[1]
+    b = rgb_tupel[2]
+
+    luminance = 0.299 * r + 0.587 * g + 0.114 * b
+    luminance = round(luminance)
+    return luminance
+```
+
+1. Mit der `def`-Anweisung definieren wir eine Funktion namens `rgb_to_luminance`, die ein Tupel mit den RGB-Werten als Eingabeparameter erwartet. Alles, was für die Berechnung der Luminanz notwendig ist, wird in den Rumpf der Funktion geschrieben. Am Ende geben wir den berechneten Luminanzwert mit der `return`-Anweisung zurück.
+
+Jetzt können wir diese Funktion für jedes Pixel aufrufen und müssen den Code für die Berechnung der Luminanz nicht mehrmals schreiben:
+
+```{python}
+pixel = image.getpixel((4, 0))
+luminance = rgb_to_luminance(pixel)
+print(f"Luminance of pixel (4,0): {luminance}")
+
+pixel = image.getpixel((4, 1))
+luminance = rgb_to_luminance(pixel)
+print(f"Luminance of pixel (4,1): {luminance}")
+
+pixel = image.getpixel((4, 2))
+luminance = rgb_to_luminance(pixel)
+print(f"Luminance of pixel (4,2): {luminance}")
+
+pixel = image.getpixel((4, 3))
+luminance = rgb_to_luminance(pixel)
+print(f"Luminance of pixel (4,3): {luminance}")
+```
+
+Die Ausgabe sieht so aus:
+
+```
+Luminance of pixel (4,0): 255
+Luminance of pixel (4,1): 87
+Luminance of pixel (4,2): 96
+Luminance of pixel (4,3): 167
+```
+
+Klasse! Wir haben jetzt probeweise vier Pixel aus Marios Bitmap betrachtet und die Graustufenwerte berechnet. In Abbildung @fig-images-mario-pixel-examples sind die Pixel, die wir in unserem Programm im Blick haben, rot umrandet dargestellt.
+
+![Vier Pixelproben aus Marios Bitmap bestätigen unser Vorgehen.](https://winf-hsos.github.io/university-docs/images/images_example_pixel.png){#fig-images-mario-pixel-examples .lightbox}
+
+Jetzt sind wir soweit und können nicht nur vier Proben, sondern alle Pixel und damit das gesamte Bild in Graustufen umwandeln. Dazu bedienen wir uns wieder eines wichtigen Programmierkonzepts, nämlich... richtig, den Schleifen. Genau gesagt den `for`-Schleifen, mit denen wir bereits weiter oben gearbeitet haben. Wir können nämlich die Breite und Höhe des Bildes mit `image.size` auslesen, was einen Tupel mit zwei Werten zurückgibt. Der erste steht für die Breite und der zweite für die Höhe des Bildes in Pixel. Damit können wir zwei verschachtelte `for`-Schleifen schreiben, eine für die Zeilen und eine für die Spalten, und so über alle Pixelkoordinaten iterieren:
+
+```{python}
+#| code-line-numbers: false
+w, h = image.size
+
+for y in range(h):
+    for x in range(w):
+        r, g, b = image.getpixel((x, y))
+        luminance = rgb_to_luminance((r, g, b))  # <2>
+        print(f"Pixel at ({x}, {y}): R={r} G={g} B={b} Luminance={luminance}")
+```
+
+Vergessen wir nicht das ursprüngliche Ziel: Wir wollen das Graustufenbild erstellen. Dazu benötigen wir eine neue Liste, in der wir die Graustufenwerte speichern können. Am Ende können wir dann wieder die `Pillow`-Bibliothek verwenden, um aus der Liste ein neues Bild zu erstellen und es als Bitmap-Datei zu speichern. Sammeln wir zunächst die Graustufenwerte in einer Liste:
+
+```{python}
+#| code-line-numbers: false
+w, h = image.size
+grayscale_values = []
+for y in range(h):
+    for x in range(w):
+        r, g, b = image.getpixel((x, y))
+        luminance = rgb_to_luminance((r, g, b))
+        grayscale_values.append(luminance)
+```
+
+Wenn wir uns die Liste nach Ausführung des Codes anschauen, dann sieht das so aus:
+
+```
+Grayscale bitmap with 256 pixel values: [255, 255, 255, 255, ... 96, 96, 96, 96, 255, 255]
+```
+
+Unsere Liste hat 256 Werte, was 16 x 16 Pixeln entspricht. Jeder Wert ist ein Graustufenwert zwischen 0 und 255. Jetzt können wir die Liste verwenden, um ein neues Bild im Graustufenmodus zu erstellen und es als Bitmap-Datei zu speichern:
+
+```{python}
+#| code-line-numbers: false
+grayscale_image = Image.new("L", (w, h))
+grayscale_image.putdata(grayscale_values)
+grayscale_image.save("super_mario_grayscale.bmp")
+```
+
+Das Ergebnis seht ihr in @fig-images-super-mario-grayscale. Wir haben es geschafft, Mario in ein Graustufenbild zu verwandeln! Herzlichen Glückwunsch!
+
+![Mario als Graustufenbild, das unser Programm erzeugt hat.](https://winf-hsos.github.io/university-docs/images/images_super_mario_grayscale.png){#fig-images-super-mario-grayscale .lightbox}
+
+Den fertigen Code für die Umwandlung von Farbe in Graustufen seht ihr hier noch einmal komplett:
+
+```{python}
+#| code-fold: show
+from PIL import Image
+image = Image.open("xlsx/super_mario_color.bmp")
+
+def rgb_to_luminance(rgb_tupel): # <1>
+    r = rgb_tupel[0]
+    g = rgb_tupel[1]
+    b = rgb_tupel[2]
+
+    luminance = 0.299 * r + 0.587 * g + 0.114 * b
+    luminance = round(luminance)
+    return luminance
+
+w, h = image.size
+grayscale_values = []
+for y in range(h):
+    for x in range(w):
+        r, g, b = image.getpixel((x, y))
+        luminance = rgb_to_luminance((r, g, b))
+        grayscale_values.append(luminance)
+
+print(f"Grayscale bitmap with {len(grayscale_values)} pixel values: {grayscale_values}")
+
+grayscale_image = Image.new("L", (w, h))
+grayscale_image.putdata(grayscale_values)
+grayscale_image.save("xlsx/super_mario_grayscale.bmp")
+```
 
 ### Schwarzweiß
 
+Ein Etappenziel ist erreicht, wir müssen aber noch einen Schritt weiter gehen. Unser Display kann nur Schwarzweiß darstellen, also müssen wir das Graustufenbild noch in ein Schwarzweißbild umwandeln. Das funktioniert noch einfacher, als die Umwandlung von Farbe zu Graustufen. Bei Schwarzweiß haben wir nur zwei Möglichkeiten: Entweder schwarz (0) oder weiß (1). Wir müssen also für jeden Graustufenwert entscheiden, ob er zu schwarz oder weiß wird. Dazu ist es gängige Methode, einen Schwellenwert festzulegen, zum Beispiel 128. Alle Graustufenwerte, die kleiner als 128 sind, werden zu schwarz (0), alle Werte größer oder gleich 128 werden zu weiß (1). Da Funktionen mittlerweile zu unserem Repertoire gehören, können wir die Umwandlung direkt als Funktion umsetzen:
+
+```{python}
+#| code-line-numbers: false
+def luminance_to_bw(luminance, threshold=128): # <1>
+    if luminance < threshold:
+        return 0
+    else:
+        return 1
+```
+
+1. Wir definieren eine Funktion namens `luminance_to_bw`, die einen Luminanzwert und einen optionalen Schwellenwert als Eingabeparameter erwartet. Standardmäßig ist der Schwellenwert auf 128 gesetzt. Die Funktion gibt 0 zurück, wenn der Luminanzwert kleiner als der Schwellenwert ist, und 1 sonst.
+
+Unsere Funktion bekommt als Eingabe den Luminanzwert sowie den Schwellenwert, um darauf basierend zu entscheiden, ob das Pixel schwarz oder weiß wird. Dabei lernen wir ein weiteres Detail zu Funktionen kennen: Wir können Parameter mit einem Standardwert versehen. In unserem Fall ist der Schwellenwert standardmäßig auf 128 gesetzt. Wenn wir die Funktion also ohne zweiten Parameter aufrufen, wird automatisch 128 verwendet. Wir können den Schwellenwert aber auch explizit angeben, wenn wir möchten. Dieses Vorgehen erspart uns die Übergabe eines Parameters, bei dem in den meisten Fällen sowieso ein Standardwert verwendet wird. Wir haben aber jederzeit die Möglichkeit, den Wert zu überschreiben.
+
+Wir sparen uns an dieser Stelle die Probe einzelner Pixel und wenden die Funktion direkt auf alle Graustufenwerte aus dem Bild an. Dazu laden wir es wieder mit `Pillow` und definieren zwei verschachtelte `for`-Schleifen, alles wie gehabt. Hier das vollständige Programm:
+
+```{python}
+#| code-fold: show
+from PIL import Image
+image = Image.open("xlsx/super_mario_grayscale.bmp")
+
+def luminance_to_bw(luminance, threshold=128): # <1>
+    if luminance < threshold:
+        return 0
+    else:
+        return 1
+
+w, h = image.size
+bw_values = []
+for y in range(h):
+    for x in range(w):
+        grayscale_value = image.getpixel((x, y))
+        bw = luminance_to_bw(grayscale_value, 128)
+        bw_values.append(bw)
+
+print(f"Black and white bitmap with {len(bw_values)} pixel values: {bw_values}")
+
+bw_image = Image.new("1", (w, h))
+bw_image.putdata(bw_values)
+bw_image.save("xlsx/super_mario_bw.bmp")
+```
+
+Neben der Funktion `luminance_to_bw`, die wir jetzt statt `if` verwenden, machen wir hier nichts Neues. Wir laden das Graustufenbild, wandeln jedes Pixel in Schwarzweiß um und speichern das Ergebnis als Bitmap-Datei. Das kennen wir schon aus @sec-images-save-bitmap. Das fertige Schwarzweißbild seht ihr in @fig-images-super-mario-bw.
+
+![Mario in Schwarzweiß, was offensichtlich ein großer Informationsverlust ist.](https://winf-hsos.github.io/university-docs/images/images_super_mario_bw.png){#fig-images-super-mario-bw .lightbox}
+
+### Informationsverlust
+
+Was fällt euch bei der Kaskade von Farbe über Graustufen zu Schwarzweiß auf? Richtig, es geht eine Menge Information verloren. In Farbe haben wir 256 verschiedene Farbtöne pro Kanal, also insgesamt über 16 Millionen Farben. In Graustufen haben wir immerhin noch 256 verschiedene Helligkeitswerte. In Schwarzweiß hingegen nur noch zwei Zustände: schwarz oder weiß. 
+
+Das ist ein enormer Informationsverlust, der sich auch im Bild bemerkbar macht. Mario ist zwar am Ende noch erkennbar, aber viele Details sind verloren gegangen. Speziell die Stellen an Marios Körper, an denen man seine Haut sehen sollte, sind jetzt komplett weiß. Das liegt daran, dass die Graustufenwerte dort über dem Schwellenwert von 128 lagen und somit zu weiß umgewandelt wurden. Wir können versuchen, den Schwellenwert anzupassen, um ein besseres Ergebnis zu erzielen. Probiert es gerne selbst aus, indem ihr den Wert in der Funktion `luminance_to_bw` ändert und das Programm erneut ausführt. Es kann aber bezweifelt werden, dass wir mit nur zwei Farben ein wirklich gutes Ergebnis erzielen können.
+
+Eine wichtige Erkenntnis in Bezug auf Bildern können wir an dieser Stelle festhalten: Die Anzahl an Informationen, die unser Bild enthält, bestimmt maßgeblich die Qualität des Bildes. Zu den Informationen in einem Bild zählen die Anzahl der Farben (Farbtiefe) und die Auflösung (Anzahl der Pixel). Je mehr Farben und je höher die Auflösung, desto detaillierter und realistischer wirkt das Bild. Allerdings steigt mit zunehmender Informationsmenge auch die Dateigröße, was bei der Speicherung und Übertragung von Bildern berücksichtigt werden muss. Diesen Trade-off zwischen Qualität und Größe finden wir nicht nur bei Bildern, sondern grundsätzlich bei der Digitalisierung von Dingen der realen Welt wieder. Da kommen wir später im Buch noch öfter drauf zurück.
+
+
+## Daumenkino auf dem Display
+
+### Von Farbe zu Schwarzweiß
+
+Warum haben wir das mit der Schwarzweiß-Umwandlung überhaupt gemacht? Richtig, wir wollten Mario auf unserem Display animieren, und das kann nur an oder aus. Das Programm von oben können wir jetzt wiederverwenden, um die drei Bilder aus Marios Laufsequenz von Farbe in Schwarzweiß umzuwandeln. Dazu passen wir jeweils den Dateinamen an und lasen das Programm einmal laufen. Speichert die drei Bilder als:
+
+-  `super_mario_walk_1.bmp`
+-  `super_mario_walk_2.bmp`  
+-  `super_mario_walk_3.bmp` 
+
+Führt dann für jedes Bild zuerst das Programm für die Graustufenumwandlung und anschließend für die Schwarzweiß-Transformation aus. Am Ende solltet ihr drei Dateien in eurem Verzeichnis haben:
+
+-  `super_mario_walk_1_bw.bmp`
+-  `super_mario_walk_2_bw.bmp` 
+-  `super_mario_walk_3_bw.bmp` 
+
+Sollte das bei euch nicht funktionieren, kein Problem. Ihr findet die Bilder auch in dem zu diesem Buch gehörigen [GitHub-Repository](https://github.com/winf-hsos/hands-on-computer-science-code/tree/main/chapter_04/xlsx).
+
+Das Ergebnis sollte wie in @fig-images-super-mario-bw-walk aussehen. Drei Posen von Mario in Schwarzweiß, die wir jetzt nacheinander auf dem Display anzeigen können und ihn so zum Laufen bringen.
+
+![Super Marios Laufbewegun als Sequenz dreier Schwarzweiß-Bilder.](https://winf-hsos.github.io/university-docs/images/images_super_mario_bw_walk.png){#fig-images-super-mario-bw-walk .lightbox}
+
+### Lauf Mario, lauf!
+
+
 
 ## Jump & Run {#sec-images-tic-tac-toe .collapsable}
-
-...

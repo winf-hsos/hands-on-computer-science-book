@@ -7,3 +7,12 @@
 
 Dieses Kapitel ist in Arbeit und wird in Kürze fertiggestellt.
 :::
+
+
+## Komprimierte Bilder {#sec-images-compressed .collapsable}
+
+Bitmaps speichern für jedes Pixel einen Wert. Das ist einfach, kann aber viel Speicher benötigen. Deshalb werden Bitmaps häufig komprimiert. Ein klassisches Verfahren ist Run-Length Encoding (RLE). Dabei werden Folgen identischer Pixel durch "Wert + Länge" ersetzt. Aus `0, 0, 0, 0, 1, 1, 0, 0` wird zum Beispiel `(0x4), (1x2), (0x2)`. Besonders bei großen einfarbigen Flächen spart das deutlich Speicher und Übertragungszeit. Für eingebettete Systeme wie unser Display ist das nützlich, weil weniger Daten übertragen und verarbeitet werden müssen. Vor der Anzeige wird die komprimierte Darstellung einfach wieder in die ursprüngliche Pixelsequenz entpackt.
+
+Das Extrembeispiel ist ein komplett schwarzes oder weißes Bild. Statt 8192 Nullen oder Einsen zu speichern, reicht ein Eintrag: `(0x8192)` oder `(1x8192)`. Das spart enorm viel Platz. Es gibt auch andere Arten der Kompression, wie verlustfreie (z.B. PNG) und verlustbehaftete (z.B. JPEG) Verfahren, die je nach Anwendungsfall sinnvoll sind. Wir werden darauf später im Buch noch einmal zurückkommen. In diesem Kapitel reicht und das Grundverständnis, wie Bilder überhaupt in einem Computer abgebildet und gespeichert werden können.
+
+Mit Bildern hängen auch Videos eng zusammen, denn Videos sind im Grunde nichts anderes als eine schnelle Abfolge von Einzelbildern, die nacheinander angezeigt werden. Wenn ihr also verstehen, wie Bilder gespeichert werden, dann können wir uns gut vorstellen, wie das mit Videos funktioniert. Weil hier sehr viele Bilder zusammenkommen, spielt die Kompression eine noch größere Rolle.
