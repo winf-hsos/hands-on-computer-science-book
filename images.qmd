@@ -4,8 +4,6 @@
 
 Im vierten Kapitel...
 
-### Schritt für Schritt zum Ziel {.unnumbered}
-
 Der Weg dahin führt über folgende Schritte:
 
 | \# | Was? | Wo? |
@@ -13,12 +11,11 @@ Der Weg dahin führt über folgende Schritte:
 | 1 | Wir machen uns mit dem Display vertraut. | @sec-images-experiment-setup |
 | 2 | Wir lernen das Pixel kennen und schalten sie im Display an und aus. | @sec-images-pixels |
 | 3 | Wir führen die Bitmap als eine Sammlung von Pixelwerten ein. | @sec-images-bitmaps |
-| 4 | Wir lernen, wie man Buchstaben mit Pixeln darstellen kann. | @sec-images-letters |
-| 5 | Wir lernen Vektorgrafiken kennen. | @sec-images-vector-graphics |
+| 4 | Wir lernen, wie man Buchstaben als Bitmaps darstellen kann. | @sec-images-letters |
+| 5 | Wir lernen eine Alternative zu Bitmaps kennen. | @sec-images-vector-graphics |
 | 6 | Wir zeigen ein Bild als Bitfolge aus dem Display an. | @sec-images-bits-to-display |
-| 7 | Wir erstellen eine Animation. | @sec-images-animation |
-| 8 | Wir verstehen wie wir Redunanz in Bildern nutzen können. | @sec-images-compressed |
-| 9 | Wir programmieren ein Tic Tac Toe-Spiel. | @sec-images-tic-tac-toe |
+| 7 | Wir lernen, was eine Animation im Computer ist. | @sec-images-animation |
+| 9 | Wir animieren Pacman und erwecken ihn auf dem Display zum Leben. | @sec-images-pacman |
 
 
 ## Experimentaufbau {#sec-images-experiment-setup .collapsable}
@@ -793,20 +790,20 @@ Wichtig ist, dass wir jetzt drei Bilder von Mario haben, die wir nacheinander an
 
 ![Die Einzelbilder hintereinander ergeben eine Animation](images/super_mario_walking_animation.gif){#fig-images-super-mario-animation .lightbox}
 
-Wir können das selbe Prinzip hinter GIFs nutzen, um eine Animation von Mario auf unser kleines OLED-Display zu bringen. Dazu müssen wir die drei Bilder nacheinander auf dem Display anzeigen und dazwischen jeweils eine kurze Pause einlegen. Wenn wir das schnell genug machen, dann entsteht der Eindruck, dass Mario läuft. Dazwischen steht noch ein Problem: Das Display kann keine Farben anzeigen.
+Wir können das selbe Prinzip hinter GIFs nutzen, um eine Animation auf unser kleines OLED-Display zu bringen. Dazu müssen wir Bilder, die zu einer Animation gehören, nacheinander auf dem Display anzeigen und dazwischen jeweils eine kurze Pause einlegen. Wenn wir das schnell genug machen, dann entsteht der Eindruck eines bewegten Bildes. Dazwischen steht noch ein Problem: Das Display kann keine Farben anzeigen.
 
 ## Transformationen {#sec-images-transformations .collapsable}
 
-Der große Vorteil von digitalen Bildern ist es, dass wir sie mit einfacher Arithmetik fast beliebig bearbeiten können. In unserem Fall müssen wir die Bilder von Mario in eine Schwarzweiß-Darstellung umwandeln, damit wir sie auf dem Display darstellen können. Sicher habt ihr sowas ähnliches schon einmal selbst gemacht: Einen sogenannten Filter auf ein Foto angewendet, das euer Bild in Graustufen verwandelt, der die Farben knalliger erscheinen lässt. Filter sind heute gängige Funktionen von Social Media Apps wie Instagram, Snapchat oder TikTok. Aber wie funktioniert das eigentlich? Und was, wenn wir nicht einmal Graustufen, sondern nur Schwarzweiß wollen?
+Der große Vorteil von digitalen Bildern ist es, dass wir sie mit einfacher Arithmetik fast beliebig bearbeiten können. In unserem Fall müssten wir die Bilder von Mario in eine Schwarzweiß-Darstellung umwandeln, damit wir sie auf dem Display darstellen können. Sicher habt ihr sowas ähnliches schon einmal selbst gemacht: Einen sogenannten Filter auf ein Foto angewendet, das euer Bild in Graustufen verwandelt, oder einer, der die Farben knalliger erscheinen lässt. Filter sind heute gängige Funktionen von Social Media Apps wie Instagram, Snapchat oder TikTok, man braucht dazu kein Photoshop mehr. Aber wie funktioniert das eigentlich? Und was, wenn wir nicht einmal Graustufen, sondern nur Schwarzweiß wollen?
 
-Auf den Punkt gebracht können wir aus einem Farbild mit zwei einfachen Schritten, die nichts als einfache Arithmetik sind, ein Graustufenbild erstellen:
+Auf den Punkt gebracht können wir aus einem Farbild mit zwei einfachen Schritten, die reine Arithmetik benötigen, ein Graustufenbild erstellen:
 
-1. Wir transformieren jedes Pixel in einen Grauwert. Dadurch erhalten wir ein Bild, das nur noch aus Grautönen besteht.
+1. Wir transformieren jedes Pixel in einen Grauwert. Dadurch erhalten wir ein Bild, das nur noch aus Grautönen, also Helligkeitswerten, besteht.
 2. Wir wandeln die Grautöne in Schwarzweiß um, indem wir einen Schwellenwert festlegen. Alle Grautöne, die heller als der Schwellenwert sind, werden zu Weiß, alle dunkleren Grautöne zu Schwarz.
 
 ### Graustufen
 
-In @fig-images-grayscale-transformation seht ihr ein Beispiel einer Drohnenaufnahme in Farbe und in Graustufen. Um das Farbbild in ein Graustufenbild zu verwandeln, müssen wir für jedes Pixel einen Grauwert berechnen. Wenn wir uns vor Augen führen, was ein Graustufenbild essentiell ausmacht, nämlich dass es nur Helligkeitswerte enthält, dann liegt die Lösung nahe: Wir müssen aus dem RGB-Wert eines Pixels einen einzigen Helligkeitswert, auch Luminanz genannt, berechnen. Eine einfache Möglichkeit ist es, pro Pixel den Durchschnitt der drei Farbwerte zu bilden:
+In @fig-images-grayscale-transformation seht ihr das Beispiel einer Drohnenaufnahme in Farbe und in Graustufen. Um das Farbbild in ein Graustufenbild zu verwandeln, müssen wir für jedes Pixel einen Grauwert berechnen. Wenn wir uns vor Augen führen, was ein Graustufenbild essentiell ausmacht, nämlich dass es nur Helligkeitswerte enthält, dann liegt die Lösung nahe: Wir müssen aus dem RGB-Wert eines Pixels einen einzigen Helligkeitswert, auch Luminanz genannt, berechnen. Eine einfache Möglichkeit ist es, pro Pixel den Durchschnitt der drei Farbwerte zu bilden:
 
 $$ \text{luminance} = \frac{R + G + B}{3} $$
 
@@ -1081,35 +1078,144 @@ Neben der Funktion `luminance_to_bw`, die wir jetzt statt `if` verwenden, machen
 
 Was fällt euch bei der Kaskade von Farbe über Graustufen zu Schwarzweiß auf? Richtig, es geht eine Menge Information verloren. In Farbe haben wir 256 verschiedene Farbtöne pro Kanal, also insgesamt über 16 Millionen Farben. In Graustufen haben wir immerhin noch 256 verschiedene Helligkeitswerte. In Schwarzweiß hingegen nur noch zwei Zustände: schwarz oder weiß. 
 
-Das ist ein enormer Informationsverlust, der sich auch im Bild bemerkbar macht. Mario ist zwar am Ende noch erkennbar, aber viele Details sind verloren gegangen. Speziell die Stellen an Marios Körper, an denen man seine Haut sehen sollte, sind jetzt komplett weiß. Das liegt daran, dass die Graustufenwerte dort über dem Schwellenwert von 128 lagen und somit zu weiß umgewandelt wurden. Wir können versuchen, den Schwellenwert anzupassen, um ein besseres Ergebnis zu erzielen. Probiert es gerne selbst aus, indem ihr den Wert in der Funktion `luminance_to_bw` ändert und das Programm erneut ausführt. Es kann aber bezweifelt werden, dass wir mit nur zwei Farben ein wirklich gutes Ergebnis erzielen können.
+Das ist ein enormer Informationsverlust, der sich auch im Bild bemerkbar macht. Mario ist zwar am Ende noch erkennbar, aber viele Details sind verloren gegangen. Speziell die Stellen an Marios Körper, an denen man seine Haut sehen sollte, sind jetzt komplett weiß. Das liegt daran, dass die Graustufenwerte dort über dem Schwellenwert von 128 lagen und somit zu weiß umgewandelt wurden. Wir können versuchen, den Schwellenwert anzupassen, um ein besseres Ergebnis zu erzielen. Probiert es gerne selbst aus, indem ihr den Wert in der Funktion `luminance_to_bw` ändert und das Programm erneut ausführt. Es darf aber bezweifelt werden, dass wir mit nur zwei Farben ein wirklich gutes Ergebnis erzielen können.
 
 Eine wichtige Erkenntnis in Bezug auf Bildern können wir an dieser Stelle festhalten: Die Anzahl an Informationen, die unser Bild enthält, bestimmt maßgeblich die Qualität des Bildes. Zu den Informationen in einem Bild zählen die Anzahl der Farben (Farbtiefe) und die Auflösung (Anzahl der Pixel). Je mehr Farben und je höher die Auflösung, desto detaillierter und realistischer wirkt das Bild. Allerdings steigt mit zunehmender Informationsmenge auch die Dateigröße, was bei der Speicherung und Übertragung von Bildern berücksichtigt werden muss. Diesen Trade-off zwischen Qualität und Größe finden wir nicht nur bei Bildern, sondern grundsätzlich bei der Digitalisierung von Dingen der realen Welt wieder. Da kommen wir später im Buch noch öfter drauf zurück.
 
+Um zum Ende dieses Kapitels dennoch eine funktionierende Animation auf unser Display zu zaubern, verwenden wir eine Figur, die sich auch in Schwarzweiß gut erkennen lässt: Pacman.
 
-## Daumenkino auf dem Display
+## Pacman {#sec-images-pacman .collapsable}
 
 ### Von Farbe zu Schwarzweiß
 
-Warum haben wir das mit der Schwarzweiß-Umwandlung überhaupt gemacht? Richtig, wir wollten Mario auf unserem Display animieren, und das kann nur an oder aus. Das Programm von oben können wir jetzt wiederverwenden, um die drei Bilder aus Marios Laufsequenz von Farbe in Schwarzweiß umzuwandeln. Dazu passen wir jeweils den Dateinamen an und lasen das Programm einmal laufen. Speichert die drei Bilder als:
+Am Beispiel von Mario haben wir oben schon einen Prozess kennengelernt, mit dem wir Farbbilder in Schwarzweißbilder umwandeln können. Das Ergebnis der drei Sprites seht ihr in @fig-images-super-mario-bw-walk.
 
--  `super_mario_walk_1.bmp`
--  `super_mario_walk_2.bmp`  
--  `super_mario_walk_3.bmp` 
+![Super Marios Laufbewegung als Sequenz dreier Schwarzweiß-Bilder.](https://winf-hsos.github.io/university-docs/images/images_super_mario_bw_walk.png){#fig-images-super-mario-bw-walk .lightbox}
 
-Führt dann für jedes Bild zuerst das Programm für die Graustufenumwandlung und anschließend für die Schwarzweiß-Transformation aus. Am Ende solltet ihr drei Dateien in eurem Verzeichnis haben:
+Für Mario, der in seinem echten Klempnerdasein farbig ist, funktioniert die schwarzweiße Welt nicht gut. Wir nutzen deshalb für die Animation auf unserem Display mit Pacman jemanden, der sowieso in Unifarbe daher kommt. Wenn ihr aber trotzdem mal ausprobieren wollt, wie Mario in Schwarzweiß auf dem Laufsteg aussieht, könnt ihr das gerne versuchen. Ihr findet die drei Bilder in dem zu diesem Buch gehörigen [GitHub-Repository](https://github.com/winf-hsos/hands-on-computer-science-code/tree/main/chapter_04/xlsx).
 
--  `super_mario_walk_1_bw.bmp`
--  `super_mario_walk_2_bw.bmp` 
--  `super_mario_walk_3_bw.bmp` 
+Pacman ist ein weiterer Spieleklassiker aus den 1980er Jahren. Ich selbst habe mit Pacman eine eigene Geschichte: Mein erstes größeres Programmierprojekt war die Entwicklung eines Pacman-Spiels in Turbo Pascal. Das ist 1998 während meines Ausslandsaufenthaltes in North Carolina in der elften Schulklasse entstanden. Für das Projekt habe ich Pacman ebenfalls Pixel für Pixel gezeichnet und animiert. 
 
-Sollte das bei euch nicht funktionieren, kein Problem. Ihr findet die Bilder auch in dem zu diesem Buch gehörigen [GitHub-Repository](https://github.com/winf-hsos/hands-on-computer-science-code/tree/main/chapter_04/xlsx).
+Das Spiel ist schnell erklärt. Pacman ist eine kreisförmige, gelbe Figur, die der Spieler mit dem Joystick durch ein Labyrinth steuert und dabei möglichst viele Punkte sammelt bzw. frisst. Pacman ist aber nicht alleine, er wird von mehreren Monstern gejagt, die ihn fangen wollen. Einen Eindruck, wie das Spiel früher ausgesehen hat, bekommt ihr in @fig-images-pacman-screenshot.
 
-Das Ergebnis sollte wie in @fig-images-super-mario-bw-walk aussehen. Drei Posen von Mario in Schwarzweiß, die wir jetzt nacheinander auf dem Display anzeigen können und ihn so zum Laufen bringen.
+![So sah Pacman früher als Arcade-Game aus.](https://winf-hsos.github.io/university-docs/images/images_pacman_screenshot.png){#fig-images-pacman-screenshot .lightbox}
 
-![Super Marios Laufbewegun als Sequenz dreier Schwarzweiß-Bilder.](https://winf-hsos.github.io/university-docs/images/images_super_mario_bw_walk.png){#fig-images-super-mario-bw-walk .lightbox}
+Wenn Pacman läuft, öffnet und schließt sich sein Mund im Wechsel. In @fig-images-pacman-animation seht ihr diese Mundbewegung in drei Bildern. Diese wollen wir im Folgenden auf unser Display übertragen und dort hintereinander anzeigen.
 
-### Lauf Mario, lauf!
+![Pacman öffnet den Mund in 3 Bildern](https://winf-hsos.github.io/university-docs/images/images_pacman_animation.png){#fig-images-pacman-animation .lightbox}
+
+Pacman von Farbe zu Schwarzweiß umzuwandeln ist denkbar einfach. Da es mit Gelb nur eine Farbe gibt, können wir einfach jedes gelbe Pixel zu weiß (1) und alle anderen Pixel zu schwarz (0) umwandeln. Dazu laden wir wieder die Bitmap-Datei mit `Pillow` und iterieren über alle Pixel. Wir müssen nicht einmal den genauen Farbwert kennen: Für jedes Pixel prüfen wir nur, ob es sich von Weiß (`#FFFFFF`) unterscheidet. Wenn ja, fügen wir eine 1 zur Liste hinzu, sonst eine 0. Am Ende speichern wir die Liste als Schwarzweiß-Bitmap-Datei:
+
+```{python}
+#| code-line-numbers: false
+from PIL import Image
+image = Image.open("bmp/pacman_closed.bmp") # <1>
+
+w, h = image.size # <2>
+bw_values = [] # <3>
+
+for y in range(h): # <4>
+    for x in range(w):
+        r, g, b = image.getpixel((x, y)) # <5>
+        
+        if r == 255 and g == 255 and b == 255: # <6>
+            bw_values.append(0)
+        else:
+            bw_values.append(1)
+
+print(bw_values)
+```
+
+1. Wir laden die Bitmap-Datei, hier als Beispiel die von Pacman mit geschlossenem Mund.
+2. Wir lesen die Breite und Höhe des Bildes aus, damit wir wissen, über welche Pixelkoordinaten wir iterieren müssen.
+3. Wir erstellen eine leere Liste, in der wir die Schwarzweiß-Werte speichern.
+4. Wir verwenden zwei verschachtelte `for`-Schleifen, um über alle Pixelkoordinaten zu iterieren. Einmal über die Zeilen (y) und einmal über die Spalten (x).
+5. Wir lesen den RGB-Wert des aktuellen Pixels an der Koordinate `x` und `y` aus.
+6. Wir prüfen, ob das Pixel weiß ist (alle Farbwerte 255). Wenn ja, fügen wir eine 0 zur Liste hinzu, sonst eine 1.
+
+Die Ausgabe auf der Konsole sieht so aus:
+
+```
+[0, 0, 0, 0, 1, 1, 1, 1, ... 1, 1, 1, 1, 0, 0, 0, 0]
+```
+
+In der Variable `bw_values` stehen nun die Pixelwerte des Schwarzweiß-Bildes von Pacman mit geschlossenem Mund. Jeder Wert ist entweder eine 1 (weiß) oder eine 0 (schwarz). Wunderbar, genau das Format benötigen wir auch, um ein Bild auf dem Display darzustellen. Wenn wir den entsprechenden Boilerplate-Code ergänzen, können wir das Bild direkt auf dem Display anzeigen lassen.
+
+```{python}
+#| code-line-numbers: false
+
+from tinkerforge.ip_connection import IPConnection
+from tinkerforge.bricklet_oled_128x64_v2 import BrickletOLED128x64V2
+
+ipcon = IPConnection()
+ipcon.connect('localhost', 4223)
+oled = BrickletOLED128x64V2('25zo', ipcon)
+oled.clear_display()
+
+# Code zum Laden und Umwandeln des Bildes in Schwarzweiß wie oben
+...
+
+oled.write_pixels(10, 10, 21, 22, pacman_closed)_values)
+```
+
+Wir setzen Pacmans obere linke Ecke auf die Koordinate (10, 10) auf dem Display. Der zweite Punkte für die rechte untere Ecke ergbt sich aus der der Breite und Höhe der Bitmap. Diese ist 12x13 Pixel, dementsprechend ist die Koordinate (21, 22). Der letzte Parameter ist die Liste mit den Schwarzweiß-Pixelwerten, die wir oben erstellt haben. Wenn wir das Programm ausführen, dann sollte Pacman mit geschlossenem Mund auf dem Display erscheinen (s. @fig-images-pacman-closed-display).
+
+Das selbe Vorgehen können wir exakt eins zu eins mit den anderen beiden Bildern anwenden. Dazu könnten wir den Code von oben kopieren, den Pfad zur Bitmap-Datei anpassen und die Variable für die Pixelwerte umbenennen. Aber das wäre wieder doppelter Code, was wir vermeiden wollen. Besser ist es, wenn wir den Code in eine Funktion packen, die wir dann für jedes Bild aufrufen können:
+
+```{python}
+def convert_rgb_to_bw(image_path):
+    image = Image.open(image_path)
+    w, h = image.size
+
+    bw_values = []
+    for y in range(h):
+        for x in range(w):
+            r, g, b = image.getpixel((x, y))
+            
+            if r == 255 and g == 255 and b == 255:
+                bw_values.append(0)
+            else:
+                bw_values.append(1)
+
+    return bw_values
+
+```
+
+Die Funktion `convert_rgb_to_bw` nimmt den Pfad eines beliebigen Bildes entgegen, lädt es (Zeile 2), ermittelt die Dimensionsn (Zeile 3) und iteriert durch jedes Pixel mithilfe zweier verschachtelter `for`-Schleifen (Zeilen 6 und 7) und erstellt eine Liste mit den Schwarzweiß-Pixelwerten nach der oben beschriebenen Logik. Am Ende gibt die Funktion die Liste zurück (Zeile 15). Jetzt können wir die Funktion für jedes der drei Pacman-Bilder aufrufen und die Pixelwerte in Variablen speichern:
+
+```{python}
+pacman_half = convert_rgb_to_bw("bmp/pacman_half.bmp")
+pacman_closed = convert_rgb_to_bw("bmp/pacman_closed.bmp")
+pacman_open = convert_rgb_to_bw("bmp/pacman_open.bmp")
+```
+
+Wenn wir jetzt die drei Variablen `pacman_half`, `pacman_closed` und `pacman_open` haben, können wir die Bilder nacheinander auf dem Display anzeigen lassen, um die Animation zu erzeugen. Dazu verwenden wir wieder die `write_pixels()`-Methode des OLED-Bricklets, fügen aber jeweils eine kurze Pause mit der `time.sleep()`-Funktion ein, damit das menschliche Auge die einzelnen Bilder wahrnehmen kann. Das Ganze lassen wir in einer Endlosschleife laufen, damit die Animation immer wiederholt wird:
+
+```{python}
+wait_time = 0.1
+while True:
+    oled.write_pixels(10, 10, 21, 22, pacman_closed)
+    time.sleep(wait_time)
+    oled.write_pixels(10, 10, 21, 22, pacman_half)
+    time.sleep(wait_time)
+    oled.write_pixels(10, 10, 21, 22, pacman_open   )
+    time.sleep(wait_time * 2)
+    oled.write_pixels(10, 10, 21, 22, pacman_half)
+    time.sleep(wait_time)   
+```
+
+Vergesst nicht, ganz oben in eurem Programm die `time`-Bibliothek zu importieren, damit wir die `sleep()`-Funktion verwenden können. Über die Variable `wait_time` können wir die Geschwindigkeit der Animation steuern. Je kleiner der Wert, desto schneller wechselt Pacman die Bilder. In der letzten Zeile der Schleife habe ich die Wartezeit verdoppelt, damit Pacman mit offenem Mund etwas länger zu sehen ist. Schließlich muss er ja die Punkte auch fressen können.
+
+::: {#fig-images-pacman-display layout="[[1,1,1]]"}
+
+![Erste Frame](images/pacman_closed_display.jpg){#fig-images-pacman-closed-display group="pacman-display" .lightbox}
+
+![Zweiter Frame](images/pacman_half_display.jpg){#fig-images-pacman-half-display group="pacman-display" .lightbox}
+
+![Dritter Frame](images/pacman_open_display.jpg){#fig-images-pacman-open-display group="pacman-display" .lightbox}
+
+Die drei Pacman-Frames auf dem OLED-Display.
+:::
 
 
-
-## Jump & Run {#sec-images-tic-tac-toe .collapsable}
+### Pacman-Animation

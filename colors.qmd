@@ -4,10 +4,7 @@
 
 Im ersten Kapitel steigen wir gleich voll ein und schreiben unser erstes Programm. Unser Ziel ist es, eine LED nacheinander in allen Farben des Regenbogens leuchten zu lassen.
 
-### Schritt für Schritt zum Ziel {.unnumbered}
-
 Auf dem Weg dorthin gehen wir die folgenden Schritte.
-
 
 | \# | Was? | Wo? |
 |--|-------------------------------------------------------|----------------|
@@ -17,61 +14,7 @@ Auf dem Weg dorthin gehen wir die folgenden Schritte.
 | 4 | Wir lernen den Hue-Farbverlauf kennen, weil wir den für einen schönen Regenbogen benötigen. | @sec-colors-hue-circle |
 | 5 | Endlich - wir schreiben das Programm für den Regenbogenverlauf. | @sec-colors-rainbow-led |
 
-### Begriffe und Konzepte {.unnumbered}
-
-Dabei lernen wir neue Begriffe und Konzepte kennen.
-
-<!-- CHAPTER_GLOSSARY_START -->
-::: {.datatable-nosearch data-order='[[2,"asc"]]'}
-| Begriff | Kategorie | Wo? |
-|---|---|---|
-| **Brick Viewer** | Hardware | @sec-colors-experiment-setup |
-| **RGB LED** | Hardware | @sec-colors-experiment-setup |
-| **UID** | Programmierung | @sec-colors-control-led |
-| **Programm** | Programmierung | @sec-colors-control-led |
-| **Boilerplate-Code** | Programmierung | @sec-colors-control-led |
-| **Bibliothek** | Programmierung | @sec-colors-control-led |
-| **Objekt** | Programmierung | @sec-colors-control-led |
-| **Klasse** | Programmierung | @sec-colors-control-led |
-| **Schlüsselwort** | Programmierung | @sec-colors-control-led |
-| **Instanz** | Programmierung | @sec-colors-control-led |
-| **Methode** | Programmierung | @sec-colors-control-led |
-| **RGB-Farbkodierung** | Codesysteme | @sec-colors-control-led |
-| **Elektromagnetische Strahlung** | Physik | @sec-colors-control-led |
-| **Frequenz** | Physik | @sec-colors-light-and-colors |
-| **Wellenlänge** | Physik | @sec-colors-light-and-colors |
-| **Hertz (Hz)** | Physik | @sec-colors-light-and-colors |
-| **LED** | Hardware | @sec-colors-light-and-colors |
-| **Parameter** | Programmierung | @sec-colors-light-and-colors |
-| **Additive Farbmischung** | Physik | @sec-colors-light-and-colors |
-| **Subtraktive Farbmischung** | Physik | @sec-colors-light-and-colors |
-| **CMYK** | Hardware | @sec-colors-light-and-colors |
-| **Schleife** | Programmierung | @sec-colors-pulsating-led |
-| **Zählerschleife** | Programmierung | @sec-colors-pulsating-led |
-| **Argument** | Programmierung | @sec-colors-pulsating-led |
-| **While-Schleife** | Programmierung | @sec-colors-pulsating-led |
-| **Bedingung** | Programmierung | @sec-colors-pulsating-led |
-| **Hue-Farbkreis** | Codesysteme | @sec-colors-pulsating-led |
-| **HSV-Modell** | Codesysteme | @sec-colors-pulsating-led |
-| **For-Schleife** | Programmierung | @sec-colors-hue-circle |
-:::
-<!-- CHAPTER_GLOSSARY_END -->
-
-
 ## Experimentaufbau {#sec-colors-experiment-setup .collapsable}
-
-<!--
-::: callout-note
-## Quick Check
-
--   [ ] Tinkerforge-Hardware ist auf Montageplatte montiert
--   [ ] Master Brick ist über USB-Kabel mit euren Rechner verbunden
--   [ ] Brick Viewer ist gestartet und mit dem Master Brick verbunden
--   [ ] Ihr kennt die UIDs eurer Geräte → s. Brick Viewer
--   [ ] Visual Studio Code ist offen
--   [ ] Terminalfenster in Visual Studio Code ist gestartet
-:::
--->
 
 ### Hardware
 

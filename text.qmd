@@ -4,8 +4,6 @@
 
 Im dritten Kapitel basteln wir ein universelles Eingabegerät für Informationen. Dafür verwenden wir einen Infrarot-Abstandssensor, mit dem wir Bits kodieren können. Mit diesen Bits können wir dann zum Beispiel Texte eingeben.
 
-### Schritt für Schritt zum Ziel {.unnumbered}
-
 Der Weg dahin führt über folgende Schritte:
 
 | \# | Was? | Wo? |
@@ -18,43 +16,7 @@ Der Weg dahin führt über folgende Schritte:
 | 6 | Wir schauen auf ein verbreitetes Codesystem für Texte: ASCII. | @sec-text-ascii-code |
 | 7 | Wir setzen den Infrarot-Abstandssensor in den LED-Dimmer ein. | @sec-text-led-dimmer |
 
-### Begriffe und Konzepte {.unnumbered}
-
-Dabei lernen wir neue Begriffe und Konzepte kennen.
-
-<!-- CHAPTER_GLOSSARY_START -->
-::: {.datatable-nosearch data-order='[[2,"asc"]]'}
-| Begriff | Kategorie | Wo? |
-|---|---|---|
-| **Infrarot-Abstandssensor** | Hardware | @sec-text-light-barrier |
-| **Else-Anweisung** | Programmieren | @sec-text-light-barrier |
-| **Kodieren** | Codesysteme | @sec-text-universal-input |
-| **Keyboard** | Hardware | @sec-text-universal-input |
-| **Dekodieren** | Codesysteme | @sec-text-universal-input |
-| **Bug** | Programmierung | @sec-text-encode-text |
-| **Zeichenkette** | Programmierung | @sec-text-encode-text |
-| **Dictionary** | Programmierung | @sec-text-encode-text |
-| **ASCII-Code** | Codesysteme | @sec-text-encode-text |
-| **Codepage** | Codesysteme | @sec-text-encode-text |
-| **Unicode** | Codesysteme | @sec-text-encode-text |
-| **UTF-8** | Codesysteme | @sec-text-encode-text |
-| **Textdatei** | Codesysteme | @sec-text-encode-text |
-| **Codepunkt** | Codesysteme | @sec-text-encode-text |
-:::
-<!-- CHAPTER_GLOSSARY_END -->
-
 ## Experimentaufbau {#sec-text-experiment-setup .collapsable}
-
-::: callout-note
-## Quick Check
-
--   [ ] Tinkerforge-Hardware ist auf Montageplatte montiert
--   [ ] Master Brick ist über USB-Kabel mit euren Rechner verbunden
--   [ ] Brick Viewer ist gestartet und mit dem Master Brick verbunden
--   [ ] Ihr kennt die UIDs eurer Geräte → s. Brick Viewer
--   [ ] Visual Studio Code ist offen
--   [ ] Terminalfenster in Visual Studio Code ist gestartet
-:::
 
 ### Hardware
 

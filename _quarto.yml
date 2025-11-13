@@ -1,6 +1,6 @@
 project:
   type: book
-  pre-render: "python build_glossary_from_book.py"
+  #pre-render: "python build_glossary_from_book.py"
   execute-dir: project
   output-dir: docs
 
@@ -26,7 +26,7 @@ book:
   date-format: long
   search: true
   output-file: "Hands-On-Computer-Science-Book"
-  #downloads: [pdf]
+  downloads: [pdf]
   
   chapters:
     - index.qmd
@@ -49,7 +49,7 @@ book:
     #- computer.qmd
     #- problems.qmd
 
-    - glossary.qmd
+    #- glossary.qmd
     - references.qmd
 
 bibliography: references.bib

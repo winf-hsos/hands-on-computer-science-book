@@ -4,8 +4,6 @@
 
 Im zweiten Kapitel spendieren wir der LED aus @sec-numbers eine Dimmfunktion, die wir über einen Drehknopf steuern können.
 
-### Schritt für Schritt zum Ziel {.unnumbered}
-
 Auf dem Weg dorthin gehen wir die folgenden Schritte.
 
 | \# | Was? | Wo? |
@@ -21,46 +19,7 @@ Auf dem Weg dorthin gehen wir die folgenden Schritte.
 | 9 | Wir bauen Version 3 des LED-Dimmers. | @sec-numbers-led-dimmer-3 |
 | 10 | Wir modularisieren unseren Code mit Funktionen. | @sec-numbers-functions |
 
-### Begriffe und Konzepte {.unnumbered}
-
-Dabei lernen wir neue Begriffe und Konzepte kennen.
-
-<!-- CHAPTER_GLOSSARY_START -->
-::: {.datatable-nosearch data-order='[[2,"asc"]]'}
-| Begriff | Kategorie | Wo? |
-|---|---|---|
-| **Drehknopf** | Hardware | @sec-numbers-experiment-setup |
-| **Endlosschleife** | Programmierung | @sec-numbers-read-counter |
-| **Kontrollstruktur** | Programmierung | @sec-numbers-control-structures |
-| **Programmabsturz** | Programmierung | @sec-numbers-led-dimmer-1 |
-| **Kommandzeile** | Programmierung | @sec-numbers-led-dimmer-1 |
-| **Datentyp** | Programmierung | @sec-numbers-led-dimmer-1 |
-| **Binärsystem** | Zahlensysteme | @sec-numbers-led-dimmer-1 |
-| **Dezimalsystem** | Zahlensysteme | @sec-numbers-led-dimmer-1 |
-| **Stellenwertsystem** | Zahlensysteme | @sec-numbers-led-dimmer-1 |
-| **Oktalsystem** | Zahlensysteme | @sec-numbers-number-systems |
-| **Binär** | Zahlensysteme | @sec-numbers-number-systems |
-| **Dualsystem** | Zahlensyteme | @sec-numbers-number-systems |
-| **Binary Digit** | Zahlensysteme | @sec-numbers-number-systems |
-| **Bit** | Bits & Bytes | @sec-numbers-number-systems |
-| **Binärziffer** | Zahlensysteme | @sec-numbers-number-systems |
-| **Byte** | Bits & Bytes | @sec-numbers-bit-and-bytes |
-| **DRY-Prinzip** | Programmierung | @sec-numbers-led-dimmer-3 |
-:::
-<!-- CHAPTER_GLOSSARY_END -->
-
 ## Experimentaufbau {#sec-numbers-experiment-setup .collapsable}
-
-::: callout-note
-## Quick Check
-
--   [ ] Tinkerforge-Hardware ist auf Montageplatte montiert
--   [ ] Master Brick ist über USB-Kabel mit euren Rechner verbunden
--   [ ] Brick Viewer ist gestartet und mit dem Master Brick verbunden
--   [ ] Ihr kennt die UIDs eurer Geräte → s. Brick Viewer
--   [ ] Visual Studio Code ist offen
--   [ ] Terminalfenster in Visual Studio Code ist gestartet
-:::
 
 ### Hardware
 
