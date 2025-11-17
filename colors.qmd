@@ -474,7 +474,7 @@ Um Farben für uns leichter wählbar zu machen, wurde der sogenannte \gloss{Hue-
 :::
 
 ::: {.content-hidden when-format="html"}
-![Die Farbauswahl in Google Slides funktioniert über den Hue-Farbkreis.](images/hue_color_picker_still.png){.lightbox fig-align="center" width="33%"}
+![Die Farbauswahl in Google Slides funktioniert über den Hue-Farbkreis.](images/hue_color_picker_still.png){#fig-hue-color-picker .lightbox fig-align="center" width="33%"}
 :::
 
 In @fig-hue-color-picker seht ihr, wie die Farbauswahl in Google Slides funktioniert. Mit dem Slider in der Mitte bestimmt ihr den Farbton. Habt ihr einen passenden Ton gefunden, könnt ihr im Rechteck darüber durch Verschieben des kleinen Kreises die Sättigung und Helligkeit anpassen.

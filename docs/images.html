@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.25">
+<meta name="generator" content="quarto-1.8.26">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -95,7 +95,7 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-670489e30afdd02925324b99e7f7a38e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -280,9 +280,7 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header sidebar-header-stacked">
-      <a href="./index.html" class="sidebar-logo-link">
-      </a>
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">Hands-On Computer Science</a> 
         <div class="sidebar-tools-main">
@@ -387,6 +385,7 @@ window.Quarto = {
   <ul class="collapse">
   <li><a href="#von-farbe-zu-schwarzweiß" id="toc-von-farbe-zu-schwarzweiß" class="nav-link" data-scroll-target="#von-farbe-zu-schwarzweiß"><span class="header-section-number">4.9.1</span> Von Farbe zu Schwarzweiß</a></li>
   <li><a href="#pacman-animation" id="toc-pacman-animation" class="nav-link" data-scroll-target="#pacman-animation"><span class="header-section-number">4.9.2</span> Pacman-Animation</a></li>
+  <li><a href="#bewegung" id="toc-bewegung" class="nav-link" data-scroll-target="#bewegung"><span class="header-section-number">4.9.3</span> Bewegung</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -590,7 +589,7 @@ Abbildung&nbsp;4.3: Gezeichneter vs.&nbsp;getippter Text auf dem Display.
 <h2 class="collapsable anchored" data-number="4.2" data-anchor-id="sec-images-pixels"><span class="header-section-number">4.2</span> Pixel</h2>
 <details class="collapsable-section" open=""><summary></summary>
 <p>Nachdem wir das Display im Brick Viewer ausprobiert haben, wollen wir uns seine Funktionen in Python anschauen. Dazu stellen wir wie immer die Verbindung her und erzeugen eine Instanz des Display-Objekts:</p>
-<div id="19cd84bc" class="cell" data-execution_count="1">
+<div id="13b24d9d" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1">1</button><span id="annotated-cell-1-2" class="code-annotation-target"><a href="#annotated-cell-1-2"></a><span class="im">from</span> tinkerforge.bricklet_oled_128x64_v2 <span class="im">import</span> BrickletOLED128x64V2</span>
 <span id="annotated-cell-1-3"><a href="#annotated-cell-1-3"></a></span>
@@ -620,7 +619,7 @@ Abbildung&nbsp;4.3: Gezeichneter vs.&nbsp;getippter Text auf dem Display.
 <p>Das Display, das wir verwenden, hat eine Auflösung von 128 x 64 Pixeln. Das bedeutet, dass es 128 Pixel in der Breite und 64 Pixel in der Höhe hat. Insgesamt ergibt das somit 8192 Pixel, die wir individuell an- oder ausschalten können.</p>
 <p>Beginnen wir, indem wir das Pixel in der linken oberen Ecke des Displays einschalten. Damit wir mit einzelnen Pixel sprechen können, hat jedes eine eigene Koordinate, die einfach die Position als Zeile und Spalte angibt. Genau wie in einer Excel-Tabelle, in der die Zelle in der dritten Spalte und vierten Zeile mit C4 adressiert würde. Nur verwenden wir bei Pixel statt Buchstaben nur Zahlen.</p>
 <p>Die Koordinaten für das Pixel links oben lauten (0, 0), wobei die erste Zahl die x-Koordinate (horizontal) und die zweite Zahl die y-Koordinate (vertikal) ist. Um dieses Pixel einzuschalten, verwenden wir die Funktion <code>write_pixels()</code> und rufen sie wie folgt auf:</p>
-<div id="35530ea0" class="cell" data-execution_count="2">
+<div id="7b221766" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, [<span class="dv">1</span>])</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Aber warum denn so viele Argumente? Es reicht doch, wenn wir die Koordinaten des Pixels angeben, oder? Der Grund ist, dass die Funktion <code>write_pixels()</code> nicht nur einzelne Pixel ansteuern kann, sondern auch rechteckige Flächen von Pixeln. Deshalb müssen wir die Funktion so aufrufen, dass sie eine rechteckige Fläche beschreibt. <a href="#fig-images-write-pixels-single" class="quarto-xref">Abbildung&nbsp;<span>4.4</span></a> zeigt das anhand des Beispiels des linken oberen Pixels.</p>
@@ -635,13 +634,13 @@ Abbildung&nbsp;4.4: Die Funktion <code>write_pixels()</code> benötigt die Angab
 </figure>
 </div>
 <p>In der Abbildung seht ihr die Werte, die die Funktion <code>write_pixels()</code> übergeben bekommt, um ein Pixel anzusteuern. Allgemein lautet die Signatur der Funktion so:</p>
-<div id="2a00dde2" class="cell" data-execution_count="3">
+<div id="50972808" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>write_pixels(x_start, y_start, x_end, y_end, pixel_values)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Die ersten vier Argumente definieren die zwei Punkte die rechteckige Fläche als Linksoben und Rechtsunten beschreiben. Die ersten beiden Argumente sind die x- und y-Koordinaten des oberen linken Punkts, die zweiten beiden Argumente sind die x- und y-Koordinaten des unteren rechten Punkts. Diese Eckpunkte sind inklusive, das heißt, die Breite ergibt sich aus <code>x_end - x_start + 1</code> und die Höhe aus <code>y_end - y_start + 1</code>. In unserem Fall sind beide Punkte (0, 0), wir sprechen also genau ein Pixel an. Der letzte Parameter ist eine Liste von Werten, die angibt, ob die Pixel in der definierten Fläche ein- oder ausgeschaltet werden sollen. Ein Wert von 1 bedeutet weiß, 0 bedeutet schwarz. Da wir nur ein Pixel ansprechen, enthält die Liste nur einen Wert: <code>[1]</code>.</p>
 <p>Auch wenn es im Beispiel nur ein Wert ist, stellt die <code>[1]</code> dennoch eine Liste imn Python dar. Darauf weisen die eckigen Klammern hin. Innerhalb der Klammern können beliebig viele Werte durch Kommas getrennt angegeben werden. Es kann aber auch nur ein Wert sein, wie in unserem Fall.</p>
 <p>Wir können das Pixel wieder ausschalten, indem wir den Wert in der Liste auf 0 ändern. Sobald ihr Enter drückt, sollte das Pixel in der linken oberen Ecke wieder ausgehen:</p>
-<div id="e9b111f7" class="cell" data-execution_count="4">
+<div id="39a57f4d" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, [<span class="dv">1</span>])</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">input</span>(<span class="st">"Drücke Enter um das Pixel auszuschalten..."</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, [<span class="dv">0</span>])</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
@@ -655,7 +654,7 @@ Abbildung&nbsp;4.4: Die Funktion <code>write_pixels()</code> benötigt die Angab
 <section id="quadrate-und-andere-formen" class="level3" data-number="4.3.1">
 <h3 data-number="4.3.1" class="anchored" data-anchor-id="quadrate-und-andere-formen"><span class="header-section-number">4.3.1</span> Quadrate und andere Formen</h3>
 <p>Sagen wir, wir wollen ein 2x2 großes Quadrat in der Mitte des Displays zeichnen. Dazu müssen wir zuerst berechnen, wo die Mitte des Displays ist. Da das Display 128 Pixel breit und 64 Pixel hoch ist, läge die Mitte rechnerisch bei (64, 32). Weil wir bei 0 zu zählen beginnen, korrigieren wir auf (63, 31). Um ein 2x2-Quadrat zu zeichnen, setzen wir die Koordinaten des oberen linken Punkts auf (62, 30) und die Koordinaten des unteren rechten Punkts auf (63, 31). Die Liste der Werte für die Pixel in dieser Fläche muss 4 Werte enthalten, alle auf 1 gesetzt, um das Quadrat anzuzeigen.</p>
-<div id="a0f8eb72" class="cell" data-execution_count="5">
+<div id="8e76b23e" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">62</span>, <span class="dv">30</span>, <span class="dv">63</span>, <span class="dv">31</span>, [<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>])</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Genau genommen ist die Liste eine flache Struktur, sie wird aber als 2x2-Matrix interpretiert. Die Bitmap sieht also so aus:</p>
@@ -673,7 +672,7 @@ Abbildung&nbsp;4.5: Ein 2x2 Quadrat über die Angabe der linken oberen sowie der
 </figure>
 </div>
 <p>Was ist, wenn wir das Quadrat auf 3x3 vergrößern wollen? Dann ändern wir den unteren rechten Punkt auf (64, 32) oder alternativ den oberen linken Punkt auf (61, 29). Die Liste der Werte erweitern wir auf 9 Einträge:</p>
-<div id="1d26c573" class="cell" data-execution_count="6">
+<div id="b982eb5f" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">61</span>, <span class="dv">29</span>, <span class="dv">63</span>, <span class="dv">31</span>, [<span class="dv">1</span>]<span class="op">*</span><span class="dv">9</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Die Python-Syntax <code>[1]*9</code> erzeugt eine Liste mit 9 Einsen. Das ist eine praktische Abkürzung, um lange Listen mit gleichen Werten zu erstellen.</p>
@@ -696,7 +695,7 @@ Abbildung&nbsp;4.6: Über die Pixelwerte lassen sich beliebige Symbole darstelle
 </figure>
 </div>
 <p>Wenn wir dieses Kreuzmuster öfters zeichnen wollen, dann wäre es eine gute Idee, die Liste der Pixelwerte in einer Variablen zu speichern. So können wir sie immer wieder verwenden, ohne die Liste jedes Mal neu schreiben zu müssen. Das sieht dann so aus:</p>
-<div id="2e0dd4af" class="cell" data-execution_count="7">
+<div id="4ec3e8cf" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>cross_bitmap <span class="op">=</span> [</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>,</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>,</span>
@@ -704,16 +703,16 @@ Abbildung&nbsp;4.6: Über die Pixelwerte lassen sich beliebige Symbole darstelle
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Jetzt können wir das Kreuzmuster einfach zeichnen, indem wir die Variable <code>cross_bitmap</code> an die Funktion <code>write_pixels()</code> übergeben:</p>
-<div id="6e8f78c9" class="cell" data-execution_count="8">
+<div id="e3d217bb" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">2</span>, cross_bitmap)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Da wir als Quadrat (0, 0) bis (2, 2) angegeben haben, wird das Kreuz in der linken oberen Ecke des Displays gezeichnet. Wir können die x- und y-Koordinaten anpassen, um das Kreuz an einer anderen Position zu zeichnen. Zum Beispiel direkt daneben noch eins, mit einem Pixel Abstand dazwischen:</p>
-<div id="c07f77e7" class="cell" data-execution_count="9">
+<div id="e4201d92" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">2</span>, cross_bitmap)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">6</span>, <span class="dv">2</span>, cross_bitmap)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Was, wenn wir Kreuze über das gesamte Display zeichnen wollen? Ein Kreuz inklusive Abstand benötigt 3 Pixel auf der x-Achse. Da wir 128 Pixel in der Breite haben, können wir also 42 Kreuze in eine Zeile des Displays zeichnen.</p>
-<div id="3eff72e8" class="cell" data-execution_count="10">
+<div id="e09f1f1e" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">2</span>, cross_bitmap)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">6</span>, <span class="dv">2</span>, cross_bitmap)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">8</span>, <span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">2</span>, cross_bitmap)</span>
@@ -721,13 +720,13 @@ Abbildung&nbsp;4.6: Über die Pixelwerte lassen sich beliebige Symbole darstelle
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">120</span>, <span class="dv">0</span>, <span class="dv">122</span>, <span class="dv">2</span>, cross_bitmap)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Stellt euch statt “…” 38 weitere Zeilen Code vor, die jeweils ein Kreuz zeichnen. Das wäre ziemlich mühsam. Zum Glück kennen wir dafür schon eine bessere Lösung, die Schleife. Wir können eine Schleife verwenden, um die x-Koordinate automatisch zu berechnen und die Kreuze in einer einzigen Schleife zu zeichnen. So sieht das aus:</p>
-<div id="ef690c5e" class="cell" data-execution_count="11">
+<div id="9a137d98" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">128</span>, <span class="dv">4</span>):</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    oled.write_pixels(x, <span class="dv">0</span>, x <span class="op">+</span> <span class="dv">2</span>, <span class="dv">2</span>, cross_bitmap)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Erinnert euch: Die <code>range()</code>-Funktion erzeugt eine Folge von Zahlen. In diesem Fall starten wir bei 0, enden bei 128 und erhöhen die Zahl in jedem Schritt um 4. Dadurch erhalten wir die x-Koordinaten 0, 4, 8, …, 124. In jedem Schleifendurchlauf zeichnen wir ein Kreuz an der aktuellen x-Position.</p>
 <p>Denken wir das Ganze ein Stück weiter und erzeugen ein Display voller Kreuze. Dazu könnten wir unsere Schleife kopieren und die y-Koordinate anpassen, um die Kreuze in mehreren Reihen zu zeichnen. Aber auch hier können wir wieder eine Schleife verwenden, um die y-Koordinate automatisch zu berechnen. So sieht das aus:</p>
-<div id="2301c260" class="cell" data-execution_count="12">
+<div id="19800b1e" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> y <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">64</span>, <span class="dv">4</span>):</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> x <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">0</span>, <span class="dv">128</span>, <span class="dv">4</span>):</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>        oled.write_pixels(x, y, x <span class="op">+</span> <span class="dv">2</span>, y <span class="op">+</span> <span class="dv">2</span>, cross_bitmap)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
@@ -749,7 +748,7 @@ Abbildung&nbsp;4.7: Der Buchstabe “A” als Bitmap.
 </figure>
 </div>
 <p>Anhand dieser Darstellung können wir die Werte für die Liste mit Einsen und Nullen ableiten, die wir benötigen, um den Buchstaben “A” auf dem Display darzustellen. Die Liste sieht so aus:</p>
-<div id="160a8056" class="cell" data-execution_count="13">
+<div id="2fb4b26b" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>letter_a_bitmap <span class="op">=</span> [</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>,</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>,</span>
@@ -762,7 +761,7 @@ Abbildung&nbsp;4.7: Der Buchstabe “A” als Bitmap.
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Wer gute Augen hat, erkennt in der Matrix den Buchstaben “A” sofort. Welcher Buchstabe verbirgt sich in der folgenden Bitmap?</p>
-<div id="31035a7e" class="cell" data-execution_count="14">
+<div id="8dcd02a8" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>letter_unknown_bitmap <span class="op">=</span> [</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>,</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>,</span>
@@ -775,7 +774,7 @@ Abbildung&nbsp;4.7: Der Buchstabe “A” als Bitmap.
 <span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Zeichnen wir den Buchstaben auf dem Display, um es herauszufinden. Wir kennen die Dimensionen (5x8 Pixel), haben die Bitmap als Liste und müssen nur noch die Position bestimmen, an der der Buchstabe gezeichnet werden soll. Ich habe mich für die Position (6, 10) als oberen linken Punkt entschieden:</p>
-<div id="afc26065" class="cell" data-execution_count="15">
+<div id="cf075364" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">6</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">17</span>, letter_unknown_bitmap)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Und? Seht ihr auch ein großes “S”?</p>
@@ -790,22 +789,22 @@ Abbildung&nbsp;4.8: Der Buchstabe “S” als Bitmap.
 </figure>
 </div>
 <p>Versuchen wir, davor noch das “A” zu schreiben:</p>
-<div id="750df319" class="cell" data-execution_count="16">
+<div id="2fefa2d0" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">5</span>, <span class="dv">17</span>, letter_a_bitmap)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Wir haben richtig gerechnet: Das “A” soll vor dem “S” stehen, also müssen wir mit der x-Koordinate 5 Pixel nach links gehen. Die y-Koordinate bleibt gleich, weil beide Buchstaben auf der gleichen Höhe stehen sollen. Lasst uns noch ein Pixel Platz zwischen beiden Buchstaben lassen. Das bedeutet, dass wir die x-Koordinate des “A” um 1 Pixel weiter nach links setzen, also auf 0. Die x-Koordinate des rechten unteren Punkts des “A” nimmt dann den Wert 4 an. Der Code für das “A” sieht so aus:</p>
-<div id="37a5b4f5" class="cell" data-execution_count="17">
+<div id="ec93d66a" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">4</span>, <span class="dv">17</span>, letter_a_bitmap)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Und nun noch ein “S” ans Ende, damit wir ein sinnvolles Wort geschrieben haben:</p>
-<div id="83f88099" class="cell" data-execution_count="18">
+<div id="e11b940c" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">4</span>, <span class="dv">17</span>, letter_a_bitmap)</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">6</span>, <span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">17</span>, letter_unknown_bitmap)</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">12</span>, <span class="dv">10</span>, <span class="dv">16</span>, <span class="dv">17</span>, letter_unknown_bitmap)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Sucht euch aus, ob ihr nun eine Spielkarte, den Namen eines Schmerzmittels oder das englischsprachige Wort für Ar*** geschrieben habt. In jedem Fall sind es drei Buchstaben, die wir mit Bitmaps auf dem Display dargestellt haben. Und das ganz ohne die Textfunktion des Displays zu verwenden.</p>
 <p>Das wäre übrigens auch einfacher gegangen, wäre aber nicht so lehrreich gewesen:</p>
-<div id="a2a818ed" class="cell" data-execution_count="19">
+<div id="480e9603" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>oled.write_line(<span class="dv">0</span>, <span class="dv">0</span>, <span class="st">"Ass"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Wenn ihr beides hintereinander ausführt, steht oben “Ass” per Textfunktion und darunter “ASS” als eigene Bitmaps. Das Schöne an der <code>write_line()</code>-Funktion ist, dass sie automatisch die richtigen Bitmaps für die Buchstaben verwendet. Das Display hat eine eingebaute Schriftart, die es nutzt, wenn wir Text anzeigen wollen. Aber wie ihr gesehen habt, können wir auch eigene Bitmaps verwenden, um Buchstaben oder andere Symbole zu zeichnen, die nicht im Zeichensatz des Displays enthalten sind.</p>
@@ -896,7 +895,7 @@ Abbildung&nbsp;4.13: Die Überführung einer Excel-basierten Bitmap in eine List
 <p>Um Excel-Dateien in Python zu lesen müssen wir das Rad nicht neu erfinden. Es gibt verschiedene Bibliotheken, eine der beliebtesten und einfachsten ist <code>openpyxl</code>. Stellt sicher, dass ihr die Bibliothek installiert habt. Das könnt ihr mit dem folgenden Befehl in eurer Kommandozeile tun. Denkt daran, dass MacOS-Nutzer <code>pip3</code> anstelle von <code>pip</code> verwenden müssen:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install openpyxl</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Die Bibliothek <code>openpyxl</code> stellt uns eine Funktion mit dem Namen <code>load_workbook()</code> zur Verfügung, der wir einfach den Pfad der Excel-Datei übergeben können. Wenn ihr vorher die Excel-Datei mit Darth Vaders Maske heruntergeladen habt, könnt ihr sie so laden:</p>
-<div id="b440588d" class="cell" data-execution_count="20">
+<div id="367100f6" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-25"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><button class="code-annotation-anchor" data-target-cell="annotated-cell-25" data-target-annotation="1">1</button><span id="annotated-cell-25-1" class="code-annotation-target"><a href="#annotated-cell-25-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> openpyxl <span class="im">import</span> load_workbook</span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-25" data-target-annotation="2">2</button><span id="annotated-cell-25-2" class="code-annotation-target"><a href="#annotated-cell-25-2" aria-hidden="true" tabindex="-1"></a>workbook <span class="op">=</span> load_workbook(<span class="st">"Dart Vader Pixel Art.xlsx"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-annotation">
@@ -913,7 +912,7 @@ Abbildung&nbsp;4.13: Die Überführung einer Excel-basierten Bitmap in eine List
 </div>
 </div>
 <p>Da ein Excel-Dokument aus mehreren Tabellenblättern bestehen kann, müssen wir nach dem Laden das Blatt auswählen, das wir verwenden wollen. Am sichersten geht das über den Namen des Tabellenblatts, das in unserem Fall “Darth Vader” heißt:</p>
-<div id="c33b056b" class="cell" data-execution_count="21">
+<div id="570a0eb5" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>sheet <span class="op">=</span> workbook[<span class="st">"Darth Vader"</span>]</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
@@ -923,7 +922,7 @@ Abbildung&nbsp;4.13: Die Überführung einer Excel-basierten Bitmap in eine List
 <p>Das Programmierkonzept, das wir dazu verwenden, haben wir schon kennengelernt. Erinnert ihr euch? Wir wollen etwas mehrfach ausführen (prüfen ob die Zelle schwarz oder weiß ist) für eine bekannte Menge von Elementen (alle Zellen in der Tabelle). Für die mehrfache Ausführung desselben Codes verwenden wir Schleifen. Und wenn die Menge der Elemente bekannt ist, verwenden wir eine <code>for</code>-Schleife.</p>
 <p>Einer <code>for</code>-Schleife müssen wir mitteilen, für welche Menge an Elementen sie den selben Code mehrmals ausführen soll. Als wir die <code>for</code>-Schleife eingeführt haben, hat diese Aufgabe die <code>range()</code>-Funktion erledigt. Sie hat uns eine Sequenz (oder Menge) an Zahlen erzeugt, über die wir iterieren können.</p>
 <p>Diese Aufgabe übernimmt jetzt die Funktion <code>iter_rows()</code>, die die <code>openpyxl</code>-Klasse für das Tabellenblatt uns bereitstellt. Die Funtion gibt uns für ein Tabellenblatt die Menge aller Zeilen in der Tabelle zurück. Also erneut eine Menge an Elementen, wie von der <code>for</code>-Schleife gewünscht, wenn auch dieses Mal keine Zahlen. Für jede Zeile in dieser Menge können wir dann wiederum über die einzelnen Zellen iterieren, einfach indem wir <code>for cell in row:</code> schreiben. Es braucht also zwei Schleifen, die ineinander verschachtelt sind: Die erste Schleife geht Zeile für Zeile vor, und die zweite geht für jede Zeile die Spalten (oder Zellen) durch:</p>
-<div id="139549b1" class="cell" data-execution_count="22">
+<div id="d621a9e3" class="cell" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-27"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><button class="code-annotation-anchor" data-target-cell="annotated-cell-27" data-target-annotation="1">1</button><span id="annotated-cell-27-1" class="code-annotation-target"><a href="#annotated-cell-27-1"></a><span class="cf">for</span> row <span class="kw">in</span> sheet.iter_rows():</span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-27" data-target-annotation="2">2</button><span id="annotated-cell-27-2" class="code-annotation-target"><a href="#annotated-cell-27-2"></a>    <span class="cf">for</span> cell <span class="kw">in</span> row:</span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-27" data-target-annotation="3">3</button><span id="annotated-cell-27-3" class="code-annotation-target"><a href="#annotated-cell-27-3"></a>        ...</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
@@ -946,7 +945,7 @@ Abbildung&nbsp;4.13: Die Überführung einer Excel-basierten Bitmap in eine List
 </div>
 <p>Was passiert nun für jede Zelle in der inneren Schleife? Wir müssen die Farbe der Zelle auslesen. Wir können auf die Füllfarbe einer Zelle über das <code>cell.fill</code>-Attribut zugreifen. Die Farbe selbst ist im <code>fgColor</code>-Attribut gespeichert, und der RGB-Wert der Farbe ist im <code>rgb</code>-Attribut zu finden. Etwas kompliziert, aber so funktioniert es nun mal. Man kann das alles in der Dokumentation der Bibliothek <a href="https://openpyxl.readthedocs.io/en/stable/api/openpyxl.styles.fills.html">nachlesen</a>. Auch ChatGPT &amp; Co.&nbsp;helfen hier weiter. Auswendig wissen muss man das nicht.</p>
 <p>Probieren wir, die Farbe der Zelle auszulesen:</p>
-<div id="79b5fdef" class="cell" data-execution_count="23">
+<div id="5179f819" class="cell" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-28"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-28-1"><a href="#annotated-cell-28-1"></a><span class="cf">for</span> row <span class="kw">in</span> sheet.iter_rows():</span>
 <span id="annotated-cell-28-2"><a href="#annotated-cell-28-2"></a>    <span class="cf">for</span> cell <span class="kw">in</span> row:</span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-28" data-target-annotation="1">1</button><span id="annotated-cell-28-3" class="code-annotation-target"><a href="#annotated-cell-28-3"></a>        color <span class="op">=</span> <span class="bu">getattr</span>(cell.fill.fgColor, <span class="st">"rgb"</span>, <span class="va">None</span>)</span>
@@ -1057,7 +1056,7 @@ Abbildung&nbsp;4.16: Darstellung von Bytes als Hexadezimalzahlen.
 <section id="die-liste-mit-bits-erstellen" class="level3" data-number="4.5.4">
 <h3 data-number="4.5.4" class="anchored" data-anchor-id="die-liste-mit-bits-erstellen"><span class="header-section-number">4.5.4</span> Die Liste mit Bits erstellen</h3>
 <p>Damit haken wir das Thema der Hexadezimalzahlem ab, aber es war notwendig, um die Farbwerte in der Excel-Tabelle zu verstehen. Jetzt können wir nämlich die Farbe jeder Zelle prüfen und entsprechend eine 0 oder 1 zur Liste hinzufügen. Wenn die Farbe <code>FF000000</code> (schwarz) ist, fügen wir eine 1 hinzu, andernfalls eine 0:</p>
-<div id="dfbabdb9" class="cell" data-execution_count="24">
+<div id="3ee317f3" class="cell" data-execution_count="24">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a><span class="im">from</span> openpyxl <span class="im">import</span> load_workbook</span>
 <span id="cb27-2"><a href="#cb27-2"></a></span>
 <span id="cb27-3"><a href="#cb27-3"></a>workbook <span class="op">=</span> load_workbook(<span class="st">"Darth Vader Pixel Art.xlsx"</span>)</span>
@@ -1079,11 +1078,11 @@ Abbildung&nbsp;4.16: Darstellung von Bytes als Hexadezimalzahlen.
 <section id="anzeige-auf-dem-display" class="level3" data-number="4.5.5">
 <h3 data-number="4.5.5" class="anchored" data-anchor-id="anzeige-auf-dem-display"><span class="header-section-number">4.5.5</span> Anzeige auf dem Display</h3>
 <p>Wie wir einzelne Pixel auf dem Display anzeigen können, haben wir bereits weiter oben in <a href="#sec-images-pixels" class="quarto-xref"><span>Abschnitt 4.2</span></a> gelernt. Dieses Vorgehen können wir jetzt nutzen und unsere Liste mit Bits in der Variable <code>bits</code> an die <code>write_pixels()</code>-Funktion übergeben, um Darth Vaders Maske auf dem Display anzuzeigen. Wir müssen nur noch die Koordinaten des oberen linken und unteren rechten Punkts angeben. Dazu müssen wir entscheiden, wo wir das Bild auf dem Display platzieren wollen. Ich habe mich für die Position (50, 20) als oberen linken Punkt entschieden, das ist ungefährt die Mitte. Der untere rechte Punkt ergibt sich aus der Breite und Höhe des Bildes. Da das Bild 27 Pixel breit und 24 Pixel hoch ist, setzen wir den unteren rechten Punkt auf (76, 43):</p>
-<div id="270ca435" class="cell" data-execution_count="25">
+<div id="35471886" class="cell" data-execution_count="25">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">50</span>, <span class="dv">20</span>, <span class="dv">76</span>, <span class="dv">43</span>, bits)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Natürlich müssen wir zuvor den Boilerplate-Code zum Initialisieren des Displays in unser Programm kopieren. Das komplette Programm sieht dann so aus:</p>
-<div id="712bdeb0" class="cell" data-execution_count="26">
+<div id="bee1c8e5" class="cell" data-execution_count="26">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a><span class="im">from</span> openpyxl <span class="im">import</span> load_workbook</span>
@@ -1132,7 +1131,7 @@ Abbildung&nbsp;4.17: Darth Vaders Maske als Bitmap aus dem OLED-Display.
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install Pillow</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>MacOS-Nutzer verwenden wieder <code>pip3</code> anstelle von <code>pip</code>.</p>
 <p>Um unser Bild als Bitmap zu speichern, können wir die <code>Image</code>-Klasse aus der <code>PIL</code>-Bibliothek verwenden, die wir am Anfang einmal ankündigen müssen. Am Ende, wenn wir die Bitmap aus Excel eingelesen haben, erstellen wir ein neues Bildobjekt mit der gewünschten Größe von 27x24 Pixel und dem Modus “1”, der steht für Schwarzweiß-Bilder. Dann setzen wir die Pixelwerte entsprechend unserer Liste <code>bits</code> und speichern das Bild als BMP-Datei:</p>
-<div id="de12f7eb" class="cell" data-execution_count="27">
+<div id="30b1c62e" class="cell" data-execution_count="27">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-35"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><button class="code-annotation-anchor" data-target-cell="annotated-cell-35" data-target-annotation="1">1</button><span id="annotated-cell-35-1" class="code-annotation-target"><a href="#annotated-cell-35-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
 <span id="annotated-cell-35-2"><a href="#annotated-cell-35-2" aria-hidden="true" tabindex="-1"></a>...</span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-35" data-target-annotation="2">2</button><span id="annotated-cell-35-3" class="code-annotation-target"><a href="#annotated-cell-35-3" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> Image.new(<span class="st">'1'</span>, (<span class="dv">27</span>, <span class="dv">24</span>))</span>
@@ -1195,12 +1194,12 @@ Abbildung&nbsp;4.19: Super Mario aus der 8-Bit Nintendo-Spielkonsole NES als Bit
 <p>Ein anderer wesentlicher Unterschied ist, dass ein Pixel in Super Marios Bitmap mehr Speicherplatz benötigt, weil es in Farbe dargestellt wird. Jedes Pixel in Super Marios Bitmap wird durch einen RGB-Wert repräsentiert, der aus drei Bytes besteht, je eines für Rot, Grün und Blau. Das bedeutet, dass die gesamte Bitmap von Super Mario 256 Pixel x 3 Bytes pro Pixel = 768 Bytes Speicherplatz benötigt. Im Gegensatz dazu benötigt die Bitmap von Darth Vader nur 648 Pixel x 1 Bit pro Pixel = 81 Bytes Speicherplatz (da jedes Pixel nur schwarz oder weiß ist). Größeres Bild braucht weniger Speicher, hat dafür aber keine Farben.</p>
 <p>Ich habe für dieses Experiment Super Mario ebenfalls als Excel-Tabelle erstellt, genau wie bei Darth Vader. Ihr könnt die Datei <a href="resources/Super Mario Pixel Art.xlsx">hier herunterladen</a>. Um Mario in eine Liste von Bits zu überführen, können wir unser Programm von oben grundsätzlich wiederverwenden, müssen es aber ein wenig anpassen. Insbesondere müssen wir jetzt statt 0 oder 1 die RGB-Werte der Zellen in die Liste einfügen.</p>
 <p>Ladet zunächst die Excel-Datei herunter und ersetzt im Programm den Dateinamen und den Namen des Tabellenblatts:</p>
-<div id="df3b3c0c" class="cell" data-execution_count="28">
+<div id="1d6c373c" class="cell" data-execution_count="28">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>workbook <span class="op">=</span> load_workbook(<span class="st">"Super Mario Pixel Art.xlsx"</span>)</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>sheet <span class="op">=</span> workbook[<span class="st">"Super Mario"</span>]</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Es folgen die beiden verschachtelten Schleifen, um jede Zelle auszulesen. Hier müssen wir die Anpassung vornehmen. Gehen wir wie immer Schritt für Schritt vor. Wie wir bereits wissen, kommt der Farbcode zusammen mit dem Alpha-Kanal als Hexadezimalzahl mit 8 Ziffern daher. Für uns sind aber nur die letzten 6 Ziffern interesant. Schneiden wir also die ersten beiden Ziffern ab:</p>
-<div id="805b6a6a" class="cell" data-execution_count="29">
+<div id="7d62e027" class="cell" data-execution_count="29">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-37"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-37-1"><a href="#annotated-cell-37-1" aria-hidden="true" tabindex="-1"></a>bitmap <span class="op">=</span> []</span>
 <span id="annotated-cell-37-2"><a href="#annotated-cell-37-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> row <span class="kw">in</span> sheet.iter_rows():</span>
 <span id="annotated-cell-37-3"><a href="#annotated-cell-37-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> cell <span class="kw">in</span> row:</span>
@@ -1233,11 +1232,11 @@ B53120
 B53120
 ...</code></pre>
 <p>Wenn es bei euch auch so aussieht, dann ist soweit alles gut. Für die Speicherung im RGB-Format benötigen wir einzelne Bytes, was bedeutet, dass wir den RGB-Code in seine drei Bestandteile zerlegen müssen. Dazu erwartet die <code>putdat()</code>-Methode der <code>Image</code>-Klasse eine Liste von Dreiertupeln jeweils als Dezimalwerte. Also beispielsweise für die ersten drei Pixel, die alle weiß sind:</p>
-<div id="7889f394" class="cell" data-execution_count="30">
+<div id="b255984e" class="cell" data-execution_count="30">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>bitmap <span class="op">=</span> [(<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">255</span>), (<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">255</span>), (<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">255</span>)]</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Wir müssen also zwei Schritte in unser Programm integrieren: Erstens das Zerlegen des RGB-Codes in seine Einzelteile (<code>#FFFFFF</code> wird zu <code>FF</code>, <code>FF</code>, <code>FF</code>) und zweitens die Umwandlung der Hexadezimalwerte in Dezimalwerte (<code>FF</code> wird zu <code>255</code>). Beides können wir mit Python-Funktionen erledigen. Um den RGB-Code zu zerlegen, können wir die String-Slicing-Methode verwenden. Dabei können wir angeben, welchen Teilstring wir aus einer Zeichenkette extrahieren möchten. Für die Umwandlung von Hexadezimal- in Dezimalwerte gibt es die eingebaute Funktion <code>int()</code>, der wir den Hexadezimalstring und die Basis 16 übergeben können und sie spuckt die entsprechende Dezimalzahl aus. Das Ganze sieht dann so aus:</p>
-<div id="d78d1f2e" class="cell" data-execution_count="31">
+<div id="130f12ef" class="cell" data-execution_count="31">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-40"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-40-1"><a href="#annotated-cell-40-1" aria-hidden="true" tabindex="-1"></a>...</span>
 <span id="annotated-cell-40-2"><a href="#annotated-cell-40-2" aria-hidden="true" tabindex="-1"></a>color <span class="op">=</span> <span class="bu">getattr</span>(cell.fill.fgColor, <span class="st">"rgb"</span>, <span class="va">None</span>)</span>
 <span id="annotated-cell-40-3"><a href="#annotated-cell-40-3" aria-hidden="true" tabindex="-1"></a>color <span class="op">=</span> color[<span class="dv">2</span>:] </span>
@@ -1276,7 +1275,7 @@ B53120
 181 49 32
 ...</code></pre>
 <p>Die ersten fünf Pixel sind weiß, gefolgt von den ersten rötlichen Pixeln von Marios Mütze. Passt also! Nun noch die RGB-Werte als Dreiertupel zur Liste <code>bitmap</code> hinzufügen:</p>
-<div id="8efb282f" class="cell" data-execution_count="32">
+<div id="5224a7dc" class="cell" data-execution_count="32">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-42"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><button class="code-annotation-anchor" data-target-cell="annotated-cell-42" data-target-annotation="1">1</button><span id="annotated-cell-42-1" class="code-annotation-target"><a href="#annotated-cell-42-1" aria-hidden="true" tabindex="-1"></a>rgb_tuple <span class="op">=</span> (r, g, b)</span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-42" data-target-annotation="2">2</button><span id="annotated-cell-42-2" class="code-annotation-target"><a href="#annotated-cell-42-2" aria-hidden="true" tabindex="-1"></a>bitmap.append(rgb_tuple)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-annotation">
@@ -1294,7 +1293,7 @@ B53120
 </div>
 <p>Ein Tupel in Python ist sehr ähnlich wie eine Liste, nur dass wir eine Liste verändern können, ein Tupel nicht. Anstelle der eckigen Klammern <code>[]</code> für Listen verwenden wir für Tupel runde Klammern <code>()</code>. Ansonsten funktioniert das Hinzufügen eines Tupels zu einer Liste genauso wie zuvor mit der <code>append()</code>-Methode.</p>
 <p>Hier nun der gesamte Code bis hierher (ohne Boilerplate-Code zum Initialisieren des Displays und das Öffnen des Excel-Dokuments):</p>
-<div id="41e955a7" class="cell" data-execution_count="33">
+<div id="5b06db73" class="cell" data-execution_count="33">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-43"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-43-1"><a href="#annotated-cell-43-1"></a>bitmap <span class="op">=</span> []</span>
 <span id="annotated-cell-43-2"><a href="#annotated-cell-43-2"></a><span class="cf">for</span> row <span class="kw">in</span> sheet.iter_rows():</span>
 <span id="annotated-cell-43-3"><a href="#annotated-cell-43-3"></a>    <span class="cf">for</span> cell <span class="kw">in</span> row:</span>
@@ -1331,7 +1330,7 @@ B53120
 </div>
 </div>
 <p>Mit den RGB-Werten in der Liste <code>bitmap</code> können wir jetzt ein farbiges Bild von Super Mario erstellen und speichern. Dazu verwenden wir wieder die <code>Image</code>-Klasse aus der <code>PIL</code>-Bibliothek. Diesmal erstellen wir ein Bild im Modus “RGB”, der Dimensionierung 16x16 und übergeben wieder die Liste <code>bitmap</code> an die <code>putdata()</code>-Methode. Dadurch, dass wir den Modus auf “RGB” gesetzt haben, erwartet die Methode jetzt eine Liste von Dreiertupeln mit den RGB-Werten. Zum Schluss speichern wir das Bild als BMP-Datei:</p>
-<div id="fa6a2b17" class="cell" data-execution_count="34">
+<div id="e89a4080" class="cell" data-execution_count="34">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> Image.new(<span class="st">'RGB'</span>, (<span class="dv">16</span>, <span class="dv">16</span>))</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>image.putdata(bitmap)</span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>image.save(<span class="st">"xlsx/super_mario_color.bmp"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1468,7 +1467,7 @@ Abbildung&nbsp;4.24: Ein Drohnenbild in Farbe und in Graustufen.
 </figure>
 </div>
 <p>Wir wollen Mario möglichst für Menschen optimieren, deshalb verwenden wir die gewichtete Summe. In Python können wir das so umsetzen:</p>
-<div id="2bb43645" class="cell" data-execution_count="35">
+<div id="4c928178" class="cell" data-execution_count="35">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-46"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><button class="code-annotation-anchor" data-target-cell="annotated-cell-46" data-target-annotation="1">1</button><span id="annotated-cell-46-1" class="code-annotation-target"><a href="#annotated-cell-46-1" aria-hidden="true" tabindex="-1"></a>luminance <span class="op">=</span> <span class="fl">0.299</span> <span class="op">*</span> r <span class="op">+</span> <span class="fl">0.587</span> <span class="op">*</span> g <span class="op">+</span> <span class="fl">0.114</span> <span class="op">*</span> b</span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-46" data-target-annotation="2">2</button><span id="annotated-cell-46-2" class="code-annotation-target"><a href="#annotated-cell-46-2" aria-hidden="true" tabindex="-1"></a>luminance <span class="op">=</span> <span class="bu">round</span>(luminance)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-annotation">
@@ -1485,7 +1484,7 @@ Abbildung&nbsp;4.24: Ein Drohnenbild in Farbe und in Graustufen.
 </div>
 </div>
 <p>Bevor wir ein Pixel von Farbe in Graustufen umwandeln können, müssen wir zuerst die Bitmap-Datei laden und jedes Pixel einzeln auslesen. Das Laden funktioniert ganz einfach mit der <code>Pillow</code>-Bibliothek, die wir bereits weiter oben verwendet haben:</p>
-<div id="41c27cfa" class="cell" data-execution_count="36">
+<div id="becd12b6" class="cell" data-execution_count="36">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-47"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-47-1"><a href="#annotated-cell-47-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-47" data-target-annotation="1">1</button><span id="annotated-cell-47-2" class="code-annotation-target"><a href="#annotated-cell-47-2" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> Image.<span class="bu">open</span>(<span class="st">"super_mario_color.bmp"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-annotation">
@@ -1498,27 +1497,27 @@ Abbildung&nbsp;4.24: Ein Drohnenbild in Farbe und in Graustufen.
 </div>
 </div>
 <p>Denkt daran den Pfad zu eurem Bild anzupassen, solltet ihr es zum Beispiel in einem Unterordner gespeichert haben. Nach diesen beiden Zeilen Code haben wir Zugriff aus das Bild über die Variable <code>image</code>. Darüber können wir für jedes beliebige Pixel mit der <code>getpixel()</code>-Methode den Farbwert auslesen. Machen wir den Test und prüfen, ob das Pixel in der linken oberen Ecke wirklich weiß ist:</p>
-<div id="803e208b" class="cell" data-execution_count="37">
+<div id="ddc7372f" class="cell" data-execution_count="37">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-48"><pre class="sourceCode python code-annotation-code code-with-copy"><code class="sourceCode python"><span id="annotated-cell-48-1"><a href="#annotated-cell-48-1" aria-hidden="true" tabindex="-1"></a>pixel <span class="op">=</span> image.getpixel((<span class="dv">0</span>, <span class="dv">0</span>))</span>
 <span id="annotated-cell-48-2"><a href="#annotated-cell-48-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(pixel)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Die Funktion erwartet ein Tupel mit den Koordinaten des Pixels, das wir auslesen wollen. Die linke obere Ecke hat die Koordinaten (0, 0). Die Ausgabe sollte jetzt so aussehen:</p>
 <pre><code>(255, 255, 255)</code></pre>
 <p>Wie es aussieht erhalten wir ein Tupel zurück, das die RGB-Werte des Pixels enthält. Perfekt! Jetzt können wir die Luminanz berechnen und das Pixel in Graustufen umwandeln. Dazu extrahieren wir zunächst die einzelnen Farbwerte aus dem Tupel:</p>
-<div id="03421a89" class="cell" data-execution_count="38">
+<div id="59d4c973" class="cell" data-execution_count="38">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>pixel <span class="op">=</span> image.getpixel((<span class="dv">0</span>, <span class="dv">0</span>))</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> pixel[<span class="dv">0</span>]  </span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> pixel[<span class="dv">1</span>]               </span>
 <span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> pixel[<span class="dv">2</span>]</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Jetzt können wir die Luminanz berechnen, wie oben beschrieben. Wir geben sie auch gleich mit aus, um es auf der Konsole überprüfen zu können:</p>
-<div id="ad9ccaa2" class="cell" data-execution_count="39">
+<div id="9328c6f1" class="cell" data-execution_count="39">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>luminance <span class="op">=</span> <span class="fl">0.299</span> <span class="op">*</span> r <span class="op">+</span> <span class="fl">0.587</span> <span class="op">*</span> g <span class="op">+</span> <span class="fl">0.114</span> <span class="op">*</span> b</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>luminance <span class="op">=</span> <span class="bu">round</span>(luminance)</span>
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"R: </span><span class="sc">{</span>r<span class="sc">}</span><span class="ss">, G: </span><span class="sc">{</span>g<span class="sc">}</span><span class="ss">, B: </span><span class="sc">{</span>b<span class="sc">}</span><span class="ss">, Luminance: </span><span class="sc">{</span>luminance<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>So sieht es bis hierhin alles zusammen aus:</p>
-<div id="4f3f5cec" class="cell" data-execution_count="40">
+<div id="5047896c" class="cell" data-execution_count="40">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1"></a>pixel <span class="op">=</span> image.getpixel((<span class="dv">0</span>, <span class="dv">0</span>))</span>
 <span id="cb40-2"><a href="#cb40-2"></a>r <span class="op">=</span> pixel[<span class="dv">0</span>]  </span>
 <span id="cb40-3"><a href="#cb40-3"></a>g <span class="op">=</span> pixel[<span class="dv">1</span>]               </span>
@@ -1528,7 +1527,7 @@ Abbildung&nbsp;4.24: Ein Drohnenbild in Farbe und in Graustufen.
 <span id="cb40-7"><a href="#cb40-7"></a><span class="bu">print</span>(<span class="ss">f"R: </span><span class="sc">{</span>r<span class="sc">}</span><span class="ss">, G: </span><span class="sc">{</span>g<span class="sc">}</span><span class="ss">, B: </span><span class="sc">{</span>b<span class="sc">}</span><span class="ss">, Luminance: </span><span class="sc">{</span>luminance<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Für das Pixel in oben links hat es also geklappt. Schauen wir uns <a href="#fig-images-super-mario" class="quarto-xref">Abbildung&nbsp;<span>4.19</span></a> noch einmal an. Das sechste Pixel in der ersten Reihe müsste einen rotähnlichen Wert haben. Das wollen wir mit unserem kleinen Programm überprüfen. Dazu müssen wir nur die Koordinaten in der <code>getpixel()</code>-Methode anpassen, ales andere bleibt gleich:</p>
-<div id="a19726df" class="cell" data-execution_count="41">
+<div id="2dea2268" class="cell" data-execution_count="41">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-53"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><button class="code-annotation-anchor" data-target-cell="annotated-cell-53" data-target-annotation="1">1</button><span id="annotated-cell-53-1" class="code-annotation-target"><a href="#annotated-cell-53-1"></a>pixel <span class="op">=</span> image.getpixel((<span class="dv">5</span>, <span class="dv">0</span>))</span>
 <span id="annotated-cell-53-2"><a href="#annotated-cell-53-2"></a>r <span class="op">=</span> pixel[<span class="dv">0</span>]  </span>
 <span id="annotated-cell-53-3"><a href="#annotated-cell-53-3"></a>g <span class="op">=</span> pixel[<span class="dv">1</span>]               </span>
@@ -1548,7 +1547,7 @@ Abbildung&nbsp;4.24: Ein Drohnenbild in Farbe und in Graustufen.
 <p>Warum 5 und nicht 6? Weil die Zählung bei 0 anfängt, ihr erinnert euch. Die Ausgabe sollte jetzt so aussehen:</p>
 <pre><code>R: 181, G: 49, B: 32, Luminance: 87</code></pre>
 <p>Nun würde ich das gerne auch noch für ein grünliches und ein gelbliches Pixel ausprobieren, möchte aber vorher eine kleine Verbesserung in unserem Code einbauen. Wie ihr vielleicht gemerkt habt, müssen wir für jedes Pixel den gesamten Code für die Berechnung des Graustufenwerts wiederholen. Das ist nicht sehr elegant und führt zu viel doppeltem Code, was wir in der Programmierung unbedingt vermeiden wollen. Besser wäre es, wenn wir den Code in eine Funktion packen könnten, die wir dann für jedes Pixel aufrufen:</p>
-<div id="33716b5e" class="cell" data-execution_count="42">
+<div id="54bbaab2" class="cell" data-execution_count="42">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-55"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><button class="code-annotation-anchor" data-target-cell="annotated-cell-55" data-target-annotation="1">1</button><span id="annotated-cell-55-1" class="code-annotation-target"><a href="#annotated-cell-55-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rgb_to_luminance(rgb_tupel):</span>
 <span id="annotated-cell-55-2"><a href="#annotated-cell-55-2" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> rgb_tupel[<span class="dv">0</span>]</span>
 <span id="annotated-cell-55-3"><a href="#annotated-cell-55-3" aria-hidden="true" tabindex="-1"></a>    g <span class="op">=</span> rgb_tupel[<span class="dv">1</span>]</span>
@@ -1567,7 +1566,7 @@ Abbildung&nbsp;4.24: Ein Drohnenbild in Farbe und in Graustufen.
 </div>
 </div>
 <p>Jetzt können wir diese Funktion für jedes Pixel aufrufen und müssen den Code für die Berechnung der Luminanz nicht mehrmals schreiben:</p>
-<div id="c5a9431d" class="cell" data-execution_count="43">
+<div id="5fa7a507" class="cell" data-execution_count="43">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1"></a>pixel <span class="op">=</span> image.getpixel((<span class="dv">4</span>, <span class="dv">0</span>))</span>
 <span id="cb42-2"><a href="#cb42-2"></a>luminance <span class="op">=</span> rgb_to_luminance(pixel)</span>
 <span id="cb42-3"><a href="#cb42-3"></a><span class="bu">print</span>(<span class="ss">f"Luminance of pixel (4,0): </span><span class="sc">{</span>luminance<span class="sc">}</span><span class="ss">"</span>)</span>
@@ -1601,7 +1600,7 @@ Abbildung&nbsp;4.25: Vier Pixelproben aus Marios Bitmap bestätigen unser Vorgeh
 </figure>
 </div>
 <p>Jetzt sind wir soweit und können nicht nur vier Proben, sondern alle Pixel und damit das gesamte Bild in Graustufen umwandeln. Dazu bedienen wir uns wieder eines wichtigen Programmierkonzepts, nämlich… richtig, den Schleifen. Genau gesagt den <code>for</code>-Schleifen, mit denen wir bereits weiter oben gearbeitet haben. Wir können nämlich die Breite und Höhe des Bildes mit <code>image.size</code> auslesen, was einen Tupel mit zwei Werten zurückgibt. Der erste steht für die Breite und der zweite für die Höhe des Bildes in Pixel. Damit können wir zwei verschachtelte <code>for</code>-Schleifen schreiben, eine für die Zeilen und eine für die Spalten, und so über alle Pixelkoordinaten iterieren:</p>
-<div id="87baf3d0" class="cell" data-execution_count="44">
+<div id="1ebcfc7f" class="cell" data-execution_count="44">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-58"><pre class="sourceCode python code-annotation-code code-with-copy"><code class="sourceCode python"><span id="annotated-cell-58-1"><a href="#annotated-cell-58-1" aria-hidden="true" tabindex="-1"></a>w, h <span class="op">=</span> image.size</span>
 <span id="annotated-cell-58-2"><a href="#annotated-cell-58-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="annotated-cell-58-3"><a href="#annotated-cell-58-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> y <span class="kw">in</span> <span class="bu">range</span>(h):</span>
@@ -1611,7 +1610,7 @@ Abbildung&nbsp;4.25: Vier Pixelproben aus Marios Bitmap bestätigen unser Vorgeh
 <span id="annotated-cell-58-7"><a href="#annotated-cell-58-7" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Pixel at (</span><span class="sc">{</span>x<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>y<span class="sc">}</span><span class="ss">): R=</span><span class="sc">{</span>r<span class="sc">}</span><span class="ss"> G=</span><span class="sc">{</span>g<span class="sc">}</span><span class="ss"> B=</span><span class="sc">{</span>b<span class="sc">}</span><span class="ss"> Luminance=</span><span class="sc">{</span>luminance<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Vergessen wir nicht das ursprüngliche Ziel: Wir wollen das Graustufenbild erstellen. Dazu benötigen wir eine neue Liste, in der wir die Graustufenwerte speichern können. Am Ende können wir dann wieder die <code>Pillow</code>-Bibliothek verwenden, um aus der Liste ein neues Bild zu erstellen und es als Bitmap-Datei zu speichern. Sammeln wir zunächst die Graustufenwerte in einer Liste:</p>
-<div id="30099b08" class="cell" data-execution_count="45">
+<div id="70c486d5" class="cell" data-execution_count="45">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>w, h <span class="op">=</span> image.size</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>grayscale_values <span class="op">=</span> []</span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> y <span class="kw">in</span> <span class="bu">range</span>(h):</span>
@@ -1623,7 +1622,7 @@ Abbildung&nbsp;4.25: Vier Pixelproben aus Marios Bitmap bestätigen unser Vorgeh
 <p>Wenn wir uns die Liste nach Ausführung des Codes anschauen, dann sieht das so aus:</p>
 <pre><code>Grayscale bitmap with 256 pixel values: [255, 255, 255, 255, ... 96, 96, 96, 96, 255, 255]</code></pre>
 <p>Unsere Liste hat 256 Werte, was 16 x 16 Pixeln entspricht. Jeder Wert ist ein Graustufenwert zwischen 0 und 255. Jetzt können wir die Liste verwenden, um ein neues Bild im Graustufenmodus zu erstellen und es als Bitmap-Datei zu speichern:</p>
-<div id="6154fc28" class="cell" data-execution_count="46">
+<div id="e8ac0ec9" class="cell" data-execution_count="46">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>grayscale_image <span class="op">=</span> Image.new(<span class="st">"L"</span>, (w, h))</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>grayscale_image.putdata(grayscale_values)</span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>grayscale_image.save(<span class="st">"super_mario_grayscale.bmp"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1640,7 +1639,7 @@ Abbildung&nbsp;4.26: Mario als Graustufenbild, das unser Programm erzeugt hat.
 </figure>
 </div>
 <p>Den fertigen Code für die Umwandlung von Farbe in Graustufen seht ihr hier noch einmal komplett:</p>
-<div id="37cb1980" class="cell" data-execution_count="47">
+<div id="bfe5d052" class="cell" data-execution_count="47">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-62"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy"><code class="sourceCode python"><span id="annotated-cell-62-1"><a href="#annotated-cell-62-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
@@ -1674,7 +1673,7 @@ Abbildung&nbsp;4.26: Mario als Graustufenbild, das unser Programm erzeugt hat.
 <section id="schwarzweiß" class="level3" data-number="4.8.2">
 <h3 data-number="4.8.2" class="anchored" data-anchor-id="schwarzweiß"><span class="header-section-number">4.8.2</span> Schwarzweiß</h3>
 <p>Ein Etappenziel ist erreicht, wir müssen aber noch einen Schritt weiter gehen. Unser Display kann nur Schwarzweiß darstellen, also müssen wir das Graustufenbild noch in ein Schwarzweißbild umwandeln. Das funktioniert noch einfacher, als die Umwandlung von Farbe zu Graustufen. Bei Schwarzweiß haben wir nur zwei Möglichkeiten: Entweder schwarz (0) oder weiß (1). Wir müssen also für jeden Graustufenwert entscheiden, ob er zu schwarz oder weiß wird. Dazu ist es gängige Methode, einen Schwellenwert festzulegen, zum Beispiel 128. Alle Graustufenwerte, die kleiner als 128 sind, werden zu schwarz (0), alle Werte größer oder gleich 128 werden zu weiß (1). Da Funktionen mittlerweile zu unserem Repertoire gehören, können wir die Umwandlung direkt als Funktion umsetzen:</p>
-<div id="5c162a0f" class="cell" data-execution_count="48">
+<div id="3dbce616" class="cell" data-execution_count="48">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-63"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><button class="code-annotation-anchor" data-target-cell="annotated-cell-63" data-target-annotation="1">1</button><span id="annotated-cell-63-1" class="code-annotation-target"><a href="#annotated-cell-63-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> luminance_to_bw(luminance, threshold<span class="op">=</span><span class="dv">128</span>):</span>
 <span id="annotated-cell-63-2"><a href="#annotated-cell-63-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> luminance <span class="op">&lt;</span> threshold:</span>
 <span id="annotated-cell-63-3"><a href="#annotated-cell-63-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">0</span></span>
@@ -1691,7 +1690,7 @@ Abbildung&nbsp;4.26: Mario als Graustufenbild, das unser Programm erzeugt hat.
 </div>
 <p>Unsere Funktion bekommt als Eingabe den Luminanzwert sowie den Schwellenwert, um darauf basierend zu entscheiden, ob das Pixel schwarz oder weiß wird. Dabei lernen wir ein weiteres Detail zu Funktionen kennen: Wir können Parameter mit einem Standardwert versehen. In unserem Fall ist der Schwellenwert standardmäßig auf 128 gesetzt. Wenn wir die Funktion also ohne zweiten Parameter aufrufen, wird automatisch 128 verwendet. Wir können den Schwellenwert aber auch explizit angeben, wenn wir möchten. Dieses Vorgehen erspart uns die Übergabe eines Parameters, bei dem in den meisten Fällen sowieso ein Standardwert verwendet wird. Wir haben aber jederzeit die Möglichkeit, den Wert zu überschreiben.</p>
 <p>Wir sparen uns an dieser Stelle die Probe einzelner Pixel und wenden die Funktion direkt auf alle Graustufenwerte aus dem Bild an. Dazu laden wir es wieder mit <code>Pillow</code> und definieren zwei verschachtelte <code>for</code>-Schleifen, alles wie gehabt. Hier das vollständige Programm:</p>
-<div id="a174fb6a" class="cell" data-execution_count="49">
+<div id="66d70cd9" class="cell" data-execution_count="49">
 <details open="" class="code-fold">
 <summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-64"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy"><code class="sourceCode python"><span id="annotated-cell-64-1"><a href="#annotated-cell-64-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
@@ -1780,7 +1779,7 @@ Abbildung&nbsp;4.30: Pacman öffnet den Mund in 3 Bildern
 </figure>
 </div>
 <p>Pacman von Farbe zu Schwarzweiß umzuwandeln ist denkbar einfach. Da es mit Gelb nur eine Farbe gibt, können wir einfach jedes gelbe Pixel zu weiß (1) und alle anderen Pixel zu schwarz (0) umwandeln. Dazu laden wir wieder die Bitmap-Datei mit <code>Pillow</code> und iterieren über alle Pixel. Wir müssen nicht einmal den genauen Farbwert kennen: Für jedes Pixel prüfen wir nur, ob es sich von Weiß (<code>#FFFFFF</code>) unterscheidet. Wenn ja, fügen wir eine 1 zur Liste hinzu, sonst eine 0. Am Ende speichern wir die Liste als Schwarzweiß-Bitmap-Datei:</p>
-<div id="8c2f14d1" class="cell" data-execution_count="50">
+<div id="4f4e0120" class="cell" data-execution_count="50">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-65"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-65-1"><a href="#annotated-cell-65-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> PIL <span class="im">import</span> Image</span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-65" data-target-annotation="1">1</button><span id="annotated-cell-65-2" class="code-annotation-target"><a href="#annotated-cell-65-2" aria-hidden="true" tabindex="-1"></a>image <span class="op">=</span> Image.<span class="bu">open</span>(<span class="st">"bmp/pacman_closed.bmp"</span>)</span>
 <span id="annotated-cell-65-3"><a href="#annotated-cell-65-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1829,7 +1828,7 @@ Abbildung&nbsp;4.30: Pacman öffnet den Mund in 3 Bildern
 <p>Die Ausgabe auf der Konsole sieht so aus:</p>
 <pre><code>[0, 0, 0, 0, 1, 1, 1, 1, ... 1, 1, 1, 1, 0, 0, 0, 0]</code></pre>
 <p>In der Variable <code>bw_values</code> stehen nun die Pixelwerte des Schwarzweiß-Bildes von Pacman mit geschlossenem Mund. Jeder Wert ist entweder eine 1 (weiß) oder eine 0 (schwarz). Wunderbar, genau das Format benötigen wir auch, um ein Bild auf dem Display darzustellen. Wenn wir den entsprechenden Boilerplate-Code ergänzen, können wir das Bild direkt auf dem Display anzeigen lassen.</p>
-<div id="2e49bc51" class="cell" data-execution_count="51">
+<div id="789d0fce" class="cell" data-execution_count="51">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tinkerforge.bricklet_oled_128x64_v2 <span class="im">import</span> BrickletOLED128x64V2</span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1841,11 +1840,14 @@ Abbildung&nbsp;4.30: Pacman öffnet den Mund in 3 Bildern
 <span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Code zum Laden und Umwandeln des Bildes in Schwarzweiß wie oben</span></span>
 <span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a>...</span>
 <span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">21</span>, <span class="dv">22</span>, pacman_closed)_values)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a>oled.write_pixels(<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">21</span>, <span class="dv">22</span>, pacman_closed)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Wir setzen Pacmans obere linke Ecke auf die Koordinate (10, 10) auf dem Display. Der zweite Punkte für die rechte untere Ecke ergbt sich aus der der Breite und Höhe der Bitmap. Diese ist 12x13 Pixel, dementsprechend ist die Koordinate (21, 22). Der letzte Parameter ist die Liste mit den Schwarzweiß-Pixelwerten, die wir oben erstellt haben. Wenn wir das Programm ausführen, dann sollte Pacman mit geschlossenem Mund auf dem Display erscheinen (s. <a href="#fig-images-pacman-closed-display" class="quarto-xref">Abbildung&nbsp;<span>4.31 (a)</span></a>).</p>
+</section>
+<section id="pacman-animation" class="level3" data-number="4.9.2">
+<h3 data-number="4.9.2" class="anchored" data-anchor-id="pacman-animation"><span class="header-section-number">4.9.2</span> Pacman-Animation</h3>
 <p>Das selbe Vorgehen können wir exakt eins zu eins mit den anderen beiden Bildern anwenden. Dazu könnten wir den Code von oben kopieren, den Pfad zur Bitmap-Datei anpassen und die Variable für die Pixelwerte umbenennen. Aber das wäre wieder doppelter Code, was wir vermeiden wollen. Besser ist es, wenn wir den Code in eine Funktion packen, die wir dann für jedes Bild aufrufen können:</p>
-<div id="c94f3fad" class="cell" data-execution_count="52">
+<div id="783ce6a5" class="cell" data-execution_count="52">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1"></a><span class="kw">def</span> convert_rgb_to_bw(image_path):</span>
 <span id="cb49-2"><a href="#cb49-2"></a>    image <span class="op">=</span> Image.<span class="bu">open</span>(image_path)</span>
 <span id="cb49-3"><a href="#cb49-3"></a>    w, h <span class="op">=</span> image.size</span>
@@ -1862,21 +1864,21 @@ Abbildung&nbsp;4.30: Pacman öffnet den Mund in 3 Bildern
 <span id="cb49-14"><a href="#cb49-14"></a></span>
 <span id="cb49-15"><a href="#cb49-15"></a>    <span class="cf">return</span> bw_values</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Die Funktion <code>convert_rgb_to_bw</code> nimmt den Pfad eines beliebigen Bildes entgegen, lädt es (Zeile 2), ermittelt die Dimensionsn (Zeile 3) und iteriert durch jedes Pixel mithilfe zweier verschachtelter <code>for</code>-Schleifen (Zeilen 6 und 7) und erstellt eine Liste mit den Schwarzweiß-Pixelwerten nach der oben beschriebenen Logik. Am Ende gibt die Funktion die Liste zurück (Zeile 15). Jetzt können wir die Funktion für jedes der drei Pacman-Bilder aufrufen und die Pixelwerte in Variablen speichern:</p>
-<div id="438d3517" class="cell" data-execution_count="53">
+<p>Die Funktion <code>convert_rgb_to_bw</code> nimmt den Pfad eines beliebigen Bildes über den Parameter <code>image_path</code> entgegen, lädt es (Zeile 2) und speichert es auf der Variable <code>image</code>. Danach ermitteln wir die Dimensionsn (Zeile 3) und iterieren durch jedes Pixel mithilfe zweier verschachtelter <code>for</code>-Schleifen (Zeilen 6 und 7). Im Inneren der Schleifen füllen wir eine Liste mit den Schwarzweiß-Pixelwerten nach der oben beschriebenen Logik. Am Ende gibt die Funktion die Liste zurück (Zeile 15). Diese Funktion können wir für jedes der drei Pacman-Bilder aufrufen und die Pixelwerte in Variablen speichern:</p>
+<div id="2e373b49" class="cell" data-execution_count="53">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1"></a>pacman_half <span class="op">=</span> convert_rgb_to_bw(<span class="st">"bmp/pacman_half.bmp"</span>)</span>
 <span id="cb50-2"><a href="#cb50-2"></a>pacman_closed <span class="op">=</span> convert_rgb_to_bw(<span class="st">"bmp/pacman_closed.bmp"</span>)</span>
 <span id="cb50-3"><a href="#cb50-3"></a>pacman_open <span class="op">=</span> convert_rgb_to_bw(<span class="st">"bmp/pacman_open.bmp"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<p>Wenn wir jetzt die drei Variablen <code>pacman_half</code>, <code>pacman_closed</code> und <code>pacman_open</code> haben, können wir die Bilder nacheinander auf dem Display anzeigen lassen, um die Animation zu erzeugen. Dazu verwenden wir wieder die <code>write_pixels()</code>-Methode des OLED-Bricklets, fügen aber jeweils eine kurze Pause mit der <code>time.sleep()</code>-Funktion ein, damit das menschliche Auge die einzelnen Bilder wahrnehmen kann. Das Ganze lassen wir in einer Endlosschleife laufen, damit die Animation immer wiederholt wird:</p>
-<div id="6cd19794" class="cell" data-execution_count="54">
+<p>Wenn wir jetzt die drei Variablen <code>pacman_half</code>, <code>pacman_closed</code> und <code>pacman_open</code> hintereinander der <code>write_pixels()</code>-Methode übergeben, können wir die Bilder nacheinander auf dem Display anzeigen lassen, und so eine Animation erzeugen. Zwischen jeden Frame fügen jeweils eine kurze Pause mit der <code>time.sleep()</code>-Funktion ein, damit das menschliche Auge die einzelnen Bilder wahrnehmen kann. Das Ganze lassen wir in einer Endlosschleife laufen, damit die Animation immer wiederholt wird:</p>
+<div id="bcac2c11" class="cell" data-execution_count="54">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1"></a>wait_time <span class="op">=</span> <span class="fl">0.1</span></span>
 <span id="cb51-2"><a href="#cb51-2"></a><span class="cf">while</span> <span class="va">True</span>:</span>
 <span id="cb51-3"><a href="#cb51-3"></a>    oled.write_pixels(<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">21</span>, <span class="dv">22</span>, pacman_closed)</span>
 <span id="cb51-4"><a href="#cb51-4"></a>    time.sleep(wait_time)</span>
 <span id="cb51-5"><a href="#cb51-5"></a>    oled.write_pixels(<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">21</span>, <span class="dv">22</span>, pacman_half)</span>
 <span id="cb51-6"><a href="#cb51-6"></a>    time.sleep(wait_time)</span>
-<span id="cb51-7"><a href="#cb51-7"></a>    oled.write_pixels(<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">21</span>, <span class="dv">22</span>, pacman_open   )</span>
+<span id="cb51-7"><a href="#cb51-7"></a>    oled.write_pixels(<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">21</span>, <span class="dv">22</span>, pacman_open)</span>
 <span id="cb51-8"><a href="#cb51-8"></a>    time.sleep(wait_time <span class="op">*</span> <span class="dv">2</span>)</span>
 <span id="cb51-9"><a href="#cb51-9"></a>    oled.write_pixels(<span class="dv">10</span>, <span class="dv">10</span>, <span class="dv">21</span>, <span class="dv">22</span>, pacman_half)</span>
 <span id="cb51-10"><a href="#cb51-10"></a>    time.sleep(wait_time)   </span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
@@ -1929,9 +1931,22 @@ Abbildung&nbsp;4.31: Die drei Pacman-Frames auf dem OLED-Display.
 </figcaption>
 </figure>
 </div>
+<p>So sieht es als bewegtes Bild auf dem Display aus (s. <a href="#fig-images-pacman-animation-display" class="quarto-xref">Abbildung&nbsp;<span>4.32</span></a>):</p>
+<div id="fig-images-pacman-animation-display" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-images-pacman-animation-display-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/pacman_animation_display.gif" class="lightbox" data-gallery="quarto-lightbox-gallery-37" title="Abbildung&nbsp;4.32: Pacman als Animation auf dem Display."><img src="images/pacman_animation_display.gif" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-images-pacman-animation-display-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;4.32: Pacman als Animation auf dem Display.
+</figcaption>
+</figure>
+</div>
 </section>
-<section id="pacman-animation" class="level3" data-number="4.9.2">
-<h3 data-number="4.9.2" class="anchored" data-anchor-id="pacman-animation"><span class="header-section-number">4.9.2</span> Pacman-Animation</h3>
+<section id="bewegung" class="level3" data-number="4.9.3">
+<h3 data-number="4.9.3" class="anchored" data-anchor-id="bewegung"><span class="header-section-number">4.9.3</span> Bewegung</h3>
+<p>Im echten Spiel bewegt Pacman nicht nur seinen Mund sondern er bewegt sich auch fort. Das Laufen können wir nicht alleine durch das schnelle Anzeigen von Bildern in einer Abfolge umsetzen. Stattdessen müssen wir zusätzlich zur Fressanimation die x-Koordinate von Pacman verändern. Und zwar am besten erhöhen wir sie, denn dann würde sich Pacman nach rechts auf dem Bildschirm bewegen, passend zu seiner Blickrichtung.</p>
+<p>Anstatt die x-Koordinate fest auf den Wert 10 zu setzen, führen wir eine Variable <code>x_pos</code> ein und erhöhen sie in jedem Schleifendurchlauf um einen festen Wert, zum Beispiel 2 Pixel:</p>
 
 
 </section></details>

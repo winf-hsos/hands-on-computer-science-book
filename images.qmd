@@ -457,7 +457,7 @@ Im vorigen Kapitel @sec-numbers haben wir das Binärsystem kennengelernt. Das Bi
 
 Aber eins nach dem anderen. Beginnen wir mit dem Hexadezimalsystem an sich. Wir können das bekannte Schema der Stellenwertsysteme anwenden, um zu verstehen, welche Wertigkeit jede Ziffer in einer Hexadezimalzahl hat:
 
-![Das Stellenwertschema für das Hexadezimalsystem zur Basis 16. Funktioniert wie jedes andere Stellenwertsystem.](https://winf-hsos.github.io/university-docs/images/images_places_hexadecimal){#fig-images-hexadecimal-places .lightbox}
+![Das Stellenwertschema für das Hexadezimalsystem zur Basis 16. Funktioniert wie jedes andere Stellenwertsystem.](https://winf-hsos.github.io/university-docs/images/images_places_hexadecimal.png){#fig-images-hexadecimal-places .lightbox}
 
 In @fig-images-hexadecimal-places sehen wir die Wertigkeit der einzelnen Stellen in einer Hexadezimalzahl. Die rechte Stelle hat den Wert $16^0 = 1$, die nächste Stelle links davon hat den Wert $16^1 = 16$, dann $16^2 = 256$ und so weiter. Um den Gesamtwert einer Hexadezimalzahl zu berechnen, multiplizieren wir jede Ziffer mit ihrer jeweiligen Wertigkeit und addieren die Ergebnisse. Der einzige Unterschied zu den Stellenwertsystemen, die wir bisher kennengelernt haben, ist die Verwendung von Buchstaben für die Werte 10 bis 15. Da wir keine arabischen Ziffern für diese Werte haben, es aber ein Symbol für die 10, 11, 12, 13, 14 und 15 geben muss, verwenden wir die Buchstaben A, B, C, D, E und F. Ganz einfach, wenn auch gewöhnungsbedürftig.
 
@@ -788,7 +788,9 @@ Ein Sprite ist ein kleines Bild, das in Videospielen verwendet wird, um Figuren 
 
 Wichtig ist, dass wir jetzt drei Bilder von Mario haben, die wir nacheinander anzeigen können, um den Eindruck zu erwecken, dass Mario läuft. Das fertige Ergebnis seht ihr in der Animation in @fig-images-super-mario-animation. Es handelt sich hierbei um ein so genannte GIF, was für Graphics Interchange Format steht. Ein GIF ist ein Bildformat, das mehrere Einzelbilder in einer Datei speichern kann. Jedes Einzelbild wird als Frame bezeichnet, und die Frames werden in schneller Abfolge abgespielt, um den Eindruck von Bewegung zu erzeugen. Aufgrund ihrer Einfachheit und der breiten Unterstützung in Webbrowsern sind GIFs besonders beliebt für kurze Animationen und Memes im Internet. Vielleicht habt ihr selbst schon einmal ein GIF versendet, zum Bepspiel über WhatsApp oder anderen Chatprogrammen. Dort sind sie ebenfalls sehr beliebt.
 
+::: {.content-visible when-format="html"}
 ![Die Einzelbilder hintereinander ergeben eine Animation](images/super_mario_walking_animation.gif){#fig-images-super-mario-animation .lightbox}
+:::
 
 Wir können das selbe Prinzip hinter GIFs nutzen, um eine Animation auf unser kleines OLED-Display zu bringen. Dazu müssen wir Bilder, die zu einer Animation gehören, nacheinander auf dem Display anzeigen und dazwischen jeweils eine kurze Pause einlegen. Wenn wir das schnell genug machen, dann entsteht der Eindruck eines bewegten Bildes. Dazwischen steht noch ein Problem: Das Display kann keine Farben anzeigen.
 
@@ -1155,10 +1157,12 @@ oled.clear_display()
 # Code zum Laden und Umwandeln des Bildes in Schwarzweiß wie oben
 ...
 
-oled.write_pixels(10, 10, 21, 22, pacman_closed)_values)
+oled.write_pixels(10, 10, 21, 22, pacman_closed)
 ```
 
 Wir setzen Pacmans obere linke Ecke auf die Koordinate (10, 10) auf dem Display. Der zweite Punkte für die rechte untere Ecke ergbt sich aus der der Breite und Höhe der Bitmap. Diese ist 12x13 Pixel, dementsprechend ist die Koordinate (21, 22). Der letzte Parameter ist die Liste mit den Schwarzweiß-Pixelwerten, die wir oben erstellt haben. Wenn wir das Programm ausführen, dann sollte Pacman mit geschlossenem Mund auf dem Display erscheinen (s. @fig-images-pacman-closed-display).
+
+### Pacman-Animation
 
 Das selbe Vorgehen können wir exakt eins zu eins mit den anderen beiden Bildern anwenden. Dazu könnten wir den Code von oben kopieren, den Pfad zur Bitmap-Datei anpassen und die Variable für die Pixelwerte umbenennen. Aber das wäre wieder doppelter Code, was wir vermeiden wollen. Besser ist es, wenn wir den Code in eine Funktion packen, die wir dann für jedes Bild aufrufen können:
 
@@ -1178,10 +1182,9 @@ def convert_rgb_to_bw(image_path):
                 bw_values.append(1)
 
     return bw_values
-
 ```
 
-Die Funktion `convert_rgb_to_bw` nimmt den Pfad eines beliebigen Bildes entgegen, lädt es (Zeile 2), ermittelt die Dimensionsn (Zeile 3) und iteriert durch jedes Pixel mithilfe zweier verschachtelter `for`-Schleifen (Zeilen 6 und 7) und erstellt eine Liste mit den Schwarzweiß-Pixelwerten nach der oben beschriebenen Logik. Am Ende gibt die Funktion die Liste zurück (Zeile 15). Jetzt können wir die Funktion für jedes der drei Pacman-Bilder aufrufen und die Pixelwerte in Variablen speichern:
+Die Funktion `convert_rgb_to_bw` nimmt den Pfad eines beliebigen Bildes über den Parameter `image_path` entgegen, lädt es (Zeile 2) und speichert es auf der Variable `image`. Danach ermitteln wir die Dimensionsn (Zeile 3) und iterieren durch jedes Pixel mithilfe zweier verschachtelter `for`-Schleifen (Zeilen 6 und 7). Im Inneren der Schleifen füllen wir eine Liste mit den Schwarzweiß-Pixelwerten nach der oben beschriebenen Logik. Am Ende gibt die Funktion die Liste zurück (Zeile 15). Diese Funktion können wir für jedes der drei Pacman-Bilder aufrufen und die Pixelwerte in Variablen speichern:
 
 ```{python}
 pacman_half = convert_rgb_to_bw("bmp/pacman_half.bmp")
@@ -1189,7 +1192,7 @@ pacman_closed = convert_rgb_to_bw("bmp/pacman_closed.bmp")
 pacman_open = convert_rgb_to_bw("bmp/pacman_open.bmp")
 ```
 
-Wenn wir jetzt die drei Variablen `pacman_half`, `pacman_closed` und `pacman_open` haben, können wir die Bilder nacheinander auf dem Display anzeigen lassen, um die Animation zu erzeugen. Dazu verwenden wir wieder die `write_pixels()`-Methode des OLED-Bricklets, fügen aber jeweils eine kurze Pause mit der `time.sleep()`-Funktion ein, damit das menschliche Auge die einzelnen Bilder wahrnehmen kann. Das Ganze lassen wir in einer Endlosschleife laufen, damit die Animation immer wiederholt wird:
+Wenn wir jetzt die drei Variablen `pacman_half`, `pacman_closed` und `pacman_open` hintereinander der `write_pixels()`-Methode übergeben, können wir die Bilder nacheinander auf dem Display anzeigen lassen, und so eine Animation erzeugen. Zwischen jeden Frame fügen jeweils eine kurze Pause mit der `time.sleep()`-Funktion ein, damit das menschliche Auge die einzelnen Bilder wahrnehmen kann. Das Ganze lassen wir in einer Endlosschleife laufen, damit die Animation immer wiederholt wird:
 
 ```{python}
 wait_time = 0.1
@@ -1198,7 +1201,7 @@ while True:
     time.sleep(wait_time)
     oled.write_pixels(10, 10, 21, 22, pacman_half)
     time.sleep(wait_time)
-    oled.write_pixels(10, 10, 21, 22, pacman_open   )
+    oled.write_pixels(10, 10, 21, 22, pacman_open)
     time.sleep(wait_time * 2)
     oled.write_pixels(10, 10, 21, 22, pacman_half)
     time.sleep(wait_time)   
@@ -1217,5 +1220,15 @@ Vergesst nicht, ganz oben in eurem Programm die `time`-Bibliothek zu importieren
 Die drei Pacman-Frames auf dem OLED-Display.
 :::
 
+So sieht es als bewegtes Bild auf dem Display aus (s. @fig-images-pacman-animation-display):
 
-### Pacman-Animation
+::: {.content-visible when-format="html"}
+![Pacman als Animation auf dem Display.](images/pacman_animation_display.gif){#fig-images-pacman-animation-display .lightbox}
+:::
+
+### Bewegung
+
+Im echten Spiel bewegt Pacman nicht nur seinen Mund sondern er bewegt sich auch fort. Das Laufen können wir nicht alleine durch das schnelle Anzeigen von Bildern in einer Abfolge umsetzen. Stattdessen müssen wir zusätzlich zur Fressanimation die x-Koordinate von Pacman verändern. Und zwar am besten erhöhen wir sie, denn dann würde sich Pacman nach rechts auf dem Bildschirm bewegen, passend zu seiner Blickrichtung.
+
+Anstatt die x-Koordinate fest auf den Wert 10 zu setzen, führen wir eine Variable `x_pos` ein und erhöhen sie in jedem Schleifendurchlauf um einen festen Wert, zum Beispiel 2 Pixel:
+
