@@ -591,7 +591,7 @@ Abbildung&nbsp;1.4: Die Ansicht für die RGB LED im Brick Viewer, in der ihr all
 <h2 class="collapsable anchored" data-number="1.2" data-anchor-id="sec-colors-control-led"><span class="header-section-number">1.2</span> Erstes Programm: LED ansteuern</h2>
 <details class="collapsable-section" open=""><summary></summary>
 <p>Wie verbinden wir uns über ein Programm mit der LED und setzen ihre Farbe? Die Antwort darauf findet ihr im folgenden kurzen Codebeispiel.</p>
-<div id="29e44388" class="cell" data-execution_count="1">
+<div id="adecdaf8" class="cell" data-execution_count="1">
 <div id="lst-boilerplate-code" class="python cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-boilerplate-code-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -719,7 +719,7 @@ Listing&nbsp;1.1: Der Boilerplate-Code für die Verbindung mit den Geräten am B
 <section id="und-jetzt" class="level3" data-number="1.2.10">
 <h3 data-number="1.2.10" class="anchored" data-anchor-id="und-jetzt"><span class="header-section-number">1.2.10</span> Und jetzt?</h3>
 <p>Wir haben nun eine digitale Repräsentation unserer LED in Python. Wir können die LED jetzt zum Leuchten bringen, indem wir eine Methode der Klasse <code>BrickletRGBLEDV2</code>, die <code>set_rgb_value()</code> heißt, verwenden. Diese Methode erwartet drei Parameter: Rot, Grün und Blau. Mit diesen Parametern können wir die Farbe der LED einstellen.</p>
-<div id="b41e5fb0" class="cell" data-execution_count="2">
+<div id="d9166296" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-2"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><button class="code-annotation-anchor" data-target-cell="annotated-cell-2" data-target-annotation="1">1</button><span id="annotated-cell-2-1" class="code-annotation-target"><a href="#annotated-cell-2-1" aria-hidden="true" tabindex="-1"></a>led.set_rgb_value(<span class="dv">0</span>, <span class="dv">255</span>, <span class="dv">0</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
@@ -774,7 +774,7 @@ Abbildung&nbsp;1.5: Das elektromagnetische Spektrum, von dem das sichtbare Licht
 <p>Jetzt wissen wir, warum die Methode <code>set_rgb_value()</code> drei <a href="glossary.html#gl-parameter" title="Parameter"><span class="gloss-term">Parameter</span></a> erwartet: Rot, Grün und Blau. Diese Parameter sind die Intensitäten der jeweiligen Farbe, die wir in unserem Programm angeben. Mit den Werten 0 bis 255 können wir jede Farbe im sichtbaren Spektrum erzeugen.</p>
 <p>Ein Farbwert im Computer besteht also aus drei Zahlen besteht, die jeweils zwischen 0 und 255 liegen. Das gilt für unsere LED, aber auch für Pixel in TVs, Smartphones, digitalen Fotos oder Monitoren. Wie kommt es aber zu der merkwürdigen Zahl 255? Warum nicht einfach 0 bis 100? Das liegt daran, wie ein Computer grundsätzlich Werte speichert und wie dieser Speicher organisiert ist. Genaueres erfahren wir schon in <a href="numbers.html" class="quarto-xref"><span>Kapitel 2</span></a>.</p>
 <p>Klingt alles theoretisch sehr gut. Aber wie sieht es mit der Praxis aus? Probieren wir es aus und mischen zwei Farben mit voller Intensität!</p>
-<div id="d36b056a" class="cell" data-execution_count="3">
+<div id="d1a9a33c" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>led.set_rgb_value(<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">0</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Was macht der Befehl? Welche Farbe kommt dabei heraus? Probiert es einfach mal aus!</p>
@@ -783,11 +783,11 @@ Abbildung&nbsp;1.5: Das elektromagnetische Spektrum, von dem das sichtbare Licht
 <h3 data-number="1.3.2" class="anchored" data-anchor-id="additive-farbmischung"><span class="header-section-number">1.3.2</span> Additive Farbmischung</h3>
 <!-- \gloss{Additive Farbmischung}{Mischen von Farben durch Hinzufügen von Licht}{Physik} -->
 <p>Ihr solltet alle eure LEDs in Gelb aufleuchten sehen. In der additiven Farbmischung* mischen wir Rot und Grün und erhalten dadurch Gelb. Gelb ist heller als die beiden Farben Rot und Grün, was kein Zufall ist. Das ist das Prinzip der additiven Farbmischung: Wenn wir zwei Farben mit voller Intensität leuchten lassen, erhalten wir eine neue Farbe, die stets heller ist als die Ursprungsfarben. Wir fügen mehr Licht hinzu. Wenn wir alle drei Farben mit voller Intensität mischen, erhalten wir schließlich Weiß.</p>
-<div id="c75e1be7" class="cell" data-execution_count="4">
+<div id="b6b2a60f" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>led.set_rgb_value(<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">255</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Am anderen Ende des Spektrums erzeugen drei Nullen die Farbe Schwarz:</p>
-<div id="9a273f55" class="cell" data-execution_count="5">
+<div id="ea46bade" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>led.set_rgb_value(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 </section>
@@ -848,7 +848,7 @@ Abbildung&nbsp;1.7: Ein typisches Set mit CMY-Druckerkartuschen inklusive Schwar
 </div>
 <p>Farben spielen eine so wichtige Rolle bei der Arbeit mit Computern. Deshalb lohnt es sich, ein wenig über die Hintergründe von Farben und deren Mischung zu verstehen. Wir werden später noch lernen, wie Bildschirme Farben darstellen. Spätestens dann wird uns das Thema der Farbmischung wieder begegnen.</p>
 <p>Ab jetzt wollen wir weiter mit unserer LED experimentieren und den RGB-Code, mit dem Computer Farben abbilden, praxisnah verstehen. Bisher haben wir gelernt, dass wir die Farbe der LED über die Methode <code>set_rgb_value()</code> verändern können, wenn wir wissen, welcher RGB-Code unsere gewünschte Farbe repräsentiert. Da wir jetzt mehr über die Farbmischung wissen, können wir die LED also ganz einfach in der Farbe Magenta leuchten lassen:</p>
-<div id="c8adf88f" class="cell" data-execution_count="6">
+<div id="c00b7d92" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>led.set_rgb_value(<span class="dv">255</span>, <span class="dv">0</span>, <span class="dv">255</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Gemäß der Theorie der additiven Farbmischung (<a href="#fig-additive-color-mixing" class="quarto-xref">Abbildung&nbsp;<span>1.6 (a)</span></a>) müssten Rot und Blau Magenta ergeben. Probiert es aus!</p>
@@ -865,15 +865,15 @@ Abbildung&nbsp;1.7: Ein typisches Set mit CMY-Druckerkartuschen inklusive Schwar
 <p>Was bedeutet es, die LED pulsieren zu lassen? Und was müssen wir dafür tun? Pulsieren bedeutet, dass die LED über einen kurzen Zeitraum immer heller wird, kurz in der vollen Helligkeit verweilt und dann sofort wieder kontinuierlich dunkler wird. Sobald sie schwarz ist, fängt der Zyklus von vorne an.</p>
 <p>Den Ausdruck <em>immer heller werden</em> können wir bezogen auf die LED so übersetzen, dass wir den Anteil des Rot-Kanals schrittweise erhöhen. Wenn die LED zu Beginn aus ist, also alle Kanäle auf 0 stehen, können wir den Rot-Kanal von 0 auf 255 erhöhen und so die LED immer heller in Rot aufleuchten lassen.</p>
 <p>Wir beginnen also mit einer schwarzen LED:</p>
-<div id="39bf134a" class="cell" data-execution_count="7">
+<div id="ecfe3279" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>led.set_rgb_value(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Anschließend setzen wir den Wert für Rot auf 1:</p>
-<div id="10aa5652" class="cell" data-execution_count="8">
+<div id="8b0aa4f2" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>led.set_rgb_value(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Und erhöhen ihn schrittweise:</p>
-<div id="d09f2264" class="cell" data-execution_count="9">
+<div id="1d3912f7" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>led.set_rgb_value(<span class="dv">2</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>led.set_rgb_value(<span class="dv">3</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>led.set_rgb_value(<span class="dv">4</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
@@ -881,13 +881,13 @@ Abbildung&nbsp;1.7: Ein typisches Set mit CMY-Druckerkartuschen inklusive Schwar
 </div>
 <p>Wenn wir nach diesem Muster fortfahren, hätten wir bis zum vollen Rot 255 Zeilen Code geschrieben, eine Zeile für jeden Erhöhungsschritt. Und anschließend das Gleiche nochmal rückwärts, damit wir wieder zu Schwarz kommen. Mit 510 Zeilen Code hätten wir dann einen Pulsierungszyklus durchlaufen. Wollen wir die LED öfter pulsieren lassen, vervielfacht sich unser Code entsprechend. Das kann nicht die Lösung für ein so einfaches Problem sein.</p>
 <p>Und tatsächlich gibt es in der Programmierung eine bessere Möglichkeit, um sich wiederholende Abläufe abzubilden: die <a href="glossary.html#gl-schleife" title="Schleife"><span class="gloss-term">Schleife</span></a>. In einem Fall, bei dem wir genau wissen, wie oft wir etwas wiederholen wollen, bietet sich eine <a href="glossary.html#gl-z�hlerschleife" title="Zählerschleife"><span class="gloss-term">Zählerschleife</span></a> an:</p>
-<div id="196ea919" class="cell" data-execution_count="10">
+<div id="6e068ea0" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> r <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">256</span>):</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    led.set_rgb_value(r, <span class="dv">0</span>, <span class="dv">0</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Voilà! Unsere 510 Zeilen Code können wir mit einer Schleife auf zwei Zeilen reduzieren! Dazu müssen wir im Kopf der Schleife (<code>for ... in ...</code>) festlegen, wie oft der eingerückte Codeblock nach dem Doppelpunkt ausgeführt werden soll. In Python funktioniert das über die Angabe einer Folge, für die jedes Element einmal durchlaufen wird. Das aktuelle Element ist in der Schleife als <code>r</code> verfügbar. Und <code>r</code> nimmt nacheinander jeden Wert der Folge an, die nach dem Schlüsselwort <code>in</code> folgt. Diese Folge erzeugt hier die Funktion <code>range(256)</code>, die – wie der Name preisgibt – eine Zahlenfolge von 0 bis zum angegebenen Wert minus eins erzeugt. In unserem Fall also von 0 bis 255.</p>
 <p>Um das besser nachvollziehen zu können, geben wir den Wert für <code>r</code> einfach mal aus:</p>
-<div id="998cd8a2" class="cell" data-execution_count="11">
+<div id="cbb5e956" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-11"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-11-1"><a href="#annotated-cell-11-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> r <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">256</span>):</span>
 <span id="annotated-cell-11-2"><a href="#annotated-cell-11-2" aria-hidden="true" tabindex="-1"></a>    led.set_rgb_value(r, <span class="dv">0</span>, <span class="dv">0</span>)</span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-11" data-target-annotation="1">1</button><span id="annotated-cell-11-3" class="code-annotation-target"><a href="#annotated-cell-11-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(r)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
@@ -901,7 +901,7 @@ Abbildung&nbsp;1.7: Ein typisches Set mit CMY-Druckerkartuschen inklusive Schwar
 </div>
 </div>
 <p>Jetzt wird es deutlich: Mit jedem Durchlauf der Schleife wird ein neuer Wert für <code>r</code> gesetzt und ausgegeben. Und zwar jeweils um eins erhöht. Die Funktion <code>range(256)</code> erzeugt genau gesagt eine sortierte Reihe mit den Zahlen von 0 bis 255. Das sieht in Python dann so aus:</p>
-<div id="0ac5e3b6" class="cell" data-execution_count="12">
+<div id="aef34e7c" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-12"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-12-1"><a href="#annotated-cell-12-1" aria-hidden="true" tabindex="-1"></a>list_of_numbers <span class="op">=</span> <span class="bu">range</span>(<span class="dv">256</span>)</span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="1">1</button><span id="annotated-cell-12-2" class="code-annotation-target"><a href="#annotated-cell-12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">list</span>(list_of_numbers))</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-annotation">
@@ -917,7 +917,7 @@ Abbildung&nbsp;1.7: Ein typisches Set mit CMY-Druckerkartuschen inklusive Schwar
 </div>
 </div>
 <p>Rückwärts erreichen wir das gleiche Ergebnis mit einer weiteren Schleife, deren Folge wir umkehren, sodass sie von 255 bis 0 geht:</p>
-<div id="c87ac7d6" class="cell" data-execution_count="13">
+<div id="46d51df3" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> r <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">255</span>, <span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>):</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    led.set_rgb_value(r, <span class="dv">0</span>, <span class="dv">0</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -926,7 +926,7 @@ Abbildung&nbsp;1.7: Ein typisches Set mit CMY-Druckerkartuschen inklusive Schwar
 -->
 <p>Warum hat <code>range()</code> auf einmal drei Argumente? Ganz einfach: Standardmäßig erstellt die Funktion eine Folge von 0 bis zur angegebenen Zahl minus eins. Wir können die Folge aber beeinflussen, indem wir einen Startwert und einen Schrittwert angeben. In unserem Fall oben beginnen wir bei 255 (erster Parameter) und gehen bis -1 (zweiter Parameter), wobei wir in jedem Schritt um -1 verringern (dritter Parameter). Warum zählen wir bis -1, wo wir doch eigentlich die 0 als kleinste Zahl benötigen? Das liegt daran, dass die Folge von <code>range()</code> immer bis zum zweiten Parameter minus eins geht. Wenn wir also 0 als kleinste Zahl benötigen, müssen wir bis -1 zählen.</p>
 <p>Fassen wir unsere Erkenntnis zusammen und lassen die LED pulsieren:</p>
-<div id="db6d1f62" class="cell" data-execution_count="14">
+<div id="a0e4df3e" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="im">import</span> time</span>
 <span id="cb11-2"><a href="#cb11-2"></a></span>
 <span id="cb11-3"><a href="#cb11-3"></a><span class="co"># Increase red step by step</span></span>
@@ -950,7 +950,7 @@ Abbildung&nbsp;1.7: Ein typisches Set mit CMY-Druckerkartuschen inklusive Schwar
 <!-- \gloss{While-Schleife}{Wiederholung von Programmcode, solange eine Bedingung erfüllt ist}{Programmierung} -->
 <p>Beim Lösen von Problemen stoßen wir häufig auf Situationen, in denen wir bestimmte Schritte wiederholt ausführen möchten, aber nur unter bestimmten Bedingungen. Hier kommen bedingte Wiederholungen ins Spiel, die es uns ermöglichen, Schleifen zu erstellen, die nur dann fortgesetzt werden, wenn eine bestimmte Bedingung noch erfüllt ist.</p>
 <p>Das können wir auf unsere pulsierende LED anwenden. Sie soll ihren Pulsierzyklus Dunkel–Hell–Dunkel wiederholen, solange der Benutzer nicht unterbricht. Das ist zumindest ein pragmatisches Abbruchkriterium für unseren Fall. Wir definieren also hier keine feste Anzahl Wiederholungen wie bei der <code>for ... in</code>-Schleife, sondern wir wollen festlegen, unter welcher <em>Bedingung</em> die Schleife fortgesetzt wird. Wir könnten also sagen: <em>solange</em> die Bedingung X erfüllt ist, wiederhole die aufgeführten Schritte. Und weil Programmiersprachen für Menschen gemacht sind, klingt es im echten Programm auch so ähnlich:</p>
-<div id="dae3fc11" class="cell" data-execution_count="15">
+<div id="c66b4e63" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="dv">1</span><span class="op">==</span><span class="dv">1</span>:</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"This condition is always true"</span>)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    time.sleep(<span class="dv">1</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
@@ -958,7 +958,7 @@ Abbildung&nbsp;1.7: Ein typisches Set mit CMY-Druckerkartuschen inklusive Schwar
 <p>Das Schlüsselwort <code>while</code> führt eine bedingte Schleife ein, gefolgt von der <a href="glossary.html#gl-bedingung" title="Bedingung"><span class="gloss-term">Bedingung</span></a>, die die Schleife steuert. Die Bedingung wird vor jedem neuen Schleifendurchlauf geprüft (auch vor dem ersten) und sollte sie falsch (<code>false</code>) sein, wird die Schleife beendet.</p>
 <p>Wann wird die Schleife oben also beendet? Richtig – niemals. Die Bedingung <code>1==1</code> ist immer wahr, die Schleife läuft somit endlos. Wir sprechen auch von einer Endlosschleife, die wir in der Programmierung unbedingt vermeiden wollen, es sei denn, sie ist explizit gewollt und nicht versehentlich entstanden. Das kurze Programm oben schreibt also in Abständen von einer Sekunde den Text “This condition is always true” auf die Konsole.</p>
 <p>Eine Bedingung ist in Python und anderen Programmiersprachen ein wichtiges Konzept, das es uns ermöglicht, Entscheidungen zu treffen und den Programmfluss zu steuern. In unserem Fall könnte die Bedingung lauten: “Solange der Benutzer nicht stoppt, wiederhole den Pulsierzyklus”. Eine Bedingung hat die Eigenschaft, dass sie jederzeit ausgewertet werden kann und entweder den Wert wahr (true) oder falsch (false) annimmt. Wie aber drücken wir das in Python aus?</p>
-<div id="a21f92ec" class="cell" data-execution_count="16">
+<div id="6e46e584" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"I will loop forever"</span>)</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    time.sleep(<span class="dv">1</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
@@ -966,7 +966,7 @@ Abbildung&nbsp;1.7: Ein typisches Set mit CMY-Druckerkartuschen inklusive Schwar
 <p>Die einfachste Möglichkeit ist es, das Ergebnis der Evaluation direkt hinzuschreiben. Die obige Schleife prüft in jedem Durchgang, ob der Wert <code>True</code> wahr ist - was er natürlich ist. Das ist also so ähnlich wie bei der Schleife weiter oben, die die Bedingung <code>1==1</code> geprüft hat. Die ist ebenfalls immer <code>True</code> oder wahr.</p>
 <p>Wir lernen im Laufe des Buches noch viele echte Bedingungen kennen, deren Ergebnis nicht von Vornherein bekannt ist. Für unsere pulsierende LED reicht es aber aus, wenn wir eine gewollte Endlosschleife verwenden. Denn auch eine Endlosschleife können wir jederzeit verlassen, indem wir das Programm mit der Tastenkombination Strg+C abbrechen.</p>
 <p>Wenn wir jetzt unseren Pulsierzyklus von oben in die neue bedingte <code>while</code>-Schleife einfügen, sind wir schon am Ziel. Der Pulsierzyklus wird wiederholt, solange das Programm nicht abgebrochen wird:</p>
-<div id="e126313a" class="cell" data-execution_count="17">
+<div id="6a34d0a1" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
 <span id="cb14-2"><a href="#cb14-2"></a></span>
 <span id="cb14-3"><a href="#cb14-3"></a>    <span class="co"># Increase red step by step</span></span>
@@ -986,7 +986,7 @@ Abbildung&nbsp;1.7: Ein typisches Set mit CMY-Druckerkartuschen inklusive Schwar
 <span id="cb14-17"><a href="#cb14-17"></a>    time.sleep(<span class="fl">0.25</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Der Vollständigkeit halber das Ganze inklusive des <a href="#boilerplate-code">Boilerplate-Codes</a> für die Verbindung zu den Tinkerforge-Geräten:</p>
-<div id="76606ceb" class="cell" data-execution_count="18">
+<div id="a4a3ddf6" class="cell" data-execution_count="18">
 <div id="lst-pulse-program" class="python cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-pulse-program-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -1097,25 +1097,25 @@ Abbildung&nbsp;1.10: Der Hue-Farbverlauf mit den Veränderungen der RGB-Werte (Q
 <details class="collapsable-section" open=""><summary></summary>
 <!-- \gloss{For-Schleife}{Wiederholung mit Zähler, s. Zählerschleife}{Programmierung} -->
 <p>Mit dem Wissen können wir uns an das erklärte Ziel unseres Experiments machen: die LED nacheinander in allen Farben des Regenbogens aufleuchten zu lassen. Beginnen wir mit der ersten Phase und schreiben dafür ein Python-Programm:</p>
-<div id="2555836e" class="cell" data-execution_count="19">
+<div id="25a9d920" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> green <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">256</span>):</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    led.set_rgb_value(<span class="dv">255</span>, green, <span class="dv">0</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    time.sleep(<span class="fl">0.01</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Weil wir genau wissen, wie oft wir die Schleife durchlaufen wollen, verwenden wir eine <code>for</code>-Schleife. Innerhalb der Schleife erhöhen wir die Variable <code>green</code> jeweils um 1, was effektiv den Grünanteil unseres RGB-Wertes erhöht. Mit jedem Durchlauf fügen wir somit mehr Grün hinzu, während Rot und Blau konstant bleiben. Phase 1 ist damit abgeschlossen – machen wir weiter mit Phase 2:</p>
-<div id="3b90a1a0" class="cell" data-execution_count="20">
+<div id="da58661b" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> red <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">255</span>, <span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">1</span>):</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    led.set_rgb_value(red, <span class="dv">255</span>, <span class="dv">0</span>)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    time.sleep(<span class="fl">0.01</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Wie wir mit einer <code>for</code>-Schleife rückwärts zählen, haben wir schon weiter oben kennengelernt. In Phase 2 verringern wir schrittweise den Rotanteil, während die anderen beiden Farben konstant bleiben. Damit kommen wir zu Phase 3:</p>
-<div id="219bcc6a" class="cell" data-execution_count="21">
+<div id="434b7da8" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> blue <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">256</span>):</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    led.set_rgb_value(<span class="dv">0</span>, <span class="dv">255</span>, blue)</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    time.sleep(<span class="fl">0.01</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Ich glaube, ihr habt das Prinzip verstanden. Indem wir die sechs Phasen jeweils in einer eigenen Schleife abarbeiten, erhalten wir das vollständige Regenbogenprogramm:</p>
-<div id="8deaa131" class="cell" data-execution_count="22">
+<div id="926c5d5b" class="cell" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a><span class="co"># phase 1</span></span>
 <span id="cb19-2"><a href="#cb19-2"></a><span class="cf">for</span> green <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">256</span>):</span>
 <span id="cb19-3"><a href="#cb19-3"></a>    led.set_rgb_value(<span class="dv">255</span>, green, <span class="dv">0</span>)</span>
@@ -1150,7 +1150,7 @@ Abbildung&nbsp;1.10: Der Hue-Farbverlauf mit den Veränderungen der RGB-Werte (Q
 <section id="runde-für-runde" class="level3" data-number="1.6.1">
 <h3 data-number="1.6.1" class="anchored" data-anchor-id="runde-für-runde"><span class="header-section-number">1.6.1</span> Runde für Runde</h3>
 <p>Der Regenbogen soll am Ende wieder von vorne beginnen. Wie schon beim Pulsieren der Farben können wir auch hier eine <code>while</code>-Schleife verwenden und die Phasen kontinuierlich abspielen – solange, bis der Benutzer die Escape-Taste drückt:</p>
-<div id="2bd0db19" class="cell" data-execution_count="23">
+<div id="4e64dc90" class="cell" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
 <span id="cb20-2"><a href="#cb20-2"></a></span>
 <span id="cb20-3"><a href="#cb20-3"></a>    <span class="co"># phase 1</span></span>
@@ -1189,7 +1189,7 @@ Abbildung&nbsp;1.10: Der Hue-Farbverlauf mit den Veränderungen der RGB-Werte (Q
 <h3 data-number="1.6.2" class="anchored" data-anchor-id="geschwindigkeit-steuern"><span class="header-section-number">1.6.2</span> Geschwindigkeit steuern</h3>
 <p>Vielleicht habt ihr gemerkt, dass die Geschwindigkeit, mit der unsere LED den gesamten Regenbogen einmal durchläuft, nicht sehr hoch ist. Ich würde das gerne beschleunigen. Die Zeit steuern wir über die <code>time.sleep()</code>-Funktion, sodass wir einfach den Wert in jedem Funktionsaufruf verringern könnten. Das wäre aber nicht sehr effizient, weil wir ihn an sechs Stellen anpassen müssen. Wenn wir danach merken, dass es zu schnell ist, müssten wir den Wert erneut überall editieren. Das geht einfacher!</p>
 <p>Der Trick liegt darin, den Wert für die Wartedauer als Variable zu definieren und nur an einer Stelle zu ändern.</p>
-<div id="a5d9191a" class="cell" data-execution_count="24">
+<div id="2e6bc1c5" class="cell" data-execution_count="24">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>pause_duration <span class="op">=</span> <span class="fl">0.01</span></span>
 <span id="cb21-2"><a href="#cb21-2"></a><span class="cf">while</span> <span class="kw">not</span> keyboard.is_pressed(<span class="st">'esc'</span>):</span>
 <span id="cb21-3"><a href="#cb21-3"></a></span>
@@ -1205,7 +1205,7 @@ Abbildung&nbsp;1.10: Der Hue-Farbverlauf mit den Veränderungen der RGB-Werte (Q
 6 \times 256 = 1536
 \]</span></p>
 <p>Im Programm setzen wir die Pausendauer also auf die Gesamtdauer in Sekunden geteilt durch 1536:</p>
-<div id="5e92745b" class="cell" data-execution_count="25">
+<div id="94dc3079" class="cell" data-execution_count="25">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>rainbow_duration <span class="op">=</span> <span class="dv">5</span></span>
 <span id="cb22-2"><a href="#cb22-2"></a>pause_duration <span class="op">=</span> rainbow_duration <span class="op">/</span> <span class="dv">1536</span></span>
 <span id="cb22-3"><a href="#cb22-3"></a></span>
@@ -1219,7 +1219,7 @@ Abbildung&nbsp;1.10: Der Hue-Farbverlauf mit den Veränderungen der RGB-Werte (Q
 <span id="cb22-11"><a href="#cb22-11"></a>    <span class="co"># etc.</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Und schon können wir unseren Regenbogen beliebig zeitlich steuern. Damit sind wir am Ende des Kapitels angekommen. Wir schließen es mit dem vollständigen Code für unseren Regenbogenverlauf in <a href="#lst-rainbow-program" class="quarto-xref">Listing&nbsp;<span>1.3</span></a> ab. Vergesst nicht, den Wert für die UID eurer LED anzupassen, damit es auch bei euch funktioniert:</p>
-<div id="90ad6ebc" class="cell" data-execution_count="26">
+<div id="a1f3bc8a" class="cell" data-execution_count="26">
 <div id="lst-rainbow-program" class="python cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
 <figure class="quarto-float quarto-float-lst figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-rainbow-program-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
