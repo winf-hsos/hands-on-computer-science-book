@@ -16,7 +16,8 @@ Der Weg dahin führt über folgende Schritte:
 | 6 | Wir zeigen ein Bild als Bitfolge auf dem Display an. | @sec-images-bits-to-display |
 | 7 | Wir betrachten Farben in Bitmaps. | @sec-images-color |
 | 8 | Wir lernen, was eine Animation im Computer ist. | @sec-images-animation |
-| 9 | Wir animieren Pacman und erwecken ihn auf dem Display zum Leben. | @sec-images-pacman |
+| 9 | Wir wenden einfache Arithmetik auf Bilder an. | @sec-images-transformations |
+| 10 | Wir animieren Pacman und erwecken ihn auf dem Display zum Leben. | @sec-images-pacman |
 
 
 ## Experimentaufbau {#sec-images-experiment-setup .collapsable}
