@@ -20,7 +20,7 @@ filters:
 book:
   title: "Hands-On Computer Science"
   author: "Nicolas Meseth"
-  description: "Ein Online-Buch mit Hardware-Experimenten, das Schritt für Schritt in die Welt der Digitalisierung einführt."
+  description: "Ein Online-Buch mit Hardware-Experimenten, die Schritt für Schritt in die Welt der Digitalisierung und Programmierung einführen."
   cover-image: cover.png
   date: today
   date-format: long

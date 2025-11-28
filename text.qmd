@@ -31,7 +31,10 @@ Die vollständige Hardwareliste für dieses Kapitel sieht so aus:
 -  2 x [Brickletkabel 15cm (7p-7p)](https://www.tinkerforge.com/de/shop/accessories/cable/bricklet-cable-15cm-7p-7p.html)
 -  2 x [Befestigungskit 12 mm](https://www.tinkerforge.com/de/shop/accessories/mounting/mounting-kit-12mm.html)
 
-::: {#fig-setup-rgb-led-ir layout="[[1], [1,1], [1,1]]"}
+Nutzt die @fig-setup-rgb-led-ir, um euren Aufbau zu kontrollieren.
+
+::: {#fig-setup-rgb-led-ir layout="[[1,1], [1,1]]"}
+
 ![Seitenansicht.](images/master_brick_with_led_and_ir_03.jpg){#fig-setup-rgb-led-ir .lightbox group="setup-rgb-ir"}
 
 ![Draufsicht.](images/master_brick_with_led_and_ir_02.jpg){#fig-setup-rgb-led-ir-b .lightbox group="setup-rgb-ir"}

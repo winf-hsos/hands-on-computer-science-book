@@ -14,8 +14,9 @@ Der Weg dahin führt über folgende Schritte:
 | 4 | Wir lernen, wie man Buchstaben als Bitmaps darstellen kann. | @sec-images-letters |
 | 5 | Wir lernen eine Alternative zu Bitmaps kennen. | @sec-images-vector-graphics |
 | 6 | Wir zeigen ein Bild als Bitfolge auf dem Display an. | @sec-images-bits-to-display |
-| 7 | Wir lernen, was eine Animation im Computer ist. | @sec-images-animation |
-| 8 | Wir animieren Pacman und erwecken ihn auf dem Display zum Leben. | @sec-images-pacman |
+| 7 | Wir betrachten Farben in Bitmaps. | @sec-images-color |
+| 8 | Wir lernen, was eine Animation im Computer ist. | @sec-images-animation |
+| 9 | Wir animieren Pacman und erwecken ihn auf dem Display zum Leben. | @sec-images-pacman |
 
 
 ## Experimentaufbau {#sec-images-experiment-setup .collapsable}
@@ -32,7 +33,21 @@ Die vollständige Hardwareliste für dieses Kapitel sieht so aus:
 -  1 × [Montageplatte 22x10](https://www.tinkerforge.com/de/shop/accessories/mounting/mounting-plate-22x10.html)
 -  2 × [Brickletkabel 15cm (7p-7p)](https://www.tinkerforge.com/de/shop/accessories/cable/bricklet-cable-15cm-7p-7p.html)
 
-Wenn ihr das Experiment aus @sec-text gemacht habt, dann könnt ihr einfach des OLED-Display hinzufügen und wie in der Abbildung gezeigt auf den Master Brick aufschrauben. Die LED und den Infrarotsensor benötigen wir zwar in diesem Experiment nicht, sie stören aber auch nicht.
+Wenn ihr das Experiment aus @sec-text gemacht habt, dann könnt ihr einfach des OLED-Display hinzufügen und wie in der @fig-setup-display gezeigt auf den Master Brick aufschrauben. Die LED und den Infrarotsensor benötigen wir zwar in diesem Experiment nicht, sie stören aber auch nicht.
+
+
+::: {#fig-setup-display layout="[[1,1], [1,1]]"}
+
+![Seitenansicht.](images/setup_oled_display_closeup_1.jpg){#fig-setup-display-1 .lightbox group="setup-display"}
+
+![Draufsicht.](images/setup_oled_display_closeup_2.jpg){#fig-setup-display-2 .lightbox group="setup-display"}
+
+![Nahaufnahme des Displays auf dem Master Brick.](images/setup_oled_display_closeup_3.jpg){#fig-setup-display-3 .lightbox group="setup-display"}
+
+![Seitenansicht, leicht von oben.](images/setup_oled_display_closeup_4.jpg){#fig-setup-display-4 .lightbox group="setup-display"}
+
+Einfaches Setup wie aus @sec-text und erweitert um das OLED-Display.
+:::
 
 ### Das OLED-Display im Brick Viewer
 
@@ -143,7 +158,7 @@ oled.write_pixels(0, 0, 0, 0, [0])
 Einzelne Pixel lassen sich so bequem schalten. Interessant wird es aber erst, wenn wir mehrere Pixel zu einem Bild kombinieren. Das führt uns zu Bitmaps.
 
 
-## Bitmaps und Muster zeichnen {#sec-images-bitmaps .collapsable}
+## Bitmaps {#sec-images-bitmaps .collapsable}
 
 Eine Bitmap ist nichts anderes als eine rechteckige Matrix von Pixelwerten, die zusammen ein Bild ergeben. Mit `write_pixels()` können wir solche Rechtecke direkt auf dem Display zeichnen.
 
@@ -252,7 +267,7 @@ Wenn ihr den Code ausführt, könnt ihr dem Display beim Zeichnen zuschauen. Es 
 Wir haben damit alle Bausteine beisammen, um nicht nur geometrische Formen, sondern auch komplexere Symbole wie Buchstaben zu zeichnen.
 
 
-## Buchstaben als Bitmaps {#sec-images-letters .collapsable}
+## Buchstaben {#sec-images-letters .collapsable}
 
 Auch Buchstaben auf dem Bildschirm sind nichts anderes als Pixelmuster. Wie bereits erwähnt, ist ein Buchstabe auf dem Tinkerforge-Display 5 Pixel breit und 8 Pixel hoch. Das bedeutet, dass wir für jeden Buchstaben eine Bitmap mit 40 Werten benötigen.
 
@@ -623,7 +638,7 @@ Zuerst erstellen wir eine leere Hülle für unsere Bild und geben die Dimensione
 Damit haben wir die Kette geschlossen: Excel-Pixel → Bitliste → Anzeige auf dem Display → echte Bitmap-Datei. Im nächsten Schritt erweitern wir das Ganze auf Farbbilder.
 
 
-## Farbige Bitmaps {#sec-images-colored .collapsable}
+## Farbe {#sec-images-color .collapsable}
 
 Bisher haben wir nur Schwarzweiß-Bitmaps verwendet, in denen ein Pixel entweder 0 (schwarz) oder 1 (weiß) ist. Für unser Display reicht das, aber typische Bildschirme arbeiten mit Farben.
 
@@ -786,7 +801,7 @@ Das macht insgesamt 822 Bytes. Wir haben damit ein sehr konkretes Beispiel dafü
 Im nächsten Schritt machen wir diese Bilder lebendig.
 
 
-## Bewegte Bilder {#sec-images-animation .collapsable}
+## Animationen {#sec-images-animation .collapsable}
 
 Viele Anwendungen, z.B. Videospiele wie Super Mario, kommen mit statischen Bildern nicht aus. Mario kann laufen, hüpfen und Feuerkugeln schleudern. Auch bei Videoclips auf YouTube oder Filmen auf Netflix stehen bewegte Bilder im Vordergrund. Wie funktionieren solche bewegten Bilder?
 
@@ -950,12 +965,12 @@ Nun iterieren wir mit zwei verschachtelten `for`-Schleifen über alle Pixelkoord
 ```{python}
 #| code-line-numbers: false
 w, h = image.size
-grascale_values = []
+grayscale_values = []
 for y in range(h):
     for x in range(w):
         r, g, b = image.getpixel((x, y))
         luminance = rgb_to_luminance((r, g, b))
-        grascale_values.append(luminance)
+        grayscale_values.append(luminance)
 ```
 
 (Vertipper in der Variablenname sind in eurem Code bitte zu vermeiden – hier nennen wir sie besser `grayscale_values`.)
