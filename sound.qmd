@@ -1,0 +1,7 @@
+# Töne {#sec-sound}
+
+::: callout-note
+## Kapitel in Arbeit
+
+Das Kapitel über Töne und wie Computer diese darstellen und verarbeiten ist in Arbeit.
+:::

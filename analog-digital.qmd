@@ -1,0 +1,54 @@
+# Analog → Digital {#sec-analog-digital}
+
+## Zusammenfassung {.unnumbered .collapsable}
+ 
+ In diesem Kapitel lernen wir, wie analoge Signale in digitale Signale umgewandelt werden und welchen Mehrwert wir dadurch erzeugen. Gleichzeitig blicken wir auch auf mögliche Nachteile. Sensoren sind gute Beispiele für die Überführung von analogen Signalen in digitale Repräsentationen. Den Abstandssensor haben wir bereits in @sec-images kennengelernt. In diesem Kapitel erweitern wir unser Experiment um einen Farbsensor, der die Intensität von rotem, grünem und blauem Licht misst.
+ 
+ Der Weg dorthin führt über folgende Schritte:
+
+ | \# | Was? | Wo? |
+|--|-------------------------------------------------------|----------------|
+| 1 | ... | ... |
+| 2 | ... | ... |
+| 3 | ... | ... |
+
+## Experimentaufbau {#sec-analog-digital-experiment-setup .collapsable}
+
+Nachdem wir in @sec-images den Abstandssensor kennengelernt haben, führen wir in diesem Kapitel einen weiteren Sensor in unser Experiment ein: den Farbsensor. Dieser Sensor misst die Intensität des roten, grünen und blauen Anteils des Lichts, das auf ihn fällt. Wir werden im Experiment versuchen, alles aus dem kleinen Sensor herauszuholen und ihn für verschiedene Zwecke einsetzen.
+
+Neben dem Farbsensor verwenden wir in diesem Experiment auch wieder die RGB-LED. Die habt ihr ja bereits in anderen Experimenten verwendet. Die vollständige Hardwareliste für dieses Kapitel sieht so aus:
+
+-  1 x [Master Brick 3.2](https://www.tinkerforge.com/de/doc/Hardware/Bricks/Master_Brick.html)
+-  1 x [RGB LED Bricklet 2.0](https://www.tinkerforge.com/en/doc/Hardware/Bricklets/RGB_LED_V2.html)
+-  1 x [Color Bricklet 2.0](https://www.tinkerforge.com/en/doc/Hardware/Bricklets/Color_V2.html)
+-  1 x [Montageplatte 22x10](https://www.tinkerforge.com/de/shop/accessories/mounting/mounting-plate-22x10.html)
+-  2 x [Brickletkabel 15cm (7p-7p)](https://www.tinkerforge.com/de/shop/accessories/cable/bricklet-cable-15cm-7p-7p.html)
+-  2 x [Befestigungskit 12 mm](https://www.tinkerforge.com/de/shop/accessories/mounting/mounting-kit-12mm.html)
+
+In @fig-setup-color-sensor seht ihr den Hardwareaufbau für dieses Experiment.
+
+::: {#fig-setup-color-sensor layout="[[1,1], [1,1]]"}
+
+![Seitenansicht.](images/master_brick_with_led_and_ir_03.jpg){#fig-setup-color-sensor .lightbox group="setup-color-sensor"}
+
+![Draufsicht.](images/master_brick_with_led_and_ir_02.jpg){#fig-setup-color-sensor-b .lightbox group="setup-color-sensor"}
+
+![Nahaufnahme des IR-Abstandssensors.](images/master_brick_with_led_and_ir_04.jpg){#fig-setup-color-sensor-c .lightbox group="setup-color-sensor"}
+
+![Seitenansicht, leicht schräg.](images/master_brick_with_led_and_ir_01.jpg){#fig-setup-color-sensor-d .lightbox group="setup-color-sensor"}
+
+Einfaches Setup mit einem Mikrocontroller, LED und einem Infrarot-Abstandssensor.
+:::
+
+### Hardware
+
+### Erste Schritte mit dem Farbsensor {#sec-text-first-steps}
+
+#### Call me back!
+
+
+
+## Helligkeit messen {#sec-analog-digital-measure-light-intensity .collapsable}
+
+
+## Farben erkennen {#sec-analog-digital-detect-colors .collapsable}

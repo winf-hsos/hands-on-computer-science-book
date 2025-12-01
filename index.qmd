@@ -21,7 +21,7 @@ Viele Bücher versprechen Praxisnähe, enden aber in abstrakten Übungen am Kapi
 2. Wichtige Ideen führen wir früh ein, vertiefen sie nach und nach und wiederholen sie regelmäßig.
 3. Theorie und Praxis gehören zusammen: Ihr lernt Programmieren und Informatik-Grundlagen gleichzeitig.
 
-## So lernen wir: Hands-on von Anfang an
+## Hands-on von Anfang an
 
 Habt ihr euch schon einmal gefragt, wie man Informationen mit Licht überträgt? Wie man mit Licht den Puls messen kann? Oder wie man mit zwei einfachen Kabeln einen Wasserstandssensor baut? Genau solche Fragen beantworten wir – nicht nur theoretisch, sondern praktisch.
 
@@ -37,6 +37,8 @@ Kapitel für Kapitel arbeitet ihr an Experimenten, die Hardware und Software ver
 | @sec-numbers | Wir entwickeln einen Dimmer für die LED, der über einen Drehknopf gesteuert wird. |
 | @sec-text | Wir lernen, wie man Texte ganz ohne Tastatur eingeben kann – über Handgesten. |
 | @sec-images | Wir verbinden Tabellenkalkulation mit Bildern und Displays |
+| @sec-sound | Das Kapitel ist noch in Arbeit... |
+| @sec-analog-digital | Wir basteln ein Pulsmessgerät aus einem einfachen Lichtsensor |
 
 <!--
 | @sec-c | Wir lernen Morse-Code und wie wir diesen über einen Lautsprecher ausgeben können. |
