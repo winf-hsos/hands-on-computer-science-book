@@ -2,7 +2,7 @@
 
 ## Zusammenfassung {.unnumbered .collapsable}
  
- In diesem Kapitel lernen wir, wie analoge Signale in digitale Signale umgewandelt werden und welchen Mehrwert wir dadurch erzeugen. Gleichzeitig blicken wir auch auf mögliche Nachteile. Sensoren sind gute Beispiele für die Überführung von analogen Signalen in digitale Repräsentationen. Den Abstandssensor haben wir bereits in @sec-images kennengelernt. In diesem Kapitel erweitern wir unser Experiment um einen Farbsensor, der die Intensität von rotem, grünem und blauem Licht misst.
+ In diesem Kapitel lernen wir, wie analoge Signale in digitale Signale umgewandelt werden und wie sie anschließend im Computer verarbeiten können. Sensoren sind gute Beispiele für die Überführung von analogen Signalen in digitale Repräsentationen. Den Abstandssensor haben wir bereits in @sec-images kennengelernt. In diesem Kapitel erweitern wir unser Experiment um einen Farbsensor, der die Intensität von rotem, grünem und blauem Licht misst.
  
  Der Weg dorthin führt über folgende Schritte:
 
@@ -13,6 +13,8 @@
 | 3 | ... | ... |
 
 ## Experimentaufbau {#sec-analog-digital-experiment-setup .collapsable}
+
+### Hardware
 
 Nachdem wir in @sec-images den Abstandssensor kennengelernt haben, führen wir in diesem Kapitel einen weiteren Sensor in unser Experiment ein: den Farbsensor. Dieser Sensor misst die Intensität des roten, grünen und blauen Anteils des Lichts, das auf ihn fällt. Wir werden im Experiment versuchen, alles aus dem kleinen Sensor herauszuholen und ihn für verschiedene Zwecke einsetzen.
 
@@ -40,15 +42,229 @@ In @fig-setup-color-sensor seht ihr den Hardwareaufbau für dieses Experiment.
 Einfaches Setup mit einem Mikrocontroller, LED und einem Infrarot-Abstandssensor.
 :::
 
-### Hardware
+Ein Farbsensor wird in der Praxis für ganz unterschiedliche Probleme eingesetzt. Hier ein paar Beispiele:
+
+- **Umgebungslichtmessung:** Smartphones und Tablets verwenden Farbsensoren, um die Helligkeit des Displays automatisch an die Umgebungslichtverhältnisse anzupassen. So wird das Display bei hellem Licht heller und bei dunklem Licht dunkler, um die Lesbarkeit zu verbessern und Energie zu sparen.
+
+- **Sortierung von Objekten:** In der Industrie werden Farbsensoren eingesetzt, um Objekte nach ihrer Farbe zu sortieren. Beispielsweise können Verpackungsmaschinen Farbsensoren verwenden, um verschiedene Produkte zu erkennen und entsprechend zu verarbeiten.
+
+- ...
+
 
 ### Erste Schritte mit dem Farbsensor {#sec-text-first-steps}
 
-#### Call me back!
+Die Ansicht im Brick Viewer sieht für den Farbsensor etwas komplexer aus als bei den anderen Geräten, die wir bisher kennengelernt haben. Wie ihr in @fig-brick-viewer-color-sensor erkennt zeigt der Tab im Brick Viewer gleich drei Liniendiagramme. Das erste Diagramm oben zeigt die Intensität der verschiedenen Farbanteile Rot, Grün und Blau im Zeitverlauf. Zusätzlich wird noch eine vierte Linie angezeigt, die mit "C" betitelt wird. Es handelt sich dabei um die Abkürzung für "clear value" und stellt die Lichtintensität ohne Filter dar. Die Werte sind normiert und werden mit 16-Bit dargestellt. Was bedeutet das? Mit 16-Bit können wir Werte von 0 bis 65535 darstellen. Ein Wert von 0 bedeutet, dass kein Licht gemessen wird, während 65535 die maximale Lichtintensität darstellt, die der Sensor erfassen kann.
 
+Neben den drei Farbanteilen und dem Clear-Wert zeigt der Farbsensor auch die gemessene Helligkeit (Illuminance) und die Farbtemperatur (Color Temperature) an. Diese beiden Werte werden in separaten Diagrammen darunter dargestellt. Der Helligkeitswert ist ebenfalls eien 16-Bit Zahl und wird im Brick Viewer in Lux umgerechnet angezeigt. Die Farbtemperatur wird in Kelvin angegeben und beschreibt, ob das Licht eher warm (niedrige Kelvin-Werte) oder kalt (hohe Kelvin-Werte) ist. Das kennt ihr vielleicht von euren LED-Lampen zuhause, wo ihr diese Angabe typischerweise auch auf der Verpackung findet.
 
+![Die Ansicht für den Farbsensor im Brick Viewer zeigt gleich drei Liniendiagramme.](images/brick_viewer_color_sensor.png){#fig-brick-viewer-color-sensor .lightbox}
+
+Der Farbsensor bietet also viele Möglichkeiten, im das auf ihn fallende Licht zu analysieren:
+
+- Messung der Intensität von Rot, Grün und Blau sowei des ungefilterten Lichts (Clear-Wert)
+- Bestimmung der Helligkeit (Illuminance) in Lux
+- Ermittlung der Farbtemperatur in Kelvin
+
+Für unsere Experiment werden wir uns vor allem auf die Helligkeit konzentrieren, da sie eine wichtige Rolle bei der Messung des Pulses spielt. Wir wollen uns vorher auch  mit der Messung von Farben auseinandersetzen, weil wir damit viele Probleme in der Praxis lösen können.
+
+## Farbe messen {#sec-analog-digital-detect-colors .collapsable}
+
+In @sec-colors haben wir mit der LED Licht in verschiedenen Farben erzeugt, bis hin zu dem kompletten Regenbogenspektrum. In diesem Kapitel wollen wir den umgekehrten Weg gehen und Farben messen. Der Farbsensor kann die Intensität von rotem, grünem und blauem Licht messen, das auf ihn fällt. Indem wir die gemessenen Werte analysieren, können wir etwa die Farbe eines Objekts bestimmen.
+
+### RGB-Werte messen
+
+Stellt euch vor ihr möchtet eine automatische Sortieranlage bauen, die Objekte auf einem Förderband nach ihrer Farbe sortiert. Dazu könntet ihr einen Farbsensor an einer Stelle des Förderbandes anbringen oder in den Boden verbauen. Wenn ein Teil darüber fährt, kann der Farbsensor dabei helfen, die Farbe jedes Objekts zu erkennen. Dazu misst er die Intensität der roten, grünen und blauen Anteile des reflektierten Lichts und ermittelt die Farbe des Objekts. Basierend auf dieser Information kann das System dann entscheiden, in welche Kategorie das Objekt gehört und es entsprechend auf ein anderes Förderband lenken.
+
+Wie können wir das mit unserem Farbsensor umsetzen? Zunächst müssen wir uns wie immer mit dem Farbsensor aus unserem Programm heraus verbinden:
+
+```{python}
+from tinkerforge.ip_connection import IPConnection
+from tinkerforge.bricklet_color_v2 import BrickletColorV2
+
+ipcon = IPConnection()
+ipcon.connect("localhost", 4223)
+
+color_sensor = BrickletColorV2("<YOUR_UID>", ipcon)
+```
+
+Jetzt können wir die Intensität der drei Farbanteile messen. Das machen wir mit den entsprechenden Methoden des Farbsensors:
+
+```{python}
+#| code-line-numbers: false
+rgb = color_sensor.get_color()
+```
+
+Geben wir die gemessenen Werte aus:
+```{python}
+#| code-line-numbers: false
+print(f"RGB Value: {rgb}")
+```
+
+```
+RGB Value: Color(r=14953, g=12953, b=9005, c=37010)
+```
+
+Die Funktion `get_color()` gibt ein Objekt vom Typ `Color` zurück, das die Intensität der roten, grünen und blauen Anteile sowie den Clear-Wert als Felder enthält. In diesem Beispiel sehen wir, dass der rote Anteil (r) 14953 beträgt, der grüne Anteil (g) 12953 und der blaue Anteil (b) 9005. Der Clear-Wert (c) ist 37010. 
+
+Wir können mit der Punktnotation auf die einzelnen Farbanteile zugreifen:
+
+```{python}
+#| code-line-numbers: false
+red= rgb.r
+green = rgb.g
+blue = rgb.b
+
+print(f"Red: {red}, Green: {green}, Blue: {blue}")
+``` 
+
+Welches Format haben die Werte? Wie Tinkeforge in seiner Online-Dokumentation für den Farbsensor erkläutert, sind die Werte 16-Bit Zahlen, die von 0 bis 65535 reichen. Ein Wert von 0 bedeutet, dass kein Licht des entsprechenden Farbanteils gemessen wird, während 65535 die maximale Intensität darstellt. Wir haben den RGB-Code bisher mit Werten von 0 bis 255, also als 8-Bit Werte kennengelernt. Da von 8-Bit auf 16-Bit ein Faktor $2^8$ gilt, können wir umgekehrt die 16-Bit Werte in das 8-Bit Format umwandeln, indem wir sie durch 256 teilen. Und zwar Ganzzahlig, damit wir wieder eine ganze Zahl erhalten:
+
+```{python}
+#| code-line-numbers: false
+red_8bit = red // 256 # <1>
+green_8bit = green // 256
+blue_8bit = blue // 256 
+print(f"8-Bit RGB Value: ({red_8bit}, {green_8bit}, {blue_8bit})")
+```
+1. Mit `//` führen wir eine Ganzzahldivision durch, um eine ganze Zahl zu erhalten. Ein etwaiger Rest wird dabei abgeschnitten.
+
+### Früchte unterscheiden
+
+Auf Basis der gemessenen RGB-Werte können wir jetzt versuchen, eine einfache Klassifikation von Objekten durchzuführen. Nehmen wir an, wir möchten Äpfel von Bananen unterscheiden. Ein roter Apfel reflektiert vor allem rotes Licht, während eine gelbe Banane mehr grünes und rotes Licht reflektiert. Wir können also einfache Schwellenwerte definieren, um die beiden Früchte zu unterscheiden:
+
+```{python}
+#| code-line-numbers: false
+def classify_fruit(red, green, blue):
+    if red > 15000 and green < 10000 and blue < 8000:
+        return "Apple"
+    elif red > 12000 and green > 12000 and blue < 8000:
+        return "Banana"
+    else:
+        return "Unknown"
+
+input("Place a fruit in front of the color sensor and press Enter...")
+fruit = classify_fruit(red, green, blue)
+print(f"Detected fruit: {fruit}")
+```
+
+Das Ganze verpacken wir in einer Endlosschleife, damit wir kontinuierlich Früchte erkennen können:
+
+```{python}
+while True:
+    input("Place a fruit in front of the color sensor and press Enter...")
+    fruit = classify_fruit(red, green, blue)
+    print(f"Detected fruit: {fruit}")
+```
+
+Die Schwellenwerte in der Funktion `classify_fruit` sind natürlich nur Beispiele und müssen je nach Beleuchtung und Sensorposition angepasst werden. Aber das Prinzip bleibt dasselbe: Wir messen die RGB-Werte und verwenden einfache Regeln, um die Objekte zu klassifizieren.
 
 ## Helligkeit messen {#sec-analog-digital-measure-light-intensity .collapsable}
 
+```{python}
+illuminance = color_sensor.get_illuminance()
+```
 
-## Farben erkennen {#sec-analog-digital-detect-colors .collapsable}
+Der gemessene Wert ist proportional zur Lichtintensität, die auf den Sensor fällt. Allerdings ist der zurückgegebene Wert nicht in Lux angegeben, sondern in einer proprietären Einheit des Sensors. Um den Wert in Lux umzurechnen, müssen wir die Verstärkung (*Gain*) und die Messzeit (*Integration Time*) berücksichtigen. Schaut dazu im Brick Viewer nach, welche Einstellungen aktuell aktiv sind. Bei mir sind es gerade die Werte 4x für *Gain* und 24ms für *Integration Time*. Mit diesen Werten können wir den Lux-Wert wie folgt berechnen:
+
+```{python}
+gain = 4
+integration_time = 24
+illuminance_lx = illuminance * 700 / gain / integration_time
+
+print(f"Illuminance: {illuminance_lx} lx")
+```
+
+
+## Pulse messen {#sec-analog-digital-measure-pulse .collapsable}
+
+Wusstest du, dass Pulsmesser wie man sie oft in Fitnesstrackern findet, ebenfalls die Lichtintensität messen und daraus eueren Puls berechnen? Klingt verrückt, ist aber so! In diesem Abschnitt werden wir herausfinden, wie das funktioniert und wie wir mit unserem Farbsensor den Puls messen können.
+
+### Hell und dunkel
+
+
+### Puls auf dem Display
+
+
+### Animierter Puls
+
+
+
+
+
+
+
+## Push vs. Pull {#sec-analog-digital-push-vs-pull .collapsable}
+
+Bisher haben wir unsere Sensoren immer aktiv nach neuen Werten gefragt. Erinnert euch an den Drehknopf aus @sec-numbers oder den Abstandssensor aus @sec-images, wo wir mit `knob.get_value()` bzw. `ir.get_distance()` die aktuellen Messwerte abgefragt haben. Dieses Vorgehen wird als "Pull" bezeichnet, da *wir* die Daten vom Sensor erfragen.
+
+Es gibt eine andere Möglichkeit, die oft praktischer ist: den "Push"-Ansatz. Dabei sendet der Sensor die Messwerte von sich aus an uns, sobald sie verfügbar sind. Wir müssen also nicht ständig nachfragen, sondern bekommen die Daten automatisch zugeschickt. Das hat den Vorteil, dass wir sofort über neue Messwerte informiert werden und nicht ständig den Sensor abfragen müssen. Ihr erinnert euch an die Endlosschleife, die nur dazu da war, um den Sensor kontinuierlich abzufragen, obwohl sich vielleicht lange Zeit überhaupt nichts verändert. Das ist mit dem Push-Ansatz passè.
+
+Das Prinzip ist mit einer Analogie einfach erklärt: Stellt euch vor ihr beschäftigt einen Wachdienst für euren Garten, weil ihr dort ein Gewächshaus mit hochwertigen Pflanzen betreibt. Der Wachdienst soll euch sofort informieren, wenn etwas Verdächtiges passiert, also zum Beispiel wenn eine unbefugt Person sich eurem Gewächshaus nähert. Wenn ihr hier das Pull-Prinzip anwenden würdet, müsstet ihr ständig zum Wachdienst laufen und fragen: "Ist gerade etwas passiert?" Das wäre ziemlich ineffizient und nervig. Wie häufig solltet ihr ihn anrufen, damit ihr nichts verpasst? 
+
+Im Push-Prinzip informiert euch der Wachdienst stattdessen automatisch, sobald etwas passiert. Dazu gebt ihr dem Wachdienst eine Telefonnummer, unter der er euch anrufen kann, wenn es etwas zu melden gibt. Die Möglichkeit, dass der Wachsdienst euch kontaktieren kann, was hier über eine Telefonnummer geschieht, ist beim Push-Prinzip entscheidend. 
+
+### Callback-Funktionen
+
+In der Programmmierung nennt man diese Telefonnummer eine "Callback-Funktion". Eine Callback-Funktion ist eine Funktion, die ihr definiert und dem Sensor übergebt. Sobald der Sensor neue Daten hat, ruft er diese Funktion auf und übergibt ihr die neuen Messwerte als Argumente. So könnt ihr sofort auf die neuen Daten reagieren, ohne ständig den Sensor abfragen zu müssen.
+
+```{python}
+def illuminance_callback(illuminance):
+    print(f"Helligkeit: {illuminance} lx")
+```
+
+```{python}
+color_sensor.register_callback(
+    color_sensor.CALLBACK_ILLUMINANCE, # <1>
+    illuminance_callback # <2>
+)
+```
+
+1. Hier geben wir an, dass wir die Callback-Funktion für das Ereignis "Helligkeit gemessen" registrieren möchten. Die existierende Ereignisse sind in der Tinkerforge-API dokumentiert.
+2. Hier übergeben wir die Callback-Funktion, die aufgerufen werden soll, wenn das Ereignis eintritt. Diese Funktion müssen wir zuvor definiert haben.
+
+## Morse Code-Empfänger {#sec-analog-digital-morse-code-receiver .collapsable}
+
+## Pulsmesser {#sec-analog-digital-heart-rate-monitor .collapsable}
+
+## Dein Finger als Signalquelle
+
+Wir haben oben gesehen, dass der Farbsensor nicht nur die Farbe misst, sondern auch die allgemeine Lichtintensität, auch *Illuminance* genannt. Hier kommt eine spannende Tatsache ins Spiel: Das Prinzip, die Helligkeit zu messen, steckt hinter den Pulsmessern in Fitnesstrackern. Ja, genau der Sensor, der Licht misst, verrät dir, wie schnell dein Herz schlägt!
+
+Aber wie genau funktioniert das? Stell dir vor, du legst deinen Zeigefinger direkt auf den Sensor und schaltest die integrierte weiße LED an. Das Licht der LED trifft auf deinen Finger und wird reflektiert. Dein Finger sieht für dich immer gleich aus, aber tatsächlich sorgt dein Herzschlag dafür, dass dein Finger mal minimal heller und mal dunkler erscheint. Das liegt daran, dass Blut in rhythmischen Schüben durch die Gefäße gepumpt wird. Diese winzigen Veränderungen, die du mit bloßem Auge nicht sehen kannst, werden vom sensiblen Farbsensor deutlich wahrgenommen.
+
+Schauen wir uns das einmal genauer an: Wenn du dir die gemessene Lichtintensität über den Zeitverlauf im Brick Viewer ansiehst, kannst du deinen Pulsschlag tatsächlich erkennen. Er wird sichtbar als kleine, regelmäßige Ausschläge oder *Peaks*. Faszinierend, oder? So kannst du beobachten, wie aus etwas so scheinbar Einfachem wie Licht ein Signal entsteht, das dir Informationen über deinen Körper liefert.
+
+![Dein Puls im Brick Viewer](images/pulse_brick_viewer.png){fig-align="center" width=100% #fig-analog-digital-pulse-brick-viewer .lightbox}
+
+Auch wenn du das Signal im Liniendiagramm in @fig-pulse-brick-viewer bereits deutlich sehen kannst, bleibt eine spannende Herausforderung bestehen: Wie schreiben wir ein Programm, das aus diesen Daten den Puls als konkrete Zahl, zum Beispiel "60 Schläge pro Minute", berechnet? Genau dafür sind wir ja hier, um herauszufinden, wie man solche kniffligen Aufgaben löst. Lass uns gemeinsam starten!
+
+## Licht an!
+
+```{python}
+#| eval: false
+color_sensor.set_light(True) # <1>
+color_sensor.set_configuration(1, 1) # <2>
+illuminance = color_sensor.get_illuminance()
+```
+1. Schaltet die integrierte LED des Sensors an.
+2. Stellt die Werte für *Gain* und *Integration Time* auf 4x und 24ms. Diese Einstellung scheinen gut zu funktionieren, um den Puls zu messen.
+
+Der zurückgegebene Wert hängt von zwei Einstellungen ab: *Gain* (Verstärkung) und *Integration Time* (Messzeit). Je länger die Messzeit, desto genauer die Werte – allerdings können dann weniger Messungen pro Sekunde durchgeführt werden. Laut Dokumentation können wir aus dem gemessenen Wert die Lichtintensität in Lux wie folgt berechnen:
+
+```{python}
+#| eval: false
+illuminance_lux = illuminance * 700 / 4 / 24 # <1>
+```
+1. Der Wert 4 beschreibt ein 4-fache Verstärkung (*Gain*) und die 24 steht für 24ms *Integration Time*
+
+Um deinen Puls zu berechnen, müssen wir jetzt mehrere Werte in kurzen Abständen messen. Warum? Weil wir die regelmäßigen Tief- und Hochpunkte erkennen wollen. Ein Tiefpunkt entsteht, wenn dein Finger am dunkelsten ist, dann ist also gerade besonders viel Blut im Finger. Die Hochpunkte markieren dagegen den Moment, in dem das Blut größtenteils wieder zurückgeflossen ist. Jeder Herzschlag erzeugt genau einen Tief- und einen Hochpunkt. Finden wir diese Punkte, können wir einfach die Zeitabstände messen und daraus die Pulsfrequenz berechnen.
+
+Beginnen wir damit, unsere Messungen in einer Schleife durchzuführen. Das ist eine praktische Methode, kontinuierlich Daten zu erfassen:
+
+```{python}
+#| eval: false
+while True:
+    illuminance = color_sensor.get_illuminance()
+    illuminance_lux = illuminance * 700 / 4 / 24
+    print(f"Lichtintensität in Lux: {illuminance_lux}")
+```

@@ -37,7 +37,7 @@ book:
     - text.qmd
     - images.qmd
     #- sound.qmd
-    #- analog-digital.qmd
+    - analog-digital.qmd
     #- codes.qmd
     #- conversion.qmd
     #- information.qmd

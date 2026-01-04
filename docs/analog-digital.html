@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.26">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Ein Online-Buch mit Hardware-Experimenten, die Schritt für Schritt in die Welt der Digitalisierung und Programmierung einführen.">
+
+<title>5&nbsp; Analog → Digital – Hands-On Computer Science</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./references.html" rel="next">
+<link href="./images.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-670489e30afdd02925324b99e7f7a38e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Keine Treffer",
+    "search-matching-documents-text": "Treffer",
+    "search-copy-link-title": "Link in die Suche kopieren",
+    "search-hide-matches-text": "Zusätzliche Treffer verbergen",
+    "search-more-match-text": "weitere Treffer in diesem Dokument",
+    "search-more-matches-text": "weitere Treffer in diesem Dokument",
+    "search-clear-button-title": "Zurücksetzen",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Abbrechen",
+    "search-submit-button-title": "Abschicken",
+    "search-label": "Suchen"
+  }
+}</script>
+<!-- DataTables assets -->
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css">
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+
+<style>
+/* linksbündig + volle Breite */
+.datatable table, .datatable-nosearch table { width: 100% !important; }
+.datatable table td, .datatable table th,
+.datatable-nosearch table td, .datatable-nosearch table th { text-align: left; }
+
+/* etwas Luft unter dem Suchfeld (nur .datatable mit Suche) */
+.datatable .dataTables_filter { margin-bottom: 1.5rem; }
+</style>
+
+<style>
+/* --- Quarto + DataTables: Floats neutralisieren --- */
+.dataTables_wrapper { 
+  display: flow-root;   /* enthält Floats, verhindert Überlaufen in die Margin */
+  max-width: 100%;
+}
+
+/* Alle DataTables-Steuerelemente nicht mehr floaten lassen */
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_paginate {
+  float: none !important;
+  text-align: left;     /* oder right, aber ohne float */
+  margin: 0 0 1rem 0;   /* etwas Luft unter die Zeile */
+}
+
+/* Sicherheitshalber: Tabelle bleibt im Content-Bereich */
+.page-columns .content .dataTables_wrapper { margin-right: 0; }
+</style>
+
+
+<script>
+(function () {
+  function initDT() {
+    if (!window.jQuery || !jQuery.fn || !jQuery.fn.DataTable) return;
+
+    // 0) Vorhandene Instanzen zerstören (Hot-Reload zuverlässig)
+    document.querySelectorAll('.datatable table, .datatable-nosearch table').forEach(function (tbl) {
+      if (jQuery.fn.dataTable.isDataTable(tbl)) {
+        try { jQuery(tbl).DataTable().destroy(); } catch(e) {}
+      }
+      tbl.removeAttribute('data-dt-inited');
+      tbl.classList.remove('dataTable');
+    });
+
+    // 1) Tabellen MIT Suche (globales Glossar)
+    document.querySelectorAll('.datatable table').forEach(function (tbl) {
+      if (tbl.dataset.dtInited === '1') return;
+      const wrap = tbl.closest('.datatable');
+      let order = [[0,'asc']];
+      try {
+        const o = wrap && wrap.getAttribute('data-order');
+        if (o) order = JSON.parse(o);
+      } catch(e) {}
+      jQuery(tbl).DataTable({
+        dom: 'f',
+        paging: false,
+        info: false,
+        ordering: true,
+        order: order
+      });
+      tbl.dataset.dtInited = '1';
+    });
+
+    // 2) Tabellen OHNE Suche (Kapitel-Glossare)
+    document.querySelectorAll('.datatable-nosearch table').forEach(function (tbl) {
+      if (tbl.dataset.dtInited === '1') return;
+      const wrap = tbl.closest('.datatable-nosearch');
+      let order = [[0,'asc']]; // Fallback
+      try {
+        const o = wrap && wrap.getAttribute('data-order');
+        if (o) order = JSON.parse(o);   // <-- liest z.B. [[2,"asc"]]
+      } catch(e) {}
+      jQuery(tbl).DataTable({
+        dom: 't',        // nur Tabelle
+        paging: false,
+        info: false,
+        ordering: true,
+        order: order,
+        orderMulti: false
+      });
+      tbl.dataset.dtInited = '1';
+    });
+  }
+  document.addEventListener('DOMContentLoaded', initDT);
+  document.addEventListener('quarto:rendered', initDT);
+})();
+</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="partials/gloss.css">
+<link rel="stylesheet" href="partials/collapsable.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./analog-digital.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Analog → Digital</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Hands-On Computer Science</a> 
+        <div class="sidebar-tools-main">
+    <a href="./Hands-On-Computer-Science-Book.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Suchen"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vorwort</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./preparation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vorbereitung</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./colors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Farben</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./numbers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Zahlen</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./text.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Texte</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./images.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Bilder</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./analog-digital.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Analog → Digital</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literaturverzeichnis</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+  <li><a href="#zusammenfassung" id="toc-zusammenfassung" class="nav-link active" data-scroll-target="#zusammenfassung">Zusammenfassung</a></li>
+  <li><a href="#sec-analog-digital-experiment-setup" id="toc-sec-analog-digital-experiment-setup" class="nav-link" data-scroll-target="#sec-analog-digital-experiment-setup"><span class="header-section-number">5.1</span> Experimentaufbau</a>
+  <ul class="collapse">
+  <li><a href="#hardware" id="toc-hardware" class="nav-link" data-scroll-target="#hardware"><span class="header-section-number">5.1.1</span> Hardware</a></li>
+  <li><a href="#sec-text-first-steps" id="toc-sec-text-first-steps" class="nav-link" data-scroll-target="#sec-text-first-steps"><span class="header-section-number">5.1.2</span> Erste Schritte mit dem Farbsensor</a></li>
+  </ul></li>
+  <li><a href="#sec-analog-digital-detect-colors" id="toc-sec-analog-digital-detect-colors" class="nav-link" data-scroll-target="#sec-analog-digital-detect-colors"><span class="header-section-number">5.2</span> Farbe messen</a>
+  <ul class="collapse">
+  <li><a href="#rgb-werte-messen" id="toc-rgb-werte-messen" class="nav-link" data-scroll-target="#rgb-werte-messen"><span class="header-section-number">5.2.1</span> RGB-Werte messen</a></li>
+  <li><a href="#früchte-unterscheiden" id="toc-früchte-unterscheiden" class="nav-link" data-scroll-target="#früchte-unterscheiden"><span class="header-section-number">5.2.2</span> Früchte unterscheiden</a></li>
+  </ul></li>
+  <li><a href="#sec-analog-digital-measure-light-intensity" id="toc-sec-analog-digital-measure-light-intensity" class="nav-link" data-scroll-target="#sec-analog-digital-measure-light-intensity"><span class="header-section-number">5.3</span> Helligkeit messen</a></li>
+  <li><a href="#sec-analog-digital-measure-pulse" id="toc-sec-analog-digital-measure-pulse" class="nav-link" data-scroll-target="#sec-analog-digital-measure-pulse"><span class="header-section-number">5.4</span> Pulse messen</a>
+  <ul class="collapse">
+  <li><a href="#hell-und-dunkel" id="toc-hell-und-dunkel" class="nav-link" data-scroll-target="#hell-und-dunkel"><span class="header-section-number">5.4.1</span> Hell und dunkel</a></li>
+  <li><a href="#puls-auf-dem-display" id="toc-puls-auf-dem-display" class="nav-link" data-scroll-target="#puls-auf-dem-display"><span class="header-section-number">5.4.2</span> Puls auf dem Display</a></li>
+  <li><a href="#animierter-puls" id="toc-animierter-puls" class="nav-link" data-scroll-target="#animierter-puls"><span class="header-section-number">5.4.3</span> Animierter Puls</a></li>
+  </ul></li>
+  <li><a href="#sec-analog-digital-push-vs-pull" id="toc-sec-analog-digital-push-vs-pull" class="nav-link" data-scroll-target="#sec-analog-digital-push-vs-pull"><span class="header-section-number">5.5</span> Push vs.&nbsp;Pull</a>
+  <ul class="collapse">
+  <li><a href="#callback-funktionen" id="toc-callback-funktionen" class="nav-link" data-scroll-target="#callback-funktionen"><span class="header-section-number">5.5.1</span> Callback-Funktionen</a></li>
+  </ul></li>
+  <li><a href="#sec-analog-digital-morse-code-receiver" id="toc-sec-analog-digital-morse-code-receiver" class="nav-link" data-scroll-target="#sec-analog-digital-morse-code-receiver"><span class="header-section-number">5.6</span> Morse Code-Empfänger</a></li>
+  <li><a href="#sec-analog-digital-heart-rate-monitor" id="toc-sec-analog-digital-heart-rate-monitor" class="nav-link" data-scroll-target="#sec-analog-digital-heart-rate-monitor"><span class="header-section-number">5.7</span> Pulsmesser</a></li>
+  <li><a href="#dein-finger-als-signalquelle" id="toc-dein-finger-als-signalquelle" class="nav-link" data-scroll-target="#dein-finger-als-signalquelle"><span class="header-section-number">5.8</span> Dein Finger als Signalquelle</a></li>
+  <li><a href="#licht-an" id="toc-licht-an" class="nav-link" data-scroll-target="#licht-an"><span class="header-section-number">5.9</span> Licht an!</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span id="sec-analog-digital" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Analog → Digital</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="zusammenfassung" class="level2 unnumbered collapsable">
+<h2 class="unnumbered collapsable anchored" data-anchor-id="zusammenfassung">Zusammenfassung</h2>
+<details class="collapsable-section" open=""><summary></summary>
+<p>In diesem Kapitel lernen wir, wie analoge Signale in digitale Signale umgewandelt werden und wie sie anschließend im Computer verarbeiten können. Sensoren sind gute Beispiele für die Überführung von analogen Signalen in digitale Repräsentationen. Den Abstandssensor haben wir bereits in <a href="images.html" class="quarto-xref"><span>Kapitel 4</span></a> kennengelernt. In diesem Kapitel erweitern wir unser Experiment um einen Farbsensor, der die Intensität von rotem, grünem und blauem Licht misst.</p>
+<p>Der Weg dorthin führt über folgende Schritte:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 2%">
+<col style="width: 75%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Was?</th>
+<th>Wo?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+</details>
+</section>
+<section id="sec-analog-digital-experiment-setup" class="level2 collapsable" data-number="5.1">
+<h2 class="collapsable anchored" data-number="5.1" data-anchor-id="sec-analog-digital-experiment-setup"><span class="header-section-number">5.1</span> Experimentaufbau</h2>
+<details class="collapsable-section" open=""><summary></summary>
+<section id="hardware" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="hardware"><span class="header-section-number">5.1.1</span> Hardware</h3>
+<p>Nachdem wir in <a href="images.html" class="quarto-xref"><span>Kapitel 4</span></a> den Abstandssensor kennengelernt haben, führen wir in diesem Kapitel einen weiteren Sensor in unser Experiment ein: den Farbsensor. Dieser Sensor misst die Intensität des roten, grünen und blauen Anteils des Lichts, das auf ihn fällt. Wir werden im Experiment versuchen, alles aus dem kleinen Sensor herauszuholen und ihn für verschiedene Zwecke einsetzen.</p>
+<p>Neben dem Farbsensor verwenden wir in diesem Experiment auch wieder die RGB-LED. Die habt ihr ja bereits in anderen Experimenten verwendet. Die vollständige Hardwareliste für dieses Kapitel sieht so aus:</p>
+<ul>
+<li>1 x <a href="https://www.tinkerforge.com/de/doc/Hardware/Bricks/Master_Brick.html">Master Brick 3.2</a></li>
+<li>1 x <a href="https://www.tinkerforge.com/en/doc/Hardware/Bricklets/RGB_LED_V2.html">RGB LED Bricklet 2.0</a></li>
+<li>1 x <a href="https://www.tinkerforge.com/en/doc/Hardware/Bricklets/Color_V2.html">Color Bricklet 2.0</a></li>
+<li>1 x <a href="https://www.tinkerforge.com/de/shop/accessories/mounting/mounting-plate-22x10.html">Montageplatte 22x10</a></li>
+<li>2 x <a href="https://www.tinkerforge.com/de/shop/accessories/cable/bricklet-cable-15cm-7p-7p.html">Brickletkabel 15cm (7p-7p)</a></li>
+<li>2 x <a href="https://www.tinkerforge.com/de/shop/accessories/mounting/mounting-kit-12mm.html">Befestigungskit 12 mm</a></li>
+</ul>
+<p>In <a href="#fig-setup-color-sensor" class="quarto-xref">Abbildung&nbsp;<span>5.1</span></a> seht ihr den Hardwareaufbau für dieses Experiment.</p>
+<div id="fig-setup-color-sensor" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-setup-color-sensor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-setup-color-sensor" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-setup-color-sensor" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="setup-color-sensor">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-setup-color-sensor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/master_brick_with_led_and_ir_03.jpg" class="lightbox" data-gallery="setup-color-sensor" title="Abbildung&nbsp;5.1&nbsp;(a): Seitenansicht."><img src="images/master_brick_with_led_and_ir_03.jpg" class="img-fluid figure-img" data-ref-parent="fig-setup-color-sensor"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-setup-color-sensor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Seitenansicht.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-setup-color-sensor" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-setup-color-sensor-b" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="setup-color-sensor">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-setup-color-sensor-b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/master_brick_with_led_and_ir_02.jpg" class="lightbox" data-gallery="setup-color-sensor" title="Abbildung&nbsp;5.1&nbsp;(b): Draufsicht."><img src="images/master_brick_with_led_and_ir_02.jpg" class="img-fluid figure-img" data-ref-parent="fig-setup-color-sensor"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-setup-color-sensor-b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Draufsicht.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-setup-color-sensor" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-setup-color-sensor-c" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="setup-color-sensor">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-setup-color-sensor-c-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/master_brick_with_led_and_ir_04.jpg" class="lightbox" data-gallery="setup-color-sensor" title="Abbildung&nbsp;5.1&nbsp;(c): Nahaufnahme des IR-Abstandssensors."><img src="images/master_brick_with_led_and_ir_04.jpg" class="img-fluid figure-img" data-ref-parent="fig-setup-color-sensor"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-setup-color-sensor-c-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(c) Nahaufnahme des IR-Abstandssensors.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-setup-color-sensor" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-setup-color-sensor-d" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="setup-color-sensor">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-setup-color-sensor-d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/master_brick_with_led_and_ir_01.jpg" class="lightbox" data-gallery="setup-color-sensor" title="Abbildung&nbsp;5.1&nbsp;(d): Seitenansicht, leicht schräg."><img src="images/master_brick_with_led_and_ir_01.jpg" class="img-fluid figure-img" data-ref-parent="fig-setup-color-sensor"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-setup-color-sensor-d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(d) Seitenansicht, leicht schräg.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-setup-color-sensor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;5.1: Einfaches Setup mit einem Mikrocontroller, LED und einem Infrarot-Abstandssensor.
+</figcaption>
+</figure>
+</div>
+<p>Ein Farbsensor wird in der Praxis für ganz unterschiedliche Probleme eingesetzt. Hier ein paar Beispiele:</p>
+<ul>
+<li><p><strong>Umgebungslichtmessung:</strong> Smartphones und Tablets verwenden Farbsensoren, um die Helligkeit des Displays automatisch an die Umgebungslichtverhältnisse anzupassen. So wird das Display bei hellem Licht heller und bei dunklem Licht dunkler, um die Lesbarkeit zu verbessern und Energie zu sparen.</p></li>
+<li><p><strong>Sortierung von Objekten:</strong> In der Industrie werden Farbsensoren eingesetzt, um Objekte nach ihrer Farbe zu sortieren. Beispielsweise können Verpackungsmaschinen Farbsensoren verwenden, um verschiedene Produkte zu erkennen und entsprechend zu verarbeiten.</p></li>
+<li><p>…</p></li>
+</ul>
+</section>
+<section id="sec-text-first-steps" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="sec-text-first-steps"><span class="header-section-number">5.1.2</span> Erste Schritte mit dem Farbsensor</h3>
+<p>Die Ansicht im Brick Viewer sieht für den Farbsensor etwas komplexer aus als bei den anderen Geräten, die wir bisher kennengelernt haben. Wie ihr in <a href="#fig-brick-viewer-color-sensor" class="quarto-xref">Abbildung&nbsp;<span>5.2</span></a> erkennt zeigt der Tab im Brick Viewer gleich drei Liniendiagramme. Das erste Diagramm oben zeigt die Intensität der verschiedenen Farbanteile Rot, Grün und Blau im Zeitverlauf. Zusätzlich wird noch eine vierte Linie angezeigt, die mit “C” betitelt wird. Es handelt sich dabei um die Abkürzung für “clear value” und stellt die Lichtintensität ohne Filter dar. Die Werte sind normiert und werden mit 16-Bit dargestellt. Was bedeutet das? Mit 16-Bit können wir Werte von 0 bis 65535 darstellen. Ein Wert von 0 bedeutet, dass kein Licht gemessen wird, während 65535 die maximale Lichtintensität darstellt, die der Sensor erfassen kann.</p>
+<p>Neben den drei Farbanteilen und dem Clear-Wert zeigt der Farbsensor auch die gemessene Helligkeit (Illuminance) und die Farbtemperatur (Color Temperature) an. Diese beiden Werte werden in separaten Diagrammen darunter dargestellt. Der Helligkeitswert ist ebenfalls eien 16-Bit Zahl und wird im Brick Viewer in Lux umgerechnet angezeigt. Die Farbtemperatur wird in Kelvin angegeben und beschreibt, ob das Licht eher warm (niedrige Kelvin-Werte) oder kalt (hohe Kelvin-Werte) ist. Das kennt ihr vielleicht von euren LED-Lampen zuhause, wo ihr diese Angabe typischerweise auch auf der Verpackung findet.</p>
+<div id="fig-brick-viewer-color-sensor" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-brick-viewer-color-sensor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/brick_viewer_color_sensor.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Abbildung&nbsp;5.2: Die Ansicht für den Farbsensor im Brick Viewer zeigt gleich drei Liniendiagramme."><img src="images/brick_viewer_color_sensor.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-brick-viewer-color-sensor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;5.2: Die Ansicht für den Farbsensor im Brick Viewer zeigt gleich drei Liniendiagramme.
+</figcaption>
+</figure>
+</div>
+<p>Der Farbsensor bietet also viele Möglichkeiten, im das auf ihn fallende Licht zu analysieren:</p>
+<ul>
+<li>Messung der Intensität von Rot, Grün und Blau sowei des ungefilterten Lichts (Clear-Wert)</li>
+<li>Bestimmung der Helligkeit (Illuminance) in Lux</li>
+<li>Ermittlung der Farbtemperatur in Kelvin</li>
+</ul>
+<p>Für unsere Experiment werden wir uns vor allem auf die Helligkeit konzentrieren, da sie eine wichtige Rolle bei der Messung des Pulses spielt. Wir wollen uns vorher auch mit der Messung von Farben auseinandersetzen, weil wir damit viele Probleme in der Praxis lösen können.</p>
+</section></details>
+</section>
+
+<section id="sec-analog-digital-detect-colors" class="level2 collapsable" data-number="5.2">
+<h2 class="collapsable anchored" data-number="5.2" data-anchor-id="sec-analog-digital-detect-colors"><span class="header-section-number">5.2</span> Farbe messen</h2>
+<details class="collapsable-section" open=""><summary></summary>
+<p>In <a href="colors.html" class="quarto-xref"><span>Kapitel 1</span></a> haben wir mit der LED Licht in verschiedenen Farben erzeugt, bis hin zu dem kompletten Regenbogenspektrum. In diesem Kapitel wollen wir den umgekehrten Weg gehen und Farben messen. Der Farbsensor kann die Intensität von rotem, grünem und blauem Licht messen, das auf ihn fällt. Indem wir die gemessenen Werte analysieren, können wir etwa die Farbe eines Objekts bestimmen.</p>
+<section id="rgb-werte-messen" class="level3" data-number="5.2.1">
+<h3 data-number="5.2.1" class="anchored" data-anchor-id="rgb-werte-messen"><span class="header-section-number">5.2.1</span> RGB-Werte messen</h3>
+<p>Stellt euch vor ihr möchtet eine automatische Sortieranlage bauen, die Objekte auf einem Förderband nach ihrer Farbe sortiert. Dazu könntet ihr einen Farbsensor an einer Stelle des Förderbandes anbringen oder in den Boden verbauen. Wenn ein Teil darüber fährt, kann der Farbsensor dabei helfen, die Farbe jedes Objekts zu erkennen. Dazu misst er die Intensität der roten, grünen und blauen Anteile des reflektierten Lichts und ermittelt die Farbe des Objekts. Basierend auf dieser Information kann das System dann entscheiden, in welche Kategorie das Objekt gehört und es entsprechend auf ein anderes Förderband lenken.</p>
+<p>Wie können wir das mit unserem Farbsensor umsetzen? Zunächst müssen wir uns wie immer mit dem Farbsensor aus unserem Programm heraus verbinden:</p>
+<div id="8a71d739" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="im">from</span> tinkerforge.bricklet_color_v2 <span class="im">import</span> BrickletColorV2</span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a>ipcon <span class="op">=</span> IPConnection()</span>
+<span id="cb1-5"><a href="#cb1-5"></a>ipcon.<span class="ex">connect</span>(<span class="st">"localhost"</span>, <span class="dv">4223</span>)</span>
+<span id="cb1-6"><a href="#cb1-6"></a></span>
+<span id="cb1-7"><a href="#cb1-7"></a>color_sensor <span class="op">=</span> BrickletColorV2(<span class="st">"&lt;YOUR_UID&gt;"</span>, ipcon)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Jetzt können wir die Intensität der drei Farbanteile messen. Das machen wir mit den entsprechenden Methoden des Farbsensors:</p>
+<div id="f87c7dc0" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>rgb <span class="op">=</span> color_sensor.get_color()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Geben wir die gemessenen Werte aus:</p>
+<div id="9638d44f" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"RGB Value: </span><span class="sc">{</span>rgb<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<pre><code>RGB Value: Color(r=14953, g=12953, b=9005, c=37010)</code></pre>
+<p>Die Funktion <code>get_color()</code> gibt ein Objekt vom Typ <code>Color</code> zurück, das die Intensität der roten, grünen und blauen Anteile sowie den Clear-Wert als Felder enthält. In diesem Beispiel sehen wir, dass der rote Anteil (r) 14953 beträgt, der grüne Anteil (g) 12953 und der blaue Anteil (b) 9005. Der Clear-Wert (c) ist 37010.</p>
+<p>Wir können mit der Punktnotation auf die einzelnen Farbanteile zugreifen:</p>
+<div id="b51146aa" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>red<span class="op">=</span> rgb.r</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>green <span class="op">=</span> rgb.g</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>blue <span class="op">=</span> rgb.b</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Red: </span><span class="sc">{</span>red<span class="sc">}</span><span class="ss">, Green: </span><span class="sc">{</span>green<span class="sc">}</span><span class="ss">, Blue: </span><span class="sc">{</span>blue<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Welches Format haben die Werte? Wie Tinkeforge in seiner Online-Dokumentation für den Farbsensor erkläutert, sind die Werte 16-Bit Zahlen, die von 0 bis 65535 reichen. Ein Wert von 0 bedeutet, dass kein Licht des entsprechenden Farbanteils gemessen wird, während 65535 die maximale Intensität darstellt. Wir haben den RGB-Code bisher mit Werten von 0 bis 255, also als 8-Bit Werte kennengelernt. Da von 8-Bit auf 16-Bit ein Faktor <span class="math inline">\(2^8\)</span> gilt, können wir umgekehrt die 16-Bit Werte in das 8-Bit Format umwandeln, indem wir sie durch 256 teilen. Und zwar Ganzzahlig, damit wir wieder eine ganze Zahl erhalten:</p>
+<div id="f7a9baef" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-6"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><button class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="1">1</button><span id="annotated-cell-6-1" class="code-annotation-target"><a href="#annotated-cell-6-1" aria-hidden="true" tabindex="-1"></a>red_8bit <span class="op">=</span> red <span class="op">//</span> <span class="dv">256</span></span>
+<span id="annotated-cell-6-2"><a href="#annotated-cell-6-2" aria-hidden="true" tabindex="-1"></a>green_8bit <span class="op">=</span> green <span class="op">//</span> <span class="dv">256</span></span>
+<span id="annotated-cell-6-3"><a href="#annotated-cell-6-3" aria-hidden="true" tabindex="-1"></a>blue_8bit <span class="op">=</span> blue <span class="op">//</span> <span class="dv">256</span> </span>
+<span id="annotated-cell-6-4"><a href="#annotated-cell-6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"8-Bit RGB Value: (</span><span class="sc">{</span>red_8bit<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>green_8bit<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>blue_8bit<span class="sc">}</span><span class="ss">)"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-6" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-6" data-code-lines="1" data-code-annotation="1">Mit <code>//</code> führen wir eine Ganzzahldivision durch, um eine ganze Zahl zu erhalten. Ein etwaiger Rest wird dabei abgeschnitten.</span>
+</dd>
+</dl>
+</div>
+</div>
+</section>
+<section id="früchte-unterscheiden" class="level3" data-number="5.2.2">
+<h3 data-number="5.2.2" class="anchored" data-anchor-id="früchte-unterscheiden"><span class="header-section-number">5.2.2</span> Früchte unterscheiden</h3>
+<p>Auf Basis der gemessenen RGB-Werte können wir jetzt versuchen, eine einfache Klassifikation von Objekten durchzuführen. Nehmen wir an, wir möchten Äpfel von Bananen unterscheiden. Ein roter Apfel reflektiert vor allem rotes Licht, während eine gelbe Banane mehr grünes und rotes Licht reflektiert. Wir können also einfache Schwellenwerte definieren, um die beiden Früchte zu unterscheiden:</p>
+<div id="aa8c09db" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classify_fruit(red, green, blue):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> red <span class="op">&gt;</span> <span class="dv">15000</span> <span class="kw">and</span> green <span class="op">&lt;</span> <span class="dv">10000</span> <span class="kw">and</span> blue <span class="op">&lt;</span> <span class="dv">8000</span>:</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Apple"</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> red <span class="op">&gt;</span> <span class="dv">12000</span> <span class="kw">and</span> green <span class="op">&gt;</span> <span class="dv">12000</span> <span class="kw">and</span> blue <span class="op">&lt;</span> <span class="dv">8000</span>:</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Banana"</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Unknown"</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="bu">input</span>(<span class="st">"Place a fruit in front of the color sensor and press Enter..."</span>)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>fruit <span class="op">=</span> classify_fruit(red, green, blue)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Detected fruit: </span><span class="sc">{</span>fruit<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Das Ganze verpacken wir in einer Endlosschleife, damit wir kontinuierlich Früchte erkennen können:</p>
+<div id="72c1c099" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb7-2"><a href="#cb7-2"></a>    <span class="bu">input</span>(<span class="st">"Place a fruit in front of the color sensor and press Enter..."</span>)</span>
+<span id="cb7-3"><a href="#cb7-3"></a>    fruit <span class="op">=</span> classify_fruit(red, green, blue)</span>
+<span id="cb7-4"><a href="#cb7-4"></a>    <span class="bu">print</span>(<span class="ss">f"Detected fruit: </span><span class="sc">{</span>fruit<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Die Schwellenwerte in der Funktion <code>classify_fruit</code> sind natürlich nur Beispiele und müssen je nach Beleuchtung und Sensorposition angepasst werden. Aber das Prinzip bleibt dasselbe: Wir messen die RGB-Werte und verwenden einfache Regeln, um die Objekte zu klassifizieren.</p>
+</section></details>
+</section>
+
+<section id="sec-analog-digital-measure-light-intensity" class="level2 collapsable" data-number="5.3">
+<h2 class="collapsable anchored" data-number="5.3" data-anchor-id="sec-analog-digital-measure-light-intensity"><span class="header-section-number">5.3</span> Helligkeit messen</h2>
+<details class="collapsable-section" open=""><summary></summary>
+<div id="e2d94c2d" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>illuminance <span class="op">=</span> color_sensor.get_illuminance()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Der gemessene Wert ist proportional zur Lichtintensität, die auf den Sensor fällt. Allerdings ist der zurückgegebene Wert nicht in Lux angegeben, sondern in einer proprietären Einheit des Sensors. Um den Wert in Lux umzurechnen, müssen wir die Verstärkung (<em>Gain</em>) und die Messzeit (<em>Integration Time</em>) berücksichtigen. Schaut dazu im Brick Viewer nach, welche Einstellungen aktuell aktiv sind. Bei mir sind es gerade die Werte 4x für <em>Gain</em> und 24ms für <em>Integration Time</em>. Mit diesen Werten können wir den Lux-Wert wie folgt berechnen:</p>
+<div id="d35caf77" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>gain <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>integration_time <span class="op">=</span> <span class="dv">24</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>illuminance_lx <span class="op">=</span> illuminance <span class="op">*</span> <span class="dv">700</span> <span class="op">/</span> gain <span class="op">/</span> integration_time</span>
+<span id="cb9-4"><a href="#cb9-4"></a></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="bu">print</span>(<span class="ss">f"Illuminance: </span><span class="sc">{</span>illuminance_lx<span class="sc">}</span><span class="ss"> lx"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</details>
+</section>
+<section id="sec-analog-digital-measure-pulse" class="level2 collapsable" data-number="5.4">
+<h2 class="collapsable anchored" data-number="5.4" data-anchor-id="sec-analog-digital-measure-pulse"><span class="header-section-number">5.4</span> Pulse messen</h2>
+<details class="collapsable-section" open=""><summary></summary>
+<p>Wusstest du, dass Pulsmesser wie man sie oft in Fitnesstrackern findet, ebenfalls die Lichtintensität messen und daraus eueren Puls berechnen? Klingt verrückt, ist aber so! In diesem Abschnitt werden wir herausfinden, wie das funktioniert und wie wir mit unserem Farbsensor den Puls messen können.</p>
+<section id="hell-und-dunkel" class="level3" data-number="5.4.1">
+<h3 data-number="5.4.1" class="anchored" data-anchor-id="hell-und-dunkel"><span class="header-section-number">5.4.1</span> Hell und dunkel</h3>
+</section>
+<section id="puls-auf-dem-display" class="level3" data-number="5.4.2">
+<h3 data-number="5.4.2" class="anchored" data-anchor-id="puls-auf-dem-display"><span class="header-section-number">5.4.2</span> Puls auf dem Display</h3>
+</section>
+<section id="animierter-puls" class="level3" data-number="5.4.3">
+<h3 data-number="5.4.3" class="anchored" data-anchor-id="animierter-puls"><span class="header-section-number">5.4.3</span> Animierter Puls</h3>
+</section></details>
+</section>
+
+<section id="sec-analog-digital-push-vs-pull" class="level2 collapsable" data-number="5.5">
+<h2 class="collapsable anchored" data-number="5.5" data-anchor-id="sec-analog-digital-push-vs-pull"><span class="header-section-number">5.5</span> Push vs.&nbsp;Pull</h2>
+<details class="collapsable-section" open=""><summary></summary>
+<p>Bisher haben wir unsere Sensoren immer aktiv nach neuen Werten gefragt. Erinnert euch an den Drehknopf aus <a href="numbers.html" class="quarto-xref"><span>Kapitel 2</span></a> oder den Abstandssensor aus <a href="images.html" class="quarto-xref"><span>Kapitel 4</span></a>, wo wir mit <code>knob.get_value()</code> bzw. <code>ir.get_distance()</code> die aktuellen Messwerte abgefragt haben. Dieses Vorgehen wird als “Pull” bezeichnet, da <em>wir</em> die Daten vom Sensor erfragen.</p>
+<p>Es gibt eine andere Möglichkeit, die oft praktischer ist: den “Push”-Ansatz. Dabei sendet der Sensor die Messwerte von sich aus an uns, sobald sie verfügbar sind. Wir müssen also nicht ständig nachfragen, sondern bekommen die Daten automatisch zugeschickt. Das hat den Vorteil, dass wir sofort über neue Messwerte informiert werden und nicht ständig den Sensor abfragen müssen. Ihr erinnert euch an die Endlosschleife, die nur dazu da war, um den Sensor kontinuierlich abzufragen, obwohl sich vielleicht lange Zeit überhaupt nichts verändert. Das ist mit dem Push-Ansatz passè.</p>
+<p>Das Prinzip ist mit einer Analogie einfach erklärt: Stellt euch vor ihr beschäftigt einen Wachdienst für euren Garten, weil ihr dort ein Gewächshaus mit hochwertigen Pflanzen betreibt. Der Wachdienst soll euch sofort informieren, wenn etwas Verdächtiges passiert, also zum Beispiel wenn eine unbefugt Person sich eurem Gewächshaus nähert. Wenn ihr hier das Pull-Prinzip anwenden würdet, müsstet ihr ständig zum Wachdienst laufen und fragen: “Ist gerade etwas passiert?” Das wäre ziemlich ineffizient und nervig. Wie häufig solltet ihr ihn anrufen, damit ihr nichts verpasst?</p>
+<p>Im Push-Prinzip informiert euch der Wachdienst stattdessen automatisch, sobald etwas passiert. Dazu gebt ihr dem Wachdienst eine Telefonnummer, unter der er euch anrufen kann, wenn es etwas zu melden gibt. Die Möglichkeit, dass der Wachsdienst euch kontaktieren kann, was hier über eine Telefonnummer geschieht, ist beim Push-Prinzip entscheidend.</p>
+<section id="callback-funktionen" class="level3" data-number="5.5.1">
+<h3 data-number="5.5.1" class="anchored" data-anchor-id="callback-funktionen"><span class="header-section-number">5.5.1</span> Callback-Funktionen</h3>
+<p>In der Programmmierung nennt man diese Telefonnummer eine “Callback-Funktion”. Eine Callback-Funktion ist eine Funktion, die ihr definiert und dem Sensor übergebt. Sobald der Sensor neue Daten hat, ruft er diese Funktion auf und übergibt ihr die neuen Messwerte als Argumente. So könnt ihr sofort auf die neuen Daten reagieren, ohne ständig den Sensor abfragen zu müssen.</p>
+<div id="6f25d856" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">def</span> illuminance_callback(illuminance):</span>
+<span id="cb10-2"><a href="#cb10-2"></a>    <span class="bu">print</span>(<span class="ss">f"Helligkeit: </span><span class="sc">{</span>illuminance<span class="sc">}</span><span class="ss"> lx"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div id="99bb8b34" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-12"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-12-1"><a href="#annotated-cell-12-1"></a>color_sensor.register_callback(</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="1">1</button><span id="annotated-cell-12-2" class="code-annotation-target"><a href="#annotated-cell-12-2"></a>    color_sensor.CALLBACK_ILLUMINANCE,</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="2">2</button><span id="annotated-cell-12-3" class="code-annotation-target"><a href="#annotated-cell-12-3"></a>    illuminance_callback</span>
+<span id="annotated-cell-12-4"><a href="#annotated-cell-12-4"></a>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-12" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-12" data-code-lines="2" data-code-annotation="1">Hier geben wir an, dass wir die Callback-Funktion für das Ereignis “Helligkeit gemessen” registrieren möchten. Die existierende Ereignisse sind in der Tinkerforge-API dokumentiert.</span>
+</dd>
+<dt data-target-cell="annotated-cell-12" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-12" data-code-lines="3" data-code-annotation="2">Hier übergeben wir die Callback-Funktion, die aufgerufen werden soll, wenn das Ereignis eintritt. Diese Funktion müssen wir zuvor definiert haben.</span>
+</dd>
+</dl>
+</div>
+</div>
+</section></details>
+</section>
+
+<section id="sec-analog-digital-morse-code-receiver" class="level2 collapsable" data-number="5.6">
+<h2 class="collapsable anchored" data-number="5.6" data-anchor-id="sec-analog-digital-morse-code-receiver"><span class="header-section-number">5.6</span> Morse Code-Empfänger</h2>
+<details class="collapsable-section" open=""><summary></summary>
+</details>
+</section>
+<section id="sec-analog-digital-heart-rate-monitor" class="level2 collapsable" data-number="5.7">
+<h2 class="collapsable anchored" data-number="5.7" data-anchor-id="sec-analog-digital-heart-rate-monitor"><span class="header-section-number">5.7</span> Pulsmesser</h2>
+<details class="collapsable-section" open=""><summary></summary>
+</details>
+</section>
+<section id="dein-finger-als-signalquelle" class="level2" data-number="5.8">
+<h2 data-number="5.8" class="anchored" data-anchor-id="dein-finger-als-signalquelle"><span class="header-section-number">5.8</span> Dein Finger als Signalquelle</h2>
+<p>Wir haben oben gesehen, dass der Farbsensor nicht nur die Farbe misst, sondern auch die allgemeine Lichtintensität, auch <em>Illuminance</em> genannt. Hier kommt eine spannende Tatsache ins Spiel: Das Prinzip, die Helligkeit zu messen, steckt hinter den Pulsmessern in Fitnesstrackern. Ja, genau der Sensor, der Licht misst, verrät dir, wie schnell dein Herz schlägt!</p>
+<p>Aber wie genau funktioniert das? Stell dir vor, du legst deinen Zeigefinger direkt auf den Sensor und schaltest die integrierte weiße LED an. Das Licht der LED trifft auf deinen Finger und wird reflektiert. Dein Finger sieht für dich immer gleich aus, aber tatsächlich sorgt dein Herzschlag dafür, dass dein Finger mal minimal heller und mal dunkler erscheint. Das liegt daran, dass Blut in rhythmischen Schüben durch die Gefäße gepumpt wird. Diese winzigen Veränderungen, die du mit bloßem Auge nicht sehen kannst, werden vom sensiblen Farbsensor deutlich wahrgenommen.</p>
+<p>Schauen wir uns das einmal genauer an: Wenn du dir die gemessene Lichtintensität über den Zeitverlauf im Brick Viewer ansiehst, kannst du deinen Pulsschlag tatsächlich erkennen. Er wird sichtbar als kleine, regelmäßige Ausschläge oder <em>Peaks</em>. Faszinierend, oder? So kannst du beobachten, wie aus etwas so scheinbar Einfachem wie Licht ein Signal entsteht, das dir Informationen über deinen Körper liefert.</p>
+<div id="fig-analog-digital-pulse-brick-viewer" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-analog-digital-pulse-brick-viewer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="images/pulse_brick_viewer.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Abbildung&nbsp;5.3: Dein Puls im Brick Viewer"><img src="images/pulse_brick_viewer.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-analog-digital-pulse-brick-viewer-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;5.3: Dein Puls im Brick Viewer
+</figcaption>
+</figure>
+</div>
+<p>Auch wenn du das Signal im Liniendiagramm in <span class="quarto-unresolved-ref">?fig-pulse-brick-viewer</span> bereits deutlich sehen kannst, bleibt eine spannende Herausforderung bestehen: Wie schreiben wir ein Programm, das aus diesen Daten den Puls als konkrete Zahl, zum Beispiel “60 Schläge pro Minute”, berechnet? Genau dafür sind wir ja hier, um herauszufinden, wie man solche kniffligen Aufgaben löst. Lass uns gemeinsam starten!</p>
+</section>
+<section id="licht-an" class="level2" data-number="5.9">
+<h2 data-number="5.9" class="anchored" data-anchor-id="licht-an"><span class="header-section-number">5.9</span> Licht an!</h2>
+<div id="f0de9978" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-13"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><button class="code-annotation-anchor" data-target-cell="annotated-cell-13" data-target-annotation="1">1</button><span id="annotated-cell-13-1" class="code-annotation-target"><a href="#annotated-cell-13-1"></a>color_sensor.set_light(<span class="va">True</span>)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-13" data-target-annotation="2">2</button><span id="annotated-cell-13-2" class="code-annotation-target"><a href="#annotated-cell-13-2"></a>color_sensor.set_configuration(<span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="annotated-cell-13-3"><a href="#annotated-cell-13-3"></a>illuminance <span class="op">=</span> color_sensor.get_illuminance()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-13" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-13" data-code-lines="1" data-code-annotation="1">Schaltet die integrierte LED des Sensors an.</span>
+</dd>
+<dt data-target-cell="annotated-cell-13" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-13" data-code-lines="2" data-code-annotation="2">Stellt die Werte für <em>Gain</em> und <em>Integration Time</em> auf 4x und 24ms. Diese Einstellung scheinen gut zu funktionieren, um den Puls zu messen.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Der zurückgegebene Wert hängt von zwei Einstellungen ab: <em>Gain</em> (Verstärkung) und <em>Integration Time</em> (Messzeit). Je länger die Messzeit, desto genauer die Werte – allerdings können dann weniger Messungen pro Sekunde durchgeführt werden. Laut Dokumentation können wir aus dem gemessenen Wert die Lichtintensität in Lux wie folgt berechnen:</p>
+<div id="c3a4397f" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-14"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><button class="code-annotation-anchor" data-target-cell="annotated-cell-14" data-target-annotation="1">1</button><span id="annotated-cell-14-1" class="code-annotation-target"><a href="#annotated-cell-14-1"></a>illuminance_lux <span class="op">=</span> illuminance <span class="op">*</span> <span class="dv">700</span> <span class="op">/</span> <span class="dv">4</span> <span class="op">/</span> <span class="dv">24</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-14" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-14" data-code-lines="1" data-code-annotation="1">Der Wert 4 beschreibt ein 4-fache Verstärkung (<em>Gain</em>) und die 24 steht für 24ms <em>Integration Time</em></span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Um deinen Puls zu berechnen, müssen wir jetzt mehrere Werte in kurzen Abständen messen. Warum? Weil wir die regelmäßigen Tief- und Hochpunkte erkennen wollen. Ein Tiefpunkt entsteht, wenn dein Finger am dunkelsten ist, dann ist also gerade besonders viel Blut im Finger. Die Hochpunkte markieren dagegen den Moment, in dem das Blut größtenteils wieder zurückgeflossen ist. Jeder Herzschlag erzeugt genau einen Tief- und einen Hochpunkt. Finden wir diese Punkte, können wir einfach die Zeitabstände messen und daraus die Pulsfrequenz berechnen.</p>
+<p>Beginnen wir damit, unsere Messungen in einer Schleife durchzuführen. Das ist eine praktische Methode, kontinuierlich Daten zu erfassen:</p>
+<div id="5bae6bd0" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb11-2"><a href="#cb11-2"></a>    illuminance <span class="op">=</span> color_sensor.get_illuminance()</span>
+<span id="cb11-3"><a href="#cb11-3"></a>    illuminance_lux <span class="op">=</span> illuminance <span class="op">*</span> <span class="dv">700</span> <span class="op">/</span> <span class="dv">4</span> <span class="op">/</span> <span class="dv">24</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a>    <span class="bu">print</span>(<span class="ss">f"Lichtintensität in Lux: </span><span class="sc">{</span>illuminance_lux<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-adami_what_2016" class="csl-entry" role="listitem">
+Adami, Christoph. 2016. <span>„What is <span>Information</span>?“</span> <em>Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences</em> 374 (2063): 20150230. <a href="https://doi.org/10.1098/rsta.2015.0230">https://doi.org/10.1098/rsta.2015.0230</a>.
+</div>
+<div id="ref-brookshear_computer_2020" class="csl-entry" role="listitem">
+Brookshear, J. Glenn, und Dennis Brylow. 2020. <em>Computer science: an overview</em>. 13th edition, global edition. NY, NY: Pearson.
+</div>
+<div id="ref-gallenbacher_abenteuer_2020" class="csl-entry" role="listitem">
+Gallenbacher, Jens. 2020. <em>Abenteuer <span>Informatik</span>: <span>IT</span> zum <span>Anfassen</span> für alle von 9 bis 99, vom <span>Navi</span> bis <span>Social</span> <span>Media</span></em>. 4. Auflage, korrigierte Publikation. Berlin Heidelberg: Springer.
+</div>
+<div id="ref-petzold_code_2022" class="csl-entry" role="listitem">
+Petzold, Charles. 2022. <em>Code: the hidden language of computer hardware and software</em>. 2. Aufl. Hoboken: Microsoft Press.
+</div>
+<div id="ref-polya" class="csl-entry" role="listitem">
+Pólya, George, und John Horton Conway. 2004. <em>How to solve it: a new aspect of mathematical method</em>. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.
+</div>
+<div id="ref-scott_but_2009" class="csl-entry" role="listitem">
+Scott, John C. 2009. <em>But how do it know?: the basic principles of computers for everyone</em>. Oldsmar, FL: John C. Scott.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  if (document.documentElement.dataset.collapsableInit) return;
+  document.documentElement.dataset.collapsableInit = "1";
+
+  document.querySelectorAll(
+    "h1.collapsable, h2.collapsable, h3.collapsable, h4.collapsable, h5.collapsable, h6.collapsable"
+  ).forEach(h => {
+    const details = h.nextElementSibling;
+    if (!details || details.tagName.toLowerCase() !== "details") return;
+
+    // Icon-Status initial
+    h.classList.toggle("closed", !details.open);
+
+    h.style.cursor = "pointer";
+    h.addEventListener("click", () => {
+      details.open = !details.open;
+      h.classList.toggle("closed", !details.open);
+    });
+  });
+});
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Kopiert");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Kopiert");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+        for (let i=0; i<annoteTargets.length; i++) {
+          const annoteTarget = annoteTargets[i];
+          const targetCell = annoteTarget.getAttribute("data-target-cell");
+          const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+          const contentFn = () => {
+            const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+            if (content) {
+              const tipContent = content.cloneNode(true);
+              tipContent.classList.add("code-annotation-tip-content");
+              return tipContent.outerHTML;
+            }
+          }
+          const config = {
+            allowHTML: true,
+            content: contentFn,
+            onShow: (instance) => {
+              selectCodeLines(instance.reference);
+              instance.reference.classList.add('code-annotation-active');
+              window.tippy.hideAll();
+            },
+            onHide: (instance) => {
+              unselectCodeLines();
+              instance.reference.classList.remove('code-annotation-active');
+            },
+            maxWidth: 300,
+            delay: [50, 0],
+            duration: [200, 0],
+            offset: [5, 10],
+            arrow: true,
+            appendTo: function(el) {
+              return el.parentElement.parentElement.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'quarto',
+            placement: 'right',
+            popperOptions: {
+              modifiers: [
+              {
+                name: 'flip',
+                options: {
+                  flipVariations: false, // true by default
+                  allowedAutoPlacements: ['right'],
+                  fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+                },
+              },
+              {
+                name: 'preventOverflow',
+                options: {
+                  mainAxis: false,
+                  altAxis: false
+                }
+              }
+              ]        
+            }      
+          };
+          window.tippy(annoteTarget, config); 
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./images.html" class="pagination-link" aria-label="Bilder">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Bilder</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./references.html" class="pagination-link" aria-label="Literaturverzeichnis">
+        <span class="nav-page-text">Literaturverzeichnis</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>

@@ -1,5 +1,7 @@
 # Bilder {#sec-images}
 
+![](images/chapter_header_images.jpg){width="70%"}
+
 ## Zusammenfassung {.unnumbered .collapsable}
 
 In diesem Kapitel arbeiten wir zum ersten Mal mit Bildern auf einem Display. Ausgehend von einem kleinen OLED-Display lernen wir Schritt für Schritt, wie Bilder im Computer repräsentiert werden und wie wir sie programmatisch erzeugen und anzeigen können.
