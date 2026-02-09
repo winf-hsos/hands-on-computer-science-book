@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Ein Online-Buch mit Experimenten, die Schritt für Schritt in die Welt der Digitalisierung, Programmierung und Künstliche Intelligenz einführen.">
+
+<title>6&nbsp; Lernen – Hands-On Computer Science</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../part-2-ai/vision.html" rel="next">
+<link href="../part-1-dap/sensors.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-670489e30afdd02925324b99e7f7a38e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Keine Treffer",
+    "search-matching-documents-text": "Treffer",
+    "search-copy-link-title": "Link in die Suche kopieren",
+    "search-hide-matches-text": "Zusätzliche Treffer verbergen",
+    "search-more-match-text": "weitere Treffer in diesem Dokument",
+    "search-more-matches-text": "weitere Treffer in diesem Dokument",
+    "search-clear-button-title": "Zurücksetzen",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Abbrechen",
+    "search-submit-button-title": "Abschicken",
+    "search-label": "Suchen"
+  }
+}</script>
+<!-- DataTables assets -->
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css">
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+
+
+
+<style>
+
+/* linksbündig + volle Breite */
+
+.datatable table, .datatable-nosearch table { width: 100% !important; }
+
+.datatable table td, .datatable table th,
+
+.datatable-nosearch table td, .datatable-nosearch table th { text-align: left; }
+
+
+
+/* etwas Luft unter dem Suchfeld (nur .datatable mit Suche) */
+
+.datatable .dataTables_filter { margin-bottom: 1.5rem; }
+
+</style>
+
+
+
+<style>
+
+/* --- Quarto + DataTables: Floats neutralisieren --- */
+
+.dataTables_wrapper { 
+
+  display: flow-root;   /* enthält Floats, verhindert Überlaufen in die Margin */
+
+  max-width: 100%;
+
+}
+
+
+
+/* Alle DataTables-Steuerelemente nicht mehr floaten lassen */
+
+.dataTables_wrapper .dataTables_filter,
+
+.dataTables_wrapper .dataTables_length,
+
+.dataTables_wrapper .dataTables_info,
+
+.dataTables_wrapper .dataTables_paginate {
+
+  float: none !important;
+
+  text-align: left;     /* oder right, aber ohne float */
+
+  margin: 0 0 1rem 0;   /* etwas Luft unter die Zeile */
+
+}
+
+
+
+/* Sicherheitshalber: Tabelle bleibt im Content-Bereich */
+
+.page-columns .content .dataTables_wrapper { margin-right: 0; }
+
+</style>
+
+
+
+
+
+<script>
+
+(function () {
+
+  function initDT() {
+
+    if (!window.jQuery || !jQuery.fn || !jQuery.fn.DataTable) return;
+
+
+
+    // 0) Vorhandene Instanzen zerstören (Hot-Reload zuverlässig)
+
+    document.querySelectorAll('.datatable table, .datatable-nosearch table').forEach(function (tbl) {
+
+      if (jQuery.fn.dataTable.isDataTable(tbl)) {
+
+        try { jQuery(tbl).DataTable().destroy(); } catch(e) {}
+
+      }
+
+      tbl.removeAttribute('data-dt-inited');
+
+      tbl.classList.remove('dataTable');
+
+    });
+
+
+
+    // 1) Tabellen MIT Suche (globales Glossar)
+
+    document.querySelectorAll('.datatable table').forEach(function (tbl) {
+
+      if (tbl.dataset.dtInited === '1') return;
+
+      const wrap = tbl.closest('.datatable');
+
+      let order = [[0,'asc']];
+
+      try {
+
+        const o = wrap && wrap.getAttribute('data-order');
+
+        if (o) order = JSON.parse(o);
+
+      } catch(e) {}
+
+      jQuery(tbl).DataTable({
+
+        dom: 'f',
+
+        paging: false,
+
+        info: false,
+
+        ordering: true,
+
+        order: order
+
+      });
+
+      tbl.dataset.dtInited = '1';
+
+    });
+
+
+
+    // 2) Tabellen OHNE Suche (Kapitel-Glossare)
+
+    document.querySelectorAll('.datatable-nosearch table').forEach(function (tbl) {
+
+      if (tbl.dataset.dtInited === '1') return;
+
+      const wrap = tbl.closest('.datatable-nosearch');
+
+      let order = [[0,'asc']]; // Fallback
+
+      try {
+
+        const o = wrap && wrap.getAttribute('data-order');
+
+        if (o) order = JSON.parse(o);   // <-- liest z.B. [[2,"asc"]]
+
+      } catch(e) {}
+
+      jQuery(tbl).DataTable({
+
+        dom: 't',        // nur Tabelle
+
+        paging: false,
+
+        info: false,
+
+        ordering: true,
+
+        order: order,
+
+        orderMulti: false
+
+      });
+
+      tbl.dataset.dtInited = '1';
+
+    });
+
+  }
+
+  document.addEventListener('DOMContentLoaded', initDT);
+
+  document.addEventListener('quarto:rendered', initDT);
+
+})();
+
+</script>
+
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../partials/gloss.css">
+<link rel="stylesheet" href="../partials/collapsable.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part-2-ai/learning.html">Künstliche Intelligenz</a></li><li class="breadcrumb-item"><a href="../part-2-ai/learning.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lernen</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Hands-On Computer Science</a> 
+        <div class="sidebar-tools-main">
+    <a href="../Hands-On-Computer-Science-Book.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Suchen"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vorwort</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../preparation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vorbereitung</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Digitalisierung</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part-1-dap/colors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Farben</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part-1-dap/numbers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Zahlen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part-1-dap/text.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Texte</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part-1-dap/images.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Bilder</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part-1-dap/sensors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sensoren</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Künstliche Intelligenz</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part-2-ai/learning.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lernen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part-2-ai/vision.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Sehen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part-2-ai/listen.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Hören</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part-2-ai/speaking.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Sprechen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part-2-ai/language.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Sprache</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literaturverzeichnis</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+  <li><a href="#zusammenfassung" id="toc-zusammenfassung" class="nav-link active" data-scroll-target="#zusammenfassung"><span class="header-section-number">6.1</span> Zusammenfassung</a></li>
+  <li><a href="#spamfilter" id="toc-spamfilter" class="nav-link" data-scroll-target="#spamfilter"><span class="header-section-number">6.2</span> Spamfilter</a></li>
+  <li><a href="#regeln-für-spam-erkennung" id="toc-regeln-für-spam-erkennung" class="nav-link" data-scroll-target="#regeln-für-spam-erkennung"><span class="header-section-number">6.3</span> Regeln für Spam-Erkennung</a></li>
+  <li><a href="#lernen-wie-spam-aussieht" id="toc-lernen-wie-spam-aussieht" class="nav-link" data-scroll-target="#lernen-wie-spam-aussieht"><span class="header-section-number">6.4</span> Lernen, wie Spam aussieht</a>
+  <ul class="collapse">
+  <li><a href="#bayesscher-spamfilter" id="toc-bayesscher-spamfilter" class="nav-link" data-scroll-target="#bayesscher-spamfilter"><span class="header-section-number">6.4.1</span> Bayesscher Spamfilter</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part-2-ai/learning.html">Künstliche Intelligenz</a></li><li class="breadcrumb-item"><a href="../part-2-ai/learning.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lernen</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-learning" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lernen</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="zusammenfassung" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="zusammenfassung"><span class="header-section-number">6.1</span> Zusammenfassung</h2>
+<p>Im ersten Teil des Buches haben wir wichtige Grundlagen der Programmierung gelernt. Wir haben gesehen, wie Computer Probleme lösen: Sie stellen Dinge aus der analogen Welt in einer digitalen Form dar und wenden dann Verarbeitungsschritte (Algorithmen) an, um daraus eine Lösung zu bauen. Dabei haben wir als Menschen die genauen Schritte vorgegeben und in einer Programmiersprache kodiert, in unserem Beispiel mit Python.</p>
+<p>Im zweiten Teil des Buches, der mit diesem Kapitel beginnt, schauen wir uns eine ganz andere Herangehensweise an: <strong>maschinelles Lernen</strong>. Dabei geben wir dem Computer nicht mehr jeden einzelnen Schritt zur Lösung vor. Stattdessen soll er die Logik selbst entdecken - oder <em>lernen</em>. Aber wie können Computer lernen? Indem wir ihm viele bereits gelöste Beispiele als Daten zeigen und ihn so trainieren, dass er aus diesen Beispielen Regeln ableitet. Die Hoffnung ist: Mit diesen gelernten Regeln kann er auch neue Fälle lösen, die er noch nie gesehen hat.</p>
+<p>Wenn Computer aus Beispielen lernen sollen: Was machen wir Menschen dann überhaupt noch, wenn wir nicht mehr alle Regeln selbst aufschreiben? Genau hier liegt der große Unterschied.</p>
+<p>Der Wechsel von “<em>Menschen geben dem Computer die Regeln für die Lösung vor</em>” zu “<em>Menschen lassen den Computer die Regeln erlernen</em>” ist ein <strong>Paradigmenwechsel</strong>. Zwar müssen wir Menschen weiterhin Regeln entwerfen, aber nicht mehr für die Lösung selbst. Stattdessen entwerfen wir einen Algorithmus, der es Computern ermöglicht, aus Daten zu lernen. Wir sprechen dann von <strong>Algorithmen des maschinellen Lernens</strong>.</p>
+<p>Schauen wir uns das an einem konkreten Beispiel an: Eine E-Mail als “Spam” oder “Nicht-Spam” zu erkennen.</p>
+</section>
+<section id="spamfilter" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="spamfilter"><span class="header-section-number">6.2</span> Spamfilter</h2>
+<p>Wer von euch bekommt regelmäßig E-Mails? Und wie oft sind darunter Mails, die ihr eigentlich nie lesen wolltet?</p>
+<p>Jeder kennt das Problem: Täglich flattert eine Flut von E-Mails in den Posteingang. Nicht alle sind gleichermaßen relevant oder ernst gemeint. Viele Mails sind Werbung oder im schlimmsten Fall fiese Versuche, an eure Daten zu gelangen (siehe <a href="https://www.bsi.bund.de/DE/Themen/Verbraucherinnen-und-Verbraucher/Cyber-Sicherheitslage/Methoden-der-Cyber-Kriminalitaet/Spam-Phishing-Co/Passwortdiebstahl-durch-Phishing/Wie-erkenne-ich-Phishing-in-E-Mails-und-auf-Webseiten/wie-erkenne-ich-phishing-in-e-mails-und-auf-webseiten_node.html">Phishing-Mails</a>). Eine Lösung, die E-Mails für uns vorsortiert, wäre eine große Hilfe: in sinnvolle, ernst gemeinte E-Mails und eben die anderen, die uns im schlimmsten Fall schaden könnten.</p>
+<p>Klar, dafür gibt es sogenannte Spamfilter. Wer das Mailprogramm <a href="https://mail.google.com/">Gmail</a> nutzt, findet im Postfach einen Ordner “Spam”. Dort landen zuverlässig E-Mails, an denen wir mit hoher Wahrscheinlichkeit kein Interesse haben.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="..\images/gmail_spam.png" class="img-fluid figure-img"></p>
+<figcaption>Mein Gmail-Spamordner, der die automatisch als “Spam” erkannten E-Mails enthält.</figcaption>
+</figure>
+</div>
+<p>Woher aber weiß Google, welche E-Mails in den Spamordner gehören und welche nicht?</p>
+<p>Neben Spam sortiert Gmail übrigens auch andere E-Mails vor: Newsletter, Social Media, Einkäufe und viele mehr. Es gibt also nicht nur einen einfachen “Spam”-Filter, sondern ein ganzes Klassifizierungssystem. Wir bleiben hier der Einfachheit halber bei der Aufgabe, E-Mails in <strong>zwei</strong> Kategorien einzuteilen. Das nennt man eine <strong>binäre Klassifikation</strong>: Es gibt genau zwei Klassen. Wie wir bereits in <a href="../part-1-dap/numbers.html#sec-numbers-binary-system" class="quarto-xref"><span>Abschnitt 2.5.3</span></a> gelernt haben, steht <em>binär</em> für zwei Zustände.</p>
+<p>Bei Spamfiltern spricht man übrigens oft von “Spam” (irrelevante oder schädliche E-Mails) und “Ham” (die E-Mails, die wir wirklich lesen wollen). Weil es schön kurz ist, verwende ich diese Begriffe ab jetzt auch.</p>
+<p>Für alle Nerds unter euch: Der Begriff “Spam” kommt ursprünglich aus dem Lebensmittelumfeld und steht für “Spiced Pork and Ham”, <a href="https://www.hormelfoods.com/brand/spam-brand/">ein Produkt der Firma Hormel Foods Corporation</a> aus den USA. Erst Monty Python hat den Begriff in einem Sketch für die heutige Bedeutung vorbereitet. Die Geschichte könnt ihr auf der <a href="https://www.vis.bayern.de/recht/werbung_recht/spambegriff.htm">Webseite des Bayerischen Verbraucherschutzministeriums</a> vertiefen.</p>
+</section>
+<section id="regeln-für-spam-erkennung" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="regeln-für-spam-erkennung"><span class="header-section-number">6.3</span> Regeln für Spam-Erkennung</h2>
+<p>Ganz im Geiste des ersten Teils des Buches lösen wir das Problem der Spamfilterung gedanklich zuerst mit der klassischen Herangehensweise: Wir überlegen uns Regeln und kodieren sie in einem Algorithmus, der eine E-Mail in <em>Spam</em> oder <em>Ham</em> einteilt.</p>
+<p>Wie immer, wenn wir für ein Problem eine computergestützte Lösung suchen, nutzen wir dafür das uns bekannte Problemlösungsschema. In <a href="#fig-spam-eva" class="quarto-xref">Abbildung&nbsp;<span>6.1</span></a> seht ihr das EVA-Modell für das Spamfilterproblem.</p>
+<div id="fig-spam-eva" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-spam-eva-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="https://winf-hsos.github.io/university-docs/images/problem_example_spam.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-spam-eva-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;6.1: Spamfilterung als EVA-Modell
+</figcaption>
+</figure>
+</div>
+<p>Damit wir einem Computer ein Problem und dessen Lösung beibringen können, müssen wir alle drei Bestandteile des Modells (Eingabe, Verarbeitung, Ausgabe) in eine für Computer verarbeitbare Form bringen. Das können wir hier kurz halten: E-Mails sind im Computer bereits als Text gespeichert (<a href="../part-1-dap/text.html" class="quarto-xref"><span>Kapitel 3</span></a>). Die Ausgabe ist eine einfache Klassifikation in zwei Kategorien: <em>Spam</em> oder <em>Ham</em>. Die Herausforderung liegt also in der Verarbeitung: Wie kann ein Algorithmus entscheiden, ob eine E-Mail Spam oder Ham ist?</p>
+<p>Früher, in den 90er-Jahren, als wir noch nicht massenweise über E-Mails kommuniziert haben, reichten oft einfache Verfahren aus, um sich effektiv vor unerwünschten E-Mails zu schützen. Erste Ansätze suchten nach bestimmten Wörtern in E-Mails. Wenn diese vorkamen, wurden die Mails als Spam markiert. Wörter wie “FREE”, “WIN” oder “GUARANTEED” waren typische Kandidaten.</p>
+<p>Eine andere Methode war das Blockieren bestimmter Absender, um von ihnen keine E-Mails mehr zu erhalten. Weil man bei jeder E-Mail weiß, von welchem Server (bzw. von welcher IP-Adresse) sie gesendet wurde, konnte man IP-basierte Sperrlisten zentral verwalten und bei vielen Nutzern gleichzeitig anwenden.</p>
+<p>Beide Varianten haben ihre Probleme. Bei der Keyword-Filterung kann es zu Fehlern kommen, wenn eine E-Mail zwar eines der Wörter enthält, aber dennoch keine Spam-Mail ist. Eine Mail landet dann fälschlicherweise im Spam-Ordner. Gleichzeitig sind solche Filter leicht auszutricksen, indem ungewöhnliche Schreibweisen verwendet werden, zum Beispiel “V1agra” statt “Viagra”.</p>
+<p>Das ist im Kern ein Wettrüsten: Spammer passen ihre Mails an, und die Filterlisten müssen wieder nachziehen. Um das Problem in den Griff zu bekommen, konnte das manuelle Aufstellen von Regeln nicht die Lösung sein.</p>
+</section>
+<section id="lernen-wie-spam-aussieht" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="lernen-wie-spam-aussieht"><span class="header-section-number">6.4</span> Lernen, wie Spam aussieht</h2>
+<p>Wenn wir nicht mehr jede einzelne Regel selbst aufschreiben wollen: Wie bekommen wir den Computer dazu, selbst zu lernen, wie Spam aussieht? Willkommen in der Welt des <strong>maschinellen Lernens</strong>!</p>
+<p>Die Idee beim maschinellen Lernen ist einfach (und ein bisschen wie beim Lernen für eine Klassenarbeit): Wir geben dem Computer viele Beispiele. Der Computer bekommt viele E-Mails, bei denen bereits feststeht, ob sie <em>Spam</em> oder <em>Ham</em> sind. Aus diesen Beispielen lernt er, welche Muster typisch für Spam sind. Danach kann er bei einer neuen E-Mail eine begründete Vermutung abgeben, in welche Kategorie sie gehört. Klingt gut, aber wie oben schon angedeutet, müssen wir Menschen immernoch den Lernalgorithmus entwerfen, der aus den Beispielen lernt. Wie geht das für Spamfilter?</p>
+<section id="bayesscher-spamfilter" class="level3" data-number="6.4.1">
+<h3 data-number="6.4.1" class="anchored" data-anchor-id="bayesscher-spamfilter"><span class="header-section-number">6.4.1</span> Bayesscher Spamfilter</h3>
+<p>In seinem Aufsatz <a href="https://paulgraham.com/spam.html">A Plan for Spam</a> erzielte Paul Graham im Jahr 2002 einen Durchbruch bei der Spamfilterung. Er schlug ein einfaches, auf Wahrscheinlichkeiten basierendes Verfahren vor. Ein sogenannter <strong>Bayesscher Filter</strong> wendet keine starre Menge an Regeln auf eine E-Mail an (wie Keyword- und IP-Blacklists), sondern berechnet aus den enthaltenen Wörtern eine Spam-Wahrscheinlichkeit. Und das Spannende: Wie diese Wahrscheinlichkeit berechnet wird, lernt der Algorithmus zu 100% aus Daten.</p>
+<blockquote class="blockquote">
+<p>To the recipient, spam is easily recognizable. If you hired someone to read your mail and discard the spam, they would have little trouble doing it. How much do we have to do, short of AI, to automate this process? (Quelle: <a href="https://paulgraham.com/spam.html">A Plan for Spam</a>)</p>
+</blockquote>
+<p>Der vorgeschlagene Algorithmus basiert auf dem Satz von Bayes. Die Idee dahinter ist: Wir nehmen eine Beobachtung aus der E-Mail (zum Beispiel ein bestimmtes Wort) und fragen uns dann: <strong>Wie wahrscheinlich ist es, dass die Mail Spam ist, <em>wenn</em> wir diese Beobachtung sehen?</strong></p>
+<p>Um das auszudrücken, verwenden wir <strong>bedingte Wahrscheinlichkeiten</strong>. <span class="math inline">\(P(\mathrm{Spam}\mid \mathrm{Wort})\)</span> bedeutet zum Beispiel: <em>Wie wahrscheinlich ist “Spam”, wenn das Wort vorkommt?</em> Der Satz von Bayes verknüpft genau solche Wahrscheinlichkeiten miteinander:</p>
+<p><span class="math display">\[
+P(A \mid B) = \frac{P(B \mid A)\,P(A)}{P(B)}
+\]</span></p>
+<p>Im Spam-Kontext können wir <span class="math inline">\(A=\mathrm{Spam}\)</span> und <span class="math inline">\(B=\mathrm{Wort\ kommt\ vor}\)</span> setzen. Dann wird daraus:</p>
+<p><span class="math display">\[
+P(\mathrm{Spam} \mid \mathrm{Wort}) = \frac{P(\mathrm{Wort} \mid \mathrm{Spam})\,P(\mathrm{Spam})}{P(\mathrm{Wort})}
+\]</span></p>
+<p>So können wir die Formel lesen:</p>
+<ul>
+<li><span class="math inline">\(P(\mathrm{Spam})\)</span> ist die <strong>Grundwahrscheinlichkeit</strong> (englisch: <em>Prior</em>): Wie viel Spam gibt es im Schnitt, bevor wir überhaupt auf den Text schauen?</li>
+<li><span class="math inline">\(P(\mathrm{Wort}\mid \mathrm{Spam})\)</span> ist die <strong>Trefferwahrscheinlichkeit</strong> (englisch: <em>Likelihood</em>): Wie oft kommt dieses Wort in Spam-Mails vor?</li>
+<li><span class="math inline">\(P(\mathrm{Wort})\)</span> ist die <strong>Normalisierung</strong>: Wie oft kommt das Wort insgesamt vor (in Spam <em>und</em> in Ham)?</li>
+</ul>
+<p>Die letzte Größe <span class="math inline">\(P(\mathrm{Wort})\)</span> können wir aus zwei Fällen zusammensetzen: Entweder die Mail ist Spam oder sie ist Ham.</p>
+<p><span class="math display">\[
+P(\mathrm{Wort}) = P(\mathrm{Wort}\mid \mathrm{Spam})\,P(\mathrm{Spam}) + P(\mathrm{Wort}\mid \mathrm{Ham})\,P(\mathrm{Ham})
+\]</span></p>
+<p>Wenn wir also aus vielen gelabelten Beispielen gelernt haben, wie oft ein Wort in Spam bzw. Ham vorkommt, können wir damit für eine neue Mail eine Spam-Wahrscheinlichkeit berechnen. In der Praxis nimmt man nicht nur ein Wort, sondern viele Merkmale (zum Beispiel mehrere Wörter). Ein bekannter Ansatz ist <em>Naive Bayes</em>: Dabei tun wir so, als ob die Wörter unabhängig voneinander wären. Dann können wir ihre Wahrscheinlichkeiten ganz einfach multiplizieren. Das ist nicht perfekt, aber oft erstaunlich effektiv.</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-adami_what_2016" class="csl-entry" role="listitem">
+Adami, Christoph. 2016. <span>„What is <span>Information</span>?“</span> <em>Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences</em> 374 (2063): 20150230. <a href="https://doi.org/10.1098/rsta.2015.0230">https://doi.org/10.1098/rsta.2015.0230</a>.
+</div>
+<div id="ref-brookshear_computer_2020" class="csl-entry" role="listitem">
+Brookshear, J. Glenn, und Dennis Brylow. 2020. <em>Computer science: an overview</em>. 13th edition, global edition. NY, NY: Pearson.
+</div>
+<div id="ref-gallenbacher_abenteuer_2020" class="csl-entry" role="listitem">
+Gallenbacher, Jens. 2020. <em>Abenteuer <span>Informatik</span>: <span>IT</span> zum <span>Anfassen</span> für alle von 9 bis 99, vom <span>Navi</span> bis <span>Social</span> <span>Media</span></em>. 4. Auflage, korrigierte Publikation. Berlin Heidelberg: Springer.
+</div>
+<div id="ref-Makowski2021neurokit" class="csl-entry" role="listitem">
+Makowski, Dominique, Tam Pham, Zen J. Lau, Jan C. Brammer, François Lespinasse, Hung Pham, Christopher Schölzel, und S. H. Annabel Chen. 2021. <span>„<span>NeuroKit</span>2: A Python toolbox for neurophysiological signal processing“</span>. <em>Behavior Research Methods</em> 53 (4): 1689–96. <a href="https://doi.org/10.3758/s13428-020-01516-y">https://doi.org/10.3758/s13428-020-01516-y</a>.
+</div>
+<div id="ref-petzold_code_2022" class="csl-entry" role="listitem">
+Petzold, Charles. 2022. <em>Code: the hidden language of computer hardware and software</em>. 2. Aufl. Hoboken: Microsoft Press.
+</div>
+<div id="ref-polya" class="csl-entry" role="listitem">
+Pólya, George, und John Horton Conway. 2004. <em>How to solve it: a new aspect of mathematical method</em>. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.
+</div>
+<div id="ref-scott_but_2009" class="csl-entry" role="listitem">
+Scott, John C. 2009. <em>But how do it know?: the basic principles of computers for everyone</em>. Oldsmar, FL: John C. Scott.
+</div>
+</div>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  if (document.documentElement.dataset.collapsableInit) return;
+
+  document.documentElement.dataset.collapsableInit = "1";
+
+
+
+  document.querySelectorAll(
+
+    "h1.collapsable, h2.collapsable, h3.collapsable, h4.collapsable, h5.collapsable, h6.collapsable"
+
+  ).forEach(h => {
+
+    const details = h.nextElementSibling;
+
+    if (!details || details.tagName.toLowerCase() !== "details") return;
+
+
+
+    // Icon-Status initial
+
+    h.classList.toggle("closed", !details.open);
+
+
+
+    h.style.cursor = "pointer";
+
+    h.addEventListener("click", () => {
+
+      details.open = !details.open;
+
+      h.classList.toggle("closed", !details.open);
+
+    });
+
+  });
+
+});
+
+</script>
+
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Kopiert");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Kopiert");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+        for (let i=0; i<annoteTargets.length; i++) {
+          const annoteTarget = annoteTargets[i];
+          const targetCell = annoteTarget.getAttribute("data-target-cell");
+          const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+          const contentFn = () => {
+            const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+            if (content) {
+              const tipContent = content.cloneNode(true);
+              tipContent.classList.add("code-annotation-tip-content");
+              return tipContent.outerHTML;
+            }
+          }
+          const config = {
+            allowHTML: true,
+            content: contentFn,
+            onShow: (instance) => {
+              selectCodeLines(instance.reference);
+              instance.reference.classList.add('code-annotation-active');
+              window.tippy.hideAll();
+            },
+            onHide: (instance) => {
+              unselectCodeLines();
+              instance.reference.classList.remove('code-annotation-active');
+            },
+            maxWidth: 300,
+            delay: [50, 0],
+            duration: [200, 0],
+            offset: [5, 10],
+            arrow: true,
+            appendTo: function(el) {
+              return el.parentElement.parentElement.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'quarto',
+            placement: 'right',
+            popperOptions: {
+              modifiers: [
+              {
+                name: 'flip',
+                options: {
+                  flipVariations: false, // true by default
+                  allowedAutoPlacements: ['right'],
+                  fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+                },
+              },
+              {
+                name: 'preventOverflow',
+                options: {
+                  mainAxis: false,
+                  altAxis: false
+                }
+              }
+              ]        
+            }      
+          };
+          window.tippy(annoteTarget, config); 
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../part-1-dap/sensors.html" class="pagination-link" aria-label="Sensoren">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sensoren</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../part-2-ai/vision.html" class="pagination-link" aria-label="Sehen">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Sehen</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

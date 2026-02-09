@@ -4,7 +4,7 @@ Glückwunsch, ihr seid angekommen! Egal, wie euer Weg hierher aussah: Ihr habt d
 
 Dieses Buch ist aus meiner Lehrpraxis an der Hochschule Osnabrück entstanden. Es dient als Hauptlektüre in meinen Veranstaltungen, als Nachschlagewerk für verpasste Sitzungen und als kompakte, praxisnahe Einführung für alle, die sich eigenständig in die digitale Welt einarbeiten wollen. Die wissenschaftliche Disziplin dahinter heißt auf Deutsch Informatik, international Computer Science. Der Titel Hands-On Computer Science verrät schon den Ansatz: Wir lernen praktisch – von Anfang an.
 
-## Für wen ist dieses Buch gedacht?
+## Zielgruppe
 
 Lehrbücher zur Informatik gibt es viele. Doch nicht jedes passt zu dem, was ich mit meinen Studierenden erreichen möchte. Meine Zielgruppe seid ihr:
 
@@ -13,7 +13,7 @@ Lehrbücher zur Informatik gibt es viele. Doch nicht jedes passt zu dem, was ich
 
 Kurz gesagt: Dieses Buch ist für alle, die in die digitale Welt eintauchen wollen, ohne sich in Details zu verlieren. Ihr braucht keinen dicken Wälzer, sondern einen roten Faden, der euch Schritt für Schritt zu den grundlegenden Konzepten führt – mit Spaß und Erfolgserlebnissen.
 
-## Was macht dieses Buch anders?
+## Besonderheit dieses Buches
 
 Viele Bücher versprechen Praxisnähe, enden aber in abstrakten Übungen am Kapitelende. Hier gehen wir es anders an:
 
@@ -21,13 +21,11 @@ Viele Bücher versprechen Praxisnähe, enden aber in abstrakten Übungen am Kapi
 2. Wichtige Ideen führen wir früh ein, vertiefen sie nach und nach und wiederholen sie regelmäßig.
 3. Theorie und Praxis gehören zusammen: Ihr lernt Programmieren und Informatik-Grundlagen gleichzeitig.
 
-## Hands-on von Anfang an
-
 Habt ihr euch schon einmal gefragt, wie man Informationen mit Licht überträgt? Wie man mit Licht den Puls messen kann? Oder wie man mit zwei einfachen Kabeln einen Wasserstandssensor baut? Genau solche Fragen beantworten wir – nicht nur theoretisch, sondern praktisch.
 
 In jedem Kapitel erproben wir ein neues Experiment und lernen dabei eine Facette der digitalen Welt kennen. Gleichzeitig wächst euer Programmierwissen organisch mit. Wenn alles gut läuft, merkt ihr kaum, wie schnell ihr vorankommt.
 
-## Experimente im Überblick
+## Experimente
 
 Kapitel für Kapitel arbeitet ihr an Experimenten, die Hardware und Software verbinden. Dabei geht es um mehr als das Zusammenschrauben von Komponenten: Ihr lernt, Computer als universelle Problemlösungsmaschinen zu nutzen – für eure eigenen Ideen.
 
@@ -37,8 +35,8 @@ Kapitel für Kapitel arbeitet ihr an Experimenten, die Hardware und Software ver
 | @sec-numbers | Wir entwickeln einen Dimmer für die LED, der über einen Drehknopf gesteuert wird. |
 | @sec-text | Wir lernen, wie man Texte ganz ohne Tastatur eingeben kann – über Handgesten. |
 | @sec-images | Wir verbinden Tabellenkalkulation mit Bildern und Displays |
-| @sec-sound | Das Kapitel ist noch in Arbeit... |
-| @sec-analog-digital | Wir basteln ein Pulsmessgerät aus einem einfachen Lichtsensor |
+| @sec-sensors | Wir basteln ein Pulsmessgerät aus einem einfachen Lichtsensor |
+| @sec-learning | Wir bringen dem Computer bei, wie er Spam von Nicht-Spam unterscheiden kann |
 
 <!--
 | @sec-c | Wir lernen Morse-Code und wie wir diesen über einen Lautsprecher ausgeben können. |
@@ -54,7 +52,7 @@ Kapitel für Kapitel arbeitet ihr an Experimenten, die Hardware und Software ver
 | @sec-problems |  |
 -->
 
-## Die Hardware: unser Experimentier‑Set
+## Hardware
 
 Hier seht ihr die Geräte, mit denen wir experimentieren. Zusammen kosten alle Komponenten ca. 249 €. Keine Sorge: Wenn ihr dieses Buch im Rahmen meines Moduls „Digitalisierung und Programmierung“ an der Hochschule Osnabrück nutzt, erhaltet ihr für die Zeit des Semesters ein komplettes Hardware‑Kit kostenlos.
 
@@ -75,7 +73,7 @@ Hier seht ihr die Geräte, mit denen wir experimentieren. Zusammen kosten alle K
 | Montageplatte | [Montageplatte 22x22 (12x12cm)](https://www.tinkerforge.com/de/shop/mounting-plate-22x22-with-cable-lead-through.html) | 2 | 7 € |
 | Schrauben, Abstandshalter und Muttern | [Befestigungskit 12mm](https://www.tinkerforge.com/de/shop/accessories/mounting/mounting-kit-12mm.html) | 4 | 2 € |
 
-## So nutzt ihr dieses Buch am besten
+## Tipps zur Verwendung
 
 Weil es hier viel ums Programmieren geht, findet ihr zahlreiche Codebeispiele. Wir verwenden als Einstiegssprache Python. Warum Python? Weil es in der Praxis weit verbreitet ist, eine klare, leicht lesbare Syntax hat und viele nützliche Bibliotheken den Einstieg erleichtern.
 
@@ -102,7 +100,7 @@ Damit der Fokus beim schrittweisen Entwickeln auf den neuen Teilen liegt, lasse 
 
 Noch ein Tipp: Wenn ihr mit der Maus über einen Codeblock fahrt, erscheint rechts oben ein Clipboard‑Symbol. Ein Klick darauf kopiert den Code in eure Zwischenablage – ideal, um ihn in Visual Studio Code oder eine andere IDE einzufügen. In der Online‑Version lassen sich manche Codeblöcke einklappen, damit ihr weniger scrollen müsst.
 
-## Fehler als Lernmotor: Frust gehört dazu
+### Fehler als Lernmotor: Frust gehört dazu
 
 Eins vorweg: Beim Programmierenlernen ist Frust normal – und nützlich. Computer sind präzise, gnadenlose Lehrer. Ein vergessener Punkt, ein Buchstabe zu viel, ein Zahlendreher: Sofort gibt es Feedback. Das kann nerven, beschleunigt aber euren Lernprozess enorm. Sobald ihr Fehlermeldungen als Hinweise versteht und gezielt damit umgeht, kommen die Erfolgserlebnisse schnell.
 
@@ -110,7 +108,7 @@ Eins vorweg: Beim Programmierenlernen ist Frust normal – und nützlich. Comput
 
 Wenn etwas nicht klappt: Atmet durch, nehmt es nicht persönlich und versucht es erneut. Fehler sind unvermeidbar – und wichtig. Es lohnt sich!
 
-## Empfehlenswerte Bücher
+## Buchempfehlungen
 
 Auch wenn dieses Buch einen eigenen Weg geht, haben mich andere Werke inspiriert:
 
@@ -118,7 +116,5 @@ Auch wenn dieses Buch einen eigenen Weg geht, haben mich andere Werke inspiriert
 - Abenteuer Informatik von Jens Gallenbacher.
 - Computer Science: An Overview von J. Glenn Brookshear und Dennis Brylow: Ein umfassendes Lehrbuch mit breitem Überblick und klarer Struktur.
 - The Way Things Work von David Macaulay: Erklärt Technologien unterhaltsam. Der Teil „The Digital Domain“ mit den Abschnitten „Making Bits“, „Storing Bits“, „Processing Bits“ und „Sending Bits“ hat die Struktur dieses Buches beeinflusst.
-
-## Auf geht’s
 
 Alles klar? Dann machen wir uns startklar für die Experimente! Dazu müssen wir ein paar Dinge auf unserem Rechner installieren.

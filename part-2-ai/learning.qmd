@@ -1,0 +1,89 @@
+# Lernen {#sec-learning}
+
+## Zusammenfassung
+
+Im ersten Teil des Buches haben wir wichtige Grundlagen der Programmierung gelernt. Wir haben gesehen, wie Computer Probleme lösen: Sie stellen Dinge aus der analogen Welt in einer digitalen Form dar und wenden dann Verarbeitungsschritte (Algorithmen) an, um daraus eine Lösung zu bauen. Dabei haben wir als Menschen die genauen Schritte vorgegeben und in einer Programmiersprache kodiert, in unserem Beispiel mit Python.
+
+Im zweiten Teil des Buches, der mit diesem Kapitel beginnt, schauen wir uns eine ganz andere Herangehensweise an: **maschinelles Lernen**. Dabei geben wir dem Computer nicht mehr jeden einzelnen Schritt zur Lösung vor. Stattdessen soll er die Logik selbst entdecken - oder *lernen*. Aber wie können Computer lernen? Indem wir ihm viele bereits gelöste Beispiele als Daten zeigen und ihn so trainieren, dass er aus diesen Beispielen Regeln ableitet. Die Hoffnung ist: Mit diesen gelernten Regeln kann er auch neue Fälle lösen, die er noch nie gesehen hat.
+
+Wenn Computer aus Beispielen lernen sollen: Was machen wir Menschen dann überhaupt noch, wenn wir nicht mehr alle Regeln selbst aufschreiben? Genau hier liegt der große Unterschied.
+
+Der Wechsel von "*Menschen geben dem Computer die Regeln für die Lösung vor*" zu "*Menschen lassen den Computer die Regeln erlernen*" ist ein **Paradigmenwechsel**. Zwar müssen wir Menschen weiterhin Regeln entwerfen, aber nicht mehr für die Lösung selbst. Stattdessen entwerfen wir einen Algorithmus, der es Computern ermöglicht, aus Daten zu lernen. Wir sprechen dann von **Algorithmen des maschinellen Lernens**.
+
+Schauen wir uns das an einem konkreten Beispiel an: Eine E-Mail als "Spam" oder "Nicht-Spam" zu erkennen.
+
+## Spamfilter
+
+Wer von euch bekommt regelmäßig E-Mails? Und wie oft sind darunter Mails, die ihr eigentlich nie lesen wolltet?
+
+Jeder kennt das Problem: Täglich flattert eine Flut von E-Mails in den Posteingang. Nicht alle sind gleichermaßen relevant oder ernst gemeint. Viele Mails sind Werbung oder im schlimmsten Fall fiese Versuche, an eure Daten zu gelangen (siehe [Phishing-Mails](https://www.bsi.bund.de/DE/Themen/Verbraucherinnen-und-Verbraucher/Cyber-Sicherheitslage/Methoden-der-Cyber-Kriminalitaet/Spam-Phishing-Co/Passwortdiebstahl-durch-Phishing/Wie-erkenne-ich-Phishing-in-E-Mails-und-auf-Webseiten/wie-erkenne-ich-phishing-in-e-mails-und-auf-webseiten_node.html)). Eine Lösung, die E-Mails für uns vorsortiert, wäre eine große Hilfe: in sinnvolle, ernst gemeinte E-Mails und eben die anderen, die uns im schlimmsten Fall schaden könnten.
+
+Klar, dafür gibt es sogenannte Spamfilter. Wer das Mailprogramm [Gmail](https://mail.google.com/) nutzt, findet im Postfach einen Ordner "Spam". Dort landen zuverlässig E-Mails, an denen wir mit hoher Wahrscheinlichkeit kein Interesse haben.
+
+![Mein Gmail-Spamordner, der die automatisch als "Spam" erkannten E-Mails enthält.](/images/gmail_spam.png)
+
+Woher aber weiß Google, welche E-Mails in den Spamordner gehören und welche nicht?
+
+Neben Spam sortiert Gmail übrigens auch andere E-Mails vor: Newsletter, Social Media, Einkäufe und viele mehr. Es gibt also nicht nur einen einfachen "Spam"-Filter, sondern ein ganzes Klassifizierungssystem. Wir bleiben hier der Einfachheit halber bei der Aufgabe, E-Mails in **zwei** Kategorien einzuteilen. Das nennt man eine **binäre Klassifikation**: Es gibt genau zwei Klassen. Wie wir bereits in @sec-numbers-binary-system gelernt haben, steht *binär* für zwei Zustände.
+
+Bei Spamfiltern spricht man übrigens oft von "Spam" (irrelevante oder schädliche E-Mails) und "Ham" (die E-Mails, die wir wirklich lesen wollen). Weil es schön kurz ist, verwende ich diese Begriffe ab jetzt auch.
+
+Für alle Nerds unter euch: Der Begriff "Spam" kommt ursprünglich aus dem Lebensmittelumfeld und steht für "Spiced Pork and Ham", [ein Produkt der Firma Hormel Foods Corporation](https://www.hormelfoods.com/brand/spam-brand/) aus den USA. Erst Monty Python hat den Begriff in einem Sketch für die heutige Bedeutung vorbereitet. Die Geschichte könnt ihr auf der [Webseite des Bayerischen Verbraucherschutzministeriums](https://www.vis.bayern.de/recht/werbung_recht/spambegriff.htm) vertiefen.
+
+## Regeln für Spam-Erkennung
+
+Ganz im Geiste des ersten Teils des Buches lösen wir das Problem der Spamfilterung gedanklich zuerst mit der klassischen Herangehensweise: Wir überlegen uns Regeln und kodieren sie in einem Algorithmus, der eine E-Mail in *Spam* oder *Ham* einteilt.
+
+Wie immer, wenn wir für ein Problem eine computergestützte Lösung suchen, nutzen wir dafür das uns bekannte Problemlösungsschema. In @fig-spam-eva seht ihr das EVA-Modell für das Spamfilterproblem.
+
+![Spamfilterung als EVA-Modell](https://winf-hsos.github.io/university-docs/images/problem_example_spam.png){#fig-spam-eva}
+
+Damit wir einem Computer ein Problem und dessen Lösung beibringen können, müssen wir alle drei Bestandteile des Modells (Eingabe, Verarbeitung, Ausgabe) in eine für Computer verarbeitbare Form bringen. Das können wir hier kurz halten: E-Mails sind im Computer bereits als Text gespeichert (@sec-text). Die Ausgabe ist eine einfache Klassifikation in zwei Kategorien: *Spam* oder *Ham*. Die Herausforderung liegt also in der Verarbeitung: Wie kann ein Algorithmus entscheiden, ob eine E-Mail Spam oder Ham ist?
+
+Früher, in den 90er-Jahren, als wir noch nicht massenweise über E-Mails kommuniziert haben, reichten oft einfache Verfahren aus, um sich effektiv vor unerwünschten E-Mails zu schützen. Erste Ansätze suchten nach bestimmten Wörtern in E-Mails. Wenn diese vorkamen, wurden die Mails als Spam markiert. Wörter wie "FREE", "WIN" oder "GUARANTEED" waren typische Kandidaten.
+
+Eine andere Methode war das Blockieren bestimmter Absender, um von ihnen keine E-Mails mehr zu erhalten. Weil man bei jeder E-Mail weiß, von welchem Server (bzw. von welcher IP-Adresse) sie gesendet wurde, konnte man IP-basierte Sperrlisten zentral verwalten und bei vielen Nutzern gleichzeitig anwenden.
+
+Beide Varianten haben ihre Probleme. Bei der Keyword-Filterung kann es zu Fehlern kommen, wenn eine E-Mail zwar eines der Wörter enthält, aber dennoch keine Spam-Mail ist. Eine Mail landet dann fälschlicherweise im Spam-Ordner. Gleichzeitig sind solche Filter leicht auszutricksen, indem ungewöhnliche Schreibweisen verwendet werden, zum Beispiel "V1agra" statt "Viagra".
+
+Das ist im Kern ein Wettrüsten: Spammer passen ihre Mails an, und die Filterlisten müssen wieder nachziehen. Um das Problem in den Griff zu bekommen, konnte das manuelle Aufstellen von Regeln nicht die Lösung sein.
+
+## Lernen, wie Spam aussieht
+
+Wenn wir nicht mehr jede einzelne Regel selbst aufschreiben wollen: Wie bekommen wir den Computer dazu, selbst zu lernen, wie Spam aussieht? Willkommen in der Welt des **maschinellen Lernens**!
+
+Die Idee beim maschinellen Lernen ist einfach (und ein bisschen wie beim Lernen für eine Klassenarbeit): Wir geben dem Computer viele Beispiele. Der Computer bekommt viele E-Mails, bei denen bereits feststeht, ob sie *Spam* oder *Ham* sind. Aus diesen Beispielen lernt er, welche Muster typisch für Spam sind. Danach kann er bei einer neuen E-Mail eine begründete Vermutung abgeben, in welche Kategorie sie gehört. Klingt gut, aber wie oben schon angedeutet, müssen wir Menschen immernoch den Lernalgorithmus entwerfen, der aus den Beispielen lernt. Wie geht das für Spamfilter?
+
+### Bayesscher Spamfilter
+
+In seinem Aufsatz [A Plan for Spam](https://paulgraham.com/spam.html) erzielte Paul Graham im Jahr 2002 einen Durchbruch bei der Spamfilterung. Er schlug ein einfaches, auf Wahrscheinlichkeiten basierendes Verfahren vor. Ein sogenannter **Bayesscher Filter** wendet keine starre Menge an Regeln auf eine E-Mail an (wie Keyword- und IP-Blacklists), sondern berechnet aus den enthaltenen Wörtern eine Spam-Wahrscheinlichkeit. Und das Spannende: Wie diese Wahrscheinlichkeit berechnet wird, lernt der Algorithmus zu 100% aus Daten.
+
+> To the recipient, spam is easily recognizable. If you hired someone to read your mail and discard the spam, they would have little trouble doing it. How much do we have to do, short of AI, to automate this process? (Quelle: [A Plan for Spam](https://paulgraham.com/spam.html))
+
+Der vorgeschlagene Algorithmus basiert auf dem Satz von Bayes. Die Idee dahinter ist: Wir nehmen eine Beobachtung aus der E-Mail (zum Beispiel ein bestimmtes Wort) und fragen uns dann: **Wie wahrscheinlich ist es, dass die Mail Spam ist, *wenn* wir diese Beobachtung sehen?**
+
+Um das auszudrücken, verwenden wir **bedingte Wahrscheinlichkeiten**. $P(\mathrm{Spam}\mid \mathrm{Wort})$ bedeutet zum Beispiel: *Wie wahrscheinlich ist "Spam", wenn das Wort vorkommt?* Der Satz von Bayes verknüpft genau solche Wahrscheinlichkeiten miteinander:
+
+$$
+P(A \mid B) = \frac{P(B \mid A)\,P(A)}{P(B)}
+$$
+
+Im Spam-Kontext können wir $A=\mathrm{Spam}$ und $B=\mathrm{Wort\ kommt\ vor}$ setzen. Dann wird daraus:
+
+$$
+P(\mathrm{Spam} \mid \mathrm{Wort}) = \frac{P(\mathrm{Wort} \mid \mathrm{Spam})\,P(\mathrm{Spam})}{P(\mathrm{Wort})}
+$$
+
+So können wir die Formel lesen:
+
+- $P(\mathrm{Spam})$ ist die **Grundwahrscheinlichkeit** (englisch: *Prior*): Wie viel Spam gibt es im Schnitt, bevor wir überhaupt auf den Text schauen?
+- $P(\mathrm{Wort}\mid \mathrm{Spam})$ ist die **Trefferwahrscheinlichkeit** (englisch: *Likelihood*): Wie oft kommt dieses Wort in Spam-Mails vor?
+- $P(\mathrm{Wort})$ ist die **Normalisierung**: Wie oft kommt das Wort insgesamt vor (in Spam *und* in Ham)?
+
+Die letzte Größe $P(\mathrm{Wort})$ können wir aus zwei Fällen zusammensetzen: Entweder die Mail ist Spam oder sie ist Ham.
+
+$$
+P(\mathrm{Wort}) = P(\mathrm{Wort}\mid \mathrm{Spam})\,P(\mathrm{Spam}) + P(\mathrm{Wort}\mid \mathrm{Ham})\,P(\mathrm{Ham})
+$$
+
+Wenn wir also aus vielen gelabelten Beispielen gelernt haben, wie oft ein Wort in Spam bzw. Ham vorkommt, können wir damit für eine neue Mail eine Spam-Wahrscheinlichkeit berechnen. In der Praxis nimmt man nicht nur ein Wort, sondern viele Merkmale (zum Beispiel mehrere Wörter). Ein bekannter Ansatz ist *Naive Bayes*: Dabei tun wir so, als ob die Wörter unabhängig voneinander wären. Dann können wir ihre Wahrscheinlichkeiten ganz einfach multiplizieren. Das ist nicht perfekt, aber oft erstaunlich effektiv.

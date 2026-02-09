@@ -1,0 +1,4 @@
+# Sprache
+
+- Große Sprachmodelle
+- Erste Schritte mit der OpenAI API

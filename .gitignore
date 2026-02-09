@@ -6,5 +6,6 @@ python
 _environment
 /env/
 /.quarto/
-
+CLAUDE.md
+.claude/
 **/*.quarto_ipynb

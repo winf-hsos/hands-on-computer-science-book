@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.26">
+<meta name="generator" content="quarto-1.8.27">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Nicolas Meseth">
-<meta name="description" content="Ein Online-Buch mit Hardware-Experimenten, die Schritt für Schritt in die Welt der Digitalisierung und Programmierung einführen.">
+<meta name="description" content="Ein Online-Buch mit Experimenten, die Schritt für Schritt in die Welt der Digitalisierung, Programmierung und Künstliche Intelligenz einführen.">
 
 <title>Hands-On Computer Science</title>
 <style>
@@ -95,7 +95,7 @@ div.csl-indent {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-587c61ba64f3a5504c4d52d930310e48.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-670489e30afdd02925324b99e7f7a38e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
@@ -127,99 +127,193 @@ div.csl-indent {
   }
 }</script>
 <!-- DataTables assets -->
+
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css">
+
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
 <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
 
+
+
 <style>
+
 /* linksbündig + volle Breite */
+
 .datatable table, .datatable-nosearch table { width: 100% !important; }
+
 .datatable table td, .datatable table th,
+
 .datatable-nosearch table td, .datatable-nosearch table th { text-align: left; }
 
+
+
 /* etwas Luft unter dem Suchfeld (nur .datatable mit Suche) */
+
 .datatable .dataTables_filter { margin-bottom: 1.5rem; }
+
 </style>
+
+
 
 <style>
+
 /* --- Quarto + DataTables: Floats neutralisieren --- */
+
 .dataTables_wrapper { 
+
   display: flow-root;   /* enthält Floats, verhindert Überlaufen in die Margin */
+
   max-width: 100%;
+
 }
+
+
 
 /* Alle DataTables-Steuerelemente nicht mehr floaten lassen */
+
 .dataTables_wrapper .dataTables_filter,
+
 .dataTables_wrapper .dataTables_length,
+
 .dataTables_wrapper .dataTables_info,
+
 .dataTables_wrapper .dataTables_paginate {
+
   float: none !important;
+
   text-align: left;     /* oder right, aber ohne float */
+
   margin: 0 0 1rem 0;   /* etwas Luft unter die Zeile */
+
 }
 
+
+
 /* Sicherheitshalber: Tabelle bleibt im Content-Bereich */
+
 .page-columns .content .dataTables_wrapper { margin-right: 0; }
+
 </style>
+
+
+
 
 
 <script>
+
 (function () {
+
   function initDT() {
+
     if (!window.jQuery || !jQuery.fn || !jQuery.fn.DataTable) return;
 
+
+
     // 0) Vorhandene Instanzen zerstören (Hot-Reload zuverlässig)
+
     document.querySelectorAll('.datatable table, .datatable-nosearch table').forEach(function (tbl) {
+
       if (jQuery.fn.dataTable.isDataTable(tbl)) {
+
         try { jQuery(tbl).DataTable().destroy(); } catch(e) {}
+
       }
+
       tbl.removeAttribute('data-dt-inited');
+
       tbl.classList.remove('dataTable');
+
     });
+
+
 
     // 1) Tabellen MIT Suche (globales Glossar)
+
     document.querySelectorAll('.datatable table').forEach(function (tbl) {
+
       if (tbl.dataset.dtInited === '1') return;
+
       const wrap = tbl.closest('.datatable');
+
       let order = [[0,'asc']];
+
       try {
+
         const o = wrap && wrap.getAttribute('data-order');
+
         if (o) order = JSON.parse(o);
+
       } catch(e) {}
+
       jQuery(tbl).DataTable({
+
         dom: 'f',
+
         paging: false,
+
         info: false,
+
         ordering: true,
+
         order: order
+
       });
+
       tbl.dataset.dtInited = '1';
+
     });
 
+
+
     // 2) Tabellen OHNE Suche (Kapitel-Glossare)
+
     document.querySelectorAll('.datatable-nosearch table').forEach(function (tbl) {
+
       if (tbl.dataset.dtInited === '1') return;
+
       const wrap = tbl.closest('.datatable-nosearch');
+
       let order = [[0,'asc']]; // Fallback
+
       try {
+
         const o = wrap && wrap.getAttribute('data-order');
+
         if (o) order = JSON.parse(o);   // <-- liest z.B. [[2,"asc"]]
+
       } catch(e) {}
+
       jQuery(tbl).DataTable({
+
         dom: 't',        // nur Tabelle
+
         paging: false,
+
         info: false,
+
         ordering: true,
+
         order: order,
+
         orderMulti: false
+
       });
+
       tbl.dataset.dtInited = '1';
+
     });
+
   }
+
   document.addEventListener('DOMContentLoaded', initDT);
+
   document.addEventListener('quarto:rendered', initDT);
+
 })();
+
 </script>
+
 
 
 <link rel="stylesheet" href="partials/gloss.css">
@@ -275,36 +369,88 @@ div.csl-indent {
  <span class="menu-text">Vorbereitung</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Digitalisierung</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./colors.html" class="sidebar-item-text sidebar-link">
+  <a href="./part-1-dap/colors.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Farben</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./numbers.html" class="sidebar-item-text sidebar-link">
+  <a href="./part-1-dap/numbers.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Zahlen</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./text.html" class="sidebar-item-text sidebar-link">
+  <a href="./part-1-dap/text.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Texte</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./images.html" class="sidebar-item-text sidebar-link">
+  <a href="./part-1-dap/images.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Bilder</span></span></a>
   </div>
 </li>
-        <li class="sidebar-item">
+          <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./analog-digital.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Analog → Digital</span></span></a>
+  <a href="./part-1-dap/sensors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sensoren</span></span></a>
   </div>
 </li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Künstliche Intelligenz</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./part-2-ai/learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lernen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./part-2-ai/vision.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Sehen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./part-2-ai/listen.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Hören</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./part-2-ai/speaking.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Sprechen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./part-2-ai/language.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Sprache</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./references.html" class="sidebar-item-text sidebar-link">
@@ -323,15 +469,15 @@ div.csl-indent {
   <ul>
   <li><a href="#vorwort" id="toc-vorwort" class="nav-link active" data-scroll-target="#vorwort">Vorwort</a>
   <ul class="collapse">
-  <li><a href="#für-wen-ist-dieses-buch-gedacht" id="toc-für-wen-ist-dieses-buch-gedacht" class="nav-link" data-scroll-target="#für-wen-ist-dieses-buch-gedacht">Für wen ist dieses Buch gedacht?</a></li>
-  <li><a href="#was-macht-dieses-buch-anders" id="toc-was-macht-dieses-buch-anders" class="nav-link" data-scroll-target="#was-macht-dieses-buch-anders">Was macht dieses Buch anders?</a></li>
-  <li><a href="#hands-on-von-anfang-an" id="toc-hands-on-von-anfang-an" class="nav-link" data-scroll-target="#hands-on-von-anfang-an">Hands-on von Anfang an</a></li>
-  <li><a href="#experimente-im-überblick" id="toc-experimente-im-überblick" class="nav-link" data-scroll-target="#experimente-im-überblick">Experimente im Überblick</a></li>
-  <li><a href="#die-hardware-unser-experimentierset" id="toc-die-hardware-unser-experimentierset" class="nav-link" data-scroll-target="#die-hardware-unser-experimentierset">Die Hardware: unser Experimentier‑Set</a></li>
-  <li><a href="#so-nutzt-ihr-dieses-buch-am-besten" id="toc-so-nutzt-ihr-dieses-buch-am-besten" class="nav-link" data-scroll-target="#so-nutzt-ihr-dieses-buch-am-besten">So nutzt ihr dieses Buch am besten</a></li>
+  <li><a href="#zielgruppe" id="toc-zielgruppe" class="nav-link" data-scroll-target="#zielgruppe">Zielgruppe</a></li>
+  <li><a href="#besonderheit-dieses-buches" id="toc-besonderheit-dieses-buches" class="nav-link" data-scroll-target="#besonderheit-dieses-buches">Besonderheit dieses Buches</a></li>
+  <li><a href="#experimente" id="toc-experimente" class="nav-link" data-scroll-target="#experimente">Experimente</a></li>
+  <li><a href="#hardware" id="toc-hardware" class="nav-link" data-scroll-target="#hardware">Hardware</a></li>
+  <li><a href="#tipps-zur-verwendung" id="toc-tipps-zur-verwendung" class="nav-link" data-scroll-target="#tipps-zur-verwendung">Tipps zur Verwendung</a>
+  <ul class="collapse">
   <li><a href="#fehler-als-lernmotor-frust-gehört-dazu" id="toc-fehler-als-lernmotor-frust-gehört-dazu" class="nav-link" data-scroll-target="#fehler-als-lernmotor-frust-gehört-dazu">Fehler als Lernmotor: Frust gehört dazu</a></li>
-  <li><a href="#empfehlenswerte-bücher" id="toc-empfehlenswerte-bücher" class="nav-link" data-scroll-target="#empfehlenswerte-bücher">Empfehlenswerte Bücher</a></li>
-  <li><a href="#auf-gehts" id="toc-auf-gehts" class="nav-link" data-scroll-target="#auf-gehts">Auf geht’s</a></li>
+  </ul></li>
+  <li><a href="#buchempfehlungen" id="toc-buchempfehlungen" class="nav-link" data-scroll-target="#buchempfehlungen">Buchempfehlungen</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -346,7 +492,7 @@ div.csl-indent {
 
 <div>
   <div class="description">
-    Ein Online-Buch mit Hardware-Experimenten, die Schritt für Schritt in die Welt der Digitalisierung und Programmierung einführen.
+    Ein Online-Buch mit Experimenten, die Schritt für Schritt in die Welt der Digitalisierung, Programmierung und Künstliche Intelligenz einführen.
   </div>
 </div>
 
@@ -363,7 +509,7 @@ div.csl-indent {
     <div>
     <div class="quarto-title-meta-heading">Veröffentlichungsdatum</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">14. Dezember 2025</p>
+      <p class="date">9. Februar 2026</p>
     </div>
   </div>
   
@@ -377,11 +523,11 @@ div.csl-indent {
 
 
 <section id="vorwort" class="level1 unnumbered">
-<h1 class="unnumbered">Vorwort</h1><p><img src="cover.png" title="Hands-On Computer Science" class="quarto-cover-image nolightbox img-fluid"></p>
+<h1 class="unnumbered">Vorwort</h1><p><img src="cover.jpg" title="Hands-On Computer Science" class="quarto-cover-image nolightbox img-fluid"></p>
 <p>Glückwunsch, ihr seid angekommen! Egal, wie euer Weg hierher aussah: Ihr habt dieses Buch geöffnet – und damit den ersten Schritt getan. Vielleicht studiert ihr an der Hochschule Osnabrück und seid im Modul dabei, vielleicht seid ihr aus Neugier hier. So oder so: Willkommen!</p>
 <p>Dieses Buch ist aus meiner Lehrpraxis an der Hochschule Osnabrück entstanden. Es dient als Hauptlektüre in meinen Veranstaltungen, als Nachschlagewerk für verpasste Sitzungen und als kompakte, praxisnahe Einführung für alle, die sich eigenständig in die digitale Welt einarbeiten wollen. Die wissenschaftliche Disziplin dahinter heißt auf Deutsch Informatik, international Computer Science. Der Titel Hands-On Computer Science verrät schon den Ansatz: Wir lernen praktisch – von Anfang an.</p>
-<section id="für-wen-ist-dieses-buch-gedacht" class="level2">
-<h2 class="anchored" data-anchor-id="für-wen-ist-dieses-buch-gedacht">Für wen ist dieses Buch gedacht?</h2>
+<section id="zielgruppe" class="level2">
+<h2 class="anchored" data-anchor-id="zielgruppe">Zielgruppe</h2>
 <p>Lehrbücher zur Informatik gibt es viele. Doch nicht jedes passt zu dem, was ich mit meinen Studierenden erreichen möchte. Meine Zielgruppe seid ihr:</p>
 <ul>
 <li>Studierende aus Studiengängen wie <a href="https://hs-osnabrueck.de/bne">Management nachhaltiger Ernährungssysteme</a>, <a href="https://www.hs-osnabrueck.de/blp">Lebensmittelproduktion</a> oder <a href="https://www.hs-osnabrueck.de/agrarsystemtechnologien-bsc/">Agrarsystemtechnologien</a>.</li>
@@ -389,22 +535,19 @@ div.csl-indent {
 </ul>
 <p>Kurz gesagt: Dieses Buch ist für alle, die in die digitale Welt eintauchen wollen, ohne sich in Details zu verlieren. Ihr braucht keinen dicken Wälzer, sondern einen roten Faden, der euch Schritt für Schritt zu den grundlegenden Konzepten führt – mit Spaß und Erfolgserlebnissen.</p>
 </section>
-<section id="was-macht-dieses-buch-anders" class="level2">
-<h2 class="anchored" data-anchor-id="was-macht-dieses-buch-anders">Was macht dieses Buch anders?</h2>
+<section id="besonderheit-dieses-buches" class="level2">
+<h2 class="anchored" data-anchor-id="besonderheit-dieses-buches">Besonderheit dieses Buches</h2>
 <p>Viele Bücher versprechen Praxisnähe, enden aber in abstrakten Übungen am Kapitelende. Hier gehen wir es anders an:</p>
 <ol type="1">
 <li>Ihr entdeckt informatische Konzepte über Experimente mit Microcontrollern, Sensoren, Buttons, LEDs und Displays.</li>
 <li>Wichtige Ideen führen wir früh ein, vertiefen sie nach und nach und wiederholen sie regelmäßig.</li>
 <li>Theorie und Praxis gehören zusammen: Ihr lernt Programmieren und Informatik-Grundlagen gleichzeitig.</li>
 </ol>
-</section>
-<section id="hands-on-von-anfang-an" class="level2">
-<h2 class="anchored" data-anchor-id="hands-on-von-anfang-an">Hands-on von Anfang an</h2>
 <p>Habt ihr euch schon einmal gefragt, wie man Informationen mit Licht überträgt? Wie man mit Licht den Puls messen kann? Oder wie man mit zwei einfachen Kabeln einen Wasserstandssensor baut? Genau solche Fragen beantworten wir – nicht nur theoretisch, sondern praktisch.</p>
 <p>In jedem Kapitel erproben wir ein neues Experiment und lernen dabei eine Facette der digitalen Welt kennen. Gleichzeitig wächst euer Programmierwissen organisch mit. Wenn alles gut läuft, merkt ihr kaum, wie schnell ihr vorankommt.</p>
 </section>
-<section id="experimente-im-überblick" class="level2">
-<h2 class="anchored" data-anchor-id="experimente-im-überblick">Experimente im Überblick</h2>
+<section id="experimente" class="level2">
+<h2 class="anchored" data-anchor-id="experimente">Experimente</h2>
 <p>Kapitel für Kapitel arbeitet ihr an Experimenten, die Hardware und Software verbinden. Dabei geht es um mehr als das Zusammenschrauben von Komponenten: Ihr lernt, Computer als universelle Problemlösungsmaschinen zu nutzen – für eure eigenen Ideen.</p>
 <table class="caption-top table">
 <colgroup>
@@ -419,28 +562,28 @@ div.csl-indent {
 </thead>
 <tbody>
 <tr class="odd">
-<td><a href="colors.html" class="quarto-xref"><span>1&nbsp; Farben</span></a></td>
+<td><a href="part-1-dap/colors.html" class="quarto-xref"><span>1&nbsp; Farben</span></a></td>
 <td>Wir lassen eine LED einen Regenbogenfarbverlauf über die Zeit erzeugen.</td>
 </tr>
 <tr class="even">
-<td><a href="numbers.html" class="quarto-xref"><span>2&nbsp; Zahlen</span></a></td>
+<td><a href="part-1-dap/numbers.html" class="quarto-xref"><span>2&nbsp; Zahlen</span></a></td>
 <td>Wir entwickeln einen Dimmer für die LED, der über einen Drehknopf gesteuert wird.</td>
 </tr>
 <tr class="odd">
-<td><a href="text.html" class="quarto-xref"><span>3&nbsp; Texte</span></a></td>
+<td><a href="part-1-dap/text.html" class="quarto-xref"><span>3&nbsp; Texte</span></a></td>
 <td>Wir lernen, wie man Texte ganz ohne Tastatur eingeben kann – über Handgesten.</td>
 </tr>
 <tr class="even">
-<td><a href="images.html" class="quarto-xref"><span>4&nbsp; Bilder</span></a></td>
+<td><a href="part-1-dap/images.html" class="quarto-xref"><span>4&nbsp; Bilder</span></a></td>
 <td>Wir verbinden Tabellenkalkulation mit Bildern und Displays</td>
 </tr>
 <tr class="odd">
-<td><span class="quarto-unresolved-ref">?sec-sound</span></td>
-<td>Das Kapitel ist noch in Arbeit…</td>
+<td><a href="part-1-dap/sensors.html" class="quarto-xref"><span>5&nbsp; Sensoren</span></a></td>
+<td>Wir basteln ein Pulsmessgerät aus einem einfachen Lichtsensor</td>
 </tr>
 <tr class="even">
-<td><a href="analog-digital.html" class="quarto-xref"><span>5&nbsp; Analog → Digital</span></a></td>
-<td>Wir basteln ein Pulsmessgerät aus einem einfachen Lichtsensor</td>
+<td><a href="part-2-ai/learning.html" class="quarto-xref"><span>6&nbsp; Lernen</span></a></td>
+<td>Wir bringen dem Computer bei, wie er Spam von Nicht-Spam unterscheiden kann</td>
 </tr>
 </tbody>
 </table>
@@ -458,8 +601,8 @@ div.csl-indent {
 | @sec-problems |  |
 -->
 </section>
-<section id="die-hardware-unser-experimentierset" class="level2">
-<h2 class="anchored" data-anchor-id="die-hardware-unser-experimentierset">Die Hardware: unser Experimentier‑Set</h2>
+<section id="hardware" class="level2">
+<h2 class="anchored" data-anchor-id="hardware">Hardware</h2>
 <p>Hier seht ihr die Geräte, mit denen wir experimentieren. Zusammen kosten alle Komponenten ca. 249 €. Keine Sorge: Wenn ihr dieses Buch im Rahmen meines Moduls „Digitalisierung und Programmierung“ an der Hochschule Osnabrück nutzt, erhaltet ihr für die Zeit des Semesters ein komplettes Hardware‑Kit kostenlos.</p>
 <table class="caption-top table">
 <thead>
@@ -558,11 +701,11 @@ div.csl-indent {
 </tbody>
 </table>
 </section>
-<section id="so-nutzt-ihr-dieses-buch-am-besten" class="level2">
-<h2 class="anchored" data-anchor-id="so-nutzt-ihr-dieses-buch-am-besten">So nutzt ihr dieses Buch am besten</h2>
+<section id="tipps-zur-verwendung" class="level2">
+<h2 class="anchored" data-anchor-id="tipps-zur-verwendung">Tipps zur Verwendung</h2>
 <p>Weil es hier viel ums Programmieren geht, findet ihr zahlreiche Codebeispiele. Wir verwenden als Einstiegssprache Python. Warum Python? Weil es in der Praxis weit verbreitet ist, eine klare, leicht lesbare Syntax hat und viele nützliche Bibliotheken den Einstieg erleichtern.</p>
 <p>Codeblöcke sind im Text deutlich abgesetzt (grau hinterlegt, Schreibmaschinenschrift). Ein Beispiel mit Annotationen:</p>
-<div id="a6004d77" class="cell" data-execution_count="1">
+<div id="595f0c49" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1">1</button><span id="annotated-cell-1-1" class="code-annotation-target"><a href="#annotated-cell-1-1"></a>led.set_rgb_value(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2">2</button><span id="annotated-cell-1-2" class="code-annotation-target"><a href="#annotated-cell-1-2"></a>led.set_rgb_value(<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">255</span>)</span>
 <span id="annotated-cell-1-3"><a href="#annotated-cell-1-3"></a></span>
@@ -591,9 +734,8 @@ div.csl-indent {
 <p>Damit der Fokus beim schrittweisen Entwickeln auf den neuen Teilen liegt, lasse ich gelegentlich Abschnitte im Code aus und markiere das mit drei Punkten (<code>...</code>). Den vollständigen Code findet ihr am Ende eines Abschnitts und im GitHub‑Repository zum Buch:</p>
 <p><a href="https://github.com/winf-hsos/hands-on-computer-science-code" class="uri">https://github.com/winf-hsos/hands-on-computer-science-code</a></p>
 <p>Noch ein Tipp: Wenn ihr mit der Maus über einen Codeblock fahrt, erscheint rechts oben ein Clipboard‑Symbol. Ein Klick darauf kopiert den Code in eure Zwischenablage – ideal, um ihn in Visual Studio Code oder eine andere IDE einzufügen. In der Online‑Version lassen sich manche Codeblöcke einklappen, damit ihr weniger scrollen müsst.</p>
-</section>
-<section id="fehler-als-lernmotor-frust-gehört-dazu" class="level2">
-<h2 class="anchored" data-anchor-id="fehler-als-lernmotor-frust-gehört-dazu">Fehler als Lernmotor: Frust gehört dazu</h2>
+<section id="fehler-als-lernmotor-frust-gehört-dazu" class="level3">
+<h3 class="anchored" data-anchor-id="fehler-als-lernmotor-frust-gehört-dazu">Fehler als Lernmotor: Frust gehört dazu</h3>
 <p>Eins vorweg: Beim Programmierenlernen ist Frust normal – und nützlich. Computer sind präzise, gnadenlose Lehrer. Ein vergessener Punkt, ein Buchstabe zu viel, ein Zahlendreher: Sofort gibt es Feedback. Das kann nerven, beschleunigt aber euren Lernprozess enorm. Sobald ihr Fehlermeldungen als Hinweise versteht und gezielt damit umgeht, kommen die Erfolgserlebnisse schnell.</p>
 <div id="fig-chimp-frustrated" class="quarto-float quarto-figure quarto-figure-left anchored" data-fig-align="left">
 <figure class="quarto-float quarto-float-fig figure">
@@ -607,8 +749,9 @@ Abbildung&nbsp;1: Ein frustrierter Frosch
 </div>
 <p>Wenn etwas nicht klappt: Atmet durch, nehmt es nicht persönlich und versucht es erneut. Fehler sind unvermeidbar – und wichtig. Es lohnt sich!</p>
 </section>
-<section id="empfehlenswerte-bücher" class="level2">
-<h2 class="anchored" data-anchor-id="empfehlenswerte-bücher">Empfehlenswerte Bücher</h2>
+</section>
+<section id="buchempfehlungen" class="level2">
+<h2 class="anchored" data-anchor-id="buchempfehlungen">Buchempfehlungen</h2>
 <p>Auch wenn dieses Buch einen eigenen Weg geht, haben mich andere Werke inspiriert:</p>
 <ul>
 <li>Code: The Hidden Language of Computer Hardware and Software von Charles Petzold: Ein Klassiker, der von einfachen Konzepten schrittweise zu komplexeren Themen führt – bis ihr gedanklich einen Computer nachgebaut habt.</li>
@@ -616,9 +759,6 @@ Abbildung&nbsp;1: Ein frustrierter Frosch
 <li>Computer Science: An Overview von J. Glenn Brookshear und Dennis Brylow: Ein umfassendes Lehrbuch mit breitem Überblick und klarer Struktur.</li>
 <li>The Way Things Work von David Macaulay: Erklärt Technologien unterhaltsam. Der Teil „The Digital Domain“ mit den Abschnitten „Making Bits“, „Storing Bits“, „Processing Bits“ und „Sending Bits“ hat die Struktur dieses Buches beeinflusst.</li>
 </ul>
-</section>
-<section id="auf-gehts" class="level2">
-<h2 class="anchored" data-anchor-id="auf-gehts">Auf geht’s</h2>
 <p>Alles klar? Dann machen wir uns startklar für die Experimente! Dazu müssen wir ein paar Dinge auf unserem Rechner installieren.</p>
 
 
@@ -631,6 +771,9 @@ Brookshear, J. Glenn, und Dennis Brylow. 2020. <em>Computer science: an overview
 </div>
 <div id="ref-gallenbacher_abenteuer_2020" class="csl-entry" role="listitem">
 Gallenbacher, Jens. 2020. <em>Abenteuer <span>Informatik</span>: <span>IT</span> zum <span>Anfassen</span> für alle von 9 bis 99, vom <span>Navi</span> bis <span>Social</span> <span>Media</span></em>. 4. Auflage, korrigierte Publikation. Berlin Heidelberg: Springer.
+</div>
+<div id="ref-Makowski2021neurokit" class="csl-entry" role="listitem">
+Makowski, Dominique, Tam Pham, Zen J. Lau, Jan C. Brammer, François Lespinasse, Hung Pham, Christopher Schölzel, und S. H. Annabel Chen. 2021. <span>„<span>NeuroKit</span>2: A Python toolbox for neurophysiological signal processing“</span>. <em>Behavior Research Methods</em> 53 (4): 1689–96. <a href="https://doi.org/10.3758/s13428-020-01516-y">https://doi.org/10.3758/s13428-020-01516-y</a>.
 </div>
 <div id="ref-petzold_code_2022" class="csl-entry" role="listitem">
 Petzold, Charles. 2022. <em>Code: the hidden language of computer hardware and software</em>. 2. Aufl. Hoboken: Microsoft Press.
@@ -647,27 +790,49 @@ Scott, John C. 2009. <em>But how do it know?: the basic principles of computers 
 
 </main> <!-- /main -->
 <script>
+
 document.addEventListener("DOMContentLoaded", () => {
+
   if (document.documentElement.dataset.collapsableInit) return;
+
   document.documentElement.dataset.collapsableInit = "1";
 
+
+
   document.querySelectorAll(
+
     "h1.collapsable, h2.collapsable, h3.collapsable, h4.collapsable, h5.collapsable, h6.collapsable"
+
   ).forEach(h => {
+
     const details = h.nextElementSibling;
+
     if (!details || details.tagName.toLowerCase() !== "details") return;
 
+
+
     // Icon-Status initial
+
     h.classList.toggle("closed", !details.open);
 
+
+
     h.style.cursor = "pointer";
+
     h.addEventListener("click", () => {
+
       details.open = !details.open;
+
       h.classList.toggle("closed", !details.open);
+
     });
+
   });
+
 });
+
 </script>
+
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

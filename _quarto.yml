@@ -11,6 +11,7 @@ lang: de
 execute: 
   enabled: true
   eval: false
+  freeze: false
 
 filters:
   - filters/gloss.lua
@@ -20,8 +21,8 @@ filters:
 book:
   title: "Hands-On Computer Science"
   author: "Nicolas Meseth"
-  description: "Ein Online-Buch mit Hardware-Experimenten, die Schritt für Schritt in die Welt der Digitalisierung und Programmierung einführen."
-  cover-image: cover.png
+  description: "Ein Online-Buch mit Experimenten, die Schritt für Schritt in die Welt der Digitalisierung, Programmierung und Künstliche Intelligenz einführen."
+  cover-image: cover.jpg
   date: today
   date-format: long
   search: true
@@ -32,23 +33,33 @@ book:
     - index.qmd
     - preparation.qmd
 
-    - colors.qmd
-    - numbers.qmd
-    - text.qmd
-    - images.qmd
-    #- sound.qmd
-    - analog-digital.qmd
-    #- codes.qmd
-    #- conversion.qmd
-    #- information.qmd
-    #- sensors.qmd
-    #- signals.qmd
-    #- protocols.qmd
-    #- encryption.qmd
-    #- algorithms.qmd
-    #- compression.qmd
-    #- computer.qmd
-    #- problems.qmd
+    - part: "Digitalisierung"
+      chapters:
+        - part-1-dap/colors.qmd
+        - part-1-dap/numbers.qmd
+        - part-1-dap/text.qmd
+        - part-1-dap/images.qmd
+        #- part-1-dap/sound.qmd
+        - part-1-dap/sensors.qmd
+        #- codes.qmd
+        #- conversion.qmd
+        #- information.qmd
+        #- sensors.qmd
+        #- signals.qmd
+        #- protocols.qmd
+        #- encryption.qmd
+        #- algorithms.qmd
+        #- compression.qmd
+        #- computer.qmd
+        #- problems.qmd
+
+    - part: "Künstliche Intelligenz"
+      chapters:
+        - part-2-ai/learning.qmd
+        - part-2-ai/vision.qmd
+        - part-2-ai/listen.qmd
+        - part-2-ai/speaking.qmd
+        - part-2-ai/language.qmd
 
     #- glossary.qmd
     - references.qmd

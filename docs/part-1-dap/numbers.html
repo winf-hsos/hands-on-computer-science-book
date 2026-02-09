@@ -1,0 +1,2233 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Ein Online-Buch mit Experimenten, die Schritt für Schritt in die Welt der Digitalisierung, Programmierung und Künstliche Intelligenz einführen.">
+
+<title>2&nbsp; Zahlen – Hands-On Computer Science</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../part-1-dap/text.html" rel="next">
+<link href="../part-1-dap/colors.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-670489e30afdd02925324b99e7f7a38e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Keine Treffer",
+    "search-matching-documents-text": "Treffer",
+    "search-copy-link-title": "Link in die Suche kopieren",
+    "search-hide-matches-text": "Zusätzliche Treffer verbergen",
+    "search-more-match-text": "weitere Treffer in diesem Dokument",
+    "search-more-matches-text": "weitere Treffer in diesem Dokument",
+    "search-clear-button-title": "Zurücksetzen",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Abbrechen",
+    "search-submit-button-title": "Abschicken",
+    "search-label": "Suchen"
+  }
+}</script>
+<!-- DataTables assets -->
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css">
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+
+
+
+<style>
+
+/* linksbündig + volle Breite */
+
+.datatable table, .datatable-nosearch table { width: 100% !important; }
+
+.datatable table td, .datatable table th,
+
+.datatable-nosearch table td, .datatable-nosearch table th { text-align: left; }
+
+
+
+/* etwas Luft unter dem Suchfeld (nur .datatable mit Suche) */
+
+.datatable .dataTables_filter { margin-bottom: 1.5rem; }
+
+</style>
+
+
+
+<style>
+
+/* --- Quarto + DataTables: Floats neutralisieren --- */
+
+.dataTables_wrapper { 
+
+  display: flow-root;   /* enthält Floats, verhindert Überlaufen in die Margin */
+
+  max-width: 100%;
+
+}
+
+
+
+/* Alle DataTables-Steuerelemente nicht mehr floaten lassen */
+
+.dataTables_wrapper .dataTables_filter,
+
+.dataTables_wrapper .dataTables_length,
+
+.dataTables_wrapper .dataTables_info,
+
+.dataTables_wrapper .dataTables_paginate {
+
+  float: none !important;
+
+  text-align: left;     /* oder right, aber ohne float */
+
+  margin: 0 0 1rem 0;   /* etwas Luft unter die Zeile */
+
+}
+
+
+
+/* Sicherheitshalber: Tabelle bleibt im Content-Bereich */
+
+.page-columns .content .dataTables_wrapper { margin-right: 0; }
+
+</style>
+
+
+
+
+
+<script>
+
+(function () {
+
+  function initDT() {
+
+    if (!window.jQuery || !jQuery.fn || !jQuery.fn.DataTable) return;
+
+
+
+    // 0) Vorhandene Instanzen zerstören (Hot-Reload zuverlässig)
+
+    document.querySelectorAll('.datatable table, .datatable-nosearch table').forEach(function (tbl) {
+
+      if (jQuery.fn.dataTable.isDataTable(tbl)) {
+
+        try { jQuery(tbl).DataTable().destroy(); } catch(e) {}
+
+      }
+
+      tbl.removeAttribute('data-dt-inited');
+
+      tbl.classList.remove('dataTable');
+
+    });
+
+
+
+    // 1) Tabellen MIT Suche (globales Glossar)
+
+    document.querySelectorAll('.datatable table').forEach(function (tbl) {
+
+      if (tbl.dataset.dtInited === '1') return;
+
+      const wrap = tbl.closest('.datatable');
+
+      let order = [[0,'asc']];
+
+      try {
+
+        const o = wrap && wrap.getAttribute('data-order');
+
+        if (o) order = JSON.parse(o);
+
+      } catch(e) {}
+
+      jQuery(tbl).DataTable({
+
+        dom: 'f',
+
+        paging: false,
+
+        info: false,
+
+        ordering: true,
+
+        order: order
+
+      });
+
+      tbl.dataset.dtInited = '1';
+
+    });
+
+
+
+    // 2) Tabellen OHNE Suche (Kapitel-Glossare)
+
+    document.querySelectorAll('.datatable-nosearch table').forEach(function (tbl) {
+
+      if (tbl.dataset.dtInited === '1') return;
+
+      const wrap = tbl.closest('.datatable-nosearch');
+
+      let order = [[0,'asc']]; // Fallback
+
+      try {
+
+        const o = wrap && wrap.getAttribute('data-order');
+
+        if (o) order = JSON.parse(o);   // <-- liest z.B. [[2,"asc"]]
+
+      } catch(e) {}
+
+      jQuery(tbl).DataTable({
+
+        dom: 't',        // nur Tabelle
+
+        paging: false,
+
+        info: false,
+
+        ordering: true,
+
+        order: order,
+
+        orderMulti: false
+
+      });
+
+      tbl.dataset.dtInited = '1';
+
+    });
+
+  }
+
+  document.addEventListener('DOMContentLoaded', initDT);
+
+  document.addEventListener('quarto:rendered', initDT);
+
+})();
+
+</script>
+
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../partials/gloss.css">
+<link rel="stylesheet" href="../partials/collapsable.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part-1-dap/colors.html">Digitalisierung</a></li><li class="breadcrumb-item"><a href="../part-1-dap/numbers.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Zahlen</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Hands-On Computer Science</a> 
+        <div class="sidebar-tools-main">
+    <a href="../Hands-On-Computer-Science-Book.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Suchen"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vorwort</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../preparation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vorbereitung</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Digitalisierung</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part-1-dap/colors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Farben</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part-1-dap/numbers.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Zahlen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part-1-dap/text.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Texte</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part-1-dap/images.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Bilder</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part-1-dap/sensors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sensoren</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Künstliche Intelligenz</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part-2-ai/learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lernen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part-2-ai/vision.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Sehen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part-2-ai/listen.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Hören</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part-2-ai/speaking.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Sprechen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part-2-ai/language.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Sprache</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literaturverzeichnis</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+  <li><a href="#zusammenfassung" id="toc-zusammenfassung" class="nav-link active" data-scroll-target="#zusammenfassung">Zusammenfassung</a></li>
+  <li><a href="#sec-numbers-experiment-setup" id="toc-sec-numbers-experiment-setup" class="nav-link" data-scroll-target="#sec-numbers-experiment-setup"><span class="header-section-number">2.1</span> Experimentaufbau</a>
+  <ul class="collapse">
+  <li><a href="#hardware" id="toc-hardware" class="nav-link" data-scroll-target="#hardware"><span class="header-section-number">2.1.1</span> Hardware</a></li>
+  <li><a href="#sec-numbers-first-steps" id="toc-sec-numbers-first-steps" class="nav-link" data-scroll-target="#sec-numbers-first-steps"><span class="header-section-number">2.1.2</span> Erste Schritte mit dem Drehknopf</a></li>
+  </ul></li>
+  <li><a href="#sec-numbers-read-counter" id="toc-sec-numbers-read-counter" class="nav-link" data-scroll-target="#sec-numbers-read-counter"><span class="header-section-number">2.2</span> Zähler auslesen</a></li>
+  <li><a href="#sec-numbers-control-structures" id="toc-sec-numbers-control-structures" class="nav-link" data-scroll-target="#sec-numbers-control-structures"><span class="header-section-number">2.3</span> Kontrollstrukturen</a></li>
+  <li><a href="#sec-numbers-led-dimmer-1" id="toc-sec-numbers-led-dimmer-1" class="nav-link" data-scroll-target="#sec-numbers-led-dimmer-1"><span class="header-section-number">2.4</span> LED-Dimmer 1.0</a></li>
+  <li><a href="#sec-numbers-number-systems" id="toc-sec-numbers-number-systems" class="nav-link" data-scroll-target="#sec-numbers-number-systems"><span class="header-section-number">2.5</span> Zahlensysteme</a>
+  <ul class="collapse">
+  <li><a href="#unser-dezimalsystem" id="toc-unser-dezimalsystem" class="nav-link" data-scroll-target="#unser-dezimalsystem"><span class="header-section-number">2.5.1</span> Unser Dezimalsystem</a></li>
+  <li><a href="#das-oktalsystem" id="toc-das-oktalsystem" class="nav-link" data-scroll-target="#das-oktalsystem"><span class="header-section-number">2.5.2</span> Das Oktalsystem</a></li>
+  <li><a href="#sec-numbers-binary-system" id="toc-sec-numbers-binary-system" class="nav-link" data-scroll-target="#sec-numbers-binary-system"><span class="header-section-number">2.5.3</span> Das Binärsystem</a></li>
+  <li><a href="#andere-systeme" id="toc-andere-systeme" class="nav-link" data-scroll-target="#andere-systeme"><span class="header-section-number">2.5.4</span> Andere Systeme</a></li>
+  </ul></li>
+  <li><a href="#sec-numbers-bit-and-bytes" id="toc-sec-numbers-bit-and-bytes" class="nav-link" data-scroll-target="#sec-numbers-bit-and-bytes"><span class="header-section-number">2.6</span> Bits &amp; Bytes</a>
+  <ul class="collapse">
+  <li><a href="#zwei-zustände" id="toc-zwei-zustände" class="nav-link" data-scroll-target="#zwei-zustände"><span class="header-section-number">2.6.1</span> Zwei Zustände</a></li>
+  <li><a href="#acht-bits-macht-ein-byte" id="toc-acht-bits-macht-ein-byte" class="nav-link" data-scroll-target="#acht-bits-macht-ein-byte"><span class="header-section-number">2.6.2</span> Acht Bits macht ein Byte</a></li>
+  <li><a href="#kilo-mega-giga" id="toc-kilo-mega-giga" class="nav-link" data-scroll-target="#kilo-mega-giga"><span class="header-section-number">2.6.3</span> Kilo, Mega, Giga</a></li>
+  </ul></li>
+  <li><a href="#sec-numbers-led-dimmer-2" id="toc-sec-numbers-led-dimmer-2" class="nav-link" data-scroll-target="#sec-numbers-led-dimmer-2"><span class="header-section-number">2.7</span> LED-Dimmer 2.0</a>
+  <ul class="collapse">
+  <li><a href="#min-und-max" id="toc-min-und-max" class="nav-link" data-scroll-target="#min-und-max"><span class="header-section-number">2.7.1</span> <code>min()</code> und <code>max()</code></a></li>
+  <li><a href="#helligkeit-entkoppeln" id="toc-helligkeit-entkoppeln" class="nav-link" data-scroll-target="#helligkeit-entkoppeln"><span class="header-section-number">2.7.2</span> Helligkeit entkoppeln</a></li>
+  <li><a href="#konstanten" id="toc-konstanten" class="nav-link" data-scroll-target="#konstanten"><span class="header-section-number">2.7.3</span> Konstanten</a></li>
+  </ul></li>
+  <li><a href="#sec-numbers-button-reading" id="toc-sec-numbers-button-reading" class="nav-link" data-scroll-target="#sec-numbers-button-reading"><span class="header-section-number">2.8</span> Druckknopf auslesen</a></li>
+  <li><a href="#sec-numbers-led-dimmer-3" id="toc-sec-numbers-led-dimmer-3" class="nav-link" data-scroll-target="#sec-numbers-led-dimmer-3"><span class="header-section-number">2.9</span> LED-Dimmer 3.0</a>
+  <ul class="collapse">
+  <li><a href="#farbe-per-variable-steuern" id="toc-farbe-per-variable-steuern" class="nav-link" data-scroll-target="#farbe-per-variable-steuern"><span class="header-section-number">2.9.1</span> Farbe per Variable steuern</a></li>
+  <li><a href="#farbe-per-knopfdruck-ändern" id="toc-farbe-per-knopfdruck-ändern" class="nav-link" data-scroll-target="#farbe-per-knopfdruck-ändern"><span class="header-section-number">2.9.2</span> Farbe per Knopfdruck ändern</a></li>
+  </ul></li>
+  <li><a href="#sec-numbers-functions" id="toc-sec-numbers-functions" class="nav-link" data-scroll-target="#sec-numbers-functions"><span class="header-section-number">2.10</span> Funktionen</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part-1-dap/colors.html">Digitalisierung</a></li><li class="breadcrumb-item"><a href="../part-1-dap/numbers.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Zahlen</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-numbers" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Zahlen</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="zusammenfassung" class="level2 unnumbered collapsable">
+<h2 class="unnumbered collapsable anchored" data-anchor-id="zusammenfassung">Zusammenfassung</h2>
+<details class="collapsable-section" open=""><summary></summary>
+<p>Im zweiten Kapitel spendieren wir der LED aus <a href="#sec-numbers" class="quarto-xref"><span>Kapitel 2</span></a> eine Dimmfunktion, die wir über einen Drehknopf steuern können.</p>
+<p>Auf dem Weg dorthin gehen wir die folgenden Schritte.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 26%">
+<col style="width: 47%">
+<col style="width: 26%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Was?</th>
+<th>Wo?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Wir machen uns mit dem Drehknopf vertraut.</td>
+<td><a href="#sec-numbers-experiment-setup" class="quarto-xref"><span>Abschnitt 2.1</span></a></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Wir lesen den Zählerstand des Drehknopfs aus einem Programm heraus aus.</td>
+<td><a href="#sec-numbers-read-counter" class="quarto-xref"><span>Abschnitt 2.2</span></a></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Wir führen Kontrollstrukturen ein (<code>if</code>).</td>
+<td><a href="#sec-numbers-control-structures" class="quarto-xref"><span>Abschnitt 2.3</span></a></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Wir erstellen eine erste Version eines Dimmers für die LED.</td>
+<td><a href="#sec-numbers-led-dimmer-1" class="quarto-xref"><span>Abschnitt 2.4</span></a></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Wir beschäftigen uns mit Zahlensystemen.</td>
+<td><a href="#sec-numbers-number-systems" class="quarto-xref"><span>Abschnitt 2.5</span></a></td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Wir lernen, was ein Bit und ein Byte ist.</td>
+<td><a href="#sec-numbers-bit-and-bytes" class="quarto-xref"><span>Abschnitt 2.6</span></a></td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Wir erweitern den LED-Dimmer zur Version 2.</td>
+<td><a href="#sec-numbers-led-dimmer-2" class="quarto-xref"><span>Abschnitt 2.7</span></a></td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td>Wir setzen uns mit den Druckknopf auseinander.</td>
+<td><a href="#sec-numbers-button-reading" class="quarto-xref"><span>Abschnitt 2.8</span></a></td>
+</tr>
+<tr class="odd">
+<td>9</td>
+<td>Wir bauen Version 3 des LED-Dimmers.</td>
+<td><a href="#sec-numbers-led-dimmer-3" class="quarto-xref"><span>Abschnitt 2.9</span></a></td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>Wir modularisieren unseren Code mit Funktionen.</td>
+<td><a href="#sec-numbers-functions" class="quarto-xref"><span>Abschnitt 2.10</span></a></td>
+</tr>
+</tbody>
+</table>
+</details>
+</section>
+<section id="sec-numbers-experiment-setup" class="level2 collapsable" data-number="2.1">
+<h2 class="collapsable anchored" data-number="2.1" data-anchor-id="sec-numbers-experiment-setup"><span class="header-section-number">2.1</span> Experimentaufbau</h2>
+<details class="collapsable-section" open=""><summary></summary>
+<section id="hardware" class="level3" data-number="2.1.1">
+<h3 data-number="2.1.1" class="anchored" data-anchor-id="hardware"><span class="header-section-number">2.1.1</span> Hardware</h3>
+<p>Das erste Experiment in <a href="colors.html" class="quarto-xref"><span>Kapitel 1</span></a> war ein guter Einstieg! In diesem Kapitel legen wir noch eine Schippe drauf: Unsere Hardware bekommt ein neues Bauteil – einen <a href="glossary.html#gl-drehknopf" title="Drehknopf"><span class="gloss-term">Drehknopf</span></a>. Das montiert ihr einfach neben der LED, wie in <a href="#fig-setup-rgb-led-rotary-encoder" class="quarto-xref">Abbildung&nbsp;<span>2.1</span></a> gezeigt.</p>
+<p>Die vollständige Hardwareliste für dieses Kapitel sieht so aus:</p>
+<ul>
+<li>1 x <a href="https://www.tinkerforge.com/de/doc/Hardware/Bricks/Master_Brick.html">Master Brick 3.2</a></li>
+<li>1 x <a href="https://www.tinkerforge.com/en/doc/Hardware/Bricklets/RGB_LED_V2.html">RGB LED Bricklet 2.0</a></li>
+<li>1 x <a href="https://www.tinkerforge.com/de/shop/bricklets/human-input/rotary-encoder-v2-bricklet.html">Rotary Encoder Bricklet 2.0</a></li>
+<li>1 x <a href="https://www.tinkerforge.com/de/shop/accessories/mounting/mounting-plate-22x10.html">Montageplatte 22x10</a></li>
+<li>2 x <a href="https://www.tinkerforge.com/de/shop/accessories/cable/bricklet-cable-15cm-7p-7p.html">Brickletkabel 15cm (7p-7p)</a></li>
+<li>2 x <a href="https://www.tinkerforge.com/de/shop/accessories/mounting/mounting-kit-12mm.html">Befestigungskit 12 mm</a></li>
+</ul>
+<div id="fig-setup-rgb-led-rotary-encoder" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-setup-rgb-led-rotary-encoder-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-setup-rgb-led-rotary-encoder" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-setup-rgb-led-a" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="setup-rgb-led">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-setup-rgb-led-a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="..\images/master_brick_with_led_and_rotary_01.jpg" class="lightbox" data-gallery="setup-rgb-led" title="Abbildung&nbsp;2.1&nbsp;(a): Seitenansicht."><img src="..\images/master_brick_with_led_and_rotary_01.jpg" class="img-fluid figure-img" data-ref-parent="fig-setup-rgb-led-rotary-encoder"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-setup-rgb-led-a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Seitenansicht.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-setup-rgb-led-rotary-encoder" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-setup-rgb-led-b" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="setup-rgb-led">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-setup-rgb-led-b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="..\images/master_brick_with_led_and_rotary_02.jpg" class="lightbox" data-gallery="setup-rgb-led" title="Abbildung&nbsp;2.1&nbsp;(b): Draufsicht."><img src="..\images/master_brick_with_led_and_rotary_02.jpg" class="img-fluid figure-img" data-ref-parent="fig-setup-rgb-led-rotary-encoder"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-setup-rgb-led-b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Draufsicht.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-setup-rgb-led-rotary-encoder" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-setup-rgb-led-c" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="setup-rgb-led">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-setup-rgb-led-c-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="..\images/master_brick_with_led_and_rotary_03.jpg" class="lightbox" data-gallery="setup-rgb-led" title="Abbildung&nbsp;2.1&nbsp;(c): Nahaufnahme des Rotary Encoders."><img src="..\images/master_brick_with_led_and_rotary_03.jpg" class="img-fluid figure-img" data-ref-parent="fig-setup-rgb-led-rotary-encoder"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-setup-rgb-led-c-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(c) Nahaufnahme des Rotary Encoders.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-setup-rgb-led-rotary-encoder" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-setup-rgb-led-d" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="setup-rgb-led">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-setup-rgb-led-d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="..\images/master_brick_with_led_and_rotary_04.jpg" class="lightbox" data-gallery="setup-rgb-led" title="Abbildung&nbsp;2.1&nbsp;(d): Seitenansicht."><img src="..\images/master_brick_with_led_and_rotary_04.jpg" class="img-fluid figure-img" data-ref-parent="fig-setup-rgb-led-rotary-encoder"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-setup-rgb-led-d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(d) Seitenansicht.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-setup-rgb-led-rotary-encoder" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-setup-rgb-led-e" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="setup-rgb-led">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-setup-rgb-led-e-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="..\images/master_brick_with_led_and_rotary_05.jpg" class="lightbox" data-gallery="setup-rgb-led" title="Abbildung&nbsp;2.1&nbsp;(e): Untenansicht."><img src="..\images/master_brick_with_led_and_rotary_05.jpg" class="img-fluid figure-img" data-ref-parent="fig-setup-rgb-led-rotary-encoder"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-setup-rgb-led-e-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(e) Untenansicht.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-setup-rgb-led-rotary-encoder-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;2.1: Einfaches Setup mit einem Mikrocontroller, LED und einem Drehknopf.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="sec-numbers-first-steps" class="level3" data-number="2.1.2">
+<h3 data-number="2.1.2" class="anchored" data-anchor-id="sec-numbers-first-steps"><span class="header-section-number">2.1.2</span> Erste Schritte mit dem Drehknopf</h3>
+<p>Wie bei der LED werfen wir zuerst einen Blick auf den neuen Drehknopf im Brick Viewer. Schließt dazu euren Master Brick per USB an, startet den Brick Viewer und klickt auf Connect. Im Setup-Tab sollte nun neben der LED auch der Rotary Encoder auftauchen. Denkt daran: Dort findet ihr auch die UID eurer Geräte – die braucht ihr gleich für euer Programm.</p>
+<div id="fig-exp-2-brick-viewer-after-connect" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="brick-viewer-rotary">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-exp-2-brick-viewer-after-connect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="..\images/exp_2_brick_viewer_after_connect.png" class="lightbox" data-gallery="brick-viewer-rotary" title="Abbildung&nbsp;2.2: Der Brick Viewer nach dem Connect."><img src="..\images/exp_2_brick_viewer_after_connect.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-exp-2-brick-viewer-after-connect-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;2.2: Der Brick Viewer nach dem Connect.
+</figcaption>
+</figure>
+</div>
+<p>Wechselt nun in den Tab für den Drehknopf, wo ihr ihn direkt testen könnt: Ihr seht den aktuellen Zählwert. Der kann positiv oder negativ sein – je nachdem, wie oft und in welche Richtung ihr gedreht habt. Daneben zeigt ein Diagramm die zeitliche Entwicklung.</p>
+<p>Doch der Knopf kann mehr als nur zählen: Ihr könnt ihn auch drücken. Achtet mal auf den kleinen Kreis im Brick Viewer. Wird er gedrückt, leuchtet er rot. Noch löst das Drücken keine Aktion aus, aber wir überlegen später, welche Funktion wir damit verbinden wollen.</p>
+<p>Und zuletzt: der Button Reset Count. Damit setzt ihr den Zähler zurück – eine praktische Funktion, die wir später ebenfalls ins Programm einbauen können.</p>
+<div id="fig-brick-viewer-rotary-encoder" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-brick-viewer-rotary-encoder-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="..\images/brick_viewer_rotary_encoder.png" class="lightbox" data-gallery="brick-viewer-rotary" title="Das Diagramm zeigt den aktuellen Wert an."><img src="..\images/brick_viewer_rotary_encoder.png" class="img-fluid figure-img"></a></p>
+<figcaption>Das Diagramm zeigt den aktuellen Wert an.</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-brick-viewer-rotary-encoder" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-brick-viewer-rotary-encoder-pressed" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="brick-viewer-rotary">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-brick-viewer-rotary-encoder-pressed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="..\images/brick_viewer_rotary_encoder_pressed.png" class="lightbox" data-gallery="brick-viewer-rotary" title="Abbildung&nbsp;2.3&nbsp;(a): Der Button wird rot, wenn er gedrückt ist."><img src="..\images/brick_viewer_rotary_encoder_pressed.png" class="img-fluid figure-img" data-ref-parent="fig-brick-viewer-rotary-encoder"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-brick-viewer-rotary-encoder-pressed-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Der Button wird rot, wenn er gedrückt ist.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-brick-viewer-rotary-encoder-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;2.3: Die Funktionen des Rotary Encoders im Brick Viewer.
+</figcaption>
+</figure>
+</div>
+<p>Fassen wir zusammen, was unser Drehknopf (Rotary Encoder) draufhat:</p>
+<ol type="1">
+<li>Er zählt – vorwärts und rückwärts</li>
+<li>Er merkt, wenn ihr ihn drückt</li>
+<li>Er kann seinen Zähler zurücksetzen</li>
+</ol>
+<p>Zeit also, das Ganze in Python auszuprobieren und zu sehen, welche spannenden Anwendungen wir damit bauen können.</p>
+</section></details>
+</section>
+
+<section id="sec-numbers-read-counter" class="level2 collapsable" data-number="2.2">
+<h2 class="collapsable anchored" data-number="2.2" data-anchor-id="sec-numbers-read-counter"><span class="header-section-number">2.2</span> Zähler auslesen</h2>
+<details class="collapsable-section" open=""><summary></summary>
+<p>Der Drehknopf funktioniert ähnlich wie der Lautstärkeregler einer Stereoanlage (siehe <a href="#fig-hifi-system" class="quarto-xref">Abbildung&nbsp;<span>2.4</span></a>): Dreht ihr nach rechts, wird es lauter – nach links, leiser.</p>
+<div id="fig-hifi-system" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-hifi-system-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="..\images/hifi_system.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="Abbildung&nbsp;2.4: Die gute alte Stereoanlage mit Drehknopf! Wer kennt sie nicht mehr? (Quelle: Wikimedia)"><img src="..\images/hifi_system.jpg" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hifi-system-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;2.4: Die gute alte Stereoanlage mit Drehknopf! Wer kennt sie nicht mehr? (Quelle: <a href="https://commons.wikimedia.org/wiki/File:Sony_XO-D20S_Midi_HiFi_system_%28white_bg%29.jpg">Wikimedia</a>)
+</figcaption>
+</figure>
+</div>
+<p>Im Hintergrund verändert sich bei jeder Drehung der Wert, den der Knopf sendet – mal höher, mal niedriger, je nach Ausgangszustand. Im Brick Viewer habt ihr das schon gesehen. Probieren wir es jetzt in einem Programm aus: Der folgende Code verbindet sich mit dem Drehknopf, liest den aktuellen Wert und gibt ihn in der Konsole aus. Denkt daran, eure eigene UID einzutragen:</p>
+<div id="c8048604" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
+<span id="annotated-cell-1-2"><a href="#annotated-cell-1-2"></a><span class="im">from</span> tinkerforge.bricklet_rotary_encoder_v2 <span class="im">import</span> BrickletRotaryEncoderV2</span>
+<span id="annotated-cell-1-3"><a href="#annotated-cell-1-3"></a></span>
+<span id="annotated-cell-1-4"><a href="#annotated-cell-1-4"></a>ipcon <span class="op">=</span> IPConnection()</span>
+<span id="annotated-cell-1-5"><a href="#annotated-cell-1-5"></a>ipcon.<span class="ex">connect</span>(<span class="st">'localhost'</span>, <span class="dv">4223</span>)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1">1</button><span id="annotated-cell-1-6" class="code-annotation-target"><a href="#annotated-cell-1-6"></a>knob <span class="op">=</span> BrickletRotaryEncoderV2(<span class="st">'WZd'</span>, ipcon)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2">2</button><span id="annotated-cell-1-7" class="code-annotation-target"><a href="#annotated-cell-1-7"></a>count <span class="op">=</span> knob.get_count(reset<span class="op">=</span><span class="va">False</span>)</span>
+<span id="annotated-cell-1-8"><a href="#annotated-cell-1-8"></a><span class="bu">print</span>(count)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="6" data-code-annotation="1">Wir erstellen eine virtuelle Repräsentation des Drehknopfs in unserem Programm, um seine Funktionen verwenden zu können.</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="7" data-code-annotation="2">Über die virtuelle Repräsentation des Drehknopfs können wir mittels <code>get_count()</code> den aktuellen Wert abfragen. Der Parameter <code>reset</code> bestimmt, ob der Zähler nach dem Auslesen zurückgesetzt werden soll oder nicht.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Die Ausgabe sollte mit dem Wert übereinstimmen, den ihr auch im Brick Viewer seht – kein Wunder, beide nutzen dieselbe Programmierschnittstelle. Damit habt ihr die erste Funktion des Drehknopfs erfolgreich aus Python getestet.</p>
+<p>Dreht ihr den Knopf und startet das Programm erneut, erscheint natürlich ein anderer Wert. Klar! Aber jedes Mal neu starten? Das geht besser. Die Lösung kennt ihr schon aus <a href="colors.html" class="quarto-xref"><span>Kapitel 1</span></a>: eine Schleife, die das Programm so lange wiederholt, bis wir es beenden:</p>
+<div id="c9e1fe53" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb1-2"><a href="#cb1-2"></a>    count <span class="op">=</span> knob.get_count(reset<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb1-3"><a href="#cb1-3"></a>    <span class="bu">print</span>(count)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Zur Erinnerung: <code>while True</code> erzeugt eine <a href="glossary.html#gl-endlosschleife" title="Endlosschleife"><span class="gloss-term">Endlosschleife</span></a>. Normalerweise wollen wir so etwas vermeiden – außer, wir brauchen es genau dafür. Endlosschleifen sind praktisch, wenn wir kontinuierlich Daten lesen oder auf Ereignisse warten. Und keine Sorge: Mit Strg+C könnt ihr das Programm jederzeit beenden, wenn die Konsole aktiv ist. Klickt also einmal in die Konsole und drückt Strg+C, dann hat der Spuk ein Ende.</p>
+<p>Wenn ihr das Programm ausführt, werdet ihr direkt ein Problem erkennen. Die Schleife rennt förmlich und gibt nacheinander immer wieder denselben Wert aus. Nur wenn wir am Knopf drehen, ändert sich der Wert – wird aber von der Schleife x-mal auf die Konsole geschrieben. Wie könnten wir das verbessern?</p>
+</details>
+</section>
+<section id="sec-numbers-control-structures" class="level2 collapsable" data-number="2.3">
+<h2 class="collapsable anchored" data-number="2.3" data-anchor-id="sec-numbers-control-structures"><span class="header-section-number">2.3</span> Kontrollstrukturen</h2>
+<details class="collapsable-section" open=""><summary></summary>
+<p>Wie wäre es hiermit?</p>
+<div id="6ba82fc2" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>last_count <span class="op">=</span> <span class="va">None</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb2-3"><a href="#cb2-3"></a>    new_count <span class="op">=</span> knob.get_count(reset<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb2-4"><a href="#cb2-4"></a></span>
+<span id="cb2-5"><a href="#cb2-5"></a>    <span class="cf">if</span> new_count <span class="op">!=</span> last_count:</span>
+<span id="cb2-6"><a href="#cb2-6"></a>        last_count <span class="op">=</span> new_count</span>
+<span id="cb2-7"><a href="#cb2-7"></a>        <span class="bu">print</span>(last_count)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Gehen wir durch, was hier passiert: Zuerst weisen wir der Variable <code>last_count</code> vor dem ersten Schleifendurchlauf den Wert <code>None</code> zu. Anschließend wird in jedem Durchlauf der aktuelle Zählerstand ausgelesen und in der Variable <code>new_count</code> gespeichert. Danach prüfen wir, ob sich der neue Wert im Vergleich zum alten unterscheidet. Da <code>last_count</code> im ersten Durchlauf <code>None</code> ist, wird die Bedingung in Zeile 5 beim Start immer <code>True</code> sein. Somit geben wir den Wert zu Beginn auf jeden Fall aus – genau so, wie es für die Anwendung sinnvoll ist.</p>
+<p>In den folgenden Schleifendurchläufen wird nur dann etwas ausgegeben, wenn sich der Wert verändert hat, ihr also tatsächlich am Drehknopf gedreht habt. Ansonsten bleibt die Ausgabe unverändert.</p>
+<p>Die Prüfung, ob der aktuelle Wert (gespeichert in <code>new_count</code>) sich vom alten Wert unterscheidet, erfolgt in Zeile 5. Hier lernen wir auch ein neues Konzept der Programmierung kennen: die <a href="glossary.html#gl-kontrollstruktur" title="Kontrollstruktur"><span class="gloss-term">Kontrollstruktur</span></a>, eingeleitet mit dem Schlüsselwort <code>if</code>, gefolgt von einer Bedingung. Eine Bedingung, kann – wie ihr schon aus <a href="colors.html" class="quarto-xref"><span>Kapitel 1</span></a> wisst – nur <code>True</code> oder <code>False</code> sein. Ist sie wahr (<code>True</code>), läuft der eingerückte Code darunter. Ist sie falsch (<code>False</code>), passiert nichts.</p>
+<p>Übertragen auf unser Programm heißt das: <code>print(last_count)</code> läuft nur dann, wenn sich der Wert tatsächlich verändert hat. In diesem Fall merken wir uns den neuen Wert und aktualisieren <code>last_count</code>. Beim nächsten Schleifendurchlauf prüfen wir wieder, ob sich etwas getan hat. Meistens ist das nicht so – und genau deshalb sehen wir nur dann eine Ausgabe, wenn wir wirklich am Knopf drehen. Ziemlich effizient, oder?</p>
+</details>
+</section>
+<section id="sec-numbers-led-dimmer-1" class="level2 collapsable" data-number="2.4">
+<h2 class="collapsable anchored" data-number="2.4" data-anchor-id="sec-numbers-led-dimmer-1"><span class="header-section-number">2.4</span> LED-Dimmer 1.0</h2>
+<details class="collapsable-section" open=""><summary></summary>
+<p>Wenden wir das Gelernte an und bauen einen praktischen LED-Dimmer. Dafür holen wir unsere LED aus Kapitel 1 mit dazu und kombinieren sie mit dem Drehknopf.</p>
+<p>Die Idee ist simpel: Der Zähler des Knopfs steuert die Helligkeit der LED. Dreht ihr nach rechts, wird sie heller, nach links, dunkler. Wie bei der Stereoanlage in <a href="#fig-hifi-system" class="quarto-xref">Abbildung&nbsp;<span>2.4</span></a>.</p>
+<p>Bevor wir uns an die eigentliche Anwendungslogik machen, brauchen wir Zugriff auf beide Geräte – LED und Drehknopf. Dazu erweitern wir den bekannten Boilerplate-Code und speichern die Geräte in eigenen Variablen:</p>
+<div id="7dd157cd" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="im">from</span> tinkerforge.bricklet_rotary_encoder_v2 <span class="im">import</span> BrickletRotaryEncoderV2</span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="im">from</span> tinkerforge.bricklet_rgb_led_v2 <span class="im">import</span> BrickletRGBLEDV2</span>
+<span id="cb3-4"><a href="#cb3-4"></a></span>
+<span id="cb3-5"><a href="#cb3-5"></a>ipcon <span class="op">=</span> IPConnection()</span>
+<span id="cb3-6"><a href="#cb3-6"></a>ipcon.<span class="ex">connect</span>(<span class="st">"localhost"</span>, <span class="dv">4223</span>)</span>
+<span id="cb3-7"><a href="#cb3-7"></a>knob <span class="op">=</span> BrickletRotaryEncoderV2(<span class="st">"&lt;YOUR_ROTARY_UID&gt;"</span>, ipcon) </span>
+<span id="cb3-8"><a href="#cb3-8"></a>led <span class="op">=</span> BrickletRGBLEDV2(<span class="st">"&lt;YOUR_LED_UID&gt;"</span>, ipcon)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Dieser Teil muss immer am Anfang unseres Programms stehen, damit alles funktioniert. In den kommenden Beispielen setzen wir ihn als gegeben voraus und wiederholen ihn nicht jedes Mal.</p>
+<p>Als Startpunkt nehmen wir den Code von oben, der den Zählerwert auf der Konsole ausgibt. Schließlich brauchen wir genau diese Information – wann sich der Wert ändert und wie er aktuell steht – auch, um die LED zu steuern.</p>
+<p>Damit wir die LED von aus bis volle Helligkeit dimmen können, legen wir uns zuerst auf eine Farbe fest. Ich bin zwar kein Fan von weißem LED-Licht, aber für dieses Kapitel ist es am einfachsten: voll aufgedreht leuchtet die LED weiß, ausgedreht ist sie schwarz – klar! Später kümmern wir uns darum, wie wir das Licht wärmer machen können.</p>
+<p>Erinnern wir uns also: Was bedeuten die Zustände An und Aus im RGB-Farbraum?</p>
+<div id="202c7471" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># White</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>led.set_rgb_value(<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">255</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Black (off)</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>led.set_rgb_value(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Damit haben wir die beiden Extremzustände festgelegt. Doch was passiert dazwischen, wenn die LED gedimmt ist? Ganz einfach: Wir lassen die drei RGB-Werte gemeinsam von 1 bis 255 hoch- oder runterlaufen. Höhere Werte ergeben ein helleres Weiß, niedrigere ein dunkleres.</p>
+<p>Setzen wir diese Erkenntnisse in Programmcode um und weisen den Zählerwert den RGB-Werten der LED zu. Spoiler-Alert: Das ist etwas naiv, aber lasst uns mal schauen, was passiert und wo möglicherweise Probleme auftreten:</p>
+<div id="91ab5c5c" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>knob.reset()</span>
+<span id="cb5-2"><a href="#cb5-2"></a>last_count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb5-5"><a href="#cb5-5"></a>    new_count <span class="op">=</span> knob.get_count(reset<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb5-6"><a href="#cb5-6"></a></span>
+<span id="cb5-7"><a href="#cb5-7"></a>    <span class="cf">if</span> new_count <span class="op">!=</span> last_count:</span>
+<span id="cb5-8"><a href="#cb5-8"></a>        last_count <span class="op">=</span> new_count</span>
+<span id="cb5-9"><a href="#cb5-9"></a>        <span class="bu">print</span>(last_count)</span>
+<span id="cb5-10"><a href="#cb5-10"></a></span>
+<span id="cb5-11"><a href="#cb5-11"></a>        <span class="co"># Setze RGB-Werte auf den Zählerwert</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a>        led.set_rgb_value(last_count, last_count, last_count)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Lasst es mal laufen und dreht voll auf oder runter! Beobachtet dabei den Wert für <code>last_count</code>. Was passiert, wenn er kleiner als Null wird? Oder wenn er größer als 255 wird? Bumm! Das Programm stürzt ab!</p>
+<!-- \gloss{Programmabsturz}{Ein unerwartetes Beenden eines Programms}{Programmierung} -->
+<p>Warum? Auf der <a href="glossary.html#gl-kommandzeile" title="Kommandzeile"><span class="gloss-term">Kommandzeile</span></a> bekommen wir eine lange Fehlermeldung mit der folgenden Aussage ganz am Ende:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">struct.error:</span> ubyte format requires 0 <span class="op">&lt;</span>= number <span class="op">&lt;</span>= 255</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Wenn man die Fehlermeldung googelt oder ChatGPT befragt, bekommt man Hilfe. Offensichtlich wird für einen RGB-Wert, den wir der Funktion <code>set_rgb_value()</code> übergeben, ein bestimmter <a href="glossary.html#gl-datentyp" title="Datentyp"><span class="gloss-term">Datentyp</span></a> erwartet, der <code>ubyte</code> heißt. Das steht für “unsigned byte” und bedeutet, dass der Wert zwischen 0 und 255 liegen muss.</p>
+<p>Moment 🧐 – was hat jetzt das Byte mit 0 bis 255 zu tun? Bisher dachten wir doch, das wäre wegen des RGB-Codes? Stimmt auch, aber der RGB-Code liegt nicht zufällig im Wertebereich von 0 bis 255.</p>
+<p>Um das zu verstehen, müssen wir das Binärsystem kennen. Also los!</p>
+</details>
+</section>
+<section id="sec-numbers-number-systems" class="level2 collapsable" data-number="2.5">
+<h2 class="collapsable anchored" data-number="2.5" data-anchor-id="sec-numbers-number-systems"><span class="header-section-number">2.5</span> Zahlensysteme</h2>
+<details class="collapsable-section" open=""><summary></summary>
+<p>Eigentlich ist es schnell erklärt. Das <a href="glossary.html#gl-bin�rsystem" title="Binärsystem"><span class="gloss-term">Binärsystem</span></a> ist wie das <a href="glossary.html#gl-dezimalsystem" title="Dezimalsystem"><span class="gloss-term">Dezimalsystem</span></a>, mit dem wir alltäglich unterwegs sind – nur nutzt es statt der Basis 10 die Basis 2. Einfach, oder? Wenn nicht, lest weiter – das hier soll schließlich ein Einführungsbuch sein.</p>
+<section id="unser-dezimalsystem" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="unser-dezimalsystem"><span class="header-section-number">2.5.1</span> Unser Dezimalsystem</h3>
+<!-- \gloss{Stellenwertsystem}{Ein System, bei dem der Wert einer Ziffer von ihrer Position abhängt.}{Zahlensysteme} -->
+<p>Wir wenden das Dezimalsystem täglich intuitiv an. Es fragt sich wahrscheinlich niemand von euch, was die Systematik dahinter ist, oder? Und doch habt ihr es alle einmal in der Schule gelernt, und wir müssen es an dieser Stelle etwas auffrischen. Solltet ihr mit Stellenwertsystemen noch 100 % vertraut sein, könnt ihr diesen Abschnitt getrost überspringen.</p>
+<p>Nehmen wir eine Zahl wie die 123 als Beispiel. Wir haben sofort ein Gefühl für die Zahl, wir wissen etwa, wie groß sie ist. Und wenn wir es etwas genauer erklären müssen, können die meisten von euch sicher erläutern, wofür – also für welchen Wert – jede Ziffer steht. Wir beginnen mit der kleinsten Wertigkeit, also der Ziffer ganz rechts: der 3. Sie steht für die Einserstelle, und davon haben wir 3. Die nächste Stelle steht für die Zehner, und weil dort eine 2 steht, sind es zwanzig. Also <span class="math inline">\(3+20=23\)</span>. Schließen wir auch die dritte und letzte Ziffer in unsere Erläuterung ein: Die 1 steht für die Hunderterstelle, also <span class="math inline">\(1*100=100\)</span>. Damit haben wir <span class="math inline">\(100+20+3=123\)</span>. Ganz einfach und intuitiv.</p>
+<div id="fig-decimal-123" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-decimal-123-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-decimal-123" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-decimal-system-calculation-123-a" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-decimal-system-calculation-123-a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/binary_system_decimal_calculation_123_a.png" class="lightbox" data-gallery="fig-decimal-123" title="Abbildung&nbsp;2.5&nbsp;(a): Im Dezimalsystem hat jede Stelle einen anderen Wert."><img src="https://winf-hsos.github.io/university-docs/images/binary_system_decimal_calculation_123_a.png" class="img-fluid figure-img" data-ref-parent="fig-decimal-123"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-decimal-system-calculation-123-a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Im Dezimalsystem hat jede Stelle einen anderen Wert.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-decimal-123" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-decimal-system-calculation-123-b" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-decimal-system-calculation-123-b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/binary_system_decimal_calculation_123_b.png" class="lightbox" data-gallery="fig-decimal-123" title="Abbildung&nbsp;2.5&nbsp;(b): Durch Ausmultiplizieren errechnen wir den Wert der Zahl."><img src="https://winf-hsos.github.io/university-docs/images/binary_system_decimal_calculation_123_b.png" class="img-fluid figure-img" data-ref-parent="fig-decimal-123"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-decimal-system-calculation-123-b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Durch Ausmultiplizieren errechnen wir den Wert der Zahl.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-decimal-123-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;2.5: Das Dezimalsystem ist ein Stellenwertsystem.
+</figcaption>
+</figure>
+</div>
+<p>Das Ganze funktioniert nicht nur mit dreistelligen Zahlen, sondern prinzipiell mit beliebig langen Zahlen. Wir wissen, dass die nächste Ziffer, die wir links im Beispiel in <a href="#fig-decimal-system-4123" class="quarto-xref">Abbildung&nbsp;<span>2.6</span></a> sehen, für die Tausenderstelle steht. Die nächste Stelle würde für die Zehntausenderstelle stehen – und so weiter. Warum fällt es uns so leicht?</p>
+<p>Erstens, weil wir damit jeden Tag umgehen. Das Dezimalsystem ist das System, das wir am häufigsten verwenden, und wir haben es von klein auf gelernt. Es ist intuitiv und einfach zu verstehen. Zweitens aber auch, weil wir die Systematik kennen: Jede Stelle ist 10-mal so viel wert wie die vorherige.</p>
+<div id="fig-decimal-system-4123" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-decimal-system-4123-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/binary_system_decimal_calculation_4123.png" class="lightbox" data-gallery="quarto-lightbox-gallery-12" title="Abbildung&nbsp;2.6: Jede Stelle steht für eine höhere Potenz der Basis 10."><img src="https://winf-hsos.github.io/university-docs/images/binary_system_decimal_calculation_4123.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-decimal-system-4123-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;2.6: Jede Stelle steht für eine höhere Potenz der Basis 10.
+</figcaption>
+</figure>
+</div>
+<p>Wurde uns das Dezimalsystem von Gott gegeben? Vielleicht – wenn man an die Schöpfung glaubt<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> und daran, dass Gott uns so geschaffen hat, wie wir sind, dann hat er implizit dafür gesorgt, dass wir dezimal denkende Wesen werden. Warum? Eine Theorie besagt, dass die menschliche Anatomie, insbesondere die Anzahl der Finger, einen Einfluss auf unser Zahlensystem hatte. Zählt einfach mal anhand eurer Finger durch.</p>
+</section>
+<section id="das-oktalsystem" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="das-oktalsystem"><span class="header-section-number">2.5.2</span> Das Oktalsystem</h3>
+<!-- \gloss{Oktalsystem}{Ein Zahlensystem, das die Ziffern 0 bis 7 verwendet.}{Zahlensysteme} -->
+<p>Nun gibt es auch Wesen mit weniger als zehn Fingern (und auch mit mehr?). Nehmt mal einen Cartoon-Charakter wie Mickey Mouse als Beispiel. In <a href="#fig-cartoon-character" class="quarto-xref">Abbildung&nbsp;<span>2.7</span></a> seht ihr, wie hier wahrscheinlich gezählt wird. Hätte ein Volk von Mickey-Mäusen sich auch für das Dezimalsystem entschieden?</p>
+<div id="fig-cartoon-character" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cartoon-character-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/binary_system_human_vs_cartoon.png" class="lightbox" data-gallery="quarto-lightbox-gallery-13" title="Abbildung&nbsp;2.7: Cartoon-Charaktere haben nur acht Finger. Quelle: Erstellt mit ChatGPT nach @petzold_code_2022"><img src="https://winf-hsos.github.io/university-docs/images/binary_system_human_vs_cartoon.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-cartoon-character-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;2.7: Cartoon-Charaktere haben nur acht Finger. Quelle: Erstellt mit ChatGPT nach <span class="citation" data-cites="petzold_code_2022">Petzold (<a href="../references.html#ref-petzold_code_2022" role="doc-biblioref">2022</a>)</span>
+</figcaption>
+</figure>
+</div>
+<p>Vermutlich nicht! Das Oktalsystem ist wie das Dezimalsystem ein Stellenwertsystem, nur mit einer anderen Basis. Das bedeutet, dass jede Stelle statt eine Zehnerpotenz eine Achterpotenz darstellt. Die verfügbaren Symbole oder Zifferen sind 0 bis 7. Warum? Weil es nur acht Finger gibt, und die mit zehn Fingern ist der achte Finger die Zahl 10. Im Oktalsystem stellt das die Dezimalzahl 8 dar, weil die zweite Ziffer von rechts für die Achterstelle steht.</p>
+<p>Die 123, die ihr in <a href="#fig-octal-123" class="quarto-xref">Abbildung&nbsp;<span>2.8</span></a> seht, können wir - wie jede Zahl in einem beliebigen Stellenwertsystem - mit dem einfachen Ausmultiplizieren in das Dezimalsystem umrechnen. Die drei ganz rechts steht für <span class="math inline">\(3 \cdot 1\)</span>. Weil jede Zahl hoch Null eine Eins ergibt, steht die erste Stelle steht in jedem System für die Eins. Die zweite Stelle steht für <span class="math inline">\(8^2\)</span>, also für die Achter (also <span class="math inline">\(2 \cdot 8=16\)</span>) und die dritte Stelle <span class="math inline">\(8^3\)</span>, was Vierunsechszig ergbit. Somit geht sie mit <span class="math inline">\(1 \cdot 64\)</span> in die Berechnung des Dezimalwertes ein. Zusammen ergibt das <span class="math inline">\(64+16+3=83\)</span> im Dezimalsystem.</p>
+<div id="fig-octal-123" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-octal-123-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/binary_system_octal_123.png" class="lightbox" data-gallery="quarto-lightbox-gallery-14" title="Abbildung&nbsp;2.8: Das Oktalsystem funktioniert wie das Dezimalsystem. Nur die Basis ist 8 statt 10."><img src="https://winf-hsos.github.io/university-docs/images/binary_system_octal_123.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-octal-123-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;2.8: Das Oktalsystem funktioniert wie das Dezimalsystem. Nur die Basis ist 8 statt 10.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="sec-numbers-binary-system" class="level3" data-number="2.5.3">
+<h3 data-number="2.5.3" class="anchored" data-anchor-id="sec-numbers-binary-system"><span class="header-section-number">2.5.3</span> Das Binärsystem</h3>
+<p>Treiben wir es noch ein wenig weiter auf die Spitze und nehmen ein paar Finger weg – sagen wir bis auf zwei. Dann wären wir vielleicht bei einem Delfin mit zwei Flossen, wie ihr ihn in <a href="#fig-binary-system-dolphin" class="quarto-xref">Abbildung&nbsp;<span>2.9</span></a> seht. Delfine haben sich vermutlich auf ein System geeinigt, das auch für unsere heutigen Computer die Grundlage darstellt: das Binärsystem.</p>
+<div id="fig-binary-system-dolphin" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-binary-system-dolphin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/binary_system_dolphin.png" class="lightbox" data-gallery="quarto-lightbox-gallery-15" title="Abbildung&nbsp;2.9: Delfine würden anders zählen. Eher wie Computer."><img src="https://winf-hsos.github.io/university-docs/images/binary_system_dolphin.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-binary-system-dolphin-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;2.9: Delfine würden anders zählen. Eher wie Computer.
+</figcaption>
+</figure>
+</div>
+<!-- \gloss{Binär}{Lateinisch für "zu zweit" oder "paarweise".}{Zahlensysteme} -->
+<p>Das Wort “binär” stammt aus dem Lateinischen und bedeutet “paarweise” oder “zu zweit”. Von diesem Wort stammt auch der Name des Stellenwertsystems mit der Basis 2 – und das nicht ohne Grund. Im Binärsystem gibt es für jede Stelle genau zwei Möglichkeiten: 0 oder 1. Ein anderer Begriff ist übrigens <a href="glossary.html#gl-dualsystem" title="Dualsystem"><span class="gloss-term">Dualsystem</span></a>, was genau das Gleiche meint. Auch das Wort “dual” kommt von den Römern und heißt so viel wie “zwei enthaltend”.</p>
+<p>Zwei Möglichkeiten, das erinnert an einen Lichtschalter, der entweder an oder aus sein kann. In <a href="#fig-light-switch" class="quarto-xref">Abbildung&nbsp;<span>2.10</span></a> ist das bildlich dargestellt. Entweder leuchtet die Lampe (1) oder sie ist aus (0). Mehr geht nicht. Das Binärsystem ist also wirklich simpel.</p>
+<div id="fig-light-switch" class="lightbox align-center quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-light-switch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/binary_system_light_switch.png" class="lightbox" data-gallery="quarto-lightbox-gallery-16" title="Abbildung&nbsp;2.10: Eine Binärziffer ist vergleichbar mit einem Lichtschalter, der an oder aus sein kann."><img src="https://winf-hsos.github.io/university-docs/images/binary_system_light_switch.png" class="align-center img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-light-switch-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;2.10: Eine Binärziffer ist vergleichbar mit einem Lichtschalter, der an oder aus sein kann.
+</figcaption>
+</figure>
+</div>
+<p>Und auch das Rechnen im Binärsystem ist nichts Besonderes. Es funktioniert wie im Dezimalsystem oder Oktalsystem auch, wir tauschen einfach die Basis aus. Jede Stelle stellt nun eine Potenz von zwei dar. Statt vieler Symbole gibt es nur die 0 und die 1, um Zahlen darzustellen. Das macht es im Binärsystem sogar noch einfacher, als in Systemen mit einer höheren Basis. Denn letztlich müssen wir nur die 2er-Potenzen, an denen eine 1 steht, addieren. Alles, wo eine Null steht, können wir ignorieren.</p>
+<div id="fig-binary-110" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-binary-110-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-binary-110" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-binary-110-b" class="quarto-float quarto-figure quarto-figure-center anchored" data-group="binary-system">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-binary-110-b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/binary_system_binary_110_b.png" class="lightbox" data-gallery="binary-system" title="Abbildung&nbsp;2.11&nbsp;(a): "><img src="https://winf-hsos.github.io/university-docs/images/binary_system_binary_110_b.png" id="fig-binary-110-b" class="img-fluid figure-img" data-ref-parent="fig-binary-110"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-binary-110-b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a)
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-binary-110" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-binary-110-c" class="quarto-float quarto-figure quarto-figure-center anchored" data-group="binary-system">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-binary-110-c-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/binary_system_binary_110_c.png" class="lightbox" data-gallery="binary-system" title="Abbildung&nbsp;2.11&nbsp;(b): "><img src="https://winf-hsos.github.io/university-docs/images/binary_system_binary_110_c.png" id="fig-binary-110-c" class="img-fluid figure-img" data-ref-parent="fig-binary-110"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-binary-110-c-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b)
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-binary-110-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;2.11: Das Binärsystem funktioniert wie alle anderen Stellenwertsysteme auch.
+</figcaption>
+</figure>
+</div>
+<p><img src="https://winf-hsos.github.io/university-docs/images/binary_system_place_value_systems.png" class="img-fluid"></p>
+</section>
+<section id="andere-systeme" class="level3" data-number="2.5.4">
+<h3 data-number="2.5.4" class="anchored" data-anchor-id="andere-systeme"><span class="header-section-number">2.5.4</span> Andere Systeme</h3>
+<p>Stellenwertsysteme sind nicht die einzigen Zahlensysteme. Es zum Beispiel das römische Zahlensystem, bei dem die Position der Ziffer keine Rolle spielt. Stattdessen werden verschiedene Symbole verwendet, um Zahlen darzustellen. Ein anderes Beispiel ist die Tally-Schreibweise, bei der Striche und Strichpakete verwendet werden, um Zahlen zu darzustellen.</p>
+</section></details>
+</section>
+
+<section id="sec-numbers-bit-and-bytes" class="level2 collapsable" data-number="2.6">
+<h2 class="collapsable anchored" data-number="2.6" data-anchor-id="sec-numbers-bit-and-bytes"><span class="header-section-number">2.6</span> Bits &amp; Bytes</h2>
+<details class="collapsable-section" open=""><summary></summary>
+<section id="zwei-zustände" class="level3" data-number="2.6.1">
+<h3 data-number="2.6.1" class="anchored" data-anchor-id="zwei-zustände"><span class="header-section-number">2.6.1</span> Zwei Zustände</h3>
+<!-- \gloss{Binary Digit}{Eine einzelne Binärziffer, also eine 0 oder eine 1}{Zahlensysteme} -->
+<!-- \gloss{Bit}{Kurzform für "Binary Digit"; kleinste Informationseinheit}{Bits & Bytes} -->
+<!-- \gloss{Binärziffer}{Eine einzelne Ziffer im Binärsystem, also eine 0 oder eine 1}{Zahlensysteme} -->
+<p>Warum haben wir uns Zahlensysteme angeschaut, und was hat das mit Computern zu tun? Ganz einfach: Computer denken binär. Das bedeutet, sie kennen nur zwei Zustände: an oder aus, 0 oder 1.</p>
+<p>Wir kommen später noch einmal ausführlich darauf zurück, aber so viel schon vorweg: Eine Binärziffer nennen wir im Englischen “binary digit”, kurz “bit”. Jetzt klingelt es, oder?</p>
+<p>Ein Bit ist eine Informationseinheit. Nicht irgendeine, sondern die kleinste, die es gibt. Die Erklärung, warum das so ist, folgt später. Wir wollen uns an dieser Stelle die Frage stellen, was wir mit einem Bit alles anstellen können.</p>
+<p>Ein Bit ist alleine ziemlich einsam und eingeschränkt. Wenn sich ein Computer mit einem Bit lediglich merken kann, ob eine Lampe an oder aus ist, dann sind das genau zwei Möglichkeiten. Nicht besonders viel. Wir kamen aber von den Farben über Zahlensysteme zu den Bits – und unsere ursprüngliche Frage war, wie ein Computer mit seinen Mitteln – also Nullen und Einsen (oder eben Bits) – so viele unterschiedliche Farben abbilden und speichern kann. Zwei würden gerade einmal für Schwarz/Weiß ausreichen.</p>
+<p>Ihr ahnt es vielleicht schon: Wir gesellen zum ersten ein zweites Bit hinzu. Und schon können wir vier unterschiedliche Zustände abbilden: <code>00</code>, <code>01</code>, <code>10</code> und <code>11</code>. Damit könnten wir zum Beispiel die Farben Schwarz, Blau, Grün und Cyan darstellen. Etwas willkürlich (warum gerade diese Farben), aber denkbar.</p>
+<p>Was passiert, wenn wir ein drittes Bit hinzunehmen? Sind es nun sechs Zustände? Nein, es sind acht: <code>000</code>, <code>001</code>, <code>010</code>, <code>011</code>, <code>100</code>, <code>101</code>, <code>110</code> und <code>111</code>. Damit könnten wir die Farben Schwarz, Blau, Grün, Cyan, Rot, Magenta, Gelb und Weiß darstellen (oder jede andere Kombination, die wir uns wünschen).</p>
+<p>Mit jedem zusätzlichen Bit können wir also nicht plus zwei mehr Zustände abbilden, sondern wir verdoppeln unsere Möglichkeiten. Also müssen wir mal zwei – und nicht plus zwei – rechnen. Das ist eine gute Nachricht, denn die Anzahl der Farben, die wir mit jedem zusätzlichen Bit darstellen können, verdoppelt sich jedes Mal.</p>
+<p>Das halten wir fest, aber schauen wir zurück auf unsere RGB-Farben und die Fehlermeldung, die wir zuletzt bekommen haben. Der Wert für eine Farbe aus dem RGB-Farbcode muss zwischen 0 und 255 liegen. Wir haben somit inklusive der Null 256 Möglichkeiten für jede der drei RGB-Grundfarben. Wie viele Bits benötigen wir dafür? Rechnen wir es aus:</p>
+<p><span class="math display">\[
+\begin{aligned}
+2^0 &amp;= 1 \\
+2^1 &amp;= 2 \\
+2^2 &amp;= 4 \\
+2^3 &amp;= 8 \\
+2^4 &amp;= 16 \\
+2^5 &amp;= 32 \\
+2^6 &amp;= 64 \\
+2^7 &amp;= 128 \\
+2^8 &amp;= 256 \\
+\end{aligned}
+\]</span></p>
+<p>Stopp! <span class="math inline">\(2^8 = 256\)</span>, das genügt uns völlig. Mit 8 Bits können wir somit 256 Zustände abbilden – genau passend für 256 Rot-, Grün- oder Blauanteile.</p>
+</section>
+<section id="acht-bits-macht-ein-byte" class="level3" data-number="2.6.2">
+<h3 data-number="2.6.2" class="anchored" data-anchor-id="acht-bits-macht-ein-byte"><span class="header-section-number">2.6.2</span> Acht Bits macht ein Byte</h3>
+<p>Und das ist kein Zufall: 8 Bits sind für Computer eine besondere Größe. Wir nennen eine Gruppe von 8 Bits ein <a href="glossary.html#gl-byte" title="Byte"><span class="gloss-term">Byte</span></a>. Und jetzt dürfte es erneut klingeln.</p>
+<div id="fig-binary-system-byte-a" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-binary-system-byte-a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/binary_system_byte_a.png" class="lightbox" data-gallery="quarto-lightbox-gallery-19" title="Abbildung&nbsp;2.12: Ein Byte könnt ihr euch vorstellen wie acht Glühbirnen nebeneinander."><img src="https://winf-hsos.github.io/university-docs/images/binary_system_byte_a.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-binary-system-byte-a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;2.12: Ein Byte könnt ihr euch vorstellen wie acht Glühbirnen nebeneinander.
+</figcaption>
+</figure>
+</div>
+<p>In <a href="#fig-binary-system-byte-a" class="quarto-xref">Abbildung&nbsp;<span>2.12</span></a> ist ein Byte als Reihe von acht Glühbirnen dargestellt. Ihr könnt euch vorstellen, dass Bits mit dem Wert 1 leuchten und Bits mit dem Wert 0 aus sind. Um den Wert zu ermitteln, den das Byte gerade darstellt, könnt ihr jeder Glühbirne von rechts nach links die entsprechenden Wertigkeiten der Stellen aus dem Binärsystem zuweisen und die Werte addieren. Stellen, an denen die Glühbirne leuchtet, werden addiert, die anderen werden ausgelassen (<a href="#fig-binary-system-byte-b" class="quarto-xref">Abbildung&nbsp;<span>2.13</span></a>). Das Byte im gezeigten Beispiel steht somit für:</p>
+<p><span class="math display">\[
+32 + 8 + 1 = 41
+\]</span></p>
+<p>Wofür steht das Byte, wenn alle Lampen leuchten? Oder anders gefragt: Was ist die größte Zahl, die wir mit einem Byte darstellen können?</p>
+<p><span class="math display">\[
+128+64+32+16+8+4+2+1 = 255
+\]</span></p>
+<p>Die Antwort überrascht uns nicht, denn schließlich haben wir es ja schon herausgefunden: Ein Byte erlaubt uns, Werte zwischen 0 (alle Glühbirnen aus) und 255 (alle Glühbirnen an) darzustellen. Insgesamt also 256 Möglichkeiten. Somit können wir mit 8 Glühbirnen die Intensität einer der drei Grundfarben im RGB-Code darstellen.</p>
+<div id="fig-binary-system-byte-b" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-binary-system-byte-b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/binary_system_byte_b.png" class="lightbox" data-gallery="quarto-lightbox-gallery-20" title="Abbildung&nbsp;2.13: Jede Glühbirne steht für eine Stelle aus dem Binärsystem."><img src="https://winf-hsos.github.io/university-docs/images/binary_system_byte_b.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-binary-system-byte-b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;2.13: Jede Glühbirne steht für eine Stelle aus dem Binärsystem.
+</figcaption>
+</figure>
+</div>
+<p>Das erklärt auch die Fehlermeldung von oben: Ein Byte kann Werte zwischen 0 und 255 darstellen. Wir haben im Experiment den Drehknopf voll nach oben oder nach unten gedreht, wodurch der Wert entweder größer als 255 oder kleiner als 0 wurde. Und damit ist es kein gültiger Wert im Sinne eines Bytes mehr.</p>
+</section>
+<section id="kilo-mega-giga" class="level3" data-number="2.6.3">
+<h3 data-number="2.6.3" class="anchored" data-anchor-id="kilo-mega-giga"><span class="header-section-number">2.6.3</span> Kilo, Mega, Giga</h3>
+<!-- 
+\gloss{Kilobyte}{1.000 Bytes}{Bits & Bytes}
+\gloss{Megabyte}{1.000.000 Bytes}{Bits & Bytes}
+\gloss{Gigabyte}{1.000.000.000 Bytes}{Bits & Bytes}
+-->
+<p>Ein Byte besteht aus 8 Bits. Wenn wir also von Bytes sprechen, reden wir oft auch von Kilobytes, Megabytes, Gigabytes et cetera. Diese Begriffe sind wichtig, um die Größe von Daten zu beschreiben. In <a href="#tbl-data-sizes" class="quarto-xref">Tabelle&nbsp;<span>2.1</span></a> seht ihr eine Übersicht über die verschiedenen Größenordnungen.</p>
+<div id="tbl-data-sizes" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-data-sizes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabelle&nbsp;2.1: Verschiedene Mengeneinheiten für Bytes und deren ungefähre Entsprechung.
+</figcaption>
+<div aria-describedby="tbl-data-sizes-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 24%">
+<col style="width: 24%">
+<col style="width: 24%">
+<col style="width: 26%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Potenz (Bytes)</th>
+<th>Ausgeschrieben</th>
+<th>Bezeichnung (Abkürzung)</th>
+<th>Entspricht ca.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(10^3\)</span></td>
+<td>Tausend</td>
+<td>Kilobyte (KB)</td>
+<td>kleine Textdatei</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(10^6\)</span></td>
+<td>Million</td>
+<td>Megabyte (MB)</td>
+<td>Digitales Foto</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(10^9\)</span></td>
+<td>Milliarde</td>
+<td>Gigabyte (GB)</td>
+<td>Film (DVD 4,7 GB)</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(10^{12}\)</span></td>
+<td>Billion</td>
+<td>Terabyte (TB)</td>
+<td>Gängige Festplattenkapazität</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(10^{15}\)</span></td>
+<td>Billiarde</td>
+<td>Petabyte (PB)</td>
+<td>Speichervolumen Rechenzentrum</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(10^{18}\)</span></td>
+<td>Trillion</td>
+<td>Exabyte (EB)</td>
+<td>Internetverkehr pro Tag</td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(10^{21}\)</span></td>
+<td>Trilliarde</td>
+<td>Zettabyte (ZB)</td>
+<td>Datenbestand weltweit (&gt;100 ZB)</td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(10^{24}\)</span></td>
+<td>Quadrillion</td>
+<td>Yottabyte (YB)</td>
+<td>keine Entsprechung</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Jetzt, da ihr wisst, was mit einem Byte gemeint ist, könnt ihr eine ungefähre Vorstellung für die Größenordnungen von Datenmengen entwickeln. Die ersten drei Zeilen aus <a href="#tbl-data-sizes" class="quarto-xref">Tabelle&nbsp;<span>2.1</span></a> könnt ihr selbst einmal nachvollziehen. Schaut euch dazu mal eine Textdatei an, notiert deren Größe und rechnet aus, wie viele Glühbirnen für die Speicherung gebraucht werden. Denkt daran: Ein Byte entspricht acht Glühbirnen.</p>
+<p>Wir kommen in den späteren Kapiteln immer wieder auf die Bits und Bytes zurück, weil wir in Computern letztlich überall mit diesen Einheiten arbeiten. Es ist somit gut, wenn ihr schon an dieser Stelle ein grundlegendes Verständnis für diese Konzepte entwickelt.</p>
+</section></details>
+</section>
+
+<section id="sec-numbers-led-dimmer-2" class="level2 collapsable" data-number="2.7">
+<h2 class="collapsable anchored" data-number="2.7" data-anchor-id="sec-numbers-led-dimmer-2"><span class="header-section-number">2.7</span> LED-Dimmer 2.0</h2>
+<details class="collapsable-section" open=""><summary></summary>
+<p>Zurück zu unserem eigentlichen Vorhaben. Wir waren gerade dabei, einen Dimmer für unsere LED zu basteln, als uns die Zahlensysteme dazwischengekommen sind. Dafür haben wir jetzt ein besseres Verständnis dafür, wie ein Computer Farben sieht – nämlich als lange Sequenz aus Nullen und Einsen. Und zwar 24 davon, weil jede Grundfarbe ein Byte an Speicher verwendet.</p>
+<section id="min-und-max" class="level3" data-number="2.7.1">
+<h3 data-number="2.7.1" class="anchored" data-anchor-id="min-und-max"><span class="header-section-number">2.7.1</span> <code>min()</code> und <code>max()</code></h3>
+<p>Was müssen wir also in unserem Programm verändern, jetzt, da wir wissen, was zuvor das Problem war? Genau! Wir müssen sicherstellen, dass die Werte, die wir an die LED senden, im gültigen Bereich für ein Byte liegen – und zwar zwischen 0 und 255.</p>
+<div id="045ebe8f" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-8"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-8-1"><a href="#annotated-cell-8-1"></a>knob.reset()</span>
+<span id="annotated-cell-8-2"><a href="#annotated-cell-8-2"></a>last_count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="annotated-cell-8-3"><a href="#annotated-cell-8-3"></a></span>
+<span id="annotated-cell-8-4"><a href="#annotated-cell-8-4"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="annotated-cell-8-5"><a href="#annotated-cell-8-5"></a>    new_count <span class="op">=</span> knob.get_count(reset<span class="op">=</span><span class="va">False</span>)</span>
+<span id="annotated-cell-8-6"><a href="#annotated-cell-8-6"></a></span>
+<span id="annotated-cell-8-7"><a href="#annotated-cell-8-7"></a>    <span class="cf">if</span> new_count <span class="op">!=</span> last_count:</span>
+<span id="annotated-cell-8-8"><a href="#annotated-cell-8-8"></a>        last_count <span class="op">=</span> new_count</span>
+<span id="annotated-cell-8-9"><a href="#annotated-cell-8-9"></a></span>
+<span id="annotated-cell-8-10"><a href="#annotated-cell-8-10"></a>        <span class="co"># Clamp last_count to valid byte range</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-8" data-target-annotation="1">1</button><span id="annotated-cell-8-11" class="code-annotation-target"><a href="#annotated-cell-8-11"></a>        last_count <span class="op">=</span> <span class="bu">max</span>(<span class="dv">0</span>, <span class="bu">min</span>(<span class="dv">255</span>, last_count))</span>
+<span id="annotated-cell-8-12"><a href="#annotated-cell-8-12"></a></span>
+<span id="annotated-cell-8-13"><a href="#annotated-cell-8-13"></a>        <span class="bu">print</span>(last_count)</span>
+<span id="annotated-cell-8-14"><a href="#annotated-cell-8-14"></a></span>
+<span id="annotated-cell-8-15"><a href="#annotated-cell-8-15"></a>        <span class="co"># Setze RGB-Werte auf den Zählerwert</span></span>
+<span id="annotated-cell-8-16"><a href="#annotated-cell-8-16"></a>        led.set_rgb_value(last_count, last_count, last_count)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-8" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-8" data-code-lines="11" data-code-annotation="1">Die Funktionen <code>min()</code> und <code>max()</code> sorgen dafür, dass der Wert von <code>last_count</code> immer zwischen 0 und 255 bleibt. Wenn <code>last_count</code> kleiner als 0 ist, wird er auf 0 gesetzt. Wenn er größer als 255 ist, wird er auf 255 gesetzt.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Die neue Logik in Zeile 11 hilft uns dabei. Nachdem wir den neuen Wert des Zählers in der Variable <code>last_count</code> gespeichert haben (Zeile 8), wenden wir eine geschickte Kombination der beiden Funktionen <code>max()</code> und <code>min()</code> an, um sicherzustellen, dass der Wert im gültigen Bereich bleibt. Wie funktioniert das genau? Dazu gehen wir die Zeile Schritt für Schritt durch.</p>
+<p>Zunächst einmal der Ausdruck <code>min(255, last_count)</code>. Die Funktion <code>min()</code> gibt einfach den kleineren der beiden Werte zurück, die ihr übergeben werden. Wenn <code>last_count</code> also größer als 255 ist, wird 255 zurückgegeben. Andernfalls wird <code>last_count</code> zurückgegeben. Das Ergebnis dieser Auswertung ist gleichzeitig der zweite Wert, den wir der Funktion <code>max()</code> übergeben.</p>
+<p>Die Funktion <code>max()</code> macht genau das Gegenteil. Sie gibt den größeren der beiden ihr übergebenen Werte zurück. Zur Auswahl stehen ihr der Wert 0 und das Ergebnis der <code>min()</code>-Funktion. Das bedeutet, dass <code>max()</code> sicherstellt, dass der endgültige Wert von <code>last_count</code> niemals kleiner als 0 ist.</p>
+<p>Und voilà! Nach Zeile 11 kann der Wert von <code>last_count</code> nur noch zwischen 0 und 255 liegen. Problem gelöst!</p>
+<p>Probiert es am besten direkt aus und dreht mal voll auf! Es sollte nun kein Fehler mehr auftreten.</p>
+</section>
+<section id="helligkeit-entkoppeln" class="level3" data-number="2.7.2">
+<h3 data-number="2.7.2" class="anchored" data-anchor-id="helligkeit-entkoppeln"><span class="header-section-number">2.7.2</span> Helligkeit entkoppeln</h3>
+<p>Vielleicht habt ihr es auch bemerkt, aber so richtig toll funktioniert unser Dimmer immer noch nicht. Zwar erscheint keine Fehlermeldung mehr, wenn wir endlos aufdrehen. Jedoch wird die LED auch nicht gedimmt, wenn wir wieder in die andere Richtung drehen. Der Grund dafür ist einfach: Die Helligkeit der LED hängt in unserem Programm direkt vom Zählerstand des Drehknopfes ab. Wenn der über 255 kommt, wird die Helligkeit zwar auf 255 gedeckelt, der Zähler wird aber im Hintergrund trotzdem weiter hochgezählt. Wenn wir die LED wieder dimmen, also einen Helligkeitswert von weniger als 255 erreichen möchten, dann müssen wir zunächst mit dem Drehknopf wieder bis unter die 255 kommen.</p>
+<p>Viel schöner wäre es, wenn wir zwar endlos überdrehen könnten, aber mit der ersten Drehung in die andere Richtung die Helligkeit der LED sofort verringern. Ein einfacher Weg wäre, für den Zählerstand des Drehknopfes analog zu <code>last_count</code> nur Werte zwischen 0 und 255 zu erlauben. Dazu könnten wir den Zähler – genau wie <code>last_count</code> – manuell auf 0 oder 255 setzen, je nachdem, ob wir größer als 255 oder kleiner als 0 waren. Leider bietet der Drehknopf über seine Programmierschnittstelle keine solche Funktion an. Wir können den Wert zwar auslesen, aber nicht programmatisch verändern.</p>
+<p>Wir müssen also einen Workaround entwickeln. Eine Möglichkeit wäre, die Helligkeit unabhängig vom Zählerstand zu verwalten und dafür eine eigene Variable <code>brightness</code> einzuführen. Wir könnten den Wert von <code>brightness</code> dann erhöhen oder verringern, wenn wir eine Drehung in die eine oder andere Richtung erkannt haben.</p>
+<p>Um zu erkennen, ob und in welche Richtung der Drehknopf gedreht wurde, können wir die Differenz zwischen dem aktuellen und dem letzten Zählerstand betrachten. Sie gibt uns direkt Aufschluss: Ist die Differenz positiv, wurde der Knopf nach oben gedreht, ist sie negativ, wurde er nach unten gedreht.</p>
+<div id="7743a02f" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-9"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-9-1"><a href="#annotated-cell-9-1"></a>knob.reset()</span>
+<span id="annotated-cell-9-2"><a href="#annotated-cell-9-2"></a>last_count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="annotated-cell-9-3"><a href="#annotated-cell-9-3"></a></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="1">1</button><span id="annotated-cell-9-4" class="code-annotation-target"><a href="#annotated-cell-9-4"></a>brightness <span class="op">=</span> <span class="dv">0</span></span>
+<span id="annotated-cell-9-5"><a href="#annotated-cell-9-5"></a>led.set_rgb_value(brightness, brightness, brightness) </span>
+<span id="annotated-cell-9-6"><a href="#annotated-cell-9-6"></a></span>
+<span id="annotated-cell-9-7"><a href="#annotated-cell-9-7"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="annotated-cell-9-8"><a href="#annotated-cell-9-8"></a>    new_count <span class="op">=</span> knob.get_count(reset<span class="op">=</span><span class="va">False</span>)</span>
+<span id="annotated-cell-9-9"><a href="#annotated-cell-9-9"></a></span>
+<span id="annotated-cell-9-10"><a href="#annotated-cell-9-10"></a>    <span class="cf">if</span> new_count <span class="op">!=</span> last_count:</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="2">2</button><span id="annotated-cell-9-11" class="code-annotation-target"><a href="#annotated-cell-9-11"></a>        diff <span class="op">=</span> new_count <span class="op">-</span> last_count</span>
+<span id="annotated-cell-9-12"><a href="#annotated-cell-9-12"></a>        last_count <span class="op">=</span> new_count</span>
+<span id="annotated-cell-9-13"><a href="#annotated-cell-9-13"></a></span>
+<span id="annotated-cell-9-14"><a href="#annotated-cell-9-14"></a>        <span class="co"># Adjust brightness</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="3">3</button><span id="annotated-cell-9-15" class="code-annotation-target"><a href="#annotated-cell-9-15"></a>        brightness <span class="op">+=</span> diff</span>
+<span id="annotated-cell-9-16"><a href="#annotated-cell-9-16"></a>        brightness <span class="op">=</span> <span class="bu">max</span>(<span class="dv">0</span>, <span class="bu">min</span>(<span class="dv">255</span>, brightness))</span>
+<span id="annotated-cell-9-17"><a href="#annotated-cell-9-17"></a></span>
+<span id="annotated-cell-9-18"><a href="#annotated-cell-9-18"></a>        <span class="co"># Setze RGB-Werte auf den Zählerwert</span></span>
+<span id="annotated-cell-9-19"><a href="#annotated-cell-9-19"></a>        led.set_rgb_value(brightness, brightness, brightness)</span>
+<span id="annotated-cell-9-20"><a href="#annotated-cell-9-20"></a></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="4">4</button><span id="annotated-cell-9-21" class="code-annotation-target"><a href="#annotated-cell-9-21"></a>        <span class="bu">print</span>(<span class="ss">f"Brightness / Counter: </span><span class="sc">{</span>brightness<span class="sc">}</span><span class="ss"> / </span><span class="sc">{</span>new_count<span class="sc">}</span><span class="ss">"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-9" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-9" data-code-lines="4" data-code-annotation="1">Die neue Variable <code>brightness</code> zu Beginn mit 0 initialisieren. Die LED soll aus sein.</span>
+</dd>
+<dt data-target-cell="annotated-cell-9" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-9" data-code-lines="11" data-code-annotation="2">Hier ermitteln wir die Differenz zwischen dem aktuellen und dem letzten Zählerstand und speichern sie in der Variable <code>diff</code>.</span>
+</dd>
+<dt data-target-cell="annotated-cell-9" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-9" data-code-lines="15" data-code-annotation="3">Wir passen die Helligkeit an, indem wir <code>brightness</code> um <code>diff</code> erhöhen oder verringern. Dabei stellen wir sicher, dass der Wert zwischen 0 und 255 bleibt.</span>
+</dd>
+<dt data-target-cell="annotated-cell-9" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-9" data-code-lines="21" data-code-annotation="4">Zur Überprüfung geben wir beide Variablen aus. Wenn wir den Wertebereich 0–255 verlassen, gehen die Werte der beiden Variablen auseinander.</span>
+</dd>
+</dl>
+</div>
+</div>
+</section>
+<section id="konstanten" class="level3" data-number="2.7.3">
+<h3 data-number="2.7.3" class="anchored" data-anchor-id="konstanten"><span class="header-section-number">2.7.3</span> Konstanten</h3>
+<!--
+\gloss{Konstante}{Ein Wert, der sich während der Programmausführung nicht ändert.}{Programmierung}
+-->
+<p>Das sieht schon sehr gut aus! Unser Dimmer ist fast fertig, die grundlegende Funktionalität läuft robust. Eine Kleinigkeit stört mich noch: Der Dimmer reagiert nur sehr langsam, und wir müssen scheinbar endlos drehen, um die LED auf die volle Helligkeit zu bekommen. Können wir das beschleunigen?</p>
+<p>Das ist natürlich eine rhetorische Frage – in der Programmierung können wir so gut wie alles umsetzen. Und in diesem Fall ist es sogar recht einfach. Damit die LED schneller hell oder dunkel wird, wenn wir am Drehknopf drehen, können wir die Anpassung der Helligkeit einfach verstärken. Momentan wird die Variable <code>brightness</code> um die Differenz des Zählerstands erhöht oder verringert. Wir könnten stattdessen einen festen, höheren Schrittwert definieren, um die Helligkeit schneller zu ändern.</p>
+<p>Dazu definieren wir eine neue Variable, die eine Besonderheit hat. Wir geben ihr den Namen <code>STEP</code>, der nur aus Großbuchstaben besteht (Zeile 3 in <a href="#lst-dim-led" class="quarto-xref">Listing&nbsp;<span>2.1</span></a>). Gemäß der <a href="https://docs.python.org/3/reference/lexical_analysis.html#identifiers" title="Regeln für Variablennamen in Python">Regeln für die Bennung von Variablen in Python</a> werden Namen in GROSSBUCHSTABEN üblicherweise für Konstanten verwendet – und tatsächlich ist <code>STEP</code> genau genommen auch keine Variable, sondern eine <strong>Konstante</strong>.</p>
+<p>Eine Konstante unterscheidet sich dadurch, dass ihr Wert einmal festgelegt wird und sich danach nicht mehr ändert. In unserem Fall wollen wir, dass <code>STEP</code> immer den Wert 10 hat. Konstanten definieren wir typischerweise zu Beginn eines Python-Programms, damit man einen schnellen Überblick über alle definierten Konstanten und ihre Werte bekommen kann.</p>
+<p>Es ist wichtig zu verstehen, dass der fixe Wert einer Konstante sich nur auf die Ausführung des Programms bezieht. Zwischen mehreren Ausführungen desselben Programms kann der Wert einer Konstante geändert werden. Zum Beispiel könnten wir als Hersteller des LED-Dimmers für eine neue Version entscheiden, dass dieser sich noch schneller dimmen lassen soll, und wir erhöhen den Wert für <code>STEP</code> auf 20. Oder der Benutzer könnte diesen Wert über die Einstellungen der hypothetischen Dimmer-App anpassen.</p>
+<p>Wenn wir – wie in Zeile 15 gezeigt – die Differenz des Zählers mit der Schrittgröße multiplizieren, können wir die Anpassung der Helligkeit verstärken.</p>
+<div id="b9bbaf81" class="cell" data-execution_count="9">
+<div id="lst-dim-led" class="python cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-dim-led-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Listing&nbsp;2.1: Der fertige LED-Dimmer (ohne Boilerplate-Code)
+</figcaption>
+<div aria-describedby="lst-dim-led-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-10"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-10-1"><a href="#annotated-cell-10-1"></a>knob.reset()</span>
+<span id="annotated-cell-10-2"><a href="#annotated-cell-10-2"></a>brightness <span class="op">=</span> <span class="dv">0</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="1">1</button><span id="annotated-cell-10-3" class="code-annotation-target"><a href="#annotated-cell-10-3"></a>STEP <span class="op">=</span> <span class="dv">10</span></span>
+<span id="annotated-cell-10-4"><a href="#annotated-cell-10-4"></a>led.set_rgb_value(brightness, brightness, brightness) </span>
+<span id="annotated-cell-10-5"><a href="#annotated-cell-10-5"></a></span>
+<span id="annotated-cell-10-6"><a href="#annotated-cell-10-6"></a>last_count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="annotated-cell-10-7"><a href="#annotated-cell-10-7"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="annotated-cell-10-8"><a href="#annotated-cell-10-8"></a>    new_count <span class="op">=</span> knob.get_count(reset<span class="op">=</span><span class="va">False</span>)</span>
+<span id="annotated-cell-10-9"><a href="#annotated-cell-10-9"></a></span>
+<span id="annotated-cell-10-10"><a href="#annotated-cell-10-10"></a>    <span class="cf">if</span> new_count <span class="op">!=</span> last_count:</span>
+<span id="annotated-cell-10-11"><a href="#annotated-cell-10-11"></a>        diff <span class="op">=</span> new_count <span class="op">-</span> last_count</span>
+<span id="annotated-cell-10-12"><a href="#annotated-cell-10-12"></a>        last_count <span class="op">=</span> new_count</span>
+<span id="annotated-cell-10-13"><a href="#annotated-cell-10-13"></a></span>
+<span id="annotated-cell-10-14"><a href="#annotated-cell-10-14"></a>        <span class="co"># Adjust brightness</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-10" data-target-annotation="2">2</button><span id="annotated-cell-10-15" class="code-annotation-target"><a href="#annotated-cell-10-15"></a>        brightness <span class="op">+=</span> diff <span class="op">*</span> STEP</span>
+<span id="annotated-cell-10-16"><a href="#annotated-cell-10-16"></a>        brightness <span class="op">=</span> <span class="bu">max</span>(<span class="dv">0</span>, <span class="bu">min</span>(<span class="dv">255</span>, brightness))</span>
+<span id="annotated-cell-10-17"><a href="#annotated-cell-10-17"></a></span>
+<span id="annotated-cell-10-18"><a href="#annotated-cell-10-18"></a>        <span class="co"># Setze RGB-Werte auf den Zählerwert</span></span>
+<span id="annotated-cell-10-19"><a href="#annotated-cell-10-19"></a>        led.set_rgb_value(brightness, brightness, brightness)</span>
+<span id="annotated-cell-10-20"><a href="#annotated-cell-10-20"></a></span>
+<span id="annotated-cell-10-21"><a href="#annotated-cell-10-21"></a>        <span class="bu">print</span>(<span class="ss">f"Brightness / Counter: </span><span class="sc">{</span>brightness<span class="sc">}</span><span class="ss"> / </span><span class="sc">{</span>new_count<span class="sc">}</span><span class="ss">"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</figure>
+</div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-10" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-10" data-code-lines="3" data-code-annotation="1">Hier definieren wir eine Konstante <code>STEP</code> und weisen ihr den Wert 10 zu.</span>
+</dd>
+<dt data-target-cell="annotated-cell-10" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-10" data-code-lines="15" data-code-annotation="2">Die Helligkeit wird nun um <code>diff * STEP</code> angepasst, was bedeutet, dass jede Drehung des Knopfes einen größeren Einfluss auf die Helligkeit hat.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Mit dem LED-Dimmer haben wir die zentrale Funktion des Drehknopfes zur Genüge kennengelernt. Das Gerät hat aber noch eine andere Funktion.</p>
+</section></details>
+</section>
+
+<section id="sec-numbers-button-reading" class="level2 collapsable" data-number="2.8">
+<h2 class="collapsable anchored" data-number="2.8" data-anchor-id="sec-numbers-button-reading"><span class="header-section-number">2.8</span> Druckknopf auslesen</h2>
+<details class="collapsable-section" open=""><summary></summary>
+<p>Neben dem Zähler besitzt der Dreh<em>knopf</em> (der Name sagt es schon) noch eine Funktion, nämlich die eines einfachen Druckknopfes. Wir haben es weiter oben in <a href="#sec-numbers-first-steps" class="quarto-xref"><span>Abschnitt 2.1.2</span></a> mit dem Brick Viewer schon ausprobiert: Der Drehknopf lässt sich drücken und erzeugt eine haptische Rückmeldung, ein leichtes Knacken. Im Brick Viewer wurde der kleine Kreis auf der rechten Seite dann rot eingefärbt.</p>
+<p>Selbstverständlich können wir den Zustand des Buttons auch aus einem Programm heraus abfragen. Dazu bietet uns der Drehknopf eine Methode <code>is_pressed()</code> an:</p>
+<div id="34527f61" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb7-2"><a href="#cb7-2"></a>    <span class="cf">if</span> knob.is_pressed():</span>
+<span id="cb7-3"><a href="#cb7-3"></a>        <span class="bu">print</span>(<span class="st">"Button pressed"</span>)</span>
+<span id="cb7-4"><a href="#cb7-4"></a>    <span class="cf">else</span>:</span>
+<span id="cb7-5"><a href="#cb7-5"></a>        <span class="bu">print</span>(<span class="st">"Button not pressed"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Die Funktion liefert <code>True</code> zurück, wenn der Button gerade gedrückt ist, und ansonsten <code>False</code>. Das können wir wunderbar nutzen und darüber eine Bedingung formulieren, um entweder “Button pressed” oder “Button not pressed” auf der Konsole auszugeben. Ihr erinnert euch bestimmt an das <code>if</code>-Statement aus <a href="#sec-numbers-control-structures" class="quarto-xref"><span>Abschnitt 2.3</span></a>. Das ist genau das, was wir jetzt brauchen!</p>
+<div id="bed399b8" class="cell" data-execution_count="11">
+<div id="lst-button-test" class="python cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-button-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Listing&nbsp;2.2: Ein erster Test des Drehknopf-Buttons.
+</figcaption>
+<div aria-describedby="lst-button-test-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-12"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><button class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="1">1</button><span id="annotated-cell-12-1" class="code-annotation-target"><a href="#annotated-cell-12-1"></a>button_pressed_before <span class="op">=</span> <span class="va">False</span></span>
+<span id="annotated-cell-12-2"><a href="#annotated-cell-12-2"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="annotated-cell-12-3"><a href="#annotated-cell-12-3"></a>    button_pressed_after <span class="op">=</span> knob.is_pressed()</span>
+<span id="annotated-cell-12-4"><a href="#annotated-cell-12-4"></a></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="2">2</button><span id="annotated-cell-12-5" class="code-annotation-target"><a href="#annotated-cell-12-5"></a>    <span class="cf">if</span> button_pressed_before <span class="op">==</span> <span class="va">True</span> <span class="kw">and</span> button_pressed_after <span class="op">==</span> <span class="va">False</span>:</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="3">3</button><span id="annotated-cell-12-6" class="code-annotation-target"><a href="#annotated-cell-12-6"></a>        <span class="bu">print</span>(<span class="st">"Button was pressed and released"</span>)</span>
+<span id="annotated-cell-12-7"><a href="#annotated-cell-12-7"></a>    </span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="4">4</button><span id="annotated-cell-12-8" class="code-annotation-target"><a href="#annotated-cell-12-8"></a>    button_pressed_before <span class="op">=</span> button_pressed_after</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</figure>
+</div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-12" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-12" data-code-lines="1" data-code-annotation="1">Wir initialisieren eine Variable <code>button_pressed_before</code>, die den vorherigen Zustand des Buttons speichert. Am Anfang gehen wir mal davon aus, dass er nicht gedrückt ist.</span>
+</dd>
+<dt data-target-cell="annotated-cell-12" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-12" data-code-lines="5" data-code-annotation="2">Mit dem <code>if</code>-Statement überprüfen wir, ob der Button logelassen wurde. Dazu muss der vorherige Zustand <code>True</code> und der aktuelle Zustand <code>False</code> sein.</span>
+</dd>
+<dt data-target-cell="annotated-cell-12" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-12" data-code-lines="6" data-code-annotation="3">Wenn der Button soeben losgelassen wurde, geben wir eine entsprechende Information auf der Konsole aus.</span>
+</dd>
+<dt data-target-cell="annotated-cell-12" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-12" data-code-lines="8" data-code-annotation="4">Am Ende der Schleife aktualisieren wir den vorherigen Zustand <code>button_pressed_before</code>, damit er den aktuellen Zustand für die nächste Iteration speichert.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Das reicht fürs Erste – der Button kann tatsächlich nicht mehr als das. Reicht aber auch: Damit können wir unserem Dimmer schon einen zusätzlichen Mehrwert verleihen. Schließlich kann unsere LED nicht nur weiß leuchten.</p>
+</details>
+</section>
+<section id="sec-numbers-led-dimmer-3" class="level2 collapsable" data-number="2.9">
+<h2 class="collapsable anchored" data-number="2.9" data-anchor-id="sec-numbers-led-dimmer-3"><span class="header-section-number">2.9</span> LED-Dimmer 3.0</h2>
+<details class="collapsable-section" open=""><summary></summary>
+<p>Wäre es nicht praktisch, wenn wir das Licht der LED nicht nur dimmen, sondern auch den Farbton verändern könnten? Weißes Licht ist am Abend bekanntlich nicht empfehlenswert, ein wärmerer Farbton verbessert den Schlaf und grünes Licht soll beruhigend wirken.</p>
+<p>Lasst uns unseren Dimmer so erweitern, dass per Knopfdruck der Farbton gewechselt werden kann. Fürs Erste wollen wir die Farben Weiß, Gelb und Grün anbieten. Das lässt sich später beliebig erweitern.</p>
+<section id="farbe-per-variable-steuern" class="level3" data-number="2.9.1">
+<h3 data-number="2.9.1" class="anchored" data-anchor-id="farbe-per-variable-steuern"><span class="header-section-number">2.9.1</span> Farbe per Variable steuern</h3>
+<p>Der Ausgangspunkt für unser dimmbares Stimmungslicht ist der Dimmer aus <a href="#lst-dim-led" class="quarto-xref">Listing&nbsp;<span>2.1</span></a>. Von hier aus fügen wir Schritt für Schritt die Logik für den Farbwechsel per Button ein. Lasst uns aber zunächst ganz ohne Button versuchen, die Farbe der LED zu ändern.</p>
+<p>Bisher haben wir es uns einfach gemacht und die LED in Weiß leuchten lassen. Dazu mussten wir nur jeden der drei RGB-Farbkanäle auf den gleichen Wert setzen. Wenn wir neben Weiß auch Gelb und Grün anbieten wollen, müssen wir die Farbkanäle unterschiedlich ansteuern. Für Gelb setzen wir den roten und den grünen Kanal auf den gleichen Wert, während der blaue Kanal auf 0 bleibt. Für Grün setzen wir den grünen Kanal auf den gleichen Wert und die anderen beiden auf 0. Um so eine Logik umzusetzen, haben wir das passende Instrument bereits in unserem Werkzeugkasten: <a href="#sec-numbers-control-structures">Kontrollstrukturen</a>.</p>
+<p>Nehmen wir mal an, wir hätten eine Variable <code>color</code>, auf der die aktuelle Farbe gespeichert ist, in der die LED leuchten soll. Sie könnte also die Werte “white”, “yellow” oder “green” annehmen. Dann könnten wir mit <code>if</code>-Statements die notwendige Logik umsetzen:</p>
+<div id="e99c8eea" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="cf">if</span> color <span class="op">==</span> <span class="st">"white"</span>:</span>
+<span id="cb8-2"><a href="#cb8-2"></a>    led.set_rgb_value(brightness, brightness, brightness)</span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="cf">if</span> color <span class="op">==</span> <span class="st">"yellow"</span>:</span>
+<span id="cb8-4"><a href="#cb8-4"></a>    led.set_rgb_value(brightness, brightness, <span class="dv">0</span>)</span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="cf">if</span> color <span class="op">==</span> <span class="st">"green"</span>:</span>
+<span id="cb8-6"><a href="#cb8-6"></a>    led.set_rgb_value(<span class="dv">0</span>, brightness, <span class="dv">0</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Erinnert euch, dass der Code nach einem <code>if</code> nur dann ausgeführt wird, wenn die vorangegangene Bedingung erfüllt ist. Da die Variable <code>color</code> zu einem Zeitpunkt nur einen der drei Werte annehmen kann, muss genau eine der drei Bedingungen erfüllt sein und alle anderen entsprechend nicht.</p>
+<p>Wenn wir jetzt zu Beginn unseres Programms <code>color</code> auf einen der drei Werte setzen, können wir die Logik schnell mal testen:</p>
+<div id="ff5b6e90" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>color <span class="op">=</span> <span class="st">"white"</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="cf">if</span> color <span class="op">==</span> <span class="st">"white"</span>:</span>
+<span id="cb9-4"><a href="#cb9-4"></a>    led.set_rgb_value(brightness, brightness, brightness)</span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="cf">if</span> color <span class="op">==</span> <span class="st">"yellow"</span>:</span>
+<span id="cb9-6"><a href="#cb9-6"></a>    led.set_rgb_value(brightness, brightness, <span class="dv">0</span>)</span>
+<span id="cb9-7"><a href="#cb9-7"></a><span class="cf">if</span> color <span class="op">==</span> <span class="st">"green"</span>:</span>
+<span id="cb9-8"><a href="#cb9-8"></a>    led.set_rgb_value(<span class="dv">0</span>, brightness, <span class="dv">0</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Alles sollte so sein wie zuvor, die LED leuchtet weiß.</p>
+<div id="dc05eb82" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>color <span class="op">=</span> <span class="st">"yellow"</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Jetzt sollte beim Start des Programms die LED gelb leuchten. Dasselbe probiert mal mit “green” aus, das dürfte auch funktionieren.</p>
+</section>
+<section id="farbe-per-knopfdruck-ändern" class="level3" data-number="2.9.2">
+<h3 data-number="2.9.2" class="anchored" data-anchor-id="farbe-per-knopfdruck-ändern"><span class="header-section-number">2.9.2</span> Farbe per Knopfdruck ändern</h3>
+<p>Die aktuelle Farbe in einer Variable zu speichern ist eine gute Idee gewesen. Darauf können wir aufbauen und den Button für den Wechsel der Farbe nutzen. Aber wie?</p>
+<p>Zunächst erinnern wir uns an die Logik aus <a href="#lst-button-test" class="quarto-xref">Listing&nbsp;<span>2.2</span></a>, in dem wir den Button bereits aus einem Programm heraus getestet haben. Dort haben wir eine Logik gebastelt, die erkennt, wenn der Button gedrückt und wieder losgelassen wird. Wenn das der Fall war, wurde der Wert “Button gedrückt” auf der Konsole ausgegeben. Könnten wir diese Logik nicht verwenden, um statt etwas auszugeben einfach die Farbe zu wechseln?</p>
+<p>Natürlich können wir das. Passen wir den Code entsprechend an:</p>
+<div id="070df256" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>button_pressed_before <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb11-3"><a href="#cb11-3"></a>    button_pressed_after <span class="op">=</span> knob.is_pressed()</span>
+<span id="cb11-4"><a href="#cb11-4"></a></span>
+<span id="cb11-5"><a href="#cb11-5"></a>    <span class="cf">if</span> button_pressed_before <span class="op">==</span> <span class="va">True</span> <span class="kw">and</span> button_pressed_after <span class="op">==</span> <span class="va">False</span>:</span>
+<span id="cb11-6"><a href="#cb11-6"></a>        <span class="cf">if</span> color <span class="op">==</span> <span class="st">"white"</span>:</span>
+<span id="cb11-7"><a href="#cb11-7"></a>            color <span class="op">=</span> <span class="st">"yellow"</span></span>
+<span id="cb11-8"><a href="#cb11-8"></a>        <span class="cf">elif</span> color <span class="op">==</span> <span class="st">"yellow"</span>:</span>
+<span id="cb11-9"><a href="#cb11-9"></a>            color <span class="op">=</span> <span class="st">"green"</span></span>
+<span id="cb11-10"><a href="#cb11-10"></a>        <span class="cf">elif</span> color <span class="op">==</span> <span class="st">"green"</span>:</span>
+<span id="cb11-11"><a href="#cb11-11"></a>            color <span class="op">=</span> <span class="st">"white"</span></span>
+<span id="cb11-12"><a href="#cb11-12"></a></span>
+<span id="cb11-13"><a href="#cb11-13"></a>    button_pressed_before <span class="op">=</span> button_pressed_after</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<!--
+\gloss{Verschachtelte Kontrollstruktur}{Ein if-Statement, das innerhalb eines anderen if-Statements steht.}{Programmierung}
+-->
+<p>Wieder ein Haufen voller <code>if</code>s - wir sprechen auch von verschachtelten <code>if</code>s - aber es sollte funktionieren. Gehen wir es einmal durch: Wenn der Button losgelassen wurde, also das erste <code>if</code> in Zeile 5 <code>True</code> zurückgibt, gelangen wir zur Prüfung des <code>if</code>-Statements auf zweiter Ebene. Hier wird im ersten Fall geprüft, ob die LED gerade Weiß leuchtet (<code>color == "white"</code>, Zeile 6). Ist das der Fall, dann wechseln wir jetzt auf Gelb. Im zweiten Schritt sehen wir ein <code>elif</code> (Zeile 8), das sehr ähnlich zu einem <code>if</code> ist, mit der Einschränkung, dass es nur überhaupt geprüft wird, wenn das vorherige <code>if</code> nicht schon wahr war. Das macht in diesem Fall einen großen Unterschied (im Vergleich zu weiter oben, als wir einfache <code>if</code>-Statements verwendet haben, um die Farbe der LED mit <code>set_rgb_color</code> zu setzen). Überlegt mal, was passieren würde, wenn wir hier folgenden Code einsetzen würden:</p>
+<div id="868c6fb4" class="cell" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="cf">if</span> color <span class="op">==</span> <span class="st">"white"</span>:</span>
+<span id="cb12-2"><a href="#cb12-2"></a>    color <span class="op">=</span> <span class="st">"yellow"</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="cf">if</span> color <span class="op">==</span> <span class="st">"yellow"</span>:</span>
+<span id="cb12-4"><a href="#cb12-4"></a>    color <span class="op">=</span> <span class="st">"green"</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a><span class="cf">if</span> color <span class="op">==</span> <span class="st">"green"</span>:</span>
+<span id="cb12-6"><a href="#cb12-6"></a>    color <span class="op">=</span> <span class="st">"white"</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Geht das mal im Kopf durch. Wenn <code>color</code> aktuell den Wert <code>white</code> hat, dann wird durch das erste <code>if</code> der Wert auf <code>yellow</code> gesetzt. Anschließend wird das zweite <code>if</code> geprüft, das jetzt wahr ist, und der Wert wird auf <code>green</code> gesetzt. Das dritte <code>if</code> wird dann also ebenfalls wahr sein, und der Wert wird wieder auf <code>white</code> gesetzt. Im Endeffekt haben wir also nichts gewonnen, die LED bliebe weiß. Hier ist die Verwendung von <code>elif</code> entscheidend. Denn ein <code>elif</code> wird nur geprüft, wenn das vorherige <code>if</code> oder <code>elif</code> nicht wahr war. Nach der ersten Anpassung wäre hier also Schluss und die Farbe ist wie gewünscht Gelb.</p>
+<p>Fügen wir alles zusammen - die neue Logik zum setzen der Farben basierend auf der Varible <code>color</code>und die Logik zum Ändern der Variable, sowie die Logik des Dimmers aus <a href="#lst-dim-led" class="quarto-xref">Listing&nbsp;<span>2.1</span></a>:</p>
+<div id="758676db" class="cell" data-execution_count="17">
+<div id="lst-color-brightness" class="python cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-color-brightness-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Listing&nbsp;2.3: Farbwechsel und Helligkeitsanpassung in einem Programm.
+</figcaption>
+<div aria-describedby="lst-color-brightness-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>button_pressed_before <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a></span>
+<span id="cb13-3"><a href="#cb13-3"></a><span class="co"># 1. Main loop to keep program running</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb13-5"><a href="#cb13-5"></a>    new_count <span class="op">=</span> knob.get_count(reset<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb13-6"><a href="#cb13-6"></a>    button_pressed_after <span class="op">=</span> knob.is_pressed()</span>
+<span id="cb13-7"><a href="#cb13-7"></a></span>
+<span id="cb13-8"><a href="#cb13-8"></a>    <span class="co"># 2. Logic for color change on button release</span></span>
+<span id="cb13-9"><a href="#cb13-9"></a>    <span class="cf">if</span> button_pressed_before <span class="op">==</span> <span class="va">True</span> <span class="kw">and</span> button_pressed_after <span class="op">==</span> <span class="va">False</span>:</span>
+<span id="cb13-10"><a href="#cb13-10"></a>        <span class="cf">if</span> color <span class="op">==</span> <span class="st">"white"</span>:</span>
+<span id="cb13-11"><a href="#cb13-11"></a>            color <span class="op">=</span> <span class="st">"yellow"</span></span>
+<span id="cb13-12"><a href="#cb13-12"></a>        <span class="cf">elif</span> color <span class="op">==</span> <span class="st">"yellow"</span>:</span>
+<span id="cb13-13"><a href="#cb13-13"></a>            color <span class="op">=</span> <span class="st">"green"</span></span>
+<span id="cb13-14"><a href="#cb13-14"></a>        <span class="cf">elif</span> color <span class="op">==</span> <span class="st">"green"</span>:</span>
+<span id="cb13-15"><a href="#cb13-15"></a>            color <span class="op">=</span> <span class="st">"white"</span></span>
+<span id="cb13-16"><a href="#cb13-16"></a></span>
+<span id="cb13-17"><a href="#cb13-17"></a>        <span class="co"># Update LED to reflect new color</span></span>
+<span id="cb13-18"><a href="#cb13-18"></a>        <span class="cf">if</span> color <span class="op">==</span> <span class="st">"white"</span>:</span>
+<span id="cb13-19"><a href="#cb13-19"></a>            led.set_rgb_value(brightness, brightness, brightness)</span>
+<span id="cb13-20"><a href="#cb13-20"></a>        <span class="cf">if</span> color <span class="op">==</span> <span class="st">"yellow"</span>:</span>
+<span id="cb13-21"><a href="#cb13-21"></a>            led.set_rgb_value(brightness, brightness, <span class="dv">0</span>)</span>
+<span id="cb13-22"><a href="#cb13-22"></a>        <span class="cf">if</span> color <span class="op">==</span> <span class="st">"green"</span>:</span>
+<span id="cb13-23"><a href="#cb13-23"></a>            led.set_rgb_value(<span class="dv">0</span>, brightness, <span class="dv">0</span>)</span>
+<span id="cb13-24"><a href="#cb13-24"></a></span>
+<span id="cb13-25"><a href="#cb13-25"></a>    button_pressed_before <span class="op">=</span> button_pressed_after</span>
+<span id="cb13-26"><a href="#cb13-26"></a></span>
+<span id="cb13-27"><a href="#cb13-27"></a>    <span class="co"># 3. Logic for brightness adjustment</span></span>
+<span id="cb13-28"><a href="#cb13-28"></a>    <span class="cf">if</span> new_count <span class="op">!=</span> last_count:</span>
+<span id="cb13-29"><a href="#cb13-29"></a>        diff <span class="op">=</span> new_count <span class="op">-</span> last_count</span>
+<span id="cb13-30"><a href="#cb13-30"></a>        last_count <span class="op">=</span> new_count</span>
+<span id="cb13-31"><a href="#cb13-31"></a></span>
+<span id="cb13-32"><a href="#cb13-32"></a>        <span class="co"># Adjust brightness</span></span>
+<span id="cb13-33"><a href="#cb13-33"></a>        brightness <span class="op">+=</span> diff <span class="op">*</span> STEP</span>
+<span id="cb13-34"><a href="#cb13-34"></a>        brightness <span class="op">=</span> <span class="bu">max</span>(<span class="dv">0</span>, <span class="bu">min</span>(<span class="dv">255</span>, brightness))</span>
+<span id="cb13-35"><a href="#cb13-35"></a></span>
+<span id="cb13-36"><a href="#cb13-36"></a>        <span class="co"># Update LED to reflect new color</span></span>
+<span id="cb13-37"><a href="#cb13-37"></a>        <span class="cf">if</span> color <span class="op">==</span> <span class="st">"white"</span>:</span>
+<span id="cb13-38"><a href="#cb13-38"></a>            led.set_rgb_value(brightness, brightness, brightness)</span>
+<span id="cb13-39"><a href="#cb13-39"></a>        <span class="cf">if</span> color <span class="op">==</span> <span class="st">"yellow"</span>:</span>
+<span id="cb13-40"><a href="#cb13-40"></a>            led.set_rgb_value(brightness, brightness, <span class="dv">0</span>)</span>
+<span id="cb13-41"><a href="#cb13-41"></a>        <span class="cf">if</span> color <span class="op">==</span> <span class="st">"green"</span>:</span>
+<span id="cb13-42"><a href="#cb13-42"></a>            led.set_rgb_value(<span class="dv">0</span>, brightness, <span class="dv">0</span>)</span>
+<span id="cb13-43"><a href="#cb13-43"></a></span>
+<span id="cb13-44"><a href="#cb13-44"></a>        <span class="bu">print</span>(<span class="ss">f"Brightness / Counter: </span><span class="sc">{</span>brightness<span class="sc">}</span><span class="ss"> / </span><span class="sc">{</span>new_count<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</figure>
+</div>
+</div>
+<p>Schaut euch den Code in Ruhe an und prüft, ob ihr ihn Zeile für Zeile nachvollziehen könnt. An dieser Stelle hat unser Programm schon eine beträchtliche Größe angenommen, und so langsam wird es unübersichtlich. Versuchen wir also, Struktur hineinzubringen. Im Wesentlichen besteht das Programm aus drei Teilen, jeden habe ich mit einem vorangestellten Kommentar markiert:</p>
+<ol type="1">
+<li>Hauptschleife, um das Programm am Laufen zu halten</li>
+<li>Logik für Farbwechsel bei Tastenfreigabe</li>
+<li>Logik zur Helligkeitsanpassung</li>
+</ol>
+<p>In der Hauptschleife wird am Anfange immer wieder der aktuelle Zählerstand und der Zustand des Buttons abgefragt und auf jeweils einer Variable gespeichert. Diese Werte benötigen wir, um zu entscheiden, ob wir die Farbe ändern oder die Helligkeit anpassen müssen.</p>
+<p>Um einen potenziellen Farbwechsel kümmert sich der zweite Block, der mit dem <code>if button_pressed_before == True ...</code> beginnt. Die Bedingung prüft, ob der Button gerade aus dem gedrückten Zustand in den nicht gedrückten Zustand wechselt, der Benutzer ihn also gerade losgelassen hat. In diesem Moment soll die Farbe gewechselt werden. Die Logik dafür haben wir gerade entwickelt.</p>
+<p>Um die Helligkeitsanpassung kümmert sich dann der dritte und letzte größere Block. Er beginnt mit <code>if new_count != last_count</code>, was prüft, ob der Drehknop betätigt wurde. Wenn ja, dann wird die Helligkeit entsprechend der Differenz angepasst. Diese Logik haben wir in <a href="#sec-numbers-led-dimmer-2" class="quarto-xref"><span>Abschnitt 2.7</span></a> zusammen entwickelt.</p>
+<p>Wer von euch jetzt ganz genau hinsieht, der erkennt, dass die Blöcke 2 und 3 zum Teil identischen Code ausführen. In der Programmierung ist das eine rote Flagge 🚩! Lasst uns darüber sprechen, warum!</p>
+</section></details>
+</section>
+
+<section id="sec-numbers-functions" class="level2 collapsable" data-number="2.10">
+<h2 class="collapsable anchored" data-number="2.10" data-anchor-id="sec-numbers-functions"><span class="header-section-number">2.10</span> Funktionen</h2>
+<details class="collapsable-section" open=""><summary></summary>
+<p>In der Programmierung möchten wir Wiederholungen um jeden Preis vermeiden. Wir sprechen auch vom <a href="glossary.html#gl-dry-prinzip" title="DRY-Prinzip"><span class="gloss-term">DRY-Prinzip</span></a>, was für <em>Don’t Repeat Yourself</em> steht. Wenn wir feststellen, dass wir denselben Code an mehreren Stellen verwenden, sollten wir darüber nachdenken, etwas zu verändern. Warum? Und was?</p>
+<p>Nehmen wir in unserem Beispiel an, wir führen eine vierte Farbe ein, sagen wir Blau. Dann müssten wir den Code in den Blöcken 2 und 3 anpassen, um die neue Farbe zu berücksichtigen. Das bedeutet, dass wir den gleichen Code an mehreren Stellen ändern müssten, was fehleranfällig und mühsam ist. Zwei mag noch nicht nach einem Problem klingen, aber selbst hier zeigt sich das Problem der Wiederholung. Wird eine Stelle vergessen, ist der Code inkonsistent und funktioniert nicht mehr wie gewünscht.</p>
+<!--
+\gloss{Funktion}{Benannter Codeblock zur Lösung eines definierten Problems.}{Programmierung}
+\gloss{Codeblock}{Ein zusammenhängender Abschnitt von Programmcode, der eine bestimmte Aufgabe erfüllt. In Python sind Codeblöcke durch Einrückungen definiert.}{Programmierung}
+-->
+<p>Die Lösung liegt darin, häufig verwendeten Code in Funktionen auszulagern. Funktionen sind ein mächtiges Werkzeug in der Programmierung. Sie ermöglichen es uns, Codeblöcke zu definieren, die wir immer wieder verwenden können, ohne sie jedes Mal neu schreiben zu müssen. Funktionen helfen uns dabei, unseren Code sauberer, übersichtlicher und wartbarer zu gestalten.</p>
+<p>Im <a href="#lst-color-brightness" class="quarto-xref">Listing&nbsp;<span>2.3</span></a> wird dieser Teil an zwei Stellen wiederholt:</p>
+<div id="bc4ae453" class="cell" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="cf">if</span> color <span class="op">==</span> <span class="st">"white"</span>:</span>
+<span id="cb14-2"><a href="#cb14-2"></a>    led.set_rgb_value(brightness, brightness, brightness)</span>
+<span id="cb14-3"><a href="#cb14-3"></a><span class="cf">if</span> color <span class="op">==</span> <span class="st">"yellow"</span>:</span>
+<span id="cb14-4"><a href="#cb14-4"></a>    led.set_rgb_value(brightness, brightness, <span class="dv">0</span>)</span>
+<span id="cb14-5"><a href="#cb14-5"></a><span class="cf">if</span> color <span class="op">==</span> <span class="st">"green"</span>:</span>
+<span id="cb14-6"><a href="#cb14-6"></a>    led.set_rgb_value(<span class="dv">0</span>, brightness, <span class="dv">0</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Zeit, diesen Code nur einmal zu schreiben! Machen wir daraus eine Funktion. Wie das geht? Im Prinzip müssen wir vier Dinge klären:</p>
+<ol type="1">
+<li>Was soll die Funktion tun?</li>
+<li>Wie sieht das Ergebnis aus?</li>
+<li>Was benötigt die Funktion, um ihre Aufgabe zu erledigen?</li>
+<li>Wie heisst die Funktion?</li>
+</ol>
+<!--
+\gloss{EVA-Schema}{Ein Modell zur Repräsentation von Problemen anhand von Eingaben, Verarbeitungen und Ausgaben}{Programmierung}
+\gloss{Parameter}{Eingabewerte, die einer Funktion übergeben werden, damit sie ihre Aufgabe erfüllen kann.}{Programmierung}
+-->
+<div id="fig-numbers-input-function-output" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-numbers-input-function-output-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/problem_solving_input_function_output.png" class="lightbox" data-gallery="quarto-lightbox-gallery-21" title="Abbildung&nbsp;2.14: Funktionen folgen einem Eingabe-Verarbeitung-Ausgabe (EVA) Schema."><img src="https://winf-hsos.github.io/university-docs/images/problem_solving_input_function_output.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-numbers-input-function-output-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;2.14: Funktionen folgen einem Eingabe-Verarbeitung-Ausgabe (EVA) Schema.
+</figcaption>
+</figure>
+</div>
+<div id="fe4062be" class="cell" data-execution_count="19">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">def</span> set_led_color(color, brightness):</span>
+<span id="cb15-2"><a href="#cb15-2"></a>    <span class="cf">if</span> color <span class="op">==</span> <span class="st">"white"</span>:</span>
+<span id="cb15-3"><a href="#cb15-3"></a>        led.set_rgb_value(brightness, brightness, brightness)</span>
+<span id="cb15-4"><a href="#cb15-4"></a>    <span class="cf">if</span> color <span class="op">==</span> <span class="st">"yellow"</span>:</span>
+<span id="cb15-5"><a href="#cb15-5"></a>        led.set_rgb_value(brightness, brightness, <span class="dv">0</span>)</span>
+<span id="cb15-6"><a href="#cb15-6"></a>    <span class="cf">if</span> color <span class="op">==</span> <span class="st">"green"</span>:</span>
+<span id="cb15-7"><a href="#cb15-7"></a>        led.set_rgb_value(<span class="dv">0</span>, brightness, <span class="dv">0</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>In <a href="#lst-dim-led-color" class="quarto-xref">Listing&nbsp;<span>2.4</span></a> seht ihr den fertigen Code für den Dimmer mit Farbwechsel per Knopfdruck.</p>
+<div id="7bc8914a" class="cell" data-execution_count="20">
+<div id="lst-dim-led-color" class="python cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-dim-led-color-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Listing&nbsp;2.4: Der fertige Dimmer mit Farbwechsel per Knopfdruck.
+</figcaption>
+<div aria-describedby="lst-dim-led-color-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="im">from</span> tinkerforge.bricklet_rotary_encoder_v2 <span class="im">import</span> BrickletRotaryEncoderV2</span>
+<span id="cb16-3"><a href="#cb16-3"></a><span class="im">from</span> tinkerforge.bricklet_rgb_led_v2 <span class="im">import</span> BrickletRGBLEDV2</span>
+<span id="cb16-4"><a href="#cb16-4"></a></span>
+<span id="cb16-5"><a href="#cb16-5"></a>ipcon <span class="op">=</span> IPConnection()</span>
+<span id="cb16-6"><a href="#cb16-6"></a>ipcon.<span class="ex">connect</span>(<span class="st">"localhost"</span>, <span class="dv">4223</span>)</span>
+<span id="cb16-7"><a href="#cb16-7"></a>knob <span class="op">=</span> BrickletRotaryEncoderV2(<span class="st">"&lt;YOUR_ROTARY_UID&gt;"</span>, ipcon) </span>
+<span id="cb16-8"><a href="#cb16-8"></a>led <span class="op">=</span> BrickletRGBLEDV2(<span class="st">"&lt;YOUR_LED_UID&gt;"</span>, ipcon)</span>
+<span id="cb16-9"><a href="#cb16-9"></a></span>
+<span id="cb16-10"><a href="#cb16-10"></a>knob.reset()</span>
+<span id="cb16-11"><a href="#cb16-11"></a>brightness <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb16-12"><a href="#cb16-12"></a>STEP <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb16-13"><a href="#cb16-13"></a>led.set_rgb_value(brightness, brightness, brightness) </span>
+<span id="cb16-14"><a href="#cb16-14"></a>last_count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb16-15"><a href="#cb16-15"></a></span>
+<span id="cb16-16"><a href="#cb16-16"></a>color <span class="op">=</span> <span class="st">"white"</span></span>
+<span id="cb16-17"><a href="#cb16-17"></a>button_pressed_before <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb16-18"><a href="#cb16-18"></a></span>
+<span id="cb16-19"><a href="#cb16-19"></a><span class="kw">def</span> set_led_color(color, brightness):</span>
+<span id="cb16-20"><a href="#cb16-20"></a>    <span class="cf">if</span> color <span class="op">==</span> <span class="st">"white"</span>:</span>
+<span id="cb16-21"><a href="#cb16-21"></a>        led.set_rgb_value(brightness, brightness, brightness)</span>
+<span id="cb16-22"><a href="#cb16-22"></a>    <span class="cf">if</span> color <span class="op">==</span> <span class="st">"yellow"</span>:</span>
+<span id="cb16-23"><a href="#cb16-23"></a>        led.set_rgb_value(brightness, brightness, <span class="dv">0</span>)</span>
+<span id="cb16-24"><a href="#cb16-24"></a>    <span class="cf">if</span> color <span class="op">==</span> <span class="st">"green"</span>:</span>
+<span id="cb16-25"><a href="#cb16-25"></a>        led.set_rgb_value(<span class="dv">0</span>, brightness, <span class="dv">0</span>)</span>
+<span id="cb16-26"><a href="#cb16-26"></a></span>
+<span id="cb16-27"><a href="#cb16-27"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb16-28"><a href="#cb16-28"></a>    new_count <span class="op">=</span> knob.get_count(reset<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb16-29"><a href="#cb16-29"></a>    button_pressed_after <span class="op">=</span> knob.is_pressed()</span>
+<span id="cb16-30"><a href="#cb16-30"></a></span>
+<span id="cb16-31"><a href="#cb16-31"></a>    <span class="co"># If button changes from pressed to not pressed</span></span>
+<span id="cb16-32"><a href="#cb16-32"></a>    <span class="cf">if</span> button_pressed_before <span class="op">==</span> <span class="va">True</span> <span class="kw">and</span> button_pressed_after <span class="op">==</span> <span class="va">False</span>:</span>
+<span id="cb16-33"><a href="#cb16-33"></a>        <span class="cf">if</span> color <span class="op">==</span> <span class="st">"white"</span>:</span>
+<span id="cb16-34"><a href="#cb16-34"></a>            color <span class="op">=</span> <span class="st">"yellow"</span></span>
+<span id="cb16-35"><a href="#cb16-35"></a>        <span class="cf">elif</span> color <span class="op">==</span> <span class="st">"yellow"</span>:</span>
+<span id="cb16-36"><a href="#cb16-36"></a>            color <span class="op">=</span> <span class="st">"green"</span></span>
+<span id="cb16-37"><a href="#cb16-37"></a>        <span class="cf">elif</span> color <span class="op">==</span> <span class="st">"green"</span>:</span>
+<span id="cb16-38"><a href="#cb16-38"></a>            color <span class="op">=</span> <span class="st">"white"</span></span>
+<span id="cb16-39"><a href="#cb16-39"></a></span>
+<span id="cb16-40"><a href="#cb16-40"></a>        <span class="bu">print</span>(<span class="ss">f"Color changed to: </span><span class="sc">{</span>color<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb16-41"><a href="#cb16-41"></a>        set_led_color(color, brightness)   </span>
+<span id="cb16-42"><a href="#cb16-42"></a></span>
+<span id="cb16-43"><a href="#cb16-43"></a>    button_pressed_before <span class="op">=</span> button_pressed_after</span>
+<span id="cb16-44"><a href="#cb16-44"></a></span>
+<span id="cb16-45"><a href="#cb16-45"></a>    <span class="cf">if</span> new_count <span class="op">!=</span> last_count:</span>
+<span id="cb16-46"><a href="#cb16-46"></a>        diff <span class="op">=</span> new_count <span class="op">-</span> last_count</span>
+<span id="cb16-47"><a href="#cb16-47"></a>        last_count <span class="op">=</span> new_count</span>
+<span id="cb16-48"><a href="#cb16-48"></a></span>
+<span id="cb16-49"><a href="#cb16-49"></a>        <span class="co"># Adjust brightness</span></span>
+<span id="cb16-50"><a href="#cb16-50"></a>        brightness <span class="op">+=</span> diff <span class="op">*</span> STEP</span>
+<span id="cb16-51"><a href="#cb16-51"></a>        brightness <span class="op">=</span> <span class="bu">max</span>(<span class="dv">0</span>, <span class="bu">min</span>(<span class="dv">255</span>, brightness))</span>
+<span id="cb16-52"><a href="#cb16-52"></a></span>
+<span id="cb16-53"><a href="#cb16-53"></a>        <span class="bu">print</span>(<span class="ss">f"Brightness / Counter: </span><span class="sc">{</span>brightness<span class="sc">}</span><span class="ss"> / </span><span class="sc">{</span>new_count<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb16-54"><a href="#cb16-54"></a>        set_led_color(color, brightness)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</figure>
+</div>
+</div>
+
+
+</details>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-adami_what_2016" class="csl-entry" role="listitem">
+Adami, Christoph. 2016. <span>„What is <span>Information</span>?“</span> <em>Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences</em> 374 (2063): 20150230. <a href="https://doi.org/10.1098/rsta.2015.0230">https://doi.org/10.1098/rsta.2015.0230</a>.
+</div>
+<div id="ref-brookshear_computer_2020" class="csl-entry" role="listitem">
+Brookshear, J. Glenn, und Dennis Brylow. 2020. <em>Computer science: an overview</em>. 13th edition, global edition. NY, NY: Pearson.
+</div>
+<div id="ref-gallenbacher_abenteuer_2020" class="csl-entry" role="listitem">
+Gallenbacher, Jens. 2020. <em>Abenteuer <span>Informatik</span>: <span>IT</span> zum <span>Anfassen</span> für alle von 9 bis 99, vom <span>Navi</span> bis <span>Social</span> <span>Media</span></em>. 4. Auflage, korrigierte Publikation. Berlin Heidelberg: Springer.
+</div>
+<div id="ref-Makowski2021neurokit" class="csl-entry" role="listitem">
+Makowski, Dominique, Tam Pham, Zen J. Lau, Jan C. Brammer, François Lespinasse, Hung Pham, Christopher Schölzel, und S. H. Annabel Chen. 2021. <span>„<span>NeuroKit</span>2: A Python toolbox for neurophysiological signal processing“</span>. <em>Behavior Research Methods</em> 53 (4): 1689–96. <a href="https://doi.org/10.3758/s13428-020-01516-y">https://doi.org/10.3758/s13428-020-01516-y</a>.
+</div>
+<div id="ref-petzold_code_2022" class="csl-entry" role="listitem">
+Petzold, Charles. 2022. <em>Code: the hidden language of computer hardware and software</em>. 2. Aufl. Hoboken: Microsoft Press.
+</div>
+<div id="ref-polya" class="csl-entry" role="listitem">
+Pólya, George, und John Horton Conway. 2004. <em>How to solve it: a new aspect of mathematical method</em>. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.
+</div>
+<div id="ref-scott_but_2009" class="csl-entry" role="listitem">
+Scott, John C. 2009. <em>But how do it know?: the basic principles of computers for everyone</em>. Oldsmar, FL: John C. Scott.
+</div>
+</div>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Hände hoch, wer daran noch glaubt!<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  if (document.documentElement.dataset.collapsableInit) return;
+
+  document.documentElement.dataset.collapsableInit = "1";
+
+
+
+  document.querySelectorAll(
+
+    "h1.collapsable, h2.collapsable, h3.collapsable, h4.collapsable, h5.collapsable, h6.collapsable"
+
+  ).forEach(h => {
+
+    const details = h.nextElementSibling;
+
+    if (!details || details.tagName.toLowerCase() !== "details") return;
+
+
+
+    // Icon-Status initial
+
+    h.classList.toggle("closed", !details.open);
+
+
+
+    h.style.cursor = "pointer";
+
+    h.addEventListener("click", () => {
+
+      details.open = !details.open;
+
+      h.classList.toggle("closed", !details.open);
+
+    });
+
+  });
+
+});
+
+</script>
+
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Kopiert");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Kopiert");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+        for (let i=0; i<annoteTargets.length; i++) {
+          const annoteTarget = annoteTargets[i];
+          const targetCell = annoteTarget.getAttribute("data-target-cell");
+          const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+          const contentFn = () => {
+            const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+            if (content) {
+              const tipContent = content.cloneNode(true);
+              tipContent.classList.add("code-annotation-tip-content");
+              return tipContent.outerHTML;
+            }
+          }
+          const config = {
+            allowHTML: true,
+            content: contentFn,
+            onShow: (instance) => {
+              selectCodeLines(instance.reference);
+              instance.reference.classList.add('code-annotation-active');
+              window.tippy.hideAll();
+            },
+            onHide: (instance) => {
+              unselectCodeLines();
+              instance.reference.classList.remove('code-annotation-active');
+            },
+            maxWidth: 300,
+            delay: [50, 0],
+            duration: [200, 0],
+            offset: [5, 10],
+            arrow: true,
+            appendTo: function(el) {
+              return el.parentElement.parentElement.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'quarto',
+            placement: 'right',
+            popperOptions: {
+              modifiers: [
+              {
+                name: 'flip',
+                options: {
+                  flipVariations: false, // true by default
+                  allowedAutoPlacements: ['right'],
+                  fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+                },
+              },
+              {
+                name: 'preventOverflow',
+                options: {
+                  mainAxis: false,
+                  altAxis: false
+                }
+              }
+              ]        
+            }      
+          };
+          window.tippy(annoteTarget, config); 
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../part-1-dap/colors.html" class="pagination-link" aria-label="Farben">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Farben</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../part-1-dap/text.html" class="pagination-link" aria-label="Texte">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Texte</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>

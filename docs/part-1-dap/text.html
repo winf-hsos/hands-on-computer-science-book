@@ -1,0 +1,2093 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.27">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Ein Online-Buch mit Experimenten, die Schritt für Schritt in die Welt der Digitalisierung, Programmierung und Künstliche Intelligenz einführen.">
+
+<title>3&nbsp; Texte – Hands-On Computer Science</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../part-1-dap/images.html" rel="next">
+<link href="../part-1-dap/numbers.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-670489e30afdd02925324b99e7f7a38e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Keine Treffer",
+    "search-matching-documents-text": "Treffer",
+    "search-copy-link-title": "Link in die Suche kopieren",
+    "search-hide-matches-text": "Zusätzliche Treffer verbergen",
+    "search-more-match-text": "weitere Treffer in diesem Dokument",
+    "search-more-matches-text": "weitere Treffer in diesem Dokument",
+    "search-clear-button-title": "Zurücksetzen",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Abbrechen",
+    "search-submit-button-title": "Abschicken",
+    "search-label": "Suchen"
+  }
+}</script>
+<!-- DataTables assets -->
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css">
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+
+
+
+<style>
+
+/* linksbündig + volle Breite */
+
+.datatable table, .datatable-nosearch table { width: 100% !important; }
+
+.datatable table td, .datatable table th,
+
+.datatable-nosearch table td, .datatable-nosearch table th { text-align: left; }
+
+
+
+/* etwas Luft unter dem Suchfeld (nur .datatable mit Suche) */
+
+.datatable .dataTables_filter { margin-bottom: 1.5rem; }
+
+</style>
+
+
+
+<style>
+
+/* --- Quarto + DataTables: Floats neutralisieren --- */
+
+.dataTables_wrapper { 
+
+  display: flow-root;   /* enthält Floats, verhindert Überlaufen in die Margin */
+
+  max-width: 100%;
+
+}
+
+
+
+/* Alle DataTables-Steuerelemente nicht mehr floaten lassen */
+
+.dataTables_wrapper .dataTables_filter,
+
+.dataTables_wrapper .dataTables_length,
+
+.dataTables_wrapper .dataTables_info,
+
+.dataTables_wrapper .dataTables_paginate {
+
+  float: none !important;
+
+  text-align: left;     /* oder right, aber ohne float */
+
+  margin: 0 0 1rem 0;   /* etwas Luft unter die Zeile */
+
+}
+
+
+
+/* Sicherheitshalber: Tabelle bleibt im Content-Bereich */
+
+.page-columns .content .dataTables_wrapper { margin-right: 0; }
+
+</style>
+
+
+
+
+
+<script>
+
+(function () {
+
+  function initDT() {
+
+    if (!window.jQuery || !jQuery.fn || !jQuery.fn.DataTable) return;
+
+
+
+    // 0) Vorhandene Instanzen zerstören (Hot-Reload zuverlässig)
+
+    document.querySelectorAll('.datatable table, .datatable-nosearch table').forEach(function (tbl) {
+
+      if (jQuery.fn.dataTable.isDataTable(tbl)) {
+
+        try { jQuery(tbl).DataTable().destroy(); } catch(e) {}
+
+      }
+
+      tbl.removeAttribute('data-dt-inited');
+
+      tbl.classList.remove('dataTable');
+
+    });
+
+
+
+    // 1) Tabellen MIT Suche (globales Glossar)
+
+    document.querySelectorAll('.datatable table').forEach(function (tbl) {
+
+      if (tbl.dataset.dtInited === '1') return;
+
+      const wrap = tbl.closest('.datatable');
+
+      let order = [[0,'asc']];
+
+      try {
+
+        const o = wrap && wrap.getAttribute('data-order');
+
+        if (o) order = JSON.parse(o);
+
+      } catch(e) {}
+
+      jQuery(tbl).DataTable({
+
+        dom: 'f',
+
+        paging: false,
+
+        info: false,
+
+        ordering: true,
+
+        order: order
+
+      });
+
+      tbl.dataset.dtInited = '1';
+
+    });
+
+
+
+    // 2) Tabellen OHNE Suche (Kapitel-Glossare)
+
+    document.querySelectorAll('.datatable-nosearch table').forEach(function (tbl) {
+
+      if (tbl.dataset.dtInited === '1') return;
+
+      const wrap = tbl.closest('.datatable-nosearch');
+
+      let order = [[0,'asc']]; // Fallback
+
+      try {
+
+        const o = wrap && wrap.getAttribute('data-order');
+
+        if (o) order = JSON.parse(o);   // <-- liest z.B. [[2,"asc"]]
+
+      } catch(e) {}
+
+      jQuery(tbl).DataTable({
+
+        dom: 't',        // nur Tabelle
+
+        paging: false,
+
+        info: false,
+
+        ordering: true,
+
+        order: order,
+
+        orderMulti: false
+
+      });
+
+      tbl.dataset.dtInited = '1';
+
+    });
+
+  }
+
+  document.addEventListener('DOMContentLoaded', initDT);
+
+  document.addEventListener('quarto:rendered', initDT);
+
+})();
+
+</script>
+
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../partials/gloss.css">
+<link rel="stylesheet" href="../partials/collapsable.css">
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part-1-dap/colors.html">Digitalisierung</a></li><li class="breadcrumb-item"><a href="../part-1-dap/text.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Texte</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Hands-On Computer Science</a> 
+        <div class="sidebar-tools-main">
+    <a href="../Hands-On-Computer-Science-Book.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Suchen"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vorwort</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../preparation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Vorbereitung</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Digitalisierung</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part-1-dap/colors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Farben</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part-1-dap/numbers.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Zahlen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part-1-dap/text.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Texte</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part-1-dap/images.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Bilder</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part-1-dap/sensors.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sensoren</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Künstliche Intelligenz</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part-2-ai/learning.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lernen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part-2-ai/vision.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Sehen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part-2-ai/listen.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Hören</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part-2-ai/speaking.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Sprechen</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part-2-ai/language.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Sprache</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Literaturverzeichnis</span></a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Inhaltsverzeichnis</h2>
+   
+  <ul>
+  <li><a href="#zusammenfassung" id="toc-zusammenfassung" class="nav-link active" data-scroll-target="#zusammenfassung">Zusammenfassung</a></li>
+  <li><a href="#sec-text-experiment-setup" id="toc-sec-text-experiment-setup" class="nav-link" data-scroll-target="#sec-text-experiment-setup"><span class="header-section-number">3.1</span> Experimentaufbau</a>
+  <ul class="collapse">
+  <li><a href="#hardware" id="toc-hardware" class="nav-link" data-scroll-target="#hardware"><span class="header-section-number">3.1.1</span> Hardware</a></li>
+  <li><a href="#sec-text-first-steps" id="toc-sec-text-first-steps" class="nav-link" data-scroll-target="#sec-text-first-steps"><span class="header-section-number">3.1.2</span> Erste Schritte mit dem Abstandssensor</a></li>
+  </ul></li>
+  <li><a href="#sec-text-light-barrier" id="toc-sec-text-light-barrier" class="nav-link" data-scroll-target="#sec-text-light-barrier"><span class="header-section-number">3.2</span> Lichtschranke</a></li>
+  <li><a href="#sec-text-obstacle-detection" id="toc-sec-text-obstacle-detection" class="nav-link" data-scroll-target="#sec-text-obstacle-detection"><span class="header-section-number">3.3</span> Hinderniserkennung</a></li>
+  <li><a href="#sec-text-universal-input" id="toc-sec-text-universal-input" class="nav-link" data-scroll-target="#sec-text-universal-input"><span class="header-section-number">3.4</span> Universelles Eingabegerät</a></li>
+  <li><a href="#sec-text-encode-text" id="toc-sec-text-encode-text" class="nav-link" data-scroll-target="#sec-text-encode-text"><span class="header-section-number">3.5</span> Texte kodieren</a>
+  <ul class="collapse">
+  <li><a href="#wie-viele-bits-benötigen-wir" id="toc-wie-viele-bits-benötigen-wir" class="nav-link" data-scroll-target="#wie-viele-bits-benötigen-wir"><span class="header-section-number">3.5.1</span> Wie viele Bits benötigen wir?</a></li>
+  <li><a href="#wörterbücher" id="toc-wörterbücher" class="nav-link" data-scroll-target="#wörterbücher"><span class="header-section-number">3.5.2</span> Wörterbücher</a></li>
+  </ul></li>
+  <li><a href="#sec-text-ascii-code" id="toc-sec-text-ascii-code" class="nav-link" data-scroll-target="#sec-text-ascii-code"><span class="header-section-number">3.6</span> ASCII-Code</a>
+  <ul class="collapse">
+  <li><a href="#unicode" id="toc-unicode" class="nav-link" data-scroll-target="#unicode"><span class="header-section-number">3.6.1</span> Unicode</a></li>
+  </ul></li>
+  <li><a href="#sec-text-led-dimmer" id="toc-sec-text-led-dimmer" class="nav-link" data-scroll-target="#sec-text-led-dimmer"><span class="header-section-number">3.7</span> LED-Dimmer 4.0</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part-1-dap/colors.html">Digitalisierung</a></li><li class="breadcrumb-item"><a href="../part-1-dap/text.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Texte</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-text" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Texte</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="zusammenfassung" class="level2 unnumbered collapsable">
+<h2 class="unnumbered collapsable anchored" data-anchor-id="zusammenfassung">Zusammenfassung</h2>
+<details class="collapsable-section" open=""><summary></summary>
+<p>Im dritten Kapitel basteln wir ein universelles Eingabegerät für Informationen. Dafür verwenden wir einen Infrarot-Abstandssensor, mit dem wir Bits kodieren können. Diese Bits könnten dann etwa Texte repräsentieren. Oder ganz andere Dinge.</p>
+<p>Der Weg dahin führt über folgende Schritte:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 2%">
+<col style="width: 75%">
+<col style="width: 21%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>#</th>
+<th>Was?</th>
+<th>Wo?</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td>Wir machen uns mit dem Infrarot-Abstandssensor vertraut.</td>
+<td><a href="#sec-text-experiment-setup" class="quarto-xref"><span>Abschnitt 3.1</span></a></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>Wir bauen eine einfache Lichtschranke.</td>
+<td><a href="#sec-text-light-barrier" class="quarto-xref"><span>Abschnitt 3.2</span></a></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>Wir erweitern die Lichtschranke zu einer Hinderniserkennung für Roboter.</td>
+<td><a href="#sec-text-obstacle-detection" class="quarto-xref"><span>Abschnitt 3.3</span></a></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td>Wir erschaffen ein universelles Eingabegerät für Binärcodes.</td>
+<td><a href="#sec-text-universal-input" class="quarto-xref"><span>Abschnitt 3.4</span></a></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td>Wir geben den Binärcodes eine Bedeutung und übermitteln Texte.</td>
+<td><a href="#sec-text-encode-text" class="quarto-xref"><span>Abschnitt 3.5</span></a></td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>Wir schauen auf ein verbreitetes Codesystem für Texte: ASCII.</td>
+<td><a href="#sec-text-ascii-code" class="quarto-xref"><span>Abschnitt 3.6</span></a></td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>Wir setzen den Infrarot-Abstandssensor in den LED-Dimmer ein.</td>
+<td><a href="#sec-text-led-dimmer" class="quarto-xref"><span>Abschnitt 3.7</span></a></td>
+</tr>
+</tbody>
+</table>
+</details>
+</section>
+<section id="sec-text-experiment-setup" class="level2 collapsable" data-number="3.1">
+<h2 class="collapsable anchored" data-number="3.1" data-anchor-id="sec-text-experiment-setup"><span class="header-section-number">3.1</span> Experimentaufbau</h2>
+<details class="collapsable-section" open=""><summary></summary>
+<section id="hardware" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="hardware"><span class="header-section-number">3.1.1</span> Hardware</h3>
+<p>Für dieses Kapitel benötigen wir erneut die LED (<a href="https://www.tinkerforge.com/de/shop/rgb-led-v2-bricklet.html">RGB LED Bricklet 2.0</a>), ersetzen aber den Drehknopf aus <a href="numbers.html" class="quarto-xref"><span>Kapitel 2</span></a> durch einen Infrarot-Abstandssensor (<a href="https://www.tinkerforge.com/de/shop/distance-ir-4-30cm-v2-bricklet.html">Distance IR 4-30cm Bricklet 2.0</a>). Beide Geräte schließen wir an den Mikrocontroller (<a href="https://www.tinkerforge.com/de/shop/master-brick.html">Master Brick 3.2</a>) an und fixieren sie auf einer Montageplatte. Wie in der Abbildung gezeigt, befestigen wir den Abstandssensor mit einem Metallwinkel so, dass er bündig mit der Platte ist und nach vorn zeigt.</p>
+<p>Die vollständige Hardwareliste für dieses Kapitel sieht so aus:</p>
+<ul>
+<li>1 x <a href="https://www.tinkerforge.com/de/doc/Hardware/Bricks/Master_Brick.html">Master Brick 3.2</a></li>
+<li>1 x <a href="https://www.tinkerforge.com/en/doc/Hardware/Bricklets/RGB_LED_V2.html">RGB LED Bricklet 2.0</a></li>
+<li>1 x <a href="https://www.tinkerforge.com/de/shop/distance-ir-4-30cm-v2-bricklet.html">Distance IR 4-30cm Bricklet 2.0</a></li>
+<li>1 x <a href="https://www.tinkerforge.com/de/shop/accessories/mounting/mounting-plate-22x10.html">Montageplatte 22x10</a></li>
+<li>2 x <a href="https://www.tinkerforge.com/de/shop/accessories/cable/bricklet-cable-15cm-7p-7p.html">Brickletkabel 15cm (7p-7p)</a></li>
+<li>2 x <a href="https://www.tinkerforge.com/de/shop/accessories/mounting/mounting-kit-12mm.html">Befestigungskit 12 mm</a></li>
+</ul>
+<p>Nutzt die <a href="#fig-setup-rgb-led-ir" class="quarto-xref">Abbildung&nbsp;<span>3.1</span></a>, um euren Aufbau zu kontrollieren.</p>
+<div id="fig-setup-rgb-led-ir" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-setup-rgb-led-ir-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-setup-rgb-led-ir" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-setup-rgb-led-ir" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="setup-rgb-ir">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-setup-rgb-led-ir-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="..\images/master_brick_with_led_and_ir_03.jpg" class="lightbox" data-gallery="setup-rgb-ir" title="Abbildung&nbsp;3.1&nbsp;(a): Seitenansicht."><img src="..\images/master_brick_with_led_and_ir_03.jpg" class="img-fluid figure-img" data-ref-parent="fig-setup-rgb-led-ir"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-setup-rgb-led-ir-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Seitenansicht.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-setup-rgb-led-ir" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-setup-rgb-led-ir-b" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="setup-rgb-ir">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-setup-rgb-led-ir-b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="..\images/master_brick_with_led_and_ir_02.jpg" class="lightbox" data-gallery="setup-rgb-ir" title="Abbildung&nbsp;3.1&nbsp;(b): Draufsicht."><img src="..\images/master_brick_with_led_and_ir_02.jpg" class="img-fluid figure-img" data-ref-parent="fig-setup-rgb-led-ir"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-setup-rgb-led-ir-b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Draufsicht.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-setup-rgb-led-ir" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-setup-rgb-led-ir-c" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="setup-rgb-ir">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-setup-rgb-led-ir-c-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="..\images/master_brick_with_led_and_ir_04.jpg" class="lightbox" data-gallery="setup-rgb-ir" title="Abbildung&nbsp;3.1&nbsp;(c): Nahaufnahme des IR-Abstandssensors."><img src="..\images/master_brick_with_led_and_ir_04.jpg" class="img-fluid figure-img" data-ref-parent="fig-setup-rgb-led-ir"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-setup-rgb-led-ir-c-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(c) Nahaufnahme des IR-Abstandssensors.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-setup-rgb-led-ir" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-setup-rgb-led-ir-d" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="setup-rgb-ir">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-setup-rgb-led-ir-d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="..\images/master_brick_with_led_and_ir_01.jpg" class="lightbox" data-gallery="setup-rgb-ir" title="Abbildung&nbsp;3.1&nbsp;(d): Seitenansicht, leicht schräg."><img src="..\images/master_brick_with_led_and_ir_01.jpg" class="img-fluid figure-img" data-ref-parent="fig-setup-rgb-led-ir"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-setup-rgb-led-ir-d-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(d) Seitenansicht, leicht schräg.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-setup-rgb-led-ir-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;3.1: Einfaches Setup mit einem Mikrocontroller, LED und einem Infrarot-Abstandssensor.
+</figcaption>
+</figure>
+</div>
+</section>
+<section id="sec-text-first-steps" class="level3" data-number="3.1.2">
+<h3 data-number="3.1.2" class="anchored" data-anchor-id="sec-text-first-steps"><span class="header-section-number">3.1.2</span> Erste Schritte mit dem Abstandssensor</h3>
+<p>Wie bei der LED werfen wir zuerst einen Blick auf den neuen Abstandssensor im Brick Viewer. Schließt dazu euren Master Brick per USB an, startet den Brick Viewer und klickt auf Connect. Im Tab Setup sollten nun neben der LED auch der Abstandssensor erscheinen. Denkt daran: Dort findet ihr auch die UID eurer Geräte – die braucht ihr gleich im Programm.</p>
+<div id="fig-brick-viewer-connect-ir-sensor" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="brick-viewer-ir">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-brick-viewer-connect-ir-sensor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="..\images/brick_viewer_connect_ir_sensor.png" class="lightbox" data-gallery="brick-viewer-ir" title="Abbildung&nbsp;3.2: Nach erfolgreicher Verbindung erscheint der Infrarot-Entfernungsmesser in der Übersicht des Brick Viewers."><img src="..\images/brick_viewer_connect_ir_sensor.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-brick-viewer-connect-ir-sensor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;3.2: Nach erfolgreicher Verbindung erscheint der Infrarot-Entfernungsmesser in der Übersicht des Brick Viewers.
+</figcaption>
+</figure>
+</div>
+<p>Wechselt in den Tab für den Abstandssensor, wo ihr ihn direkt testen könnt: Ihr seht die aktuelle Entfernung, die der Sensor misst, in Echtzeit oben in der Mitte (in Zentimetern). Darunter zeigt ein Kurvendiagramm den zeitlichen Verlauf. Bewegt eure Hand vor dem Sensor, um ein Gefühl für sein Verhalten zu bekommen. Was passiert, wenn ihr sehr nah vor dem Sensor seid? Und was, wenn ihr eure Hand weiter weg bewegt?</p>
+<div id="fig-brick-viewer-ir-sensor" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="brick-viewer-ir">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-brick-viewer-ir-sensor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="..\images/brick_viewer_ir_sensor.png" class="lightbox" data-gallery="brick-viewer-ir" title="Abbildung&nbsp;3.3: Der Brick Viewer zeigt die aktuelle Entfernung im Zeitverlauf an."><img src="..\images/brick_viewer_ir_sensor.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-brick-viewer-ir-sensor-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;3.3: Der Brick Viewer zeigt die aktuelle Entfernung im Zeitverlauf an.
+</figcaption>
+</figure>
+</div>
+</section></details>
+</section>
+
+<section id="sec-text-light-barrier" class="level2 collapsable" data-number="3.2">
+<h2 class="collapsable anchored" data-number="3.2" data-anchor-id="sec-text-light-barrier"><span class="header-section-number">3.2</span> Lichtschranke</h2>
+<details class="collapsable-section" open=""><summary></summary>
+<p>Einen <a href="glossary.html#gl-infrarot-abstandssensor" title="Infrarot-Abstandssensor"><span class="gloss-term">Infrarot-Abstandssensor</span></a> verwenden wir in der Praxis zur berührungslosen Messung des Abstands zu einem Objekt. Der Sensor sendet einen unsichtbaren Infrarotlichtstrahl aus und misst das Licht, das vom Objekt zurückgeworfen wird. Anhand der Intensität oder des Winkels des zurückkehrenden Lichts berechnet der Sensor die Entfernung. Diese Sensoren sind aus der Praxis nicht wegzudenken und kommen in vielen Szenarien zum Einsatz, zum Beispiel:</p>
+<ul>
+<li>Objekterkennung an einem Fließband</li>
+<li>Füllstandsmessung in Behältern</li>
+<li>Hinderniserkennung für Roboter, etwa bei Staubsaugerrobotern</li>
+<li>Positionierung von Werkstücken in Maschinen</li>
+<li>Einparkhilfe beim Auto</li>
+</ul>
+<p>Letztlich lassen sich alle Anwendungsfälle auf zwei Fragen reduzieren:</p>
+<ol type="1">
+<li>Befindet sich ein Objekt in der Sicht des Sensors?</li>
+<li>Wie weit ist ein Objekt vom Abstandssensor entfernt?</li>
+</ol>
+<p>Wir starten mit der einfacheren der beiden Fragen: Befindet sich ein Objekt in der Sicht des Sensors? Das beschreibt im Kern die Funktion einer Lichtschranke.</p>
+<p>Wie ihr beim Ausprobieren im Brick Viewer festgestellt habt, misst der Sensor Entfernungen zwischen 4 und 30 cm. Das bedeutet: Objekte außerhalb dieses Bereichs werden nicht erkannt – weder näher als 4 cm noch weiter als 30 cm. Eine Lichtschranke hat somit die Aufgabe zu prüfen, ob der IR-Abstandssensor einen Wert kleiner als 30 cm misst. Dann befindet sich ein Objekt in seiner Sichtlinie.</p>
+<p>Verbinden wir uns mit dem Sensor und schreiben das notwendige Grundgerüst. Tragt eure UIDs ein und legt beide Bricklets an, Sensor und LED:</p>
+<div id="c3a4fee7" class="cell" data-execution_count="1">
+<div id="lst-text-ir-led-boilerplate" class="python cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-text-ir-led-boilerplate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Listing&nbsp;3.1: Boilerplate-Code für IR-Abstandssensor und RGB-LED
+</figcaption>
+<div aria-describedby="lst-text-ir-led-boilerplate-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-1"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-1-1"><a href="#annotated-cell-1-1"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
+<span id="annotated-cell-1-2"><a href="#annotated-cell-1-2"></a><span class="im">from</span> tinkerforge.bricklet_distance_ir_v2 <span class="im">import</span> BrickletDistanceIRV2</span>
+<span id="annotated-cell-1-3"><a href="#annotated-cell-1-3"></a><span class="im">from</span> tinkerforge.bricklet_rgb_led_v2 <span class="im">import</span> BrickletRGBLEDV2</span>
+<span id="annotated-cell-1-4"><a href="#annotated-cell-1-4"></a><span class="im">import</span> time</span>
+<span id="annotated-cell-1-5"><a href="#annotated-cell-1-5"></a></span>
+<span id="annotated-cell-1-6"><a href="#annotated-cell-1-6"></a>ipcon <span class="op">=</span> IPConnection()</span>
+<span id="annotated-cell-1-7"><a href="#annotated-cell-1-7"></a>ipcon.<span class="ex">connect</span>(<span class="st">"localhost"</span>, <span class="dv">4223</span>)</span>
+<span id="annotated-cell-1-8"><a href="#annotated-cell-1-8"></a></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="1">1</button><span id="annotated-cell-1-9" class="code-annotation-target"><a href="#annotated-cell-1-9"></a>ir <span class="op">=</span> BrickletDistanceIRV2(<span class="st">"&lt;YOUR_IR_UID&gt;"</span>, ipcon)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-1" data-target-annotation="2">2</button><span id="annotated-cell-1-10" class="code-annotation-target"><a href="#annotated-cell-1-10"></a>led <span class="op">=</span> BrickletRGBLEDV2(<span class="st">"&lt;YOUR_LED_UID&gt;"</span>, ipcon)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</figure>
+</div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-1" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="9" data-code-annotation="1">Tragt hier die UID eures IR-Sensors ein.</span>
+</dd>
+<dt data-target-cell="annotated-cell-1" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-1" data-code-lines="10" data-code-annotation="2">Tragt hier die UID eurer RGB-LED ein.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Der Sensor ist danach in der Variablen <code>ir</code> gespeichert. Über sie können wir <a href="https://www.tinkerforge.com/de/doc/Software/Bricklets/DistanceIRV2_Bricklet_Python.html">seine Funktionen</a> aufrufen. Eine davon erlaubt uns das Auslesen des aktuell gemessenen Werts:</p>
+<div id="e737a0ad" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>distance <span class="op">=</span> ir.get_distance()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Ein Blick in die Dokumentation verrät, dass der Rückgabewert in Millimetern angegeben wird. Ein Wert an der oberen Grenze (rund 300 mm) signalisiert typischerweise, dass sich kein Objekt innerhalb der Reichweite befindet. Damit wir besser testen können, lesen wir den Wert kontinuierlich aus und schreiben ihn auf die Konsole:</p>
+<div id="23c3d05c" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    distance <span class="op">=</span> ir.get_distance()</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Aktuelle Entfernung: </span><span class="sc">{</span>distance<span class="sc">}</span><span class="ss"> mm"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Ihr werdet sehen, dass wir sehr viele Ausgaben erzeugen, weil in jedem Schleifendurchlauf der Wert ausgegeben wird – auch wenn er sich nicht verändert hat. Geben wir erneut nur die Veränderungen aus, um die Ausgaben zu reduzieren:</p>
+<div id="a541184a" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>last_distance <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    distance <span class="op">=</span> ir.get_distance()</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> distance <span class="op">!=</span> last_distance:</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="ss">f"Aktuelle Entfernung: </span><span class="sc">{</span>distance<span class="sc">}</span><span class="ss"> mm"</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>        last_distance <span class="op">=</span> distance</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Ihr erinnert euch: Dasselbe Prinzip haben wir in <a href="numbers.html#sec-numbers-led-dimmer-2" class="quarto-xref"><span>Abschnitt 2.7</span></a> verwendet, um nur bei einer Änderung des Drehknopfs eine Ausgabe zu erzeugen. Wir merken uns den letzten Wert und vergleichen ihn mit dem aktuell gemessenen. Ist er gleich, passiert nichts. Hat er sich verändert (<code>distance != last_distance</code>), geben wir den neuen Wert aus und aktualisieren den letzten Wert (<code>last_distance = distance</code>).</p>
+<p>Wir sind unserem Etappenziel einer Lichtschranke schon sehr nah. Anhand der Ausgabe könnten wir entscheiden, ob ein Objekt in der Sicht des Sensors ist oder nicht. Das soll aber unser Programm automatisch erledigen. Dazu fügen wir eine weitere Bedingung mit einer <code>if</code>-Anweisung hinzu:</p>
+<div id="65f715f7" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>last_distance <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    distance <span class="op">=</span> ir.get_distance()</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> last_distance <span class="op">!=</span> distance:</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> distance <span class="op">&lt;</span> <span class="dv">300</span>:</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="ss">f"Objekt erkannt: </span><span class="sc">{</span>distance<span class="sc">}</span><span class="ss"> mm"</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Kein Objekt in Reichweite"</span>)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        last_distance <span class="op">=</span> distance</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Die neue <code>if</code>-Anweisung prüft, ob der Abstand kleiner als 300 mm ist. Dann befindet sich etwas vor dem Sensor. In diesem Fall geben wir einen entsprechenden Hinweis aus. Andernfalls kommt der Hinweis „Kein Objekt in Reichweite“. Diesen anderen Fall bildet der optionale <code>else</code>-Teil ab. Code hinter <code>else</code> wird immer dann ausgeführt, wenn keine der vorher definierten Bedingungen über <code>if</code> oder <code>elif</code> zutrifft.</p>
+<p>Damit unsere Lichtschranke auch ohne Blick auf die Konsole funktioniert, bringen wir im letzten Schritt die LED ins Spiel. Sie soll rot aufleuchten, wenn ein Objekt erkannt wird. Die LED haben wir bereits kennengelernt, den Code können wir übernehmen:</p>
+<div id="f4721e9c" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-6"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-6-1"><a href="#annotated-cell-6-1"></a>last_distance <span class="op">=</span> <span class="dv">0</span></span>
+<span id="annotated-cell-6-2"><a href="#annotated-cell-6-2"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="annotated-cell-6-3"><a href="#annotated-cell-6-3"></a>    distance <span class="op">=</span> ir.get_distance()</span>
+<span id="annotated-cell-6-4"><a href="#annotated-cell-6-4"></a>    <span class="cf">if</span> last_distance <span class="op">!=</span> distance:</span>
+<span id="annotated-cell-6-5"><a href="#annotated-cell-6-5"></a>        <span class="cf">if</span> distance <span class="op">&lt;</span> <span class="dv">300</span>:</span>
+<span id="annotated-cell-6-6"><a href="#annotated-cell-6-6"></a>            <span class="bu">print</span>(<span class="ss">f"Objekt erkannt: </span><span class="sc">{</span>distance<span class="sc">}</span><span class="ss"> mm"</span>)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="1">1</button><span id="annotated-cell-6-7" class="code-annotation-target"><a href="#annotated-cell-6-7"></a>            led.set_rgb_value(<span class="dv">255</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="annotated-cell-6-8"><a href="#annotated-cell-6-8"></a>        <span class="cf">else</span>:</span>
+<span id="annotated-cell-6-9"><a href="#annotated-cell-6-9"></a>            <span class="bu">print</span>(<span class="st">"Kein Objekt in Reichweite"</span>)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="2">2</button><span id="annotated-cell-6-10" class="code-annotation-target"><a href="#annotated-cell-6-10"></a>            led.set_rgb_value(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="annotated-cell-6-11"><a href="#annotated-cell-6-11"></a>    </span>
+<span id="annotated-cell-6-12"><a href="#annotated-cell-6-12"></a>        last_distance <span class="op">=</span> distance</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-6" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-6" data-code-lines="7" data-code-annotation="1">Die LED leuchtet rot, wenn ein Objekt erkannt wird.</span>
+</dd>
+<dt data-target-cell="annotated-cell-6" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-6" data-code-lines="10" data-code-annotation="2">Die LED schaltet sich aus, wenn kein Objekt mehr erkannt wird.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Probiert es aus – die Lichtschranke sollte funktionieren und Objekte innerhalb von 30 cm zuverlässig erkennen.</p>
+</details>
+</section>
+<section id="sec-text-obstacle-detection" class="level2 collapsable" data-number="3.3">
+<h2 class="collapsable anchored" data-number="3.3" data-anchor-id="sec-text-obstacle-detection"><span class="header-section-number">3.3</span> Hinderniserkennung</h2>
+<details class="collapsable-section" open=""><summary></summary>
+<p>Die Lichtschranke leuchtet immer rot, sobald ein Objekt erkannt wird. Dabei spielt die Entfernung keine Rolle. Lasst uns die Idee zu einer Hinderniserkennung für einen hypothetischen Staubsaugerroboter erweitern. Die LED soll anzeigen, ob sich ein Objekt bereits nahe am Roboter befindet oder ob es noch weit genug entfernt ist.</p>
+<p>Nehmen wir an, dass Objekte, die 17 cm oder näher am Roboter sind, als Gefahr gelten. Alles, was zwischen 17 und 30 cm Abstand hält, sieht der Roboter nicht als bedrohlich an. Die drei Zustände wollen wir über die Farbe der LED abbilden:</p>
+<ul>
+<li>Gelb: Objekt in mittlerer Entfernung erkannt (17 cm &lt; Abstand &lt; 30 cm)</li>
+<li>Rot: Nahes Objekt erkannt (&lt;= 17 cm)</li>
+<li>Aus: Kein Objekt vor dem Sensor (&gt;= 30 cm)</li>
+</ul>
+<p>Wir können dazu den Code der Lichtschranke erweitern:</p>
+<div id="4f4e046c" class="cell" data-execution_count="7">
+<div id="lst-text-obstacle-detection" class="python cell-code listing quarto-float quarto-figure quarto-figure-left anchored">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-text-obstacle-detection-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Listing&nbsp;3.2: Der Code für die zweistufige Hinderniserkennung.
+</figcaption>
+<div aria-describedby="lst-text-obstacle-detection-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-7"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-7-1"><a href="#annotated-cell-7-1"></a>last_distance <span class="op">=</span> <span class="dv">0</span></span>
+<span id="annotated-cell-7-2"><a href="#annotated-cell-7-2"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="annotated-cell-7-3"><a href="#annotated-cell-7-3"></a>    distance <span class="op">=</span> ir.get_distance()</span>
+<span id="annotated-cell-7-4"><a href="#annotated-cell-7-4"></a>    <span class="cf">if</span> last_distance <span class="op">!=</span> distance:</span>
+<span id="annotated-cell-7-5"><a href="#annotated-cell-7-5"></a>        <span class="cf">if</span> distance <span class="op">&gt;</span> <span class="dv">170</span> <span class="kw">and</span> distance <span class="op">&lt;</span> <span class="dv">300</span>:</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="1">1</button><span id="annotated-cell-7-6" class="code-annotation-target"><a href="#annotated-cell-7-6"></a>            led.set_rgb_value(<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">0</span>)</span>
+<span id="annotated-cell-7-7"><a href="#annotated-cell-7-7"></a>        <span class="cf">elif</span> distance <span class="op">&lt;=</span> <span class="dv">170</span>:</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="2">2</button><span id="annotated-cell-7-8" class="code-annotation-target"><a href="#annotated-cell-7-8"></a>            led.set_rgb_value(<span class="dv">255</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="annotated-cell-7-9"><a href="#annotated-cell-7-9"></a>        <span class="cf">else</span>:</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-7" data-target-annotation="3">3</button><span id="annotated-cell-7-10" class="code-annotation-target"><a href="#annotated-cell-7-10"></a>            led.set_rgb_value(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="annotated-cell-7-11"><a href="#annotated-cell-7-11"></a>    </span>
+<span id="annotated-cell-7-12"><a href="#annotated-cell-7-12"></a>        last_distance <span class="op">=</span> distance</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</figure>
+</div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-7" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="6" data-code-annotation="1">Die LED leuchtet gelb, wenn ein Objekt in mittlerer Entfernung erkannt wird.</span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="8" data-code-annotation="2">Die LED leuchtet rot, wenn ein Objekt in naher Entfernung erkannt wird.</span>
+</dd>
+<dt data-target-cell="annotated-cell-7" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-7" data-code-lines="10" data-code-annotation="3">Die LED schaltet sich aus, wenn kein Objekt mehr erkannt wird.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Ihr erinnert euch an die additive Farbmischung aus <a href="colors.html#fig-additive-color-mixing" class="quarto-xref">Abbildung&nbsp;<span>1.6 (a)</span></a>? Gelb entsteht durch die Kombination von Rot und Grün. Wir verwenden hier eine <code>elif</code>-Anweisung, die eine weitere Bedingung prüft, wenn die vorherige <code>if</code>-Bedingung nicht zutrifft. So können wir mehrere Bedingungen hintereinander prüfen. Der letzte <code>else</code>-Teil fängt alle Fälle ab, in denen kein Objekt erkannt wurde.</p>
+<!-- 
+\gloss{Else-Anweisung}{Ein optionaler Teil einer if-Anweisung, der ausgeführt wird, wenn keine der vorherigen Bedingungen zutrifft.}{Programmieren}
+-->
+<p>Unser Staubsaugerroboter könnte den Code oben verwenden, um Hindernisse zu erkennen und bei zu großer Nähe ein Ausweichmanöver zu starten.</p>
+</details>
+</section>
+<section id="sec-text-universal-input" class="level2 collapsable" data-number="3.4">
+<h2 class="collapsable anchored" data-number="3.4" data-anchor-id="sec-text-universal-input"><span class="header-section-number">3.4</span> Universelles Eingabegerät</h2>
+<details class="collapsable-section" open=""><summary></summary>
+<p>Eine andere Möglichkeit, den Abstandssensor und den Code aus <a href="#lst-text-obstacle-detection" class="quarto-xref">Listing&nbsp;<span>3.2</span></a> zu verwenden, ist ein Eingabegerät für Informationen in unseren Computer. Wie soll ein Abstandssensor als Eingabegerät für Informationen fungieren?</p>
+<p>Wie wir später noch sehen werden, benötigen wir für die Darstellung von Informationen unterschiedliche Zustände – mindestens zwei. Genau das verkörpert das Bit, das wir in <a href="numbers.html#sec-numbers-bit-and-bytes" class="quarto-xref"><span>Abschnitt 2.6</span></a> kennengelernt haben: Ein Bit hat zwei Zustände, an oder aus, 0 oder 1.</p>
+<p>Was wäre, wenn wir die beiden Bereiche „nah“ und „weit genug entfernt“ nicht länger als Entfernungen interpretieren, sondern einfach als zwei Zustände? Sagen wir, der Bereich „weit genug entfernt“ steht für die 1 und der Bereich „nah“ für die 0. Dann könnten wir über die bewusste Platzierung eines soliden Gegenstands und anschließende Messung der Entfernung den Zustand eines Bits kodieren:</p>
+<div id="b52f3e35" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>last_distance <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb5-3"><a href="#cb5-3"></a>    distance <span class="op">=</span> ir.get_distance()</span>
+<span id="cb5-4"><a href="#cb5-4"></a>    <span class="cf">if</span> last_distance <span class="op">!=</span> distance:</span>
+<span id="cb5-5"><a href="#cb5-5"></a>        <span class="cf">if</span> distance <span class="op">&gt;</span> <span class="dv">170</span> <span class="kw">and</span> distance <span class="op">&lt;</span> <span class="dv">300</span>:</span>
+<span id="cb5-6"><a href="#cb5-6"></a>            <span class="bu">print</span>(<span class="st">"1"</span>)</span>
+<span id="cb5-7"><a href="#cb5-7"></a>        <span class="cf">elif</span> distance <span class="op">&lt;=</span> <span class="dv">170</span>:</span>
+<span id="cb5-8"><a href="#cb5-8"></a>            <span class="bu">print</span>(<span class="st">"0"</span>)</span>
+<span id="cb5-9"><a href="#cb5-9"></a>    </span>
+<span id="cb5-10"><a href="#cb5-10"></a>        last_distance <span class="op">=</span> distance</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Wenn ihr den Code ausführt, werdet ihr ein Problem erkennen: Platzieren wir unsere Hand nahe am Sensor, um eine 0 zu kodieren, gibt das Programm nacheinander sehr viele Nullen aus. Dasselbe gilt für Einsen. Dabei wollen wir mit einer Handgeste jeweils nur eine 1 oder 0 übermitteln, nicht eine ganze Reihe. Das liegt daran, dass sich unsere Hand ständig minimal bewegt – ein Millimeter reicht.</p>
+<p>Wir müssen unser Programm so anpassen, dass es nicht erneut auf eine Änderung reagiert, solange die Hand nicht wieder weggenommen wurde. Das erkennen wir daran, dass der Sensor die maximale Entfernung von 30 cm misst. Erst wenn dieses Ereignis wieder auftritt, soll ein neuer Zustand kodiert werden.</p>
+<p>Eine Lösung besteht darin, dass wir uns merken, ob unser Eingabegerät aktuell empfangsbereit ist oder nicht. Wir führen dafür die Variable <code>receiving</code> ein, die den Zustand unseres Eingabegeräts beschreibt. Ist sie <code>True</code>, ist das Gerät bereit, eine Eingabe zu empfangen. Ist sie <code>False</code>, ignorieren wir alle Änderungen, bis die Hand wieder weggenommen wurde.</p>
+<div id="378a3d26" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-9"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-9-1"><a href="#annotated-cell-9-1"></a>last_distance <span class="op">=</span> <span class="dv">0</span></span>
+<span id="annotated-cell-9-2"><a href="#annotated-cell-9-2"></a>receiving <span class="op">=</span> <span class="va">False</span></span>
+<span id="annotated-cell-9-3"><a href="#annotated-cell-9-3"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="annotated-cell-9-4"><a href="#annotated-cell-9-4"></a>    distance <span class="op">=</span> ir.get_distance()</span>
+<span id="annotated-cell-9-5"><a href="#annotated-cell-9-5"></a>    <span class="cf">if</span> last_distance <span class="op">!=</span> distance:</span>
+<span id="annotated-cell-9-6"><a href="#annotated-cell-9-6"></a>        </span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="1">1</button><span id="annotated-cell-9-7" class="code-annotation-target"><a href="#annotated-cell-9-7"></a>        <span class="cf">if</span> receiving:</span>
+<span id="annotated-cell-9-8"><a href="#annotated-cell-9-8"></a>            <span class="cf">if</span> distance <span class="op">&gt;</span> <span class="dv">170</span> <span class="kw">and</span> distance <span class="op">&lt;</span> <span class="dv">300</span>:</span>
+<span id="annotated-cell-9-9"><a href="#annotated-cell-9-9"></a>                <span class="bu">print</span>(<span class="ss">f"1 bei </span><span class="sc">{</span>distance<span class="sc">}</span><span class="ss"> mm"</span>)</span>
+<span id="annotated-cell-9-10"><a href="#annotated-cell-9-10"></a>                receiving <span class="op">=</span> <span class="va">False</span></span>
+<span id="annotated-cell-9-11"><a href="#annotated-cell-9-11"></a>            <span class="cf">elif</span> distance <span class="op">&lt;=</span> <span class="dv">170</span>:</span>
+<span id="annotated-cell-9-12"><a href="#annotated-cell-9-12"></a>                <span class="bu">print</span>(<span class="ss">f"0 bei </span><span class="sc">{</span>distance<span class="sc">}</span><span class="ss"> mm"</span>)</span>
+<span id="annotated-cell-9-13"><a href="#annotated-cell-9-13"></a>                receiving <span class="op">=</span> <span class="va">False</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="2">2</button><span id="annotated-cell-9-14" class="code-annotation-target"><a href="#annotated-cell-9-14"></a>        <span class="cf">else</span>:</span>
+<span id="annotated-cell-9-15"><a href="#annotated-cell-9-15"></a>            <span class="cf">if</span> distance <span class="op">&gt;=</span> <span class="dv">300</span>:</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-9" data-target-annotation="3">3</button><span id="annotated-cell-9-16" class="code-annotation-target"><a href="#annotated-cell-9-16"></a>                receiving <span class="op">=</span> <span class="va">True</span></span>
+<span id="annotated-cell-9-17"><a href="#annotated-cell-9-17"></a>                <span class="bu">print</span>(<span class="st">"Bereit für den nächsten Code"</span>)</span>
+<span id="annotated-cell-9-18"><a href="#annotated-cell-9-18"></a></span>
+<span id="annotated-cell-9-19"><a href="#annotated-cell-9-19"></a>        last_distance <span class="op">=</span> distance</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-9" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-9" data-code-lines="7" data-code-annotation="1">Nur im Empfangsmodus wird anhand der Entfernung ein Bit kodiert.</span>
+</dd>
+<dt data-target-cell="annotated-cell-9" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-9" data-code-lines="14" data-code-annotation="2">Wenn wir nicht im Empfangsmodus sind, prüfen wir, ob die Hand wieder weggenommen wurde (&gt;= 30 cm).</span>
+</dd>
+<dt data-target-cell="annotated-cell-9" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-9" data-code-lines="16" data-code-annotation="3">Wenn die Hand weg ist, schalten wir wieder in den Empfangsmodus.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Das sieht schon gut aus. Probiert aber einmal aus, eure Hand sehr langsam von oben nach unten vor den Sensor zu bewegen, und zwar im nahen Bereich, sodass eigentlich eine 0 kodiert werden sollte. In manchen Fällen erkennt das Programm fälschlicherweise eine 1 statt der 0. Warum ist das so? Der Sensor hat bei der Messung eine leichte zeitliche Verzögerung. Wenn er aktuell 30 cm Abstand misst und wir unsere Hand langsam nach unten bewegen, misst der Sensor zunächst einen Abstand knapp unter 30 cm. Das Programm reagiert sofort und kodiert eine 1, obwohl wenig später der Sensorwert in den Bereich der 0 kommt (zum Beispiel 8 cm).</p>
+<p>Wir können das Problem umgehen, indem wir einen kleinen Verzug einbauen, sobald ein Unterschied erkannt wurde. Nach diesem zeitlichen Verzug messen wir erneut, um sicherzugehen, die korrekte Position der Hand zu erwischen. So könnte das im Code aussehen:</p>
+<div id="44df7955" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>last_distance <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a>receiving <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb6-4"><a href="#cb6-4"></a>    distance <span class="op">=</span> ir.get_distance()</span>
+<span id="cb6-5"><a href="#cb6-5"></a>    <span class="cf">if</span> last_distance <span class="op">!=</span> distance:</span>
+<span id="cb6-6"><a href="#cb6-6"></a></span>
+<span id="cb6-7"><a href="#cb6-7"></a>        <span class="co"># 100 ms warten und erneut messen</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a>        time.sleep(<span class="fl">0.1</span>) </span>
+<span id="cb6-9"><a href="#cb6-9"></a>        distance <span class="op">=</span> ir.get_distance()</span>
+<span id="cb6-10"><a href="#cb6-10"></a>        </span>
+<span id="cb6-11"><a href="#cb6-11"></a>        <span class="cf">if</span> receiving:</span>
+<span id="cb6-12"><a href="#cb6-12"></a>            <span class="cf">if</span> distance <span class="op">&gt;</span> <span class="dv">170</span> <span class="kw">and</span> distance <span class="op">&lt;</span> <span class="dv">300</span>:</span>
+<span id="cb6-13"><a href="#cb6-13"></a>                <span class="bu">print</span>(<span class="ss">f"1 bei </span><span class="sc">{</span>distance<span class="sc">}</span><span class="ss"> mm"</span>)</span>
+<span id="cb6-14"><a href="#cb6-14"></a>                receiving <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a>            <span class="cf">elif</span> distance <span class="op">&lt;=</span> <span class="dv">170</span>:</span>
+<span id="cb6-16"><a href="#cb6-16"></a>                <span class="bu">print</span>(<span class="ss">f"0 bei </span><span class="sc">{</span>distance<span class="sc">}</span><span class="ss"> mm"</span>)</span>
+<span id="cb6-17"><a href="#cb6-17"></a>                receiving <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb6-18"><a href="#cb6-18"></a>        <span class="cf">else</span>:</span>
+<span id="cb6-19"><a href="#cb6-19"></a>            <span class="cf">if</span> distance <span class="op">&gt;=</span> <span class="dv">300</span>:</span>
+<span id="cb6-20"><a href="#cb6-20"></a>                receiving <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb6-21"><a href="#cb6-21"></a>                <span class="bu">print</span>(<span class="st">"Bereit für den nächsten Code"</span>)</span>
+<span id="cb6-22"><a href="#cb6-22"></a></span>
+<span id="cb6-23"><a href="#cb6-23"></a>        last_distance <span class="op">=</span> distance</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Testet es jetzt: Unser Eingabegerät erkennt die Zustände 0 und 1 zuverlässig.</p>
+</details>
+</section>
+<section id="sec-text-encode-text" class="level2 collapsable" data-number="3.5">
+<h2 class="collapsable anchored" data-number="3.5" data-anchor-id="sec-text-encode-text"><span class="header-section-number">3.5</span> Texte kodieren</h2>
+<details class="collapsable-section" open=""><summary></summary>
+<!--
+\gloss{Kodieren}{Das Umwandeln von Informationen in ein bestimmtes Format, das von einem Computer verarbeitet werden kann.}{Codesysteme}
+-->
+<p>Können wir unser universelles Eingabegerät dazu verwenden, dem Computer Texte zu diktieren? Schließlich bedeutet „universell“, dass es für viele Zwecke einsetzbar ist. Und die Antwort lautet: ja! Wenn wir ein Gerät entwickeln, mit dem wir Bits kodieren können, können wir damit alles eingeben, was ein Computer darstellen kann.</p>
+<p>In <a href="numbers.html" class="quarto-xref"><span>Kapitel 2</span></a> haben wir gesehen, wie wir mit 8 Bits den Wert einer der drei Grundfarben im RGB-Code darstellen können. Wenn wir unser Eingabegerät einsetzen, um hintereinander 24 Bits zu übermitteln und diese als einen RGB-Farbcode zu interpretieren, könnten wir damit unsere LED in einer beliebigen Farbe aufleuchten lassen. Das versuchen wir später. Jetzt kümmern wir uns um eine ebenso wichtige Form der Information: Texte.</p>
+<p>Texte bestehen allgemein aus Zeichen. Die meisten Zeichen in Texten sind Buchstaben, die wir in Klein- und Großbuchstaben unterscheiden. Dazu kommen Zahlen und Satzzeichen. Schaut auf das <a href="glossary.html#gl-keyboard" title="Keyboard"><span class="gloss-term">Keyboard</span></a> eures Computers – dort findet ihr die meisten Zeichen, die ihr für Texte benötigt.</p>
+<section id="wie-viele-bits-benötigen-wir" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="wie-viele-bits-benötigen-wir"><span class="header-section-number">3.5.1</span> Wie viele Bits benötigen wir?</h3>
+<p>Genau wie bei den Farben, für die wir 24 Bits benötigen (jeweils 8 pro Farbe im RGB-Code), stellt sich bei Texten die Frage, wie viele Bits wir benötigen, um ein Zeichen darzustellen. Die Antwort hängt von der Anzahl der benötigten Zeichen ab.</p>
+<p>Nähern wir uns von der anderen Seite und erweitern unseren Zeichencode Bit für Bit. Wir beginnen klein und fangen mit einem Bit an. Wenn wir Bits als Text interpretieren, wie viele Zeichen (oder Buchstaben) können wir dann mit einem einzigen Bit darstellen? Richtig: zwei!</p>
+<div id="6406c4bc" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>last_distance <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>receiving <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb7-4"><a href="#cb7-4"></a>    distance <span class="op">=</span> ir.get_distance()</span>
+<span id="cb7-5"><a href="#cb7-5"></a>    <span class="cf">if</span> last_distance <span class="op">!=</span> distance:</span>
+<span id="cb7-6"><a href="#cb7-6"></a></span>
+<span id="cb7-7"><a href="#cb7-7"></a>        <span class="co"># 100 ms warten und erneut messen</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a>        time.sleep(<span class="fl">0.1</span>) </span>
+<span id="cb7-9"><a href="#cb7-9"></a>        distance <span class="op">=</span> ir.get_distance()</span>
+<span id="cb7-10"><a href="#cb7-10"></a>        </span>
+<span id="cb7-11"><a href="#cb7-11"></a>        <span class="cf">if</span> receiving:</span>
+<span id="cb7-12"><a href="#cb7-12"></a>            <span class="cf">if</span> distance <span class="op">&gt;</span> <span class="dv">170</span> <span class="kw">and</span> distance <span class="op">&lt;</span> <span class="dv">300</span>:</span>
+<span id="cb7-13"><a href="#cb7-13"></a>                <span class="bu">print</span>(<span class="st">"B"</span>)</span>
+<span id="cb7-14"><a href="#cb7-14"></a>                receiving <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb7-15"><a href="#cb7-15"></a>            <span class="cf">elif</span> distance <span class="op">&lt;=</span> <span class="dv">170</span>:</span>
+<span id="cb7-16"><a href="#cb7-16"></a>                <span class="bu">print</span>(<span class="st">"A"</span>)</span>
+<span id="cb7-17"><a href="#cb7-17"></a>                receiving <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb7-18"><a href="#cb7-18"></a>        <span class="cf">else</span>:</span>
+<span id="cb7-19"><a href="#cb7-19"></a>            <span class="cf">if</span> distance <span class="op">&gt;=</span> <span class="dv">300</span>:</span>
+<span id="cb7-20"><a href="#cb7-20"></a>                receiving <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb7-21"><a href="#cb7-21"></a>            </span>
+<span id="cb7-22"><a href="#cb7-22"></a>        last_distance <span class="op">=</span> distance</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Lasst das Programm laufen und legt eure Hand einmal nahe vor den Sensor, dann zweimal weiter weg und wieder nah. Das habt ihr gerade geschrieben: „ABBA“.</p>
+<p>Neben der bekannten schwedischen Band lassen sich mit den Buchstaben A und B jedoch nicht viele andere Wörter bilden. Wir sind also gut beraten, mindestens ein zweites Bit hinzuzunehmen. Die Anzahl Bits, die wir für einen Buchstaben benötigen, erhöht sich damit auf zwei. Wie bilden wir das im Programm ab?</p>
+<p>Am einfachsten, indem wir uns die Bits zunächst merken, sie also hintereinander in eine Zeichenkette schreiben. Sobald eine vorher definierte Länge einer Nachricht – hier zunächst zwei Bits – erreicht ist, dekodieren wir die Bitfolge und erhalten den passenden Buchstaben. Danach geht es wieder von vorn los und unsere Bit-Zeichenkette ist wieder leer.</p>
+<!--
+\gloss{Dekodieren}{Das Umwandeln von kodierten Informationen zurück in ihr ursprüngliches Format.}{Codesysteme}
+-->
+<div id="527316bf" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-12"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><button class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="1">1</button><span id="annotated-cell-12-1" class="code-annotation-target"><a href="#annotated-cell-12-1"></a>MESSAGE_LENGTH <span class="op">=</span> <span class="dv">2</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="2">2</button><span id="annotated-cell-12-2" class="code-annotation-target"><a href="#annotated-cell-12-2"></a>bits <span class="op">=</span> <span class="st">""</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="3">3</button><span id="annotated-cell-12-3" class="code-annotation-target"><a href="#annotated-cell-12-3"></a>text <span class="op">=</span> <span class="st">""</span></span>
+<span id="annotated-cell-12-4"><a href="#annotated-cell-12-4"></a>last_distance <span class="op">=</span> <span class="dv">0</span></span>
+<span id="annotated-cell-12-5"><a href="#annotated-cell-12-5"></a>receiving <span class="op">=</span> <span class="va">False</span></span>
+<span id="annotated-cell-12-6"><a href="#annotated-cell-12-6"></a></span>
+<span id="annotated-cell-12-7"><a href="#annotated-cell-12-7"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="annotated-cell-12-8"><a href="#annotated-cell-12-8"></a>    distance <span class="op">=</span> ir.get_distance()</span>
+<span id="annotated-cell-12-9"><a href="#annotated-cell-12-9"></a>    <span class="cf">if</span> last_distance <span class="op">!=</span> distance:</span>
+<span id="annotated-cell-12-10"><a href="#annotated-cell-12-10"></a></span>
+<span id="annotated-cell-12-11"><a href="#annotated-cell-12-11"></a>        time.sleep(<span class="fl">0.1</span>) </span>
+<span id="annotated-cell-12-12"><a href="#annotated-cell-12-12"></a>        distance <span class="op">=</span> ir.get_distance()</span>
+<span id="annotated-cell-12-13"><a href="#annotated-cell-12-13"></a>        </span>
+<span id="annotated-cell-12-14"><a href="#annotated-cell-12-14"></a>        <span class="cf">if</span> receiving:</span>
+<span id="annotated-cell-12-15"><a href="#annotated-cell-12-15"></a>            <span class="cf">if</span> distance <span class="op">&gt;</span> <span class="dv">170</span> <span class="kw">and</span> distance <span class="op">&lt;</span> <span class="dv">300</span>:</span>
+<span id="annotated-cell-12-16"><a href="#annotated-cell-12-16"></a>                <span class="bu">print</span>(<span class="st">"1"</span>)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="4">4</button><span id="annotated-cell-12-17" class="code-annotation-target"><a href="#annotated-cell-12-17"></a>                bits <span class="op">+=</span> <span class="st">"1"</span></span>
+<span id="annotated-cell-12-18"><a href="#annotated-cell-12-18"></a>                receiving <span class="op">=</span> <span class="va">False</span></span>
+<span id="annotated-cell-12-19"><a href="#annotated-cell-12-19"></a>            <span class="cf">elif</span> distance <span class="op">&lt;=</span> <span class="dv">170</span>:</span>
+<span id="annotated-cell-12-20"><a href="#annotated-cell-12-20"></a>                <span class="bu">print</span>(<span class="st">"0"</span>)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="5">5</button><span id="annotated-cell-12-21" class="code-annotation-target"><a href="#annotated-cell-12-21"></a>                bits <span class="op">+=</span> <span class="st">"0"</span></span>
+<span id="annotated-cell-12-22"><a href="#annotated-cell-12-22"></a>                receiving <span class="op">=</span> <span class="va">False</span></span>
+<span id="annotated-cell-12-23"><a href="#annotated-cell-12-23"></a></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="6">6</button><span id="annotated-cell-12-24" class="code-annotation-target"><a href="#annotated-cell-12-24"></a>            <span class="cf">if</span> <span class="bu">len</span>(bits) <span class="op">==</span> MESSAGE_LENGTH:</span>
+<span id="annotated-cell-12-25"><a href="#annotated-cell-12-25"></a>                <span class="bu">print</span>(<span class="ss">f"Bits: </span><span class="sc">{</span>bits<span class="sc">}</span><span class="ss">"</span>)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="7">7</button><span id="annotated-cell-12-26" class="code-annotation-target"><a href="#annotated-cell-12-26"></a>                letter <span class="op">=</span> decode_letter(bits)</span>
+<span id="annotated-cell-12-27"><a href="#annotated-cell-12-27"></a>                <span class="bu">print</span>(<span class="ss">f"Buchstabe: </span><span class="sc">{</span>letter<span class="sc">}</span><span class="ss">"</span>)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="8">8</button><span id="annotated-cell-12-28" class="code-annotation-target"><a href="#annotated-cell-12-28"></a>                text <span class="op">+=</span> letter</span>
+<span id="annotated-cell-12-29"><a href="#annotated-cell-12-29"></a>                <span class="bu">print</span>(<span class="ss">f"Text: </span><span class="sc">{</span>text<span class="sc">}</span><span class="ss">"</span>)</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="9">9</button><span id="annotated-cell-12-30" class="code-annotation-target"><a href="#annotated-cell-12-30"></a>                bits <span class="op">=</span> <span class="st">""</span></span>
+<span id="annotated-cell-12-31"><a href="#annotated-cell-12-31"></a>        <span class="cf">else</span>:</span>
+<span id="annotated-cell-12-32"><a href="#annotated-cell-12-32"></a>            <span class="cf">if</span> distance <span class="op">&gt;=</span> <span class="dv">300</span>:</span>
+<span id="annotated-cell-12-33"><a href="#annotated-cell-12-33"></a>                receiving <span class="op">=</span> <span class="va">True</span></span>
+<span id="annotated-cell-12-34"><a href="#annotated-cell-12-34"></a>            </span>
+<span id="annotated-cell-12-35"><a href="#annotated-cell-12-35"></a>        last_distance <span class="op">=</span> distance</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-12" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-12" data-code-lines="1" data-code-annotation="1">Die Länge einer Nachricht. So viele Bits müssen wir sammeln, bis wir die Nachricht entschlüsseln können.</span>
+</dd>
+<dt data-target-cell="annotated-cell-12" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-12" data-code-lines="2" data-code-annotation="2">Wir erstellen eine leere Zeichenkette <code>bits</code>, in der wir jedes empfangene Bit speichern.</span>
+</dd>
+<dt data-target-cell="annotated-cell-12" data-target-annotation="3">3</dt>
+<dd>
+<span data-code-cell="annotated-cell-12" data-code-lines="3" data-code-annotation="3"><code>text</code> sammelt die dekodierten Buchstaben zu einem Text.</span>
+</dd>
+<dt data-target-cell="annotated-cell-12" data-target-annotation="4">4</dt>
+<dd>
+<span data-code-cell="annotated-cell-12" data-code-lines="17" data-code-annotation="4">Wir merken uns das Bit, indem wir es an das Ende von <code>bits</code> hinzufügen – hier eine „1“.</span>
+</dd>
+<dt data-target-cell="annotated-cell-12" data-target-annotation="5">5</dt>
+<dd>
+<span data-code-cell="annotated-cell-12" data-code-lines="21" data-code-annotation="5">Dasselbe für eine „0“.</span>
+</dd>
+<dt data-target-cell="annotated-cell-12" data-target-annotation="6">6</dt>
+<dd>
+<span data-code-cell="annotated-cell-12" data-code-lines="24" data-code-annotation="6">Wenn wir genug Bits zusammen haben, dekodieren wir die Bitfolge.</span>
+</dd>
+<dt data-target-cell="annotated-cell-12" data-target-annotation="7">7</dt>
+<dd>
+<span data-code-cell="annotated-cell-12" data-code-lines="26" data-code-annotation="7"><code>decode_letter(bits)</code> wandelt die Bitfolge in einen Buchstaben um. Die Funktion implementieren wir gleich.</span>
+</dd>
+<dt data-target-cell="annotated-cell-12" data-target-annotation="8">8</dt>
+<dd>
+<span data-code-cell="annotated-cell-12" data-code-lines="28" data-code-annotation="8">Wir fügen den Buchstaben dem bisherigen Text an.</span>
+</dd>
+<dt data-target-cell="annotated-cell-12" data-target-annotation="9">9</dt>
+<dd>
+<span data-code-cell="annotated-cell-12" data-code-lines="30" data-code-annotation="9">Danach setzen wir die Bit-Zeichenkette zurück.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Direkt nach dem Start wartet das Programm darauf, dass ihr eure Hand vor den Sensor haltet. Jede erkannte Änderung wird nach 100 Millisekunden noch einmal gemessen, um den Wert zu stabilisieren. Befinden wir uns im Empfangsmodus (<code>receiving</code> ist <code>True</code>), schreiben wir je nach Abstand eine „1“ (weit) oder „0“ (nah) ans Ende der Zeichenkette <code>bits</code> und schalten den Empfang vorübergehend aus. Sobald die Länge von <code>bits</code> der erwarteten <code>MESSAGE_LENGTH</code> entspricht, rufen wir <code>decode_letter(bits)</code> auf, erhalten den passenden Buchstaben, hängen ihn an <code>text</code> an und leeren <code>bits</code>. Erst wenn der Sensor wieder mindestens 30 cm misst, schalten wir den Empfang erneut frei, damit die nächste Eingabe beginnen kann.</p>
+<p>Okay – probieren wir es aus. Unser Programm sammelt das erste Bit, dann das zweite und dann…</p>
+<pre><code>NameError: name 'decode_letter' is not defined</code></pre>
+<!--
+\gloss{Bug}{Ein Fehler in einem Programm, der dazu führt, dass es nicht wie erwartet funktioniert.}{Programmierung}
+-->
+<p>Was ist das? Eine Fehlermeldung (wie sprechen auch von Bugs), die uns sagt: Die Funktion <code>decode_letter()</code> ist nicht definiert. Wir müssen sie also noch implementieren. Wir haben die Funktion zwar schon namentlich genannt, aber es gibt nirgends eine Definition. Das holen wir jetzt nach.</p>
+<p>Erinnert euch an <a href="numbers.html#sec-numbers-functions" class="quarto-xref"><span>Abschnitt 2.10</span></a>: Wir müssen wissen, was die Funktion tun soll, was sie dafür benötigt und was sie zurückgibt. Einen Namen haben wir bereits: <code>decode_letter</code>.</p>
+<p>Die Funktion soll unsere <a href="glossary.html#gl-zeichenkette" title="Zeichenkette"><span class="gloss-term">Zeichenkette</span></a> voller Bits der Länge zwei, also so etwas wie “00”, “01”, “10” oder “11”, in einen Buchstaben umwandeln. Die Eingabe ist <code>bits</code> und die Ausgabe ein Buchstabe, den diese Bitfolge kodiert. Unsere Funktion könnte so aussehen:</p>
+<div id="947fb638" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">def</span> decode_letter(bits):</span>
+<span id="cb9-2"><a href="#cb9-2"></a>    <span class="cf">if</span> bits <span class="op">==</span> <span class="st">"00"</span>:</span>
+<span id="cb9-3"><a href="#cb9-3"></a>        <span class="cf">return</span> <span class="st">"A"</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a>    <span class="cf">elif</span> bits <span class="op">==</span> <span class="st">"01"</span>:</span>
+<span id="cb9-5"><a href="#cb9-5"></a>        <span class="cf">return</span> <span class="st">"B"</span></span>
+<span id="cb9-6"><a href="#cb9-6"></a>    <span class="cf">elif</span> bits <span class="op">==</span> <span class="st">"10"</span>:</span>
+<span id="cb9-7"><a href="#cb9-7"></a>        <span class="cf">return</span> <span class="st">"C"</span></span>
+<span id="cb9-8"><a href="#cb9-8"></a>    <span class="cf">elif</span> bits <span class="op">==</span> <span class="st">"11"</span>:</span>
+<span id="cb9-9"><a href="#cb9-9"></a>        <span class="cf">return</span> <span class="st">"D"</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Mit einem <code>if</code>-Statement, begleitet von drei <code>elif</code>-Zweigen, prüfen wir, welchem der möglichen Werte die Zeichenkette <code>bits</code> entspricht, und geben einen Buchstaben A, B, C oder D zurück. Da es mit zwei Bits insgesamt vier Möglichkeiten gibt, können wir auch nur vier Buchstaben damit abbilden. Wir erweitern das weiter unten, damit wir alle Buchstaben des Alphabets abdecken können.</p>
+<table class="caption-top table">
+<caption>Unser aktuelles Codesystem für vier Buchstaben.</caption>
+<thead>
+<tr class="header">
+<th>Bitfolge</th>
+<th>Dezimalzahl</th>
+<th>Buchstabe</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>00</td>
+<td>0</td>
+<td>A</td>
+</tr>
+<tr class="even">
+<td>01</td>
+<td>1</td>
+<td>B</td>
+</tr>
+<tr class="odd">
+<td>10</td>
+<td>2</td>
+<td>C</td>
+</tr>
+<tr class="even">
+<td>11</td>
+<td>3</td>
+<td>D</td>
+</tr>
+</tbody>
+</table>
+<p>Die Tabelle fasst unser Codesystem zusammen. In der zweiten Spalte haben wir zur Bitfolge die entsprechende Dezimalzahl eingetragen. Erinnert euch: Das Binärsystem ist ein Stellenwertsystem wie jedes andere auch, nur eben zur Basis 2. Wie ihr die entsprechende Dezimalzahl zu einer Binärzahl errechnet, haben wir in <a href="numbers.html#sec-numbers-binary-system" class="quarto-xref"><span>Abschnitt 2.5.3</span></a> gelernt.</p>
+<p>Fügen wir die Funktion in unser Programm ein. Wichtig ist: Eine Funktion muss vor ihrer Verwendung definiert sein.</p>
+<div id="744431a8" class="cell" data-execution_count="14">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>MESSAGE_LENGTH <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>bits <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>text <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a>last_distance <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a>receiving <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a></span>
+<span id="cb10-7"><a href="#cb10-7"></a><span class="kw">def</span> decode_letter(bits):</span>
+<span id="cb10-8"><a href="#cb10-8"></a>    <span class="cf">if</span> bits <span class="op">==</span> <span class="st">"00"</span>:</span>
+<span id="cb10-9"><a href="#cb10-9"></a>        <span class="cf">return</span> <span class="st">"A"</span></span>
+<span id="cb10-10"><a href="#cb10-10"></a>    <span class="cf">elif</span> bits <span class="op">==</span> <span class="st">"01"</span>:</span>
+<span id="cb10-11"><a href="#cb10-11"></a>        <span class="cf">return</span> <span class="st">"B"</span></span>
+<span id="cb10-12"><a href="#cb10-12"></a>    <span class="cf">elif</span> bits <span class="op">==</span> <span class="st">"10"</span>:</span>
+<span id="cb10-13"><a href="#cb10-13"></a>        <span class="cf">return</span> <span class="st">"C"</span></span>
+<span id="cb10-14"><a href="#cb10-14"></a>    <span class="cf">elif</span> bits <span class="op">==</span> <span class="st">"11"</span>:</span>
+<span id="cb10-15"><a href="#cb10-15"></a>        <span class="cf">return</span> <span class="st">"D"</span></span>
+<span id="cb10-16"><a href="#cb10-16"></a></span>
+<span id="cb10-17"><a href="#cb10-17"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb10-18"><a href="#cb10-18"></a>    distance <span class="op">=</span> ir.get_distance()</span>
+<span id="cb10-19"><a href="#cb10-19"></a>    <span class="cf">if</span> last_distance <span class="op">!=</span> distance:</span>
+<span id="cb10-20"><a href="#cb10-20"></a></span>
+<span id="cb10-21"><a href="#cb10-21"></a>        time.sleep(<span class="fl">0.1</span>) </span>
+<span id="cb10-22"><a href="#cb10-22"></a>        distance <span class="op">=</span> ir.get_distance()</span>
+<span id="cb10-23"><a href="#cb10-23"></a>        </span>
+<span id="cb10-24"><a href="#cb10-24"></a>        <span class="cf">if</span> receiving:</span>
+<span id="cb10-25"><a href="#cb10-25"></a>            <span class="cf">if</span> distance <span class="op">&gt;</span> <span class="dv">170</span> <span class="kw">and</span> distance <span class="op">&lt;</span> <span class="dv">300</span>:</span>
+<span id="cb10-26"><a href="#cb10-26"></a>                <span class="bu">print</span>(<span class="st">"1"</span>)</span>
+<span id="cb10-27"><a href="#cb10-27"></a>                bits <span class="op">+=</span> <span class="st">"1"</span></span>
+<span id="cb10-28"><a href="#cb10-28"></a>                receiving <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb10-29"><a href="#cb10-29"></a>            <span class="cf">elif</span> distance <span class="op">&lt;=</span> <span class="dv">170</span>:</span>
+<span id="cb10-30"><a href="#cb10-30"></a>                <span class="bu">print</span>(<span class="st">"0"</span>)</span>
+<span id="cb10-31"><a href="#cb10-31"></a>                bits <span class="op">+=</span> <span class="st">"0"</span></span>
+<span id="cb10-32"><a href="#cb10-32"></a>                receiving <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb10-33"><a href="#cb10-33"></a></span>
+<span id="cb10-34"><a href="#cb10-34"></a>            <span class="cf">if</span> <span class="bu">len</span>(bits) <span class="op">==</span> MESSAGE_LENGTH: </span>
+<span id="cb10-35"><a href="#cb10-35"></a>                <span class="bu">print</span>(<span class="ss">f"Bits: </span><span class="sc">{</span>bits<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-36"><a href="#cb10-36"></a>                letter <span class="op">=</span> decode_letter(bits)</span>
+<span id="cb10-37"><a href="#cb10-37"></a>                <span class="bu">print</span>(<span class="ss">f"Buchstabe: </span><span class="sc">{</span>letter<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-38"><a href="#cb10-38"></a>                text <span class="op">+=</span> letter</span>
+<span id="cb10-39"><a href="#cb10-39"></a>                <span class="bu">print</span>(<span class="ss">f"Text: </span><span class="sc">{</span>text<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb10-40"><a href="#cb10-40"></a>                bits <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb10-41"><a href="#cb10-41"></a>        <span class="cf">else</span>:</span>
+<span id="cb10-42"><a href="#cb10-42"></a>            <span class="cf">if</span> distance <span class="op">&gt;=</span> <span class="dv">300</span>:</span>
+<span id="cb10-43"><a href="#cb10-43"></a>                receiving <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb10-44"><a href="#cb10-44"></a>            </span>
+<span id="cb10-45"><a href="#cb10-45"></a>        last_distance <span class="op">=</span> distance</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+<p>Cool, neben „ABBA“ können wir jetzt auch „ADAC“ schreiben. Wir wollen aber natürlich noch mehr, und bevor wir weiter Bit für Bit hinzufügen, überlegen wir, wie viele Bits wir eigentlich benötigen.</p>
+<p>Es gibt 26 Buchstaben im Alphabet, und vielleicht wollen wir auch ein Leerzeichen kodieren. Die Unterscheidung zwischen Klein- und Großbuchstaben lassen wir an dieser Stelle einmal weg – sie wäre aber für ein praxistaugliches Codesystem wichtig. Somit sind es 27 Zeichen, die wir kodieren wollen. Mit jedem zusätzlichen Bit verdoppeln wir unsere Möglichkeiten, das haben wir in <a href="numbers.html#sec-numbers-bit-and-bytes" class="quarto-xref"><span>Abschnitt 2.6</span></a> gelernt. Rufen wir uns noch einmal die Tabelle in den Sinn, um zu erkennen, wie viele Bits wir benötigen.</p>
+<table class="caption-top table">
+<caption>Anzahl Bits und mögliche Kodierungen.</caption>
+<thead>
+<tr class="header">
+<th>Anzahl Bits</th>
+<th>Mögliche Kodierungen</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td><span class="math inline">\(2^1 = 2\)</span></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td><span class="math inline">\(2^2 = 4\)</span></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td><span class="math inline">\(2^3 = 8\)</span></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td><span class="math inline">\(2^4 = 16\)</span></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td><span class="math inline">\(2^5 = 32\)</span></td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td><span class="math inline">\(2^6 = 64\)</span></td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td><span class="math inline">\(2^7 = 128\)</span></td>
+</tr>
+<tr class="even">
+<td>8</td>
+<td><span class="math inline">\(2^8 = 256\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>Demnach reichen uns fünf Bits aus, denn damit können wir insgesamt 32 Kodierungen vornehmen. Wir hätten somit noch fünf freie Plätze, die wir vielleicht für Satzzeichen wie Punkt oder Komma verwenden.</p>
+<p>Um das in unserem Programm zu reflektieren, müssen wir die Funktion <code>decode_letter</code> anpassen und gleichzeitig die Länge einer Nachricht auf 5 Bits erhöhen. Damit wir es etwas einfacher haben und die Buchstaben den Dezimalzahlen von 0–25 zuordnen können, wandeln wir die Bitfolge zuerst in eine Dezimalzahl um:</p>
+<div id="e8df5f8a" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-16"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-16-1"><a href="#annotated-cell-16-1"></a><span class="kw">def</span> decode_letter(bits):</span>
+<span id="annotated-cell-16-2"><a href="#annotated-cell-16-2"></a>    </span>
+<span id="annotated-cell-16-3"><a href="#annotated-cell-16-3"></a>    <span class="co"># In Dezimalzahl umwandeln</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-16" data-target-annotation="1">1</button><span id="annotated-cell-16-4" class="code-annotation-target"><a href="#annotated-cell-16-4"></a>    decimal <span class="op">=</span> <span class="bu">int</span>(bits, <span class="dv">2</span>)</span>
+<span id="annotated-cell-16-5"><a href="#annotated-cell-16-5"></a></span>
+<span id="annotated-cell-16-6"><a href="#annotated-cell-16-6"></a>    <span class="cf">if</span> decimal <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="annotated-cell-16-7"><a href="#annotated-cell-16-7"></a>        <span class="cf">return</span> <span class="st">"A"</span></span>
+<span id="annotated-cell-16-8"><a href="#annotated-cell-16-8"></a>    <span class="cf">elif</span> decimal <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="annotated-cell-16-9"><a href="#annotated-cell-16-9"></a>        <span class="cf">return</span> <span class="st">"B"</span></span>
+<span id="annotated-cell-16-10"><a href="#annotated-cell-16-10"></a>    <span class="cf">elif</span> decimal <span class="op">==</span> <span class="dv">2</span>:</span>
+<span id="annotated-cell-16-11"><a href="#annotated-cell-16-11"></a>        <span class="cf">return</span> <span class="st">"C"</span></span>
+<span id="annotated-cell-16-12"><a href="#annotated-cell-16-12"></a>    <span class="cf">elif</span> decimal <span class="op">==</span> <span class="dv">3</span>:</span>
+<span id="annotated-cell-16-13"><a href="#annotated-cell-16-13"></a>        <span class="cf">return</span> <span class="st">"D"</span></span>
+<span id="annotated-cell-16-14"><a href="#annotated-cell-16-14"></a>    <span class="cf">elif</span> decimal <span class="op">==</span> <span class="dv">4</span>:</span>
+<span id="annotated-cell-16-15"><a href="#annotated-cell-16-15"></a>        <span class="cf">return</span> <span class="st">"E"</span></span>
+<span id="annotated-cell-16-16"><a href="#annotated-cell-16-16"></a>    ...</span>
+<span id="annotated-cell-16-17"><a href="#annotated-cell-16-17"></a>    <span class="cf">elif</span> decimal <span class="op">==</span> <span class="dv">25</span>:</span>
+<span id="annotated-cell-16-18"><a href="#annotated-cell-16-18"></a>        <span class="cf">return</span> <span class="st">"Z"</span></span>
+<span id="annotated-cell-16-19"><a href="#annotated-cell-16-19"></a>    <span class="cf">else</span>:</span>
+<span id="annotated-cell-16-20"><a href="#annotated-cell-16-20"></a>        <span class="cf">return</span> <span class="st">"?"</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-16" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-16" data-code-lines="4" data-code-annotation="1">Die Funktion <code>int</code> wandelt die Bitfolge in eine Dezimalzahl um. Der erste Parameter ist die Bitfolge als String, der zweite die Basis (hier 2 für Binärzahlen).</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Für die Umwandlung der Bitfolge verwenden wir die Funktion <code>int()</code>, die uns später noch öfter begegnen wird. Sie wandelt Zeichenketten in ganze Zahlen um, und wenn wir als zweiten Parameter die Basis des Zahlensystems angeben, funktioniert das auch mit Binärzahlen.</p>
+<p>Die Lösung funktioniert, allerdings ist sie nicht besonders elegant. Wir müssen für jeden Buchstaben einen eigenen <code>if</code>/<code>elif</code>-Zweig schreiben, was schnell unübersichtlich wird. Zudem wird unser Code extrem lang – im Codeblock oben deutet <code>...</code> bereits an, dass es noch viele weitere Buchstaben zwischen E und Z gibt. Glücklicherweise geht das eleganter, und zwar mit einem Wörterbuch.</p>
+</section>
+<section id="wörterbücher" class="level3" data-number="3.5.2">
+<h3 data-number="3.5.2" class="anchored" data-anchor-id="wörterbücher"><span class="header-section-number">3.5.2</span> Wörterbücher</h3>
+<!--
+\gloss{Dictionary}{Eine Sammlung von Schlüssel-Wert-Paaren, die eine schneller Suche ermöglichen.}{Programmierung}
+-->
+<p>Ein Dictionary (deutsch: Wörterbuch) ist in der Programmierung eine Sammlung von Schlüssel-Wert-Paaren. Über einen Schlüssel – zum Beispiel eine Zahl – greifen wir direkt auf den zugehörigen Wert zu, etwa einen Buchstaben. Stellt euch das wie ein Telefonbuch vor, bei dem ihr über den Namen die Nummer herausfindet. Das ist ideal, wenn wir Bitfolgen zuerst in Dezimalzahlen umwandeln und dann schnell den passenden Buchstaben nachschlagen möchten. Statt viele <code>if</code>/<code>elif</code>-Zweige zu schreiben, legen wir einmalig eine Nachschlagetabelle an. Das macht den Code kürzer, übersichtlicher und leichter erweiterbar.</p>
+<p>Für unsere Zeichendekodierung können wir ein Dictionary nutzen, das die Dezimalwerte 0–25 auf „A“–„Z“ abbildet und zum Beispiel 26 als Leerzeichen reserviert. Damit wird <code>decode_letter</code> deutlich kompakter und leichter zu pflegen.</p>
+<div id="16c50931" class="cell" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-17"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-17-1"><a href="#annotated-cell-17-1"></a><span class="co"># Nachricht auf 5 Bits erweitern</span></span>
+<span id="annotated-cell-17-2"><a href="#annotated-cell-17-2"></a>MESSAGE_LENGTH <span class="op">=</span> <span class="dv">5</span></span>
+<span id="annotated-cell-17-3"><a href="#annotated-cell-17-3"></a></span>
+<span id="annotated-cell-17-4"><a href="#annotated-cell-17-4"></a><span class="co"># Dictionary mit 0–25 =&gt; A–Z und 26 =&gt; Leerzeichen</span></span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-17" data-target-annotation="1">1</button><span id="annotated-cell-17-5" class="code-annotation-target"><a href="#annotated-cell-17-5"></a>SYMBOLS <span class="op">=</span> {}</span>
+<button class="code-annotation-anchor" data-target-cell="annotated-cell-17" data-target-annotation="2">2</button><span id="annotated-cell-17-6" class="code-annotation-target"><a href="#annotated-cell-17-6"></a>SYMBOLS[<span class="dv">0</span>] <span class="op">=</span> <span class="st">"A"</span></span>
+<span id="annotated-cell-17-7"><a href="#annotated-cell-17-7"></a>SYMBOLS[<span class="dv">1</span>] <span class="op">=</span> <span class="st">"B"</span></span>
+<span id="annotated-cell-17-8"><a href="#annotated-cell-17-8"></a>SYMBOLS[<span class="dv">2</span>] <span class="op">=</span> <span class="st">"C"</span></span>
+<span id="annotated-cell-17-9"><a href="#annotated-cell-17-9"></a>SYMBOLS[<span class="dv">3</span>] <span class="op">=</span> <span class="st">"D"</span></span>
+<span id="annotated-cell-17-10"><a href="#annotated-cell-17-10"></a>SYMBOLS[<span class="dv">4</span>] <span class="op">=</span> <span class="st">"E"</span></span>
+<span id="annotated-cell-17-11"><a href="#annotated-cell-17-11"></a>...</span>
+<span id="annotated-cell-17-12"><a href="#annotated-cell-17-12"></a>SYMBOLS[<span class="dv">25</span>] <span class="op">=</span> <span class="st">"Z"</span></span>
+<span id="annotated-cell-17-13"><a href="#annotated-cell-17-13"></a>SYMBOLS[<span class="dv">26</span>] <span class="op">=</span> <span class="st">" "</span></span>
+<span id="annotated-cell-17-14"><a href="#annotated-cell-17-14"></a></span>
+<span id="annotated-cell-17-15"><a href="#annotated-cell-17-15"></a><span class="kw">def</span> decode_letter(bits):</span>
+<span id="annotated-cell-17-16"><a href="#annotated-cell-17-16"></a>    decimal <span class="op">=</span> <span class="bu">int</span>(bits, <span class="dv">2</span>)</span>
+<span id="annotated-cell-17-17"><a href="#annotated-cell-17-17"></a>    <span class="cf">return</span> SYMBOLS.get(decimal, <span class="st">"?"</span>)</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-annotation">
+<dl class="code-annotation-container-hidden code-annotation-container-grid">
+<dt data-target-cell="annotated-cell-17" data-target-annotation="1">1</dt>
+<dd>
+<span data-code-cell="annotated-cell-17" data-code-lines="5" data-code-annotation="1">Mit geschweiften Klammern erzeugen wir ein leeres Dictionary.</span>
+</dd>
+<dt data-target-cell="annotated-cell-17" data-target-annotation="2">2</dt>
+<dd>
+<span data-code-cell="annotated-cell-17" data-code-lines="6" data-code-annotation="2">Mit den eckigen Klammern können wir einem Schlüssel einen Wert zuweisen. Wenn es den Eintrag nicht gibt, wird er neu angelegt. Andernfalls wird er überschrieben.</span>
+</dd>
+</dl>
+</div>
+</div>
+<p>Wenn ihr später weitere Zeichen (z. B. Punkt oder Komma) ergänzen wollt, könnt ihr sie einfach hinzufügen:</p>
+<div id="4c0c5157" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>SYMBOLS[<span class="dv">27</span>] <span class="op">=</span> <span class="st">","</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>SYMBOLS[<span class="dv">28</span>] <span class="op">=</span> <span class="st">"."</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Wie ihr an der Schreibweise von <code>SYMBOLS</code> erkennen könnt, handelt es sich um eine Konstante. Logisch, schließlich verändert sich unser Codesystem für die Symbole im Verlauf des Programms nicht. Wir initialisieren ein leeres Dictionary mit geschweiften Klammern (Zeile 5). Die Zuweisung der Werte erfolgt dann über die eckigen Klammern, wobei in den eckigen Klammern der Schlüssel (englisch: Key) steht und der Wert, den wir dem Schlüssel zuweisen möchten, hinter dem Gleichheitszeichen folgt.</p>
+<p>Prinzipiell könnten wir mit den eckigen Klammern auch Werte abfragen. Wenn wir zum Beispiel <code>SYMBOLS[0]</code> schreiben, erhalten wir den Wert “A” zurück. Wenn wir einen Schlüssel abfragen, der nicht existiert, bekommen wir jedoch einen Fehler. Eine bessere Möglichkeit zum Abfragen von Werten bietet daher die <code>get()</code>-Methode. Sie liefert den Wert für den Schlüssel zurück, den wir als erstes Argument übergeben. Wenn dieser Schlüssel nicht existiert, bekommen wir den Wert <code>None</code> zurück, was robuster ist, als wenn das Programm mit einem Fehler abbräche. Zudem können wir als zweites Argument einen Standardwert angeben, der zurückgegeben wird, wenn der Schlüssel nicht existiert. In unserem Fall ist das ein Fragezeichen “?”, das signalisiert, dass die Bitfolge keinem bekannten Buchstaben zugeordnet werden kann.</p>
+<p>Überprüft euch selbst: Welcher Wert kommt bei folgendem Aufruf zurück?: <code>SYMBOLS.get(5)</code></p>
+<div id="e69db700" class="cell" data-execution_count="18">
+<div id="lst-text-full" class="python cell-code listing quarto-float quarto-figure quarto-figure-left anchored" data-code-fold="true">
+<figure class="quarto-float quarto-float-lst figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-lst" id="lst-text-full-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Listing&nbsp;3.3: Der vollständige Code für die Texteingabe mit dem Infrarot-Abstandssensor.
+</figcaption>
+<div aria-describedby="lst-text-full-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<details class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="im">from</span> tinkerforge.bricklet_distance_ir_v2 <span class="im">import</span> BrickletDistanceIRV2</span>
+<span id="cb12-3"><a href="#cb12-3"></a><span class="im">from</span> tinkerforge.bricklet_rgb_led_v2 <span class="im">import</span> BrickletRGBLEDV2</span>
+<span id="cb12-4"><a href="#cb12-4"></a><span class="im">import</span> time</span>
+<span id="cb12-5"><a href="#cb12-5"></a></span>
+<span id="cb12-6"><a href="#cb12-6"></a>ipcon <span class="op">=</span> IPConnection()</span>
+<span id="cb12-7"><a href="#cb12-7"></a>ipcon.<span class="ex">connect</span>(<span class="st">'localhost'</span>, <span class="dv">4223</span>)</span>
+<span id="cb12-8"><a href="#cb12-8"></a></span>
+<span id="cb12-9"><a href="#cb12-9"></a>ir <span class="op">=</span> BrickletDistanceIRV2(<span class="st">'2a7S'</span>, ipcon)</span>
+<span id="cb12-10"><a href="#cb12-10"></a>led <span class="op">=</span> BrickletRGBLEDV2(<span class="st">'ZEL'</span>, ipcon)</span>
+<span id="cb12-11"><a href="#cb12-11"></a></span>
+<span id="cb12-12"><a href="#cb12-12"></a>MESSAGE_LENGTH <span class="op">=</span> <span class="dv">5</span> <span class="co"># Anzahl Bits pro Buchstabe</span></span>
+<span id="cb12-13"><a href="#cb12-13"></a>bits <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb12-14"><a href="#cb12-14"></a>text <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb12-15"><a href="#cb12-15"></a>last_distance <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb12-16"><a href="#cb12-16"></a>receiving <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb12-17"><a href="#cb12-17"></a></span>
+<span id="cb12-18"><a href="#cb12-18"></a><span class="co"># Dictionary mit 0–25 =&gt; A–Z und 26 =&gt; Leerzeichen</span></span>
+<span id="cb12-19"><a href="#cb12-19"></a>SYMBOLS <span class="op">=</span> {}</span>
+<span id="cb12-20"><a href="#cb12-20"></a>SYMBOLS[<span class="dv">0</span>] <span class="op">=</span> <span class="st">"A"</span></span>
+<span id="cb12-21"><a href="#cb12-21"></a>SYMBOLS[<span class="dv">1</span>] <span class="op">=</span> <span class="st">"B"</span></span>
+<span id="cb12-22"><a href="#cb12-22"></a>SYMBOLS[<span class="dv">2</span>] <span class="op">=</span> <span class="st">"C"</span></span>
+<span id="cb12-23"><a href="#cb12-23"></a>SYMBOLS[<span class="dv">3</span>] <span class="op">=</span> <span class="st">"D"</span></span>
+<span id="cb12-24"><a href="#cb12-24"></a>SYMBOLS[<span class="dv">4</span>] <span class="op">=</span> <span class="st">"E"</span></span>
+<span id="cb12-25"><a href="#cb12-25"></a>SYMBOLS[<span class="dv">5</span>] <span class="op">=</span> <span class="st">"F"</span></span>
+<span id="cb12-26"><a href="#cb12-26"></a>SYMBOLS[<span class="dv">6</span>] <span class="op">=</span> <span class="st">"G"</span></span>
+<span id="cb12-27"><a href="#cb12-27"></a>SYMBOLS[<span class="dv">7</span>] <span class="op">=</span> <span class="st">"H"</span></span>
+<span id="cb12-28"><a href="#cb12-28"></a>SYMBOLS[<span class="dv">8</span>] <span class="op">=</span> <span class="st">"I"</span></span>
+<span id="cb12-29"><a href="#cb12-29"></a>SYMBOLS[<span class="dv">9</span>] <span class="op">=</span> <span class="st">"J"</span></span>
+<span id="cb12-30"><a href="#cb12-30"></a>SYMBOLS[<span class="dv">10</span>] <span class="op">=</span> <span class="st">"K"</span></span>
+<span id="cb12-31"><a href="#cb12-31"></a>SYMBOLS[<span class="dv">11</span>] <span class="op">=</span> <span class="st">"L"</span></span>
+<span id="cb12-32"><a href="#cb12-32"></a>SYMBOLS[<span class="dv">12</span>] <span class="op">=</span> <span class="st">"M"</span></span>
+<span id="cb12-33"><a href="#cb12-33"></a>SYMBOLS[<span class="dv">13</span>] <span class="op">=</span> <span class="st">"N"</span></span>
+<span id="cb12-34"><a href="#cb12-34"></a>SYMBOLS[<span class="dv">14</span>] <span class="op">=</span> <span class="st">"O"</span></span>
+<span id="cb12-35"><a href="#cb12-35"></a>SYMBOLS[<span class="dv">15</span>] <span class="op">=</span> <span class="st">"P"</span></span>
+<span id="cb12-36"><a href="#cb12-36"></a>SYMBOLS[<span class="dv">16</span>] <span class="op">=</span> <span class="st">"Q"</span></span>
+<span id="cb12-37"><a href="#cb12-37"></a>SYMBOLS[<span class="dv">17</span>] <span class="op">=</span> <span class="st">"R"</span></span>
+<span id="cb12-38"><a href="#cb12-38"></a>SYMBOLS[<span class="dv">18</span>] <span class="op">=</span> <span class="st">"S"</span></span>
+<span id="cb12-39"><a href="#cb12-39"></a>SYMBOLS[<span class="dv">19</span>] <span class="op">=</span> <span class="st">"T"</span></span>
+<span id="cb12-40"><a href="#cb12-40"></a>SYMBOLS[<span class="dv">20</span>] <span class="op">=</span> <span class="st">"U"</span></span>
+<span id="cb12-41"><a href="#cb12-41"></a>SYMBOLS[<span class="dv">21</span>] <span class="op">=</span> <span class="st">"V"</span></span>
+<span id="cb12-42"><a href="#cb12-42"></a>SYMBOLS[<span class="dv">22</span>] <span class="op">=</span> <span class="st">"W"</span></span>
+<span id="cb12-43"><a href="#cb12-43"></a>SYMBOLS[<span class="dv">23</span>] <span class="op">=</span> <span class="st">"X"</span></span>
+<span id="cb12-44"><a href="#cb12-44"></a>SYMBOLS[<span class="dv">24</span>] <span class="op">=</span> <span class="st">"Y"</span></span>
+<span id="cb12-45"><a href="#cb12-45"></a>SYMBOLS[<span class="dv">25</span>] <span class="op">=</span> <span class="st">"Z"</span></span>
+<span id="cb12-46"><a href="#cb12-46"></a>SYMBOLS[<span class="dv">26</span>] <span class="op">=</span> <span class="st">" "</span></span>
+<span id="cb12-47"><a href="#cb12-47"></a></span>
+<span id="cb12-48"><a href="#cb12-48"></a><span class="kw">def</span> decode_letter(bits):</span>
+<span id="cb12-49"><a href="#cb12-49"></a>    decimal <span class="op">=</span> <span class="bu">int</span>(bits, <span class="dv">2</span>)</span>
+<span id="cb12-50"><a href="#cb12-50"></a>    <span class="cf">return</span> SYMBOLS.get(decimal, <span class="st">"?"</span>)</span>
+<span id="cb12-51"><a href="#cb12-51"></a></span>
+<span id="cb12-52"><a href="#cb12-52"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb12-53"><a href="#cb12-53"></a>    distance <span class="op">=</span> ir.get_distance()</span>
+<span id="cb12-54"><a href="#cb12-54"></a>    <span class="cf">if</span> last_distance <span class="op">!=</span> distance:</span>
+<span id="cb12-55"><a href="#cb12-55"></a></span>
+<span id="cb12-56"><a href="#cb12-56"></a>        time.sleep(<span class="fl">0.1</span>) </span>
+<span id="cb12-57"><a href="#cb12-57"></a>        distance <span class="op">=</span> ir.get_distance()</span>
+<span id="cb12-58"><a href="#cb12-58"></a>        </span>
+<span id="cb12-59"><a href="#cb12-59"></a>        <span class="cf">if</span> receiving:</span>
+<span id="cb12-60"><a href="#cb12-60"></a>            <span class="cf">if</span> distance <span class="op">&gt;</span> <span class="dv">170</span> <span class="kw">and</span> distance <span class="op">&lt;</span> <span class="dv">300</span>:</span>
+<span id="cb12-61"><a href="#cb12-61"></a>                <span class="bu">print</span>(<span class="st">"1"</span>)</span>
+<span id="cb12-62"><a href="#cb12-62"></a>                bits <span class="op">+=</span> <span class="st">"1"</span></span>
+<span id="cb12-63"><a href="#cb12-63"></a>                receiving <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb12-64"><a href="#cb12-64"></a>            <span class="cf">elif</span> distance <span class="op">&lt;=</span> <span class="dv">170</span>:</span>
+<span id="cb12-65"><a href="#cb12-65"></a>                <span class="bu">print</span>(<span class="st">"0"</span>)</span>
+<span id="cb12-66"><a href="#cb12-66"></a>                bits <span class="op">+=</span> <span class="st">"0"</span></span>
+<span id="cb12-67"><a href="#cb12-67"></a>                receiving <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb12-68"><a href="#cb12-68"></a></span>
+<span id="cb12-69"><a href="#cb12-69"></a>            <span class="cf">if</span> <span class="bu">len</span>(bits) <span class="op">==</span> MESSAGE_LENGTH: </span>
+<span id="cb12-70"><a href="#cb12-70"></a>                <span class="bu">print</span>(<span class="ss">f"Bits: </span><span class="sc">{</span>bits<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb12-71"><a href="#cb12-71"></a>                letter <span class="op">=</span> decode_letter(bits)</span>
+<span id="cb12-72"><a href="#cb12-72"></a></span>
+<span id="cb12-73"><a href="#cb12-73"></a>                <span class="bu">print</span>(<span class="ss">f"Buchstabe: </span><span class="sc">{</span>letter<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb12-74"><a href="#cb12-74"></a>                text <span class="op">+=</span> letter</span>
+<span id="cb12-75"><a href="#cb12-75"></a>                </span>
+<span id="cb12-76"><a href="#cb12-76"></a>                <span class="bu">print</span>(<span class="ss">f"Text: </span><span class="sc">{</span>text<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb12-77"><a href="#cb12-77"></a>                bits <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb12-78"><a href="#cb12-78"></a>        <span class="cf">else</span>:</span>
+<span id="cb12-79"><a href="#cb12-79"></a>            <span class="cf">if</span> distance <span class="op">&gt;=</span> <span class="dv">300</span>:</span>
+<span id="cb12-80"><a href="#cb12-80"></a>                receiving <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb12-81"><a href="#cb12-81"></a>            </span>
+<span id="cb12-82"><a href="#cb12-82"></a>        last_distance <span class="op">=</span> distance</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+</div>
+</figure>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tipp
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Das Codebeispiel aus diesem Abschnitt findet ihr auf <a href="https://github.com/winf-hsos/hands-on-computer-science-code/blob/main/chapter_03/3_4_coding_text.py">GitHub</a>.</p>
+<p>Klont das Repository und öffnet den Ordner in eurem Visual Studio Code, um es schnell ausführen zu können.</p>
+</div>
+</div>
+</section></details>
+</section>
+
+<section id="sec-text-ascii-code" class="level2 collapsable" data-number="3.6">
+<h2 class="collapsable anchored" data-number="3.6" data-anchor-id="sec-text-ascii-code"><span class="header-section-number">3.6</span> ASCII-Code</h2>
+<details class="collapsable-section" open=""><summary></summary>
+<!--
+\gloss{ASCII-Code}{Ein standardisiertes Kodierungssystem für Texte, das jedem Zeichen eine eindeutige Bitfolge zuweist.}{Codesysteme}
+\gloss{Codepage}{Eine Erweiterung eines Kodierungssystems, die zusätzliche Zeichen definiert.}{Codesysteme}
+-->
+<p>Im vorigen Abschnitt haben wir zusammen überlegt, wie wir Texte kodieren und als Bitfolge über ein universelles Eingabegerät basierend auf einem IR-Abstandssensor übertragen können. Ziemlich cool, findet ihr nicht? Dabei haben wir jedem Buchstaben eine eindeutige Bitfolge zugewiesen und sind letztlich auf unser eigenes 5-Bit-Kodierungssystem gekommen.</p>
+<p>Weil eine der ersten Anwendungen mit dem Computer die Verarbeitung von Texten war, haben sich darüber, wie man Texte kodieren kann, schon andere sehr schlaue Leute Gedanken gemacht. Das Ergebnis ist der ASCII-Code, den es seit den 1960er-Jahren gibt und der weltweit standardisiert ist.</p>
+<p>Der ASCII-Code basiert auf sieben Bits und kann somit 128 verschiedene Symbole verwalten. Die vollständige Liste an Symbolen seht ihr in <a href="#fig-text-ascii-table" class="quarto-xref">Abbildung&nbsp;<span>3.4</span></a>. Die Tabelle enthält fünf Spalten, wobei die ersten vier den Zahlencode für das kodierte ASCII-Zeichen in unterschiedlichen Zahlensystemen angeben. Ganz links seht ihr die Dezimalzahl, daneben die Binärdarstellung. Zusätzlich wird noch die Oktalzahl und die Hexadezimalschreibweise mit angezeigt. Oktal kennen wir bereits, was es mit Hexadezimal auf sich hat, lernen wir später in <a href="images.html" class="quarto-xref"><span>Kapitel 4</span></a>.</p>
+<p>Wenn ihr genau hinseht, erkennt ihr, dass die Binärzahl nicht aus 7, sondern aus 8 Bits besteht. Die erste Ziffer ganz links ist aber immer 0. Das liegt daran, dass Computer in 8-Bit-Einheiten, also in Bytes, denken. Auch der Speicher eines Computers ist so organisiert. Deshalb benötigt ein ASCII-Symbol in der Praxis statt sieben, acht Bits auf unserem Computer.</p>
+<p>Was passiert mit dem vermeintlich „verschwendeten“ Bit? Damit könnten wir doch immerhin 128 weitere Symbole abbilden. Und das wird auch gemacht: Es gibt verschiedene lokale Erweiterungen des ASCII-Codes, die zusätzliche Zeichen definieren. Für den deutschen Sprachraum etwa die Umlaute ä, ö, ü und das scharfe S (ß). Für andere Sprachen gibt es ähnliche Erweiterungen. Wir nennen diese Erweiterungen auch Codepages.</p>
+<p>Die Codepage, die wir üblicherweise verwenden, nennt sich Windows-1252 (CP-1252) und ist eine Erweiterung des ASCII-Codes, die 256 Zeichen umfasst. Die ersten 128 Zeichen sind identisch mit dem ASCII-Code, die weiteren 128 enthalten zusätzliche Zeichen, die in westeuropäischen Sprachen benötigt werden.</p>
+<div id="fig-text-ascii-table" class="lightbox quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-text-ascii-table-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="https://winf-hsos.github.io/university-docs/images/code_ascii_table.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Abbildung&nbsp;3.4: Die ursprüngliche ASCII-Codetabelle kodiert die Symbole als 7-Bit-Binärzahlen"><img src="https://winf-hsos.github.io/university-docs/images/code_ascii_table.png" class="img-fluid figure-img"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-text-ascii-table-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;3.4: Die ursprüngliche ASCII-Codetabelle kodiert die Symbole als 7-Bit-Binärzahlen
+</figcaption>
+</figure>
+</div>
+<p>Der ASCII-Code – das steht für American Standard Code for Information Interchange – beinhaltet ein paar nette Eigenschaften. So können wir zum Beispiel einen Großbuchstaben in einen Kleinbuchstaben umwandeln, indem wir 32 zu seinem Dezimalcode addieren. Umgekehrt funktioniert das natürlich auch.</p>
+<p>Für unsere Texteingabe über den IR-Abstandssensor bedeutet das: Wir benötigen überhaupt keinen eigenen Code, sondern können einfach den ASCII-Code verwenden. Allerdings müssen wir unsere Nachricht auf die Länge 7 erweitern, was mehr Aufwand bei der Eingabe macht. Dafür verwenden wir einen Standard. Argument genug – passen wir den Code an.</p>
+<p>Die Änderungen finden im Wesentlichen in der Funktion <code>decode_letter()</code> statt. Zudem ändern wir den Wert der Konstante <code>MESSAGE_LENGTH</code>:</p>
+<div id="3a9a7450" class="cell" data-execution_count="19">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>MESSAGE_LENGTH <span class="op">=</span> <span class="dv">7</span> <span class="co"># Anzahl Bits pro Buchstabe</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a></span>
+<span id="cb13-3"><a href="#cb13-3"></a>...</span>
+<span id="cb13-4"><a href="#cb13-4"></a></span>
+<span id="cb13-5"><a href="#cb13-5"></a><span class="kw">def</span> decode_letter(bits):</span>
+<span id="cb13-6"><a href="#cb13-6"></a>    <span class="co"># Links eine 0 hinzufügen, damit es 8 Bits sind</span></span>
+<span id="cb13-7"><a href="#cb13-7"></a>    bits <span class="op">=</span> <span class="st">"0"</span> <span class="op">+</span> bits</span>
+<span id="cb13-8"><a href="#cb13-8"></a></span>
+<span id="cb13-9"><a href="#cb13-9"></a>    <span class="co"># Binärstring in Dezimalzahl und dann in ASCII-Zeichen umwandeln</span></span>
+<span id="cb13-10"><a href="#cb13-10"></a>    decimal <span class="op">=</span> <span class="bu">int</span>(bits, <span class="dv">2</span>)</span>
+<span id="cb13-11"><a href="#cb13-11"></a>    <span class="cf">return</span> <span class="bu">chr</span>(decimal)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Die <code>decode_letter()</code>-Funktion fügt nun zunächst dem übergebenen Bit-String, der aus 7 Bits bestehen sollte, eine 0 an den Anfang hinzu. Damit haben wir die 8 Bits aus der ASCII-Tabelle in <a href="#fig-text-ascii-table" class="quarto-xref">Abbildung&nbsp;<span>3.4</span></a> komplettiert. Anschließend erfolgt – wie zuvor – die Konvertierung von binär nach dezimal. Die wesentliche Änderung steht in der Zeile darunter: Wir geben das Ergebnis der Funktion <code>chr()</code> zurück, der wir den Dezimalwert unseres kodierten Symbols übergeben. Brauchen wir also kein Dictionary mehr?</p>
+<p>Ganz genau! Es gibt bereits eine Funktion, die die passenden Symbole für Codes liefern kann. Wenn wir in die offizielle Dokumentation der Funktion <code>chr()</code> schauen, dann steht dort:</p>
+<blockquote class="blockquote">
+<p>Return the string representing a character with the specified Unicode code point. For example, <code>chr(97)</code> returns the string ‘a’, while <code>chr(8364)</code> returns the string ‘€’. This is the inverse of <code>ord()</code>.</p>
+</blockquote>
+<p>Die Funktion gibt also die Repräsentation des Codes als Zeichen zurück. Aber was steht da? Mit dem angegebenen Unicode-Codepunkt? Was ist denn jetzt schon wieder Unicode? Wir haben doch gerade über ASCII gesprochen.</p>
+<section id="unicode" class="level3" data-number="3.6.1">
+<h3 data-number="3.6.1" class="anchored" data-anchor-id="unicode"><span class="header-section-number">3.6.1</span> Unicode</h3>
+<!--
+\gloss{Unicode}{Ein internationaler Standard zur Kodierung von Texten, der eine große Anzahl von Zeichen aus verschiedenen Schriftsystemen umfasst.}{Codesysteme}
+\gloss{UTF-8}{Eine Kodierungsmethode für Unicode-Zeichen, die variable Byte-Längen verwendet.}{Codesysteme}
+\gloss{Textdatei}{Eine Datei, die nur Textinformationen enthält und keine Formatierungen oder Binärdaten.}{Codesysteme}
+\gloss{Codepunkt}{Eine eindeutige Nummer, die einem Zeichen in einem Zeichensatz zugeordnet ist.}{Codesysteme}
+-->
+<p>Unicode ist ein internationaler Standard, der jedes Zeichen aus praktisch allen Schriftsystemen der Welt eindeutig beschreibt. Während ASCII nur 128 Symbole umfasst und damit vor allem die englische Sprache abdeckt, definiert Unicode einen gemeinsamen Zeichensatz mit weit über einer Million möglichen Codepunkten. Ein Codepunkt ist dabei eine Nummer, die einem Zeichen zugeordnet ist, zum Beispiel hat der Buchstabe „A“ den Codepunkt U+0041 und das Eurozeichen „€“ den Codepunkt U+20AC.</p>
+<p>Wichtig ist die Unterscheidung zwischen Zeichensatz und Kodierung: Unicode ist der Zeichensatz (die Menge aller Zeichen mit ihren Codepunkten), während Formate wie UTF-8, UTF-16 oder UTF-32 beschreiben, wie diese Codepunkte als Bits und Bytes gespeichert oder übertragen werden. UTF-8 ist heute die am weitesten verbreitete Kodierung im Web. Sie ist variabel lang und hat eine zentrale Eigenschaft: Die ersten 128 Codepunkte (0–127) entsprechen exakt dem ASCII-Code. Dadurch ist UTF-8 vollständig rückwärtskompatibel zu ASCII. Eine reine ASCII-Datei ist zugleich gültiges UTF-8, und Funktionen wie <code>chr()</code> und <code>ord()</code> in Python arbeiten mit Unicode-Codepunkten. Wenn ihr also <code>chr(65)</code> aufruft, erhaltet ihr „A“ – das passt sowohl in ASCII als auch in Unicode. Für Zeichen außerhalb des ASCII-Bereichs verwendet UTF-8 mehr als ein Byte, bleibt aber weiterhin eindeutig und effizient.</p>
+<p>UTF-8 verwendet je nach Zeichen unterschiedlich viele Bytes – zwischen einem und vier. Häufige Zeichen wie die ASCII-Buchstaben brauchen nur 1 Byte. Ein „A“ hat den Codepunkt U+0041 und wird in UTF-8 als 0x41 gespeichert. Zeichen mit Akzenten benötigen oft 2 Bytes, zum Beispiel „ä“ (U+00E4) als 0xC3 0xA4. Das Eurozeichen „€“ (U+20AC) braucht 3 Bytes: 0xE2 0x82 0xAC. Ein Emoji wie „😊“ (U+1F60A) benötigt 4 Bytes: 0xF0 0x9F 0x98 0x8A.</p>
+<p>Eine hilfreiche Analogie: Stellt euch UTF-8 wie einen Paketdienst mit vier Paketgrößen (S, M, L, XL) vor. Die meisten Sendungen (ASCII-Zeichen) passen in Größe S und sind damit sehr platzsparend. Für seltenere oder komplexere Zeichen wird automatisch eine größere Paketgröße gewählt. Am „Adressaufkleber“ – den ersten Bits des ersten Bytes – erkennt der Empfänger sofort, wie groß das Paket ist und wie viele Folgebytes er einlesen muss. So bleibt Text kompakt, und reine ASCII-Texte sind automatisch gültiges UTF-8.</p>
+<p>Auf diese Weise wird sichergestellt, dass die häufigsten Zeichen möglichst wenig Speicherplatz benötigen, während dennoch alle Zeichen der Welt eindeutig kodiert werden können. Das macht UTF-8 zur bevorzugten Wahl für die Textverarbeitung in modernen Anwendungen und im Web. Ihr könnt das übrigens selbst einmal überprüfen: Erstellt zwei leere Textdateien und speichert beide als UTF-8. Fügt in die erste einen Text nur aus Buchstaben, Zahlen und Leerzeichen ein und in die zweite einen Text mit Sonderzeichen und Emojis. Dabei sollte in jeder Datei die gleiche Anzahl Zeichen stehen. Wie unterscheidet sich die Größe der Dateien im Dateiexplorer?</p>
+</section></details>
+</section>
+
+<section id="sec-text-led-dimmer" class="level2 collapsable" data-number="3.7">
+<h2 class="collapsable anchored" data-number="3.7" data-anchor-id="sec-text-led-dimmer"><span class="header-section-number">3.7</span> LED-Dimmer 4.0</h2>
+<details class="collapsable-section" open=""><summary></summary>
+<p>In <a href="numbers.html" class="quarto-xref"><span>Kapitel 2</span></a> haben wir bereits drei Versionen eines LED-Dimmers gebaut. Eine letzte, vierte Variante kommt noch dazu: Lasst uns schauen, ob wir die Helligkeit mit dem Abstandssensor steuern können.</p>
+<p>Das war wieder einmal eine rhetorische Frage, natürlich können wir das! Mit Computern lässt sich so gut wie jedes Problem lösen, es geht nur um das Wie. Vielleicht habt ihr schon eine Idee, nachdem wir den Abstandssensor in diesem Kapitel schon intensiv kennengelernt haben.</p>
+<p>Der Dimmer aus <a href="numbers.html" class="quarto-xref"><span>Kapitel 2</span></a> lässt die LED in verschiedenen Stufen heller und dunkler leuchten. Über den Drehknopf haben wir zunächst 1er-Schritte umgesetzt, was bedeutete, dass wir 256 Ticks des Drehknopfs benötigten, um die LED auf volle Helligkeit zu schalten. Später haben wir dann eine Konstante <code>STEP</code> eingeführt, um die Schritte zu vergrößern, sodass nur noch eine Umdrehung notwendig war.</p>
+<p>Wie lässt sich das auf den Abstandssensor übertragen? Im Gegensatz zum Drehknopf, den wir beliebig lange in eine Richtung drehen können, hat der Abstandssensor einen festen Messbereich zwischen 4 und 30 cm. Das macht unsere Aufgabe einfacher, denn eine Transformation des Messbereichs in den Helligkeitsbereich der LED ist ausreichend. Wenn der Abstandssensor nun einen Wert von 4 cm misst, soll die LED auf 0 % Helligkeit dimmen, und bei 30 cm auf 100 % Helligkeit.</p>
+<p>Nehmen wir an, der aktuelle Messwert ist in <code>distance</code> gespeichert, dann könnten wir den Helligkeitswert <code>brightness</code> so berechnen:</p>
+<div id="6044dd50" class="cell" data-execution_count="20">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>brightness <span class="op">=</span> (distance <span class="op">-</span> <span class="dv">40</span>) <span class="op">/</span> (<span class="dv">300</span> <span class="op">-</span> <span class="dv">40</span>) <span class="op">*</span> <span class="dv">255</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Vergewissern wir uns, dass die Formel richtig ist. Wenn <code>distance</code> den Wert 4 cm hat, dann sollte <code>brightness</code> 0 sein. Das passt, denn der erste Teil der Formel wird dann 0. Und 0 geteilt durch egal was ergibt 0. Wenn <code>distance = 300</code>, dann sollte <code>brightness</code> 255 sein. Das passt ebenfalls, denn der erste Teil der Formel wird dann 260 und 260 geteilt durch 260 ergibt 1. Multipliziert mit 255 ergibt 255. Sieht also gut aus.</p>
+<p>Der folgende Code baut die Berechnungslogik in den LED-Dimmer aus <a href="numbers.html#sec-numbers-led-dimmer-2" class="quarto-xref"><span>Abschnitt 2.7</span></a> ein, der nur eine Farbe (Weiß) beherrscht. Wir könnten ihn aber genau wie in <a href="numbers.html#sec-numbers-led-dimmer-3" class="quarto-xref"><span>Abschnitt 2.9</span></a> um weitere Farben erweitern:</p>
+<div id="755f2823" class="cell" data-execution_count="21">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15" data-lst-cap="Das fertige Programm für den LED-Dimmer mit Infrarot-Abstandssensor-Steuerung."><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="im">from</span> tinkerforge.bricklet_distance_ir_v2 <span class="im">import</span> BrickletDistanceIRV2</span>
+<span id="cb15-3"><a href="#cb15-3"></a><span class="im">from</span> tinkerforge.bricklet_rgb_led_v2 <span class="im">import</span> BrickletRGBLEDV2</span>
+<span id="cb15-4"><a href="#cb15-4"></a></span>
+<span id="cb15-5"><a href="#cb15-5"></a>ipcon <span class="op">=</span> IPConnection()</span>
+<span id="cb15-6"><a href="#cb15-6"></a>ipcon.<span class="ex">connect</span>(<span class="st">"localhost"</span>, <span class="dv">4223</span>)</span>
+<span id="cb15-7"><a href="#cb15-7"></a>ir <span class="op">=</span> BrickletDistanceIRV2(<span class="st">"&lt;YOUR_IR_UID&gt;"</span>, ipcon)</span>
+<span id="cb15-8"><a href="#cb15-8"></a>led <span class="op">=</span> BrickletRGBLEDV2(<span class="st">"&lt;YOUR_LED_UID&gt;"</span>, ipcon)</span>
+<span id="cb15-9"><a href="#cb15-9"></a>led.set_rgb_value(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)  <span class="co"># Anfangszustand: aus</span></span>
+<span id="cb15-10"><a href="#cb15-10"></a></span>
+<span id="cb15-11"><a href="#cb15-11"></a>last_distance <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb15-12"><a href="#cb15-12"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb15-13"><a href="#cb15-13"></a>    distance <span class="op">=</span> ir.get_distance()</span>
+<span id="cb15-14"><a href="#cb15-14"></a>    <span class="cf">if</span> last_distance <span class="op">!=</span> distance:</span>
+<span id="cb15-15"><a href="#cb15-15"></a>        last_distance <span class="op">=</span> distance</span>
+<span id="cb15-16"><a href="#cb15-16"></a></span>
+<span id="cb15-17"><a href="#cb15-17"></a>        <span class="co"># Abstand (40–300 mm) auf LED-Helligkeit (0–255) abbilden</span></span>
+<span id="cb15-18"><a href="#cb15-18"></a>        brightness <span class="op">=</span> <span class="bu">int</span>((distance <span class="op">-</span> <span class="dv">40</span>) <span class="op">/</span> (<span class="dv">300</span> <span class="op">-</span> <span class="dv">40</span>) <span class="op">*</span> <span class="dv">255</span>)</span>
+<span id="cb15-19"><a href="#cb15-19"></a>        led.set_rgb_value(brightness, brightness, brightness)  <span class="co"># LED-Helligkeit setzen</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Je näher wir mit der Hand an den Sensor kommen, desto dunkler wird die LED – und umgekehrt.</p>
+<p>Damit schließen wir dieses Kapitel ab. Wir haben gelernt, wie Computer Texte kodieren. Der Umweg über unser eigenes Eingabegerät für Binärcodes hat sich gelohnt: Eure Programmierskills sind gewachsen!</p>
+<p>Im folgenden Kapitel beschäftigen wir uns mit Bildern, wie Computer sie sehen, und wie ein Bild auf den Bildschirm kommt.</p>
+
+
+</details>
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="ref-adami_what_2016" class="csl-entry" role="listitem">
+Adami, Christoph. 2016. <span>„What is <span>Information</span>?“</span> <em>Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences</em> 374 (2063): 20150230. <a href="https://doi.org/10.1098/rsta.2015.0230">https://doi.org/10.1098/rsta.2015.0230</a>.
+</div>
+<div id="ref-brookshear_computer_2020" class="csl-entry" role="listitem">
+Brookshear, J. Glenn, und Dennis Brylow. 2020. <em>Computer science: an overview</em>. 13th edition, global edition. NY, NY: Pearson.
+</div>
+<div id="ref-gallenbacher_abenteuer_2020" class="csl-entry" role="listitem">
+Gallenbacher, Jens. 2020. <em>Abenteuer <span>Informatik</span>: <span>IT</span> zum <span>Anfassen</span> für alle von 9 bis 99, vom <span>Navi</span> bis <span>Social</span> <span>Media</span></em>. 4. Auflage, korrigierte Publikation. Berlin Heidelberg: Springer.
+</div>
+<div id="ref-Makowski2021neurokit" class="csl-entry" role="listitem">
+Makowski, Dominique, Tam Pham, Zen J. Lau, Jan C. Brammer, François Lespinasse, Hung Pham, Christopher Schölzel, und S. H. Annabel Chen. 2021. <span>„<span>NeuroKit</span>2: A Python toolbox for neurophysiological signal processing“</span>. <em>Behavior Research Methods</em> 53 (4): 1689–96. <a href="https://doi.org/10.3758/s13428-020-01516-y">https://doi.org/10.3758/s13428-020-01516-y</a>.
+</div>
+<div id="ref-petzold_code_2022" class="csl-entry" role="listitem">
+Petzold, Charles. 2022. <em>Code: the hidden language of computer hardware and software</em>. 2. Aufl. Hoboken: Microsoft Press.
+</div>
+<div id="ref-polya" class="csl-entry" role="listitem">
+Pólya, George, und John Horton Conway. 2004. <em>How to solve it: a new aspect of mathematical method</em>. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.
+</div>
+<div id="ref-scott_but_2009" class="csl-entry" role="listitem">
+Scott, John C. 2009. <em>But how do it know?: the basic principles of computers for everyone</em>. Oldsmar, FL: John C. Scott.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script>
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  if (document.documentElement.dataset.collapsableInit) return;
+
+  document.documentElement.dataset.collapsableInit = "1";
+
+
+
+  document.querySelectorAll(
+
+    "h1.collapsable, h2.collapsable, h3.collapsable, h4.collapsable, h5.collapsable, h6.collapsable"
+
+  ).forEach(h => {
+
+    const details = h.nextElementSibling;
+
+    if (!details || details.tagName.toLowerCase() !== "details") return;
+
+
+
+    // Icon-Status initial
+
+    h.classList.toggle("closed", !details.open);
+
+
+
+    h.style.cursor = "pointer";
+
+    h.addEventListener("click", () => {
+
+      details.open = !details.open;
+
+      h.classList.toggle("closed", !details.open);
+
+    });
+
+  });
+
+});
+
+</script>
+
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Kopiert");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Kopiert");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+        for (let i=0; i<annoteTargets.length; i++) {
+          const annoteTarget = annoteTargets[i];
+          const targetCell = annoteTarget.getAttribute("data-target-cell");
+          const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+          const contentFn = () => {
+            const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+            if (content) {
+              const tipContent = content.cloneNode(true);
+              tipContent.classList.add("code-annotation-tip-content");
+              return tipContent.outerHTML;
+            }
+          }
+          const config = {
+            allowHTML: true,
+            content: contentFn,
+            onShow: (instance) => {
+              selectCodeLines(instance.reference);
+              instance.reference.classList.add('code-annotation-active');
+              window.tippy.hideAll();
+            },
+            onHide: (instance) => {
+              unselectCodeLines();
+              instance.reference.classList.remove('code-annotation-active');
+            },
+            maxWidth: 300,
+            delay: [50, 0],
+            duration: [200, 0],
+            offset: [5, 10],
+            arrow: true,
+            appendTo: function(el) {
+              return el.parentElement.parentElement.parentElement;
+            },
+            interactive: true,
+            interactiveBorder: 10,
+            theme: 'quarto',
+            placement: 'right',
+            popperOptions: {
+              modifiers: [
+              {
+                name: 'flip',
+                options: {
+                  flipVariations: false, // true by default
+                  allowedAutoPlacements: ['right'],
+                  fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+                },
+              },
+              {
+                name: 'preventOverflow',
+                options: {
+                  mainAxis: false,
+                  altAxis: false
+                }
+              }
+              ]        
+            }      
+          };
+          window.tippy(annoteTarget, config); 
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../part-1-dap/numbers.html" class="pagination-link" aria-label="Zahlen">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Zahlen</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../part-1-dap/images.html" class="pagination-link" aria-label="Bilder">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Bilder</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>
