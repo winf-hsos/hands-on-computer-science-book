@@ -2,14 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.9.20">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="description" content="Ein Online-Buch mit Experimenten, die Schritt für Schritt in die Welt der Digitalisierung, Programmierung und Künstliche Intelligenz einführen.">
 
-<title>6&nbsp; Lernen – Hands-On Computer Science</title>
+<title>6&nbsp; Regeln vs.&nbsp;Lernen – Hands-On Computer Science</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -21,11 +24,45 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 /* CSS for citations */
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -51,7 +88,7 @@ div.csl-indent {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../part-2-ai/vision.html" rel="next">
+<link href="../part-2-ai/probabilities.html" rel="next">
 <link href="../part-1-dap/sensors.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -60,10 +97,13 @@ div.csl-indent {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-3512cbed9e2527d986e9b0b56d261405.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-670489e30afdd02925324b99e7f7a38e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-49c3f92b472d6b0034476396ca3297dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -280,35 +320,6 @@ div.csl-indent {
 </script>
 
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../partials/gloss.css">
 <link rel="stylesheet" href="../partials/collapsable.css">
@@ -323,7 +334,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part-2-ai/learning.html">Künstliche Intelligenz</a></li><li class="breadcrumb-item"><a href="../part-2-ai/learning.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lernen</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part-2-ai/learning.html">Künstliche Intelligenz</a></li><li class="breadcrumb-item"><a href="../part-2-ai/learning.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Regeln vs.&nbsp;Lernen</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
@@ -416,31 +427,43 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part-2-ai/learning.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lernen</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Regeln vs.&nbsp;Lernen</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../part-2-ai/vision.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Sehen</span></span></a>
+  <a href="../part-2-ai/probabilities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Wahrscheinlichkeiten</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../part-2-ai/listen.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Hören</span></span></a>
+  <a href="../part-2-ai/embeddings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Bedeutungen</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../part-2-ai/speaking.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Sprechen</span></span></a>
+  <a href="../part-2-ai/tools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Werkzeuge</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../part-2-ai/language.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Sprache</span></span></a>
+  <a href="../part-2-ai/tokens.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Tokens</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part-2-ai/training.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Training</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part-2-ai/rewards.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Belohnungen</span></span></a>
   </div>
 </li>
       </ul>
@@ -462,21 +485,20 @@ window.Quarto = {
    
   <ul>
   <li><a href="#zusammenfassung" id="toc-zusammenfassung" class="nav-link active" data-scroll-target="#zusammenfassung"><span class="header-section-number">6.1</span> Zusammenfassung</a></li>
-  <li><a href="#spamfilter" id="toc-spamfilter" class="nav-link" data-scroll-target="#spamfilter"><span class="header-section-number">6.2</span> Spamfilter</a></li>
-  <li><a href="#regeln-für-spam-erkennung" id="toc-regeln-für-spam-erkennung" class="nav-link" data-scroll-target="#regeln-für-spam-erkennung"><span class="header-section-number">6.3</span> Regeln für Spam-Erkennung</a></li>
-  <li><a href="#lernen-wie-spam-aussieht" id="toc-lernen-wie-spam-aussieht" class="nav-link" data-scroll-target="#lernen-wie-spam-aussieht"><span class="header-section-number">6.4</span> Lernen, wie Spam aussieht</a>
-  <ul class="collapse">
-  <li><a href="#bayesscher-spamfilter" id="toc-bayesscher-spamfilter" class="nav-link" data-scroll-target="#bayesscher-spamfilter"><span class="header-section-number">6.4.1</span> Bayesscher Spamfilter</a></li>
-  </ul></li>
+  <li><a href="#experimentaufbau" id="toc-experimentaufbau" class="nav-link" data-scroll-target="#experimentaufbau"><span class="header-section-number">6.2</span> Experimentaufbau</a></li>
+  <li><a href="#ein-chatbot-mit-python" id="toc-ein-chatbot-mit-python" class="nav-link" data-scroll-target="#ein-chatbot-mit-python"><span class="header-section-number">6.3</span> Ein Chatbot mit Python</a></li>
+  <li><a href="#von-bauchgefühl-zu-regeln" id="toc-von-bauchgefühl-zu-regeln" class="nav-link" data-scroll-target="#von-bauchgefühl-zu-regeln"><span class="header-section-number">6.4</span> Von Bauchgefühl zu Regeln</a></li>
+  <li><a href="#laune-über-regeln-erkennen" id="toc-laune-über-regeln-erkennen" class="nav-link" data-scroll-target="#laune-über-regeln-erkennen"><span class="header-section-number">6.5</span> Laune über Regeln erkennen</a></li>
+  <li><a href="#lernbasierte-launeerkennung" id="toc-lernbasierte-launeerkennung" class="nav-link" data-scroll-target="#lernbasierte-launeerkennung"><span class="header-section-number">6.6</span> Lernbasierte Launeerkennung</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part-2-ai/learning.html">Künstliche Intelligenz</a></li><li class="breadcrumb-item"><a href="../part-2-ai/learning.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lernen</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part-2-ai/learning.html">Künstliche Intelligenz</a></li><li class="breadcrumb-item"><a href="../part-2-ai/learning.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Regeln vs.&nbsp;Lernen</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-learning" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lernen</span></span></h1>
+<h1 class="title"><span id="sec-learning" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Regeln vs.&nbsp;Lernen</span></span></h1>
 </div>
 
 
@@ -498,101 +520,145 @@ window.Quarto = {
 <p>Im ersten Teil des Buches haben wir wichtige Grundlagen der Programmierung gelernt. Wir haben gesehen, wie Computer Probleme lösen: Sie stellen Dinge aus der analogen Welt in einer digitalen Form dar und wenden dann Verarbeitungsschritte (Algorithmen) an, um daraus eine Lösung zu bauen. Dabei haben wir als Menschen die genauen Schritte vorgegeben und in einer Programmiersprache kodiert, in unserem Beispiel mit Python.</p>
 <p>Im zweiten Teil des Buches, der mit diesem Kapitel beginnt, schauen wir uns eine ganz andere Herangehensweise an: <strong>maschinelles Lernen</strong>. Dabei geben wir dem Computer nicht mehr jeden einzelnen Schritt zur Lösung vor. Stattdessen soll er die Logik selbst entdecken - oder <em>lernen</em>. Aber wie können Computer lernen? Indem wir ihm viele bereits gelöste Beispiele als Daten zeigen und ihn so trainieren, dass er aus diesen Beispielen Regeln ableitet. Die Hoffnung ist: Mit diesen gelernten Regeln kann er auch neue Fälle lösen, die er noch nie gesehen hat.</p>
 <p>Wenn Computer aus Beispielen lernen sollen: Was machen wir Menschen dann überhaupt noch, wenn wir nicht mehr alle Regeln selbst aufschreiben? Genau hier liegt der große Unterschied.</p>
-<p>Der Wechsel von “<em>Menschen geben dem Computer die Regeln für die Lösung vor</em>” zu “<em>Menschen lassen den Computer die Regeln erlernen</em>” ist ein <strong>Paradigmenwechsel</strong>. Zwar müssen wir Menschen weiterhin Regeln entwerfen, aber nicht mehr für die Lösung selbst. Stattdessen entwerfen wir einen Algorithmus, der es Computern ermöglicht, aus Daten zu lernen. Wir sprechen dann von <strong>Algorithmen des maschinellen Lernens</strong>.</p>
-<p>Schauen wir uns das an einem konkreten Beispiel an: Eine E-Mail als “Spam” oder “Nicht-Spam” zu erkennen.</p>
+<p>Der Wechsel von “<em>Menschen geben dem Computer die Regeln für die Lösung vor</em>” zu “<em>Menschen lassen den Computer die Regeln erlernen</em>” ist ein <strong>Paradigmenwechsel</strong>. Zwar müssen wir Menschen weiterhin Regeln entwerfen, aber nicht mehr für die Lösung selbst. Stattdessen entwerfen wir einen Algorithmus, der es Computern ermöglicht, aus Daten zu lernen. Wir sprechen dann von <em>Algorithmen des maschinellen Lernens</em>.</p>
+<p>In diesem Kapitel führen wir gemeinsam ein Experiment durch, um die regelbasierte Lösung eines konkreten Problems einer lernbasierten Lösung gegenüberzustellen. Stellt euch vor, eure Firma hat einen Chatbot auf der Webseite platziert, der Kundenanfragen entgegennimmt. Der Chatbot spricht mit den Kunden und fragt sie nach ihrem Anliegen, bevor er sie an einen menschlichen Mitarbeiter weiterleitet. Der Chatbot soll auf Basis der Kundenantworten einen Hinweis geben, ob der Kunde gute oder schlechte Laune hat. Die Kernfrage ist also: Wie kann der Chatbot die Laune eines Kunden anhand der Chatnachrichten erkennen?</p>
 </section>
-<section id="spamfilter" class="level2" data-number="6.2">
-<h2 data-number="6.2" class="anchored" data-anchor-id="spamfilter"><span class="header-section-number">6.2</span> Spamfilter</h2>
-<p>Wer von euch bekommt regelmäßig E-Mails? Und wie oft sind darunter Mails, die ihr eigentlich nie lesen wolltet?</p>
-<p>Jeder kennt das Problem: Täglich flattert eine Flut von E-Mails in den Posteingang. Nicht alle sind gleichermaßen relevant oder ernst gemeint. Viele Mails sind Werbung oder im schlimmsten Fall fiese Versuche, an eure Daten zu gelangen (siehe <a href="https://www.bsi.bund.de/DE/Themen/Verbraucherinnen-und-Verbraucher/Cyber-Sicherheitslage/Methoden-der-Cyber-Kriminalitaet/Spam-Phishing-Co/Passwortdiebstahl-durch-Phishing/Wie-erkenne-ich-Phishing-in-E-Mails-und-auf-Webseiten/wie-erkenne-ich-phishing-in-e-mails-und-auf-webseiten_node.html">Phishing-Mails</a>). Eine Lösung, die E-Mails für uns vorsortiert, wäre eine große Hilfe: in sinnvolle, ernst gemeinte E-Mails und eben die anderen, die uns im schlimmsten Fall schaden könnten.</p>
-<p>Klar, dafür gibt es sogenannte Spamfilter. Wer das Mailprogramm <a href="https://mail.google.com/">Gmail</a> nutzt, findet im Postfach einen Ordner “Spam”. Dort landen zuverlässig E-Mails, an denen wir mit hoher Wahrscheinlichkeit kein Interesse haben.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="..\images/gmail_spam.png" class="img-fluid figure-img"></p>
-<figcaption>Mein Gmail-Spamordner, der die automatisch als “Spam” erkannten E-Mails enthält.</figcaption>
-</figure>
-</div>
-<p>Woher aber weiß Google, welche E-Mails in den Spamordner gehören und welche nicht?</p>
-<p>Neben Spam sortiert Gmail übrigens auch andere E-Mails vor: Newsletter, Social Media, Einkäufe und viele mehr. Es gibt also nicht nur einen einfachen “Spam”-Filter, sondern ein ganzes Klassifizierungssystem. Wir bleiben hier der Einfachheit halber bei der Aufgabe, E-Mails in <strong>zwei</strong> Kategorien einzuteilen. Das nennt man eine <strong>binäre Klassifikation</strong>: Es gibt genau zwei Klassen. Wie wir bereits in <a href="../part-1-dap/numbers.html#sec-numbers-binary-system" class="quarto-xref"><span>Abschnitt 2.5.3</span></a> gelernt haben, steht <em>binär</em> für zwei Zustände.</p>
-<p>Bei Spamfiltern spricht man übrigens oft von “Spam” (irrelevante oder schädliche E-Mails) und “Ham” (die E-Mails, die wir wirklich lesen wollen). Weil es schön kurz ist, verwende ich diese Begriffe ab jetzt auch.</p>
-<p>Für alle Nerds unter euch: Der Begriff “Spam” kommt ursprünglich aus dem Lebensmittelumfeld und steht für “Spiced Pork and Ham”, <a href="https://www.hormelfoods.com/brand/spam-brand/">ein Produkt der Firma Hormel Foods Corporation</a> aus den USA. Erst Monty Python hat den Begriff in einem Sketch für die heutige Bedeutung vorbereitet. Die Geschichte könnt ihr auf der <a href="https://www.vis.bayern.de/recht/werbung_recht/spambegriff.htm">Webseite des Bayerischen Verbraucherschutzministeriums</a> vertiefen.</p>
-</section>
-<section id="regeln-für-spam-erkennung" class="level2" data-number="6.3">
-<h2 data-number="6.3" class="anchored" data-anchor-id="regeln-für-spam-erkennung"><span class="header-section-number">6.3</span> Regeln für Spam-Erkennung</h2>
-<p>Ganz im Geiste des ersten Teils des Buches lösen wir das Problem der Spamfilterung gedanklich zuerst mit der klassischen Herangehensweise: Wir überlegen uns Regeln und kodieren sie in einem Algorithmus, der eine E-Mail in <em>Spam</em> oder <em>Ham</em> einteilt.</p>
-<p>Wie immer, wenn wir für ein Problem eine computergestützte Lösung suchen, nutzen wir dafür das uns bekannte Problemlösungsschema. In <a href="#fig-spam-eva" class="quarto-xref">Abbildung&nbsp;<span>6.1</span></a> seht ihr das EVA-Modell für das Spamfilterproblem.</p>
-<div id="fig-spam-eva" class="quarto-float quarto-figure quarto-figure-center anchored">
+<section id="experimentaufbau" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="experimentaufbau"><span class="header-section-number">6.2</span> Experimentaufbau</h2>
+<p>Für das Experiment benötigen wir eine LED (<a href="https://www.tinkerforge.com/en/doc/Hardware/Bricklets/RGB_LED_V2.html">RGB LED Bricklet 2.0</a>), die wir aus dem ersten Teil des Buches bereits kennen. Damit wir die LED steuern können, benötigen wir auch den passenden Mikrocontroller (<a href="https://www.tinkerforge.com/de/shop/master-brick.html">Master Brick 3.2</a>). Wir können also das komplette Hardware-Setup aus <a href="../part-1-dap/colors.html" class="quarto-xref"><span>Kapitel 1</span></a> wiederverwenden.</p>
+<p>Die vollsändige Hardwareliste für dieses Kapitel sieht so aus:</p>
+<ul>
+<li>1 x <a href="https://www.tinkerforge.com/de/doc/Hardware/Bricks/Master_Brick.html">Master Brick 3.2</a></li>
+<li>1 x <a href="https://www.tinkerforge.com/en/doc/Hardware/Bricklets/RGB_LED_V2.html">RGB LED Bricklet 2.0</a></li>
+<li>1 x <a href="https://www.tinkerforge.com/de/shop/accessories/mounting/mounting-plate-22x10.html">Montageplatte 22x10</a></li>
+<li>1 x <a href="https://www.tinkerforge.com/de/shop/accessories/cable/bricklet-cable-15cm-7p-7p.html">Brickletkabel 15cm (7p-7p)</a></li>
+<li>1 x <a href="https://www.tinkerforge.com/de/shop/accessories/mounting/mounting-kit-12mm.html">Befestigungskit 12 mm</a></li>
+</ul>
+<p>Neben der Hardware benötigt ihr auch die passende Software. Diese solltet ihr bereits installiert haben, wenn ihr den ersten Teil des Buches abgeschlossen habt. Falls nicht, schaut im <a href="preparation.qmd">Abschnitt zu den Voraussetzungen</a> vorbei. Dort ist alles genau beschrieben. Im Folgenden gehe ich davon aus, dass auf eurem Rechner alles läuft.</p>
+<div id="fig-learning-setup-rgb-led" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-spam-eva-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="https://winf-hsos.github.io/university-docs/images/problem_example_spam.png" class="img-fluid figure-img">
+<div aria-describedby="fig-learning-setup-rgb-led-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-learning-setup-rgb-led" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="fig-setup-rgb-led-a" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="setup-rgb-led">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-setup-rgb-led-a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="..\images/master_brick_with_led_01.jpg" class="lightbox" data-gallery="setup-rgb-led" title="Abbildung&nbsp;6.1&nbsp;(a): Seitenansicht."><img src="..\images/master_brick_with_led_01.jpg" class="img-fluid figure-img" data-ref-parent="fig-learning-setup-rgb-led"></a>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-spam-eva-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Abbildung&nbsp;6.1: Spamfilterung als EVA-Modell
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-setup-rgb-led-a-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Seitenansicht.
 </figcaption>
 </figure>
 </div>
-<p>Damit wir einem Computer ein Problem und dessen Lösung beibringen können, müssen wir alle drei Bestandteile des Modells (Eingabe, Verarbeitung, Ausgabe) in eine für Computer verarbeitbare Form bringen. Das können wir hier kurz halten: E-Mails sind im Computer bereits als Text gespeichert (<a href="../part-1-dap/text.html" class="quarto-xref"><span>Kapitel 3</span></a>). Die Ausgabe ist eine einfache Klassifikation in zwei Kategorien: <em>Spam</em> oder <em>Ham</em>. Die Herausforderung liegt also in der Verarbeitung: Wie kann ein Algorithmus entscheiden, ob eine E-Mail Spam oder Ham ist?</p>
-<p>Früher, in den 90er-Jahren, als wir noch nicht massenweise über E-Mails kommuniziert haben, reichten oft einfache Verfahren aus, um sich effektiv vor unerwünschten E-Mails zu schützen. Erste Ansätze suchten nach bestimmten Wörtern in E-Mails. Wenn diese vorkamen, wurden die Mails als Spam markiert. Wörter wie “FREE”, “WIN” oder “GUARANTEED” waren typische Kandidaten.</p>
-<p>Eine andere Methode war das Blockieren bestimmter Absender, um von ihnen keine E-Mails mehr zu erhalten. Weil man bei jeder E-Mail weiß, von welchem Server (bzw. von welcher IP-Adresse) sie gesendet wurde, konnte man IP-basierte Sperrlisten zentral verwalten und bei vielen Nutzern gleichzeitig anwenden.</p>
-<p>Beide Varianten haben ihre Probleme. Bei der Keyword-Filterung kann es zu Fehlern kommen, wenn eine E-Mail zwar eines der Wörter enthält, aber dennoch keine Spam-Mail ist. Eine Mail landet dann fälschlicherweise im Spam-Ordner. Gleichzeitig sind solche Filter leicht auszutricksen, indem ungewöhnliche Schreibweisen verwendet werden, zum Beispiel “V1agra” statt “Viagra”.</p>
-<p>Das ist im Kern ein Wettrüsten: Spammer passen ihre Mails an, und die Filterlisten müssen wieder nachziehen. Um das Problem in den Griff zu bekommen, konnte das manuelle Aufstellen von Regeln nicht die Lösung sein.</p>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-learning-setup-rgb-led" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-setup-rgb-led-b" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="setup-rgb-led">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-setup-rgb-led-b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="..\images/master_brick_with_led_02.jpg" class="lightbox" data-gallery="setup-rgb-led" title="Abbildung&nbsp;6.1&nbsp;(b): Nahaufnahme der LED."><img src="..\images/master_brick_with_led_02.jpg" class="img-fluid figure-img" data-ref-parent="fig-learning-setup-rgb-led"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-setup-rgb-led-b-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Nahaufnahme der LED.
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-learning-setup-rgb-led" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div id="fig-setup-rgb-led-c" class="lightbox quarto-float quarto-figure quarto-figure-center anchored" data-group="setup-rgb-led">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-setup-rgb-led-c-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="..\images/master_brick_with_led_03.jpg" class="lightbox" data-gallery="setup-rgb-led" title="Abbildung&nbsp;6.1&nbsp;(c): Montageplatte mit allen Komponenten."><img src="..\images/master_brick_with_led_03.jpg" class="img-fluid figure-img" data-ref-parent="fig-learning-setup-rgb-led"></a>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-setup-rgb-led-c-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(c) Montageplatte mit allen Komponenten.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-learning-setup-rgb-led-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;6.1: Das Hardware-Setup aus <a href="../part-1-dap/colors.html" class="quarto-xref"><span>Kapitel 1</span></a> mit einem Mikrocontroller und einer LED.
+</figcaption>
+</figure>
+</div>
+<p>Wozu die LED? Über die LED wird dem menschlichen Mitarbeiter signalisiert, ob der Chatbot glaubt, dass der Kunde gute oder schlechte Laune hat. Die LED soll grün leuchten, wenn der Kunde gute Laune hat und ein positives Anliegen (Lob, eine Bestellung, eine konstruktive Kritik) äußert. Sie soll rot leuchten, wenn der Kunde schlechte Laune hat und ein negatives Anliegen (Beschwerde, Rückgabe, wütende Nachricht) äußert. Sollte der Chatbot unsicher sein, weil die Nachricht unklar ist, soll die LED blau leuchten.</p>
+<p>Neben der LED als Hardware, benötigen für dieses Experiment auch etwas auf der Softwareseite. Wir werden im zweiten Teil des Experiments auf ein Sprachmodell der Firma OpenAI, das auch in ChatGPT verwendet wird, zurückgreifen und in unsere Lösung einbauen. Wir wollen überprüfen, ob und wie ein Sprachmodell in der Lage ist, bei der Lösung des beschriebenen Problems zu helfen. Damit wir aus unserem Python-Programm auf ein Modell wie GPT-5.4 zugreifen können, benötigen wir zum einen die passende Softwarebibliothek für Python, die von OpenAI bereitgestellt wird. Zum anderen benötigen wir einen API-Schlüssel, damit OpenAI weiß, wer wir sind und unsere Modellnutzung abrechnen kann.</p>
+<p>Die Softwarebibliothek von OpenAI könnt ihr mit folgendem Befehl installieren. Achtet darauf, dass ihr eure virtuelle Python-Umgebung vorher aktiviert habt, wenn ihr eine verwendet, <a href="../preparation.html#python-umgebung">was ich euch empfehle</a>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="ex">pip</span> install openai</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Den API-Schlüssel bekommt ihr im Rahmen einer Lehrveranstaltung direkt von mir. Solltet ihr nicht an der Hochschule Osnabrück studieren, könnt ihr euch auf der <a href="https://platform.openai.com/signup">OpenAI-Website</a> registrieren und einen eigenen API-Schlüssel generieren. Die Kosten, die euch für dieses Experiment entstehen, sind mit wenigen Cents sehr gering.</p>
 </section>
-<section id="lernen-wie-spam-aussieht" class="level2" data-number="6.4">
-<h2 data-number="6.4" class="anchored" data-anchor-id="lernen-wie-spam-aussieht"><span class="header-section-number">6.4</span> Lernen, wie Spam aussieht</h2>
-<p>Wenn wir nicht mehr jede einzelne Regel selbst aufschreiben wollen: Wie bekommen wir den Computer dazu, selbst zu lernen, wie Spam aussieht? Willkommen in der Welt des <strong>maschinellen Lernens</strong>!</p>
-<p>Die Idee beim maschinellen Lernen ist einfach (und ein bisschen wie beim Lernen für eine Klassenarbeit): Wir geben dem Computer viele Beispiele. Der Computer bekommt viele E-Mails, bei denen bereits feststeht, ob sie <em>Spam</em> oder <em>Ham</em> sind. Aus diesen Beispielen lernt er, welche Muster typisch für Spam sind. Danach kann er bei einer neuen E-Mail eine begründete Vermutung abgeben, in welche Kategorie sie gehört. Klingt gut, aber wie oben schon angedeutet, müssen wir Menschen immernoch den Lernalgorithmus entwerfen, der aus den Beispielen lernt. Wie geht das für Spamfilter?</p>
-<section id="bayesscher-spamfilter" class="level3" data-number="6.4.1">
-<h3 data-number="6.4.1" class="anchored" data-anchor-id="bayesscher-spamfilter"><span class="header-section-number">6.4.1</span> Bayesscher Spamfilter</h3>
-<p>In seinem Aufsatz <a href="https://paulgraham.com/spam.html">A Plan for Spam</a> erzielte Paul Graham im Jahr 2002 einen Durchbruch bei der Spamfilterung. Er schlug ein einfaches, auf Wahrscheinlichkeiten basierendes Verfahren vor. Ein sogenannter <strong>Bayesscher Filter</strong> wendet keine starre Menge an Regeln auf eine E-Mail an (wie Keyword- und IP-Blacklists), sondern berechnet aus den enthaltenen Wörtern eine Spam-Wahrscheinlichkeit. Und das Spannende: Wie diese Wahrscheinlichkeit berechnet wird, lernt der Algorithmus zu 100% aus Daten.</p>
-<blockquote class="blockquote">
-<p>To the recipient, spam is easily recognizable. If you hired someone to read your mail and discard the spam, they would have little trouble doing it. How much do we have to do, short of AI, to automate this process? (Quelle: <a href="https://paulgraham.com/spam.html">A Plan for Spam</a>)</p>
-</blockquote>
-<p>Der vorgeschlagene Algorithmus basiert auf dem Satz von Bayes. Die Idee dahinter ist: Wir nehmen eine Beobachtung aus der E-Mail (zum Beispiel ein bestimmtes Wort) und fragen uns dann: <strong>Wie wahrscheinlich ist es, dass die Mail Spam ist, <em>wenn</em> wir diese Beobachtung sehen?</strong></p>
-<p>Um das auszudrücken, verwenden wir <strong>bedingte Wahrscheinlichkeiten</strong>. <span class="math inline">\(P(\mathrm{Spam}\mid \mathrm{Wort})\)</span> bedeutet zum Beispiel: <em>Wie wahrscheinlich ist “Spam”, wenn das Wort vorkommt?</em> Der Satz von Bayes verknüpft genau solche Wahrscheinlichkeiten miteinander:</p>
-<p><span class="math display">\[
-P(A \mid B) = \frac{P(B \mid A)\,P(A)}{P(B)}
-\]</span></p>
-<p>Im Spam-Kontext können wir <span class="math inline">\(A=\mathrm{Spam}\)</span> und <span class="math inline">\(B=\mathrm{Wort\ kommt\ vor}\)</span> setzen. Dann wird daraus:</p>
-<p><span class="math display">\[
-P(\mathrm{Spam} \mid \mathrm{Wort}) = \frac{P(\mathrm{Wort} \mid \mathrm{Spam})\,P(\mathrm{Spam})}{P(\mathrm{Wort})}
-\]</span></p>
-<p>So können wir die Formel lesen:</p>
-<ul>
-<li><span class="math inline">\(P(\mathrm{Spam})\)</span> ist die <strong>Grundwahrscheinlichkeit</strong> (englisch: <em>Prior</em>): Wie viel Spam gibt es im Schnitt, bevor wir überhaupt auf den Text schauen?</li>
-<li><span class="math inline">\(P(\mathrm{Wort}\mid \mathrm{Spam})\)</span> ist die <strong>Trefferwahrscheinlichkeit</strong> (englisch: <em>Likelihood</em>): Wie oft kommt dieses Wort in Spam-Mails vor?</li>
-<li><span class="math inline">\(P(\mathrm{Wort})\)</span> ist die <strong>Normalisierung</strong>: Wie oft kommt das Wort insgesamt vor (in Spam <em>und</em> in Ham)?</li>
-</ul>
-<p>Die letzte Größe <span class="math inline">\(P(\mathrm{Wort})\)</span> können wir aus zwei Fällen zusammensetzen: Entweder die Mail ist Spam oder sie ist Ham.</p>
-<p><span class="math display">\[
-P(\mathrm{Wort}) = P(\mathrm{Wort}\mid \mathrm{Spam})\,P(\mathrm{Spam}) + P(\mathrm{Wort}\mid \mathrm{Ham})\,P(\mathrm{Ham})
-\]</span></p>
-<p>Wenn wir also aus vielen gelabelten Beispielen gelernt haben, wie oft ein Wort in Spam bzw. Ham vorkommt, können wir damit für eine neue Mail eine Spam-Wahrscheinlichkeit berechnen. In der Praxis nimmt man nicht nur ein Wort, sondern viele Merkmale (zum Beispiel mehrere Wörter). Ein bekannter Ansatz ist <em>Naive Bayes</em>: Dabei tun wir so, als ob die Wörter unabhängig voneinander wären. Dann können wir ihre Wahrscheinlichkeiten ganz einfach multiplizieren. Das ist nicht perfekt, aber oft erstaunlich effektiv.</p>
+<section id="ein-chatbot-mit-python" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="ein-chatbot-mit-python"><span class="header-section-number">6.3</span> Ein Chatbot mit Python</h2>
+<p>Um unnötigen Aufwand zu vermeiden, erstellen wir uns im ersten Schritt einen einfachen Chat auf Basis eines Python-Programms. Der Chat soll dabei keine richtige Chatoberfläche haben, wie ihr sie aus ChatGPT und Konsorten kennt, sondern einfach über die Kommandozeile (Terminal) laufen. Schließlich geht es in diesem Kapitel um den Unterschied zwischen Regeln und Lernen und nicht um die Entwicklung von Benutzeroberflächen.</p>
+<p>Das Python-Programm soll dabei die Rolle des Chatbots übernehmen. Es soll also die Kundenanfrage entgegennehmen, die Laune des Kunden erkennen und die LED entsprechend steuern. Wie wir eine Texteingabe vom Nutzer über die Kommandozeile entgegennehmen, haben wir bereits in <a href="../part-1-dap/images.html" class="quarto-xref"><span>Kapitel 4</span></a> kurz gesehen. Dort ging es allerdings nur um das Drücken der ENTER-Taste, damit das Programm fortfährt. Mit derselben Funktion können wir aber auch Texteingaben verarbeiten.</p>
+<div id="a8e57c0c" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>message <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Deine Chatnachricht: "</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="von-bauchgefühl-zu-regeln" class="level2" data-number="6.4">
+<h2 data-number="6.4" class="anchored" data-anchor-id="von-bauchgefühl-zu-regeln"><span class="header-section-number">6.4</span> Von Bauchgefühl zu Regeln</h2>
+<p>Stellt euch zunächst einmal vor, es gibt keinen vorgeschalteten Chatbot. Die Kunden schreiben direkt in einem Chatfenster mit einem menschlichen Mitarbeitenden. Der Mitarbeitende soll die Kundenanfragen entgegennehmen und die Laune der Kunden erkennen, um entsprechend zu reagieren. Wie geht er dabei vor?</p>
+<p>Die Antwort ist vielleicht enttäuschend: Er wendet keine expliziten Regeln an, sondern er erkennt <em>intuitiv</em>, ob eine Nachricht einen guten oder schlechet Vibe hat. Wir Menschen, sagen wir die meisten von uns, haben durch Erfahrung und viele Gespräche gelernt, wie wir die Laune eines Menschen anhand seiner Worte einschätzen können. Wir haben also ein Bauchgefühl dafür entwickelt, ob eine Nachricht positiv oder negativ ist. Das ist eine Art von <em>implizitem Wissen</em>, das wir nicht in Form von Regeln ausdrücken können. Es ist einfach da, und wir nutzen es, um mit anderen Menschen zu kommunizieren.</p>
+<p>Wenn wir also die folgenden Sätze lesen, haben wir wahrscheinlich sofort ein Gefühl dafür, ob sie positiv, negativ oder neutral sind:</p>
+<ol type="a">
+<li>Not bad at all, actually.</li>
+<li>Well, that could have gone worse.</li>
+<li>I guess this is fine.</li>
+<li>Oh great, another problem.</li>
+<li>I’m not unhappy with the result.</li>
+<li>Fantastic… now it’s broken again.</li>
+<li>I was worried, but now it seems okay.</li>
+<li>That’s just perfect.</li>
+<li>I can live with that.</li>
+<li>It’s working, though I don’t feel great about it.</li>
+</ol>
+</section>
+<section id="laune-über-regeln-erkennen" class="level2" data-number="6.5">
+<h2 data-number="6.5" class="anchored" data-anchor-id="laune-über-regeln-erkennen"><span class="header-section-number">6.5</span> Laune über Regeln erkennen</h2>
+</section>
+<section id="lernbasierte-launeerkennung" class="level2" data-number="6.6">
+<h2 data-number="6.6" class="anchored" data-anchor-id="lernbasierte-launeerkennung"><span class="header-section-number">6.6</span> Lernbasierte Launeerkennung</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Hinweis</span>Experiment als PDF zum Download
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Dieses Experiment gibt es hier auch <a href="..\experiments/experiment_rules_vs_learning.pdf">als kompakte PDF-Version</a>.</p>
+</div>
+</div>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-adami_what_2016" class="csl-entry" role="listitem">
 Adami, Christoph. 2016. <span>„What is <span>Information</span>?“</span> <em>Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences</em> 374 (2063): 20150230. <a href="https://doi.org/10.1098/rsta.2015.0230">https://doi.org/10.1098/rsta.2015.0230</a>.
 </div>
 <div id="ref-brookshear_computer_2020" class="csl-entry" role="listitem">
-Brookshear, J. Glenn, und Dennis Brylow. 2020. <em>Computer science: an overview</em>. 13th edition, global edition. NY, NY: Pearson.
+Brookshear, J. Glenn, und Dennis Brylow. 2020. <em>Computer science: an overview</em>. 13th edition, global edition. Pearson.
 </div>
 <div id="ref-gallenbacher_abenteuer_2020" class="csl-entry" role="listitem">
-Gallenbacher, Jens. 2020. <em>Abenteuer <span>Informatik</span>: <span>IT</span> zum <span>Anfassen</span> für alle von 9 bis 99, vom <span>Navi</span> bis <span>Social</span> <span>Media</span></em>. 4. Auflage, korrigierte Publikation. Berlin Heidelberg: Springer.
+Gallenbacher, Jens. 2020. <em>Abenteuer <span>Informatik</span>: <span>IT</span> zum <span>Anfassen</span> für alle von 9 bis 99, vom <span>Navi</span> bis <span>Social</span> <span>Media</span></em>. 4. Auflage, korrigierte Publikation. Springer.
 </div>
 <div id="ref-Makowski2021neurokit" class="csl-entry" role="listitem">
-Makowski, Dominique, Tam Pham, Zen J. Lau, Jan C. Brammer, François Lespinasse, Hung Pham, Christopher Schölzel, und S. H. Annabel Chen. 2021. <span>„<span>NeuroKit</span>2: A Python toolbox for neurophysiological signal processing“</span>. <em>Behavior Research Methods</em> 53 (4): 1689–96. <a href="https://doi.org/10.3758/s13428-020-01516-y">https://doi.org/10.3758/s13428-020-01516-y</a>.
+Makowski, Dominique, Tam Pham, Zen J. Lau, u.&nbsp;a. 2021. <span>„<span>NeuroKit</span>2: A Python toolbox for neurophysiological signal processing“</span>. <em>Behavior Research Methods</em> 53 (4): 1689–96. <a href="https://doi.org/10.3758/s13428-020-01516-y">https://doi.org/10.3758/s13428-020-01516-y</a>.
 </div>
 <div id="ref-petzold_code_2022" class="csl-entry" role="listitem">
-Petzold, Charles. 2022. <em>Code: the hidden language of computer hardware and software</em>. 2. Aufl. Hoboken: Microsoft Press.
+Petzold, Charles. 2022. <em>Code: the hidden language of computer hardware and software</em>. 2. Aufl. Microsoft Press.
 </div>
 <div id="ref-polya" class="csl-entry" role="listitem">
-Pólya, George, und John Horton Conway. 2004. <em>How to solve it: a new aspect of mathematical method</em>. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.
+Pólya, George, und John Horton Conway. 2004. <em>How to solve it: a new aspect of mathematical method</em>. Expanded Princeton Science Library ed. Princeton science library. Princeton University Press.
 </div>
 <div id="ref-scott_but_2009" class="csl-entry" role="listitem">
-Scott, John C. 2009. <em>But how do it know?: the basic principles of computers for everyone</em>. Oldsmar, FL: John C. Scott.
+Scott, John C. 2009. <em>But how do it know?: the basic principles of computers for everyone</em>. John C. Scott.
 </div>
 </div>
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -1086,12 +1152,44 @@ document.addEventListener("DOMContentLoaded", () => {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../part-2-ai/vision.html" class="pagination-link" aria-label="Sehen">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Sehen</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../part-2-ai/probabilities.html" class="pagination-link" aria-label="Wahrscheinlichkeiten">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Wahrscheinlichkeiten</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
 
 
 

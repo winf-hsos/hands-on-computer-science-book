@@ -1,15 +1,18 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.9.20">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Ein Online-Buch mit Experimenten, die Schritt für Schritt in die Welt der Digitalisierung, Programmierung und Künstliche Intelligenz einführen.">
+<meta name="author" content="Prof.&nbsp;Dr.&nbsp;Nicolas Meseth">
 
-<title>10&nbsp; Sprache – Hands-On Computer Science</title>
+<title>Experiment: Rules vs.&nbsp;Learning</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -21,76 +24,21 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<link href="../references.html" rel="next">
-<link href="../part-2-ai/speaking.html" rel="prev">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-670489e30afdd02925324b99e7f7a38e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
-  "copy-button": false,
-  "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
-  "language": {
-    "search-no-results-text": "Keine Treffer",
-    "search-matching-documents-text": "Treffer",
-    "search-copy-link-title": "Link in die Suche kopieren",
-    "search-hide-matches-text": "Zusätzliche Treffer verbergen",
-    "search-more-match-text": "weitere Treffer in diesem Dokument",
-    "search-more-matches-text": "weitere Treffer in diesem Dokument",
-    "search-clear-button-title": "Zurücksetzen",
-    "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Abbrechen",
-    "search-submit-button-title": "Abschicken",
-    "search-label": "Suchen"
-  }
-}</script>
+<script src="experiment_rules_vs_learning_files/libs/clipboard/clipboard.min.js"></script>
+<script src="experiment_rules_vs_learning_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="experiment_rules_vs_learning_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="experiment_rules_vs_learning_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="experiment_rules_vs_learning_files/libs/quarto-html/popper.min.js"></script>
+<script src="experiment_rules_vs_learning_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="experiment_rules_vs_learning_files/libs/quarto-html/anchor.min.js"></script>
+<link href="experiment_rules_vs_learning_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="experiment_rules_vs_learning_files/libs/quarto-html/quarto-syntax-highlighting-3512cbed9e2527d986e9b0b56d261405.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="experiment_rules_vs_learning_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="experiment_rules_vs_learning_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="experiment_rules_vs_learning_files/libs/bootstrap/bootstrap-38adf51561e0a3a6b5869a23ce90c82e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <!-- DataTables assets -->
 
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css">
@@ -285,163 +233,40 @@ div.csl-indent {
 <link rel="stylesheet" href="../partials/collapsable.css">
 </head>
 
-<body class="nav-sidebar floating quarto-light">
+<body class="quarto-light">
 
-<div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part-2-ai/learning.html">Künstliche Intelligenz</a></li><li class="breadcrumb-item"><a href="../part-2-ai/language.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Sprache</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
-    </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
-<!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="../">Hands-On Computer Science</a> 
-        <div class="sidebar-tools-main">
-    <a href="../Hands-On-Computer-Science-Book.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#task-1-project-setup" id="toc-task-1-project-setup" class="nav-link active" data-scroll-target="#task-1-project-setup"><span class="header-section-number">1</span> Task 1: Project Setup</a></li>
+  <li><a href="#task-2-rule-based-mood-detection" id="toc-task-2-rule-based-mood-detection" class="nav-link" data-scroll-target="#task-2-rule-based-mood-detection"><span class="header-section-number">2</span> Task 2: Rule-based Mood Detection</a></li>
+  <li><a href="#task-3-learning-based-mood-detection" id="toc-task-3-learning-based-mood-detection" class="nav-link" data-scroll-target="#task-3-learning-based-mood-detection"><span class="header-section-number">3</span> Task 3: Learning-based Mood Detection</a></li>
+  <li><a href="#task-4-systematic-testing-and-comparison" id="toc-task-4-systematic-testing-and-comparison" class="nav-link" data-scroll-target="#task-4-systematic-testing-and-comparison"><span class="header-section-number">4</span> Task 4: Systematic Testing and Comparison</a></li>
+  <li><a href="#task-5-reflection-and-discussion" id="toc-task-5-reflection-and-discussion" class="nav-link" data-scroll-target="#task-5-reflection-and-discussion"><span class="header-section-number">5</span> Task 5: Reflection and Discussion</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="experiment_rules_vs_learning.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
 </div>
-    </div>
-      </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Suchen"></div>
-        </div>
-        </div>
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Vorwort</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../preparation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Vorbereitung</span></a>
-  </div>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Digitalisierung</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../part-1-dap/colors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Farben</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../part-1-dap/numbers.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Zahlen</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../part-1-dap/text.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Texte</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../part-1-dap/images.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Bilder</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../part-1-dap/sensors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sensoren</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Künstliche Intelligenz</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../part-2-ai/learning.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lernen</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../part-2-ai/vision.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Sehen</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../part-2-ai/listen.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Hören</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../part-2-ai/speaking.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Sprechen</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../part-2-ai/language.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Sprache</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Literaturverzeichnis</span></a>
-  </div>
-</li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
-    </div>
-<!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part-2-ai/learning.html">Künstliche Intelligenz</a></li><li class="breadcrumb-item"><a href="../part-2-ai/language.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Sprache</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Sprache</span></h1>
+<h1 class="title">Experiment: Rules vs.&nbsp;Learning</h1>
+<p class="subtitle lead">Building a Mood Detector</p>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Prof.&nbsp;Dr.&nbsp;Nicolas Meseth </p>
+          </div>
+  </div>
     
   
     
@@ -452,37 +277,82 @@ div.csl-indent {
 </header>
 
 
+<p>In this experiment, you build a mood detector that predicts a person’s mood from what they write in a chat. You start with a rule-based approach, explore its limitations, and then build a second version using a machine learning approach. The goal is to compare both approaches and reflect on their strengths and weaknesses.</p>
+<section id="task-1-project-setup" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="task-1-project-setup"><span class="header-section-number">1</span> Task 1: Project Setup</h2>
+<p>In this experiment, you write some code. Let’s begin by setting up your project environment.</p>
+<ol type="1">
+<li><p>Make sure your Master Brick successfully connects to your computer and that you can control the LED using the Brick Viewer.</p></li>
+<li><p>Create a script called <code>mood_rb.py</code>. This script will be a Python program that connects to the LED. Set the LED to <em>off</em> initially.</p></li>
+<li><p>After initializing the LED, add a loop that continuously reads text input from the user. After the user types a message and hits ENTER, print the message back to the console. If the user enters <code>bye</code>, exit the program.</p></li>
+</ol>
+</section>
+<section id="task-2-rule-based-mood-detection" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="task-2-rule-based-mood-detection"><span class="header-section-number">2</span> Task 2: Rule-based Mood Detection</h2>
+<p>In this task, your code analyzes the user’s input using a simple set of rules to determine the user’s mood.</p>
+<ol start="4" type="1">
+<li><p>Develop a concept for how you want to determine the mood from the text input. For example, you could look for keywords that indicate a good mood (e.g., “happy”, “great”, “awesome”) or a bad mood (e.g., “sad”, “terrible”, “angry”). Write down your ideas for the rules you want to use.</p></li>
+<li><p>Implement a first version of your mood detector in Python using the rules you defined.</p>
 <ul>
-<li>Große Sprachmodelle</li>
-<li>Erste Schritte mit der OpenAI API</li>
+<li>If the detector predicts a good mood, turn the LED green.</li>
+<li>If the detector predicts a bad mood, turn the LED red.</li>
+<li>If it cannot decide (no rule matches), turn the LED blue (neutral/unknown).</li>
 </ul>
+<p>What programming constructs do you need to implement your rules?</p></li>
+<li><p>Test your mood detector with the following sentences and observe how it behaves:</p>
+<ol type="a">
+<li>Not bad at all, actually.</li>
+<li>Well, that could have gone worse.</li>
+<li>I guess this is fine.</li>
+<li>Oh great, another problem.</li>
+<li>I’m not unhappy with the result.</li>
+<li>Fantastic… now it’s broken again.</li>
+<li>I was worried, but now it seems okay.</li>
+<li>That’s just perfect.</li>
+<li>I can live with that.</li>
+<li>It’s working, though I don’t feel great about it.</li>
+</ol></li>
+<li><p>Extend your mood detector with an additional label:</p>
+<ul>
+<li>Hungry mood: If the user message contains keywords that indicate hunger or craving for food, turn the LED yellow.</li>
+</ul></li>
+<li><p>Test your rule-based detector with additional inputs and edge cases (e.g., negation, sarcasm, mixed emotions, ambiguous statements). Can you find examples where it fails to correctly identify the mood? Write down your observations.</p></li>
+</ol>
+</section>
+<section id="task-3-learning-based-mood-detection" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="task-3-learning-based-mood-detection"><span class="header-section-number">3</span> Task 3: Learning-based Mood Detection</h2>
+<p>Now test whether a machine learning approach can do better than your rule-based system. You will integrate a large language model into your program to analyze the user’s input and predict the mood.</p>
+<ol start="9" type="1">
+<li><p>Create a new script called <code>mood_ml.py</code> as a copy of <code>mood_rb.py</code>. Remove the code that implements the rule-based mood detection.</p></li>
+<li><p>Add the necessary code to connect to the OpenAI API and use a language model to analyze the user’s input. You can use the <code>openai</code> Python library (<code>pip install openai</code>). You can obtain an API key from your instructor.</p></li>
+<li><p>Create a prompt that instructs the model to classify the user’s message into one of the following labels: <code>good</code>, <code>bad</code>, <code>neutral</code>, <code>hungry</code>. Send the user’s message to the model and receive its response.</p></li>
+<li><p>Based on the model output, set the LED color accordingly (green = good, red = bad, blue = neutral, yellow = hungry). How can you make the model output consistent and easy to parse?</p></li>
+</ol>
+</section>
+<section id="task-4-systematic-testing-and-comparison" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="task-4-systematic-testing-and-comparison"><span class="header-section-number">4</span> Task 4: Systematic Testing and Comparison</h2>
+<ol start="13" type="1">
+<li><p>Create a table (e.g.&nbsp;Excel) with at least 20 test sentences and assign each one an expected mood label. Include straightforward cases as well as difficult cases such as negation, sarcasm, mixed emotions, and ambiguous statements.</p></li>
+<li><p>Test both the rule-based and the learning-based system on all examples. Automate this process and record the predictions of both systems and print the accuracy to the console.</p></li>
+<li><p>Extend both systems so they also provide a short explanation of their decision. Compare how understandable and trustworthy these explanations are. Does it make a difference which language model you use?</p></li>
+<li><p>Modify the learning-based system so that the model returns the labels <code>good</code>, <code>bad</code>, <code>neutral</code>, or <code>hungry</code> as a <em>structured JSON output</em>. Why is this useful when integrating the model into a program?</p></li>
+</ol>
+</section>
+<section id="task-5-reflection-and-discussion" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="task-5-reflection-and-discussion"><span class="header-section-number">5</span> Task 5: Reflection and Discussion</h2>
+<p>Reflect on the following questions and write down your thoughts. Discuss with your peers:</p>
+<ol start="17" type="1">
+<li><p>Where did the rule-based system work well, and where did it fail?</p></li>
+<li><p>In what way did the learning-based system behave differently?</p></li>
+<li><p>Which system was easier to build?</p></li>
+<li><p>Which system is easier to understand and debug?</p></li>
+<li><p>Which system would you trust more in a real application, and why?</p></li>
+<li><p>What does this experiment show about the difference between rules and learning?</p></li>
+</ol>
+</section>
 
-
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
-<div id="ref-adami_what_2016" class="csl-entry" role="listitem">
-Adami, Christoph. 2016. <span>„What is <span>Information</span>?“</span> <em>Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences</em> 374 (2063): 20150230. <a href="https://doi.org/10.1098/rsta.2015.0230">https://doi.org/10.1098/rsta.2015.0230</a>.
-</div>
-<div id="ref-brookshear_computer_2020" class="csl-entry" role="listitem">
-Brookshear, J. Glenn, und Dennis Brylow. 2020. <em>Computer science: an overview</em>. 13th edition, global edition. NY, NY: Pearson.
-</div>
-<div id="ref-gallenbacher_abenteuer_2020" class="csl-entry" role="listitem">
-Gallenbacher, Jens. 2020. <em>Abenteuer <span>Informatik</span>: <span>IT</span> zum <span>Anfassen</span> für alle von 9 bis 99, vom <span>Navi</span> bis <span>Social</span> <span>Media</span></em>. 4. Auflage, korrigierte Publikation. Berlin Heidelberg: Springer.
-</div>
-<div id="ref-Makowski2021neurokit" class="csl-entry" role="listitem">
-Makowski, Dominique, Tam Pham, Zen J. Lau, Jan C. Brammer, François Lespinasse, Hung Pham, Christopher Schölzel, und S. H. Annabel Chen. 2021. <span>„<span>NeuroKit</span>2: A Python toolbox for neurophysiological signal processing“</span>. <em>Behavior Research Methods</em> 53 (4): 1689–96. <a href="https://doi.org/10.3758/s13428-020-01516-y">https://doi.org/10.3758/s13428-020-01516-y</a>.
-</div>
-<div id="ref-petzold_code_2022" class="csl-entry" role="listitem">
-Petzold, Charles. 2022. <em>Code: the hidden language of computer hardware and software</em>. 2. Aufl. Hoboken: Microsoft Press.
-</div>
-<div id="ref-polya" class="csl-entry" role="listitem">
-Pólya, George, und John Horton Conway. 2004. <em>How to solve it: a new aspect of mathematical method</em>. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.
-</div>
-<div id="ref-scott_but_2009" class="csl-entry" role="listitem">
-Scott, John C. 2009. <em>But how do it know?: the basic principles of computers for everyone</em>. Oldsmar, FL: John C. Scott.
-</div>
-</div>
-
-</main> <!-- /main -->
+</main>
+<!-- /main column -->
 <script>
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -552,12 +422,12 @@ document.addEventListener("DOMContentLoaded", () => {
       // flash "checked"
       button.classList.add('code-copy-button-checked');
       var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Kopiert");
+      button.setAttribute("title", "Copied!");
       let tooltip;
       if (window.bootstrap) {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Kopiert");
+        button.setAttribute("data-bs-title", "Copied!");
         tooltip = new bootstrap.Tooltip(button, 
           { trigger: "manual", 
             customClass: "code-copy-button-tooltip",
@@ -966,18 +836,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
   </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../part-2-ai/speaking.html" class="pagination-link" aria-label="Sprechen">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Sprechen</span></span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../references.html" class="pagination-link" aria-label="Literaturverzeichnis">
-        <span class="nav-page-text">Literaturverzeichnis</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 
 

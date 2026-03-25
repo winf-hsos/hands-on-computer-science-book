@@ -1,0 +1,41 @@
+# Wahrscheinlichkeiten {#sec-probabilities}
+
+## Zusammenfassung
+
+## Experimentaufbau
+
+## Häufigkeiten von Wörtern und Kombinationen
+
+Students receive an envelope containing a printed sentence cut into individual word slips:
+
+> *"the cat eats the fish and the cat drinks the water and the dog eats the fish"*
+
+Working in pairs, they physically arrange the word slips on the table and:
+
+1.  List all unique words — this is the vocabulary.
+2.  Form all bigram pairs by laying words side by side: (the, cat), (cat, eats), (eats, the), …
+3.  Count how many times each bigram appears by stacking duplicate pairs.
+4.  For the context word `"the"`, calculate by hand: what fraction of all bigrams starting with `"the"` lead to each possible next word?
+
+They write the results in a small table on paper. This table *is* the bigram language model — built with no code at all.
+
+## Trainingskorpus und Vokabular
+
+## Vorhersagen ohne Kontext
+
+## Der minimale Kontext (Bigramme)
+
+## Etwas mehr Kontext (Trigramme)
+
+## Textgenerierung mit Wahrscheinlichkeiten
+
+## Temperatur
+
+## Neuronale Netze und Sprachmodelle
+
+::: callout-note
+## Experiment als PDF zum Download
+
+Dieses Experiment gibt es hier auch [als kompakte PDF-Version](/experiments/experiment_probabilities.pdf).
+:::
+

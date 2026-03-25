@@ -1,15 +1,18 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.9.20">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Ein Online-Buch mit Experimenten, die Schritt für Schritt in die Welt der Digitalisierung, Programmierung und Künstliche Intelligenz einführen.">
+<meta name="author" content="Prof.&nbsp;Dr.&nbsp;Nicolas Meseth">
 
-<title>8&nbsp; Hören – Hands-On Computer Science</title>
+<title>Experiment: How LLMs Work</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -21,76 +24,21 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<link href="../part-2-ai/speaking.html" rel="next">
-<link href="../part-2-ai/vision.html" rel="prev">
-<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
-<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-670489e30afdd02925324b99e7f7a38e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
-  "copy-button": false,
-  "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
-  "language": {
-    "search-no-results-text": "Keine Treffer",
-    "search-matching-documents-text": "Treffer",
-    "search-copy-link-title": "Link in die Suche kopieren",
-    "search-hide-matches-text": "Zusätzliche Treffer verbergen",
-    "search-more-match-text": "weitere Treffer in diesem Dokument",
-    "search-more-matches-text": "weitere Treffer in diesem Dokument",
-    "search-clear-button-title": "Zurücksetzen",
-    "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Abbrechen",
-    "search-submit-button-title": "Abschicken",
-    "search-label": "Suchen"
-  }
-}</script>
+<script src="experiment_llm_probability_files/libs/clipboard/clipboard.min.js"></script>
+<script src="experiment_llm_probability_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="experiment_llm_probability_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="experiment_llm_probability_files/libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="experiment_llm_probability_files/libs/quarto-html/popper.min.js"></script>
+<script src="experiment_llm_probability_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="experiment_llm_probability_files/libs/quarto-html/anchor.min.js"></script>
+<link href="experiment_llm_probability_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="experiment_llm_probability_files/libs/quarto-html/quarto-syntax-highlighting-3512cbed9e2527d986e9b0b56d261405.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="experiment_llm_probability_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="experiment_llm_probability_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="experiment_llm_probability_files/libs/bootstrap/bootstrap-38adf51561e0a3a6b5869a23ce90c82e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <!-- DataTables assets -->
 
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/jquery.dataTables.min.css">
@@ -280,168 +228,75 @@ div.csl-indent {
 </script>
 
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../partials/gloss.css">
 <link rel="stylesheet" href="../partials/collapsable.css">
 </head>
 
-<body class="nav-sidebar floating quarto-light">
+<body class="quarto-light">
 
-<div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part-2-ai/learning.html">Künstliche Intelligenz</a></li><li class="breadcrumb-item"><a href="../part-2-ai/listen.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Hören</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Seitenleiste umschalten" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Suchen" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
-    </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
-<!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="../">Hands-On Computer Science</a> 
-        <div class="sidebar-tools-main">
-    <a href="../Hands-On-Computer-Science-Book.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#task-1-exploring-the-training-data" id="toc-task-1-exploring-the-training-data" class="nav-link active" data-scroll-target="#task-1-exploring-the-training-data"><span class="header-section-number">1</span> Task 1: Exploring the Training Data</a></li>
+  <li><a href="#task-2-word-frequencies-the-zero-context-model" id="toc-task-2-word-frequencies-the-zero-context-model" class="nav-link" data-scroll-target="#task-2-word-frequencies-the-zero-context-model"><span class="header-section-number">2</span> Task 2: Word Frequencies: The Zero-Context Model</a></li>
+  <li><a href="#task-3-bigrams-one-word-of-context" id="toc-task-3-bigrams-one-word-of-context" class="nav-link" data-scroll-target="#task-3-bigrams-one-word-of-context"><span class="header-section-number">3</span> Task 3: Bigrams: One Word of Context</a></li>
+  <li><a href="#task-4-trigrams-two-words-of-context" id="toc-task-4-trigrams-two-words-of-context" class="nav-link" data-scroll-target="#task-4-trigrams-two-words-of-context"><span class="header-section-number">4</span> Task 4: Trigrams: Two Words of Context</a></li>
+  <li><a href="#task-5-generating-text-by-sampling" id="toc-task-5-generating-text-by-sampling" class="nav-link" data-scroll-target="#task-5-generating-text-by-sampling"><span class="header-section-number">5</span> Task 5: Generating Text by Sampling</a></li>
+  <li><a href="#task-7-reflection-and-discussion" id="toc-task-7-reflection-and-discussion" class="nav-link" data-scroll-target="#task-7-reflection-and-discussion"><span class="header-section-number">6</span> Task 7: Reflection and Discussion</a></li>
+  </ul>
+<div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="experiment_llm_probability.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
 </div>
-    </div>
-      </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Suchen"></div>
-        </div>
-        </div>
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Vorwort</span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../preparation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Vorbereitung</span></a>
-  </div>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">Digitalisierung</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../part-1-dap/colors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Farben</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../part-1-dap/numbers.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Zahlen</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../part-1-dap/text.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Texte</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../part-1-dap/images.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Bilder</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../part-1-dap/sensors.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sensoren</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Künstliche Intelligenz</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Abschnitt umschalten">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../part-2-ai/learning.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lernen</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../part-2-ai/vision.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Sehen</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../part-2-ai/listen.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Hören</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../part-2-ai/speaking.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Sprechen</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../part-2-ai/language.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Sprache</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../references.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Literaturverzeichnis</span></a>
-  </div>
-</li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
-    </div>
-<!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../part-2-ai/learning.html">Künstliche Intelligenz</a></li><li class="breadcrumb-item"><a href="../part-2-ai/listen.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Hören</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Hören</span></h1>
+<h1 class="title">Experiment: How LLMs Work</h1>
+<p class="subtitle lead">From Word Counts to Probability Distributions</p>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Prof.&nbsp;Dr.&nbsp;Nicolas Meseth </p>
+          </div>
+  </div>
     
   
     
@@ -452,36 +307,88 @@ div.csl-indent {
 </header>
 
 
+<p>In this experiment, you work with a tiny artificial training corpus to get an intuition for one core idea behind Large Language Models (LLMs): predicting the next word from a learned probability distribution. The way we do it in this experiment is not exactly how real LLMs are built. They use neural networks, not lookup tables. But the fundamental question they answer is the same: <em>given what came before, how likely is each possible next word?</em> You will count word frequencies, compute probability distributions, and generate text by sampling.</p>
+<section id="task-1-exploring-the-training-data" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="task-1-exploring-the-training-data"><span class="header-section-number">1</span> Task 1: Exploring the Training Data</h2>
+<p>Every language model starts with training data, a collection of text it learns from. Ours is deliberately small so you can inspect every record by hand.</p>
+<ol type="1">
+<li><p>Open the file <code>training_data.csv</code> in Excel. Read through all 20 sentences carefully.</p></li>
+<li><p>Write down all unique words that appear in the corpus. This set of words is called the <strong>vocabulary</strong>. How many unique words does it contain?</p></li>
+<li><p>Count how many words appear in total across all sentences (not unique words, every occurrence counts). This number is called the <strong>corpus size</strong> (usually expressed in tokens). Search on the internet for the corpus size of a real LLM like GPT-3. How does it compare to our tiny corpus?</p></li>
+</ol>
+</section>
+<section id="task-2-word-frequencies-the-zero-context-model" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="task-2-word-frequencies-the-zero-context-model"><span class="header-section-number">2</span> Task 2: Word Frequencies: The Zero-Context Model</h2>
+<p>The simplest question we can ask: <em>How often does each word appear?</em> Ignoring everything else, which word is most likely to turn up at any given position?</p>
+<ol start="4" type="1">
+<li><p>For all sentences in the training data, count how often each word appears. Create a frequency table, one row per unique word, one column for the count.</p></li>
+<li><p>Divide each count by the total number of words across all sentences. What do you get? What do these values represent, and what must they sum to?</p></li>
+<li><p>Now open Positron (or RStudio) and run the script <code>llm_pipeline.R</code> up to and including <code>4. UNIGRAM PROBABILITIES</code>. Compare the output with your manual results from steps 4 and 5.</p></li>
+<li><p>Look at the bar chart produced for the unigram probability distribution. Which word has by far the highest probability? What would happen if you generated text by randomly sampling from this distribution alone, without any context?</p></li>
+</ol>
+</section>
+<section id="task-3-bigrams-one-word-of-context" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="task-3-bigrams-one-word-of-context"><span class="header-section-number">3</span> Task 3: Bigrams: One Word of Context</h2>
+<p>A <strong>bigram</strong> is a pair of consecutive words: <code>(current word, next word)</code>. Instead of asking “which word is most likely?”, we now ask “which word is most likely <em>given the word that just appeared</em>?”</p>
+<ol start="8" type="1">
+<li><p>Take the first ten sentences from the training data and extract all bigrams by hand. Write them as pairs, e.g.&nbsp;<code>(the, cat)</code>, <code>(cat, sits)</code>, and so on.</p></li>
+<li><p>Count how often each unique bigram pair appears across these ten sentences.</p></li>
+<li><p>For the context word <code>"the"</code>, calculate the conditional probability for each possible next word: <span class="math display">\[P(\text{next word} \mid \text{the}) = \frac{\text{count}(\text{the, next word})}{\text{total bigrams starting with "the"}}\]</span> Do the probabilities for all possible next words after <code>"the"</code> sum to 1?</p></li>
+<li><p>Run <code>5. BIGRAM COUNTS</code> of <code>llm_pipeline.R</code>. Verify that the bigram counts computed by R match your manual results from steps 9 and 10.</p></li>
+<li><p>Look at the probability distribution for <code>"cat"</code>, printed in <code>6. BIGRAM PROBABILITIES</code> of the script. How many possible next words does <code>"cat"</code> have? How is the probability spread across them?</p></li>
+<li><p>The script produces a heatmap of the full bigram probability matrix (<code>7. VISUALIZATION BIGRAM PROBABILITIES</code>). Describe what you see. Why are most cells white? What does that tell you about language — and about how difficult it would be to store this matrix for a real-world vocabulary of 50 000 or more words?</p></li>
+</ol>
+</section>
+<section id="task-4-trigrams-two-words-of-context" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="task-4-trigrams-two-words-of-context"><span class="header-section-number">4</span> Task 4: Trigrams: Two Words of Context</h2>
+<p>A <strong>trigram</strong> uses the <em>two</em> preceding words as context: <span class="math inline">\(P(\text{next} \mid \text{word}_1, \text{word}_2)\)</span>. More context should narrow down the distribution and reduce entropy.</p>
+<ol start="14" type="1">
+<li><p>Run the code in section <code>9. TRIGRAMS</code> of the script. Find the trigram entry for the context <code>("cat", "eats")</code>. What is the probability of the next word being <code>"the"</code>? Is this surprising?</p></li>
+<li><p>Now look at the context <code>("eats", "the")</code>. What are the possible next words and their probabilities? Why is there still uncertainty here, even with two words of context?</p></li>
+<li><p>Look at the chart in section <code>10. VISUALISATION CONTEXT</code> that compares four contexts:</p>
 <ul>
-<li>Speech-to-Text</li>
+<li><code>"the"</code> (one word)</li>
+<li><code>"cat"</code> (one word)</li>
+<li><code>"cat eats"</code> (two words)</li>
+<li><code>"eats the"</code> (two words)</li>
 </ul>
+<p>Describe how the shape of the distribution changes as the context grows. What is the general principle? Write one sentence that captures the key insight.</p></li>
+<li><p>Real LLMs like GPT use contexts of up to 1 million tokens. Based on what you observed in steps 14–16, why does a longer context generally make the model more useful?</p></li>
+</ol>
+</section>
+<section id="task-5-generating-text-by-sampling" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="task-5-generating-text-by-sampling"><span class="header-section-number">5</span> Task 5: Generating Text by Sampling</h2>
+<p>A language model does not always pick the single most probable next word. Instead it <strong>samples</strong> from the distribution; just like rolling a loaded die where each face has a different probability.</p>
+<ol start="18" type="1">
+<li><p>Use the bigram probabilities you computed in task 3 to generate a short sentence by hand:</p>
+<ul>
+<li>Start with the word <code>"the"</code>.</li>
+<li>Roll a (metaphorical) die: randomly pick the next word proportionally to its probability. You can use a random number between 0 and 1 to decide (e.g.&nbsp;if <code>P(cat) = 0.25</code>, any number in <code>[0, 0.25)</code> produces <code>"cat"</code>).</li>
+<li>Repeat for 5–6 words.</li>
+</ul></li>
+<li><p>Run section <code>11. TEXT GENERATION BY SAMPLING</code> of the script and observe the 10 generated sequences. Do any of them loop (e.g.&nbsp;<code>the cat … the cat …</code>)? Why does this happen?</p></li>
+<li><p>Change the <code>start_word</code> argument in the <code>generate_text()</code> call to <code>"cat"</code> and generate a few sequences. How do the outputs differ from sequences starting with <code>"the"</code>?</p></li>
+<li><p>What would change if you used the trigram model instead of the bigram model for generation? Would the outputs be more or less coherent? Why?</p></li>
+</ol>
+</section>
+<section id="task-7-reflection-and-discussion" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="task-7-reflection-and-discussion"><span class="header-section-number">6</span> Task 7: Reflection and Discussion</h2>
+<p>Reflect on the following questions and write down your thoughts. Discuss with your peers:</p>
+<ol start="22" type="1">
+<li><p>You built a language model using nothing but counting and division. What is the connection between this model and a real LLM like GPT-5.4 behind ChatGPT?</p></li>
+<li><p>Where does our count-based approach break down? Think about:</p>
+<ul>
+<li>What happens with a word combination that never appeared in training?</li>
+<li>What would you need to make the model generalise to unseen combinations?</li>
+</ul></li>
+<li><p>Our vocabulary has 24 words. A full-scale LLM has a vocabulary of roughly 100K tokens. If you wanted to store all trigram probabilities for that vocabulary, how many entries would the table have? Calculate it! Why is a neural network a more practical solution?</p></li>
+<li><p>Our model has no concept of meaning. It has never “understood” a single sentence. Yet the generated text has some local structure. How is that possible?</p></li>
+<li><p>A student claims: “ChatGPT understands language: it reasons, it knows things, it has opinions.” Based on what you learned in this experiment, how would you respond?</p></li>
+</ol>
+</section>
 
-
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
-<div id="ref-adami_what_2016" class="csl-entry" role="listitem">
-Adami, Christoph. 2016. <span>„What is <span>Information</span>?“</span> <em>Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences</em> 374 (2063): 20150230. <a href="https://doi.org/10.1098/rsta.2015.0230">https://doi.org/10.1098/rsta.2015.0230</a>.
-</div>
-<div id="ref-brookshear_computer_2020" class="csl-entry" role="listitem">
-Brookshear, J. Glenn, und Dennis Brylow. 2020. <em>Computer science: an overview</em>. 13th edition, global edition. NY, NY: Pearson.
-</div>
-<div id="ref-gallenbacher_abenteuer_2020" class="csl-entry" role="listitem">
-Gallenbacher, Jens. 2020. <em>Abenteuer <span>Informatik</span>: <span>IT</span> zum <span>Anfassen</span> für alle von 9 bis 99, vom <span>Navi</span> bis <span>Social</span> <span>Media</span></em>. 4. Auflage, korrigierte Publikation. Berlin Heidelberg: Springer.
-</div>
-<div id="ref-Makowski2021neurokit" class="csl-entry" role="listitem">
-Makowski, Dominique, Tam Pham, Zen J. Lau, Jan C. Brammer, François Lespinasse, Hung Pham, Christopher Schölzel, und S. H. Annabel Chen. 2021. <span>„<span>NeuroKit</span>2: A Python toolbox for neurophysiological signal processing“</span>. <em>Behavior Research Methods</em> 53 (4): 1689–96. <a href="https://doi.org/10.3758/s13428-020-01516-y">https://doi.org/10.3758/s13428-020-01516-y</a>.
-</div>
-<div id="ref-petzold_code_2022" class="csl-entry" role="listitem">
-Petzold, Charles. 2022. <em>Code: the hidden language of computer hardware and software</em>. 2. Aufl. Hoboken: Microsoft Press.
-</div>
-<div id="ref-polya" class="csl-entry" role="listitem">
-Pólya, George, und John Horton Conway. 2004. <em>How to solve it: a new aspect of mathematical method</em>. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.
-</div>
-<div id="ref-scott_but_2009" class="csl-entry" role="listitem">
-Scott, John C. 2009. <em>But how do it know?: the basic principles of computers for everyone</em>. Oldsmar, FL: John C. Scott.
-</div>
-</div>
-
-</main> <!-- /main -->
+</main>
+<!-- /main column -->
 <script>
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -551,12 +458,12 @@ document.addEventListener("DOMContentLoaded", () => {
       // flash "checked"
       button.classList.add('code-copy-button-checked');
       var currentTitle = button.getAttribute("title");
-      button.setAttribute("title", "Kopiert");
+      button.setAttribute("title", "Copied!");
       let tooltip;
       if (window.bootstrap) {
         button.setAttribute("data-bs-toggle", "tooltip");
         button.setAttribute("data-bs-placement", "left");
-        button.setAttribute("data-bs-title", "Kopiert");
+        button.setAttribute("data-bs-title", "Copied!");
         tooltip = new bootstrap.Tooltip(button, 
           { trigger: "manual", 
             customClass: "code-copy-button-tooltip",
@@ -965,18 +872,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
   </script>
-<nav class="page-navigation">
-  <div class="nav-page nav-page-previous">
-      <a href="../part-2-ai/vision.html" class="pagination-link" aria-label="Sehen">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Sehen</span></span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../part-2-ai/speaking.html" class="pagination-link" aria-label="Sprechen">
-        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Sprechen</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
 
 

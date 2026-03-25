@@ -1,0 +1,14 @@
+project:
+  type: default
+  execute-dir: project
+  output-dir: _experiment-render
+  render:
+    - experiments/*.qmd
+  post-render:
+    - powershell -ExecutionPolicy Bypass -File scripts/copy-experiment-pdfs.ps1
+
+author: Prof. Dr. Nicolas Meseth
+suppress-bibliography: true
+
+format:
+  pdf: default

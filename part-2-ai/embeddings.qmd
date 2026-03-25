@@ -1,0 +1,31 @@
+# Bedeutungen {#sec-embeddings}
+
+## Zusammenfassung
+
+## Experimentaufbau
+
+## Ähnliche Wörter
+
+## Einbettungen (*Word Embeddings*)
+
+```{python}
+import openai, numpy as np
+
+client = openai.OpenAI()
+
+def embed(text):
+    return np.array(client.embeddings.create(
+        input=text, model="text-embedding-3-small"
+    ).data[0].embedding)
+
+def cosine_similarity(a, b):
+    return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
+```
+
+
+## Dimensionsreduktion und Visualisierung
+
+## Vektorarithmetik
+
+## Suche nach Bedeutung
+

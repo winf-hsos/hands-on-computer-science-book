@@ -1,0 +1,13 @@
+# Werkzeuge {#sec-tools}
+
+![Eine Künstliche Intelligenz nutzt verschiedene Werkzeuge. Erzeugt mit Google Gemini.](/images/robot_uses_tools.jpg){#fig-tools-robot width="65%"}
+
+## Zusammenfassung
+
+## Experimentaufbau
+
+## ...
+
+## ...
+
+## ...

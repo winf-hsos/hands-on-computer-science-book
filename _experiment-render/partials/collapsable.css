@@ -1,0 +1,11 @@
+/* Header als Toggle (optional mit Icon) */
+h1.collapsable, h2.collapsable, h3.collapsable,
+h4.collapsable, h5.collapsable, h6.collapsable { cursor: pointer; }
+h1.collapsable::before, h2.collapsable::before, h3.collapsable::before,
+h4.collapsable::before, h5.collapsable::before, h6.collapsable::before { content: "▾ "; color: #666; }
+h1.collapsable.closed::before, h2.collapsable.closed::before, h3.collapsable.closed::before,
+h4.collapsable.closed::before, h5.collapsable.closed::before, h6.collapsable.closed::before { content: "▸ "; }
+
+/* Das leere Summary komplett verstecken (damit kein „Details“ erscheint) */
+details.collapsable-section > summary { display: none; }
+details.collapsable-section > summary::-webkit-details-marker { display: none; }

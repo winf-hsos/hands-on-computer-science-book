@@ -1,0 +1,5 @@
+.gloss-term {
+  font-weight: 500;       /* fett */
+  text-decoration: none;           /* keine Unterstreichung vom Link */
+  color: inherit;                  /* übernimmt Textfarbe */
+}

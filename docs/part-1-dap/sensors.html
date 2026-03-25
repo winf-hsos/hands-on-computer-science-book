@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.27">
+<meta name="generator" content="quarto-1.9.20">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,6 +10,9 @@
 
 <title>5&nbsp; Sensoren – Hands-On Computer Science</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -60,7 +63,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
-  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -95,10 +97,10 @@ div.csl-indent {
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-ed96de9b727972fe78a7b5d16c58bf87.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-3512cbed9e2527d986e9b0b56d261405.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-670489e30afdd02925324b99e7f7a38e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-49c3f92b472d6b0034476396ca3297dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -319,7 +321,7 @@ div.csl-indent {
 
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -454,31 +456,43 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../part-2-ai/learning.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lernen</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Regeln vs.&nbsp;Lernen</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../part-2-ai/vision.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Sehen</span></span></a>
+  <a href="../part-2-ai/probabilities.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Wahrscheinlichkeiten</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../part-2-ai/listen.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Hören</span></span></a>
+  <a href="../part-2-ai/embeddings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Bedeutungen</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../part-2-ai/speaking.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Sprechen</span></span></a>
+  <a href="../part-2-ai/tools.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Werkzeuge</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../part-2-ai/language.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Sprache</span></span></a>
+  <a href="../part-2-ai/tokens.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Tokens</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part-2-ai/training.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Training</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../part-2-ai/rewards.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Belohnungen</span></span></a>
   </div>
 </li>
       </ul>
@@ -705,7 +719,7 @@ Abbildung&nbsp;5.2: Die Ansicht für den Farbsensor im Brick Viewer zeigt gleich
 <h3 data-number="5.2.1" class="anchored" data-anchor-id="rgb-werte-messen"><span class="header-section-number">5.2.1</span> RGB-Werte messen</h3>
 <p>Stellt euch vor ihr möchtet eine automatische Sortieranlage bauen, die Objekte auf einem Förderband nach ihrer Farbe sortiert. Dazu könntet ihr einen Farbsensor an einer Stelle des Förderbandes anbringen oder in den Boden verbauen. Wenn ein Teil darüber fährt, kann der Farbsensor dabei helfen, die Farbe jedes Objekts zu erkennen. Dazu misst er die Intensität der roten, grünen und blauen Anteile des reflektierten Lichts und ermittelt die Farbe des Objekts. Basierend auf dieser Information kann das System dann entscheiden, in welche Kategorie das Objekt gehört und es entsprechend auf ein anderes Förderband lenken.</p>
 <p>Wie können wir das mit unserem Farbsensor umsetzen? Zunächst müssen wir uns wie immer mit dem Farbsensor aus unserem Programm heraus verbinden:</p>
-<div id="416f4301" class="cell" data-execution_count="1">
+<div id="71ce2981" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
 <span id="cb1-2"><a href="#cb1-2"></a><span class="im">from</span> tinkerforge.bricklet_color_v2 <span class="im">import</span> BrickletColorV2</span>
 <span id="cb1-3"><a href="#cb1-3"></a></span>
@@ -715,17 +729,17 @@ Abbildung&nbsp;5.2: Die Ansicht für den Farbsensor im Brick Viewer zeigt gleich
 <span id="cb1-7"><a href="#cb1-7"></a>color_sensor <span class="op">=</span> BrickletColorV2(<span class="st">"&lt;YOUR_UID&gt;"</span>, ipcon)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Jetzt können wir die Intensität der drei Farbanteile messen. Das machen wir mit den entsprechenden Methoden des Farbsensors:</p>
-<div id="c870ee8e" class="cell" data-execution_count="2">
+<div id="eca4fbfc" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>rgb <span class="op">=</span> color_sensor.get_color()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Geben wir die gemessenen Werte aus:</p>
-<div id="074dd468" class="cell" data-execution_count="3">
+<div id="d3aa6984" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"RGB Value: </span><span class="sc">{</span>rgb<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <pre><code>RGB Value: Color(r=14953, g=12953, b=9005, c=37010)</code></pre>
 <p>Die Funktion <code>get_color()</code> gibt ein Objekt vom Typ <code>Color</code> zurück, das die Intensität der roten, grünen und blauen Anteile sowie den Clear-Wert als Felder enthält. In diesem Beispiel sehen wir, dass der rote Anteil (r) 14953 beträgt, der grüne Anteil (g) 12953 und der blaue Anteil (b) 9005. Der Clear-Wert (c) ist 37010.</p>
 <p>Wir können mit der Punktnotation auf die einzelnen Farbanteile zugreifen:</p>
-<div id="8430cfc3" class="cell" data-execution_count="4">
+<div id="f2bf4160" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>red<span class="op">=</span> rgb.r</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>green <span class="op">=</span> rgb.g</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>blue <span class="op">=</span> rgb.b</span>
@@ -733,7 +747,7 @@ Abbildung&nbsp;5.2: Die Ansicht für den Farbsensor im Brick Viewer zeigt gleich
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Red: </span><span class="sc">{</span>red<span class="sc">}</span><span class="ss">, Green: </span><span class="sc">{</span>green<span class="sc">}</span><span class="ss">, Blue: </span><span class="sc">{</span>blue<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Welches Format haben die Werte? Wie Tinkeforge in seiner Online-Dokumentation für den Farbsensor erkläutert, sind die Werte 16-Bit Zahlen, die also von 0 bis 65535 reichen. Ein Wert von 0 bedeutet, dass kein Licht des entsprechenden Farbanteils gemessen wird, während 65535 die maximale Intensität darstellt. Wir haben den RGB-Code bisher mit Werten von 0 bis 255, also als 8-Bit Werte kennengelernt. Da von 8-Bit auf 16-Bit ein Faktor <span class="math inline">\(2^8\)</span> gilt, können wir umgekehrt die 16-Bit Werte in das 8-Bit Format umwandeln, indem wir sie durch 256 teilen. Und zwar Ganzzahlig, damit wir wieder eine ganze Zahl erhalten:</p>
-<div id="d33b0df8" class="cell" data-execution_count="5">
+<div id="e7c19971" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-6"><pre class="sourceCode python code-annotation-code code-with-copy code-annotated"><code class="sourceCode python"><button class="code-annotation-anchor" data-target-cell="annotated-cell-6" data-target-annotation="1">1</button><span id="annotated-cell-6-1" class="code-annotation-target"><a href="#annotated-cell-6-1" aria-hidden="true" tabindex="-1"></a>red_8bit <span class="op">=</span> red <span class="op">//</span> <span class="dv">256</span></span>
 <span id="annotated-cell-6-2"><a href="#annotated-cell-6-2" aria-hidden="true" tabindex="-1"></a>green_8bit <span class="op">=</span> green <span class="op">//</span> <span class="dv">256</span></span>
 <span id="annotated-cell-6-3"><a href="#annotated-cell-6-3" aria-hidden="true" tabindex="-1"></a>blue_8bit <span class="op">=</span> blue <span class="op">//</span> <span class="dv">256</span> </span>
@@ -751,7 +765,7 @@ Abbildung&nbsp;5.2: Die Ansicht für den Farbsensor im Brick Viewer zeigt gleich
 <section id="früchte-unterscheiden" class="level3" data-number="5.2.2">
 <h3 data-number="5.2.2" class="anchored" data-anchor-id="früchte-unterscheiden"><span class="header-section-number">5.2.2</span> Früchte unterscheiden</h3>
 <p>Auf Basis der gemessenen RGB-Werte können wir jetzt versuchen, eine einfache Klassifikation von Objekten durchzuführen. Nehmen wir an, wir möchten Äpfel von Bananen unterscheiden. Ein roter Apfel reflektiert vor allem rotes Licht, während eine gelbe Banane mehr grünes und rotes Licht reflektiert. Wir können also einfache Schwellenwerte definieren, um die beiden Früchte zu unterscheiden:</p>
-<div id="95d48816" class="cell" data-execution_count="6">
+<div id="56d16978" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> classify_fruit(red, green, blue):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> red <span class="op">&gt;</span> <span class="dv">15000</span> <span class="kw">and</span> green <span class="op">&lt;</span> <span class="dv">10000</span> <span class="kw">and</span> blue <span class="op">&lt;</span> <span class="dv">8000</span>:</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"Apple"</span></span>
@@ -765,7 +779,7 @@ Abbildung&nbsp;5.2: Die Ansicht für den Farbsensor im Brick Viewer zeigt gleich
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Detected fruit: </span><span class="sc">{</span>fruit<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Das Ganze verpacken wir in einer Endlosschleife, damit wir kontinuierlich Früchte erkennen können:</p>
-<div id="e6018568" class="cell" data-execution_count="7">
+<div id="6c0f7f7c" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
 <span id="cb7-2"><a href="#cb7-2"></a>    <span class="bu">input</span>(<span class="st">"Place a fruit in front of the color sensor and press Enter..."</span>)</span>
 <span id="cb7-3"><a href="#cb7-3"></a>    fruit <span class="op">=</span> classify_fruit(red, green, blue)</span>
@@ -778,11 +792,11 @@ Abbildung&nbsp;5.2: Die Ansicht für den Farbsensor im Brick Viewer zeigt gleich
 <section id="sec-sensors-measure-light-intensity" class="level2 collapsable" data-number="5.3">
 <h2 class="collapsable anchored" data-number="5.3" data-anchor-id="sec-sensors-measure-light-intensity"><span class="header-section-number">5.3</span> Helligkeit messen</h2>
 <details class="collapsable-section" open=""><summary></summary>
-<div id="998d474f" class="cell" data-execution_count="8">
+<div id="1f1a7178" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>illuminance <span class="op">=</span> color_sensor.get_illuminance()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>Der gemessene Wert ist proportional zur Lichtintensität, die auf den Sensor fällt. Allerdings ist der zurückgegebene Wert nicht in Lux angegeben, sondern in einer proprietären Einheit des Sensors. Um den Wert in Lux umzurechnen, müssen wir die Verstärkung (<em>Gain</em>) und die Messzeit (<em>Integration Time</em>) berücksichtigen. Schaut dazu im Brick Viewer nach, welche Einstellungen aktuell aktiv sind. Bei mir sind es gerade die Werte 4x für <em>Gain</em> und 24ms für <em>Integration Time</em>. Mit diesen Werten können wir den Lux-Wert wie folgt berechnen:</p>
-<div id="7857b723" class="cell" data-execution_count="9">
+<div id="914dfd6e" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>gain <span class="op">=</span> <span class="dv">4</span></span>
 <span id="cb9-2"><a href="#cb9-2"></a>integration_time <span class="op">=</span> <span class="dv">24</span></span>
 <span id="cb9-3"><a href="#cb9-3"></a>illuminance_lx <span class="op">=</span> illuminance <span class="op">*</span> <span class="dv">700</span> <span class="op">/</span> gain <span class="op">/</span> integration_time</span>
@@ -816,11 +830,11 @@ Abbildung&nbsp;5.2: Die Ansicht für den Farbsensor im Brick Viewer zeigt gleich
 <section id="callback-funktionen" class="level3" data-number="5.5.1">
 <h3 data-number="5.5.1" class="anchored" data-anchor-id="callback-funktionen"><span class="header-section-number">5.5.1</span> Callback-Funktionen</h3>
 <p>In der Programmmierung nennt man diese Telefonnummer eine “Callback-Funktion”. Eine Callback-Funktion ist eine Funktion, die ihr definiert und dem Sensor übergebt. Sobald der Sensor neue Daten hat, ruft er diese Funktion auf und übergibt ihr die neuen Messwerte als Argumente. So könnt ihr sofort auf die neuen Daten reagieren, ohne ständig den Sensor abfragen zu müssen.</p>
-<div id="563a5586" class="cell" data-execution_count="10">
+<div id="c2e7be08" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">def</span> illuminance_callback(illuminance):</span>
 <span id="cb10-2"><a href="#cb10-2"></a>    <span class="bu">print</span>(<span class="ss">f"Helligkeit: </span><span class="sc">{</span>illuminance<span class="sc">}</span><span class="ss"> lx"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<div id="e8b1c85e" class="cell" data-execution_count="11">
+<div id="401894f3" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-12"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><span id="annotated-cell-12-1"><a href="#annotated-cell-12-1"></a>color_sensor.register_callback(</span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="1">1</button><span id="annotated-cell-12-2" class="code-annotation-target"><a href="#annotated-cell-12-2"></a>    color_sensor.CALLBACK_ILLUMINANCE,</span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-12" data-target-annotation="2">2</button><span id="annotated-cell-12-3" class="code-annotation-target"><a href="#annotated-cell-12-3"></a>    illuminance_callback</span>
@@ -870,7 +884,7 @@ Abbildung&nbsp;5.3: Dein Puls im Brick Viewer
 </section>
 <section id="licht-an" class="level2" data-number="5.9">
 <h2 data-number="5.9" class="anchored" data-anchor-id="licht-an"><span class="header-section-number">5.9</span> Licht an!</h2>
-<div id="07cfcd13" class="cell" data-execution_count="12">
+<div id="fac1a305" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-13"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><button class="code-annotation-anchor" data-target-cell="annotated-cell-13" data-target-annotation="1">1</button><span id="annotated-cell-13-1" class="code-annotation-target"><a href="#annotated-cell-13-1"></a>color_sensor.set_light(<span class="va">True</span>)</span>
 <button class="code-annotation-anchor" data-target-cell="annotated-cell-13" data-target-annotation="2">2</button><span id="annotated-cell-13-2" class="code-annotation-target"><a href="#annotated-cell-13-2"></a>color_sensor.set_configuration(<span class="dv">1</span>, <span class="dv">1</span>)</span>
 <span id="annotated-cell-13-3"><a href="#annotated-cell-13-3"></a>illuminance <span class="op">=</span> color_sensor.get_illuminance()</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
@@ -888,7 +902,7 @@ Abbildung&nbsp;5.3: Dein Puls im Brick Viewer
 </div>
 </div>
 <p>Der zurückgegebene Wert hängt von zwei Einstellungen ab: <em>Gain</em> (Verstärkung) und <em>Integration Time</em> (Messzeit). Je länger die Messzeit, desto genauer die Werte – allerdings können dann weniger Messungen pro Sekunde durchgeführt werden. Laut Dokumentation können wir aus dem gemessenen Wert die Lichtintensität in Lux wie folgt berechnen:</p>
-<div id="d0a3b2a9" class="cell" data-execution_count="13">
+<div id="d6f80f64" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="annotated-cell-14"><pre class="sourceCode numberSource python code-annotation-code number-lines code-with-copy code-annotated"><code class="sourceCode python"><button class="code-annotation-anchor" data-target-cell="annotated-cell-14" data-target-annotation="1">1</button><span id="annotated-cell-14-1" class="code-annotation-target"><a href="#annotated-cell-14-1"></a>illuminance_lux <span class="op">=</span> illuminance <span class="op">*</span> <span class="dv">700</span> <span class="op">/</span> <span class="dv">4</span> <span class="op">/</span> <span class="dv">24</span></span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-annotation">
 <dl class="code-annotation-container-hidden code-annotation-container-grid">
@@ -901,7 +915,7 @@ Abbildung&nbsp;5.3: Dein Puls im Brick Viewer
 </div>
 <p>Um deinen Puls zu berechnen, müssen wir jetzt mehrere Werte in kurzen Abständen messen. Warum? Weil wir die regelmäßigen Tief- und Hochpunkte erkennen wollen. Ein Tiefpunkt entsteht, wenn dein Finger am dunkelsten ist, dann ist also gerade besonders viel Blut im Finger. Die Hochpunkte markieren dagegen den Moment, in dem das Blut größtenteils wieder zurückgeflossen ist. Jeder Herzschlag erzeugt genau einen Tief- und einen Hochpunkt. Finden wir diese Punkte, können wir einfach die Zeitabstände messen und daraus die Pulsfrequenz berechnen.</p>
 <p>Beginnen wir damit, unsere Messungen in einer Schleife durchzuführen. Das ist eine praktische Methode, kontinuierlich Daten zu erfassen:</p>
-<div id="207548f5" class="cell" data-execution_count="14">
+<div id="bde05dcc" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
 <span id="cb11-2"><a href="#cb11-2"></a>    illuminance <span class="op">=</span> color_sensor.get_illuminance()</span>
 <span id="cb11-3"><a href="#cb11-3"></a>    illuminance_lux <span class="op">=</span> illuminance <span class="op">*</span> <span class="dv">700</span> <span class="op">/</span> <span class="dv">4</span> <span class="op">/</span> <span class="dv">24</span></span>
@@ -917,7 +931,7 @@ Abbildung&nbsp;5.3: Dein Puls im Brick Viewer
 <pre><code>pip install neurokit2`</code></pre>
 <p>Für Mac-User lautet der Befehl entsprechend:</p>
 <pre><code>pip3 install neurokit2</code></pre>
-<div id="0c08589d" class="cell" data-execution_count="15">
+<div id="5b7223d7" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="im">from</span> collections <span class="im">import</span> deque</span>
 <span id="cb14-2"><a href="#cb14-2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb14-3"><a href="#cb14-3"></a><span class="im">import</span> neurokit2 <span class="im">as</span> nk</span>
@@ -939,27 +953,27 @@ Abbildung&nbsp;5.3: Dein Puls im Brick Viewer
 </div>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
 <div id="ref-adami_what_2016" class="csl-entry" role="listitem">
 Adami, Christoph. 2016. <span>„What is <span>Information</span>?“</span> <em>Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences</em> 374 (2063): 20150230. <a href="https://doi.org/10.1098/rsta.2015.0230">https://doi.org/10.1098/rsta.2015.0230</a>.
 </div>
 <div id="ref-brookshear_computer_2020" class="csl-entry" role="listitem">
-Brookshear, J. Glenn, und Dennis Brylow. 2020. <em>Computer science: an overview</em>. 13th edition, global edition. NY, NY: Pearson.
+Brookshear, J. Glenn, und Dennis Brylow. 2020. <em>Computer science: an overview</em>. 13th edition, global edition. Pearson.
 </div>
 <div id="ref-gallenbacher_abenteuer_2020" class="csl-entry" role="listitem">
-Gallenbacher, Jens. 2020. <em>Abenteuer <span>Informatik</span>: <span>IT</span> zum <span>Anfassen</span> für alle von 9 bis 99, vom <span>Navi</span> bis <span>Social</span> <span>Media</span></em>. 4. Auflage, korrigierte Publikation. Berlin Heidelberg: Springer.
+Gallenbacher, Jens. 2020. <em>Abenteuer <span>Informatik</span>: <span>IT</span> zum <span>Anfassen</span> für alle von 9 bis 99, vom <span>Navi</span> bis <span>Social</span> <span>Media</span></em>. 4. Auflage, korrigierte Publikation. Springer.
 </div>
 <div id="ref-Makowski2021neurokit" class="csl-entry" role="listitem">
-Makowski, Dominique, Tam Pham, Zen J. Lau, Jan C. Brammer, François Lespinasse, Hung Pham, Christopher Schölzel, und S. H. Annabel Chen. 2021. <span>„<span>NeuroKit</span>2: A Python toolbox for neurophysiological signal processing“</span>. <em>Behavior Research Methods</em> 53 (4): 1689–96. <a href="https://doi.org/10.3758/s13428-020-01516-y">https://doi.org/10.3758/s13428-020-01516-y</a>.
+Makowski, Dominique, Tam Pham, Zen J. Lau, u.&nbsp;a. 2021. <span>„<span>NeuroKit</span>2: A Python toolbox for neurophysiological signal processing“</span>. <em>Behavior Research Methods</em> 53 (4): 1689–96. <a href="https://doi.org/10.3758/s13428-020-01516-y">https://doi.org/10.3758/s13428-020-01516-y</a>.
 </div>
 <div id="ref-petzold_code_2022" class="csl-entry" role="listitem">
-Petzold, Charles. 2022. <em>Code: the hidden language of computer hardware and software</em>. 2. Aufl. Hoboken: Microsoft Press.
+Petzold, Charles. 2022. <em>Code: the hidden language of computer hardware and software</em>. 2. Aufl. Microsoft Press.
 </div>
 <div id="ref-polya" class="csl-entry" role="listitem">
-Pólya, George, und John Horton Conway. 2004. <em>How to solve it: a new aspect of mathematical method</em>. Expanded Princeton Science Library ed. Princeton science library. Princeton [N.J.]: Princeton University Press.
+Pólya, George, und John Horton Conway. 2004. <em>How to solve it: a new aspect of mathematical method</em>. Expanded Princeton Science Library ed. Princeton science library. Princeton University Press.
 </div>
 <div id="ref-scott_but_2009" class="csl-entry" role="listitem">
-Scott, John C. 2009. <em>But how do it know?: the basic principles of computers for everyone</em>. Oldsmar, FL: John C. Scott.
+Scott, John C. 2009. <em>But how do it know?: the basic principles of computers for everyone</em>. John C. Scott.
 </div>
 </div>
 </section>
@@ -1455,8 +1469,8 @@ document.addEventListener("DOMContentLoaded", () => {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../part-2-ai/learning.html" class="pagination-link" aria-label="Lernen">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lernen</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../part-2-ai/learning.html" class="pagination-link" aria-label="Regeln vs. Lernen">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Regeln vs.&nbsp;Lernen</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
