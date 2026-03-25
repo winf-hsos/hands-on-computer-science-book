@@ -17,14 +17,13 @@ filters:
   - filters/gloss.lua
   - filters/collapsable.lua
 
-
 book:
   title: "Hands-On Computer Science"
   author: "Nicolas Meseth"
   description: "Ein Online-Buch mit Experimenten, die Schritt für Schritt in die Welt der Digitalisierung, Programmierung und Künstliche Intelligenz einführen."
   cover-image: cover.jpg
   date: today
-  date-format: long
+  date-format: longHeute kl
   search: true
   output-file: "Hands-On-Computer-Science-Book"
   #downloads: [pdf]
