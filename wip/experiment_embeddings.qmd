@@ -1,0 +1,628 @@
+---
+title: "Experiment: The Map of Meaning"
+subtitle: "Embeddings and Semantic Space"
+lang: en
+format: pdf
+---
+
+In this experiment, you explore how a computer can represent the *meaning* of words as numbers. You start with pure intuition, scale up through three and six hand-chosen dimensions, then discover how a real model learns its own dimensions automatically from text. By the end, you will use these representations to search through text in a way that no keyword search could match.
+
+## Task 1: Arrange by Hand
+
+Before touching a computer, we work with pen and paper.
+
+We have the following 20 words:
+
+`cat`, `dog`, `Paris`, `Berlin`, `king`, `queen`, `happy`, `joyful`, `car`, `bicycle`, `eat`, `drink`, `fast`, `slow`, `summer`, `winter`, `man`, `woman`, `red`, `blue`
+
+1. Arrange the 20 words in a 2D grid on paper (or a flip chart or your desk in class). Place words that feel *similar in meaning* close together, and words that feel *different* far apart. There is no right answer, use your own intuition. Sketch the result or take a photo.
+
+2. On what basis did you group them? By meaning, by topic, by grammar, or something else? Write down a short explanation for at least three of your groupings.
+
+3. Compare your arrangement with a classmate. Where do you agree? Where do you disagree? Pick one difference and discuss: whose arrangement is more "correct", and what would it even mean for a word arrangement to be correct?
+
+
+## Task 2: Three Named Dimensions
+
+In Task 1, the two axes on your paper had no label. You placed words purely by intuition. Now let's try a different approach: we *define* what the axes mean, deliberately and explicitly, and see how far that gets us.
+
+Work with the following ten food-related words. You do not need a computer for this task.
+
+`pig`, `chicken`, `wheat`, `apple`, `pork`, `egg`, `sausage`, `flour`, `juice`, `milk`
+
+4. Place the ten words in a 2D coordinate system on paper using these two axes:
+   - x-axis: plant (left) → animal (right)
+   - y-axis: raw (bottom) → processed (top)
+
+   Which word pairs end up closest to each other? Is there a relationship that repeats between different pairs, for example, a transformation that applies to both an animal word and a plant word? Write down at least one such pattern. Where does `sausage` end up relative to `pork`?
+
+5. Look at your arrangement: is there an important difference between some of the words that your two dimensions do not capture at all? Which words are hardest to distinguish in this 2D space, and why?
+
+6. Now add a third dimension on paper:
+   - z-axis: solid (0) → liquid (5)
+
+   Rate each word on this scale and re-examine which words now separate that were previously tangled together. Note in particular where `egg`, `milk`, and `juice` land. Then test the analogy `pork − pig + wheat ≈ ?` by finding which word sits in the corresponding position. What does it tell you about the relationship between the number of dimensions and the analogies that become possible?
+
+{{< pagebreak >}}
+
+## Task 3: Six Named Dimensions
+
+Three named dimensions revealed clear structure, but also clear limits: some words simply did not fit the scales at all. Let's scale up. Instead of three dimensions chosen for a specific set of words, you now design six and apply them to all 20 words from Task 1.
+
+7. Rate each of the 20 words on the following six scales. Use a value from 0 to 5 for each:
+
+    | **Dimension** | **0 ...** | **... 5** |
+    |---|---|---|
+    | **Size** | very small | very large |
+    | **Living** | not alive | alive |
+    | **Human** | not human | human |
+    | **Mobility** | stationary | moves a lot |
+    | **Natural** | natural | man-made |
+    | **Gender** | male | female |
+
+    Fill in the table on the next page for all 20 words!
+
+8. Which words were the hardest to rate? Note them down and briefly explain why. Do any words simply not fit the dimensions at all, and if so, what type of meaning do the six dimensions fail to capture?
+
+
+{{< pagebreak >}}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.8}
+\begin{tabular}{|p{1.7cm}|p{1.7cm}|p{1.7cm}|p{1.7cm}|p{1.7cm}|p{1.7cm}|p{1.7cm}|}
+\hline
+\textbf{Word} & \textbf{Size} & \textbf{Living} & \textbf{Human} & \textbf{Mobility} & \textbf{Natural} & \textbf{Gender} \\
+\hline
+cat & & & & & & \\
+\hline
+dog & & & & & & \\
+\hline
+Paris & & & & & & \\
+\hline
+Berlin & & & & & & \\
+\hline
+king & & & & & & \\
+\hline
+queen & & & & & & \\
+\hline
+happy & & & & & & \\
+\hline
+joyful & & & & & & \\
+\hline
+car & & & & & & \\
+\hline
+bicycle & & & & & & \\
+\hline
+eat & & & & & & \\
+\hline
+drink & & & & & & \\
+\hline
+fast & & & & & & \\
+\hline
+slow & & & & & & \\
+\hline
+summer & & & & & & \\
+\hline
+winter & & & & & & \\
+\hline
+man & & & & & & \\
+\hline
+woman & & & & & & \\
+\hline
+red & & & & & & \\
+\hline
+blue & & & & & & \\
+\hline
+\end{tabular}
+\end{center}
+
+{{< pagebreak >}}
+
+## Task 4: Similarity and Arithmetic
+
+Now that every word from Task 3 is a vector, you can measure how similar two words are using simple mathematics. We moved from qualitative to quantitative. Now we take the step from analog to digital, and thus from non-computational to computational.
+
+9. Create a text file called `my_embeddings.txt` in the same folder where your script will live. Enter your ratings from exercise 7, one word per line — the word first, then its six numbers, all separated by spaces:
+
+    ```
+    cat 2 5 1 4 5 2
+    dog 3 5 1 4 5 2
+    Paris 5 0 0 2 0 2
+    ...
+    ```
+
+    Fill in all 20 words using your own ratings from the table. This is exactly the same file format used by real embedding models such as GloVe — you will load a file structured this way again in Task 7.
+
+    Now create a Python file called `embeddings.py` and load your ratings from that file:
+
+    ```python
+    def load_embeddings(path):
+        embeddings = {}
+        with open(path, "r", encoding="utf-8") as f:
+            for line in f:
+                parts = line.split()
+                word = parts[0]
+                embeddings[word] = [float(x) for x in parts[1:]]
+        return embeddings
+
+    words = load_embeddings("my_embeddings.txt")
+    ```
+
+    Print `words["cat"]` to verify the file was read correctly. Notice that `cat` and `dog` should have almost identical vectors — does that match your arrangement from Task 1?
+
+10. Before measuring distances, visualise how your six-dimensional embedding looks when projected onto a 2D plane. Add the following to your script:
+
+    ```python
+    from sklearn.decomposition import PCA
+    import matplotlib.pyplot as plt
+
+    word_list = list(words.keys())
+    vectors = list(words.values())
+
+    pca = PCA(n_components=2)
+    coords_array = pca.fit_transform(vectors)
+
+    plt.figure(figsize=(10, 8))
+    for i, word in enumerate(word_list):
+        x = coords_array[i, 0]
+        y = coords_array[i, 1]
+        plt.scatter(x, y, color="steelblue")
+        plt.annotate(word, (x, y), fontsize=11)
+
+    plt.title("20 Words in 2D (PCA from 6-dimensional manual embedding)")
+    plt.xlabel("Component 1")
+    plt.ylabel("Component 2")
+    plt.tight_layout()
+    plt.savefig("manual_pca.png")
+    plt.show()
+    ```
+
+    Compare this plot to your hand-drawn arrangement from Task 1. Which clusters match? Which words ended up in a different neighbourhood than you expected? What does this tell you about how much of your intuition is captured by the six dimensions?
+
+### Euclidean Distance
+
+The simplest measure of similarity is **Euclidean distance**, the straight-line distance between two points in space.
+
+11. Implement a function to compute the Euclidean distance between two vectors in Python:
+
+    $d(\mathbf{v_1}, \mathbf{v_2}) = \sqrt{\sum_{i=1}^{n} (v_{1i} - v_{2i})^2}$
+
+    Use the `zip()` function in combination with a loop to iterate through two lists at the same time:
+
+    ```python
+    for x, y in zip(vec_a, vec_b):
+        ...
+    ```
+
+12. Use the new function to compute the Euclidean distance between the following word pairs and fill in the table:
+
+    | Word A | Word B | Distance | Similar or different? |
+    |--------|--------|----------|-----------------------|
+    | cat | dog | | |
+    | cat | car | | |
+    | king | queen | | |
+    | happy | joyful | | |
+    | man | woman | | |
+    | Paris | eat | | |
+
+    Do the distances match your intuition from Task 1?
+
+### Cosine Similarity
+
+Euclidean distance measures how far apart two vectors are. **Cosine similarity** measures something different: the *angle* between two vectors, regardless of how long they are.
+
+13. Research cosine similarity using any source you like (Wikipedia, a video, a textbook). Then write down — in your own words, in 3–5 sentences — what it measures. Your explanation should answer:
+    - What is being compared: lengths, directions, or something else?
+    - Why is the angle between two vectors a useful measure of similarity?
+
+14. Cosine similarity returns a value between −1 and 1. Fill in the table *before* running any code:
+
+    | Scenario | Cosine similarity (your prediction) |
+    |----------|--------------------------------------|
+    | Two identical vectors | |
+    | Two vectors pointing in opposite directions | |
+    | Two vectors at a 90° angle | |
+
+15. Calculate the cosine similarity between $\vec{a} = (1, 0)$ and $\vec{b} = (0, 1)$ by hand using the formula:
+
+    $$\text{cosine similarity}(\vec{a}, \vec{b}) = \frac{\vec{a} \cdot \vec{b}}{\|\vec{a}\| \cdot \|\vec{b}\|}$$
+
+    Now try $\vec{a} = (1, 1)$ and $\vec{b} = (2, 2)$. What do you notice? What does cosine similarity ignore?
+
+Add this function to your script:
+
+```python
+import math
+
+def cosine_similarity(vec_a, vec_b):
+    dot_product = 0
+    for x, y in zip(vec_a, vec_b):
+        dot_product = dot_product + x * y
+
+    sum_a = 0
+    for x in vec_a:
+        sum_a = sum_a + x * x
+    length_a = math.sqrt(sum_a)
+
+    sum_b = 0
+    for x in vec_b:
+        sum_b = sum_b + x * x
+    length_b = math.sqrt(sum_b)
+
+    return dot_product / (length_a * length_b)
+```
+
+16. Re-run the same six word pairs from step 12, this time using cosine similarity. Do the results agree with the Euclidean distances? Is there a pair where the two measures give a noticeably different picture?
+
+### Vector Arithmetic
+
+One of the most surprising discoveries about word embeddings is that you can do arithmetic on them and get meaningful results. Add these two helper functions:
+
+```python
+def add_vectors(vec_a, vec_b):
+    result = []
+    for x, y in zip(vec_a, vec_b):
+        result.append(x + y)
+    return result
+
+def subtract_vectors(vec_a, vec_b):
+    result = []
+    for x, y in zip(vec_a, vec_b):
+        result.append(x - y)
+    return result
+```
+
+And a function to find the closest word in your dictionary:
+
+```python
+def find_nearest(target, word_dict, exclude=None):
+    best_word = None
+    best_dist = float("inf")
+    for word, vector in word_dict.items():
+        if word == exclude:
+            continue
+        d = euclidean_distance(target, vector)
+        if d < best_dist:
+            best_dist = d
+            best_word = word
+    return best_word, best_dist
+```
+
+17. Run the classic analogy: `king − man + woman = ?`
+
+```python
+result = add_vectors(subtract_vectors(words["king"], words["man"]), words["woman"])
+nearest, dist = find_nearest(result, words, exclude="king")
+print(f"king - man + woman = {nearest}  (distance: {dist:.2f})")
+```
+
+   Did you get `queen`? If not, look at your ratings: how similar are the vectors for `king` and `queen`? What would need to be true in your ratings for the analogy to work perfectly?
+
+18. Try one more analogy using your word list. Pick any three words where you expect a meaningful fourth word as the result. Report what you tried and what you got.
+
+## Task 5: Limits and the Bridge to Real Embeddings
+
+Your hand-crafted embedding worked for some words — but not for all of them.
+
+19. Look back at the words you flagged in step 8 as hard to rate. Why do dimensions like *Size* or *Mobility* struggle with words like `happy`, `eat`, `fast`, or `red`? Write two or three sentences describing what type of meaning your six dimensions simply cannot capture.
+
+This is exactly the problem that real embedding models solve. Instead of letting humans choose six dimensions, they learn **hundreds or thousands of dimensions automatically from text** — by observing which words appear in similar contexts across billions of sentences. The resulting dimensions are not labelled and often not interpretable, but they capture far richer structure than any set of hand-chosen scales.
+
+## Task 6: How Embeddings Learn
+
+The hand-designed dimensions from Task 3 required *you* to decide what matters. Real embedding models do something fundamentally different: they discover structure by observing which words appear near each other across billions of sentences. The interactive tutorial at <https://www.cs.cmu.edu/~dst/WordEmbeddingDemo/tutorial.html> lets you explore this idea visually — work through it before tackling the questions below.
+
+The core mechanism is a **context window**: for each occurrence of a word in a text, the model notes which other words appear within a fixed distance C. Words that repeatedly appear in similar contexts are pulled towards each other in the embedding space — not because anyone told the model so, but because their surroundings are similar.
+
+Consider this small corpus:
+
+```
+the dog barked at the cat
+the cat ran from the dog
+```
+
+20. For window size C = 2 (two words to the left and two to the right), extract all context words for `"dog"` and `"cat"`. Work through every occurrence of each word in both sentences separately and list every context word you find:
+
+    | Word | Context words (list all occurrences, from both sentences) |
+    |------|-----------------------------------------------------------|
+    | dog  | |
+    | cat  | |
+
+    Which words appear in the context of *both* dog and cat? Which words appear near only one of them?
+
+21. Based on your context lists: would you predict that `dog` and `cat` end up with similar or different vectors after training — and why? Now consider the word `"barked"`. It appears only once in this corpus. How many context words does it share with `"cat"`? What does that predict about their similarity?
+
+22. Think back to the words you rated in Task 3 that were hardest to place — `happy`, `eat`, `fast`, `red`. In a real training corpus of billions of sentences, `"happy"` appears in sentences like *"she felt happy"*, *"he was happy to see her"*, and *"the happy child laughed"*. Without any hand-designed dimensions, how does this allow the model to produce a meaningful vector for `"happy"` — one that ends up near words like `"joyful"` and `"cheerful"`?
+
+## Task 7: GloVe — First Real Embeddings
+
+So far you have rated words yourself on six scales. Now you will load *real* word embeddings trained on billions of words — without connecting to any external API.
+
+**GloVe** (Global Vectors for Word Representation) is a set of pre-trained word vectors published by Stanford University. The model learned by reading billions of words from Wikipedia and news archives and figuring out which words appear in similar contexts. The version you will use gives each word a vector of **50 numbers** — eight times more than your hand-crafted six, but still far fewer than the 1536 you will see in the next task.
+
+**Setup:** Download `glove.6B.zip` from the Stanford NLP website (search for *GloVe Stanford download*), extract it, and place `glove.6B.50d.txt` in the same folder as your script. The file is about 160 MB.
+
+Add the following to your script:
+
+```python
+import numpy as np
+
+def load_glove(path):
+    embeddings = {}
+    with open(path, "r", encoding="utf-8") as f:
+        for line in f:
+            parts = line.split()
+            word = parts[0]
+            # Convert the remaining strings to a numpy array of numbers
+            embeddings[word] = np.array(parts[1:], dtype=float)
+    return embeddings
+
+print("Loading GloVe embeddings (this takes a few seconds)...")
+glove = load_glove("glove.6B.50d.txt")
+print(f"Loaded {len(glove)} words, each with {len(glove['cat'])} dimensions.")
+```
+
+23. How many words does GloVe know? Print `glove["cat"]` and `glove["happy"]`. Can you tell what any of the 50 numbers mean by looking at them — or do they only make sense through comparison?
+
+24. Compute the cosine similarity for the same six word pairs from step 12. Your existing `cosine_similarity` function works directly with GloVe vectors. Fill in a new comparison table:
+
+    | Word A | Word B | Your similarity | GloVe similarity |
+    |--------|--------|-----------------|------------------|
+    | cat | dog | | |
+    | cat | car | | |
+    | king | queen | | |
+    | happy | joyful | | |
+    | man | woman | | |
+    | Paris | eat | | |
+
+    Where does GloVe agree with your manual ratings? Where does it diverge most — and which result feels more correct to you?
+
+25. Test the analogy `king − man + woman ≈ ?` with GloVe. To search the full 400 000-word vocabulary efficiently, add this to your script:
+
+```python
+# Build a matrix of all GloVe vectors for fast nearest-neighbour search
+all_words_glove = list(glove.keys())
+all_vectors_glove = []
+for w in all_words_glove:
+    all_vectors_glove.append(glove[w])
+all_vectors_glove = np.array(all_vectors_glove)
+
+def find_nearest_glove(query_vec, top_n=5, exclude=None):
+    if exclude is None:
+        exclude = []
+    # Compute cosine similarity between the query and every word at once
+    scores = all_vectors_glove @ query_vec
+    scores = scores / (np.linalg.norm(all_vectors_glove, axis=1) * np.linalg.norm(query_vec))
+    sorted_indices = np.argsort(scores)[::-1]
+    results = []
+    for i in sorted_indices:
+        if all_words_glove[i] not in exclude:
+            results.append((float(scores[i]), all_words_glove[i]))
+        if len(results) == top_n:
+            break
+    return results
+
+query = glove["king"] - glove["man"] + glove["woman"]
+print(find_nearest_glove(query, exclude=["king", "man", "woman"]))
+```
+
+   Does GloVe find `queen`? How does this compare to what your manual six-dimensional version returned in step 17?
+
+26. Test the food analogy from Task 2: `pork − pig + wheat ≈ ?` Does the result make sense? Try one more analogy of your own using words from Tasks 1 or 2.
+
+27. Use `find_nearest_glove` to find the five most similar words in the full vocabulary for `"cat"`, `"king"`, and `"happy"`:
+
+```python
+for word in ["cat", "king", "happy"]:
+    nearest = find_nearest_glove(glove[word], exclude=[word])
+    print(f"\nNearest to '{word}':")
+    for score, neighbour in nearest:
+        print(f"  {neighbour}  ({score:.3f})")
+```
+
+   Do the neighbours match your intuition? What does it mean that the model can answer this question for 400 000 words, when your manual embedding only covered 20?
+
+## Task 8: Real Embeddings — API Scale
+
+Now you will ask an AI model to embed the same 20 words and compare the result to your hand-crafted vectors and GloVe.
+
+Add the following to your script:
+
+```python
+import openai
+import numpy as np
+
+client = openai.OpenAI()
+
+def get_embedding(text):
+    response = client.embeddings.create(
+        input=text,
+        model="text-embedding-3-small"
+    )
+    # Each embedding is a list of 1536 numbers
+    return response.data[0].embedding
+
+def cosine_similarity_np(vec_a, vec_b):
+    a = np.array(vec_a)
+    b = np.array(vec_b)
+    return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))
+```
+
+28. Call `get_embedding("cat")` and print the result. How many numbers does this embedding contain, compared to your six-dimensional version and GloVe's 50?
+
+29. Take the same six word pairs from step 12. Compute the cosine similarity using the OpenAI embeddings and complete the comparison table you started in step 24:
+
+    | Word A | Word B | Your similarity | GloVe similarity | OpenAI similarity |
+    |--------|--------|-----------------|------------------|-------------------|
+    | cat | dog | | | |
+    | cat | car | | | |
+    | king | queen | | | |
+    | happy | joyful | | | |
+    | man | woman | | | |
+    | Paris | eat | | | |
+
+    Look across all three columns. Which pairs show the most agreement between all three methods? Which pairs disagree the most — and what does that tell you?
+
+30. Repeat the analogy `king − man + woman` using the OpenAI embeddings. Add a `find_nearest_np` function that searches a list of real embedding vectors by cosine similarity:
+
+```python
+word_list = list(words.keys())
+real_embeddings = [get_embedding(w) for w in word_list]
+
+def find_nearest_np(target, word_list, word_embeddings, exclude=None):
+    best_word = None
+    best_score = -1
+    for i, word in enumerate(word_list):
+        if word == exclude:
+            continue
+        score = cosine_similarity_np(target, word_embeddings[i])
+        if score > best_score:
+            best_score = score
+            best_word = word
+    return best_word, best_score
+
+king_vec  = np.array(get_embedding("king"))
+man_vec   = np.array(get_embedding("man"))
+woman_vec = np.array(get_embedding("woman"))
+
+result_vec = king_vec - man_vec + woman_vec
+nearest, score = find_nearest_np(result_vec, word_list, real_embeddings, exclude="king")
+print(f"king - man + woman = {nearest}  (similarity: {score:.3f})")
+```
+
+31. Try the analogy `Paris − France + Germany`. Add `"France"` and `"Germany"` to the word list, get their embeddings, and test it. Does it work? Try one more analogy of your own choice.
+
+## Task 9: Visualising the Space
+
+The real embeddings have 1536 dimensions — far too many to draw. We use **PCA** (Principal Component Analysis) to project them down to 2 dimensions. Think of it like casting a shadow: the shadow is not the full object, but it still reveals something about its shape.
+
+Add the following to your script:
+
+```python
+from sklearn.decomposition import PCA
+import matplotlib.pyplot as plt
+
+# Reduce from 1536 dimensions to 2
+pca = PCA(n_components=2)
+coords_array = pca.fit_transform(real_embeddings)
+
+# Build a lookup: word → 2D coordinates
+coords = {}
+for i, word in enumerate(word_list):
+    coords[word] = (coords_array[i, 0], coords_array[i, 1])
+
+# Plot all words
+plt.figure(figsize=(10, 8))
+for word, (x, y) in coords.items():
+    plt.scatter(x, y, color="steelblue")
+    plt.annotate(word, (x, y), fontsize=11)
+
+plt.title("20 Words in 2D Semantic Space (PCA)")
+plt.xlabel("Component 1")
+plt.ylabel("Component 2")
+plt.tight_layout()
+plt.savefig("semantic_space.png")
+plt.show()
+```
+
+32. Run the script and look at the plot. Which words ended up close to each other? Describe at least two clusters you can see. Compare this to both your hand-drawn map from Task 1 and the PCA plot you made from your manual embedding in step 10. Where does the OpenAI arrangement agree with yours, and where does it differ?
+
+Now extend the plot to show **semantic directions** — arrows connecting related pairs of words:
+
+```python
+pairs = [
+    ("man", "woman"),
+    ("king", "queen"),
+    ("cat", "dog"),
+    ("car", "bicycle"),
+]
+
+plt.figure(figsize=(10, 8))
+for word, (x, y) in coords.items():
+    plt.scatter(x, y, color="steelblue")
+    plt.annotate(word, (x, y), fontsize=11)
+
+for word_a, word_b in pairs:
+    x1, y1 = coords[word_a]
+    x2, y2 = coords[word_b]
+    plt.annotate(
+        "", xy=(x2, y2), xytext=(x1, y1),
+        arrowprops=dict(arrowstyle="->", color="tomato", lw=1.5)
+    )
+
+plt.title("Semantic Directions in 2D Space")
+plt.tight_layout()
+plt.savefig("semantic_directions.png")
+plt.show()
+```
+
+33. Look at the arrows for the pairs `(man, woman)` and `(king, queen)`. Are they roughly parallel? What would it mean geometrically if they are — and how does that connect to the analogy `king − man + woman ≈ queen`?
+
+34. The PCA projection loses information: 1536 dimensions were compressed to 2. Do you think the clusters you see are an accurate picture of the full semantic space, or a distortion? How would you test this?
+
+## Task 10: Semantic Search
+
+So far you have worked with individual words. Embeddings work just as well for full sentences — and that makes a powerful application possible: **semantic search**. Instead of matching keywords, you match *meaning*.
+
+Add the following sentences as a small searchable database:
+
+```python
+sentences = [
+    "The patient was taken to the emergency room immediately.",
+    "She enjoys long walks in the forest on autumn mornings.",
+    "The government announced new tax regulations last Thursday.",
+    "A small dog was found wandering near the train station.",
+    "Scientists discovered a new species of frog in the rainforest.",
+    "The concert was sold out within minutes of tickets going on sale.",
+    "He forgot to take his medication and felt unwell by the afternoon.",
+    "The school organised a trip to the natural history museum.",
+    "Renewable energy sources are becoming cheaper every year.",
+    "A stray cat was hiding under the parked car.",
+    "The doctor recommended rest and plenty of fluids.",
+    "Children in the neighbourhood built a treehouse last summer.",
+    "Electric vehicles now outsell petrol cars in several countries.",
+    "The injured player was carried off the pitch on a stretcher.",
+    "Students spent the afternoon planting trees in the schoolyard.",
+]
+
+sentence_embeddings = [get_embedding(s) for s in sentences]
+```
+
+Now add a search function:
+
+```python
+def semantic_search(query, sentences, sentence_embeddings, top_n=3):
+    query_embedding = get_embedding(query)
+
+    results = []
+    for i, sentence in enumerate(sentences):
+        score = cosine_similarity_np(query_embedding, sentence_embeddings[i])
+        results.append((score, sentence))
+
+    results.sort(reverse=True)
+    return results[:top_n]
+```
+
+35. Run a semantic search with the query `"A person receiving medical treatment"`. Print the top 3 results. Did the search find relevant sentences even though none of them contain the exact words from the query?
+
+36. Search for the same topic using a keyword approach: go through the sentences manually and mark every sentence that contains the word `"medical"` or `"treatment"`. How many matches does keyword search find compared to semantic search? Which approach gives more useful results?
+
+37. Try the query `"Environmental sustainability and clean energy"`. Which sentences does semantic search return? Would a keyword search for `"energy"` return the same results?
+
+38. Design a query that *fools* the semantic search — one where the top result is clearly not what you were looking for. What does this reveal about the limitations of semantic search?
+
+## Task 11: Reflection and Discussion
+
+Reflect on the following questions and write down your thoughts. Discuss with your peers:
+
+1. You went from free intuition (Task 1) to 3 named dimensions (Task 2) to 6 named dimensions (Task 3) to 50 learned dimensions (Task 7) to 1536 learned dimensions (Task 8). At what point did the representation start feeling less transparent to you — and why?
+
+2. Some words — emotions, verbs, abstract properties — were hard to place in your six-dimensional scheme. How do you think a model trained on billions of sentences deals with this problem?
+
+3. The analogy `king − man + woman ≈ queen` treats gender as a *direction in space*. Can you think of other concepts that might correspond to directions — and what might go wrong when a model encodes human concepts this way?
+
+4. Your cosine similarity function and the AI's cosine similarity function compute the same formula. What is fundamentally different about the vectors they are applied to?
+
+5. Semantic search found relevant sentences without any matching keywords. Your phone's search, email client, and many apps now work this way. Does that change how you think about what "search" means?
+
+6. A student says: "The model clearly understands what *king* means — otherwise the analogy would not work." Based on everything you did in this experiment, how would you respond?

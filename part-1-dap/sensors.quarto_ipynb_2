@@ -1,0 +1,498 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Sensoren {#sec-sensors}\n",
+        "\n",
+        "## Zusammenfassung {.unnumbered .collapsable}\n",
+        " \n",
+        " In diesem Kapitel lernen wir, wie analoge Signale in digitale Signale umgewandelt werden und wie sie anschließend im Computer verarbeiten können. Sensoren sind gute Beispiele für die Überführung von analogen Signalen in digitale Repräsentationen. Den Abstandssensor haben wir bereits in @sec-images kennengelernt. In diesem Kapitel erweitern wir unser Experiment um einen Farbsensor, der die Intensität von rotem, grünem und blauem Licht misst.\n",
+        " \n",
+        " Der Weg dorthin führt über folgende Schritte:\n",
+        "\n",
+        " | \\# | Was? | Wo? |\n",
+        "|--|-------------------------------------------------------|----------------|\n",
+        "| 1 | ... | ... |\n",
+        "| 2 | ... | ... |\n",
+        "| 3 | ... | ... |\n",
+        "\n",
+        "## Experimentaufbau {#sec-sensors-experiment-setup .collapsable}\n",
+        "\n",
+        "### Hardware\n",
+        "\n",
+        "Nachdem wir in @sec-images den Abstandssensor kennengelernt haben, führen wir in diesem Kapitel einen weiteren Sensor in unser Experiment ein: den Farbsensor. Dieser Sensor misst die Intensität des roten, grünen und blauen Anteils des Lichts, das auf ihn fällt. Wir werden im Experiment versuchen, alles aus dem kleinen Sensor herauszuholen und ihn für verschiedene Zwecke einsetzen.\n",
+        "\n",
+        "Neben dem Farbsensor verwenden wir in diesem Experiment auch wieder die RGB-LED. Die habt ihr ja bereits in anderen Experimenten verwendet. Die vollständige Hardwareliste für dieses Kapitel sieht so aus:\n",
+        "\n",
+        "-  1 x [Master Brick 3.2](https://www.tinkerforge.com/de/doc/Hardware/Bricks/Master_Brick.html)\n",
+        "-  1 x [RGB LED Bricklet 2.0](https://www.tinkerforge.com/en/doc/Hardware/Bricklets/RGB_LED_V2.html)\n",
+        "-  1 x [Color Bricklet 2.0](https://www.tinkerforge.com/en/doc/Hardware/Bricklets/Color_V2.html)\n",
+        "-  1 x [Montageplatte 22x10](https://www.tinkerforge.com/de/shop/accessories/mounting/mounting-plate-22x10.html)\n",
+        "-  2 x [Brickletkabel 15cm (7p-7p)](https://www.tinkerforge.com/de/shop/accessories/cable/bricklet-cable-15cm-7p-7p.html)\n",
+        "-  2 x [Befestigungskit 12 mm](https://www.tinkerforge.com/de/shop/accessories/mounting/mounting-kit-12mm.html)\n",
+        "\n",
+        "In @fig-setup-color-sensor seht ihr den Hardwareaufbau für dieses Experiment.\n",
+        "\n",
+        "::: {#fig-setup-color-sensor layout=\"[[1,1], [1,1]]\"}\n",
+        "\n",
+        "![Seitenansicht.](/images/master_brick_with_led_and_ir_03.jpg){#fig-setup-color-sensor .lightbox group=\"setup-color-sensor\"}\n",
+        "\n",
+        "![Draufsicht.](/images/master_brick_with_led_and_ir_02.jpg){#fig-setup-color-sensor-b .lightbox group=\"setup-color-sensor\"}\n",
+        "\n",
+        "![Nahaufnahme des IR-Abstandssensors.](/images/master_brick_with_led_and_ir_04.jpg){#fig-setup-color-sensor-c .lightbox group=\"setup-color-sensor\"}\n",
+        "\n",
+        "![Seitenansicht, leicht schräg.](/images/master_brick_with_led_and_ir_01.jpg){#fig-setup-color-sensor-d .lightbox group=\"setup-color-sensor\"}\n",
+        "\n",
+        "Einfaches Setup mit einem Mikrocontroller, LED und einem Infrarot-Abstandssensor.\n",
+        ":::\n",
+        "\n",
+        "Ein Farbsensor wird in der Praxis für ganz unterschiedliche Probleme eingesetzt. Hier ein paar Beispiele:\n",
+        "\n",
+        "- **Umgebungslichtmessung:** Smartphones und Tablets verwenden Farbsensoren, um die Helligkeit des Displays automatisch an die Umgebungslichtverhältnisse anzupassen. So wird das Display bei hellem Licht heller und bei dunklem Licht dunkler, um die Lesbarkeit zu verbessern und Energie zu sparen.\n",
+        "\n",
+        "- **Sortierung von Objekten:** In der Industrie werden Farbsensoren eingesetzt, um Objekte nach ihrer Farbe zu sortieren. Beispielsweise können Verpackungsmaschinen Farbsensoren verwenden, um verschiedene Produkte zu erkennen und entsprechend zu verarbeiten.\n",
+        "\n",
+        "- ...\n",
+        "\n",
+        "\n",
+        "### Erste Schritte mit dem Farbsensor {#sec-text-first-steps}\n",
+        "\n",
+        "Die Ansicht im Brick Viewer sieht für den Farbsensor etwas komplexer aus als bei den anderen Geräten, die wir bisher kennengelernt haben. Wie ihr in @fig-brick-viewer-color-sensor erkennt zeigt der Tab im Brick Viewer gleich drei Liniendiagramme. Das erste Diagramm oben zeigt die Intensität der verschiedenen Farbanteile Rot, Grün und Blau im Zeitverlauf. Zusätzlich wird noch eine vierte Linie angezeigt, die mit \"C\" betitelt wird. Es handelt sich dabei um die Abkürzung für \"clear value\" und stellt die Lichtintensität ohne Filter dar. Die Werte sind normiert und werden mit 16-Bit dargestellt. Was bedeutet das? Mit 16-Bit können wir Werte von 0 bis 65535 darstellen. Ein Wert von 0 bedeutet, dass kein Licht gemessen wird, während 65535 die maximale Lichtintensität darstellt, die der Sensor erfassen kann.\n",
+        "\n",
+        "Neben den drei Farbanteilen und dem Clear-Wert zeigt der Farbsensor auch die gemessene Helligkeit (Illuminance) und die Farbtemperatur (Color Temperature) an. Diese beiden Werte werden in separaten Diagrammen darunter dargestellt. Der Helligkeitswert ist ebenfalls eien 16-Bit Zahl und wird im Brick Viewer in Lux umgerechnet angezeigt. Die Farbtemperatur wird in Kelvin angegeben und beschreibt, ob das Licht eher warm (niedrige Kelvin-Werte) oder kalt (hohe Kelvin-Werte) ist. Das kennt ihr vielleicht von euren LED-Lampen zuhause, wo ihr diese Angabe typischerweise auch auf der Verpackung findet.\n",
+        "\n",
+        "![Die Ansicht für den Farbsensor im Brick Viewer zeigt gleich drei Liniendiagramme.](/images/brick_viewer_color_sensor.png){#fig-brick-viewer-color-sensor .lightbox}\n",
+        "\n",
+        "Der Farbsensor bietet also viele Möglichkeiten, im das auf ihn fallende Licht zu analysieren:\n",
+        "\n",
+        "- Messung der Intensität von Rot, Grün und Blau sowei des ungefilterten Lichts (Clear-Wert)\n",
+        "- Bestimmung der Helligkeit (Illuminance) in Lux\n",
+        "- Ermittlung der Farbtemperatur in Kelvin\n",
+        "\n",
+        "Für unsere Experiment werden wir uns vor allem auf die Helligkeit konzentrieren, da sie eine wichtige Rolle bei der Messung des Pulses spielt. Wir wollen uns vorher auch  mit der Messung von Farben auseinandersetzen, weil wir damit viele Probleme in der Praxis lösen können.\n",
+        "\n",
+        "## Farbe messen {#sec-sensors-detect-colors .collapsable}\n",
+        "\n",
+        "In @sec-colors haben wir mit der LED Licht in verschiedenen Farben erzeugt, bis hin zu dem kompletten Regenbogenspektrum. In diesem Kapitel wollen wir den umgekehrten Weg gehen und Farben messen. Der Farbsensor kann die Intensität von rotem, grünem und blauem Licht messen, das auf ihn fällt. Indem wir die gemessenen Werte analysieren, können wir etwa die Farbe eines Objekts bestimmen.\n",
+        "\n",
+        "### RGB-Werte messen\n",
+        "\n",
+        "Stellt euch vor ihr möchtet eine automatische Sortieranlage bauen, die Objekte auf einem Förderband nach ihrer Farbe sortiert. Dazu könntet ihr einen Farbsensor an einer Stelle des Förderbandes anbringen oder in den Boden verbauen. Wenn ein Teil darüber fährt, kann der Farbsensor dabei helfen, die Farbe jedes Objekts zu erkennen. Dazu misst er die Intensität der roten, grünen und blauen Anteile des reflektierten Lichts und ermittelt die Farbe des Objekts. Basierend auf dieser Information kann das System dann entscheiden, in welche Kategorie das Objekt gehört und es entsprechend auf ein anderes Förderband lenken.\n",
+        "\n",
+        "Wie können wir das mit unserem Farbsensor umsetzen? Zunächst müssen wir uns wie immer mit dem Farbsensor aus unserem Programm heraus verbinden:"
+      ],
+      "id": "24849f9e"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "from tinkerforge.ip_connection import IPConnection\n",
+        "from tinkerforge.bricklet_color_v2 import BrickletColorV2\n",
+        "\n",
+        "ipcon = IPConnection()\n",
+        "ipcon.connect(\"localhost\", 4223)\n",
+        "\n",
+        "color_sensor = BrickletColorV2(\"<YOUR_UID>\", ipcon)"
+      ],
+      "id": "fb4efe9a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Jetzt können wir die Intensität der drei Farbanteile messen. Das machen wir mit den entsprechenden Methoden des Farbsensors:"
+      ],
+      "id": "4c511b8c"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "rgb = color_sensor.get_color()"
+      ],
+      "id": "9e11ce9c",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Geben wir die gemessenen Werte aus:"
+      ],
+      "id": "848e768e"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "print(f\"RGB Value: {rgb}\")"
+      ],
+      "id": "b030eb43",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "```\n",
+        "RGB Value: Color(r=14953, g=12953, b=9005, c=37010)\n",
+        "```\n",
+        "\n",
+        "Die Funktion `get_color()` gibt ein Objekt vom Typ `Color` zurück, das die Intensität der roten, grünen und blauen Anteile sowie den Clear-Wert als Felder enthält. In diesem Beispiel sehen wir, dass der rote Anteil (r) 14953 beträgt, der grüne Anteil (g) 12953 und der blaue Anteil (b) 9005. Der Clear-Wert (c) ist 37010. \n",
+        "\n",
+        "Wir können mit der Punktnotation auf die einzelnen Farbanteile zugreifen:"
+      ],
+      "id": "5c451ca2"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "red= rgb.r\n",
+        "green = rgb.g\n",
+        "blue = rgb.b\n",
+        "\n",
+        "print(f\"Red: {red}, Green: {green}, Blue: {blue}\")"
+      ],
+      "id": "03b86e36",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Welches Format haben die Werte? Wie Tinkeforge in seiner Online-Dokumentation für den Farbsensor erkläutert, sind die Werte 16-Bit Zahlen, die also von 0 bis 65535 reichen. Ein Wert von 0 bedeutet, dass kein Licht des entsprechenden Farbanteils gemessen wird, während 65535 die maximale Intensität darstellt. Wir haben den RGB-Code bisher mit Werten von 0 bis 255, also als 8-Bit Werte kennengelernt. Da von 8-Bit auf 16-Bit ein Faktor $2^8$ gilt, können wir umgekehrt die 16-Bit Werte in das 8-Bit Format umwandeln, indem wir sie durch 256 teilen. Und zwar Ganzzahlig, damit wir wieder eine ganze Zahl erhalten:"
+      ],
+      "id": "67cd63b8"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "red_8bit = red // 256 # <1>\n",
+        "green_8bit = green // 256\n",
+        "blue_8bit = blue // 256 \n",
+        "print(f\"8-Bit RGB Value: ({red_8bit}, {green_8bit}, {blue_8bit})\")"
+      ],
+      "id": "24adbc07",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "1. Mit `//` führen wir eine Ganzzahldivision durch, um eine ganze Zahl zu erhalten. Ein etwaiger Rest wird dabei abgeschnitten.\n",
+        "\n",
+        "### Früchte unterscheiden\n",
+        "\n",
+        "Auf Basis der gemessenen RGB-Werte können wir jetzt versuchen, eine einfache Klassifikation von Objekten durchzuführen. Nehmen wir an, wir möchten Äpfel von Bananen unterscheiden. Ein roter Apfel reflektiert vor allem rotes Licht, während eine gelbe Banane mehr grünes und rotes Licht reflektiert. Wir können also einfache Schwellenwerte definieren, um die beiden Früchte zu unterscheiden:"
+      ],
+      "id": "b941cbc8"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "def classify_fruit(red, green, blue):\n",
+        "    if red > 15000 and green < 10000 and blue < 8000:\n",
+        "        return \"Apple\"\n",
+        "    elif red > 12000 and green > 12000 and blue < 8000:\n",
+        "        return \"Banana\"\n",
+        "    else:\n",
+        "        return \"Unknown\"\n",
+        "\n",
+        "input(\"Place a fruit in front of the color sensor and press Enter...\")\n",
+        "fruit = classify_fruit(red, green, blue)\n",
+        "print(f\"Detected fruit: {fruit}\")"
+      ],
+      "id": "99665d81",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Das Ganze verpacken wir in einer Endlosschleife, damit wir kontinuierlich Früchte erkennen können:"
+      ],
+      "id": "c2b0a3ba"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "while True:\n",
+        "    input(\"Place a fruit in front of the color sensor and press Enter...\")\n",
+        "    fruit = classify_fruit(red, green, blue)\n",
+        "    print(f\"Detected fruit: {fruit}\")"
+      ],
+      "id": "d0a14954",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Die Schwellenwerte in der Funktion `classify_fruit` sind natürlich nur Beispiele und müssen je nach Beleuchtung und Sensorposition angepasst werden. Aber das Prinzip bleibt dasselbe: Wir messen die RGB-Werte und verwenden einfache Regeln, um die Objekte zu klassifizieren.\n",
+        "\n",
+        "## Helligkeit messen {#sec-sensors-measure-light-intensity .collapsable}"
+      ],
+      "id": "3b6c57fd"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "illuminance = color_sensor.get_illuminance()"
+      ],
+      "id": "01333f08",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Der gemessene Wert ist proportional zur Lichtintensität, die auf den Sensor fällt. Allerdings ist der zurückgegebene Wert nicht in Lux angegeben, sondern in einer proprietären Einheit des Sensors. Um den Wert in Lux umzurechnen, müssen wir die Verstärkung (*Gain*) und die Messzeit (*Integration Time*) berücksichtigen. Schaut dazu im Brick Viewer nach, welche Einstellungen aktuell aktiv sind. Bei mir sind es gerade die Werte 4x für *Gain* und 24ms für *Integration Time*. Mit diesen Werten können wir den Lux-Wert wie folgt berechnen:"
+      ],
+      "id": "1b8ea75f"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "gain = 4\n",
+        "integration_time = 24\n",
+        "illuminance_lx = illuminance * 700 / gain / integration_time\n",
+        "\n",
+        "print(f\"Illuminance: {illuminance_lx} lx\")"
+      ],
+      "id": "25735343",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Pulse messen {#sec-sensors-measure-pulse .collapsable}\n",
+        "\n",
+        "Wusstest du, dass Pulsmesser wie man sie oft in Fitnesstrackern findet, ebenfalls die Lichtintensität messen und daraus eueren Puls berechnen? Klingt verrückt, ist aber so! In diesem Abschnitt werden wir herausfinden, wie das funktioniert und wie wir mit unserem Farbsensor den Puls messen können.\n",
+        "\n",
+        "### Hell und dunkel\n",
+        "\n",
+        "\n",
+        "### Puls auf dem Display\n",
+        "\n",
+        "\n",
+        "### Animierter Puls\n",
+        "\n",
+        "\n",
+        "## Push vs. Pull {#sec-sensors-push-vs-pull .collapsable}\n",
+        "\n",
+        "Bisher haben wir unsere Sensoren immer aktiv nach neuen Werten gefragt. Erinnert euch an den Drehknopf aus @sec-numbers oder den Abstandssensor aus @sec-images, wo wir mit `knob.get_value()` bzw. `ir.get_distance()` die aktuellen Messwerte abgefragt haben. Dieses Vorgehen wird als \"Pull\" bezeichnet, da *wir* die Daten vom Sensor erfragen.\n",
+        "\n",
+        "Es gibt eine andere Möglichkeit, die oft praktischer ist: den \"Push\"-Ansatz. Dabei sendet der Sensor die Messwerte von sich aus an uns, sobald sie verfügbar sind. Wir müssen also nicht ständig nachfragen, sondern bekommen die Daten automatisch zugeschickt. Das hat den Vorteil, dass wir sofort über neue Messwerte informiert werden und nicht ständig den Sensor abfragen müssen. Ihr erinnert euch an die Endlosschleife, die nur dazu da war, um den Sensor kontinuierlich abzufragen, obwohl sich vielleicht lange Zeit überhaupt nichts verändert. Das ist mit dem Push-Ansatz passè.\n",
+        "\n",
+        "Das Prinzip ist mit einer Analogie einfach erklärt: Stellt euch vor ihr beschäftigt einen Wachdienst für euren Garten, weil ihr dort ein Gewächshaus mit hochwertigen Pflanzen betreibt. Der Wachdienst soll euch sofort informieren, wenn etwas Verdächtiges passiert, also zum Beispiel wenn eine unbefugt Person sich eurem Gewächshaus nähert. Wenn ihr hier das Pull-Prinzip anwenden würdet, müsstet ihr ständig zum Wachdienst laufen und fragen: \"Ist gerade etwas passiert?\" Das wäre ziemlich ineffizient und nervig. Wie häufig solltet ihr ihn anrufen, damit ihr nichts verpasst? \n",
+        "\n",
+        "Im Push-Prinzip informiert euch der Wachdienst stattdessen automatisch, sobald etwas passiert. Dazu gebt ihr dem Wachdienst eine Telefonnummer, unter der er euch anrufen kann, wenn es etwas zu melden gibt. Die Möglichkeit, dass der Wachsdienst euch kontaktieren kann, was hier über eine Telefonnummer geschieht, ist beim Push-Prinzip entscheidend. \n",
+        "\n",
+        "### Callback-Funktionen\n",
+        "\n",
+        "In der Programmmierung nennt man diese Telefonnummer eine \"Callback-Funktion\". Eine Callback-Funktion ist eine Funktion, die ihr definiert und dem Sensor übergebt. Sobald der Sensor neue Daten hat, ruft er diese Funktion auf und übergibt ihr die neuen Messwerte als Argumente. So könnt ihr sofort auf die neuen Daten reagieren, ohne ständig den Sensor abfragen zu müssen."
+      ],
+      "id": "5775b02a"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "def illuminance_callback(illuminance):\n",
+        "    print(f\"Helligkeit: {illuminance} lx\")"
+      ],
+      "id": "5b17aef5",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "color_sensor.register_callback(\n",
+        "    color_sensor.CALLBACK_ILLUMINANCE, # <1>\n",
+        "    illuminance_callback # <2>\n",
+        ")"
+      ],
+      "id": "9c2acd49",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "1. Hier geben wir an, dass wir die Callback-Funktion für das Ereignis \"Helligkeit gemessen\" registrieren möchten. Die existierende Ereignisse sind in der Tinkerforge-API dokumentiert.\n",
+        "2. Hier übergeben wir die Callback-Funktion, die aufgerufen werden soll, wenn das Ereignis eintritt. Diese Funktion müssen wir zuvor definiert haben.\n",
+        "\n",
+        "## Morse Code-Empfänger {#sec-sensors-morse-code-receiver .collapsable}\n",
+        "\n",
+        "## Pulsmesser {#sec-sensors-heart-rate-monitor .collapsable}\n",
+        "\n",
+        "## Dein Finger als Signalquelle\n",
+        "\n",
+        "Wir haben oben gesehen, dass der Farbsensor nicht nur die Farbe misst, sondern auch die allgemeine Lichtintensität, auch *Illuminance* genannt. Hier kommt eine spannende Tatsache ins Spiel: Das Prinzip, die Helligkeit zu messen, steckt hinter den Pulsmessern in Fitnesstrackern. Ja, genau der Sensor, der Licht misst, verrät dir, wie schnell dein Herz schlägt! Das Ganze nennt man auch [Photoplethysmografie](https://en.wikipedia.org/wiki/Photoplethysmogram).\n",
+        "\n",
+        "Aber wie genau funktioniert das? Stell dir vor, du legst deinen Zeigefinger direkt auf den Sensor und schaltest die integrierte weiße LED an. Das Licht der LED trifft auf deinen Finger und wird reflektiert. Dein Finger sieht für dich immer gleich aus, aber tatsächlich sorgt dein Herzschlag dafür, dass dein Finger mal minimal heller und mal dunkler erscheint. Das liegt daran, dass Blut in rhythmischen Schüben durch die Gefäße gepumpt wird. Diese winzigen Veränderungen, die du mit bloßem Auge nicht sehen kannst, werden vom sensiblen Farbsensor deutlich wahrgenommen.\n",
+        "\n",
+        "Schauen wir uns das einmal genauer an: Wenn du dir die gemessene Lichtintensität über den Zeitverlauf im Brick Viewer ansiehst, kannst du deinen Pulsschlag tatsächlich erkennen. Er wird sichtbar als kleine, regelmäßige Ausschläge oder *Peaks*. Faszinierend, oder? So kannst du beobachten, wie aus etwas so scheinbar Einfachem wie Licht ein Signal entsteht, das dir Informationen über deinen Körper liefert.\n",
+        "\n",
+        "![Dein Puls im Brick Viewer](/images/pulse_brick_viewer.png){fig-align=\"center\" width=100% #fig-analog-digital-pulse-brick-viewer .lightbox}\n",
+        "\n",
+        "Auch wenn du das Signal im Liniendiagramm in @fig-analog-digital-pulse-brick-viewer bereits deutlich sehen kannst, bleibt eine spannende Herausforderung bestehen: Wie schreiben wir ein Programm, das aus diesen Daten den Puls als konkrete Zahl, zum Beispiel \"60 Schläge pro Minute\", berechnet? Genau dafür sind wir ja hier, um herauszufinden, wie man solche kniffligen Aufgaben löst. Lass uns gemeinsam starten!\n",
+        "\n",
+        "## Licht an!"
+      ],
+      "id": "2ed83f51"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| eval: false\n",
+        "color_sensor.set_light(True) # <1>\n",
+        "color_sensor.set_configuration(1, 1) # <2>\n",
+        "illuminance = color_sensor.get_illuminance()"
+      ],
+      "id": "5366ef47",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "1. Schaltet die integrierte LED des Sensors an.\n",
+        "2. Stellt die Werte für *Gain* und *Integration Time* auf 4x und 24ms. Diese Einstellung scheinen gut zu funktionieren, um den Puls zu messen.\n",
+        "\n",
+        "Der zurückgegebene Wert hängt von zwei Einstellungen ab: *Gain* (Verstärkung) und *Integration Time* (Messzeit). Je länger die Messzeit, desto genauer die Werte – allerdings können dann weniger Messungen pro Sekunde durchgeführt werden. Laut Dokumentation können wir aus dem gemessenen Wert die Lichtintensität in Lux wie folgt berechnen:"
+      ],
+      "id": "c5ca9f1b"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| eval: false\n",
+        "illuminance_lux = illuminance * 700 / 4 / 24 # <1>"
+      ],
+      "id": "c59c2dcc",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "1. Der Wert 4 beschreibt ein 4-fache Verstärkung (*Gain*) und die 24 steht für 24ms *Integration Time*\n",
+        "\n",
+        "Um deinen Puls zu berechnen, müssen wir jetzt mehrere Werte in kurzen Abständen messen. Warum? Weil wir die regelmäßigen Tief- und Hochpunkte erkennen wollen. Ein Tiefpunkt entsteht, wenn dein Finger am dunkelsten ist, dann ist also gerade besonders viel Blut im Finger. Die Hochpunkte markieren dagegen den Moment, in dem das Blut größtenteils wieder zurückgeflossen ist. Jeder Herzschlag erzeugt genau einen Tief- und einen Hochpunkt. Finden wir diese Punkte, können wir einfach die Zeitabstände messen und daraus die Pulsfrequenz berechnen.\n",
+        "\n",
+        "Beginnen wir damit, unsere Messungen in einer Schleife durchzuführen. Das ist eine praktische Methode, kontinuierlich Daten zu erfassen:"
+      ],
+      "id": "aa8af464"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| eval: false\n",
+        "while True:\n",
+        "    illuminance = color_sensor.get_illuminance()\n",
+        "    illuminance_lux = illuminance * 700 / 4 / 24\n",
+        "    print(f\"Lichtintensität in Lux: {illuminance_lux}\")"
+      ],
+      "id": "eebb1f2b",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Das Rad nicht neu erfinden\n",
+        "\n",
+        "In der Programmierung lautet ein wichtiges Prinzip: Don't Repeat Yourself! Das gilt insbesondere für Code, den wir selbst geschrieben haben. Doppelte Logiken in unseren Programmen sind eine potenzielle Quelle für Inkonsistenzen und in der Folge Fehler oder unerwartetes Verhalten. Daher ist es gute Praxis, Code in Funktionen auszulagern, wenn wir ihn häufiger verwenden.\n",
+        "\n",
+        "Das DRY-Prinzip gilt aber nicht nur auf der Ebene der von uns geschriebenen Funktionen. Immer wenn wir ein Problem lösen wollen sollten wir uns uns zuerst überlegen, ob wir es überhaupt lösen müssen. Oder hat es nicht jemand anderes bereits gelöst und wir können die Lösung einfach verwenden? Dass wir nicht die ersten sind, die mithilfe eines Farbsensors und Python den Puls messen wollen, klingt schließlich naheliegend.\n",
+        "\n",
+        "Und so ist es auch: Eine kurze Recherche mit ChatGPT und wir bekommen eine Reihe an Vorschlägen für Bibliotheken, die Funktionen für die Messung von Pulssignalen mitbringen. Darunter auch [NeuroKit2](https://github.com/neuropsychology/NeuroKit), eine Python-Bibliothek, die ihre Autoren selbst als \"The Python Toolbox for Neurophysiological Signal Processing\" bezeichnen [@Makowski2021neurokit]. Schauen wir uns sie genauer an.\n",
+        "\n",
+        "Externe Bibliotheken müssen wir zunächst installieren. Dazu verwenden wir unseren Paketmanager `pip`:\n",
+        "\n",
+        "```\n",
+        "pip install neurokit2`\n",
+        "```\n",
+        "\n",
+        "Für Mac-User lautet der Befehl entsprechend:\n",
+        "\n",
+        "```\n",
+        "pip3 install neurokit2\n",
+        "```\n"
+      ],
+      "id": "bd56c23a"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "from collections import deque\n",
+        "import numpy as np\n",
+        "import neurokit2 as nk\n",
+        "\n",
+        "fps = 20\n",
+        "buf = deque(maxlen=10 * fps)\n",
+        "\n",
+        "def bpm_live(new_sample):\n",
+        "    buf.append(new_sample)\n",
+        "    if len(buf) < buf.maxlen:\n",
+        "        return None\n",
+        "\n",
+        "    window = np.asarray(buf, dtype=float)\n",
+        "    signals, _ = nk.ppg_process(window, sampling_rate=fps)\n",
+        "\n",
+        "    # robust: Median der letzten 3 Sekunden\n",
+        "    bpm = np.nanmedian(signals[\"PPG_Rate\"].to_numpy()[-3*fps:])\n",
+        "    return bpm"
+      ],
+      "id": "4d24d1c7",
+      "execution_count": null,
+      "outputs": []
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "C:\\code\\hands-on-computer-science-book\\.python-env\\share\\jupyter\\kernels\\python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

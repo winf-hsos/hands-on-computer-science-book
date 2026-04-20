@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.20">
+<meta name="generator" content="quarto-1.10.1">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -92,15 +92,14 @@ div.csl-indent {
 <link href="../part-1-dap/sensors.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-3512cbed9e2527d986e9b0b56d261405.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-cc6d6016adaf1c7a86dcaac46e77afcc.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-49c3f92b472d6b0034476396ca3297dc.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-b8d9931f9950fed7c9eff99d2a950632.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -350,9 +349,6 @@ div.csl-indent {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">Hands-On Computer Science</a> 
-        <div class="sidebar-tools-main">
-    <a href="../Hands-On-Computer-Science-Book.pdf" title="Download PDF" class="quarto-navigation-tool px-1" aria-label="Download PDF"><i class="bi bi-file-pdf"></i></a>
-</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -488,8 +484,27 @@ div.csl-indent {
   <li><a href="#experimentaufbau" id="toc-experimentaufbau" class="nav-link" data-scroll-target="#experimentaufbau"><span class="header-section-number">6.2</span> Experimentaufbau</a></li>
   <li><a href="#ein-chatbot-mit-python" id="toc-ein-chatbot-mit-python" class="nav-link" data-scroll-target="#ein-chatbot-mit-python"><span class="header-section-number">6.3</span> Ein Chatbot mit Python</a></li>
   <li><a href="#von-bauchgefühl-zu-regeln" id="toc-von-bauchgefühl-zu-regeln" class="nav-link" data-scroll-target="#von-bauchgefühl-zu-regeln"><span class="header-section-number">6.4</span> Von Bauchgefühl zu Regeln</a></li>
-  <li><a href="#laune-über-regeln-erkennen" id="toc-laune-über-regeln-erkennen" class="nav-link" data-scroll-target="#laune-über-regeln-erkennen"><span class="header-section-number">6.5</span> Laune über Regeln erkennen</a></li>
-  <li><a href="#lernbasierte-launeerkennung" id="toc-lernbasierte-launeerkennung" class="nav-link" data-scroll-target="#lernbasierte-launeerkennung"><span class="header-section-number">6.6</span> Lernbasierte Launeerkennung</a></li>
+  <li><a href="#laune-über-regeln-erkennen" id="toc-laune-über-regeln-erkennen" class="nav-link" data-scroll-target="#laune-über-regeln-erkennen"><span class="header-section-number">6.5</span> Laune über Regeln erkennen</a>
+  <ul class="collapse">
+  <li><a href="#grenzen-einfacher-regeln" id="toc-grenzen-einfacher-regeln" class="nav-link" data-scroll-target="#grenzen-einfacher-regeln"><span class="header-section-number">6.5.1</span> Grenzen einfacher Regeln</a></li>
+  <li><a href="#ein-viertes-label" id="toc-ein-viertes-label" class="nav-link" data-scroll-target="#ein-viertes-label"><span class="header-section-number">6.5.2</span> Ein viertes Label</a></li>
+  <li><a href="#fertige-datei-mood_rb.py" id="toc-fertige-datei-mood_rb.py" class="nav-link" data-scroll-target="#fertige-datei-mood_rb.py"><span class="header-section-number">6.5.3</span> Fertige Datei mood_rb.py</a></li>
+  </ul></li>
+  <li><a href="#lernbasierte-launeerkennung" id="toc-lernbasierte-launeerkennung" class="nav-link" data-scroll-target="#lernbasierte-launeerkennung"><span class="header-section-number">6.6</span> Lernbasierte Launeerkennung</a>
+  <ul class="collapse">
+  <li><a href="#erste-experimente-mit-chatgpt" id="toc-erste-experimente-mit-chatgpt" class="nav-link" data-scroll-target="#erste-experimente-mit-chatgpt"><span class="header-section-number">6.6.1</span> Erste Experimente mit ChatGPT</a></li>
+  <li><a href="#verbindung-zur-openai-api" id="toc-verbindung-zur-openai-api" class="nav-link" data-scroll-target="#verbindung-zur-openai-api"><span class="header-section-number">6.6.2</span> Verbindung zur OpenAI-API</a></li>
+  <li><a href="#die-erste-anfrage" id="toc-die-erste-anfrage" class="nav-link" data-scroll-target="#die-erste-anfrage"><span class="header-section-number">6.6.3</span> Die erste Anfrage</a></li>
+  <li><a href="#strukturierte-ausgaben" id="toc-strukturierte-ausgaben" class="nav-link" data-scroll-target="#strukturierte-ausgaben"><span class="header-section-number">6.6.4</span> Strukturierte Ausgaben</a></li>
+  <li><a href="#fertige-datei-mood_ml.py" id="toc-fertige-datei-mood_ml.py" class="nav-link" data-scroll-target="#fertige-datei-mood_ml.py"><span class="header-section-number">6.6.5</span> Fertige Datei mood_ml.py</a></li>
+  </ul></li>
+  <li><a href="#ergebnisse-vergleichen" id="toc-ergebnisse-vergleichen" class="nav-link" data-scroll-target="#ergebnisse-vergleichen"><span class="header-section-number">6.7</span> Ergebnisse vergleichen</a>
+  <ul class="collapse">
+  <li><a href="#testdaten-anlegen" id="toc-testdaten-anlegen" class="nav-link" data-scroll-target="#testdaten-anlegen"><span class="header-section-number">6.7.1</span> Testdaten anlegen</a></li>
+  <li><a href="#automatisch-testen" id="toc-automatisch-testen" class="nav-link" data-scroll-target="#automatisch-testen"><span class="header-section-number">6.7.2</span> Automatisch testen</a></li>
+  <li><a href="#verwirrungsmatrix" id="toc-verwirrungsmatrix" class="nav-link" data-scroll-target="#verwirrungsmatrix"><span class="header-section-number">6.7.3</span> Verwirrungsmatrix</a></li>
+  </ul></li>
+  <li><a href="#reflexion" id="toc-reflexion" class="nav-link" data-scroll-target="#reflexion"><span class="header-section-number">6.8</span> Reflexion</a></li>
   </ul>
 </nav>
     </div>
@@ -518,15 +533,15 @@ div.csl-indent {
 <section id="zusammenfassung" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="zusammenfassung"><span class="header-section-number">6.1</span> Zusammenfassung</h2>
 <p>Im ersten Teil des Buches haben wir wichtige Grundlagen der Programmierung gelernt. Wir haben gesehen, wie Computer Probleme lösen: Sie stellen Dinge aus der analogen Welt in einer digitalen Form dar und wenden dann Verarbeitungsschritte (Algorithmen) an, um daraus eine Lösung zu bauen. Dabei haben wir als Menschen die genauen Schritte vorgegeben und in einer Programmiersprache kodiert, in unserem Beispiel mit Python.</p>
-<p>Im zweiten Teil des Buches, der mit diesem Kapitel beginnt, schauen wir uns eine ganz andere Herangehensweise an: <strong>maschinelles Lernen</strong>. Dabei geben wir dem Computer nicht mehr jeden einzelnen Schritt zur Lösung vor. Stattdessen soll er die Logik selbst entdecken - oder <em>lernen</em>. Aber wie können Computer lernen? Indem wir ihm viele bereits gelöste Beispiele als Daten zeigen und ihn so trainieren, dass er aus diesen Beispielen Regeln ableitet. Die Hoffnung ist: Mit diesen gelernten Regeln kann er auch neue Fälle lösen, die er noch nie gesehen hat.</p>
-<p>Wenn Computer aus Beispielen lernen sollen: Was machen wir Menschen dann überhaupt noch, wenn wir nicht mehr alle Regeln selbst aufschreiben? Genau hier liegt der große Unterschied.</p>
+<p>Im zweiten Teil des Buches, der mit diesem Kapitel beginnt, schauen wir uns eine ganz andere Herangehensweise an: <strong>maschinelles Lernen</strong>. Dabei geben wir dem Computer nicht mehr jeden einzelnen Schritt zur Lösung vor. Stattdessen soll er die Logik selbst entdecken — oder <em>lernen</em>. Aber wie können Computer lernen? Indem wir ihm viele bereits gelöste Beispiele als Daten zeigen und ihn so trainieren, dass er aus diesen Beispielen Regeln ableitet. Die Hoffnung ist: Mit diesen gelernten Regeln kann er auch neue Fälle lösen, die er noch nie gesehen hat.</p>
+<p>Wenn Computer aus Beispielen lernen sollen — was machen wir Menschen dann überhaupt noch, wenn wir nicht mehr alle Regeln selbst aufschreiben? Genau hier liegt der große Unterschied.</p>
 <p>Der Wechsel von “<em>Menschen geben dem Computer die Regeln für die Lösung vor</em>” zu “<em>Menschen lassen den Computer die Regeln erlernen</em>” ist ein <strong>Paradigmenwechsel</strong>. Zwar müssen wir Menschen weiterhin Regeln entwerfen, aber nicht mehr für die Lösung selbst. Stattdessen entwerfen wir einen Algorithmus, der es Computern ermöglicht, aus Daten zu lernen. Wir sprechen dann von <em>Algorithmen des maschinellen Lernens</em>.</p>
 <p>In diesem Kapitel führen wir gemeinsam ein Experiment durch, um die regelbasierte Lösung eines konkreten Problems einer lernbasierten Lösung gegenüberzustellen. Stellt euch vor, eure Firma hat einen Chatbot auf der Webseite platziert, der Kundenanfragen entgegennimmt. Der Chatbot spricht mit den Kunden und fragt sie nach ihrem Anliegen, bevor er sie an einen menschlichen Mitarbeiter weiterleitet. Der Chatbot soll auf Basis der Kundenantworten einen Hinweis geben, ob der Kunde gute oder schlechte Laune hat. Die Kernfrage ist also: Wie kann der Chatbot die Laune eines Kunden anhand der Chatnachrichten erkennen?</p>
 </section>
 <section id="experimentaufbau" class="level2" data-number="6.2">
 <h2 data-number="6.2" class="anchored" data-anchor-id="experimentaufbau"><span class="header-section-number">6.2</span> Experimentaufbau</h2>
 <p>Für das Experiment benötigen wir eine LED (<a href="https://www.tinkerforge.com/en/doc/Hardware/Bricklets/RGB_LED_V2.html">RGB LED Bricklet 2.0</a>), die wir aus dem ersten Teil des Buches bereits kennen. Damit wir die LED steuern können, benötigen wir auch den passenden Mikrocontroller (<a href="https://www.tinkerforge.com/de/shop/master-brick.html">Master Brick 3.2</a>). Wir können also das komplette Hardware-Setup aus <a href="../part-1-dap/colors.html" class="quarto-xref"><span>Kapitel 1</span></a> wiederverwenden.</p>
-<p>Die vollsändige Hardwareliste für dieses Kapitel sieht so aus:</p>
+<p>Die vollständige Hardwareliste für dieses Kapitel sieht so aus:</p>
 <ul>
 <li>1 x <a href="https://www.tinkerforge.com/de/doc/Hardware/Bricks/Master_Brick.html">Master Brick 3.2</a></li>
 <li>1 x <a href="https://www.tinkerforge.com/en/doc/Hardware/Bricklets/RGB_LED_V2.html">RGB LED Bricklet 2.0</a></li>
@@ -584,25 +599,69 @@ Abbildung&nbsp;6.1: Das Hardware-Setup aus <a href="../part-1-dap/colors.html" c
 </figcaption>
 </figure>
 </div>
-<p>Wozu die LED? Über die LED wird dem menschlichen Mitarbeiter signalisiert, ob der Chatbot glaubt, dass der Kunde gute oder schlechte Laune hat. Die LED soll grün leuchten, wenn der Kunde gute Laune hat und ein positives Anliegen (Lob, eine Bestellung, eine konstruktive Kritik) äußert. Sie soll rot leuchten, wenn der Kunde schlechte Laune hat und ein negatives Anliegen (Beschwerde, Rückgabe, wütende Nachricht) äußert. Sollte der Chatbot unsicher sein, weil die Nachricht unklar ist, soll die LED blau leuchten.</p>
-<p>Neben der LED als Hardware, benötigen für dieses Experiment auch etwas auf der Softwareseite. Wir werden im zweiten Teil des Experiments auf ein Sprachmodell der Firma OpenAI, das auch in ChatGPT verwendet wird, zurückgreifen und in unsere Lösung einbauen. Wir wollen überprüfen, ob und wie ein Sprachmodell in der Lage ist, bei der Lösung des beschriebenen Problems zu helfen. Damit wir aus unserem Python-Programm auf ein Modell wie GPT-5.4 zugreifen können, benötigen wir zum einen die passende Softwarebibliothek für Python, die von OpenAI bereitgestellt wird. Zum anderen benötigen wir einen API-Schlüssel, damit OpenAI weiß, wer wir sind und unsere Modellnutzung abrechnen kann.</p>
-<p>Die Softwarebibliothek von OpenAI könnt ihr mit folgendem Befehl installieren. Achtet darauf, dass ihr eure virtuelle Python-Umgebung vorher aktiviert habt, wenn ihr eine verwendet, <a href="../preparation.html#python-umgebung">was ich euch empfehle</a>:</p>
+<p>Wozu die LED? Über die LED wird dem menschlichen Mitarbeiter signalisiert, ob der Chatbot glaubt, dass der Kunde gute oder schlechte Laune hat. Die LED soll grün leuchten, wenn der Kunde gute Laune hat und ein positives Anliegen äußert, zum Beispiel Lob, eine Bestellung oder konstruktive Kritik. Sie soll rot leuchten, wenn der Kunde schlechte Laune hat und ein negatives Anliegen äußert, zum Beispiel eine Beschwerde, eine Rückgabe oder eine wütende Nachricht. Sollte der Chatbot unsicher sein, weil die Nachricht unklar ist, soll die LED blau leuchten.</p>
+<p>Neben der LED als Hardware benötigen wir für dieses Experiment auch etwas Zusätzliches auf der Softwareseite. Wir werden im zweiten Teil des Experiments auf ein Sprachmodell von OpenAI zurückgreifen, das auch hinter ChatGPT steckt, und es in unsere Lösung einbauen. Damit wir aus unserem Python-Programm auf dieses Modell zugreifen können, brauchen wir die passende Softwarebibliothek sowie einen API-Schlüssel, damit OpenAI weiß, wer wir sind und unsere Modellnutzung abrechnen kann.</p>
+<p>Die Softwarebibliothek von OpenAI installiert ihr mit folgendem Befehl. Achtet darauf, dass ihr eure virtuelle Python-Umgebung vorher aktiviert habt, wenn ihr eine verwendet, <a href="../preparation.html#python-umgebung">was ich euch empfehle</a>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="ex">pip</span> install openai</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Den API-Schlüssel bekommt ihr im Rahmen einer Lehrveranstaltung direkt von mir. Solltet ihr nicht an der Hochschule Osnabrück studieren, könnt ihr euch auf der <a href="https://platform.openai.com/signup">OpenAI-Website</a> registrieren und einen eigenen API-Schlüssel generieren. Die Kosten, die euch für dieses Experiment entstehen, sind mit wenigen Cents sehr gering.</p>
 </section>
 <section id="ein-chatbot-mit-python" class="level2" data-number="6.3">
 <h2 data-number="6.3" class="anchored" data-anchor-id="ein-chatbot-mit-python"><span class="header-section-number">6.3</span> Ein Chatbot mit Python</h2>
-<p>Um unnötigen Aufwand zu vermeiden, erstellen wir uns im ersten Schritt einen einfachen Chat auf Basis eines Python-Programms. Der Chat soll dabei keine richtige Chatoberfläche haben, wie ihr sie aus ChatGPT und Konsorten kennt, sondern einfach über die Kommandozeile (Terminal) laufen. Schließlich geht es in diesem Kapitel um den Unterschied zwischen Regeln und Lernen und nicht um die Entwicklung von Benutzeroberflächen.</p>
-<p>Das Python-Programm soll dabei die Rolle des Chatbots übernehmen. Es soll also die Kundenanfrage entgegennehmen, die Laune des Kunden erkennen und die LED entsprechend steuern. Wie wir eine Texteingabe vom Nutzer über die Kommandozeile entgegennehmen, haben wir bereits in <a href="../part-1-dap/images.html" class="quarto-xref"><span>Kapitel 4</span></a> kurz gesehen. Dort ging es allerdings nur um das Drücken der ENTER-Taste, damit das Programm fortfährt. Mit derselben Funktion können wir aber auch Texteingaben verarbeiten.</p>
-<div id="a8e57c0c" class="cell" data-execution_count="1">
+<p>Um unnötigen Aufwand zu vermeiden, erstellen wir im ersten Schritt einen einfachen Chat auf Basis eines Python-Programms. Der Chat soll keine richtige Chatoberfläche haben, wie ihr sie aus ChatGPT kennt, sondern einfach über die Kommandozeile laufen. Schließlich geht es in diesem Kapitel um den Unterschied zwischen Regeln und Lernen und nicht um die Entwicklung von Benutzeroberflächen.</p>
+<p>Das Python-Programm übernimmt dabei die Rolle des Chatbots. Es nimmt die Kundenanfrage entgegen, erkennt die Laune des Kunden und steuert die LED entsprechend. Wie wir eine Texteingabe vom Nutzer über die Kommandozeile entgegennehmen, haben wir bereits in <a href="../part-1-dap/images.html" class="quarto-xref"><span>Kapitel 4</span></a> kurz gesehen. Dort ging es allerdings nur um das Drücken der ENTER-Taste, damit das Programm fortfährt. Mit derselben Funktion können wir aber auch beliebigen Text einlesen:</p>
+<div id="a3f085b0" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>message <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Deine Chatnachricht: "</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+<p>Sobald der Nutzer einen Text eingibt und ENTER drückt, speichert Python die Eingabe in der Variable <code>message</code>. Wir können sie dann weiterverarbeiten.</p>
+<p>Damit unser Chatbot mehrere Nachrichten nacheinander entgegennehmen kann, brauchen wir eine Schleife. Sie soll so lange laufen, bis der Nutzer <code>bye</code> eingibt:</p>
+<div id="3b7c3cc7" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb3-2"><a href="#cb3-2"></a>    message <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Deine Nachricht: "</span>)</span>
+<span id="cb3-3"><a href="#cb3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4"></a>    <span class="cf">if</span> message <span class="op">==</span> <span class="st">"bye"</span>:</span>
+<span id="cb3-5"><a href="#cb3-5"></a>        <span class="bu">print</span>(<span class="st">"Tschüss!"</span>)</span>
+<span id="cb3-6"><a href="#cb3-6"></a>        <span class="cf">break</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a></span>
+<span id="cb3-8"><a href="#cb3-8"></a>    <span class="bu">print</span>(<span class="st">"Empfangen:"</span>, message)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Jetzt fügen wir die Verbindung zur LED hinzu. Legt eine neue Datei namens <code>mood_rb.py</code> an — das <code>rb</code> steht für <em>rule-based</em>, also regelbasiert. Das ist die Datei, die wir im weiteren Verlauf schrittweise ausbauen:</p>
+<div id="0fb5c5b6" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># mood_rb.py</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="co"># Stimmungserkennung mit einem regelbasierten Ansatz</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="im">from</span> tinkerforge.bricklet_rgb_led_v2 <span class="im">import</span> BrickletRGBLEDV2</span>
+<span id="cb4-6"><a href="#cb4-6"></a></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="co"># Verbindung zum Master Brick herstellen</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a>ipcon <span class="op">=</span> IPConnection()</span>
+<span id="cb4-9"><a href="#cb4-9"></a>ipcon.<span class="ex">connect</span>(<span class="st">"localhost"</span>, <span class="dv">4223</span>)</span>
+<span id="cb4-10"><a href="#cb4-10"></a></span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="co"># LED-Bricklet initialisieren (UID bitte anpassen!)</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a>led <span class="op">=</span> BrickletRGBLEDV2(<span class="st">"xxx"</span>, ipcon)</span>
+<span id="cb4-13"><a href="#cb4-13"></a></span>
+<span id="cb4-14"><a href="#cb4-14"></a><span class="co"># LED zu Beginn ausschalten</span></span>
+<span id="cb4-15"><a href="#cb4-15"></a>led.set_rgb_value(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb4-16"><a href="#cb4-16"></a></span>
+<span id="cb4-17"><a href="#cb4-17"></a><span class="co"># Schleife: Nachrichten empfangen, bis der Nutzer "bye" eingibt</span></span>
+<span id="cb4-18"><a href="#cb4-18"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb4-19"><a href="#cb4-19"></a>    message <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Deine Nachricht: "</span>)</span>
+<span id="cb4-20"><a href="#cb4-20"></a></span>
+<span id="cb4-21"><a href="#cb4-21"></a>    <span class="cf">if</span> message <span class="op">==</span> <span class="st">"bye"</span>:</span>
+<span id="cb4-22"><a href="#cb4-22"></a>        <span class="bu">print</span>(<span class="st">"Tschüss!"</span>)</span>
+<span id="cb4-23"><a href="#cb4-23"></a>        <span class="cf">break</span></span>
+<span id="cb4-24"><a href="#cb4-24"></a></span>
+<span id="cb4-25"><a href="#cb4-25"></a>    <span class="bu">print</span>(<span class="st">"Empfangen:"</span>, message)</span>
+<span id="cb4-26"><a href="#cb4-26"></a></span>
+<span id="cb4-27"><a href="#cb4-27"></a><span class="co"># Verbindung am Ende trennen</span></span>
+<span id="cb4-28"><a href="#cb4-28"></a>ipcon.disconnect()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Testet das Programm kurz, bevor ihr weitermacht. Stellt sicher, dass die LED beim Start ausgeschaltet ist und dass ihr Nachrichten eintippen könnt. Ab jetzt habt ihr die Grundstruktur — sie bleibt, und wir fügen Schritt für Schritt die eigentliche Erkennungslogik hinzu.</p>
 </section>
 <section id="von-bauchgefühl-zu-regeln" class="level2" data-number="6.4">
 <h2 data-number="6.4" class="anchored" data-anchor-id="von-bauchgefühl-zu-regeln"><span class="header-section-number">6.4</span> Von Bauchgefühl zu Regeln</h2>
-<p>Stellt euch zunächst einmal vor, es gibt keinen vorgeschalteten Chatbot. Die Kunden schreiben direkt in einem Chatfenster mit einem menschlichen Mitarbeitenden. Der Mitarbeitende soll die Kundenanfragen entgegennehmen und die Laune der Kunden erkennen, um entsprechend zu reagieren. Wie geht er dabei vor?</p>
-<p>Die Antwort ist vielleicht enttäuschend: Er wendet keine expliziten Regeln an, sondern er erkennt <em>intuitiv</em>, ob eine Nachricht einen guten oder schlechet Vibe hat. Wir Menschen, sagen wir die meisten von uns, haben durch Erfahrung und viele Gespräche gelernt, wie wir die Laune eines Menschen anhand seiner Worte einschätzen können. Wir haben also ein Bauchgefühl dafür entwickelt, ob eine Nachricht positiv oder negativ ist. Das ist eine Art von <em>implizitem Wissen</em>, das wir nicht in Form von Regeln ausdrücken können. Es ist einfach da, und wir nutzen es, um mit anderen Menschen zu kommunizieren.</p>
-<p>Wenn wir also die folgenden Sätze lesen, haben wir wahrscheinlich sofort ein Gefühl dafür, ob sie positiv, negativ oder neutral sind:</p>
+<p>Bevor wir die erste Zeile Erkennungslogik schreiben, machen wir einen kurzen Schritt zurück. Denn um Regeln programmieren zu können, müssen wir erst wissen: Was für Regeln sind das überhaupt?</p>
+<p>Stellt euch vor, ein menschlicher Mitarbeiter liest die Nachrichten der Kunden und entscheidet intuitiv, ob jemand gute oder schlechte Laune hat — ohne darüber groß nachzudenken. Die meisten von uns können das, weil wir durch Erfahrung und viele Gespräche gelernt haben, wie wir die Stimmung eines Menschen anhand seiner Worte einschätzen können. Dieses Wissen ist <em>implizit</em>: Es ist einfach da, und wir nutzen es, ohne es je explizit formuliert zu haben.</p>
+<p>Wenn ihr die folgenden zehn Sätze lest, habt ihr wahrscheinlich sofort ein Gefühl dafür, wie die jeweilige Person gestimmt ist:</p>
 <ol type="a">
 <li>Not bad at all, actually.</li>
 <li>Well, that could have gone worse.</li>
@@ -615,12 +674,530 @@ Abbildung&nbsp;6.1: Das Hardware-Setup aus <a href="../part-1-dap/colors.html" c
 <li>I can live with that.</li>
 <li>It’s working, though I don’t feel great about it.</li>
 </ol>
+<p>Probiert es aus: Lest jeden Satz und entscheidet euch für eines der Labels <em>good</em>, <em>bad</em> oder <em>neutral</em>. Macht das zuerst für euch alleine, dann vergleicht ihr eure Ergebnisse mit denen einer aneren Person (einer Kommilitonin oder einem Kommilitonen, Bruder/Schwester, Eltern). Für jeden Satz, bei dem ihr unterschiedliche Entscheidungen getroffen habt, schreibt auf, welche Regel ihr angewendet habt — oder zu haben glaubt. Diese Regeln sind der Rohstoff für den nächsten Schritt. Genau sie wollen wir jetzt in Python übersetzen.</p>
 </section>
 <section id="laune-über-regeln-erkennen" class="level2" data-number="6.5">
 <h2 data-number="6.5" class="anchored" data-anchor-id="laune-über-regeln-erkennen"><span class="header-section-number">6.5</span> Laune über Regeln erkennen</h2>
+<p>Wie lässt sich das, was wir intuitiv können, in ein Programm übersetzen? Der naheliegendste Ansatz ist ein <em>regelbasiertes System</em>: Wir überlegen uns, welche Wörter typischerweise auf eine gute oder schlechte Stimmung hinweisen, und prüfen dann, ob eines dieser Wörter in der eingehenden Nachricht vorkommt.</p>
+<p>Beginnen wir mit zwei Listen, eine für positive Wörter, eine für negative:</p>
+<div id="09e6bdea" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a><span class="co"># Wörter, die auf gute Stimmung hinweisen</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>good_words <span class="op">=</span> [<span class="st">"great"</span>, <span class="st">"fantastic"</span>, <span class="st">"happy"</span>, <span class="st">"good"</span>, <span class="st">"wonderful"</span>,</span>
+<span id="cb5-3"><a href="#cb5-3"></a>              <span class="st">"excellent"</span>, <span class="st">"love"</span>, <span class="st">"perfect"</span>, <span class="st">"okay"</span>, <span class="st">"fine"</span>, <span class="st">"glad"</span>]</span>
+<span id="cb5-4"><a href="#cb5-4"></a></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="co"># Wörter, die auf schlechte Stimmung hinweisen</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a>bad_words <span class="op">=</span> [<span class="st">"bad"</span>, <span class="st">"terrible"</span>, <span class="st">"awful"</span>, <span class="st">"broken"</span>, <span class="st">"problem"</span>,</span>
+<span id="cb5-7"><a href="#cb5-7"></a>             <span class="st">"hate"</span>, <span class="st">"wrong"</span>, <span class="st">"angry"</span>, <span class="st">"annoyed"</span>, <span class="st">"frustrated"</span>]</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Diese Listen sind unser Regelwerk. Sie legen fest, welche Bedeutung wir einem Wort zuordnen. Natürlich sind solche Listen nie vollständig. Aber sie reichen als Ausgangspunkt.</p>
+<p>Als nächstes schreiben wir eine Funktion, die eine Nachricht entgegennimmt und eines der Labels zurückgibt. Wir wandeln die Nachricht zuerst in Kleinbuchstaben um, damit Groß- und Kleinschreibung keine Rolle spielt:</p>
+<div id="3c9d275b" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a><span class="kw">def</span> detect_mood(message):</span>
+<span id="cb6-2"><a href="#cb6-2"></a>    <span class="co"># In Kleinbuchstaben umwandeln, damit "Bad" und "bad" gleich behandelt werden</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a>    message_lower <span class="op">=</span> message.lower()</span>
+<span id="cb6-4"><a href="#cb6-4"></a></span>
+<span id="cb6-5"><a href="#cb6-5"></a>    <span class="co"># Prüfen, ob ein negatives Wort vorkommt</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a>    <span class="cf">for</span> word <span class="kw">in</span> bad_words:</span>
+<span id="cb6-7"><a href="#cb6-7"></a>        <span class="cf">if</span> word <span class="kw">in</span> message_lower:</span>
+<span id="cb6-8"><a href="#cb6-8"></a>            <span class="cf">return</span> <span class="st">"bad"</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a></span>
+<span id="cb6-10"><a href="#cb6-10"></a>    <span class="co"># Prüfen, ob ein positives Wort vorkommt</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a>    <span class="cf">for</span> word <span class="kw">in</span> good_words:</span>
+<span id="cb6-12"><a href="#cb6-12"></a>        <span class="cf">if</span> word <span class="kw">in</span> message_lower:</span>
+<span id="cb6-13"><a href="#cb6-13"></a>            <span class="cf">return</span> <span class="st">"good"</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a></span>
+<span id="cb6-15"><a href="#cb6-15"></a>    <span class="co"># Kein bekanntes Wort gefunden</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a>    <span class="cf">return</span> <span class="st">"neutral"</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Jetzt können wir die Funktion in die Chatbot-Schleife einbauen und die LED entsprechend steuern. Fügt diese Zeilen nach <code>print("Empfangen:", message)</code> ein:</p>
+<div id="cd566368" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a><span class="co"># Stimmung erkennen</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>mood <span class="op">=</span> detect_mood(message)</span>
+<span id="cb7-3"><a href="#cb7-3"></a></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="co"># LED-Farbe anhand der Stimmung setzen</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="cf">if</span> mood <span class="op">==</span> <span class="st">"good"</span>:</span>
+<span id="cb7-6"><a href="#cb7-6"></a>    led.set_rgb_value(<span class="dv">0</span>, <span class="dv">255</span>, <span class="dv">0</span>)    <span class="co"># grün: gute Stimmung</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="cf">elif</span> mood <span class="op">==</span> <span class="st">"bad"</span>:</span>
+<span id="cb7-8"><a href="#cb7-8"></a>    led.set_rgb_value(<span class="dv">255</span>, <span class="dv">0</span>, <span class="dv">0</span>)    <span class="co"># rot: schlechte Stimmung</span></span>
+<span id="cb7-9"><a href="#cb7-9"></a><span class="cf">else</span>:</span>
+<span id="cb7-10"><a href="#cb7-10"></a>    led.set_rgb_value(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">255</span>)    <span class="co"># blau: unbekannt</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Testet euren Detektor jetzt auf den zehn Sätzen von oben. Wie viele erkennt er richtig? Wo schlägt er fehl?</p>
+<p>Ihr werdet schnell merken, dass einige Sätze das System vor Probleme stellen. Satz d — „Oh great, another problem.” — enthält das Wort „great”, das eigentlich für gute Stimmung steht, aber der Satz ist sarkastisch gemeint. Satz e — „I’m not unhappy with the result.” — enthält das Wort „unhappy”, aber das „not” davor dreht die Bedeutung ins Positive. Einfache Wortlisten können solche sprachlichen Feinheiten nicht abbilden.</p>
+<section id="grenzen-einfacher-regeln" class="level3" data-number="6.5.1">
+<h3 data-number="6.5.1" class="anchored" data-anchor-id="grenzen-einfacher-regeln"><span class="header-section-number">6.5.1</span> Grenzen einfacher Regeln</h3>
+<p>Geht weiter auf Fehlersuche und schaut euch die Funktion genau an. Was passiert bei Satz j — „It’s working, though I don’t feel great about it.”? Die Nachricht enthält das positive Wort „great” und kein negatives Wort aus unserer Liste — also gibt die Funktion <code>"good"</code> zurück. Aber die Nachricht drückt eher Ambivalenz aus, kein positives Gefühl.</p>
+<p>Das liegt an einem grundlegenden Problem: Die Funktion gibt beim <em>ersten Treffer</em> sofort ein Ergebnis zurück. Welches Wort zuerst gefunden wird, hängt von der Reihenfolge in den Listen und der Position im Satz ab — nicht davon, was die Nachricht als Ganzes aussagt.</p>
+<p>Ein robusterer Ansatz wäre, alle Signale in der Nachricht zu <em>zählen</em>: Wie viele positive Wörter kommen vor? Wie viele negative? Das Label mit dem höheren Zählwert gewinnt. Damit kann eine einzige Erwähnung eines negativen Wortes nicht mehr alle positiven Signale übertrumpfen:</p>
+<div id="c8c83981" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">def</span> detect_mood_counting(message):</span>
+<span id="cb8-2"><a href="#cb8-2"></a>    message_lower <span class="op">=</span> message.lower()</span>
+<span id="cb8-3"><a href="#cb8-3"></a></span>
+<span id="cb8-4"><a href="#cb8-4"></a>    <span class="co"># Positive und negative Treffer zählen</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a>    good_count <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a>    bad_count  <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a></span>
+<span id="cb8-8"><a href="#cb8-8"></a>    <span class="cf">for</span> word <span class="kw">in</span> good_words:</span>
+<span id="cb8-9"><a href="#cb8-9"></a>        <span class="cf">if</span> word <span class="kw">in</span> message_lower:</span>
+<span id="cb8-10"><a href="#cb8-10"></a>            good_count <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb8-11"><a href="#cb8-11"></a></span>
+<span id="cb8-12"><a href="#cb8-12"></a>    <span class="cf">for</span> word <span class="kw">in</span> bad_words:</span>
+<span id="cb8-13"><a href="#cb8-13"></a>        <span class="cf">if</span> word <span class="kw">in</span> message_lower:</span>
+<span id="cb8-14"><a href="#cb8-14"></a>            bad_count <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb8-15"><a href="#cb8-15"></a></span>
+<span id="cb8-16"><a href="#cb8-16"></a>    <span class="co"># Das Label mit dem höheren Zählwert gewinnt</span></span>
+<span id="cb8-17"><a href="#cb8-17"></a>    <span class="cf">if</span> good_count <span class="op">&gt;</span> bad_count:</span>
+<span id="cb8-18"><a href="#cb8-18"></a>        <span class="cf">return</span> <span class="st">"good"</span></span>
+<span id="cb8-19"><a href="#cb8-19"></a>    <span class="cf">elif</span> bad_count <span class="op">&gt;</span> good_count:</span>
+<span id="cb8-20"><a href="#cb8-20"></a>        <span class="cf">return</span> <span class="st">"bad"</span></span>
+<span id="cb8-21"><a href="#cb8-21"></a>    <span class="cf">else</span>:</span>
+<span id="cb8-22"><a href="#cb8-22"></a>        <span class="cf">return</span> <span class="st">"neutral"</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Auch dieser Ansatz hat Grenzen. Bei einem Gleichstand zwischen positiven und negativen Treffern wird die Nachricht als neutral eingestuft — obwohl sie vielleicht einfach gemischte Gefühle ausdrückt. Negationen wie „not good” werden nach wie vor nicht erkannt. Und was ist mit Intensitäten: Ist „absolutely fantastic” stärker als „okay”?</p>
+<p>Das ist eine zentrale Erkenntnis über regelbasierte Systeme: Je näher sie der Wirklichkeit kommen sollen, desto komplexer werden die Regeln. Für jede Ausnahme brauchen wir eine neue Regel — und mit jeder neuen Regel steigt die Wahrscheinlichkeit, dass irgendwo eine andere Regel bricht. Irgendwann wird das System unbeherrschbar.</p>
+</section>
+<section id="ein-viertes-label" class="level3" data-number="6.5.2">
+<h3 data-number="6.5.2" class="anchored" data-anchor-id="ein-viertes-label"><span class="header-section-number">6.5.2</span> Ein viertes Label</h3>
+<p>Drei Labels reichen oft nicht. Manche Nachrichten lassen sich als positiv oder negativ einordnen, aber das trifft ihre eigentliche Bedeutung nicht. Satz d und Satz f sind gute Beispiele dafür: Sie klingen positiv, meinen aber das Gegenteil. Das ist <em>Sarkasmus</em> — und Sarkasmus ist für regelbasierte Systeme besonders schwer zu erkennen, weil die Wörter und die gemeinte Bedeutung auseinanderfallen.</p>
+<p>Wählt gemeinsam ein viertes Label für euer System. Ein guter Kandidat ist <em>sarcastic</em>. Ergänzt eure Wortlisten um typische sarkastische Formulierungen. Sarkasmus lässt sich oft an festen Phrasen erkennen, daher verwenden wir diesmal keine einzelnen Wörter, sondern ganze Ausdrücke:</p>
+<div id="1d078ccf" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="co"># Phrasen, die auf Sarkasmus hinweisen</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>sarcastic_phrases <span class="op">=</span> [<span class="st">"oh great"</span>, <span class="st">"just perfect"</span>, <span class="st">"fantastic... now"</span>,</span>
+<span id="cb9-3"><a href="#cb9-3"></a>                     <span class="st">"yeah right"</span>, <span class="st">"how wonderful"</span>, <span class="st">"oh sure"</span>]</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Passt jetzt die Funktion <code>detect_mood</code> an. Sarkasmus soll zuerst geprüft werden, weil er Vorrang vor einfachen Worttreffern hat — ein sarkastisches „oh great” soll nicht als gute Stimmung erkannt werden:</p>
+<div id="f5639d1b" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">def</span> detect_mood(message):</span>
+<span id="cb10-2"><a href="#cb10-2"></a>    message_lower <span class="op">=</span> message.lower()</span>
+<span id="cb10-3"><a href="#cb10-3"></a></span>
+<span id="cb10-4"><a href="#cb10-4"></a>    <span class="co"># Erst auf Sarkasmus prüfen — hat Vorrang vor den anderen Labels</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a>    <span class="cf">for</span> phrase <span class="kw">in</span> sarcastic_phrases:</span>
+<span id="cb10-6"><a href="#cb10-6"></a>        <span class="cf">if</span> phrase <span class="kw">in</span> message_lower:</span>
+<span id="cb10-7"><a href="#cb10-7"></a>            <span class="cf">return</span> <span class="st">"sarcastic"</span></span>
+<span id="cb10-8"><a href="#cb10-8"></a></span>
+<span id="cb10-9"><a href="#cb10-9"></a>    <span class="co"># Dann auf schlechte Stimmung prüfen</span></span>
+<span id="cb10-10"><a href="#cb10-10"></a>    <span class="cf">for</span> word <span class="kw">in</span> bad_words:</span>
+<span id="cb10-11"><a href="#cb10-11"></a>        <span class="cf">if</span> word <span class="kw">in</span> message_lower:</span>
+<span id="cb10-12"><a href="#cb10-12"></a>            <span class="cf">return</span> <span class="st">"bad"</span></span>
+<span id="cb10-13"><a href="#cb10-13"></a></span>
+<span id="cb10-14"><a href="#cb10-14"></a>    <span class="co"># Dann auf gute Stimmung prüfen</span></span>
+<span id="cb10-15"><a href="#cb10-15"></a>    <span class="cf">for</span> word <span class="kw">in</span> good_words:</span>
+<span id="cb10-16"><a href="#cb10-16"></a>        <span class="cf">if</span> word <span class="kw">in</span> message_lower:</span>
+<span id="cb10-17"><a href="#cb10-17"></a>            <span class="cf">return</span> <span class="st">"good"</span></span>
+<span id="cb10-18"><a href="#cb10-18"></a></span>
+<span id="cb10-19"><a href="#cb10-19"></a>    <span class="co"># Kein bekanntes Muster gefunden</span></span>
+<span id="cb10-20"><a href="#cb10-20"></a>    <span class="cf">return</span> <span class="st">"neutral"</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Und die LED-Steuerung bekommt eine neue Farbe für das vierte Label:</p>
+<div id="36715ebb" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a><span class="cf">if</span> mood <span class="op">==</span> <span class="st">"good"</span>:</span>
+<span id="cb11-2"><a href="#cb11-2"></a>    led.set_rgb_value(<span class="dv">0</span>, <span class="dv">255</span>, <span class="dv">0</span>)      <span class="co"># grün</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="cf">elif</span> mood <span class="op">==</span> <span class="st">"bad"</span>:</span>
+<span id="cb11-4"><a href="#cb11-4"></a>    led.set_rgb_value(<span class="dv">255</span>, <span class="dv">0</span>, <span class="dv">0</span>)      <span class="co"># rot</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a><span class="cf">elif</span> mood <span class="op">==</span> <span class="st">"sarcastic"</span>:</span>
+<span id="cb11-6"><a href="#cb11-6"></a>    led.set_rgb_value(<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">0</span>)    <span class="co"># gelb</span></span>
+<span id="cb11-7"><a href="#cb11-7"></a><span class="cf">else</span>:</span>
+<span id="cb11-8"><a href="#cb11-8"></a>    led.set_rgb_value(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">255</span>)      <span class="co"># blau</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Überlegt dabei: Was verrät die Wahl dieses vierten Labels über eure Annahmen zu menschlicher Kommunikation? Und welche Stimmungen gibt es, die ihr mit keinem eurer vier Labels erfassen könnt?</p>
+</section>
+<section id="fertige-datei-mood_rb.py" class="level3" data-number="6.5.3">
+<h3 data-number="6.5.3" class="anchored" data-anchor-id="fertige-datei-mood_rb.py"><span class="header-section-number">6.5.3</span> Fertige Datei mood_rb.py</h3>
+<p>Hier ist die vollständige <code>mood_rb.py</code> mit allem, was wir bisher entwickelt haben:</p>
+<div id="212179bd" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a><span class="co"># mood_rb.py</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="co"># Stimmungserkennung mit einem regelbasierten Ansatz</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a></span>
+<span id="cb12-4"><a href="#cb12-4"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
+<span id="cb12-5"><a href="#cb12-5"></a><span class="im">from</span> tinkerforge.bricklet_rgb_led_v2 <span class="im">import</span> BrickletRGBLEDV2</span>
+<span id="cb12-6"><a href="#cb12-6"></a></span>
+<span id="cb12-7"><a href="#cb12-7"></a><span class="co"># Verbindung zum Master Brick herstellen</span></span>
+<span id="cb12-8"><a href="#cb12-8"></a>ipcon <span class="op">=</span> IPConnection()</span>
+<span id="cb12-9"><a href="#cb12-9"></a>ipcon.<span class="ex">connect</span>(<span class="st">"localhost"</span>, <span class="dv">4223</span>)</span>
+<span id="cb12-10"><a href="#cb12-10"></a></span>
+<span id="cb12-11"><a href="#cb12-11"></a><span class="co"># LED-Bricklet initialisieren (UID bitte anpassen!)</span></span>
+<span id="cb12-12"><a href="#cb12-12"></a>led <span class="op">=</span> BrickletRGBLEDV2(<span class="st">"xxx"</span>, ipcon)</span>
+<span id="cb12-13"><a href="#cb12-13"></a>led.set_rgb_value(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb12-14"><a href="#cb12-14"></a></span>
+<span id="cb12-15"><a href="#cb12-15"></a><span class="co"># Wörter und Phrasen für die Stimmungserkennung</span></span>
+<span id="cb12-16"><a href="#cb12-16"></a>good_words <span class="op">=</span> [<span class="st">"great"</span>, <span class="st">"fantastic"</span>, <span class="st">"happy"</span>, <span class="st">"good"</span>, <span class="st">"wonderful"</span>,</span>
+<span id="cb12-17"><a href="#cb12-17"></a>              <span class="st">"excellent"</span>, <span class="st">"love"</span>, <span class="st">"perfect"</span>, <span class="st">"okay"</span>, <span class="st">"fine"</span>, <span class="st">"glad"</span>]</span>
+<span id="cb12-18"><a href="#cb12-18"></a>bad_words  <span class="op">=</span> [<span class="st">"bad"</span>, <span class="st">"terrible"</span>, <span class="st">"awful"</span>, <span class="st">"broken"</span>, <span class="st">"problem"</span>,</span>
+<span id="cb12-19"><a href="#cb12-19"></a>              <span class="st">"hate"</span>, <span class="st">"wrong"</span>, <span class="st">"angry"</span>, <span class="st">"annoyed"</span>, <span class="st">"frustrated"</span>]</span>
+<span id="cb12-20"><a href="#cb12-20"></a>sarcastic_phrases <span class="op">=</span> [<span class="st">"oh great"</span>, <span class="st">"just perfect"</span>, <span class="st">"fantastic... now"</span>,</span>
+<span id="cb12-21"><a href="#cb12-21"></a>                     <span class="st">"yeah right"</span>, <span class="st">"how wonderful"</span>, <span class="st">"oh sure"</span>]</span>
+<span id="cb12-22"><a href="#cb12-22"></a></span>
+<span id="cb12-23"><a href="#cb12-23"></a><span class="kw">def</span> detect_mood(message):</span>
+<span id="cb12-24"><a href="#cb12-24"></a>    message_lower <span class="op">=</span> message.lower()</span>
+<span id="cb12-25"><a href="#cb12-25"></a></span>
+<span id="cb12-26"><a href="#cb12-26"></a>    <span class="cf">for</span> phrase <span class="kw">in</span> sarcastic_phrases:</span>
+<span id="cb12-27"><a href="#cb12-27"></a>        <span class="cf">if</span> phrase <span class="kw">in</span> message_lower:</span>
+<span id="cb12-28"><a href="#cb12-28"></a>            <span class="cf">return</span> <span class="st">"sarcastic"</span></span>
+<span id="cb12-29"><a href="#cb12-29"></a></span>
+<span id="cb12-30"><a href="#cb12-30"></a>    <span class="cf">for</span> word <span class="kw">in</span> bad_words:</span>
+<span id="cb12-31"><a href="#cb12-31"></a>        <span class="cf">if</span> word <span class="kw">in</span> message_lower:</span>
+<span id="cb12-32"><a href="#cb12-32"></a>            <span class="cf">return</span> <span class="st">"bad"</span></span>
+<span id="cb12-33"><a href="#cb12-33"></a></span>
+<span id="cb12-34"><a href="#cb12-34"></a>    <span class="cf">for</span> word <span class="kw">in</span> good_words:</span>
+<span id="cb12-35"><a href="#cb12-35"></a>        <span class="cf">if</span> word <span class="kw">in</span> message_lower:</span>
+<span id="cb12-36"><a href="#cb12-36"></a>            <span class="cf">return</span> <span class="st">"good"</span></span>
+<span id="cb12-37"><a href="#cb12-37"></a></span>
+<span id="cb12-38"><a href="#cb12-38"></a>    <span class="cf">return</span> <span class="st">"neutral"</span></span>
+<span id="cb12-39"><a href="#cb12-39"></a></span>
+<span id="cb12-40"><a href="#cb12-40"></a><span class="co"># Chatbot-Schleife</span></span>
+<span id="cb12-41"><a href="#cb12-41"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb12-42"><a href="#cb12-42"></a>    message <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Deine Nachricht: "</span>)</span>
+<span id="cb12-43"><a href="#cb12-43"></a></span>
+<span id="cb12-44"><a href="#cb12-44"></a>    <span class="cf">if</span> message <span class="op">==</span> <span class="st">"bye"</span>:</span>
+<span id="cb12-45"><a href="#cb12-45"></a>        <span class="bu">print</span>(<span class="st">"Tschüss!"</span>)</span>
+<span id="cb12-46"><a href="#cb12-46"></a>        <span class="cf">break</span></span>
+<span id="cb12-47"><a href="#cb12-47"></a></span>
+<span id="cb12-48"><a href="#cb12-48"></a>    mood <span class="op">=</span> detect_mood(message)</span>
+<span id="cb12-49"><a href="#cb12-49"></a>    <span class="bu">print</span>(<span class="st">"Erkannte Stimmung:"</span>, mood)</span>
+<span id="cb12-50"><a href="#cb12-50"></a></span>
+<span id="cb12-51"><a href="#cb12-51"></a>    <span class="cf">if</span> mood <span class="op">==</span> <span class="st">"good"</span>:</span>
+<span id="cb12-52"><a href="#cb12-52"></a>        led.set_rgb_value(<span class="dv">0</span>, <span class="dv">255</span>, <span class="dv">0</span>)</span>
+<span id="cb12-53"><a href="#cb12-53"></a>    <span class="cf">elif</span> mood <span class="op">==</span> <span class="st">"bad"</span>:</span>
+<span id="cb12-54"><a href="#cb12-54"></a>        led.set_rgb_value(<span class="dv">255</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb12-55"><a href="#cb12-55"></a>    <span class="cf">elif</span> mood <span class="op">==</span> <span class="st">"sarcastic"</span>:</span>
+<span id="cb12-56"><a href="#cb12-56"></a>        led.set_rgb_value(<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">0</span>)</span>
+<span id="cb12-57"><a href="#cb12-57"></a>    <span class="cf">else</span>:</span>
+<span id="cb12-58"><a href="#cb12-58"></a>        led.set_rgb_value(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">255</span>)</span>
+<span id="cb12-59"><a href="#cb12-59"></a></span>
+<span id="cb12-60"><a href="#cb12-60"></a>ipcon.disconnect()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
 </section>
 <section id="lernbasierte-launeerkennung" class="level2" data-number="6.6">
 <h2 data-number="6.6" class="anchored" data-anchor-id="lernbasierte-launeerkennung"><span class="header-section-number">6.6</span> Lernbasierte Launeerkennung</h2>
+<p>Das regelbasierte System funktioniert für viele Fälle gut — aber es stößt schnell an seine Grenzen. Negationen, Sarkasmus, mehrdeutige Formulierungen: All das überfordert ein einfaches Wörterbuch. Und jede neue Ausnahme bedeutet: Wir müssen manuell eine neue Regel hinzufügen. Das ist aufwendig und fehleranfällig.</p>
+<p>Was wäre, wenn wir das Problem einem System überlassen könnten, das bereits gelernt hat, wie Sprache funktioniert? Genau das sind moderne Sprachmodelle wie das Modell hinter ChatGPT. Diese Modelle wurden auf riesigen Mengen menschlicher Texte trainiert und haben dabei <em>implizit</em> gelernt, wie Stimmung, Sarkasmus und sprachliche Nuancen zusammenhängen. Sie tragen das Wissen, das wir mühsam in Regeln zu fassen versuchen, bereits in sich.</p>
+<section id="erste-experimente-mit-chatgpt" class="level3" data-number="6.6.1">
+<h3 data-number="6.6.1" class="anchored" data-anchor-id="erste-experimente-mit-chatgpt"><span class="header-section-number">6.6.1</span> Erste Experimente mit ChatGPT</h3>
+<p>Bevor wir eine Zeile Python schreiben, macht einen kurzen Abstecher zu ChatGPT. Öffnet chatgpt.com im Browser und testet, ob ein Sprachmodell die Aufgabe überhaupt lösen kann — und wenn ja, wie.</p>
+<p>Der entscheidende Schritt ist, dem Modell klar zu sagen, was es tun soll. Das geschieht über einen <strong>Prompt</strong> — eine Texteingabe, die die Aufgabe beschreibt. Ein Prompt ist nicht einfach eine Frage: Er kann Anweisungen, Beispiele, Rahmenbedingungen und die eigentliche Eingabe enthalten. Beginnt mit etwas wie:</p>
+<blockquote class="blockquote">
+<p>Classify the mood of a message as one of: good, bad, neutral, sarcastic. Message: I love this product.</p>
+</blockquote>
+<p>Ihr seht das Muster: Erst die Aufgabenbeschreibung mit den erlaubten Labels, dann — am Ende — die eigentliche Nachricht. Das ist kein Zufall. Der Text am Ende ist das, was sich später im Code durch eine Variable ersetzen lässt. Heute tippt ihr ihn noch von Hand ein; in ein paar Minuten wird dort <code>{message}</code> stehen.</p>
+<p><strong>Warum auf Englisch?</strong> Formuliert euren Prompt auf Englisch, auch wenn die Aufgabe an sich Englisch und Deutsch gemischt ist. Sprachmodelle wie GPT wurden überwiegend auf englischsprachigen Texten trainiert. Mehrere Studien zeigen, dass die Genauigkeit bei englischen Prompts deutlich höher ist als bei Prompts in anderen Sprachen <span class="citation" data-cites="koto2024english shen2024multilingual">(<a href="../references.html#ref-koto2024english" role="doc-biblioref"><em><span>Better to Ask in English: Evaluation of Large Language Models on English, Low-resource and Cross-Lingual Settings</span></em> 2024</a>; <a href="../references.html#ref-shen2024multilingual" role="doc-biblioref"><em><span>Multilingual Prompts in LLM-Based Recommenders: Performance Across Languages</span></em> 2024</a>)</span>. Das gilt insbesondere für Klassifikationsaufgaben, bei denen das Modell ein präzises Label zurückgeben soll.</p>
+<p><strong>Modell und Anwendung sind getrennt.</strong> Etwas, das beim ersten Umgang mit ChatGPT leicht übersehen wird: ChatGPT ist nicht das Modell — ChatGPT ist eine <em>Anwendung</em>, die auf dem Modell aufbaut. Das Modell (zum Beispiel GPT-4o) ist das eigentliche lernende System, das Texte versteht und erzeugt. ChatGPT ist eine Oberfläche, die dieses Modell zugänglich macht — mit Chatfenster, Verlauf, Einstellungen und allem, was dazugehört. Andere Anwendungen — wie unser Python-Programm, aber auch externe Dienste von Drittanbietern — nutzen dasselbe Modell über eine Programmierschnittstelle, die sogenannte API.</p>
+<div id="fig-model-vs-application" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-model-vs-application-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="..\images/model_vs_application.png" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-model-vs-application-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Abbildung&nbsp;6.2: Modell und Anwendung sind getrennt. ChatGPT, unser Python-Programm und andere Dienste greifen über eine API auf dasselbe Sprachmodell zu. Das Modell selbst kennt keine Oberfläche.
+</figcaption>
+</figure>
+</div>
+<p><strong>Prompt-Engineering.</strong> Testet jetzt die zehn Sätze von oben — einen nach dem anderen. Beobachtet dabei: Antwortet das Modell immer mit genau einem der vier Labels? Oder schreibt es manchmal einen ganzen Satz? Weicht die Groß- und Kleinschreibung ab? Kommen manchmal Erklärungen dazu?</p>
+<p>Passt euren Prompt an, bis die Antworten kurz, einheitlich und direkt verwendbar sind. Das Anpassen eines Prompts, um das gewünschte Verhalten zu erzielen, nennt man <strong>Prompt-Engineering</strong>. Es ist keine exakte Wissenschaft — manchmal helfen kleine Formulierungsänderungen erheblich. Zum Beispiel:</p>
+<ul>
+<li>„Reply with only the label, nothing else.” reduziert Erklärungen.</li>
+<li>„Use lowercase.” sorgt für einheitliche Groß- und Kleinschreibung.</li>
+<li>Eine explizite Auflistung der erlaubten Labels verhindert, dass das Modell eigene Kategorien erfindet.</li>
+</ul>
+<p>Notiert den Prompt, den ihr zuletzt verwendet habt. Ihr werdet ihn gleich im Code brauchen.</p>
+</section>
+<section id="verbindung-zur-openai-api" class="level3" data-number="6.6.2">
+<h3 data-number="6.6.2" class="anchored" data-anchor-id="verbindung-zur-openai-api"><span class="header-section-number">6.6.2</span> Verbindung zur OpenAI-API</h3>
+<p>Jetzt bringen wir das Sprachmodell in unser Python-Programm. Legt eine neue Datei namens <code>mood_ml.py</code> an — als Kopie von <code>mood_rb.py</code>. Entfernt die Wortlisten und die <code>detect_mood</code>-Funktion. Was bleibt, ist die Grundstruktur: Verbindung zur LED, Eingabeschleife und LED-Steuerung.</p>
+<p>Als erstes importieren wir die OpenAI-Bibliothek und richten die Verbindung ein. Den API-Schlüssel tragt ihr direkt als Variable ein:</p>
+<div id="0a977e7c" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb13-2"><a href="#cb13-2"></a></span>
+<span id="cb13-3"><a href="#cb13-3"></a><span class="co"># API-Schlüssel hier eintragen</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a>API_KEY <span class="op">=</span> <span class="st">"euer-schluessel-hier"</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a></span>
+<span id="cb13-6"><a href="#cb13-6"></a><span class="co"># OpenAI-Client erstellen</span></span>
+<span id="cb13-7"><a href="#cb13-7"></a>client <span class="op">=</span> OpenAI(api_key<span class="op">=</span>API_KEY)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="die-erste-anfrage" class="level3" data-number="6.6.3">
+<h3 data-number="6.6.3" class="anchored" data-anchor-id="die-erste-anfrage"><span class="header-section-number">6.6.3</span> Die erste Anfrage</h3>
+<p>Jetzt schreiben wir eine Funktion, die eine Nachricht an das Sprachmodell schickt und das Ergebnis zurückgibt. Das Herzstück ist ein <em>Prompt</em> — der Text, mit dem wir dem Modell mitteilen, was es tun soll:</p>
+<div id="e546bfb2" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">def</span> detect_mood_llm(message):</span>
+<span id="cb14-2"><a href="#cb14-2"></a>    <span class="co"># Prompt formulieren: Aufgabe klar beschreiben und erlaubte Labels benennen</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a>    prompt <span class="op">=</span> <span class="ss">f"""Classify the mood of the following message as exactly one of these labels:</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a><span class="ss">good, bad, neutral, sarcastic.</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a><span class="ss">Reply with only the label, nothing else.</span></span>
+<span id="cb14-6"><a href="#cb14-6"></a></span>
+<span id="cb14-7"><a href="#cb14-7"></a><span class="ss">Message: </span><span class="sc">{</span>message<span class="sc">}</span><span class="ss">"""</span></span>
+<span id="cb14-8"><a href="#cb14-8"></a></span>
+<span id="cb14-9"><a href="#cb14-9"></a>    <span class="co"># Anfrage an das Sprachmodell senden</span></span>
+<span id="cb14-10"><a href="#cb14-10"></a>    response <span class="op">=</span> client.chat.completions.create(</span>
+<span id="cb14-11"><a href="#cb14-11"></a>        model<span class="op">=</span><span class="st">"gpt-4o-mini"</span>,</span>
+<span id="cb14-12"><a href="#cb14-12"></a>        messages<span class="op">=</span>[</span>
+<span id="cb14-13"><a href="#cb14-13"></a>            {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: prompt}</span>
+<span id="cb14-14"><a href="#cb14-14"></a>        ]</span>
+<span id="cb14-15"><a href="#cb14-15"></a>    )</span>
+<span id="cb14-16"><a href="#cb14-16"></a></span>
+<span id="cb14-17"><a href="#cb14-17"></a>    <span class="co"># Antwort auslesen und bereinigen</span></span>
+<span id="cb14-18"><a href="#cb14-18"></a>    label <span class="op">=</span> response.choices[<span class="dv">0</span>].message.content.strip().lower()</span>
+<span id="cb14-19"><a href="#cb14-19"></a>    <span class="cf">return</span> label</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Probiert die Funktion zunächst mit ein paar Sätzen aus und gebt die rohe Antwort direkt auf der Kommandozeile aus:</p>
+<div id="93d79444" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>raw <span class="op">=</span> response.choices[<span class="dv">0</span>].message.content</span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="bu">print</span>(<span class="st">"Antwort des Modells:"</span>, raw)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Ihr werdet feststellen: Das Modell antwortet manchmal mit mehr als nur dem Label — mit Erklärungen, Satzzeichen oder unterschiedlicher Groß- und Kleinschreibung. Der Prompt muss daher sehr präzise formuliert sein, damit die Ausgabe direkt in eurem Programm verwendbar ist. Experimentiert mit verschiedenen Formulierungen und beobachtet, wie sich die Antworten verändern.</p>
+</section>
+<section id="strukturierte-ausgaben" class="level3" data-number="6.6.4">
+<h3 data-number="6.6.4" class="anchored" data-anchor-id="strukturierte-ausgaben"><span class="header-section-number">6.6.4</span> Strukturierte Ausgaben</h3>
+<p>Das Anpassen des Prompts kann die Ausgabe berechenbarer machen. Es gibt aber eine zuverlässigere Lösung: <em>Structured Outputs</em>. OpenAI ermöglicht es, das genaue Format der Modellantwort festzulegen — die Antwort entspricht dann immer exakt dieser Vorgabe.</p>
+<p>Dafür definieren wir eine Datenstruktur mit einem Label und einer kurzen Begründung. Wir verwenden dazu eine sogenannte <em>Pydantic-Klasse</em>. Pydantic ist eine Python-Bibliothek zur Datenvalidierung:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1"></a><span class="ex">pip</span> install pydantic</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Eine Pydantic-Klasse ist im Grunde eine Beschreibung, wie eine Datenstruktur aussehen soll. Wir legen fest, welche Felder sie hat und welche Werte erlaubt sind:</p>
+<div id="98a8b22e" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="im">from</span> pydantic <span class="im">import</span> BaseModel</span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="im">from</span> typing <span class="im">import</span> Literal</span>
+<span id="cb17-3"><a href="#cb17-3"></a></span>
+<span id="cb17-4"><a href="#cb17-4"></a><span class="co"># Beschreibung der gewünschten Antwortstruktur</span></span>
+<span id="cb17-5"><a href="#cb17-5"></a><span class="kw">class</span> MoodResponse(BaseModel):</span>
+<span id="cb17-6"><a href="#cb17-6"></a>    label: Literal[<span class="st">"good"</span>, <span class="st">"bad"</span>, <span class="st">"neutral"</span>, <span class="st">"sarcastic"</span>]  <span class="co"># nur diese vier Werte erlaubt</span></span>
+<span id="cb17-7"><a href="#cb17-7"></a>    reason: <span class="bu">str</span>                                              <span class="co"># kurze Begründung als Freitext</span></span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code>Literal["good", "bad", "neutral", "sarcastic"]</code> bedeutet: Der Wert des Feldes <code>label</code> darf ausschließlich einer dieser vier Strings sein. Das Modell ist dann gezwungen, sich an diese Vorgabe zu halten — kein Raten, kein Parsen, keine bösen Überraschungen.</p>
+<p>Jetzt aktualisieren wir die Funktion, um strukturierte Ausgaben zu nutzen:</p>
+<div id="2b7aa766" class="cell" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="kw">def</span> detect_mood_llm(message):</span>
+<span id="cb18-2"><a href="#cb18-2"></a>    response <span class="op">=</span> client.beta.chat.completions.parse(</span>
+<span id="cb18-3"><a href="#cb18-3"></a>        model<span class="op">=</span><span class="st">"gpt-4o-mini"</span>,</span>
+<span id="cb18-4"><a href="#cb18-4"></a>        messages<span class="op">=</span>[</span>
+<span id="cb18-5"><a href="#cb18-5"></a>            {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="ss">f"Classify the mood of this message: </span><span class="sc">{</span>message<span class="sc">}</span><span class="ss">"</span>}</span>
+<span id="cb18-6"><a href="#cb18-6"></a>        ],</span>
+<span id="cb18-7"><a href="#cb18-7"></a>        response_format<span class="op">=</span>MoodResponse</span>
+<span id="cb18-8"><a href="#cb18-8"></a>    )</span>
+<span id="cb18-9"><a href="#cb18-9"></a></span>
+<span id="cb18-10"><a href="#cb18-10"></a>    <span class="co"># Die Antwort wird automatisch in ein MoodResponse-Objekt umgewandelt</span></span>
+<span id="cb18-11"><a href="#cb18-11"></a>    result <span class="op">=</span> response.choices[<span class="dv">0</span>].message.parsed</span>
+<span id="cb18-12"><a href="#cb18-12"></a>    <span class="cf">return</span> result.label, result.reason</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Die Antwort ist jetzt immer ein Objekt mit den Feldern <code>label</code> und <code>reason</code>. Ruft die Funktion auf und gebt beide Felder aus:</p>
+<div id="0b79bd1b" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a>label, reason <span class="op">=</span> detect_mood_llm(message)</span>
+<span id="cb19-2"><a href="#cb19-2"></a><span class="bu">print</span>(<span class="st">"Stimmung:    "</span>, label)</span>
+<span id="cb19-3"><a href="#cb19-3"></a><span class="bu">print</span>(<span class="st">"Begründung:  "</span>, reason)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Das <code>reason</code>-Feld zeigt, welche Überlegung das Modell angestellt hat — das ist nützlich, um die Entscheidung nachzuvollziehen. Aber Vorsicht: Auch wenn die Begründung überzeugend klingt, kann das Ergebnis trotzdem falsch sein. Mehr dazu im Abschnitt zur Reflexion.</p>
+</section>
+<section id="fertige-datei-mood_ml.py" class="level3" data-number="6.6.5">
+<h3 data-number="6.6.5" class="anchored" data-anchor-id="fertige-datei-mood_ml.py"><span class="header-section-number">6.6.5</span> Fertige Datei mood_ml.py</h3>
+<p>So sieht <code>mood_ml.py</code> am Ende aus:</p>
+<div id="78e62f30" class="cell" data-execution_count="18">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a><span class="co"># mood_ml.py</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a><span class="co"># Stimmungserkennung mit einem lernbasierten Ansatz (Sprachmodell)</span></span>
+<span id="cb20-3"><a href="#cb20-3"></a></span>
+<span id="cb20-4"><a href="#cb20-4"></a><span class="im">from</span> openai <span class="im">import</span> OpenAI</span>
+<span id="cb20-5"><a href="#cb20-5"></a><span class="im">from</span> pydantic <span class="im">import</span> BaseModel</span>
+<span id="cb20-6"><a href="#cb20-6"></a><span class="im">from</span> typing <span class="im">import</span> Literal</span>
+<span id="cb20-7"><a href="#cb20-7"></a></span>
+<span id="cb20-8"><a href="#cb20-8"></a><span class="im">from</span> tinkerforge.ip_connection <span class="im">import</span> IPConnection</span>
+<span id="cb20-9"><a href="#cb20-9"></a><span class="im">from</span> tinkerforge.bricklet_rgb_led_v2 <span class="im">import</span> BrickletRGBLEDV2</span>
+<span id="cb20-10"><a href="#cb20-10"></a></span>
+<span id="cb20-11"><a href="#cb20-11"></a><span class="co"># API-Schlüssel hier eintragen</span></span>
+<span id="cb20-12"><a href="#cb20-12"></a>API_KEY <span class="op">=</span> <span class="st">"euer-schluessel-hier"</span></span>
+<span id="cb20-13"><a href="#cb20-13"></a></span>
+<span id="cb20-14"><a href="#cb20-14"></a><span class="co"># Verbindung zum OpenAI-Modell</span></span>
+<span id="cb20-15"><a href="#cb20-15"></a>client <span class="op">=</span> OpenAI(api_key<span class="op">=</span>API_KEY)</span>
+<span id="cb20-16"><a href="#cb20-16"></a></span>
+<span id="cb20-17"><a href="#cb20-17"></a><span class="co"># Antwortstruktur definieren</span></span>
+<span id="cb20-18"><a href="#cb20-18"></a><span class="kw">class</span> MoodResponse(BaseModel):</span>
+<span id="cb20-19"><a href="#cb20-19"></a>    label: Literal[<span class="st">"good"</span>, <span class="st">"bad"</span>, <span class="st">"neutral"</span>, <span class="st">"sarcastic"</span>]</span>
+<span id="cb20-20"><a href="#cb20-20"></a>    reason: <span class="bu">str</span></span>
+<span id="cb20-21"><a href="#cb20-21"></a></span>
+<span id="cb20-22"><a href="#cb20-22"></a><span class="kw">def</span> detect_mood_llm(message):</span>
+<span id="cb20-23"><a href="#cb20-23"></a>    response <span class="op">=</span> client.beta.chat.completions.parse(</span>
+<span id="cb20-24"><a href="#cb20-24"></a>        model<span class="op">=</span><span class="st">"gpt-4o-mini"</span>,</span>
+<span id="cb20-25"><a href="#cb20-25"></a>        messages<span class="op">=</span>[</span>
+<span id="cb20-26"><a href="#cb20-26"></a>            {<span class="st">"role"</span>: <span class="st">"user"</span>, <span class="st">"content"</span>: <span class="ss">f"Classify the mood of this message: </span><span class="sc">{</span>message<span class="sc">}</span><span class="ss">"</span>}</span>
+<span id="cb20-27"><a href="#cb20-27"></a>        ],</span>
+<span id="cb20-28"><a href="#cb20-28"></a>        response_format<span class="op">=</span>MoodResponse</span>
+<span id="cb20-29"><a href="#cb20-29"></a>    )</span>
+<span id="cb20-30"><a href="#cb20-30"></a>    result <span class="op">=</span> response.choices[<span class="dv">0</span>].message.parsed</span>
+<span id="cb20-31"><a href="#cb20-31"></a>    <span class="cf">return</span> result.label, result.reason</span>
+<span id="cb20-32"><a href="#cb20-32"></a></span>
+<span id="cb20-33"><a href="#cb20-33"></a><span class="co"># Verbindung zur LED</span></span>
+<span id="cb20-34"><a href="#cb20-34"></a>ipcon <span class="op">=</span> IPConnection()</span>
+<span id="cb20-35"><a href="#cb20-35"></a>ipcon.<span class="ex">connect</span>(<span class="st">"localhost"</span>, <span class="dv">4223</span>)</span>
+<span id="cb20-36"><a href="#cb20-36"></a>led <span class="op">=</span> BrickletRGBLEDV2(<span class="st">"xxx"</span>, ipcon)</span>
+<span id="cb20-37"><a href="#cb20-37"></a>led.set_rgb_value(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb20-38"><a href="#cb20-38"></a></span>
+<span id="cb20-39"><a href="#cb20-39"></a><span class="co"># Chatbot-Schleife</span></span>
+<span id="cb20-40"><a href="#cb20-40"></a><span class="cf">while</span> <span class="va">True</span>:</span>
+<span id="cb20-41"><a href="#cb20-41"></a>    message <span class="op">=</span> <span class="bu">input</span>(<span class="st">"Deine Nachricht: "</span>)</span>
+<span id="cb20-42"><a href="#cb20-42"></a></span>
+<span id="cb20-43"><a href="#cb20-43"></a>    <span class="cf">if</span> message <span class="op">==</span> <span class="st">"bye"</span>:</span>
+<span id="cb20-44"><a href="#cb20-44"></a>        <span class="bu">print</span>(<span class="st">"Tschüss!"</span>)</span>
+<span id="cb20-45"><a href="#cb20-45"></a>        <span class="cf">break</span></span>
+<span id="cb20-46"><a href="#cb20-46"></a></span>
+<span id="cb20-47"><a href="#cb20-47"></a>    mood, reason <span class="op">=</span> detect_mood_llm(message)</span>
+<span id="cb20-48"><a href="#cb20-48"></a>    <span class="bu">print</span>(<span class="st">"Stimmung:    "</span>, mood)</span>
+<span id="cb20-49"><a href="#cb20-49"></a>    <span class="bu">print</span>(<span class="st">"Begründung:  "</span>, reason)</span>
+<span id="cb20-50"><a href="#cb20-50"></a></span>
+<span id="cb20-51"><a href="#cb20-51"></a>    <span class="cf">if</span> mood <span class="op">==</span> <span class="st">"good"</span>:</span>
+<span id="cb20-52"><a href="#cb20-52"></a>        led.set_rgb_value(<span class="dv">0</span>, <span class="dv">255</span>, <span class="dv">0</span>)</span>
+<span id="cb20-53"><a href="#cb20-53"></a>    <span class="cf">elif</span> mood <span class="op">==</span> <span class="st">"bad"</span>:</span>
+<span id="cb20-54"><a href="#cb20-54"></a>        led.set_rgb_value(<span class="dv">255</span>, <span class="dv">0</span>, <span class="dv">0</span>)</span>
+<span id="cb20-55"><a href="#cb20-55"></a>    <span class="cf">elif</span> mood <span class="op">==</span> <span class="st">"sarcastic"</span>:</span>
+<span id="cb20-56"><a href="#cb20-56"></a>        led.set_rgb_value(<span class="dv">255</span>, <span class="dv">255</span>, <span class="dv">0</span>)</span>
+<span id="cb20-57"><a href="#cb20-57"></a>    <span class="cf">else</span>:</span>
+<span id="cb20-58"><a href="#cb20-58"></a>        led.set_rgb_value(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">255</span>)</span>
+<span id="cb20-59"><a href="#cb20-59"></a></span>
+<span id="cb20-60"><a href="#cb20-60"></a>ipcon.disconnect()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="ergebnisse-vergleichen" class="level2" data-number="6.7">
+<h2 data-number="6.7" class="anchored" data-anchor-id="ergebnisse-vergleichen"><span class="header-section-number">6.7</span> Ergebnisse vergleichen</h2>
+<p>Bisher haben wir beide Systeme nur von Hand getestet — indem wir Sätze eingetippt und die LED-Farbe beobachtet haben. Das ist unzuverlässig: Wir testen nur das, was uns spontan einfällt, und vergessen leicht, wo das System vorhin noch versagt hat. Um die beiden Ansätze wirklich miteinander vergleichen zu können, brauchen wir einen systematischen Test.</p>
+<section id="testdaten-anlegen" class="level3" data-number="6.7.1">
+<h3 data-number="6.7.1" class="anchored" data-anchor-id="testdaten-anlegen"><span class="header-section-number">6.7.1</span> Testdaten anlegen</h3>
+<p>Legt eine CSV-Datei namens <code>test_data.csv</code> an. CSV steht für <em>Comma-Separated Values</em> — ein einfaches Dateiformat, das eine Tabelle als Text speichert, wobei die Werte durch Kommas getrennt sind.</p>
+<p>Die Datei soll mindestens 20 Sätze enthalten: die zehn Sätze von oben sowie zehn neue, die verschiedene Schwierigkeiten abdecken — Verneinungen, Sarkasmus, gemischte Gefühle und eindeutige Fälle. Zu jedem Satz gehört das korrekte Label als <em>Grundwahrheit</em> (englisch: <em>ground truth</em>), also eure eigene, möglichst einvernehmliche Einschätzung:</p>
+<pre><code>sentence,label
+Not bad at all actually,good
+Well that could have gone worse,neutral
+I guess this is fine,neutral
+Oh great another problem,sarcastic
+I'm not unhappy with the result,good
+Fantastic now it's broken again,sarcastic
+I was worried but now it seems okay,good
+That's just perfect,sarcastic
+I can live with that,neutral
+It's working though I don't feel great about it,neutral
+I love this product,good
+This is terrible,bad
+Everything works perfectly,good
+I am so frustrated,bad
+Not the best experience,bad
+Could be worse,neutral
+Absolutely wonderful service,good
+I hate waiting,bad
+This is exactly what I needed,good
+What a disaster,bad</code></pre>
+</section>
+<section id="automatisch-testen" class="level3" data-number="6.7.2">
+<h3 data-number="6.7.2" class="anchored" data-anchor-id="automatisch-testen"><span class="header-section-number">6.7.2</span> Automatisch testen</h3>
+<p>Jetzt schreiben wir ein Skript, das beide Systeme automatisch auf allen Sätzen testet und die Ergebnisse vergleicht. Legt eine neue Datei namens <code>compare.py</code> an:</p>
+<div id="8a4ff0c5" class="cell" data-execution_count="19">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a><span class="co"># compare.py</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a><span class="co"># Vergleich von regelbasiertem und lernbasiertem Stimmungsdetektor</span></span>
+<span id="cb22-3"><a href="#cb22-3"></a></span>
+<span id="cb22-4"><a href="#cb22-4"></a><span class="im">import</span> csv</span>
+<span id="cb22-5"><a href="#cb22-5"></a><span class="im">from</span> mood_rb <span class="im">import</span> detect_mood <span class="im">as</span> detect_mood_rules</span>
+<span id="cb22-6"><a href="#cb22-6"></a><span class="im">from</span> mood_ml <span class="im">import</span> detect_mood_llm</span>
+<span id="cb22-7"><a href="#cb22-7"></a></span>
+<span id="cb22-8"><a href="#cb22-8"></a><span class="co"># Testdaten laden</span></span>
+<span id="cb22-9"><a href="#cb22-9"></a>sentences <span class="op">=</span> []</span>
+<span id="cb22-10"><a href="#cb22-10"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">"test_data.csv"</span>, <span class="st">"r"</span>, encoding<span class="op">=</span><span class="st">"utf-8"</span>) <span class="im">as</span> f:</span>
+<span id="cb22-11"><a href="#cb22-11"></a>    reader <span class="op">=</span> csv.DictReader(f)</span>
+<span id="cb22-12"><a href="#cb22-12"></a>    <span class="cf">for</span> row <span class="kw">in</span> reader:</span>
+<span id="cb22-13"><a href="#cb22-13"></a>        sentences.append(row)</span>
+<span id="cb22-14"><a href="#cb22-14"></a></span>
+<span id="cb22-15"><a href="#cb22-15"></a><span class="co"># Ergebnisse für beide Systeme sammeln</span></span>
+<span id="cb22-16"><a href="#cb22-16"></a>correct_rules <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb22-17"><a href="#cb22-17"></a>correct_llm   <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb22-18"><a href="#cb22-18"></a></span>
+<span id="cb22-19"><a href="#cb22-19"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span><span class="st">'Satz'</span><span class="sc">:&lt;45}</span><span class="ss"> </span><span class="sc">{</span><span class="st">'Erwartet'</span><span class="sc">:&lt;12}</span><span class="ss"> </span><span class="sc">{</span><span class="st">'Regeln'</span><span class="sc">:&lt;12}</span><span class="ss"> </span><span class="sc">{</span><span class="st">'LLM'</span><span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb22-20"><a href="#cb22-20"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">80</span>)</span>
+<span id="cb22-21"><a href="#cb22-21"></a></span>
+<span id="cb22-22"><a href="#cb22-22"></a><span class="cf">for</span> entry <span class="kw">in</span> sentences:</span>
+<span id="cb22-23"><a href="#cb22-23"></a>    sentence   <span class="op">=</span> entry[<span class="st">"sentence"</span>]</span>
+<span id="cb22-24"><a href="#cb22-24"></a>    true_label <span class="op">=</span> entry[<span class="st">"label"</span>]</span>
+<span id="cb22-25"><a href="#cb22-25"></a></span>
+<span id="cb22-26"><a href="#cb22-26"></a>    pred_rules <span class="op">=</span> detect_mood_rules(sentence)</span>
+<span id="cb22-27"><a href="#cb22-27"></a>    pred_llm, _ <span class="op">=</span> detect_mood_llm(sentence)   <span class="co"># Begründung wird hier nicht benötigt</span></span>
+<span id="cb22-28"><a href="#cb22-28"></a></span>
+<span id="cb22-29"><a href="#cb22-29"></a>    <span class="cf">if</span> pred_rules <span class="op">==</span> true_label:</span>
+<span id="cb22-30"><a href="#cb22-30"></a>        correct_rules <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb22-31"><a href="#cb22-31"></a>    <span class="cf">if</span> pred_llm <span class="op">==</span> true_label:</span>
+<span id="cb22-32"><a href="#cb22-32"></a>        correct_llm <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb22-33"><a href="#cb22-33"></a></span>
+<span id="cb22-34"><a href="#cb22-34"></a>    <span class="co"># Satz auf 42 Zeichen kürzen, damit die Ausgabe übersichtlich bleibt</span></span>
+<span id="cb22-35"><a href="#cb22-35"></a>    short <span class="op">=</span> sentence[:<span class="dv">42</span>] <span class="op">+</span> <span class="st">"..."</span> <span class="cf">if</span> <span class="bu">len</span>(sentence) <span class="op">&gt;</span> <span class="dv">42</span> <span class="cf">else</span> sentence</span>
+<span id="cb22-36"><a href="#cb22-36"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>short<span class="sc">:&lt;45}</span><span class="ss"> </span><span class="sc">{</span>true_label<span class="sc">:&lt;12}</span><span class="ss"> </span><span class="sc">{</span>pred_rules<span class="sc">:&lt;12}</span><span class="ss"> </span><span class="sc">{</span>pred_llm<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb22-37"><a href="#cb22-37"></a></span>
+<span id="cb22-38"><a href="#cb22-38"></a>total <span class="op">=</span> <span class="bu">len</span>(sentences)</span>
+<span id="cb22-39"><a href="#cb22-39"></a><span class="bu">print</span>(<span class="st">"-"</span> <span class="op">*</span> <span class="dv">80</span>)</span>
+<span id="cb22-40"><a href="#cb22-40"></a><span class="bu">print</span>(<span class="ss">f"Genauigkeit Regeln: </span><span class="sc">{</span>correct_rules<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>total<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>correct_rules<span class="op">/</span>total<span class="sc">:.0%}</span><span class="ss">"</span>)</span>
+<span id="cb22-41"><a href="#cb22-41"></a><span class="bu">print</span>(<span class="ss">f"Genauigkeit LLM:    </span><span class="sc">{</span>correct_llm<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>total<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>correct_llm<span class="op">/</span>total<span class="sc">:.0%}</span><span class="ss">"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="verwirrungsmatrix" class="level3" data-number="6.7.3">
+<h3 data-number="6.7.3" class="anchored" data-anchor-id="verwirrungsmatrix"><span class="header-section-number">6.7.3</span> Verwirrungsmatrix</h3>
+<p>Genauigkeit allein sagt noch nicht alles. Interessant ist auch: Bei welchen Labels macht jedes System die meisten Fehler? Und macht es dieselben Fehler wie das andere?</p>
+<p>Eine <em>Verwirrungsmatrix</em> (englisch: <em>confusion matrix</em>) zeigt genau das. Jede Zeile steht für das tatsächliche Label, jede Spalte für das vorhergesagte. Ein Wert auf der Diagonale bedeutet: Das System lag richtig. Ein Wert abseits der Diagonale zeigt, welches Label mit welchem anderen verwechselt wurde.</p>
+<p>Für die Visualisierung benötigen wir die Bibliothek <code>matplotlib</code>. Installiert sie mit:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1"></a><span class="ex">pip</span> install matplotlib</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Ergänzt dann <code>compare.py</code> um folgende Funktion:</p>
+<div id="2df46e8f" class="cell" data-execution_count="20">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb24-2"><a href="#cb24-2"></a></span>
+<span id="cb24-3"><a href="#cb24-3"></a><span class="kw">def</span> plot_confusion_matrix(true_labels, predictions, title):</span>
+<span id="cb24-4"><a href="#cb24-4"></a>    labels <span class="op">=</span> [<span class="st">"good"</span>, <span class="st">"bad"</span>, <span class="st">"neutral"</span>, <span class="st">"sarcastic"</span>]</span>
+<span id="cb24-5"><a href="#cb24-5"></a></span>
+<span id="cb24-6"><a href="#cb24-6"></a>    <span class="co"># Matrix mit Nullen initialisieren</span></span>
+<span id="cb24-7"><a href="#cb24-7"></a>    matrix <span class="op">=</span> [[<span class="dv">0</span> <span class="cf">for</span> _ <span class="kw">in</span> labels] <span class="cf">for</span> _ <span class="kw">in</span> labels]</span>
+<span id="cb24-8"><a href="#cb24-8"></a></span>
+<span id="cb24-9"><a href="#cb24-9"></a>    <span class="co"># Für jedes Beispiel: tatsächliches und vorhergesagtes Label eintragen</span></span>
+<span id="cb24-10"><a href="#cb24-10"></a>    <span class="cf">for</span> true, pred <span class="kw">in</span> <span class="bu">zip</span>(true_labels, predictions):</span>
+<span id="cb24-11"><a href="#cb24-11"></a>        <span class="cf">if</span> true <span class="kw">in</span> labels <span class="kw">and</span> pred <span class="kw">in</span> labels:</span>
+<span id="cb24-12"><a href="#cb24-12"></a>            row <span class="op">=</span> labels.index(true)</span>
+<span id="cb24-13"><a href="#cb24-13"></a>            col <span class="op">=</span> labels.index(pred)</span>
+<span id="cb24-14"><a href="#cb24-14"></a>            matrix[row][col] <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb24-15"><a href="#cb24-15"></a></span>
+<span id="cb24-16"><a href="#cb24-16"></a>    <span class="co"># Matrix als Bild darstellen</span></span>
+<span id="cb24-17"><a href="#cb24-17"></a>    fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb24-18"><a href="#cb24-18"></a>    ax.imshow(matrix, cmap<span class="op">=</span><span class="st">"Blues"</span>)</span>
+<span id="cb24-19"><a href="#cb24-19"></a></span>
+<span id="cb24-20"><a href="#cb24-20"></a>    ax.set_xticks(<span class="bu">range</span>(<span class="bu">len</span>(labels)))</span>
+<span id="cb24-21"><a href="#cb24-21"></a>    ax.set_yticks(<span class="bu">range</span>(<span class="bu">len</span>(labels)))</span>
+<span id="cb24-22"><a href="#cb24-22"></a>    ax.set_xticklabels(labels, rotation<span class="op">=</span><span class="dv">45</span>)</span>
+<span id="cb24-23"><a href="#cb24-23"></a>    ax.set_yticklabels(labels)</span>
+<span id="cb24-24"><a href="#cb24-24"></a>    ax.set_xlabel(<span class="st">"Vorhergesagt"</span>)</span>
+<span id="cb24-25"><a href="#cb24-25"></a>    ax.set_ylabel(<span class="st">"Tatsächlich"</span>)</span>
+<span id="cb24-26"><a href="#cb24-26"></a>    ax.set_title(title)</span>
+<span id="cb24-27"><a href="#cb24-27"></a></span>
+<span id="cb24-28"><a href="#cb24-28"></a>    <span class="co"># Zahlenwerte in die Zellen schreiben</span></span>
+<span id="cb24-29"><a href="#cb24-29"></a>    <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(labels)):</span>
+<span id="cb24-30"><a href="#cb24-30"></a>        <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(labels)):</span>
+<span id="cb24-31"><a href="#cb24-31"></a>            ax.text(j, i, <span class="bu">str</span>(matrix[i][j]), ha<span class="op">=</span><span class="st">"center"</span>, va<span class="op">=</span><span class="st">"center"</span>)</span>
+<span id="cb24-32"><a href="#cb24-32"></a></span>
+<span id="cb24-33"><a href="#cb24-33"></a>    plt.tight_layout()</span>
+<span id="cb24-34"><a href="#cb24-34"></a>    plt.savefig(title.replace(<span class="st">" "</span>, <span class="st">"_"</span>) <span class="op">+</span> <span class="st">".png"</span>)</span>
+<span id="cb24-35"><a href="#cb24-35"></a>    plt.show()</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Ruft die Funktion am Ende von <code>compare.py</code> für beide Systeme auf:</p>
+<div id="84fd2630" class="cell" data-execution_count="21">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a><span class="co"># Listen mit wahren Labels und Vorhersagen aufbauen</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a>true_labels    <span class="op">=</span> [entry[<span class="st">"label"</span>] <span class="cf">for</span> entry <span class="kw">in</span> sentences]</span>
+<span id="cb25-3"><a href="#cb25-3"></a>pred_rules_all <span class="op">=</span> [detect_mood_rules(entry[<span class="st">"sentence"</span>]) <span class="cf">for</span> entry <span class="kw">in</span> sentences]</span>
+<span id="cb25-4"><a href="#cb25-4"></a>pred_llm_all   <span class="op">=</span> [detect_mood_llm(entry[<span class="st">"sentence"</span>])[<span class="dv">0</span>] <span class="cf">for</span> entry <span class="kw">in</span> sentences]</span>
+<span id="cb25-5"><a href="#cb25-5"></a></span>
+<span id="cb25-6"><a href="#cb25-6"></a>plot_confusion_matrix(true_labels, pred_rules_all, <span class="st">"Regelbasiertes System"</span>)</span>
+<span id="cb25-7"><a href="#cb25-7"></a>plot_confusion_matrix(true_labels, pred_llm_all,   <span class="st">"Lernbasiertes System"</span>)</span></code></pre></div><button title="In die Zwischenablage kopieren" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Schaut euch die Matrizen genau an: Wo macht jedes System die meisten Fehler? Verwechseln beide Systeme dieselben Labels — oder scheitern sie an unterschiedlichen Stellen?</p>
+<p>Schaut euch außerdem die <code>reason</code>-Felder des Sprachmodells für falsche Vorhersagen an. Klingen die Begründungen trotzdem überzeugend? Was sagt euch das darüber, wie viel ihr einer Erklärung vertrauen solltet?</p>
+</section>
+</section>
+<section id="reflexion" class="level2" data-number="6.8">
+<h2 data-number="6.8" class="anchored" data-anchor-id="reflexion"><span class="header-section-number">6.8</span> Reflexion</h2>
+<p>Nehmt euch Zeit, um über das Experiment nachzudenken. Schreibt eure Gedanken auf und diskutiert sie mit euren Kommilitoninnen und Kommilitonen:</p>
+<ol type="1">
+<li><p>In der analogen Aufgabe habt ihr manche Sätze unterschiedlich eingestuft. Wenn diese Meinungsverschiedenheiten als Trainingsdaten für ein Modell verwendet worden wären — was hätte das Modell dann gelernt?</p></li>
+<li><p>Wo hat das regelbasierte System gut funktioniert, und wo hat es versagt?</p></li>
+<li><p>Das Sprachmodell hat für jede Entscheidung eine Begründung geliefert — auch für die falschen. Macht eine überzeugende Begründung das Ergebnis vertrauenswürdiger? Sollte sie das?</p></li>
+<li><p>Welches System war einfacher zu bauen? Welches ist einfacher zu debuggen? Sind das dieselben Fragen?</p></li>
+<li><p>Welchem System würdet ihr in einer echten Anwendung mehr vertrauen — und für welche Art von Anwendung?</p></li>
+<li><p>Das Sprachmodell, das ihr verwendet habt, wurde auf Milliarden von menschlich geschriebenen Texten trainiert, von denen viele von Menschen gelabelt oder kuratiert wurden. In welchem Sinne ist es ein lernbasiertes System — nur auf einer anderen Ebene als das, was ihr selbst gebaut habt?</p></li>
+<li><p>Ihr habt selbst ein viertes Label entworfen. Was verrät die Wahl dieses Labels über die Annahmen, die ihr über menschliche Emotionen trefft?</p></li>
+</ol>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -640,6 +1217,9 @@ Abbildung&nbsp;6.1: Das Hardware-Setup aus <a href="../part-1-dap/colors.html" c
 <div id="ref-adami_what_2016" class="csl-entry" role="listitem">
 Adami, Christoph. 2016. <span>„What is <span>Information</span>?“</span> <em>Philosophical Transactions of the Royal Society A: Mathematical, Physical and Engineering Sciences</em> 374 (2063): 20150230. <a href="https://doi.org/10.1098/rsta.2015.0230">https://doi.org/10.1098/rsta.2015.0230</a>.
 </div>
+<div id="ref-koto2024english" class="csl-entry" role="listitem">
+<em><span>Better to Ask in English: Evaluation of Large Language Models on English, Low-resource and Cross-Lingual Settings</span></em>. 2024. <a href="https://arxiv.org/abs/2410.13153" class="uri">Https://arxiv.org/abs/2410.13153</a>.
+</div>
 <div id="ref-brookshear_computer_2020" class="csl-entry" role="listitem">
 Brookshear, J. Glenn, und Dennis Brylow. 2020. <em>Computer science: an overview</em>. 13th edition, global edition. Pearson.
 </div>
@@ -648,6 +1228,9 @@ Gallenbacher, Jens. 2020. <em>Abenteuer <span>Informatik</span>: <span>IT</span>
 </div>
 <div id="ref-Makowski2021neurokit" class="csl-entry" role="listitem">
 Makowski, Dominique, Tam Pham, Zen J. Lau, u.&nbsp;a. 2021. <span>„<span>NeuroKit</span>2: A Python toolbox for neurophysiological signal processing“</span>. <em>Behavior Research Methods</em> 53 (4): 1689–96. <a href="https://doi.org/10.3758/s13428-020-01516-y">https://doi.org/10.3758/s13428-020-01516-y</a>.
+</div>
+<div id="ref-shen2024multilingual" class="csl-entry" role="listitem">
+<em><span>Multilingual Prompts in LLM-Based Recommenders: Performance Across Languages</span></em>. 2024. <a href="https://arxiv.org/abs/2409.07604" class="uri">Https://arxiv.org/abs/2409.07604</a>.
 </div>
 <div id="ref-petzold_code_2022" class="csl-entry" role="listitem">
 Petzold, Charles. 2022. <em>Code: the hidden language of computer hardware and software</em>. 2. Aufl. Microsoft Press.

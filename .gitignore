@@ -9,3 +9,9 @@ _environment
 CLAUDE.md
 .claude/
 **/*.quarto_ipynb
+_agent_instructions
+.python-env
+_experiment-render
+site_libs/
+renv/
+renv.lock

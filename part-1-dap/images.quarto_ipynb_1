@@ -1,0 +1,1930 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Bilder {#sec-images}\n",
+        "\n",
+        "![](/images/chapter_header_images.jpg){width=\"70%\"}\n",
+        "\n",
+        "## Zusammenfassung {.unnumbered .collapsable}\n",
+        "\n",
+        "In diesem Kapitel arbeiten wir zum ersten Mal mit Bildern auf einem Display. Ausgehend von einem kleinen OLED-Display lernen wir Schritt für Schritt, wie Bilder im Computer repräsentiert werden und wie wir sie programmatisch erzeugen und anzeigen können.\n",
+        "\n",
+        "Der Weg dahin führt über folgende Schritte:\n",
+        "\n",
+        "| \\# | Was? | Wo? |\n",
+        "|--|-------------------------------------------------------|----------------|\n",
+        "| 1 | Wir machen uns mit dem Display vertraut. | @sec-images-experiment-setup |\n",
+        "| 2 | Wir lernen das Pixel kennen und schalten es im Display an und aus. | @sec-images-pixels |\n",
+        "| 3 | Wir führen die Bitmap als eine Sammlung von Pixelwerten ein. | @sec-images-bitmaps |\n",
+        "| 4 | Wir lernen, wie man Buchstaben als Bitmaps darstellen kann. | @sec-images-letters |\n",
+        "| 5 | Wir lernen eine Alternative zu Bitmaps kennen. | @sec-images-vector-graphics |\n",
+        "| 6 | Wir zeigen ein Bild als Bitfolge auf dem Display an. | @sec-images-bits-to-display |\n",
+        "| 7 | Wir betrachten Farben in Bitmaps. | @sec-images-color |\n",
+        "| 8 | Wir lernen, was eine Animation im Computer ist. | @sec-images-animation |\n",
+        "| 9 | Wir wenden einfache Arithmetik auf Bilder an. | @sec-images-transformations |\n",
+        "| 10 | Wir animieren Pacman und erwecken ihn auf dem Display zum Leben. | @sec-images-pacman |\n",
+        "\n",
+        "\n",
+        "## Experimentaufbau {#sec-images-experiment-setup .collapsable}\n",
+        "\n",
+        "### Hardware\n",
+        "\n",
+        "In den Experimenten dieses Kapitels verwenden wir ein kleines OLED-Display, das wir an unseren Master Brick anschließen. Das Display kann einzelne Pixel weiß aufleuchten lassen und damit einfache Bilder und Texte darstellen. Insgesamt stehen uns 128 × 64 Pixel zur Verfügung, also 8192 einzelne Bildpunkte.\n",
+        "\n",
+        "Die vollständige Hardwareliste für dieses Kapitel sieht so aus:\n",
+        "\n",
+        "-  1 × [Master Brick 3.2](https://www.tinkerforge.com/de/doc/Hardware/Bricks/Master_Brick.html)\n",
+        "-  1 × [Distance IR 4-30cm Bricklet 2.0](https://www.tinkerforge.com/de/shop/distance-ir-4-30cm-v2-bricklet.html)\n",
+        "-  1 × [OLED 128x64 Bricklet 2.0](https://www.tinkerforge.com/de/doc/Hardware/Bricklets/OLED_128x64_V2.html)\n",
+        "-  1 × [Montageplatte 22x10](https://www.tinkerforge.com/de/shop/accessories/mounting/mounting-plate-22x10.html)\n",
+        "-  2 × [Brickletkabel 15cm (7p-7p)](https://www.tinkerforge.com/de/shop/accessories/cable/bricklet-cable-15cm-7p-7p.html)\n",
+        "\n",
+        "Wenn ihr das Experiment aus @sec-text gemacht habt, dann könnt ihr einfach des OLED-Display hinzufügen und wie in der @fig-setup-display gezeigt auf den Master Brick aufschrauben. Die LED und den Infrarotsensor benötigen wir zwar in diesem Experiment nicht, sie stören aber auch nicht.\n",
+        "\n",
+        "\n",
+        "::: {#fig-setup-display layout=\"[[1,1], [1,1]]\"}\n",
+        "\n",
+        "![Seitenansicht.](/images/setup_oled_display_closeup_1.jpg){#fig-setup-display-1 .lightbox group=\"setup-display\"}\n",
+        "\n",
+        "![Draufsicht.](/images/setup_oled_display_closeup_2.jpg){#fig-setup-display-2 .lightbox group=\"setup-display\"}\n",
+        "\n",
+        "![Nahaufnahme des Displays auf dem Master Brick.](/images/setup_oled_display_closeup_3.jpg){#fig-setup-display-3 .lightbox group=\"setup-display\"}\n",
+        "\n",
+        "![Seitenansicht, leicht von oben.](/images/setup_oled_display_closeup_4.jpg){#fig-setup-display-4 .lightbox group=\"setup-display\"}\n",
+        "\n",
+        "Einfaches Setup wie aus @sec-text und erweitert um das OLED-Display.\n",
+        ":::\n",
+        "\n",
+        "### Das OLED-Display im Brick Viewer\n",
+        "\n",
+        "Wie gewohnt starten wir im Brick Viewer. Verbindet euch mit dem Master Brick und ihr solltet die angeschlossenen Geräte sehen können. Den Infrarotsensor kennt ihr bereits aus dem letzten Kapitel. Wir konzentrieren uns hier auf das neue Display im Tab \"OLED 128x64 Bricklet 2.0\".\n",
+        "\n",
+        "Die Oberfläche für das Display seht ihr in @fig-images-brick-viewer-oled-display. Im Wesentlichen kann das Display drei Dinge:\n",
+        "\n",
+        "1. Einzelne Pixel ein- und ausschalten\n",
+        "2. Seinen gesamten Inhalt löschen, also alle Pixel af einmal ausschalten\n",
+        "3. Text anzeigen (was im Kern nichts anderes ist als ein Spezialfall von 1)\n",
+        "\n",
+        "![Im Brick Viewer können wir auf dem Display Text anzeigen oder zeichnen.](/images/brick_viewer_oled_display.png){#fig-images-brick-viewer-oled-display .lightbox}\n",
+        "\n",
+        "Alle genannten Funktionen könnt ihr direkt im Brick Viewer ausprobieren. Mit der Maus könnt ihr auf der schwarzen Fläche freihändig zeichnen und das Ergebnis mit \"Draw on Display\" auf das Display übertragen. Mit \"Clear Display\" löscht ihr den gesamten Inhalt wieder. Alternativ könnt ihr Text in das Textfeld eingeben und mit \"Send\" anzeigen lassen.\n",
+        "\n",
+        "Für Text können wir die Position über die Angabe der Zeile (`Line`) sowie der Position in der Zeile (`Pos`) bestimmen. Im Dropdown seht ihr, dass die Zeilen von 0 bis 7 und die Positionen von 0 bis 21 nummeriert sind. Das Display teilt die 128 Pixel Breite in 22 Zeichenpositionen und die 64 Pixel Höhe in 8 Textzeilen auf. Die eingebaute Schrift nutzt ein 5×8-Pixel-Raster pro Zeichen und fügt noch passende Abstände ein.\n",
+        "\n",
+        "::: {#fig-images-display-drawing-vs-text-brick-viewer layout=\"[[1,1]]\"}\n",
+        "\n",
+        "![Mein Versuch, den Titel des Buches mit der Maus zu zeichnen.](/images/brick_viewer_oled_display_drawing_hocs.png){#fig-brick-viewer-oled-display-drawing-hocs .lightbox group=\"brick-viewer-oled-display\"}\n",
+        "\n",
+        "![Das Display unterstützt auch die direkte Textausgabe.](/images/brick_viewer_oled_display_text.png){#fig-brick-viewer-oled-display-text .lightbox group=\"brick-viewer-oled-display\"}\n",
+        "\n",
+        ":::\n",
+        "\n",
+        "In @fig-images-display-drawing-vs-text könnt ihr den Unterschied zwischen meinem kläglichen Versuch, den Titel des Buches mit der Maus zu zeichnen, und der automatischen Textausgabe sehen. Das Display ist zwar nicht besonders groß, aber für einfache Grafiken und Texte reicht es allemal. Der Text \"Hands-On Computer Science\" ist aber mit 25 Zeichen zu lang und wird daher abgeschnitten.\n",
+        "\n",
+        "::: {#fig-images-display-drawing-vs-text layout=\"[[1,1]]\"}\n",
+        "\n",
+        "![So sieht meine Zeichnung auf dem Display aus.](/images/oled_display_hocs_drawing.jpg){#fig-oled-display-hocs-drawing .lightbox}\n",
+        "\n",
+        "![Es geht auch direkt als Text, allerdings abgeschnitten.](/images/oled_display_hocs_text.jpg){#fig-oled-display-hocs-text .lightbox}\n",
+        "\n",
+        "Gezeichneter vs. getippter Text auf dem Display.\n",
+        "\n",
+        ":::\n",
+        "\n",
+        "Was wir im Brick Viewer per Mausklick machen, wollen wir im nächsten Schritt in Python programmatisch steuern.\n",
+        "\n",
+        "\n",
+        "## Pixel {#sec-images-pixels .collapsable}\n",
+        "\n",
+        "Nachdem wir das Display im Brick Viewer ausprobiert haben, steuern wir es nun aus Python an. Wie immer stellen wir zuerst die Verbindung her und erzeugen eine Instanz des Display-Objekts. Unser Boilperplate-Code sieht so aus:"
+      ],
+      "id": "8dcb7c6a"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "from tinkerforge.ip_connection import IPConnection\n",
+        "from tinkerforge.bricklet_oled_128x64_v2 import BrickletOLED128x64V2 # <1>\n",
+        "\n",
+        "ipcon = IPConnection()\n",
+        "ipcon.connect('localhost', 4223)\n",
+        "oled = BrickletOLED128x64V2('25zo', ipcon) # <2>\n",
+        "oled.clear_display() # <3>"
+      ],
+      "id": "0f48bcca",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "1. Wir importieren die Klasse `BrickletOLED128x64V2` aus der Tinkerforge-Bibliothek, die uns die Funktionen des Displays zur Verfügung stellt.\n",
+        "2. Tragt hier eure eigene UID ein.\n",
+        "3. Wir löschen den Display-Inhalt, damit wir mit einem leeren Display starten. Die Funktion `clear_display()` erledigt das.\n",
+        "\n",
+        "Über die Variable `oled` können wir von nun an die verschiedenen Funktionen des Displays verwenden. Eine davon seht ihr bereits im Codebeispiel, nämlich das Löschen des Displays mit `clear_display()`. Zu Beginn des Programms ist unser Display somit schwarz.\n",
+        "\n",
+        "### Was ist ein Pixel?\n",
+        "\n",
+        "Das Wort Pixel wird vom englischen \"picture element\" (Bildelement) abgeleitet. Ein Pixel ist der kleinste darstellbare Punkt auf einem Display.\n",
+        "\n",
+        "In unserem Fall kann ein Pixel entweder schwarz oder weiß sein. Auf anderen Bildschirmen, wie dem eures Smartphones oder Fernsehers, können Pixel auch farbig sein. Das schauen wir uns später noch genauer an. In diesem Kapitel konzentrieren wir uns zunächst auf die einfache Schwarzweiß-Darstellung. Auch, weil unser OLED-Display nur Schwarzweiß kann.\n",
+        "\n",
+        "Unser Display hat eine Auflösung von 128 × 64 Pixeln. Das bedeutet, dass es 128 Pixel in der Breite und 64 Pixel in der Höhe hat. Insgesamt ergibt das 8192 Pixel, die wir individuell an- oder ausschalten können.\n",
+        "\n",
+        "Damit wir mit einzelnen Pixeln sprechen können, hat jedes eine eigene Koordinate, die seine Position als Spalte (x) und Zeile (y) angibt. Genau wie in einer Excel-Tabelle, in der die Zelle in der dritten Spalte und vierten Zeile mit C4 adressiert würde – nur verwenden wir hier statt Buchstaben ausschließlich Zahlen.\n",
+        "\n",
+        "Die Koordinaten beginnen bei (0, 0) in der linken oberen Ecke. Die erste Zahl ist die x-Koordinate (horizontal), die zweite die y-Koordinate (vertikal).\n",
+        "\n",
+        "### Ein einzelnes Pixel setzen\n",
+        "\n",
+        "Beginnen wir damit, das Pixel in der linken oberen Ecke des Displays einzuschalten. Dazu verwenden wir die Funktion `write_pixels()`:"
+      ],
+      "id": "4e2cbe2d"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "oled.write_pixels(0, 0, 0, 0, [1])"
+      ],
+      "id": "661340c9",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Warum so viele Argumente, wenn wir doch nur ein einziges Pixel setzen wollen? Der Grund: `write_pixels()` kann nicht nur einzelne Pixel, sondern beliebige rechteckige Flächen ansteuern. Die Funktion erwartet deshalb immer die Beschreibung eines Rechtecks plus die zugehörigen Pixelwerte.\n",
+        "\n",
+        "![Die Funktion `write_pixels()` benötigt die Angabe eines Rechtecks und die entsprechenden Pixelwerte als 0 oder 1. Für ein einziges Pixel sind beide Punkte des Rechtecks identisch.](https://winf-hsos.github.io/university-docs/images/images_write_pixel_coordinates_single.png){#fig-images-write-pixels-single .lightbox}\n",
+        "\n",
+        "Allgemein lautet die Signatur der Funktion so:"
+      ],
+      "id": "b85d97cb"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "write_pixels(x_start, y_start, x_end, y_end, pixel_values)"
+      ],
+      "id": "f0f84b8c",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Die ersten vier Argumente definieren die zwei Eckpunkte des Rechtecks: oben links und unten rechts (beide inklusive). Die Breite ergibt sich aus `x_end - x_start + 1`, die Höhe aus `y_end - y_start + 1`.\n",
+        "\n",
+        "In unserem Fall sind beide Punkte (0, 0), wir sprechen also genau ein Pixel an. Der letzte Parameter ist eine Liste von Werten, die angibt, ob die Pixel in der definierten Fläche ein- oder ausgeschaltet werden sollen. Ein Wert von `1` bedeutet weiß, `0` bedeutet schwarz. Da wir nur ein Pixel ansprechen, enthält die Liste nur einen Wert: `[1]`.\n",
+        "\n",
+        "Auch wenn es im Beispiel nur ein Wert ist, stellt `[1]` in Python eine Liste dar, darauf weisen die eckigen Klammern hin. Innerhalb der Klammern können beliebig viele Werte durch Kommas getrennt angegeben werden.\n",
+        "\n",
+        "Wir können das Pixel wieder ausschalten, indem wir den Wert in der Liste auf 0 ändern:"
+      ],
+      "id": "ca571c49"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "oled.write_pixels(0, 0, 0, 0, [1])\n",
+        "input(\"Drücke Enter um das Pixel auszuschalten...\")\n",
+        "oled.write_pixels(0, 0, 0, 0, [0])"
+      ],
+      "id": "1d672d91",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Einzelne Pixel lassen sich so bequem schalten. Interessant wird es aber erst, wenn wir mehrere Pixel zu einem Bild kombinieren. Das führt uns zu Bitmaps.\n",
+        "\n",
+        "\n",
+        "## Bitmaps {#sec-images-bitmaps .collapsable}\n",
+        "\n",
+        "Eine Bitmap ist nichts anderes als eine rechteckige Matrix von Pixelwerten, die zusammen ein Bild ergeben. Mit `write_pixels()` können wir solche Rechtecke direkt auf dem Display zeichnen.\n",
+        "\n",
+        "### Quadrate\n",
+        "\n",
+        "Sagen wir, wir wollen ein 2×2 großes Quadrat in der Mitte des Displays zeichnen. Die Mitte des Displays liegt rechnerisch bei (64, 32). Da wir bei 0 zu zählen beginnen, korrigieren wir auf (63, 31).\n",
+        "\n",
+        "Um ein 2×2-Quadrat zu zeichnen, setzen wir die Koordinaten des oberen linken Punkts auf (62, 30) und die Koordinaten des unteren rechten Punkts auf (63, 31). Die Liste der Werte für die Pixel in dieser Fläche muss 4 Werte enthalten, alle auf 1 gesetzt:"
+      ],
+      "id": "88def38f"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "oled.write_pixels(62, 30, 63, 31, [1, 1, 1, 1])"
+      ],
+      "id": "19883726",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Genau genommen ist die Liste eine flache Struktur, sie wird aber als 2×2-Matrix interpretiert. Die Bitmap sieht also so aus:\n",
+        "\n",
+        "```\n",
+        "1 1\n",
+        "1 1\n",
+        "```\n",
+        "\n",
+        "@fig-images-write-pixels zeigt das Konzept der Bitmap für unser 2×2-Quadrat.\n",
+        "\n",
+        "![Ein 2x2 Quadrat über die Angabe der linken oberen sowie der unteren rechten Ecke.](https://winf-hsos.github.io/university-docs/images/images_write_pixel_coordinates.png){#fig-images-write-pixels .lightbox}\n",
+        "\n",
+        "Was ist, wenn wir das Quadrat auf 3×3 vergrößern wollen? Dann ändern wir den unteren rechten Punkt auf (64, 32) oder alternativ den oberen linken Punkt auf (61, 29). Die Liste der Werte erweitern wir auf 9 Einträge:"
+      ],
+      "id": "dedc1aa5"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "oled.write_pixels(61, 29, 63, 31, [1] * 9)"
+      ],
+      "id": "2031bac7",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Die Python-Syntax `[1] * 9` erzeugt eine Liste mit 9 Einsen. Das ist eine praktische Abkürzung, um lange Listen mit gleichen Werten zu erstellen.\n",
+        "\n",
+        "Die Länge der Liste `pixel_values` muss immer genau der Anzahl der Pixel in der Fläche entsprechen. Die Werte werden zeilenweise von links nach rechts und von oben nach unten gelesen und auf das Display projiziert.\n",
+        "\n",
+        "### Ein Kreuz als Bitmap\n",
+        "\n",
+        "In @fig-images-write-pixel-coordinates-cross sehen wir ein weiteres Beispiel, diesmal für eine Bitmap mit 3×3 Pixeln. Es leuchten nur die Pixel, die ein Kreuzmuster ergeben. Als Liste sieht das so aus:\n",
+        "\n",
+        "```\n",
+        "[0, 1, 0, 1, 1, 1, 0, 1, 0]\n",
+        "```\n",
+        "\n",
+        "Als Matrix dargestellt:\n",
+        "\n",
+        "```\n",
+        "0 1 0\n",
+        "1 1 1\n",
+        "0 1 0\n",
+        "```\n",
+        "\n",
+        "![Über die Pixelwerte lassen sich beliebige Symbole darstellen, hier ein Kreuz.](https://winf-hsos.github.io/university-docs/images/images_write_pixel_coordinates_cross.png){#fig-images-write-pixel-coordinates-cross .lightbox}\n",
+        "\n",
+        "Wenn wir dieses Kreuz öfter zeichnen wollen, speichern wir die Liste der Pixelwerte am besten in einer Variablen:"
+      ],
+      "id": "2e630aee"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "cross_bitmap = [\n",
+        "    0, 1, 0,\n",
+        "    1, 1, 1,\n",
+        "    0, 1, 0\n",
+        "]"
+      ],
+      "id": "32409f85",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Jetzt können wir das Kreuz einfach zeichnen, indem wir die Variable `cross_bitmap` an `write_pixels()` übergeben:"
+      ],
+      "id": "520c7fb6"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "oled.write_pixels(0, 0, 2, 2, cross_bitmap)"
+      ],
+      "id": "a1bb03a7",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Da wir das Quadrat (0, 0) bis (2, 2) angegeben haben, erscheint das Kreuz in der linken oberen Ecke. Wir können die x- und y-Koordinaten anpassen, um das Kreuz an einer anderen Position zu zeichnen, z.B. direkt daneben noch eins, mit einem Pixel Abstand:"
+      ],
+      "id": "a6d82ad5"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "oled.write_pixels(0, 0, 2, 2, cross_bitmap)\n",
+        "oled.write_pixels(4, 0, 6, 2, cross_bitmap)"
+      ],
+      "id": "8576d718",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### Viele Kreuze mit Schleifen\n",
+        "\n",
+        "Was, wenn wir Kreuze über das gesamte Display zeichnen wollen? Ein Kreuz inklusive Abstand benötigt 4 Pixel in der Breite (3 Pixel für das Kreuz, 1 Pixel Abstand). Mit 128 Pixeln in der Breite können wir 32 solcher Blöcke nebeneinander unterbringen.\n",
+        "\n",
+        "Anstatt jede Position per Hand zu kodieren, nutzen wir eine Schleife:"
+      ],
+      "id": "c4fba2fb"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "for x in range(0, 128, 4):\n",
+        "    oled.write_pixels(x, 0, x + 2, 2, cross_bitmap)"
+      ],
+      "id": "effe04e0",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Erinnert euch: Die `range()`-Funktion erzeugt eine Folge von Zahlen. In diesem Fall starten wir bei 0, enden vor 128 und erhöhen die Zahl in jedem Schritt um 4. Dadurch erhalten wir die x-Koordinaten 0, 4, 8, ..., 124. In jedem Schleifendurchlauf zeichnen wir ein Kreuz an der aktuellen x-Position.\n",
+        "\n",
+        "Wollen wir das gesamte Display mit Kreuzen füllen, verschachteln wir zwei Schleifen – eine für die Zeilen (y), eine für die Spalten (x):"
+      ],
+      "id": "6bacb870"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "for y in range(0, 64, 4):\n",
+        "    for x in range(0, 128, 4):\n",
+        "        oled.write_pixels(x, y, x + 2, y + 2, cross_bitmap)"
+      ],
+      "id": "91d01237",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Wenn ihr den Code ausführt, könnt ihr dem Display beim Zeichnen zuschauen. Es füllt sich nach und nach mit Kreuzen, bis das gesamte Display bedeckt ist.\n",
+        "\n",
+        "Wir haben damit alle Bausteine beisammen, um nicht nur geometrische Formen, sondern auch komplexere Symbole wie Buchstaben zu zeichnen.\n",
+        "\n",
+        "\n",
+        "## Buchstaben {#sec-images-letters .collapsable}\n",
+        "\n",
+        "Auch Buchstaben auf dem Bildschirm sind nichts anderes als Pixelmuster. Wie bereits erwähnt, ist ein Buchstabe auf dem Tinkerforge-Display 5 Pixel breit und 8 Pixel hoch. Das bedeutet, dass wir für jeden Buchstaben eine Bitmap mit 40 Werten benötigen.\n",
+        "\n",
+        "Tinkerforge stellt eine Übersicht der unterstützten Zeichen und deren Pixelmuster auf [seiner Webseite](https://www.tinkerforge.com/en/doc/Hardware/Bricklets/OLED_128x64_V2.html#font) bereit. Daraus habe ich den Buchstaben \"A\" als Bitmap in eine einfache Tabelle übertragen und Pixel, die an sind, schwarz eingefärbt. Das Ergebnis seht ihr in @fig-images-bitmap-letter-a.\n",
+        "\n",
+        "![Der Buchstabe \"A\" als Bitmap.](https://winf-hsos.github.io/university-docs/images/images_letter_a.png){#fig-images-bitmap-letter-a .lightbox}\n",
+        "\n",
+        "Anhand dieser Darstellung können wir die Liste mit Einsen und Nullen ableiten, die wir benötigen, um das \"A\" auf dem Display darzustellen:"
+      ],
+      "id": "9568d042"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "letter_a_bitmap = [\n",
+        "    0, 0, 1, 0, 0,\n",
+        "    0, 1, 0, 1, 0,\n",
+        "    1, 0, 0, 0, 1,\n",
+        "    1, 0, 0, 0, 1,\n",
+        "    1, 1, 1, 1, 1,\n",
+        "    1, 0, 0, 0, 1,\n",
+        "    1, 0, 0, 0, 1,\n",
+        "    0, 0, 0, 0, 0\n",
+        "]"
+      ],
+      "id": "f842c830",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "In der Matrixdarstellung erkennt man das \"A\" recht gut. Jetzt ein Rätsel: Welcher Buchstabe verbirgt sich in der folgenden Bitmap?"
+      ],
+      "id": "0faa4439"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "letter_unknown_bitmap = [\n",
+        "    0, 1, 1, 1, 0,\n",
+        "    1, 0, 0, 0, 1,\n",
+        "    1, 0, 0, 0, 0,\n",
+        "    0, 1, 1, 1, 0,\n",
+        "    0, 0, 0, 0, 1,\n",
+        "    1, 0, 0, 0, 1,\n",
+        "    0, 1, 1, 1, 0,\n",
+        "    0, 0, 0, 0, 0\n",
+        "]"
+      ],
+      "id": "02c6f59d",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Zeichnen wir den Buchstaben auf dem Display, um es herauszufinden. Wir kennen die Dimensionen (5×8 Pixel), haben die Bitmap als Liste und müssen nur noch die Position bestimmen. Ich habe mich für die Position (6, 10) als oberen linken Punkt entschieden:"
+      ],
+      "id": "2b2a23cd"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "oled.write_pixels(6, 10, 10, 17, letter_unknown_bitmap)"
+      ],
+      "id": "b6634f11",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Und? Seht ihr auch ein großes \"S\"?\n",
+        "\n",
+        "![Der Buchstabe \"S\" als Bitmap.](https://winf-hsos.github.io/university-docs/images/images_letter_s.png){#fig-images-bitmap-letter-s .lightbox}\n",
+        "\n",
+        "Versuchen wir, davor noch das \"A\" zu schreiben:"
+      ],
+      "id": "f8b682f8"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "oled.write_pixels(1, 10, 5, 17, letter_a_bitmap)"
+      ],
+      "id": "fa995202",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Wir haben richtig gerechnet: Das \"A\" soll vor dem \"S\" stehen, also müssen wir mit der x-Koordinate 5 Pixel nach links gehen. Lasst uns noch ein Pixel Platz zwischen beiden Buchstaben lassen. Dann setzen wir die x-Koordinate des \"A\" auf 0 und die des rechten unteren Punkts auf 4:"
+      ],
+      "id": "5adf352b"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "oled.write_pixels(0, 10, 4, 17, letter_a_bitmap)"
+      ],
+      "id": "4aa72487",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Und nun noch ein \"S\" ans Ende, damit wir ein sinnvolles Wort schreiben:"
+      ],
+      "id": "6075f2af"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "oled.write_pixels(0, 10, 4, 17, letter_a_bitmap)\n",
+        "oled.write_pixels(6, 10, 10, 17, letter_unknown_bitmap)\n",
+        "oled.write_pixels(12, 10, 16, 17, letter_unknown_bitmap)"
+      ],
+      "id": "822843e1",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Entscheidet selbst, ob ihr bei dem geschriebenen Wort an eine Spielkarte, den Namen eines Schmerzmittels oder das englische Schimpfwort denkt. Technisch haben wir schlicht drei Buchstaben als Bitmaps auf dem Display dargestellt. Und das ganz ohne die Textfunktion des Displays zu verwenden.\n",
+        "\n",
+        "Zur Erinnerung: Das wäre auch viel einfacher gegangen, nur weniger lehrreich:"
+      ],
+      "id": "5c5eadf0"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "oled.write_line(0, 0, \"Ass\")"
+      ],
+      "id": "e5097ae2",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Wenn ihr beides hintereinander ausführt, steht oben \"Ass\" per Textfunktion und darunter \"ASS\" als eigene Bitmaps. Die `write_line()`-Funktion verwendet intern eine eingebaute Schriftart: Für jedes Zeichen ist in einer Tabelle hinterlegt, welche Pixel im 5×8-Raster leuchten.\n",
+        "\n",
+        "Schriftarten für Pixel-Displays sind im Kern nichts anderes als Sammlungen von Bitmaps: Für jedes Zeichen wird festgelegt, welche Pixel leuchten. Wenn ihr eine andere Schrift wollt, erstellt ihr einfach eine neue Bitmap-Tabelle, etwa eine fette oder schmale Variante, und verwendet diese beim Zeichnen.\n",
+        "\n",
+        "Diese Bitmap-Schriften funktionieren hervorragend in festen Rastergrößen, stoßen aber an Grenzen, sobald die Größe der Buchstaben beliebig geändert werden soll. Beim Vergrößern treten dann unschöne Treppeneffekte auf. Hier kommen Vektorgrafiken ins Spiel.\n",
+        "\n",
+        "\n",
+        "## Vektorgrafiken {#sec-images-vector-graphics .collapsable}\n",
+        "\n",
+        "Während Bitmaps jedes Pixel explizit speichern, beschreiben Vektorgrafiken Objekte über geometrische Formen, etwa \"eine Linie von A nach B\" oder \"ein Kreis mit Mittelpunkt M und Radius r\".\n",
+        "\n",
+        "Eine Vektor-Schriftart (wie TrueType) enthält keine 5×8-Raster pro Zeichen, sondern Pfade für die Konturen von \"A\", \"S\" etc. Der Vorteil: Diese Formen lassen sich beliebig vergrößern oder verkleinern, ohne dass Treppeneffekte entstehen. Das ist ideal für hochauflösende Displays und Druck.\n",
+        "\n",
+        "Schaut euch zur Verdeutlichung der Problematik einmal die beiden \"a\" aus @fig-images-truetype-vs-bitmap an. Das linke \"a\" ist eine TrueType-Schriftart, die als Vektorgrafik beschrieben wird. Das rechte \"a\" ist über eine Bitmap definiert und wurde stark vergrößert. Während das rechte \"a\" pixelig wirkt – wir sprechen vom Treppeneffekt – ist die als Vektorgrafik beschriebene Variante gestochen scharf, auch in großen Größen.\n",
+        "\n",
+        "![Das linke \"a\" ist eine TrueType-Schriftart, das rechte \"a\" eine Bitmap. Quelle: [Wikipedia](https://de.wikipedia.org/wiki/TrueType#/media/Datei:TTvsBmpFont.svg).](https://winf-hsos.github.io/university-docs/images/images_truetype_vs_bitmap.png){#fig-images-truetype-vs-bitmap}\n",
+        "\n",
+        "Wie funktioniert das? Dazu betrachten wir ein anderes Beispiel für eine Vektorgrafik im weit verbreiteten Format *Scalable Vector Graphics* (SVG). Kopiert den folgenden Code in eine Textdatei und benennt sie `vector_graphics.svg`. Öffnet die Datei anschließend in einem Webbrowser.\n",
+        "\n",
+        "```xml\n",
+        "<svg width=\"440\" height=\"220\" xmlns=\"http://www.w3.org/2000/svg\">\n",
+        "  <circle cx=\"60\" cy=\"60\" r=\"50\" stroke=\"#0085C7\" stroke-width=\"10\" fill=\"none\" />\n",
+        "  <circle cx=\"180\" cy=\"60\" r=\"50\" stroke=\"#000000\" stroke-width=\"10\" fill=\"none\" />\n",
+        "  <circle cx=\"300\" cy=\"60\" r=\"50\" stroke=\"#DF0024\" stroke-width=\"10\" fill=\"none\" />\n",
+        "  <circle cx=\"120\" cy=\"110\" r=\"50\" stroke=\"#FFD500\" stroke-width=\"10\" fill=\"none\" />\n",
+        "  <circle cx=\"240\" cy=\"110\" r=\"50\" stroke=\"#009F3D\" stroke-width=\"10\" fill=\"none\" />\n",
+        "</svg>\n",
+        "```\n",
+        "\n",
+        "Ihr solltet ein Bild wie in @fig-images-vector-example sehen. Zoomt nun einmal stark hinein (Strg + Plus bzw. Cmd + Plus). Die Kreise bleiben scharf, ohne Treppeneffekte. Das liegt daran, dass Vektorgrafiken mathematisch beschrieben werden und nicht auf eine feste Pixelauflösung angewiesen sind.\n",
+        "\n",
+        "![Ein Versuch der Olympischen Ringe als Vektorgrafik, die man ohne Qualitätsverlust beliebig vergrößern kann.](https://winf-hsos.github.io/university-docs/images/images_vector_example.png){#fig-images-vector-example .lightbox}\n",
+        "\n",
+        "Aber Moment: Wenn Vektorgrafiken auf einem Bildschirm angezeigt werden, müssen sie dann nicht auch als Pixel dargestellt werden? Schließlich besteht doch jedes Bild im Endeffekt aus Pixeln.\n",
+        "\n",
+        "Genau. Während Vektorgrafiken das, was auf dem Bildschirm erscheinen soll, über geometrische Formen beschreiben, muss das Bild letztlich in eine Bitmap umgewandelt werden, damit es auf dem Bildschirm angezeigt werden kann. Dieser Prozess wird als Rasterisierung bezeichnet.\n",
+        "\n",
+        "In @fig-images-vector-to-bitmap seht ihr die Vektorgrafik von oben, die in eine Bitmap mit niedriger Auflösung (100 × 50 Pixel) umgewandelt wurde. Wenn man dieses Bild stark vergrößert oder auf ein großes Werbeplakat druckt, erkennt man die Treppeneffekte deutlich. Die Auflösung einer Bitmap ist somit entscheidend für die Bildqualität.\n",
+        "\n",
+        "![Die Beschreibung der geometrischen Objekte muss irgendwann in ein Bild aus Pixeln überführt werden. Dann spielt die Auflösung die entscheidende Rolle.](https://winf-hsos.github.io/university-docs/images/images_vector_example_rasterization.png){#fig-images-vector-to-bitmap .lightbox}\n",
+        "\n",
+        "Bei Vektorgrafiken spielt die Auflösung dagegen erst bei der Rasterisierung eine Rolle: Wir können für ein 3×2 m Werbeplakat einfach eine entsprechend hochauflösende Bitmap generieren, ohne dass die Qualität leidet, weil die Vektorgrafik immer die gleichen geometrischen Formen *beschreibt*.\n",
+        "\n",
+        "Aufgrund ihrer Eigenschaften werden Vektorgrafiken insbesondere für Logos, Icons und Schriftarten verwendet, die in verschiedenen Größen dargestellt werden müssen. Für komplexe Bilder mit vielen Farben und Details, wie Fotos, sind Bitmaps jedoch besser geeignet, weil eine Beschreibung als reine Geometrie zu aufwendig wäre.\n",
+        "\n",
+        "Am Ende landen aber sowohl Bitmaps als auch Vektorgrafiken auf unserem Display immer als dasselbe: als Liste von Bits für die Pixel. Genau diese Perspektive nehmen wir im nächsten Abschnitt ein.\n",
+        "\n",
+        "\n",
+        "## Von Bits zum Bild {#sec-images-bits-to-display .collapsable}\n",
+        "\n",
+        "Wir bleiben in diesem Kapitel bei Bitmaps, denn ein Bildschirm kennt nur Pixel. Egal, ob ein Bild ursprünglich eine Vektorgrafik war oder direkt als Bitmap vorliegt: Um es auf unserem Display anzuzeigen, müssen wir es in eine Liste von Pixelwerten umwandeln und mit `write_pixels()` zeichnen.\n",
+        "\n",
+        "Auf unserem OLED reicht eine Liste mit Binärwerten (0 und 1) aus, um jedes Pixel als ein- oder ausgeschaltet zu kennzeichnen. Für farbige Displays (z.B. Smartphone, TV) werden mehrere Bits pro Pixel benötigt. Ihr erinnert euch an den RGB-Farbcode aus @sec-colors.\n",
+        "\n",
+        "### Darth Vader als Pixelart\n",
+        "\n",
+        "Betrachtet einmal das Bild in @fig-images-bitmap-darth-vader. Ihr erkennt bestimmt, was es zeigt: eine Bitmap-Darstellung von Darth Vaders Kopf aus Star Wars. Das Bild ist 27 Pixel breit und 24 Pixel hoch, also insgesamt 648 Pixel. Jedes Pixel ist entweder schwarz oder weiß, das passt problemlos auf unser Display.\n",
+        "\n",
+        "![Darth Vaders Kopf aus Star Wars als Bitmap](https://winf-hsos.github.io/university-docs/images/images_darth_vader.png){#fig-images-bitmap-darth-vader .lightbox}\n",
+        "\n",
+        "Unser Ziel ist es, dieses Bild auf dem Display anzuzeigen. Dafür brauchen wir eine Liste aus Nullen und Einsen, die jedes Pixel repräsentiert. Die Idee, diese Liste per Hand aus einem Bild abzulesen, ist sehr mühsam und fehleranfällig.\n",
+        "\n",
+        "Glücklicherweise liegt das Bild bereits digital vor – nicht als Bilddatei, sondern als Excel-Tabelle. Die Idee habe ich aus dem [CS50-Kurs der Harvard University](https://cs50.harvard.edu/x/2024/notes/4/#pixel-art) übernommen: Dort erstellen Studierende Pixelbilder in Excel, indem sie die Zellen einfärben. Jede Zelle entspricht einem Pixel, das entweder schwarz oder weiß ist.\n",
+        "\n",
+        "Die Excel-Datei mit Darth Vaders Maske könnt ihr euch [herunterladen](resources/Darth%20Vader%20Pixel%20Art.xlsx) und das Ganze selbst ausprobieren.\n",
+        "\n",
+        "Wir können das Problem im Sinne des EVA-Modells auffassen: Eingabe sind die Zellfarben in der Excel-Tabelle, Ausgabe soll eine Liste von Bits sein. Dazwischen liegt die Verarbeitung, die wir mit Python programmieren.\n",
+        "\n",
+        "![Die Überführung einer Excel-basierten Bitmap in eine Liste aus Bits im EVA-Modell.](https://winf-hsos.github.io/university-docs/images/images_darth_vader_input_output.png){#fig-images-darth-vader-input-output .lightbox}\n",
+        "\n",
+        "### Excel mit Python einlesen\n",
+        "\n",
+        "Um Excel-Dateien in Python zu lesen, müssen wir das Rad nicht neu erfinden. Es gibt verschiedene Bibliotheken für diesen Job, eine der beliebtesten und einfachsten ist `openpyxl`. Installiert sie mit:\n",
+        "\n",
+        "```{.bash code-line-numbers=\"false\"}\n",
+        "pip install openpyxl\n",
+        "```\n",
+        "\n",
+        "(MacOS-Nutzer verwenden `pip3`.)\n",
+        "\n",
+        "`openpyxl` stellt uns die Funktion `load_workbook()` zur Verfügung, der wir den Pfad der Excel-Datei übergeben können:"
+      ],
+      "id": "b947d7b6"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "from openpyxl import load_workbook  # <1>\n",
+        "workbook = load_workbook(\"Darth Vader Pixel Art.xlsx\")  # <2>"
+      ],
+      "id": "1c12a65b",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "1. Wir kündigen an, dass wir die Funktion `load_workbook()` verwenden möchten.\n",
+        "2. Wir laden die Excel-Datei und speichern das Ergebnis in der Variable `workbook`.\n",
+        "\n",
+        "Ein Excel-Dokument kann mehrere Tabellenblätter enthalten. Wir wählen das Blatt \"Darth Vader\" aus:"
+      ],
+      "id": "c39cabfb"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "sheet = workbook[\"Darth Vader\"]"
+      ],
+      "id": "91952c15",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### Zeile für Zeile die Pixelwerte extrahieren\n",
+        "\n",
+        "Um aus der Excel-Darstellung zu einer Liste mit 0 und 1 zu kommen, schreiben wir ein Programm, das genau das Vorgehen simuliert, das wir per Hand machen würden: Zeile für Zeile durch die Tabelle gehen und für jede Zelle von links nach rechts prüfen, ob sie schwarz oder weiß ist.\n",
+        "\n",
+        "Für wiederholte Abläufe verwenden wir Schleifen. Die Methode `sheet.iter_rows()` liefert uns alle Zeilen, über die wir mit einer `for`-Schleife iterieren können. Jede Zeile ist wiederum eine Liste von Zellen, über die wir ebenfalls iterieren:"
+      ],
+      "id": "b6e251b2"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "for row in sheet.iter_rows():      # <1>\n",
+        "    for cell in row:               # <2>\n",
+        "        ...                        # <3>"
+      ],
+      "id": "92b7d012",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "1. Die äußere Schleife iteriert über jede Zeile im Tabellenblatt.\n",
+        "2. Die innere Schleife iteriert über jede Zelle in der aktuellen Zeile.\n",
+        "3. Hier ergänzen wir gleich den Code, der die Farbe der Zelle prüft.\n",
+        "\n",
+        "Was passiert nun in der inneren Schleife? Wir müssen die Farbe der Zelle auslesen. Das geht über die Attribute `cell.fill.fgColor.rgb`. Die Details muss man nicht auswendig wissen, sie stehen in der [Dokumentation](https://openpyxl.readthedocs.io/en/stable/api/openpyxl.styles.fills.html).\n",
+        "\n",
+        "Probieren wir, die Farbe der Zelle auszulesen und auszugeben:"
+      ],
+      "id": "a5b837df"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "for row in sheet.iter_rows():\n",
+        "    for cell in row:\n",
+        "        color = getattr(cell.fill.fgColor, \"rgb\", None)  # <1>\n",
+        "        print(color)                                      # <2>"
+      ],
+      "id": "99852f11",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "1. Wir lesen den Farbwert als Hexadezimalzahl aus.\n",
+        "2. Wir geben den Farbwert aus, um zu sehen, wie er aussieht.\n",
+        "\n",
+        "Die Ausgabe sieht ungefähr so aus:\n",
+        "\n",
+        "```\n",
+        "00000000\n",
+        "00000000\n",
+        "...\n",
+        "FF000000\n",
+        "FF000000\n",
+        "...\n",
+        "```\n",
+        "\n",
+        "Offenbar bekommen wir 8-stellige Hexadezimalzahlen. Was bedeuten die noch gleich?\n",
+        "\n",
+        "### Hexadezimale Farbwerte\n",
+        "\n",
+        "Im vorigen Kapitel @sec-numbers haben wir das Binärsystem kennengelernt. Es ist ein Stellenwertsystem zur Basis 2. Ein weiteres, in der Informatik wichtiges System, ist das Hexadezimalsystem zur Basis 16. Es verwendet die Ziffern 0 bis 9 und anschließend die Buchstaben A bis F für die Werte 10 bis 15.\n",
+        "\n",
+        "Hexadezimale Zahlen werden häufig verwendet, um Bytes kompakt darzustellen. Wie ihr gleich sehen werdet, passt ein Byte nämlich perfekt in zwei Hexadezimalziffern.\n",
+        "\n",
+        "Wir können unser bekanntes Stellenwertschema auf die Basis 16 anwenden:\n",
+        "\n",
+        "![Das Stellenwertschema für das Hexadezimalsystem zur Basis 16. Funktioniert wie jedes andere Stellenwertsystem.](https://winf-hsos.github.io/university-docs/images/images_places_hexadecimal.png){#fig-images-hexadecimal-places .lightbox}\n",
+        "\n",
+        "Die rechte Stelle hat den Wert $16^0 = 1$, die nächste links den Wert $16^1 = 16$, dann $16^2 = 256$ usw. Um den Wert einer Hexadezimalzahl zu berechnen, multiplizieren wir jede Ziffer mit ihrer Stellenwertigkeit und addieren die Ergebnisse.\n",
+        "\n",
+        "Warum ist das interessant? Mit einer Hexadezimalziffer können wir Werte von 0 bis 15 darstellen. Im Binärsystem benötigen wir dafür vier Bits. Vier Bits entsprechen genau einem halben Byte, einem so genannten Nibble. Zwei Hexadezimalziffern können also alle 256 möglichen Werte eines Bytes (0–255) darstellen.\n",
+        "\n",
+        "![Ein Byte lässt sich schön kompakt mit zwei Hexadezimalziffern darstellen.](https://winf-hsos.github.io/university-docs/images/images_byte_compact_1.png){#fig-images-byte-compact-1 .lightbox}\n",
+        "\n",
+        "::: {#fig-images-byte-compact layout=\"[[1,1]]\"}\n",
+        "![0 entspricht dem Hexadezimalwert 0x00.](https://winf-hsos.github.io/university-docs/images/images_byte_compact_2.png){#fig-images-byte-compact-2 .lightbox}\n",
+        "\n",
+        "![255 entspricht dem Hexadezimalwert 0xFF.](https://winf-hsos.github.io/university-docs/images/images_byte_compact_3.png){#fig-images-byte-compact-3 .lightbox}\n",
+        "\n",
+        "Darstellung von Bytes als Hexadezimalzahlen.\n",
+        ":::\n",
+        "\n",
+        "Kleine Randnotiz: In der Informatik wird eine Hexadezimalzahl häufig mit einem vorangestellten `0x` gekennzeichnet, um klarzumachen, dass es sich um eine Hexadezimalzahl handelt. So wird aus der Zahl 255 im Dezimalsystem die Zahl `0xFF` im Hexadezimalsystem.\n",
+        "\n",
+        "#### Alpha-Werte {.unnumbered}\n",
+        "\n",
+        "Zurück zur Ausgabe von oben: Wir haben 8-stellige Hexadezimalzahlen gesehen, obwohl ein RGB-Wert aus drei Bytes (also 6 Hexziffern) besteht. Die Erklärung: Die ersten beiden Ziffern repräsentieren die Transparenz (Alpha-Kanal), gefolgt von den sechs Ziffern für Rot, Grün und Blau.\n",
+        "\n",
+        "In unserem Fall sind die Farben entweder komplett schwarz (`FF000000`) oder komplett weiß (`FF000000` für schwarz mit vollem Alpha, später `FFFFFFFF` für weiß). Die ersten beiden Ziffern `FF` stehen dabei für den Alpha-Wert: vollständig sichtbar.\n",
+        "\n",
+        "Macht einmal den Test und färbt die obere linke Zelle in Rot ein. Nach einem erneuten Lauf (Excel speichern und schließen!) erhaltet ihr z.B.:\n",
+        "\n",
+        "```\n",
+        "FFFF0000\n",
+        "00000000\n",
+        "...\n",
+        "```\n",
+        "\n",
+        "`FFFF0000` steht für: FF (Alpha, voll sichtbar), FF (Rot, volle Intensität), 00 (Grün, 0), 00 (Blau, 0) – also Rot.\n",
+        "\n",
+        "### Die Liste mit Bits erstellen\n",
+        "\n",
+        "Jetzt, da wir die Farbwerte verstehen, können wir sie auswerten. Für Darth Vader ist jede schwarze Zelle ein gesetztes Pixel (`1`), jede nicht-schwarze Zelle ein ausgeschaltetes Pixel (`0`):"
+      ],
+      "id": "5360ffc9"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "from openpyxl import load_workbook\n",
+        "\n",
+        "workbook = load_workbook(\"Darth Vader Pixel Art.xlsx\")\n",
+        "sheet = workbook[\"Darth Vader\"]\n",
+        "\n",
+        "bits = []\n",
+        "for row in sheet.iter_rows():\n",
+        "    for cell in row:\n",
+        "        color = getattr(cell.fill.fgColor, \"rgb\", None)\n",
+        "        if color == \"FF000000\":        # schwarz\n",
+        "            bits.append(1)\n",
+        "        else:                           # alles andere behandeln wir als weiß\n",
+        "            bits.append(0)\n",
+        "\n",
+        "print(f\"Bitmap with {len(bits)} bits: {bits}\")"
+      ],
+      "id": "1ee61fd0",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Die `if`-Anweisung entscheidet, ob wir eine 1 oder 0 anhängen. Das Hinzufügen am Ende der Liste erledigt die `append()`-Methode. Am Ende haben wir eine Liste mit 648 Einträgen, genau so viele wie das Bild Pixel hat.\n",
+        "\n",
+        "### Anzeige auf dem Display\n",
+        "\n",
+        "Wie wir Pixel auf dem Display anzeigen, haben wir in @sec-images-pixels gelernt. Jetzt nutzen wir dieselbe `write_pixels()`-Funktion, um Darth Vaders Maske darzustellen.\n",
+        "\n",
+        "Wir müssen nur die Position und Größe des Bildes festlegen. Ich habe mich für die Position (50, 20) als oberen linken Punkt entschieden, so erscheint das Bild ungefähr in der Mitte. Das Bild ist 27 Pixel breit und 24 Pixel hoch, der untere rechte Punkt ist also (76, 43):"
+      ],
+      "id": "b45ab282"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "oled.write_pixels(50, 20, 76, 43, bits)"
+      ],
+      "id": "ace3d33c",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Natürlich müssen wir zuvor wie gewohnt den Boilerplate-Code zum Initialisieren des Displays ergänzen. Das komplette Programm sieht dann so aus:"
+      ],
+      "id": "e30e8421"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-fold: show\n",
+        "from openpyxl import load_workbook\n",
+        "from tinkerforge.ip_connection import IPConnection\n",
+        "from tinkerforge.bricklet_oled_128x64_v2 import BrickletOLED128x64V2\n",
+        "\n",
+        "ipcon = IPConnection()\n",
+        "ipcon.connect('localhost', 4223)\n",
+        "oled = BrickletOLED128x64V2('25zo', ipcon)\n",
+        "oled.clear_display()\n",
+        "\n",
+        "workbook = load_workbook(\"xlsx/Darth Vader Pixel Art.xlsx\")\n",
+        "sheet = workbook[\"Darth Vader\"]\n",
+        "\n",
+        "bits = []\n",
+        "for row in sheet.iter_rows():\n",
+        "    for cell in row:\n",
+        "        color = getattr(cell.fill.fgColor, \"rgb\", None)\n",
+        "        if color == \"FF000000\":\n",
+        "            bits.append(1)\n",
+        "        else:\n",
+        "            bits.append(0)\n",
+        "\n",
+        "print(f\"Bitmap with {len(bits)} bits: {bits}\")\n",
+        "oled.write_pixels(50, 20, 76, 43, bits)"
+      ],
+      "id": "24f58a0a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Und voilà: Darth Vader erscheint auf dem Display!\n",
+        "\n",
+        "![Darth Vaders Maske als Bitmap aus dem OLED-Display.](/images/oled_display_darth_vader.jpg){#fig-images-oled-display-darth-vader .lightbox}\n",
+        "\n",
+        "### Eine Bitmap speichern {#sec-images-save-bitmap}\n",
+        "\n",
+        "Wir haben ein Programm geschrieben, das eine Bitmap aus Excel ausliest und auf dem Display anzeigt. Excel ist dafür aber eher eine Notlösung. Für Bitmaps gibt es besser geeignete Formate, z.B. BMP (Bitmap). Es ist ein einfaches, unkomprimiertes Format, das die Pixelwerte direkt als Abfolge von Bits speichert.\n",
+        "\n",
+        "Wenn wir das händisch machen wollten, müssten wir uns mit dem genauen Aufbau des BMP-Formats beschäftigen. Das besteht neben den Farbwerten nämlich auch aus einem so genannten Header, der Metainformationen wie Breite, Höhe oder die Farbtiefe eines Bildes speichert. Das sparen wir uns an dieser Stelle und nutzen stattdessen wieder eine Bibliothek, die alle einfacher macht: `Pillow`.\n",
+        "\n",
+        "Installiert sie mit:\n",
+        "\n",
+        "```{.bash code-line-numbers=\"false\"}\n",
+        "pip install Pillow\n",
+        "```\n",
+        "\n",
+        "(MacOS-Nutzer: `pip3`.)\n",
+        "\n",
+        "Mit `Pillow` können wir Bilder bequem erstellen und speichern. Für Darth Vader (27×24 Pixel, Schwarzweiß) sieht das so aus:"
+      ],
+      "id": "e7dd9efa"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "from PIL import Image  # <1>\n",
+        "...\n",
+        "image = Image.new('1', (27, 24))  # <2>\n",
+        "image.putdata(bits)               # <3>\n",
+        "image.save(\"xlsx/darth_vader.bmp\")  # <4>"
+      ],
+      "id": "080d5413",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "1. Wir importieren die `Image`-Klasse aus `PIL` (Teil von `Pillow`).\n",
+        "2. Wir erstellen ein neues Bildobjekt mit der Größe 27×24 Pixel im Modus `\"1\"` (Schwarzweiß).\n",
+        "3. Wir setzen die Pixelwerte des Bildes mit unserer Liste `bits` (zeilenweise von links nach rechts, oben nach unten).\n",
+        "4. Wir speichern das Bild als BMP-Datei.\n",
+        "\n",
+        "Zuerst erstellen wir eine leere Hülle für unsere Bild und geben die Dimensionen sowie die Farbtiefe an. Anschließend übergeben wir dem Bild die Daten, hier unsere Liste `bits` mit den Nullen und Einsen. Mit `image.save()` speichern wir die Bitmap-Datei ab. Im Ordner `xlsx` solltet ihr nun die Datei `darth_vader.bmp` finden.\n",
+        "\n",
+        "![Darth Vader als Bitmap-Datei auf eurer Festplatte.](/images/darth_vader_saved_bmp.png){#fig-images-darth-vader-saved-bmp}\n",
+        "\n",
+        "Damit haben wir die Kette geschlossen: Excel-Pixel → Bitliste → Anzeige auf dem Display → echte Bitmap-Datei. Im nächsten Schritt erweitern wir das Ganze auf Farbbilder.\n",
+        "\n",
+        "\n",
+        "## Farbe {#sec-images-color .collapsable}\n",
+        "\n",
+        "Bisher haben wir nur Schwarzweiß-Bitmaps verwendet, in denen ein Pixel entweder 0 (schwarz) oder 1 (weiß) ist. Für unser Display reicht das, aber typische Bildschirme arbeiten mit Farben.\n",
+        "\n",
+        "Die wichtigste Grundlage dafür, nämlich den RGB-Code, haben wir bereits in @sec-colors kennengelernt.\n",
+        "\n",
+        "### Bitmaps im RGB-Format\n",
+        "\n",
+        "In @fig-images-super-mario seht ihr eine farbige Bitmap von Super Mario, wie sie auf der 8-Bit-Konsole Nintendo Entertainment System (NES) über den Bildschirm geflimmert ist. Die Auflösung der NES-Konsole war 256 × 240 Pixel – deutlich weniger als heutige Full-HD-Bildschirme, aber für viel Spielspaß ausreichend.\n",
+        "\n",
+        "![Super Mario aus der 8-Bit Nintendo-Spielkonsole NES als Bitmap](https://winf-hsos.github.io/university-docs/images/images_super_mario.png){#fig-images-super-mario .lightbox}\n",
+        "\n",
+        "Super Mario in dieser Darstellung ist 16 Pixel breit und 16 Pixel hoch, also 256 Pixel. Jedes Pixel ist farbig und wird durch einen RGB-Wert (3 Bytes) repräsentiert. Damit benötigt die gesamte Bitmap 256 Pixel × 3 Bytes = 768 Bytes Speicherplatz. Übrigens: Die NES-Spielekonsole konnte nur 256 Farben gleichzeitig darstellen, was 8 Bits pro Pixel entspricht. In diesem Fall wären es 256 Pixel × 1 Byte = 256 Bytes. Heute sind 24 Bits (3 Bytes) pro Pixel üblich, was 16,7 Millionen Farben ermöglicht.\n",
+        "\n",
+        "Zum Vergleich: Darth Vader hatte 27×24 = 648 Pixel, aber nur 1 Bit pro Pixel. Das sind 648 Bits = 81 Bytes. Ein größeres Bild kann also *weniger* Speicher benötigen, wenn es nur Schwarzweiß ist. Die Farbtiefe spielt neben der Auflösung eine entscheidende Rolle für die Dateigröße.\n",
+        "\n",
+        "Auch Super Mario habe ich als Excel-Tabelle erstellt, genau wie Darth Vader. Ihr könnt die Datei [hier herunterladen](resources/Super%20Mario%20Pixel%20Art.xlsx).\n",
+        "\n",
+        "Wir können unser Programm von oben grundsätzlich wiederverwenden, müssen es aber anpassen: Statt 0 oder 1 pro Pixel wollen wir die RGB-Werte in eine Liste von Dreiertupeln überführen: Ein Wert für jeden Farbkanal im RGB-Code.\n",
+        "\n",
+        "Wir laden zunächst die neue Excel-Datei und das Tabellenblatt:"
+      ],
+      "id": "cb1066ad"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "workbook = load_workbook(\"Super Mario Pixel Art.xlsx\")\n",
+        "sheet = workbook[\"Super Mario\"]"
+      ],
+      "id": "a3ce8f87",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Die verschachtelten Schleifen bleiben, aber diesmal interessieren uns nicht nur Schwarz und Weiß, sondern die vollen RGB-Farben. `openpyxl` liefert die Farbwerte wieder als 8-stellige Hexadezimalzahlen (inklusive Alpha-Kanal). Uns interessieren nur die letzten 6 Ziffern:"
+      ],
+      "id": "6b95230c"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "bitmap = []\n",
+        "for row in sheet.iter_rows():\n",
+        "    for cell in row:\n",
+        "        color = getattr(cell.fill.fgColor, \"rgb\", None)\n",
+        "        color = color[2:]          # <1>\n",
+        "        print(color)               # <2>"
+      ],
+      "id": "07478b35",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "1. Wir schneiden die ersten beiden Ziffern (Alpha-Wert) ab.\n",
+        "2. Wir prüfen, ob wir tatsächlich 6-stellige RGB-Werte erhalten.\n",
+        "\n",
+        "Die Ausgabe sieht z.B. so aus:\n",
+        "\n",
+        "```\n",
+        "FFFFFF\n",
+        "FFFFFF\n",
+        "...\n",
+        "B53120\n",
+        "B53120\n",
+        "...\n",
+        "```\n",
+        "\n",
+        "Für die Bildspeicherung im RGB-Format benötigt `Pillow` pro Pixel ein Dreiertupel mit Dezimalwerten, z.B. für drei weiße Pixel:"
+      ],
+      "id": "deed3297"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "bitmap = [(255, 255, 255), (255, 255, 255), (255, 255, 255)]"
+      ],
+      "id": "fbbbb668",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Wir müssen also:\n",
+        "\n",
+        "1. Den Hex-String `RRGGBB` in seine Bestandteile zerlegen und\n",
+        "2. Jede Komponente in eine Dezimalzahl umwandeln.\n",
+        "\n",
+        "Beides erledigt Python für uns:"
+      ],
+      "id": "dc1c5a47"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "...\n",
+        "color = getattr(cell.fill.fgColor, \"rgb\", None)\n",
+        "color = color[2:]\n",
+        "\n",
+        "r = int(color[0:2], 16)  # <1>\n",
+        "g = int(color[2:4], 16)  # <2>\n",
+        "b = int(color[4:6], 16)  # <3>\n",
+        "print(r, g, b)           # <4>"
+      ],
+      "id": "dd1484af",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "1. Wir extrahieren die ersten beiden Ziffern (Rot) und wandeln sie in eine Dezimalzahl um.\n",
+        "2. Wir extrahieren die nächsten beiden Ziffern (Grün).\n",
+        "3. Wir extrahieren die letzten beiden Ziffern (Blau).\n",
+        "4. Wir prüfen, ob die Umwandlung funktioniert hat.\n",
+        "\n",
+        "Die Ausgabe beginnt z.B. so:\n",
+        "\n",
+        "```\n",
+        "255 255 255\n",
+        "255 255 255\n",
+        "...\n",
+        "181 49 32\n",
+        "...\n",
+        "```\n",
+        "\n",
+        "Nun sammeln wir die RGB-Werte in einer Liste von Tupeln:"
+      ],
+      "id": "9b7cfa2a"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "bitmap = []\n",
+        "for row in sheet.iter_rows():\n",
+        "    for cell in row:\n",
+        "        color = getattr(cell.fill.fgColor, \"rgb\", None)\n",
+        "        color = color[2:]\n",
+        "        r = int(color[0:2], 16)\n",
+        "        g = int(color[2:4], 16)\n",
+        "        b = int(color[4:6], 16)\n",
+        "        rgb_tuple = (r, g, b)\n",
+        "        bitmap.append(rgb_tuple)"
+      ],
+      "id": "1809c1dc",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Mit dieser Liste `bitmap` können wir nun ein farbiges Bild von Super Mario erzeugen und speichern. Das funktioniert analog zu Darth Vader oben, nur dass wir diesmal den Modus `'RGB'` und eine Dimensionierung von 16 × 16 Pixeln verwenden:"
+      ],
+      "id": "a10274c2"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "image = Image.new('RGB', (16, 16))\n",
+        "image.putdata(bitmap)\n",
+        "image.save(\"xlsx/super_mario_color.bmp\")"
+      ],
+      "id": "08ba3b2a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Wenn ihr die Datei `super_mario_color.bmp` öffnet, seht ihr Mario in Farbe.\n",
+        "\n",
+        "### Struktur einer Bitmap-Datei\n",
+        "\n",
+        "Schauen wir uns nun die Dateigröße an. Im Datei-Explorer oder im Terminal könnt ihr euch die Details einer Datei anzeigen lassen. Auf der Kommandozeile in Windows mit dem Befehl `dir`, unter Mac/Linux  geht das mit `ls -lh`. So ungefähr sieht die Ausgabe aus:\n",
+        "\n",
+        "```\n",
+        "28.10.2025  19:41    822 super_mario_color.bmp\n",
+        "```\n",
+        "\n",
+        "Die Zahl direkt vor dem Dateinamen ist die Dateigröße in Bytes. In meinem Fall sind es 822 Bytes.\n",
+        "\n",
+        "Rein rechnerisch bräuchten wir aber nur:\n",
+        "\n",
+        "$$16 \\cdot 16 \\cdot 3 = 768$$\n",
+        "\n",
+        "Bytes, denn wir haben 16×16 = 256 Pixel und jedes Pixel benötigt 3 Bytes. Wo kommen also die restlichen 54 Bytes her?\n",
+        "\n",
+        "Die Erklärung: Eine Bitmap-Datei (und praktisch jede andere Datei auch) enthält neben den eigentlichen Informationen (hier: Pixelwerte) noch Metainformationen, also Informationen *über* das Bild. Dazu gehören z.B. Breite, Höhe und Farbtiefe. Diese Metadaten stehen im sogenannten Header am Anfang der Datei.\n",
+        "\n",
+        "Die wichtigsten Strukturelemente einer Bitmap-Datei sind in @fig-images-bitmap-structure dargestellt. Wir sehen dort die Datei in einem Hexadezimal-Editor. Jedes Kästchen repräsentiert ein Byte (2 Hexadezimalziffern). Die farbigen Bereiche kennzeichnen die verschiedenen Abschnitte der Datei.\n",
+        "\n",
+        "![Die Struktur einer Bitmap-Datei am Beispiel der super_mario_color.bmp von oben](https://winf-hsos.github.io/university-docs/images/images_bitmap_structure.png){#fig-images-bitmap-structure .lightbox}\n",
+        "\n",
+        "- Der kleine gelbe Bereich am Anfang ist 14 Bytes lang und stellt den Datei-Header dar. Die ersten beiden Bytes `42` und `4D` stehen für die ASCII-Zeichen \"B\" und \"M\" – ein Kennzeichen für Bitmap-Dateien. Hier steht auch die Gesamtgröße der Datei (z.B. `36 03 00 00`, was 822 Bytes entspricht; im sogenannten Little-Endian-Format sind die Bytes in umgekehrter Reihenfolge gespeichert) und die Position, an der die eigentlichen Pixelwerte beginnen (hier: Byte 54).\n",
+        "- Direkt danach folgt der rosafarbene Bereich mit 40 Bytes: der DIB-Header (Device Independent Bitmap). Hier sind u.a. Breite, Höhe und Farbtiefe gespeichert. Die `18` steht z.B. für 24 Bits Farbtiefe.\n",
+        "- Erst danach folgen die eigentlichen Pixelwerte (grün markiert). In unserem Fall sind das 768 Bytes.\n",
+        "\n",
+        "Probiert es am besten selbst aus: Öffnet die Webseite [hexed.it](https://hexed.it/) in eurem Browser, ladet `super_mario_color.bmp` und schaut euch die Datei an. Der Editor zeigt jedes Byte als Hexadezimalzahl an. In @fig-images-hex-editor-mario sind die Farbwerte der ersten drei Pixel rot umrandet.\n",
+        "\n",
+        "![Marios Bitmap im Hex-Editor. Hier wird jedes Byte als Hexadezimalzahl angezeigt.](https://winf-hsos.github.io/university-docs/images/images_hex_editor_mario.png){#fig-images-hex-editor-mario .lightbox}\n",
+        "\n",
+        "Es passt also alles zusammen:\n",
+        "\n",
+        "- 14 Bytes Datei-Header\n",
+        "- 40 Bytes DIB-Header\n",
+        "- 768 Bytes Pixelwerte\n",
+        "\n",
+        "Das macht insgesamt 822 Bytes. Wir haben damit ein sehr konkretes Beispiel dafür, wie Bilddaten im Computer gespeichert werden.\n",
+        "\n",
+        "Im nächsten Schritt machen wir diese Bilder lebendig.\n",
+        "\n",
+        "\n",
+        "## Animationen {#sec-images-animation .collapsable}\n",
+        "\n",
+        "Viele Anwendungen, z.B. Videospiele wie Super Mario, kommen mit statischen Bildern nicht aus. Mario kann laufen, hüpfen und Feuerkugeln schleudern. Auch bei Videoclips auf YouTube oder Filmen auf Netflix stehen bewegte Bilder im Vordergrund. Wie funktionieren solche bewegten Bilder?\n",
+        "\n",
+        "Das Verständnis von statischen Bildern ist die Grundvoraussetzung dafür. Eine Animation besteht im Kern aus einer schnellen Abfolge von Einzelbildern (Frames), die nacheinander angezeigt werden. Wenn die Bilder schnell genug wechseln, entsteht der Eindruck von Bewegung. Unser Gehirn kann ab einer bestimmten Bildwechselrate nicht mehr zwischen einzelnen Bildern unterscheiden.\n",
+        "\n",
+        "Um das einmal Hands-On zu erfahren, versuchen wir, Mario zum Laufen zu bringen. Dazu benötigen wir mehrere Bilder, die nacheinander die unterschiedlichen Posen abbilden, die Mario beim Laufen einnimmt. In @fig-images-super-mario-walk seht ihr drei solcher Bilder (die werden auch Sprites genannt) – direkt aus dem Spiel \"Super Mario Bros.\" der 1980er-Jahre.\n",
+        "\n",
+        "::: {#fig-images-super-mario-walk layout=\"[[1,1,1]]\"}\n",
+        "\n",
+        "![Erster Frame](https://winf-hsos.github.io/university-docs/images/images_super_mario_walk_1.png){#fig-images-super-mario-walk-1 group=\"super-mario-walk\" .lightbox}\n",
+        "\n",
+        "![Zweiter Frame](https://winf-hsos.github.io/university-docs/images/images_super_mario_walk_2.png){#fig-images-super-mario-walk-2 group=\"super-mario-walk\" .lightbox}\n",
+        "\n",
+        "![Dritter Frame](https://winf-hsos.github.io/university-docs/images/images_super_mario_walk_3.png){#fig-images-super-mario-walk-3 group=\"super-mario-walk\" .lightbox}\n",
+        "\n",
+        "Drei Bilder – oder Frames – um Mario zum Laufen zu bringen.\n",
+        ":::\n",
+        "\n",
+        "Ein Sprite ist ein kleines Bild, das in Videospielen Figuren oder Objekte darstellt. In der Regel sind Sprites Teil einer größeren Grafikdatei, des sogenannten Sprite-Sheets. Jedes Bild im Sprite-Sheet repräsentiert eine bestimmte Pose oder Aktion. Indem das Spiel schnell zwischen diesen Bildern wechselt, entsteht der Eindruck von Bewegung.\n",
+        "\n",
+        "Das fertige Ergebnis einer Mario-Animation seht ihr in @fig-images-super-mario-animation. Es handelt sich um ein GIF (Graphics Interchange Format). Ein GIF ist ein Bildformat, das mehrere Einzelbilder in einer Datei speichern kann. Jedes Einzelbild wird als Frame bezeichnet, und die Frames werden in schneller Abfolge abgespielt.\n",
+        "\n",
+        "::: {.content-visible when-format=\"html\"}\n",
+        "![Die Einzelbilder hintereinander ergeben eine Animation](/images/super_mario_walking_animation.gif){#fig-images-super-mario-animation .lightbox}\n",
+        ":::\n",
+        "\n",
+        "Wir können dasselbe Prinzip nutzen, um eine Animation auf unser OLED-Display zu bringen: Wir zeigen mehrere Bitmaps nacheinander an und legen dazwischen kurze Pausen ein. Unser Display hat allerdings eine Einschränkung: Es kann nur Schwarzweiß. Also müssen wir unsere farbigen Sprites zunächst in Graustufen und dann in Schwarzweiß umwandeln.\n",
+        "\n",
+        "\n",
+        "## Transformationen {#sec-images-transformations .collapsable}\n",
+        "\n",
+        "Der große Vorteil digitaler Bilder ist, dass wir sie mit einfacher Arithmetik fast beliebig bearbeiten können. Viele Fotofilter (z.B. in Instagram oder Snapchat) basieren auf relativ einfachen Berechnungen pro Pixel.\n",
+        "\n",
+        "Für unsere Zwecke, ein Bild von Farbe zu Schwarzweiß zu transformieren, brauchen wir zwei Schritte:\n",
+        "\n",
+        "1. Wir transformieren jedes Pixel eines Farbbilds in einen Grauwert (Graustufenbild).\n",
+        "2. Wir wandeln die Graustufen in Schwarzweiß um, indem wir einen Schwellenwert festlegen.\n",
+        "\n",
+        "Wir demonstrieren das wieder an Super Mario.\n",
+        "\n",
+        "### Graustufen\n",
+        "\n",
+        "In @fig-images-grayscale-transformation seht ihr ein Farbbild und die entsprechende Graustufenversion.\n",
+        "\n",
+        "![Ein Drohnenbild in Farbe und in Graustufen.](https://winf-hsos.github.io/university-docs/images/images_grayscale_transformation.png){#fig-images-grayscale-transformation .lightbox}\n",
+        "\n",
+        "Um ein Farbbild in ein Graustufenbild zu verwandeln, müssen wir für jedes Pixel einen Helligkeitswert (Luminanz) berechnen. Eine einfache Möglichkeit wäre der Durchschnitt der drei Farbkanäle:\n",
+        "\n",
+        "$$ \\text{luminance} = \\frac{R + G + B}{3} $$\n",
+        "\n",
+        "Besser an die menschliche Wahrnehmung angepasst ist jedoch eine gewichtete Summe, denn unser Auge reagiert empfindlicher auf Grün und Rot als auf Blau:\n",
+        "\n",
+        "$$ \\text{luminance} = 0.299 \\cdot R + 0.587 \\cdot G + 0.114 \\cdot B $$\n",
+        "\n",
+        "Wir wollen Mario möglichst menschenähnlich erscheinen lassen und verwenden deshalb diese gewichtete Summe.\n",
+        "\n",
+        "In Python sieht die Luminanzberechnung so aus:"
+      ],
+      "id": "a169d4ff"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "luminance = 0.299 * r + 0.587 * g + 0.114 * b\n",
+        "luminance = round(luminance)"
+      ],
+      "id": "c5552c51",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "`round()` wandelt den berechneten Wert in eine Ganzzahl um, denn die RGB-Werte müssen schließlich Ganzzahlen sein.\n",
+        "\n",
+        "Zuerst laden wir das Farbbild von Mario mit `Pillow`:"
+      ],
+      "id": "77c0df04"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "from PIL import Image\n",
+        "image = Image.open(\"super_mario_color.bmp\")  # <1>"
+      ],
+      "id": "f3fc7a53",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "1. Mit `Image.open()` laden wir die Bitmap-Datei und erhalten ein Bildobjekt.\n",
+        "\n",
+        "\n",
+        "Sobald wir ein Bild geladen haben, können wir über `image.getpixel()` den Farbwert eines bestimmten Pixels auslesen. Testen wir das Pixel in der linken oberen Ecke (0, 0):"
+      ],
+      "id": "6ec1905a"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "pixel = image.getpixel((0, 0))\n",
+        "print(pixel)"
+      ],
+      "id": "aa3c22af",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Die Ausgabe lautet:\n",
+        "\n",
+        "```\n",
+        "(255, 255, 255)\n",
+        "```\n",
+        "\n",
+        "Wir erhalten also ein Tupel mit den RGB-Werten. Extrahieren wir sie und berechnen die Luminanz:"
+      ],
+      "id": "cd660366"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "pixel = image.getpixel((0, 0))\n",
+        "r = pixel[0]\n",
+        "g = pixel[1]\n",
+        "b = pixel[2]\n",
+        "\n",
+        "luminance = 0.299 * r + 0.587 * g + 0.114 * b\n",
+        "luminance = round(luminance)\n",
+        "print(f\"R: {r}, G: {g}, B: {b}, Luminance: {luminance}\")"
+      ],
+      "id": "0858899c",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Für das sechste Pixel in der ersten Reihe (x = 5, y = 0) erwarten wir einen rötlichen Wert (Marios Mütze):"
+      ],
+      "id": "3813f8c3"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "pixel = image.getpixel((5, 0))\n",
+        "r = pixel[0]\n",
+        "g = pixel[1]\n",
+        "b = pixel[2]\n",
+        "\n",
+        "luminance = 0.299 * r + 0.587 * g + 0.114 * b\n",
+        "luminance = round(luminance)\n",
+        "print(f\"R: {r}, G: {g}, B: {b}, Luminance: {luminance}\")"
+      ],
+      "id": "5e593c28",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Die Ausgabe sieht z.B. so aus:\n",
+        "\n",
+        "```\n",
+        "R: 181, G: 49, B: 32, Luminance: 87\n",
+        "```\n",
+        "\n",
+        "Damit wir die Umrechnung nicht für jedes Pixel neu schreiben müssen, kapseln wir sie in einer Funktion:"
+      ],
+      "id": "d4a34770"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "def rgb_to_luminance(rgb_tuple):  # <1>\n",
+        "    r = rgb_tuple[0]\n",
+        "    g = rgb_tuple[1]\n",
+        "    b = rgb_tuple[2]\n",
+        "\n",
+        "    luminance = 0.299 * r + 0.587 * g + 0.114 * b\n",
+        "    luminance = round(luminance)\n",
+        "    return luminance"
+      ],
+      "id": "12e26bfb",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "1. Die Funktion `rgb_to_luminance` erwartet ein Tupel `(R, G, B)` und gibt die Luminanz als Ganzzahl zurück.\n",
+        "\n",
+        "Jetzt können wir für beliebige Pixel einfach:"
+      ],
+      "id": "d376cabb"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "pixel = image.getpixel((4, 0))\n",
+        "luminance = rgb_to_luminance(pixel)\n",
+        "print(f\"Luminance of pixel (4,0): {luminance}\")"
+      ],
+      "id": "c973ac02",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### Bitmap in Graustufen umwandeln\n",
+        "\n",
+        "Jetzt müssen wir nur noch die neue Funktion auf alle Pixel anwenden und das Ergebnis speichern. Dazu können wir erneut zwei Schleifen einsetzen, die eine für jede Zeile, die andere für jedes Pixel in einer Zeile. Dafür benötigen wir die Breite und Höhe des Bildes, die wir beide auf einen Schlag mit `image.size` auslesen können:"
+      ],
+      "id": "171cc20d"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "w, h = image.size"
+      ],
+      "id": "b0f3b080",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Nun iterieren wir mit zwei verschachtelten `for`-Schleifen über alle Pixelkoordinaten und sammeln die Luminanzwerte in einer Liste:"
+      ],
+      "id": "05971dc3"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "w, h = image.size\n",
+        "grayscale_values = []\n",
+        "for y in range(h):\n",
+        "    for x in range(w):\n",
+        "        r, g, b = image.getpixel((x, y))\n",
+        "        luminance = rgb_to_luminance((r, g, b))\n",
+        "        grayscale_values.append(luminance)"
+      ],
+      "id": "9115359f",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "(Vertipper in der Variablenname sind in eurem Code bitte zu vermeiden – hier nennen wir sie besser `grayscale_values`.)\n",
+        "\n",
+        "Mit den gesammelten Graustufenwerten erzeugen wir ein neues Bild:"
+      ],
+      "id": "86430c1c"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "grayscale_image = Image.new(\"L\", (w, h))  # Modus \"L\" für Graustufen\n",
+        "grayscale_image.putdata(grayscale_values)\n",
+        "grayscale_image.save(\"super_mario_grayscale.bmp\")"
+      ],
+      "id": "0095e305",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Das Ergebnis seht ihr in @fig-images-super-mario-grayscale.\n",
+        "\n",
+        "![Mario als Graustufenbild, das unser Programm erzeugt hat.](https://winf-hsos.github.io/university-docs/images/images_super_mario_grayscale.png){#fig-images-super-mario-grayscale .lightbox}\n",
+        "\n",
+        "Der vollständige Code zur Umwandlung von Farbe in Graustufen sieht so aus:"
+      ],
+      "id": "e7aa0244"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-fold: show\n",
+        "#| lst-cap: Der vollständige Code zur Umwandlung von Farbe in Graustufen.\n",
+        "#| lst-label: lst-images-color-to-grayscale\n",
+        "from PIL import Image\n",
+        "image = Image.open(\"xlsx/super_mario_color.bmp\")\n",
+        "\n",
+        "def rgb_to_luminance(rgb_tuple):\n",
+        "    r = rgb_tuple[0]\n",
+        "    g = rgb_tuple[1]\n",
+        "    b = rgb_tuple[2]\n",
+        "\n",
+        "    luminance = 0.299 * r + 0.587 * g + 0.114 * b\n",
+        "    luminance = round(luminance)\n",
+        "    return luminance\n",
+        "\n",
+        "w, h = image.size\n",
+        "grayscale_values = []\n",
+        "for y in range(h):\n",
+        "    for x in range(w):\n",
+        "        r, g, b = image.getpixel((x, y))\n",
+        "        luminance = rgb_to_luminance((r, g, b))\n",
+        "        grayscale_values.append(luminance)\n",
+        "\n",
+        "print(f\"Grayscale bitmap with {len(grayscale_values)} pixel values: {grayscale_values}\")\n",
+        "\n",
+        "grayscale_image = Image.new(\"L\", (w, h))\n",
+        "grayscale_image.putdata(grayscale_values)\n",
+        "grayscale_image.save(\"xlsx/super_mario_grayscale.bmp\")"
+      ],
+      "id": "96db133d",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### Schwarzweiß\n",
+        "\n",
+        "Unser Display kann nur zwei Zustände: Pixel an oder aus. Aus dem Graustufenbild müssen wir also im letzten Schritt ein reines Schwarzweißbild erzeugen. Aber wie?\n",
+        "\n",
+        "Die Frage ist: Welche Pixel aus dem Graustufenbild sollen im Schwarzweißbild schwarz oder weiß sein? Dazu wäre es sinnvoll, dass wir uns einen Schwellenwert setzen, der die Grenze zwischen schwarz und weiß definiert. Alle dunkleren Graustufenwerte unterhalb des Schwellenwerts werden zu schwarz (0), alle darüber oder gleich dazu zu weiß (1). Wir implementieren das direkt als Funktion:"
+      ],
+      "id": "3d3d36f2"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "def luminance_to_bw(luminance, threshold=128):  # <1>\n",
+        "    if luminance < threshold:\n",
+        "        return 0\n",
+        "    else:\n",
+        "        return 1"
+      ],
+      "id": "95a12102",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "1. Die Funktion erwartet einen Luminanzwert und einen optionalen Schwellenwert (Standard: 128) und liefert 0 (schwarz) oder 1 (weiß).\n",
+        "\n",
+        "Wie zuvor mit der Graustufenumwandulung können wir die neue Funktion auf jedes Pixel anwenden. Und zwar in der inneren Schleife, damit wir die neue Funktion auf alle Pixel des Graustufenbildes anwenden können:"
+      ],
+      "id": "7cf5604f"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-fold: show\n",
+        "from PIL import Image\n",
+        "image = Image.open(\"xlsx/super_mario_grayscale.bmp\")\n",
+        "\n",
+        "def luminance_to_bw(luminance, threshold=128):\n",
+        "    if luminance < threshold:\n",
+        "        return 0\n",
+        "    else:\n",
+        "        return 1\n",
+        "\n",
+        "w, h = image.size\n",
+        "bw_values = []\n",
+        "for y in range(h):\n",
+        "    for x in range(w):\n",
+        "        grayscale_value = image.getpixel((x, y))\n",
+        "        bw = luminance_to_bw(grayscale_value, 128)\n",
+        "        bw_values.append(bw)\n",
+        "\n",
+        "print(f\"Black and white bitmap with {len(bw_values)} pixel values: {bw_values}\")\n",
+        "\n",
+        "bw_image = Image.new(\"1\", (w, h))\n",
+        "bw_image.putdata(bw_values)\n",
+        "bw_image.save(\"xlsx/super_mario_bw.bmp\")"
+      ],
+      "id": "338a06a7",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Das Ergebnis seht ihr in @fig-images-super-mario-bw. Wie ihr sicher erkennt, verlieren wir auf dem Weg von Links nach Rehcts eine Menge Informationen.\n",
+        "\n",
+        "![Mario in Schwarzweiß, was offensichtlich ein großer Informationsverlust ist.](https://winf-hsos.github.io/university-docs/images/images_super_mario_bw.png){#fig-images-super-mario-bw .lightbox}\n",
+        "\n",
+        "\n",
+        "\n",
+        "### Informationsverlust\n",
+        "\n",
+        "Was fällt an der Kaskade von Farbe über Graustufen zu Schwarzweiß auf? Es geht eine Menge Information verloren.\n",
+        "\n",
+        "- In Farbe haben wir 256 Farbstufen pro Kanal, also über 16 Millionen mögliche Farben.\n",
+        "- In Graustufen haben wir 256 Helligkeitswerte.\n",
+        "- In Schwarzweiß bleiben nur noch 2 Zustände.\n",
+        "\n",
+        "Mario ist am Ende zwar noch erkennbar, aber viele Details sind verloren gegangen. Besonders die seine Haut ist jetzt weiß und setzt sich nicht mehr vom Hintergrund ab. Wir könnten mit dem Schwellenwert experimentieren, aber mit nur zwei Farben bleibt die Darstellungsqualität stark begrenzt.\n",
+        "\n",
+        "Eine wichtige Erkenntnis: Die Anzahl an Informationen im Bild (Farbtiefe und Auflösung) bestimmt maßgeblich die Qualität. Mehr Farben und mehr Pixel bedeuten ein detailreicheres Bild, aber auch größere Dateien. Dieser Trade-off zwischen Qualität und Größe begleitet uns überall in der Informatik.\n",
+        "\n",
+        "Für Mario, der in seinem echten Klempnerdasein farbig ist, funktioniert die schwarzweiße Welt nicht gut. Wir nutzen deshalb für die Animation auf unserem Display eine Figur, die sowieso in Unifarbe daher kommt. Wenn ihr aber trotzdem mal ausprobieren wollt, wie Mario in Schwarzweiß auf dem Laufsteg aussieht, könnt ihr das gerne ausprobieren. Ihr findet die drei Bilder in dem zu diesem Buch gehörigen [GitHub-Repository](https://github.com/winf-hsos/hands-on-computer-science-code/tree/main/chapter_04/xlsx).\n",
+        "\n",
+        "Für eine Animation auf unserem kleinen Display suchen wir uns eine Figur, die auch in Schwarzweiß gut funktioniert: Pacman.\n",
+        "\n",
+        "## Pacman {#sec-images-pacman .collapsable}\n",
+        "\n",
+        "### Von Farbe zu Schwarzweiß\n",
+        "\n",
+        "Am Beispiel von Mario haben wir bereits eine Verarbeitungslogik von Farbe zu Schwarzweiß kennengelernt. Für Pacman können wir uns das Leben noch weiter vereinfachen.\n",
+        "\n",
+        "Pacman ist ein weiterer Spieleklassiker aus den 1980er Jahren, mit dem ich meine ganz eigene Geschichte habe: Mein erstes größeres Programmierprojekt war die Entwicklung eines Pacman-Spiels in Turbo Pascal. Das ist 1998 während meines Ausslandsaufenthaltes in North Carolina in der elften Schulklasse entstanden. Für das Projekt habe ich Pacman Pixel für Pixel gezeichnet und animiert.\n",
+        "\n",
+        "Das Spiel ist schnell erklärt. Pacman ist eine kreisförmige, gelbe Figur, die der Spieler durch ein Labyrinth steuert und dabei möglichst viele Punkte frisst. Währendessen wird Pacman von Geistern gejagt. Einen Eindruck vom Originalspiel seht ihr in @fig-images-pacman-screenshot.\n",
+        "\n",
+        "![So sah Pacman früher als Arcade-Game aus.](https://winf-hsos.github.io/university-docs/images/images_pacman_screenshot.png){#fig-images-pacman-screenshot .lightbox}\n",
+        "\n",
+        "Wenn Pacman läuft, öffnet und schließt sich sein Mund im Wechsel. In @fig-images-pacman-animation seht ihr diese Mundbewegung in drei Bildern. Diese drei Sprites wollen wir im Folgenden auf unser Display übertragen.\n",
+        "\n",
+        "![Pacman öffnet den Mund in 3 Bildern](https://winf-hsos.github.io/university-docs/images/images_pacman_animation.png){#fig-images-pacman-animation .lightbox}\n",
+        "\n",
+        "Pacman von Farbe zu Schwarzweiß umzuwandeln ist denkbar einfach: Es gibt im Wesentlichen nur eine relevante Farbe (Gelb). Wir entscheiden also: Alle gelben Pixel werden weiß (1), alle anderen schwarz (0). Praktisch prüfen wir einfach, ob ein Pixel *nicht* weiß ist.\n",
+        "\n",
+        "Wir laden zunächst das Bitmap-Bild von Pacman mit geschlossenem Mund und iterieren dann über alle Pixel, um die Schwarzweiß-Werte zu erzeugen:"
+      ],
+      "id": "fc9c6292"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "from PIL import Image\n",
+        "image = Image.open(\"bmp/pacman_closed.bmp\")  # <1>\n",
+        "\n",
+        "w, h = image.size  # <2>\n",
+        "pacman_closed = []  # <3>\n",
+        "\n",
+        "for y in range(h):             # <4>\n",
+        "    for x in range(w):\n",
+        "        r, g, b = image.getpixel((x, y))  # <5>\n",
+        "\n",
+        "        if r == 255 and g == 255 and b == 255:  # <6>\n",
+        "            pacman_closed.append(0)\n",
+        "        else:\n",
+        "            pacman_closed.append(1)\n",
+        "\n",
+        "print(pacman_closed)"
+      ],
+      "id": "ca0fede9",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "1. Wir laden die Bitmap-Datei von Pacman mit geschlossenem Mund.\n",
+        "2. Wir lesen Breite und Höhe aus.\n",
+        "3. Wir erstellen eine Liste für die Schwarzweiß-Werte.\n",
+        "4. Zwei verschachtelte Schleifen iterieren über alle Pixelkoordinaten.\n",
+        "5. Wir lesen den RGB-Wert des aktuellen Pixels.\n",
+        "6. Ist das Pixel weiß, fügen wir eine 0 hinzu, sonst eine 1.\n",
+        "\n",
+        "Die Logik in der Schleife ist einfach: Wenn alle Farbkomponenten den Wert 255 haben, dann ist das Pixel weiß und gehört somit nicht zu Pacman. Wir notieren also eine 0. Ansonsten ist das Pixel Teil von Pacman, und wir notieren eine 1.\n",
+        "\n",
+        "Die Ausgabe in der letzten Zeile ist eine Liste, die etwa so aussieht:\n",
+        "\n",
+        "```\n",
+        "[0, 0, 0, 0, 1, 1, 1, 1, ... 1, 1, 1, 1, 0, 0, 0, 0]\n",
+        "```\n",
+        "\n",
+        "Genau dieses Format benötigen wir, um das Bild auf dem Display darzustellen. Perfekt!\n",
+        "\n",
+        "Jetzt ergänzen wir wieder unseren Tinkerforge-Boilerplate und zeigen Pacman an:"
+      ],
+      "id": "6e89a2fb"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "from tinkerforge.ip_connection import IPConnection\n",
+        "from tinkerforge.bricklet_oled_128x64_v2 import BrickletOLED128x64V2\n",
+        "\n",
+        "ipcon = IPConnection()\n",
+        "ipcon.connect('localhost', 4223)\n",
+        "oled = BrickletOLED128x64V2('25zo', ipcon)\n",
+        "oled.clear_display()\n",
+        "\n",
+        "# Code zum Laden und Umwandeln des Bildes in Schwarzweiß (siehe oben)\n",
+        "...\n",
+        "\n",
+        "oled.write_pixels(10, 10, 21, 22, pacman_closed)"
+      ],
+      "id": "c3accdf1",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Wir setzen Pacmans obere linke Ecke auf (10, 10). Pacman ist 12×13 Pixel groß, der untere rechte Eckpunkt ist also (21, 22). Wenn ihr das Programm ausführt, sollte Pacman mit geschlossenem Mund auf dem Display erscheinen (siehe @fig-images-pacman-closed-display).\n",
+        "\n",
+        "### Pacman-Animation\n",
+        "\n",
+        "Dasselbe Vorgehen können wir für die beiden anderen Bilder (halb geöffneter und geöffneter Mund) wiederholen. Anstatt den Code zu kopieren, kapseln wir die Umwandlung in eine Funktion:"
+      ],
+      "id": "d63024f0"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "from PIL import Image\n",
+        "\n",
+        "\n",
+        "def convert_rgb_to_bw(image_path):\n",
+        "    image = Image.open(image_path)\n",
+        "    w, h = image.size\n",
+        "\n",
+        "    bw_values = []\n",
+        "    for y in range(h):\n",
+        "        for x in range(w):\n",
+        "            r, g, b = image.getpixel((x, y))\n",
+        "\n",
+        "            if r == 255 and g == 255 and b == 255:\n",
+        "                bw_values.append(0)\n",
+        "            else:\n",
+        "                bw_values.append(1)\n",
+        "\n",
+        "    return bw_values"
+      ],
+      "id": "ebbec9fb",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Die Funktion `convert_rgb_to_bw` nimmt den Pfad eines Bildes entgegen, lädt es, wandelt alle Pixel in 0 oder 1 um und gibt die resultierende Liste zurück.\n",
+        "\n",
+        "Wir rufen sie für alle drei Pacman-Bilder auf:"
+      ],
+      "id": "484c33a8"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "pacman_half = convert_rgb_to_bw(\"bmp/pacman_half.bmp\")\n",
+        "pacman_closed = convert_rgb_to_bw(\"bmp/pacman_closed.bmp\")\n",
+        "pacman_open = convert_rgb_to_bw(\"bmp/pacman_open.bmp\")"
+      ],
+      "id": "c91c982b",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Jetzt können wir die drei Bitmaps mit `write_pixels()` nacheinander anzeigen. Dazwischen legen wir kurze Pausen ein, damit unser Auge die Bilder wahrnehmen kann. Das Ganze läuft in einer Endlosschleife:"
+      ],
+      "id": "e7de0a48"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-line-numbers: false\n",
+        "import time\n",
+        "\n",
+        "wait_time = 0.1\n",
+        "while True:\n",
+        "    oled.write_pixels(10, 10, 21, 22, pacman_closed)\n",
+        "    time.sleep(wait_time)\n",
+        "    oled.write_pixels(10, 10, 21, 22, pacman_half)\n",
+        "    time.sleep(wait_time)\n",
+        "    oled.write_pixels(10, 10, 21, 22, pacman_open)\n",
+        "    time.sleep(wait_time * 2)\n",
+        "    oled.write_pixels(10, 10, 21, 22, pacman_half)\n",
+        "    time.sleep(wait_time)"
+      ],
+      "id": "a7f20ec0",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Über die Variable `wait_time` könnt ihr die Geschwindigkeit der Animation steuern. In der letzten Phase (`pacman_open`) verdoppeln wir die Wartezeit, damit Pacman mit offenem Mund etwas länger sichtbar ist.\n",
+        "\n",
+        "::: {#fig-images-pacman-display layout=\"[[1,1,1]]\"}\n",
+        "\n",
+        "![Erster Frame](/images/pacman_closed_display.jpg){#fig-images-pacman-closed-display group=\"pacman-display\" .lightbox}\n",
+        "\n",
+        "![Zweiter Frame](/images/pacman_half_display.jpg){#fig-images-pacman-half-display group=\"pacman-display\" .lightbox}\n",
+        "\n",
+        "![Dritter Frame](/images/pacman_open_display.jpg){#fig-images-pacman-open-display group=\"pacman-display\" .lightbox}\n",
+        "\n",
+        "Die drei Pacman-Frames auf dem OLED-Display.\n",
+        ":::\n",
+        "\n",
+        "So sieht das Ganze als bewegtes Bild auf dem Display aus (siehe @fig-images-pacman-animation-display):\n",
+        "\n",
+        "::: {.content-visible when-format=\"html\"}\n",
+        "![Pacman als Animation auf dem Display.](/images/pacman_animation_display.gif){#fig-images-pacman-animation-display .lightbox}\n",
+        ":::\n",
+        "\n",
+        "In @lst-images-pacman-animation findet ihr den vollständigen Code für die Pacman-Animation, den ihr auch im [GitHub-Repository](https://github.com/winf-hsos/hands-on-computer-science-code/blob/main/chapter_04/4_10_pacman.py) findet:"
+      ],
+      "id": "faf493d6"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "#| code-fold: show\n",
+        "#| lst-label: lst-images-pacman-animation\n",
+        "#| lst-cap: Der vollständige Code für die Pacman-Animation\n",
+        "from tinkerforge.ip_connection import IPConnection\n",
+        "from tinkerforge.bricklet_oled_128x64_v2 import BrickletOLED128x64V2\n",
+        "import time\n",
+        "from PIL import Image\n",
+        "\n",
+        "ipcon = IPConnection()\n",
+        "ipcon.connect(\"localhost\", 4223)\n",
+        "oled = BrickletOLED128x64V2(\"<YOUR_UID>\", ipcon)\n",
+        "oled.clear_display()\n",
+        "\n",
+        "def convert_rgb_to_bw(image_path):\n",
+        "    image = Image.open(image_path)\n",
+        "    w, h = image.size\n",
+        "\n",
+        "    bw_values = []\n",
+        "    for y in range(h):\n",
+        "        for x in range(w):\n",
+        "            r, g, b = image.getpixel((x, y))\n",
+        "\n",
+        "            if r == 255 and g == 255 and b == 255:\n",
+        "                bw_values.append(0)\n",
+        "            else:\n",
+        "                bw_values.append(1)\n",
+        "\n",
+        "    return bw_values\n",
+        "\n",
+        "pacman_half = convert_rgb_to_bw(\"bmp/pacman_half.bmp\")\n",
+        "pacman_closed = convert_rgb_to_bw(\"bmp/pacman_closed.bmp\")\n",
+        "pacman_open = convert_rgb_to_bw(\"bmp/pacman_open.bmp\")\n",
+        "\n",
+        "wait_time = 0.1\n",
+        "while True:\n",
+        "    oled.write_pixels(10, 10, 21, 22, pacman_closed)\n",
+        "    time.sleep(wait_time)\n",
+        "    oled.write_pixels(10, 10, 21, 22, pacman_half)\n",
+        "    time.sleep(wait_time)\n",
+        "    oled.write_pixels(10, 10, 21, 22, pacman_open)\n",
+        "    time.sleep(wait_time * 2)\n",
+        "    oled.write_pixels(10, 10, 21, 22, pacman_half)\n",
+        "    time.sleep(wait_time)"
+      ],
+      "id": "322d830b",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "Im echten Spiel bewegt Pacman nicht nur seinen Mund, sondern wandert durch das Labyrinth. Dafür müssten wir die Koordinaten des Rechtecks verändern und Pacman Pixel für Pixel über das Display bewegen. Ihr könnt das einmal selbst ausprobieren: Lasst Pacman von Links nach Rechts über den Bildschirm laufen. Wenn er am Ende angekommen ist, beginnt wieder von Vorne.\n",
+        "\n",
+        "Für ein echtes Spiel müssten wir zusätzlich weitere Sprites für die Bewegungen in die anderen drei Richtungen erzeugen. Wenn Pacman nach rechts läuft, dann sollte er auch in die entsprechende Richtung blicken. Das selbe gilt für Oben und Unten. Das sparen wir uns an dieser Stelle, denn schließlich wollen wir kein komplettes Spiel entwickeln, sondern etwas über die Grundlagen moderner Computer lernen. Das haben wir hoffentlicht für das Theme Bilder heute geschafft. \n",
+        "\n",
+        "Im nächsten Kapitel wenden wir uns wieder einem anderen spannenden Thema zu, das eine große Relevanz im Zusammenhang mit Computern hat: Töne und Klänge."
+      ],
+      "id": "ec3b280f"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "c:\\code\\hands-on-computer-science-book\\.python-env\\share\\jupyter\\kernels\\python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

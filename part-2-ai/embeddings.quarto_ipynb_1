@@ -1,0 +1,62 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Bedeutungen {#sec-embeddings}\n",
+        "\n",
+        "## Zusammenfassung\n",
+        "\n",
+        "## Experimentaufbau\n",
+        "\n",
+        "## Ähnliche Wörter\n",
+        "\n",
+        "## Einbettungen (*Word Embeddings*)"
+      ],
+      "id": "931aea38"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import openai, numpy as np\n",
+        "\n",
+        "client = openai.OpenAI()\n",
+        "\n",
+        "def embed(text):\n",
+        "    return np.array(client.embeddings.create(\n",
+        "        input=text, model=\"text-embedding-3-small\"\n",
+        "    ).data[0].embedding)\n",
+        "\n",
+        "def cosine_similarity(a, b):\n",
+        "    return np.dot(a, b) / (np.linalg.norm(a) * np.linalg.norm(b))"
+      ],
+      "id": "01cec588",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Dimensionsreduktion und Visualisierung\n",
+        "\n",
+        "## Vektorarithmetik\n",
+        "\n",
+        "## Suche nach Bedeutung\n"
+      ],
+      "id": "a253f913"
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "name": "python3",
+      "language": "python",
+      "display_name": "Python 3 (ipykernel)",
+      "path": "C:\\code\\hands-on-computer-science-book\\.python-env\\share\\jupyter\\kernels\\python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

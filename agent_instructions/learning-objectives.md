@@ -1,0 +1,19 @@
+## Lernziele
+
+Das Modul "Problemlösung mit Künstlicher Intelligenz" baut auf den Grundlagen der Informatik und der Programmierung auf und erweitert diese um ein grundlegend neues Paradigma: das maschinelle Lernen. Während im Vorgängermodul der Fokus darauf lag, wie ein Computer Informationen verarbeitet und wie Programmierer Regeln explizit in Code formulieren, stellt dieses Modul die Frage, was passiert, wenn Maschinen diese Regeln selbst aus Daten lernen. Zentrales Lernziel ist es, diesen Unterschied zwischen regelbasierter Programmierung und datengetriebenem Lernen nicht nur konzeptuell zu verstehen, sondern ihn praktisch zu erleben.
+
+Darüber hinaus entwickeln die Studierenden ein differenziertes Bild davon, was Künstliche Intelligenz heute wirklich leisten kann, und lernen, verschiedene Arten von KI-Systemen zu unterscheiden. Sie erkennen, dass viele moderne KI-Anwendungen sogenannte schwache KI-Systeme sind, die hervorragend für eng abgegrenzte Aufgaben geeignet sind, wie die Klassifikation von Bildern, die Vorhersage von Werten oder die Verarbeitung von Sprache. Gleichzeitig lernen sie, wie Sprachmodelle und multimodale Systeme eine neue Klasse von Werkzeugen darstellen, die flexibler und allgemeiner einsetzbar sind. Ein wesentliches Ziel des Moduls ist es, dass Studierende zu kompetenten Anwenderinnen und Anwendern werden, die einschätzen können, welches KI-Werkzeug für welches Problem geeignet ist, und die in der Lage sind, diese Werkzeuge mit eigenen Python-Programmen sinnvoll einzusetzen.
+
+## Didaktisches Konzept
+
+Das Modul findet in wöchentlichen Sitzungen von jeweils 180 Minuten statt. Jede Sitzung ist um ein konkretes Experiment herum aufgebaut, das die Studierenden Schritt für Schritt gemeinsam durchführen. Im Mittelpunkt steht dabei jeweils eine neue Art von KI-System, dessen Funktionsweise und Grenzen praktisch erfahrbar gemacht werden. Die Experimente folgen einer aufsteigenden Komplexität: Zu Beginn des Semesters arbeiten die Studierenden mit klassischen Machine-Learning-Modellen für eng abgegrenzte Aufgaben, bevor sie sich in späteren Wochen mit Sprachmodellen, multimodalen Systemen, Reasoning-Modellen und schließlich agentischen KI-Systemen befassen.
+
+Die Experimente werden mit Python umgesetzt und nutzen reale KI-Werkzeuge und -Schnittstellen, wie sie auch in der Praxis eingesetzt werden. Dabei geht es nicht darum, KI-Modelle von Grund auf neu zu entwickeln, sondern darum, vorhandene Modelle und APIs gezielt für konkrete Problemstellungen einzusetzen und ihr Verhalten zu verstehen. Zu jedem Experiment gehört auch eine Reflexionsphase, in der gemeinsam besprochen wird, was gut funktioniert hat, wo die Grenzen des jeweiligen Systems liegen, und welche ethischen Fragen sich aus dem Einsatz der Technologie ergeben.
+
+Die Studierenden können die Experimente auf Wunsch eigenständig oder in der Gruppe zuhause weiterführen und vertiefen. Zu Beginn der nächsten Sitzung werden die Ergebnisse gemeinsam besprochen und offene Fragen geklärt. Die regelmäßige Auseinandersetzung mit den wöchentlichen Aufgaben ist dabei von zentraler Bedeutung: Nur wer die Werkzeuge selbst ausprobiert und mit ihnen experimentiert, entwickelt ein echtes Gespür dafür, wann und wie KI sinnvoll eingesetzt werden kann.
+
+## Prüfung
+
+Die Prüfung findet mündlich im offiziellen Prüfungszeitraum statt und dauert etwa 30 Minuten. Sie wird in Paaren durchgeführt, das heißt, jeweils zwei Studierende werden räumlich und zeitlich gemeinsam, aber jeder individuell, geprüft.
+
+Unmittelbar vor der mündlichen Prüfung bearbeiten die Studierenden in einer 20-minütigen Vorbereitungsphase einzeln an einem Computer eine kleine Aufgabe, bei der sie ein gegebenes Problem mithilfe geeigneter KI-Werkzeuge und Python lösen. Die Endnote ergibt sich zu gleichen Teilen (50/50) aus dem Ergebnis dieser praktischen Aufgabe und der mündlichen Prüfung.

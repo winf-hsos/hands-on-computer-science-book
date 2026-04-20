@@ -4,85 +4,97 @@ subtitle: "Building a Mood Detector"
 lang: en
 ---
 
-In this experiment, you build a mood detector that predicts a person's mood from what they write in a chat. You start with a rule-based approach, explore its limitations, and then build a second version using a machine learning approach. The goal is to compare both approaches and reflect on their strengths and weaknesses.
+In this experiment, you build a mood detector that predicts a person's mood from what they write in a chat. You start by classifying sentences by hand, then build a rule-based Python program, and finally replace the rules with a machine learning approach. The goal is to compare both approaches and reflect on their strengths and weaknesses.
 
-## Task 1: Project Setup
+## Task 1: Classify by Hand (Analog Warm-Up)
 
-In this experiment, you write some code. Let's begin by setting up your project environment.
+Before writing any code, work with pen and paper.
 
-1.  Make sure your Master Brick successfully connects to your computer and that you can control the LED using the Brick Viewer.
+You receive the following 10 sentences. Read each one carefully and label it **good**, **bad**, or **neutral** — individually, in under 3 minutes:
 
-2.  Create a script called `mood_rb.py`. This script will be a Python program that connects to the LED. Set the LED to *off* initially.
+a. Not bad at all, actually.
+b. Well, that could have gone worse.
+c. I guess this is fine.
+d. Oh great, another problem.
+e. I'm not unhappy with the result.
+f. Fantastic... now it's broken again.
+g. I was worried, but now it seems okay.
+h. That's just perfect.
+i. I can live with that.
+j. It's working, though I don't feel great about it.
 
-3.  After initializing the LED, add a loop that continuously reads text input from the user. After the user types a message and hits ENTER, print the message back to the console. If the user enters `bye`, exit the program.
+Now compare your labels with a classmate. Where do you disagree? For each disagreement, write down the rule you used to justify your choice.
 
-## Task 2: Rule-based Mood Detection
+Class debrief: collect all rules on the board. How many unique rules emerged? Which sentences caused the most disagreement? *These are the sentences the rule-based system will fail on — you have just discovered your own test suite.*
 
-In this task, your code analyzes the user's input using a simple set of rules to determine the user's mood.
+## Task 2: Project Setup
 
-4.  Develop a concept for how you want to determine the mood from the text input. For example, you could look for keywords that indicate a good mood (e.g., "happy", "great", "awesome") or a bad mood (e.g., "sad", "terrible", "angry"). Write down your ideas for the rules you want to use.
+1. Make sure your Master Brick successfully connects to your computer and that you can control the LED using the Brick Viewer.
 
-5.  Implement a first version of your mood detector in Python using the rules you defined.
+2. Create a script called `mood_rb.py`. Connect to the LED and set it to *off* initially.
 
-    - If the detector predicts a good mood, turn the LED green.
-    - If the detector predicts a bad mood, turn the LED red.
-    - If it cannot decide (no rule matches), turn the LED blue (neutral/unknown).
+3. Add a loop that continuously reads text input from the user. After the user types a message and hits ENTER, print the message back to the console. If the user enters `bye`, exit the program.
 
-    What programming constructs do you need to implement your rules?
+## Task 3: Rule-Based Mood Detection
 
-6.  Test your mood detector with the following sentences and observe how it behaves:
+4. Using the rules you collected on the board in Task 0, implement your mood detector in Python:
 
-    a. Not bad at all, actually.
-    b. Well, that could have gone worse.
-    c. I guess this is fine.
-    d. Oh great, another problem.
-    e. I'm not unhappy with the result.
-    f. Fantastic... now it's broken again.
-    g. I was worried, but now it seems okay.
-    h. That's just perfect.
-    i. I can live with that.
-    j. It's working, though I don't feel great about it.
+   - Good mood → LED green
+   - Bad mood → LED red
+   - Cannot decide → LED blue (neutral/unknown)
 
-7.  Extend your mood detector with an additional label:
+   What programming constructs do you need to implement your rules?
 
-    - Hungry mood: If the user message contains keywords that indicate hunger or craving for food, turn the LED yellow.
+5. Test your detector on all 10 sentences from Task 0. How many does it get right compared to your own labels? Write down every case where it fails and explain why.
 
-8.  Test your rule-based detector with additional inputs and edge cases (e.g., negation, sarcasm, mixed emotions, ambiguous statements). Can you find examples where it fails to correctly identify the mood? Write down your observations.
+6. Design and add a **4th label of your own choice** — something that the three-label system cannot express. Examples: sarcastic, stressed, surprised, enthusiastic. Pick one as a group, define its keywords, and assign it a colour (e.g., yellow).
 
-## Task 3: Learning-based Mood Detection
+   What does this decision teach you about the relationship between labels and the real world?
 
-Now test whether a machine learning approach can do better than your rule-based system. You will integrate a large language model into your program to analyze the user's input and predict the mood.
+7. Test your extended detector on new edge cases: negation, sarcasm, mixed emotions, ambiguous statements. Find at least 3 sentences that fool it.
 
-9.  Create a new script called `mood_ml.py` as a copy of `mood_rb.py`. Remove the code that implements the rule-based mood detection.
+## Task 4: Learning-Based Mood Detection
 
-10. Add the necessary code to connect to the OpenAI API and use a language model to analyze the user's input. You can use the `openai` Python library (`pip install openai`). You can obtain an API key from your instructor.
+8. Before writing any code, open ChatGPT in your browser. Write a prompt that asks it to classify a sentence into one of your four mood labels. Try it on several sentences from Task 0. Does it get them right? Note down the exact prompt you used.
 
-11. Create a prompt that instructs the model to classify the user's message into one of the following labels: `good`, `bad`, `neutral`, `hungry`. Send the user's message to the model and receive its response.
+9. Now try the same prompt on the 10 sentences from Task 0 one by one. Observe how ChatGPT responds: How long is the answer? Does it always use exactly one of your four labels? Is the format consistent across responses? Write down what you notice.
 
-12. Based on the model output, set the LED color accordingly (green = good, red = bad, blue = neutral, yellow = hungry). How can you make the model output consistent and easy to parse?
+10. Create a new script called `mood_ml.py` as a copy of `mood_rb.py`. Remove the rule-based detection code. Connect to the OpenAI API and send the same prompt you used in ChatGPT. Print the raw response to the console and test it on a few sentences.
 
-## Task 4: Systematic Testing and Comparison
+    What do you notice about the model's responses compared to what you expected? Is the output easy to use in your program?
 
-13. Create a table (e.g. Excel) with at least 20 test sentences and assign each one an expected mood label. Include straightforward cases as well as difficult cases such as negation, sarcasm, mixed emotions, and ambiguous statements.
+11. The model's raw output is likely too long or inconsistently formatted to drive the LED directly. Adjust your prompt so that the model returns only the label — nothing else. Experiment until the output is short and predictable enough to parse reliably. What prompt changes made the biggest difference?
 
-14. Test both the rule-based and the learning-based system on all examples. Automate this process and record the predictions of both systems and print the accuracy to the console.
+12. Use the label from the model's response to set the LED colour. Test the system live with the same sentences from Task 0.
 
-15. Extend both systems so they also provide a short explanation of their decision. Compare how understandable and trustworthy these explanations are. Does it make a difference which language model you use?
+13. You have now wrestled with getting consistent output from the model. OpenAI offers a feature called **structured outputs** that lets you define the exact shape of the response; the model is then forced to conform to that schema. Try it and define response with a `label` field (restricted to your four labels) and a `reason` field (a short explanation), and update your API call to use structured output mode.
 
-16. Modify the learning-based system so that the model returns the labels `good`, `bad`, `neutral`, or `hungry` as a *structured JSON output*. Why is this useful when integrating the model into a program?
+    How does the response compare to what you got before? Why is this approach better when integrating a LLM into a program?
 
-## Task 5: Reflection and Discussion
+## Task 5: Systematic Comparison
+
+14. Build a test dataset in a CSV file with at least 20 sentences: include all 10 from Task 0, plus 10 new ones covering negation, sarcasm, mixed emotions, and unambiguous straightforward cases. Assign a ground-truth label to each.
+
+15. Automate testing for both systems. Run all 20 sentences through both and record their predictions and accuracy. Print the results to the console.
+
+16. Go beyond accuracy and visualize a **confusion matrix** for each system. Where does each system fail most? Does it fail in the same places as the rule-based system?
+
+17. Compare the `reason` field from the LLM across correct and incorrect predictions. Are the reasons for wrong answers still convincing? What does this tell you about the trustworthiness of an explanation?
+
+## Task 6: Reflection and Discussion
 
 Reflect on the following questions and write down your thoughts. Discuss with your peers:
 
-17. Where did the rule-based system work well, and where did it fail?
+1. In Task 0, you and a classmate disagreed on some labels. If your disagreements had been used as training data for a model, what would the model have learned?
 
-18. In what way did the learning-based system behave differently?
+2. Where did the rule-based system work well, and where did it fail?
 
-19. Which system was easier to build?
+3. The LLM gave a reason for every decision — including the wrong ones. Does a convincing explanation make you trust the result more? Should it?
 
-20. Which system is easier to understand and debug?
+4. Which system was easier to build? Which is easier to debug? Are these the same thing?
 
-21. Which system would you trust more in a real application, and why?
+5. Which system would you trust more in a real application — and for which *kind* of application?
 
-22. What does this experiment show about the difference between rules and learning?
+6. The LLM you used was trained on billions of human-written texts, many of which were labeled or curated by humans. In what sense is it a "learning-based" system, just at a different scale from what you built?
+
+7. You designed a 4th label yourself. What does the choice of labels reveal about the assumptions you are making about human emotion?
